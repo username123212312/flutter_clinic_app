@@ -1,0 +1,26 @@
+flutter_native_splash:
+  android: true
+  ios: false
+  web: false
+
+  # must be added here too
+  color: "#2d84fb"
+  # image:
+  # icon_background_color:
+  # branding:
+
+  # dark mode
+  # color_dark: "#042a49"
+  # image_dark: assets/android12splash-invert.png
+  # icon_background_color_dark: "#eeeeee"
+
+  android_12:
+    color: "#2d84fb"
+    # image:
+    #icon_background_color:
+    # branding:
+
+    # dark mode
+    # color_dark: "#042a49"
+    # image_dark: assets/android12splash-invert.png
+    # icon_background_color_dark: "#eeeeee"
