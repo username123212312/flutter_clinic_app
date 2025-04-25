@@ -5,12 +5,14 @@ import 'package:flutter_clinic_app/core/utils.dart';
 
 class LoginAsWidget extends StatelessWidget {
   const LoginAsWidget({
-    required super.key,
+    super.key,
     this.isSelected = false,
     required this.onToggleSelect,
+    required this.title,
   });
   final bool isSelected;
   final void Function() onToggleSelect;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -18,28 +20,34 @@ class LoginAsWidget extends StatelessWidget {
       onTap: () {
         onToggleSelect();
       },
-      child: AnimatedContainer(
-        width: screenWidth(context) * 0.28,
-        height: screenHeight(context) * 0.3,
-        key: key,
+      child: Container(
+        width: screenWidth(context) * 0.4,
+        height: screenHeight(context) * 0.33,
         decoration: BoxDecoration(
+          color: Pallete.backgroundColor,
           borderRadius: BorderRadius.circular(12),
-          border: isSelected ? Border.all(color: Pallete.primaryColor) : null,
+          border:
+              isSelected
+                  ? Border.all(color: Pallete.primaryColor, width: 3)
+                  : null,
           boxShadow:
               isSelected
                   ? null
-                  : [
-                    BoxShadow(
-                      blurRadius: 8,
-                      color: Colors.black,
-                      offset: Offset(0, 10),
-                    ),
-                  ],
+                  : [BoxShadow(blurRadius: 4, color: Colors.black)],
         ),
-        duration: Duration(microseconds: 500),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [],
+          children: [
+            Spacer(),
+            Text(
+              title,
+              style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                fontSize: 18,
+                color: isSelected ? Pallete.primaryColor : Colors.black,
+              ),
+            ),
+            SizedBox(height: 15),
+          ],
         ),
       ),
     );

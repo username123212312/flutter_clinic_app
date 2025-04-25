@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clinic_app/core/enums.dart';
+import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
 
+import '../widgets/custom_elevated_button.dart';
 import '../widgets/login_as_widget.dart';
 
 class OnBoardingScreen extends StatefulWidget {
@@ -21,19 +23,27 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               LoginAsWidget(
-                key: ValueKey(Role.patient.toString()),
                 onToggleSelect: () => _toggleRoles(Role.patient),
                 isSelected: patientSelected,
+                title: 'Patient',
               ),
               SizedBox(width: 20),
               LoginAsWidget(
-                key: ValueKey(Role.doctor.toString()),
                 onToggleSelect: () => _toggleRoles(Role.doctor),
                 isSelected: doctorSelected,
+                title: 'Doctor',
               ),
             ],
+          ),
+          SizedBox(height: 30),
+          CustomElevatedButton(
+            title: 'Continue',
+            onTap: () {},
+            fillColor: Pallete.primaryColor,
+            textColor: Colors.white,
           ),
         ],
       ),
