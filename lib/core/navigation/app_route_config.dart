@@ -7,19 +7,18 @@ import 'package:go_router/go_router.dart';
 
 class AppRouteConfig {
   static final router = GoRouter(
-    initialLocation: '/',
-    errorPageBuilder: (context, state) => MaterialPage(child: ErrorScreen()),
+    initialLocation: '/on_boarding',
+    errorPageBuilder: (_, __) => MaterialPage(child: ErrorScreen()),
     routes: [
       GoRoute(
         name: AppRouteConstants.welcomeRouteName,
         path: '/',
-        pageBuilder: (context, state) => MaterialPage(child: WelcomeScreen()),
+        pageBuilder: (_, __) => MaterialPage(child: WelcomeScreen()),
       ),
       GoRoute(
         name: AppRouteConstants.onBoardingRouteName,
         path: '/on_boarding',
-        pageBuilder:
-            (context, state) => MaterialPage(child: OnBoardingScreen()),
+        pageBuilder: (_, __) => MaterialPage(child: OnBoardingScreen()),
       ),
     ],
   );
