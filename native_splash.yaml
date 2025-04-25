@@ -15,12 +15,12 @@ flutter_native_splash:
   # icon_background_color_dark: "#eeeeee"
 
   android_12:
-    color: "#B7D9FB"
+    color: "#ffffff"
     # image:
     # icon_background_color:
     # branding:
 
     # dark mode
-    # color_dark: "#042a49"
+    color_dark: "#B7D9FB"
     # image_dark: assets/android12splash-invert.png
     # icon_background_color_dark: "#eeeeee"

@@ -32,16 +32,18 @@ class AppTheme {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(backgroundColor: colorScheme.primary),
       ),
-      textTheme: TextTheme().copyWith(
-        labelMedium: TextStyle().copyWith(
-          fontFamily: 'Poppins',
-          fontWeight: FontWeight.w600,
-        ),
-        labelSmall: TextStyle().copyWith(
-          fontFamily: 'Poppins',
-          fontWeight: FontWeight.w500,
-        ),
-      ),
+      textTheme: _textTheme(),
+    );
+  }
+
+  static TextStyle _textStyle() =>
+      TextStyle().copyWith(fontFamily: 'Poppins', color: Colors.black);
+
+  static TextTheme _textTheme() {
+    return TextTheme().copyWith(
+      labelMedium: _textStyle().copyWith(fontWeight: FontWeight.w600),
+      labelSmall: _textStyle().copyWith(fontWeight: FontWeight.w500),
+      titleSmall: _textStyle().copyWith(fontWeight: FontWeight.w400),
     );
   }
 

@@ -8,9 +8,11 @@ class CustomElevatedButton extends StatelessWidget {
     required this.onTap,
     required this.fillColor,
     required this.textColor,
+    this.elevation = 1,
   });
   final String title;
-  final Color fillColor;
+  final double elevation;
+  final Color? fillColor;
   final Color textColor;
   final void Function() onTap;
 
@@ -19,6 +21,7 @@ class CustomElevatedButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onTap,
       style: ElevatedButton.styleFrom(
+        elevation: elevation,
         fixedSize: Size(
           screenWidth(context) * 0.37,
           screenHeight(context) * 0.07,
@@ -30,7 +33,9 @@ class CustomElevatedButton extends StatelessWidget {
 
       child: Text(
         title,
-        style: Theme.of(context).textTheme.labelMedium!.copyWith(),
+        style: Theme.of(
+          context,
+        ).textTheme.labelMedium!.copyWith(fontSize: 18, color: textColor),
       ),
     );
   }
