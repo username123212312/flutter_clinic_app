@@ -15,7 +15,7 @@ flutter_native_splash:
   # icon_background_color_dark: "#eeeeee"
 
   android_12:
-    color: "#2d84fb"
+    color: "#B7D9FB"
     # image:
     # icon_background_color:
     # branding:
