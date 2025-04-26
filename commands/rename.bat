@@ -1,0 +1,1 @@
+rename setAppName --targets ios,android --value "YourNewAppName"

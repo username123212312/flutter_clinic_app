@@ -4,13 +4,14 @@ flutter_native_splash:
   web: false
 
   # must be added here too
-  color: "#2d84fb"
+  color: "#ffffff"
   # image:
   # icon_background_color:
   # branding:
 
   # dark mode
-  # color_dark: "#042a49"
+  color_dark: "#B7D9FB"
+
   # image_dark: assets/android12splash-invert.png
   # icon_background_color_dark: "#eeeeee"
 
