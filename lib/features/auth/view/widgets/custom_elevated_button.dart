@@ -9,11 +9,13 @@ class CustomElevatedButton extends StatelessWidget {
     required this.fillColor,
     required this.textColor,
     this.elevation = 1,
+    this.borderColor,
   });
   final String title;
   final double elevation;
   final Color? fillColor;
   final Color textColor;
+  final Color? borderColor;
   final void Function() onTap;
 
   @override
@@ -28,7 +30,10 @@ class CustomElevatedButton extends StatelessWidget {
         ),
         backgroundColor: fillColor,
         foregroundColor: textColor,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+          side: BorderSide(color: borderColor ?? Colors.transparent),
+        ),
       ),
 
       child: Text(

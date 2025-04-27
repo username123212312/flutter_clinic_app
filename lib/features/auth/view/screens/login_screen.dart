@@ -108,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ? 'Want to get treatment immediately? Come in!'
                 : 'Doctor Text',
             style: Theme.of(context).textTheme.labelSmall!.copyWith(
-              color: Pallete.grayScaleColor,
+              color: Pallete.grayScaleColor500,
               fontSize: 13,
             ),
           ),

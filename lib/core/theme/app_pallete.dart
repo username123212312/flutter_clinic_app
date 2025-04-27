@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class Pallete {
   static const Color backgroundColor = Colors.white;
   static const Color primaryColor = Color.fromRGBO(45, 132, 251, 1);
-  static const Color inactiveColor = Color.fromRGBO(196, 196, 196, 1);
-  static const Color grayScaleColor = Color.fromRGBO(140, 140, 140, 1);
+  static const Color inactiveColor1 = Color.fromRGBO(196, 196, 196, 1);
+  static const Color inactiveColor2 = Color.fromRGBO(178, 178, 178, 1);
+  static const Color grayScaleColor500 = Color.fromRGBO(140, 140, 140, 1);
 
   static const cardColor = Color.fromRGBO(30, 30, 30, 1);
   static const greenColor = Colors.green;

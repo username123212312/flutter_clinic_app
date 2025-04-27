@@ -3,6 +3,7 @@ import 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
 import 'package:flutter_clinic_app/core/widgets/error_screen.dart';
 import 'package:flutter_clinic_app/features/auth/view/screens/login_as_screen.dart';
 import 'package:flutter_clinic_app/features/auth/view/screens/on_boarding_screen.dart';
+import 'package:flutter_clinic_app/features/auth/view/screens/verification_code_screen.dart';
 import 'package:flutter_clinic_app/features/auth/view/screens/welcome_screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -10,7 +11,7 @@ import '../../features/auth/view/screens/login_screen.dart';
 
 class AppRouteConfig {
   static final router = GoRouter(
-    initialLocation: '/login',
+    initialLocation: '/verification_code/john.doe@gmail.com',
     errorPageBuilder: (_, __) => TransitionPage(child: ErrorScreen()),
     routes: [
       GoRoute(
@@ -20,7 +21,7 @@ class AppRouteConfig {
       ),
       GoRoute(
         name: AppRouteConstants.onBoardingRouteName,
-        path: '/on_boarding/',
+        path: '/on_boarding',
         pageBuilder: (_, __) => TransitionPage(child: OnBoardingScreen()),
       ),
       GoRoute(
@@ -32,6 +33,16 @@ class AppRouteConfig {
         name: AppRouteConstants.loginScreen,
         path: '/login',
         pageBuilder: (_, state) => TransitionPage(child: LoginScreen()),
+      ),
+      GoRoute(
+        name: AppRouteConstants.verificationCodeScreen,
+        path: '/verification_code/:email',
+        pageBuilder:
+            (_, state) => TransitionPage(
+              child: VerificationCodeScreen(
+                email: state.pathParameters['email'] ?? 'no email',
+              ),
+            ),
       ),
     ],
   );

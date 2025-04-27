@@ -173,7 +173,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         color:
                             (_currentIndex == 1 || _currentIndex == 2)
                                 ? Pallete.primaryColor
-                                : Pallete.inactiveColor,
+                                : Pallete.inactiveColor1,
                       ),
                     ),
                     Container(
@@ -184,7 +184,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         color:
                             _currentIndex == 2
                                 ? Pallete.primaryColor
-                                : Pallete.inactiveColor,
+                                : Pallete.inactiveColor1,
                       ),
                     ),
                   ],

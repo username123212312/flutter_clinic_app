@@ -20,11 +20,14 @@ class AppTheme {
   static ThemeData _baseTheme(ColorScheme colorScheme) {
     return ThemeData().copyWith(
       colorScheme: colorScheme,
+      appBarTheme: AppBarTheme().copyWith(
+        backgroundColor: Pallete.backgroundColor,
+      ),
       scaffoldBackgroundColor: Pallete.backgroundColor,
       inputDecorationTheme: InputDecorationTheme(
         contentPadding: EdgeInsets.all(27),
-        enabledBorder: _border(Pallete.borderColor),
-        focusedBorder: _border(Pallete.gradient2),
+        enabledBorder: _border(Pallete.inactiveColor2),
+        focusedBorder: _border(Pallete.primaryColor),
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData().copyWith(
         backgroundColor: Pallete.backgroundColor,
