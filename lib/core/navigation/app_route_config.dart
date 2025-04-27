@@ -6,9 +6,11 @@ import 'package:flutter_clinic_app/features/auth/view/screens/on_boarding_screen
 import 'package:flutter_clinic_app/features/auth/view/screens/welcome_screen.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/auth/view/screens/login_screen.dart';
+
 class AppRouteConfig {
   static final router = GoRouter(
-    initialLocation: '/',
+    initialLocation: '/login',
     errorPageBuilder: (_, __) => TransitionPage(child: ErrorScreen()),
     routes: [
       GoRoute(
@@ -18,13 +20,18 @@ class AppRouteConfig {
       ),
       GoRoute(
         name: AppRouteConstants.onBoardingRouteName,
-        path: '/on_boarding',
+        path: '/on_boarding/',
         pageBuilder: (_, __) => TransitionPage(child: OnBoardingScreen()),
       ),
       GoRoute(
         name: AppRouteConstants.loginAsScreen,
         path: '/login_as',
         pageBuilder: (_, __) => TransitionPage(child: LoginAsScreen()),
+      ),
+      GoRoute(
+        name: AppRouteConstants.loginScreen,
+        path: '/login',
+        pageBuilder: (_, state) => TransitionPage(child: LoginScreen()),
       ),
     ],
   );

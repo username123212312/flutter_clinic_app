@@ -1,1 +1,1 @@
-rename setAppName --targets ios,android --value "YourNewAppName"
+rename setAppName --targets ios,android --value "Clinica"

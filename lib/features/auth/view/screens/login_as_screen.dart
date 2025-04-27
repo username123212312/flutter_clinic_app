@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clinic_app/core/cubits/role/role_cubit.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:flutter_clinic_app/core/utils.dart';
 import 'package:flutter_clinic_app/features/auth/view/widgets/custom_elevated_button.dart';
@@ -51,7 +53,9 @@ class _LoginAsScreenState extends State<LoginAsScreen> {
             SizedBox(height: screenHeight(context) * 0.25),
             CustomElevatedButton(
               title: 'Continue',
-              onTap: () {},
+              onTap: () {
+                context.read<RoleCubit>().toggleRole(_currentRole);
+              },
               fillColor: Pallete.primaryColor,
               textColor: Colors.white,
             ),
