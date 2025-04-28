@@ -1,1 +1,1 @@
-rename setAppName --targets ios,android --value "Midiverse"
+rename setAppName --targets ios,android --value "Mediverse"

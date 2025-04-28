@@ -11,7 +11,7 @@ import '../../features/auth/view/screens/login_screen.dart';
 
 class AppRouteConfig {
   static final router = GoRouter(
-    initialLocation: '/verification_code/john.doe@gmail.com',
+    initialLocation: '/',
     errorPageBuilder: (_, __) => TransitionPage(child: ErrorScreen()),
     routes: [
       GoRoute(

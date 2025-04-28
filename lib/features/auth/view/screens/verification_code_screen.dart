@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:flutter_clinic_app/core/utils.dart';
+import 'package:flutter_clinic_app/features/auth/view/widgets/background_container.dart';
 import 'package:flutter_clinic_app/features/auth/view/widgets/custom_elevated_button.dart';
 import 'package:flutter_clinic_app/features/auth/view/widgets/otp_widget_field.dart';
 
@@ -19,34 +20,37 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black, size: 34),
           title: Text('Verification'),
           titleTextStyle: Theme.of(
             context,
           ).textTheme.labelSmall!.copyWith(fontSize: 23),
           centerTitle: true,
         ),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: Column(
-            children: [
-              _buildHeader(),
-              SizedBox(height: 40),
-              _buildOTP(),
-              SizedBox(height: 20),
-              _buildResend(),
-              SizedBox(height: 20),
-              SizedBox(
-                width: screenWidth(context) * 0.77,
-                child: CustomElevatedButton(
-                  title: 'Verify',
-                  onTap: () {},
-                  fillColor: Colors.transparent,
-                  textColor: Pallete.primaryColor,
-                  elevation: 0,
-                  borderColor: Pallete.primaryColor,
+        body: BackgroundContainer(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+            child: Column(
+              children: [
+                _buildHeader(),
+                SizedBox(height: 40),
+                _buildOTP(),
+                SizedBox(height: 20),
+                _buildResend(),
+                SizedBox(height: 20),
+                SizedBox(
+                  width: screenWidth(context) * 0.77,
+                  child: CustomElevatedButton(
+                    title: 'Verify',
+                    onTap: () {},
+                    fillColor: Colors.transparent,
+                    textColor: Pallete.primaryColor,
+                    elevation: 0,
+                    borderColor: Pallete.primaryColor,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -110,7 +114,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
       children: [
         Text(
           'Enter the verification code',
-          style: Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: 23),
+          style: Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: 20),
         ),
         RichText(
           text: TextSpan(

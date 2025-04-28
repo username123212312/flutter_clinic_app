@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
+import 'package:flutter_clinic_app/features/auth/view/widgets/background_container.dart';
 import 'package:go_router/go_router.dart';
 
 import '../widgets/custom_elevated_button.dart';
@@ -35,14 +36,16 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _headerWidget(),
-            _pageViewWithIndicators(),
-            _welcomingText(),
-            _bottomButtons(),
-          ],
+        body: BackgroundContainer(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _headerWidget(),
+              _pageViewWithIndicators(),
+              _welcomingText(),
+              _bottomButtons(),
+            ],
+          ),
         ),
       ),
     );
@@ -143,9 +146,40 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 },
                 controller: _pageController,
                 children: [
-                  Container(width: 30, height: 30, color: Colors.green),
-                  Container(width: 30, height: 30, color: Colors.blue),
-                  Container(width: 30, height: 30, color: Colors.yellow),
+                  Container(
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                          'assets/images/on_boarding_slide1.webp',
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                          'assets/images/on_boarding_slide2.webp',
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage(
+                          'assets/images/on_boarding_slide3.webp',
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -201,42 +235,50 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     return Flexible(
       flex: 2,
       fit: FlexFit.tight,
-      child: AnimatedSwitcher(
-        duration: Duration(milliseconds: 500),
-        transitionBuilder:
-            (child, animation) =>
-                FadeTransition(opacity: animation, child: child),
-        child: Container(
-          key: ValueKey(_currentIndex),
-          alignment: Alignment(0.0, 0.9),
-          child:
-              _currentIndex != 0
-                  ? null
-                  : Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 30.0),
+        child: AnimatedSwitcher(
+          duration: Duration(milliseconds: 500),
+          transitionBuilder:
+              (child, animation) =>
+                  FadeTransition(opacity: animation, child: child),
+          child: Container(
+            key: ValueKey(_currentIndex),
+            alignment: Alignment(0.0, 0.9),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                RichText(
+                  text: TextSpan(
+                    text:
+                        _currentIndex == 0
+                            ? 'Welcome to '
+                            : _currentIndex == 1
+                            ? 'Choose your '
+                            : 'Book an ',
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleSmall!.copyWith(fontSize: 20),
                     children: [
-                      RichText(
-                        text: TextSpan(
-                          text: 'Welcome to ',
-                          style: Theme.of(
-                            context,
-                          ).textTheme.titleSmall!.copyWith(fontSize: 20),
-                          children: [
-                            TextSpan(
-                              text: 'Clinic',
-                              style: Theme.of(
-                                context,
-                              ).textTheme.titleSmall!.copyWith(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 20,
-                                fontStyle: FontStyle.italic,
-                              ),
-                            ),
-                          ],
+                      TextSpan(
+                        text:
+                            _currentIndex == 0
+                                ? 'Clinic'
+                                : _currentIndex == 1
+                                ? 'Doctor'
+                                : 'Appointment',
+                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 20,
+                          fontStyle: FontStyle.italic,
                         ),
                       ),
                     ],
                   ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

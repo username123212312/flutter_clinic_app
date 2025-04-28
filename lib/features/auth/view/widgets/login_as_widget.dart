@@ -9,10 +9,12 @@ class LoginAsWidget extends StatelessWidget {
     this.isSelected = false,
     required this.onToggleSelect,
     required this.title,
+    required this.imagePath,
   });
   final bool isSelected;
   final void Function() onToggleSelect;
   final String title;
+  final String imagePath;
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +38,9 @@ class LoginAsWidget extends StatelessWidget {
                   : [BoxShadow(blurRadius: 4, color: Colors.black)],
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Spacer(),
+            Expanded(child: SizedBox(child: Image.asset(imagePath))),
             Text(
               title,
               style: Theme.of(context).textTheme.labelMedium!.copyWith(

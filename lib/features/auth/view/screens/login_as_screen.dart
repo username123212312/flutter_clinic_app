@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clinic_app/core/cubits/role/role_cubit.dart';
+import 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:flutter_clinic_app/core/utils.dart';
+import 'package:flutter_clinic_app/features/auth/view/widgets/background_container.dart';
 import 'package:flutter_clinic_app/features/auth/view/widgets/custom_elevated_button.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/enums.dart';
 import '../widgets/login_as_widget.dart';
@@ -24,42 +27,69 @@ class _LoginAsScreenState extends State<LoginAsScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          children: [
-            SizedBox(height: screenHeight(context) * 0.19),
-            Text(
-              'Login as:',
-              style: Theme.of(
-                context,
-              ).textTheme.labelSmall!.copyWith(fontSize: 20),
-            ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                LoginAsWidget(
-                  onToggleSelect: () => _toggleRoles(Role.patient),
-                  isSelected: _patientSelected,
-                  title: 'Patient',
+        body: BackgroundContainer(
+          child: Column(
+            children: [
+              SizedBox(height: screenHeight(context) * 0.117),
+              RichText(
+                text: TextSpan(
+                  text: 'Choose Your ',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall!.copyWith(fontSize: 20),
+                  children: [
+                    TextSpan(
+                      text: 'Account Type',
+                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                        fontSize: 20,
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(width: 20),
-                LoginAsWidget(
-                  onToggleSelect: () => _toggleRoles(Role.doctor),
-                  isSelected: _doctorSelected,
-                  title: 'Doctor',
-                ),
-              ],
-            ),
-            SizedBox(height: screenHeight(context) * 0.25),
-            CustomElevatedButton(
-              title: 'Continue',
-              onTap: () {
-                context.read<RoleCubit>().toggleRole(_currentRole);
-              },
-              fillColor: Pallete.primaryColor,
-              textColor: Colors.white,
-            ),
-          ],
+              ),
+              SizedBox(height: 50),
+              Text(
+                'Login as:',
+                style: Theme.of(
+                  context,
+                ).textTheme.labelSmall!.copyWith(fontSize: 20),
+              ),
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  LoginAsWidget(
+                    onToggleSelect: () => _toggleRoles(Role.patient),
+                    isSelected: _patientSelected,
+                    title: 'Patient',
+                    imagePath: 'assets/images/account_type_patient.webp',
+                  ),
+                  SizedBox(width: 20),
+                  LoginAsWidget(
+                    onToggleSelect: () => _toggleRoles(Role.doctor),
+                    isSelected: _doctorSelected,
+                    title: 'Doctor',
+                    imagePath: 'assets/images/account_type_doctor.webp',
+                  ),
+                ],
+              ),
+              SizedBox(height: screenHeight(context) * 0.23),
+              CustomElevatedButton(
+                title: 'Continue',
+                onTap: () {
+                  context.read<RoleCubit>().toggleRole(_currentRole);
+                  context.pushNamed(
+                    AppRouteConstants.verificationCodeScreen,
+                    pathParameters: {'email': 'john.doe@gmail.com'},
+                  );
+                },
+                fillColor: Pallete.primaryColor,
+                textColor: Colors.white,
+              ),
+            ],
+          ),
         ),
       ),
     );

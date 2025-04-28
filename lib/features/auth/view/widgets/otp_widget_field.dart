@@ -31,7 +31,7 @@ class OTPWidgetField extends StatelessWidget {
           FilteringTextInputFormatter.digitsOnly,
         ],
         textAlign: TextAlign.center,
-        maxLength: 1,
+
         decoration: InputDecoration(
           hintText: '0',
           hintStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
