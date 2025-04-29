@@ -9,7 +9,7 @@ import 'package:flutter_clinic_app/features/auth/view/widgets/custom_elevated_bu
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/enums.dart';
-import '../widgets/login_as_widget.dart';
+import '../widgets/choose_from_widget.dart';
 
 class LoginAsScreen extends StatefulWidget {
   const LoginAsScreen({super.key});

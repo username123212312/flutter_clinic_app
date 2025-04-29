@@ -137,50 +137,49 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           children: [
             Flexible(
               flex: 13,
-              child: PageView(
-                onPageChanged: (index) {
-                  setState(() {
-                    log(index.toString());
-                    _currentIndex = index;
-                  });
-                },
-                controller: _pageController,
-                children: [
-                  Container(
-                    width: 30,
-                    height: 30,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(
-                          'assets/images/on_boarding_slide1.webp',
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 35),
+                child: PageView(
+                  onPageChanged: (index) {
+                    setState(() {
+                      log(index.toString());
+                      _currentIndex = index;
+                    });
+                  },
+                  controller: _pageController,
+                  children: [
+                    Container(
+                      width: 30,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(
+                            'assets/images/on_boarding_slide1.webp',
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Container(
-                    width: 30,
-                    height: 30,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(
-                          'assets/images/on_boarding_slide2.webp',
+                    Container(
+                      width: 30,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(
+                            'assets/images/on_boarding_slide2.webp',
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Container(
-                    width: 30,
-                    height: 30,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage(
-                          'assets/images/on_boarding_slide3.webp',
-                        ),
+                    Transform.scale(
+                      scaleX: 1.5,
+                      scaleY: 0.9,
+                      child: Image.asset(
+                        fit: BoxFit.fill,
+                        'assets/images/on_boarding_slide3.webp',
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             Flexible(

@@ -20,6 +20,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          toolbarHeight: screenHeight(context) * 0.1,
           iconTheme: IconThemeData(color: Colors.black, size: 34),
           title: Text('Verification'),
           titleTextStyle: Theme.of(
@@ -29,7 +30,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
         ),
         body: BackgroundContainer(
           child: Padding(
-            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+            padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
             child: Column(
               children: [
                 _buildHeader(),
