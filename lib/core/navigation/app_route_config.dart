@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
 import 'package:flutter_clinic_app/core/widgets/error_screen.dart';
+import 'package:flutter_clinic_app/features/auth/view/screens/create_password_screen.dart';
 import 'package:flutter_clinic_app/features/auth/view/screens/login_as_screen.dart';
 import 'package:flutter_clinic_app/features/auth/view/screens/on_boarding_screen.dart';
 import 'package:flutter_clinic_app/features/auth/view/screens/verification_code_screen.dart';
@@ -12,7 +13,7 @@ import '../../features/auth/view/screens/login_screen.dart';
 
 class AppRouteConfig {
   static final router = GoRouter(
-    initialLocation: '/profile_setup',
+    initialLocation: '/login',
     errorPageBuilder: (_, __) => TransitionPage(child: ErrorScreen()),
     routes: [
       GoRoute(
@@ -49,6 +50,12 @@ class AppRouteConfig {
         name: AppRouteConstants.yourProfileScreen,
         path: '/profile_setup',
         pageBuilder: (_, state) => TransitionPage(child: ProfileSetupScreen()),
+      ),
+      GoRoute(
+        name: AppRouteConstants.createPassword,
+        path: '/create_password',
+        pageBuilder:
+            (_, state) => TransitionPage(child: CreatePasswordScreen()),
       ),
     ],
   );

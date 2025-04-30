@@ -10,6 +10,7 @@ class CustomElevatedButton extends StatelessWidget {
     required this.textColor,
     this.elevation = 1,
     this.borderColor,
+    this.prefix,
   });
   final String title;
   final double elevation;
@@ -17,6 +18,7 @@ class CustomElevatedButton extends StatelessWidget {
   final Color textColor;
   final Color? borderColor;
   final void Function() onTap;
+  final Widget? prefix;
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +38,21 @@ class CustomElevatedButton extends StatelessWidget {
         ),
       ),
 
-      child: Text(
-        title,
-        style: Theme.of(
-          context,
-        ).textTheme.labelMedium!.copyWith(fontSize: 18, color: textColor),
+      child: Row(
+        mainAxisAlignment:
+            prefix == null ? MainAxisAlignment.center : MainAxisAlignment.start,
+        children: [
+          if (prefix != null) prefix!,
+          if (prefix != null) Spacer(flex: 1),
+
+          Text(
+            title,
+            style: Theme.of(
+              context,
+            ).textTheme.labelMedium!.copyWith(fontSize: 18, color: textColor),
+          ),
+          if (prefix != null) Spacer(flex: 1),
+        ],
       ),
     );
   }

@@ -41,6 +41,7 @@ dependencies:
   json_annotation:
   flutter_bloc:
   hydrated_bloc:
+  google_sign_in: ^6.3.0
 
 dev_dependencies:
   flutter_test:

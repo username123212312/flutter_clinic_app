@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_pallete.dart';
@@ -18,6 +16,7 @@ class CustomTextField extends StatefulWidget {
   final void Function()? onTap;
   final String? Function(String?)? validator;
   final void Function(String?)? onSaved;
+  final TextInputAction? textInputAction;
 
   const CustomTextField({
     super.key,
@@ -34,6 +33,7 @@ class CustomTextField extends StatefulWidget {
     this.onTap,
     this.validator,
     this.onSaved,
+    this.textInputAction = TextInputAction.next,
   });
 
   @override
@@ -43,6 +43,7 @@ class CustomTextField extends StatefulWidget {
 class _CustomTextFieldState extends State<CustomTextField> {
   late FocusNode _focusNode;
   bool _isFocused = false;
+  bool _obsecureText = true;
 
   @override
   void initState() {
@@ -70,6 +71,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       transform:
           _isFocused ? (Matrix4.identity()..scale(1.02)) : Matrix4.identity(),
       child: TextFormField(
+        textInputAction: widget.textInputAction,
         validator: widget.validator,
         onSaved: widget.onSaved,
         onTap: widget.onTap,
@@ -78,7 +80,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         maxLength: widget.maxLength,
         maxLines: widget.maxLines,
         controller: widget.controller,
-        obscureText: widget.obscureText,
+        obscureText: widget.obscureText ? _obsecureText : false,
         focusNode: _focusNode,
         keyboardType: widget.keyboardType,
         decoration: InputDecoration(
@@ -92,7 +94,20 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
           filled: true,
           fillColor: widget.fillColor,
-          suffixIcon: widget.suffixIcon,
+          suffixIcon:
+              widget.obscureText
+                  ? GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _obsecureText = !_obsecureText;
+                      });
+                    },
+                    child: Icon(
+                      _obsecureText ? Icons.visibility_off : Icons.visibility,
+                      color: Colors.black,
+                    ),
+                  )
+                  : widget.suffixIcon,
         ),
       ),
     );

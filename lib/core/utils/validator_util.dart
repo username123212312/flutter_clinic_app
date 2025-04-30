@@ -60,6 +60,35 @@ class ValidatorUtil {
     );
   }
 
+  static bool validatePassword(String password) {
+    // Check minimum length (8 characters)
+    if (password.length < 8) return false;
+
+    // Check for at least one lowercase letter
+    final hasLowercase = RegExp(r'[a-z]').hasMatch(password);
+
+    // Check for at least one uppercase letter
+    final hasUppercase = RegExp(r'[A-Z]').hasMatch(password);
+
+    // Check for at least one number
+    final hasNumber = RegExp(r'[0-9]').hasMatch(password);
+
+    // Return true only if all conditions are met
+    return hasLowercase && hasUppercase && hasNumber;
+  }
+
+  static bool validateEmail(String? value) {
+    if (isEmpty(value)) return false;
+    return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value!);
+  }
+
+  static bool validatePhone(String? value) {
+    if (isEmpty(value)) return false;
+    return RegExp(
+      r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$',
+    ).hasMatch(value!);
+  }
+
   /// Specialized validator for numeric fields
   static bool validateNumbers(String? value) {
     if (isEmpty(value)) return false;
