@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
-import 'package:flutter_clinic_app/core/utils.dart';
+import 'package:flutter_clinic_app/core/utils/utils.dart';
 
 class OTPWidgetField extends StatelessWidget {
   const OTPWidgetField({super.key, this.onSaved, this.isEnd = false});

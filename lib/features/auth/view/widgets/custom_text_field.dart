@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_pallete.dart';
@@ -5,23 +7,33 @@ import '../../../../core/theme/app_pallete.dart';
 class CustomTextField extends StatefulWidget {
   final String hintText;
   final bool obscureText;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final TextInputType keyboardType;
   final Widget? suffixIcon;
   final Color fillColor;
   final int? maxLength;
   final int? maxLines;
+  final bool readOnly;
+  final String? initialValue;
+  final void Function()? onTap;
+  final String? Function(String?)? validator;
+  final void Function(String?)? onSaved;
 
   const CustomTextField({
     super.key,
     required this.hintText,
-    required this.controller,
+    this.controller,
     required this.keyboardType,
     this.obscureText = false,
     this.suffixIcon,
     this.fillColor = Colors.white,
     this.maxLength,
     this.maxLines,
+    this.readOnly = false,
+    this.initialValue,
+    this.onTap,
+    this.validator,
+    this.onSaved,
   });
 
   @override
@@ -58,6 +70,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
       transform:
           _isFocused ? (Matrix4.identity()..scale(1.02)) : Matrix4.identity(),
       child: TextFormField(
+        validator: widget.validator,
+        onSaved: widget.onSaved,
+        onTap: widget.onTap,
+        readOnly: widget.readOnly,
         style: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 15),
         maxLength: widget.maxLength,
         maxLines: widget.maxLines,
@@ -73,10 +89,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           hintText: widget.hintText,
           hintStyle: const TextStyle(color: Pallete.grayScaleColor500),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Pallete.grayScaleColor500, width: 2),
-            borderRadius: BorderRadius.circular(4),
-          ),
+
           filled: true,
           fillColor: widget.fillColor,
           suffixIcon: widget.suffixIcon,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
-import 'package:flutter_clinic_app/core/utils.dart';
+import 'package:flutter_clinic_app/core/utils/utils.dart';
 import 'package:flutter_clinic_app/features/auth/view/widgets/background_container.dart';
 import 'package:flutter_clinic_app/features/auth/view/widgets/custom_elevated_button.dart';
 import 'package:go_router/go_router.dart';

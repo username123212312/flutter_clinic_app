@@ -28,8 +28,9 @@ class AppTheme {
       scaffoldBackgroundColor: Pallete.backgroundColor,
       inputDecorationTheme: InputDecorationTheme(
         contentPadding: EdgeInsets.all(27),
-        enabledBorder: _border(Pallete.inactiveColor2),
+        enabledBorder: _border(Pallete.grayScaleColor500),
         focusedBorder: _border(Pallete.primaryColor),
+        disabledBorder: _border(Pallete.grayScaleColor500),
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData().copyWith(
         backgroundColor: Pallete.backgroundColor,

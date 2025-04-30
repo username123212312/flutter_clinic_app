@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
+import 'package:flutter_clinic_app/core/utils/validator_util.dart';
 import 'package:flutter_clinic_app/features/auth/view/widgets/background_container.dart';
+import 'package:flutter_clinic_app/features/auth/view/widgets/basic_info_widget.dart';
 import 'package:flutter_clinic_app/features/auth/view/widgets/custom_elevated_button.dart';
-import 'package:flutter_clinic_app/features/auth/view/widgets/custom_text_field.dart';
 import 'package:flutter_clinic_app/features/auth/view/widgets/select_your_gender_widet.dart';
 import 'package:flutter_clinic_app/features/auth/view/widgets/selectable_widget.dart';
 
-import '../../../../core/utils.dart';
+import '../../../../core/utils/utils.dart';
 
 class ProfileSetupScreen extends StatefulWidget {
   const ProfileSetupScreen({super.key});
@@ -33,6 +34,9 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
   @override
   void dispose() {
     _opacityController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
+    completeAddressController.dispose();
     super.dispose();
   }
 
@@ -173,14 +177,21 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
 
   Widget _buildFormFields() {
     return Form(
+      key: _formKey,
       child: SizedBox(
         height: screenHeight(context) * 0.465,
         child: ListView(
           shrinkWrap: true,
-          // physics: NeverScrollableScrollPhysics(),
-          // itemExtent: screenHeight(context) * 0.145,
           children: [
             BasicInfoWidget(
+              validator: (value) {
+                final isValid = ValidatorUtil.validateText(value);
+                if (!isValid) {
+                  return 'Enter a valid Name';
+                } else {
+                  return null;
+                }
+              },
               maxLength: 10,
               controller: firstNameController,
               title: 'First Name',
@@ -188,6 +199,14 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
               keyboardType: TextInputType.name,
             ),
             BasicInfoWidget(
+              validator: (value) {
+                final isValid = ValidatorUtil.validateText(value);
+                if (!isValid) {
+                  return 'Enter a valid Name';
+                } else {
+                  return null;
+                }
+              },
               maxLength: 10,
               controller: lastNameController,
               title: 'Last Name',
@@ -195,13 +214,41 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
               keyboardType: TextInputType.name,
             ),
             BasicInfoWidget(
-              controller: ageController,
+              onTap: () async {
+                final date = await showDatePicker(
+                  context: context,
+                  firstDate: DateTime(1920),
+                  lastDate: DateTime.now(),
+                );
+                if (date != null) {
+                  setState(() {
+                    _ageController.text = calculateAge(date).toString();
+                  });
+                }
+              },
+              controller: _ageController,
+              readOnly: true,
               title: 'Age',
               hintText: 'Age',
-              keyboardType: TextInputType.name,
+              keyboardType: TextInputType.number,
+              suffixIcon: Transform.scale(
+                scaleY: 0.7,
+                scaleX: 0.7,
+                child: Image.asset(
+                  'assets/icons/ic_calendar.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
             SizedBox(height: 20),
             BasicInfoWidget(
+              validator: (value) {
+                if (value!.trim().isEmpty) {
+                  return 'Address should not be empty';
+                } else {
+                  return null;
+                }
+              },
               maxLength: 100,
               controller: completeAddressController,
               title: 'Complete Address',
@@ -229,6 +276,11 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
         CustomElevatedButton(
           title: 'Continue',
           onTap: () {
+            if (_currentIndex == 0) {
+              if (!_submit()) {
+                return;
+              }
+            }
             if ((_currentIndex + 1) <= 2) {
               setState(() {
                 _currentIndex++;
@@ -287,6 +339,14 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
     );
   }
 
+  bool _submit() {
+    if (!_formKey.currentState!.validate()) {
+      return false;
+    }
+    _formKey.currentState!.save();
+    return true;
+  }
+
   int _currentIndex = 0;
   int _selectedGender = 0;
   static const bloodTypes = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
@@ -294,59 +354,7 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
   late final AnimationController _opacityController;
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
-  final ageController = TextEditingController();
+  final _ageController = TextEditingController();
   final completeAddressController = TextEditingController();
-}
-
-class BasicInfoWidget extends StatelessWidget {
-  const BasicInfoWidget({
-    super.key,
-    required this.controller,
-    required this.title,
-    required this.hintText,
-    required this.keyboardType,
-    this.maxLength,
-    this.maxLines,
-  });
-
-  final TextEditingController controller;
-  final String title;
-  final String hintText;
-  final TextInputType keyboardType;
-  final int? maxLength;
-  final int? maxLines;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 10.0),
-          child: RichText(
-            text: TextSpan(
-              text: title,
-              style: Theme.of(
-                context,
-              ).textTheme.titleSmall!.copyWith(fontSize: 12),
-              children: [
-                TextSpan(
-                  text: '*',
-                  style: TextStyle(color: Colors.red, fontSize: 15),
-                ),
-              ],
-            ),
-          ),
-        ),
-        CustomTextField(
-          maxLength: maxLength,
-          maxLines: maxLines,
-          hintText: hintText,
-          controller: controller,
-          keyboardType: keyboardType,
-        ),
-        // SizedBox(height: 10),
-      ],
-    );
-  }
+  final _formKey = GlobalKey<FormState>();
 }
