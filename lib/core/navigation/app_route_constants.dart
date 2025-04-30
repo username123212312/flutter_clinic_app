@@ -4,5 +4,6 @@ class AppRouteConstants {
   static const loginAsScreen = 'login_as';
   static const loginScreen = 'login';
   static const verificationCodeScreen = 'verification';
+  static const yourProfileScreen = 'profile_setup';
   static const errorRouteName = 'error';
 }

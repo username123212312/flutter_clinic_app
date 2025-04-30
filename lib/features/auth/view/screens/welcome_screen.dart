@@ -14,7 +14,7 @@ class WelcomeScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: BackgroundContainer(
-          imagePath: 'assets/images/backgound.webp',
+          imagePath: 'assets/images/background.webp',
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

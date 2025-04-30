@@ -5,7 +5,10 @@ class Pallete {
   static const Color primaryColor = Color.fromRGBO(45, 132, 251, 1);
   static const Color inactiveColor1 = Color.fromRGBO(196, 196, 196, 1);
   static const Color inactiveColor2 = Color.fromRGBO(178, 178, 178, 1);
+  static const Color inactiveColor3 = Color.fromRGBO(196, 196, 196, 1);
+  static const Color oxfordBlue = Color.fromRGBO(47, 60, 78, 1);
   static const Color grayScaleColor500 = Color.fromRGBO(140, 140, 140, 1);
+  static const Color grayScaleColor300 = Color.fromRGBO(217, 217, 217, 1);
 
   static const cardColor = Color.fromRGBO(30, 30, 30, 1);
   static const greenColor = Colors.green;

@@ -5,13 +5,14 @@ import 'package:flutter_clinic_app/features/auth/view/screens/login_as_screen.da
 import 'package:flutter_clinic_app/features/auth/view/screens/on_boarding_screen.dart';
 import 'package:flutter_clinic_app/features/auth/view/screens/verification_code_screen.dart';
 import 'package:flutter_clinic_app/features/auth/view/screens/welcome_screen.dart';
+import 'package:flutter_clinic_app/features/auth/view/screens/profile_setup_screen.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/auth/view/screens/login_screen.dart';
 
 class AppRouteConfig {
   static final router = GoRouter(
-    initialLocation: '/',
+    initialLocation: '/profile_setup',
     errorPageBuilder: (_, __) => TransitionPage(child: ErrorScreen()),
     routes: [
       GoRoute(
@@ -43,6 +44,11 @@ class AppRouteConfig {
                 email: state.pathParameters['email'] ?? 'no email',
               ),
             ),
+      ),
+      GoRoute(
+        name: AppRouteConstants.yourProfileScreen,
+        path: '/profile_setup',
+        pageBuilder: (_, state) => TransitionPage(child: ProfileSetupScreen()),
       ),
     ],
   );

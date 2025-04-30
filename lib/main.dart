@@ -22,6 +22,7 @@ class ClinicApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [BlocProvider(create: (_) => RoleCubit())],
       child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
         routerConfig: AppRouteConfig.router,
         title: 'Clinic App',
         themeMode: ThemeMode.system,

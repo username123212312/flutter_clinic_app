@@ -22,6 +22,8 @@ class AppTheme {
       colorScheme: colorScheme,
       appBarTheme: AppBarTheme().copyWith(
         backgroundColor: Pallete.backgroundColor,
+        iconTheme: IconThemeData(color: Colors.black, size: 34),
+        centerTitle: true,
       ),
       scaffoldBackgroundColor: Pallete.backgroundColor,
       inputDecorationTheme: InputDecorationTheme(

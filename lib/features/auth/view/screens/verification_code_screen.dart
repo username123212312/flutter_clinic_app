@@ -21,12 +21,10 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
       child: Scaffold(
         appBar: AppBar(
           toolbarHeight: screenHeight(context) * 0.1,
-          iconTheme: IconThemeData(color: Colors.black, size: 34),
           title: Text('Verification'),
           titleTextStyle: Theme.of(
             context,
           ).textTheme.labelSmall!.copyWith(fontSize: 23),
-          centerTitle: true,
         ),
         body: BackgroundContainer(
           child: Padding(

@@ -3,18 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:flutter_clinic_app/core/utils.dart';
 
-class LoginAsWidget extends StatelessWidget {
-  const LoginAsWidget({
+class ChooseFromWidget extends StatelessWidget {
+  const ChooseFromWidget({
     super.key,
     this.isSelected = false,
     required this.onToggleSelect,
     required this.title,
     required this.imagePath,
+    this.applyPadding = false,
   });
   final bool isSelected;
   final void Function() onToggleSelect;
   final String title;
   final String imagePath;
+  final bool applyPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,16 @@ class LoginAsWidget extends StatelessWidget {
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Expanded(child: SizedBox(child: Image.asset(imagePath))),
+            Expanded(
+              child: SizedBox(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: applyPadding ? 10.0 : 0.0,
+                  ),
+                  child: Image.asset(imagePath),
+                ),
+              ),
+            ),
             Text(
               title,
               style: Theme.of(context).textTheme.labelMedium!.copyWith(

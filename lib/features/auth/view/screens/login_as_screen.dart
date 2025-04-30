@@ -60,14 +60,14 @@ class _LoginAsScreenState extends State<LoginAsScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  LoginAsWidget(
+                  ChooseFromWidget(
                     onToggleSelect: () => _toggleRoles(Role.patient),
                     isSelected: _patientSelected,
                     title: 'Patient',
                     imagePath: 'assets/images/account_type_patient.webp',
                   ),
                   SizedBox(width: 20),
-                  LoginAsWidget(
+                  ChooseFromWidget(
                     onToggleSelect: () => _toggleRoles(Role.doctor),
                     isSelected: _doctorSelected,
                     title: 'Doctor',
