@@ -12,6 +12,7 @@ class Pallete {
   static const Color grayScaleColor400 = Color.fromRGBO(178, 178, 178, 1);
   static const Color grayScaleColor500 = Color.fromRGBO(140, 140, 140, 1);
   static const Color grayScaleColor700 = Color.fromRGBO(31, 31, 31, 1);
+  static const Color sliverSand = Color.fromRGBO(176, 190, 195, 1);
 
   static const cardColor = Color.fromRGBO(30, 30, 30, 1);
   static const greenColor = Colors.green;

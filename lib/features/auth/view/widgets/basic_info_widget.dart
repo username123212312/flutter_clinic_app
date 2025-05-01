@@ -16,6 +16,8 @@ class BasicInfoWidget extends StatelessWidget {
     this.onTap,
     this.validator,
     this.onSaved,
+    this.obsecureText = false,
+    this.textInputAction = TextInputAction.next,
   });
 
   final TextEditingController? controller;
@@ -30,6 +32,8 @@ class BasicInfoWidget extends StatelessWidget {
   final void Function()? onTap;
   final String? Function(String?)? validator;
   final void Function(String?)? onSaved;
+  final bool obsecureText;
+  final TextInputAction textInputAction;
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +58,8 @@ class BasicInfoWidget extends StatelessWidget {
           ),
         ),
         CustomTextField(
+          textInputAction: textInputAction,
+          obscureText: obsecureText,
           validator: validator,
           onSaved: onSaved,
           onTap: onTap,

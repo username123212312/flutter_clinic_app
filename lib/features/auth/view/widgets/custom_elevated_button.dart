@@ -11,6 +11,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.elevation = 1,
     this.borderColor,
     this.prefix,
+    this.fontSize,
   });
   final String title;
   final double elevation;
@@ -19,6 +20,7 @@ class CustomElevatedButton extends StatelessWidget {
   final Color? borderColor;
   final void Function() onTap;
   final Widget? prefix;
+  final double? fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +49,10 @@ class CustomElevatedButton extends StatelessWidget {
 
           Text(
             title,
-            style: Theme.of(
-              context,
-            ).textTheme.labelMedium!.copyWith(fontSize: 18, color: textColor),
+            style: Theme.of(context).textTheme.labelMedium!.copyWith(
+              fontSize: fontSize ?? 18,
+              color: textColor,
+            ),
           ),
           if (prefix != null) Spacer(flex: 1),
         ],

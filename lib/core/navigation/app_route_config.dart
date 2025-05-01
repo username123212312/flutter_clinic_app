@@ -13,7 +13,7 @@ import '../../features/auth/view/screens/login_screen.dart';
 
 class AppRouteConfig {
   static final router = GoRouter(
-    initialLocation: '/login',
+    initialLocation: '/create_password',
     errorPageBuilder: (_, __) => TransitionPage(child: ErrorScreen()),
     routes: [
       GoRoute(
