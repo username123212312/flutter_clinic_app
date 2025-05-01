@@ -17,14 +17,14 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/enums.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen>
+class _RegisterScreenState extends State<RegisterScreen>
     with SingleTickerProviderStateMixin {
   @override
   void initState() {
@@ -75,14 +75,14 @@ class _LoginScreenState extends State<LoginScreen>
 
   Flexible _buildFooter() {
     return Flexible(
-      flex: 3,
+      flex: 1,
       fit: FlexFit.tight,
       child: Column(
         children: [
           SizedBox(height: 40),
           RichText(
             text: TextSpan(
-              text: 'Don\'t have an account? ',
+              text: 'Already have an account? ',
               style: Theme.of(context).textTheme.titleSmall!.copyWith(
                 color: Pallete.grayScaleColor500,
                 fontSize: 15,
@@ -92,9 +92,9 @@ class _LoginScreenState extends State<LoginScreen>
                   recognizer:
                       TapGestureRecognizer()
                         ..onTap = () {
-                          context.goNamed(AppRouteConstants.registerScreen);
+                          context.goNamed(AppRouteConstants.loginScreen);
                         },
-                  text: 'Register',
+                  text: 'Login',
                   style: Theme.of(context).textTheme.titleSmall!.copyWith(
                     color: Theme.of(context).colorScheme.primary,
                     fontSize: 15,
@@ -110,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen>
 
   Flexible _buildTwoLoginButtons() {
     return Flexible(
-      flex: 4,
+      flex: 3,
       fit: FlexFit.tight,
       child: Padding(
         padding: const EdgeInsets.only(top: 20.0),
@@ -120,7 +120,7 @@ class _LoginScreenState extends State<LoginScreen>
             SizedBox(
               width: screenWidth(context) * 0.85,
               child: CustomElevatedButton(
-                title: 'Login',
+                title: 'Register',
                 onTap: () {
                   if (submit()) {
                     log('log in');
@@ -183,7 +183,7 @@ class _LoginScreenState extends State<LoginScreen>
 
   Flexible _buildFormFields() {
     return Flexible(
-      flex: 4,
+      flex: 2,
       fit: FlexFit.loose,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 30),
@@ -225,43 +225,6 @@ class _LoginScreenState extends State<LoginScreen>
                     keyboardType: TextInputType.phone,
                   ),
                 ),
-              SizedBox(height: 10),
-              CustomTextField(
-                textInputAction: TextInputAction.done,
-                maxLines: 1,
-                obscureText: true,
-                controller: _passwordController,
-                validator: (value) {
-                  if (!ValidatorUtil.validatePassword(value ?? '')) {
-                    return 'Enter a valid Password';
-                  } else {
-                    return null;
-                  }
-                },
-                hintText: 'Password',
-                keyboardType: TextInputType.text,
-              ),
-              SizedBox(height: 10),
-              Align(
-                alignment: AlignmentDirectional(0.9, 0.0),
-                child: GestureDetector(
-                  onTap: () {
-                    if (submit()) {
-                      context.pushNamed(
-                        AppRouteConstants.verificationCodeScreen,
-                        pathParameters: {'email': _emailController.text},
-                      );
-                    }
-                  },
-                  child: Text(
-                    'Forgot your password?',
-                    style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                      color: Pallete.grayScaleColor700,
-                      fontSize: 13,
-                    ),
-                  ),
-                ),
-              ),
             ],
           ),
         ),
@@ -298,42 +261,27 @@ class _LoginScreenState extends State<LoginScreen>
       flex: 5,
       fit: FlexFit.loose,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          SizedBox(
-            height: screenHeight(context) * 0.12,
-            child: Image.asset('assets/images/logo.webp', fit: BoxFit.cover),
-          ),
-          SizedBox(height: 20),
-          RichText(
-            text: TextSpan(
-              style: Theme.of(
-                context,
-              ).textTheme.labelSmall!.copyWith(fontSize: 18),
-              text: 'Welcome to ',
-              children: [
-                TextSpan(
-                  text: 'Clinic',
-                  style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                    fontWeight: FontWeight.w700,
-                    fontStyle: FontStyle.italic,
-                    fontSize: 18,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: 15),
+          SizedBox(height: 50),
           Text(
-            _role.isPatient
-                ? 'Want to get treatment immediately? Come in!'
-                : 'Doctor Text',
+            style: Theme.of(
+              context,
+            ).textTheme.labelMedium!.copyWith(fontSize: 18),
+            'Register',
+          ),
+          SizedBox(height: 10),
+          Text(
+            _role.isPatient ? 'Create a new account' : 'Doctor Text',
             style: Theme.of(context).textTheme.labelSmall!.copyWith(
               color: Pallete.grayScaleColor500,
               fontSize: 11,
             ),
           ),
           SizedBox(height: 10),
+          SizedBox(
+            height: screenHeight(context) * 0.23,
+            child: Image.asset('assets/images/login.webp', fit: BoxFit.cover),
+          ),
         ],
       ),
     );
