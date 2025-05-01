@@ -4,12 +4,12 @@ import 'package:flutter_clinic_app/core/cubits/role/role_cubit.dart';
 import 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:flutter_clinic_app/core/utils/utils.dart';
-import 'package:flutter_clinic_app/features/auth/view/widgets/background_container.dart';
-import 'package:flutter_clinic_app/features/auth/view/widgets/custom_elevated_button.dart';
+import 'package:flutter_clinic_app/features/auth/controller/user_bloc/user_bloc.dart';
+import '../widgets/auth_widgets.dart';
+
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/enums.dart';
-import '../widgets/choose_from_widget.dart';
 
 class LoginAsScreen extends StatefulWidget {
   const LoginAsScreen({super.key});
@@ -79,11 +79,10 @@ class _LoginAsScreenState extends State<LoginAsScreen> {
               CustomElevatedButton(
                 title: 'Continue',
                 onTap: () {
-                  context.read<RoleCubit>().toggleRole(_currentRole);
-                  context.pushNamed(
-                    AppRouteConstants.verificationCodeScreen,
-                    pathParameters: {'email': 'john.doe@gmail.com'},
+                  context.read<UserBloc>().add(
+                    UserModified(role: _currentRole),
                   );
+                  context.pushNamed(AppRouteConstants.loginRouteName);
                 },
                 fillColor: Pallete.primaryColor,
                 textColor: Colors.white,

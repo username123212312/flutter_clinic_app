@@ -3,19 +3,17 @@ import 'dart:developer';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clinic_app/core/cubits/role/role_cubit.dart';
 import 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
 import 'package:flutter_clinic_app/core/providers/google_provider.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:flutter_clinic_app/core/utils/utils.dart';
 import 'package:flutter_clinic_app/core/utils/validator_util.dart';
-import 'package:flutter_clinic_app/features/auth/view/widgets/background_container.dart';
-import 'package:flutter_clinic_app/features/auth/view/widgets/custom_elevated_button.dart';
-import 'package:flutter_clinic_app/features/auth/view/widgets/custom_text_field.dart';
-import 'package:flutter_clinic_app/features/auth/view/widgets/two_sellectable_widget.dart';
+import '../widgets/auth_widgets.dart';
+
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/enums.dart';
+import '../../controller/user_bloc/user_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -29,16 +27,20 @@ class _LoginScreenState extends State<LoginScreen>
   @override
   void initState() {
     super.initState();
-    _role = context.read<RoleCubit>().state.role;
+    _role = context.read<UserBloc>().state.role;
     _animationController = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 500),
     );
 
-    _opacityAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _animationController, curve: Curves.bounceInOut),
-    );
-    _animationController.forward();
+    _slideAnimation = Tween<Offset>(
+      begin: Offset.zero,
+      end: Offset(-2.0, 0.0),
+    ).animate(_animationController);
+    _reverseSlideAnimation = Tween<Offset>(
+      begin: Offset(2.0, 0.0),
+      end: Offset.zero,
+    ).animate(_animationController);
   }
 
   @override
@@ -92,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen>
                   recognizer:
                       TapGestureRecognizer()
                         ..onTap = () {
-                          context.goNamed(AppRouteConstants.registerScreen);
+                          context.goNamed(AppRouteConstants.registerRouteName);
                         },
                   text: 'Register',
                   style: Theme.of(context).textTheme.titleSmall!.copyWith(
@@ -123,6 +125,12 @@ class _LoginScreenState extends State<LoginScreen>
                 title: 'Login',
                 onTap: () {
                   if (submit()) {
+                    context.read<UserBloc>().add(
+                      UserModified(
+                        email: _emailController.text,
+                        password: _passwordController.text,
+                      ),
+                    );
                     log('log in');
                   }
                 },
@@ -194,8 +202,8 @@ class _LoginScreenState extends State<LoginScreen>
             children: [
               SizedBox(height: 10),
               if (_currentLoginMethod == 0)
-                FadeTransition(
-                  opacity: _opacityAnimation,
+                SlideTransition(
+                  position: _slideAnimation,
                   child: CustomTextField(
                     controller: _emailController,
                     validator: (value) {
@@ -210,8 +218,8 @@ class _LoginScreenState extends State<LoginScreen>
                   ),
                 ),
               if (_currentLoginMethod == 1)
-                FadeTransition(
-                  opacity: _opacityAnimation,
+                SlideTransition(
+                  position: _reverseSlideAnimation,
                   child: CustomTextField(
                     controller: _phoneController,
                     validator: (value) {
@@ -248,7 +256,7 @@ class _LoginScreenState extends State<LoginScreen>
                   onTap: () {
                     if (submit()) {
                       context.pushNamed(
-                        AppRouteConstants.verificationCodeScreen,
+                        AppRouteConstants.verificationCodeRouteName,
                         pathParameters: {'email': _emailController.text},
                       );
                     }
@@ -273,7 +281,7 @@ class _LoginScreenState extends State<LoginScreen>
     return Flexible(
       flex: 2,
       fit: FlexFit.loose,
-      child: TwoSellectableWidget(
+      child: TwoSelectableWidget(
         onToggleIndex: (newIndex) {
           log(newIndex.toString());
           _changeLoginMethod(newIndex);
@@ -284,13 +292,20 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   void _changeLoginMethod(int newIndex) {
-    setState(() {
-      _animationController.reset();
-      _animationController.forward();
-      _formKey.currentState!.reset();
-      FocusScope.of(context).unfocus();
-      _currentLoginMethod = newIndex;
-    });
+    if (_animationController.isCompleted) {
+      setState(() {
+        _animationController.reverse();
+        FocusScope.of(context).unfocus();
+        _currentLoginMethod = newIndex;
+      });
+    } else {
+      setState(() {
+        _animationController.forward();
+        _formKey.currentState!.reset();
+        FocusScope.of(context).unfocus();
+        _currentLoginMethod = newIndex;
+      });
+    }
   }
 
   Flexible _buildHeader() {
@@ -344,7 +359,9 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   late final AnimationController _animationController;
-  late final Animation<double> _opacityAnimation;
+  late final Animation<Offset> _slideAnimation;
+  late final Animation<Offset> _reverseSlideAnimation;
+
   late final Role _role;
   int _currentLoginMethod = 0;
   final _emailController = TextEditingController();

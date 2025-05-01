@@ -3,10 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
-import 'package:flutter_clinic_app/features/auth/view/widgets/background_container.dart';
 import 'package:go_router/go_router.dart';
-
-import '../widgets/custom_elevated_button.dart';
+import '../widgets/auth_widgets.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -63,7 +61,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   child: CustomElevatedButton(
                     title: 'Continue',
                     onTap: () {
-                      context.pushNamed(AppRouteConstants.loginAsScreen);
+                      context.pushNamed(AppRouteConstants.loginAsRouteName);
                     },
                     fillColor: Pallete.primaryColor,
                     textColor: Colors.white,

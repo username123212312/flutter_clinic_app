@@ -4,9 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clinic_app/core/cubits/role/role_cubit.dart';
 import 'package:flutter_clinic_app/core/navigation/app_route_config.dart';
 import 'package:flutter_clinic_app/core/theme/app_theme.dart';
+import 'package:flutter_clinic_app/features/auth/controller/user_bloc/user_bloc.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((
     _,
   ) {
@@ -20,7 +22,7 @@ class ClinicApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (_) => RoleCubit())],
+      providers: [BlocProvider(create: (_) => UserBloc())],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         routerConfig: AppRouteConfig.router,

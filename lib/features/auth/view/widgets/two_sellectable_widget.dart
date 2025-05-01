@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_pallete.dart';
 import '../../../../core/utils/utils.dart';
 
-class TwoSellectableWidget extends StatefulWidget {
-  const TwoSellectableWidget({
+class TwoSelectableWidget extends StatefulWidget {
+  const TwoSelectableWidget({
     super.key,
     required this.twoTitles,
     required this.onToggleIndex,
@@ -16,10 +16,10 @@ class TwoSellectableWidget extends StatefulWidget {
   final void Function(int index) onToggleIndex;
 
   @override
-  State<TwoSellectableWidget> createState() => _TwoSellectableWidgetState();
+  State<TwoSelectableWidget> createState() => _TwoSelectableWidgetState();
 }
 
-class _TwoSellectableWidgetState extends State<TwoSellectableWidget>
+class _TwoSelectableWidgetState extends State<TwoSelectableWidget>
     with SingleTickerProviderStateMixin {
   late final AnimationController _animationController;
   late final Animation<Offset> _slideAnimation;

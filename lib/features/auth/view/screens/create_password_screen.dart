@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
 import 'package:flutter_clinic_app/core/utils/validator_util.dart';
-import 'package:flutter_clinic_app/features/auth/view/widgets/background_container.dart';
-import 'package:flutter_clinic_app/features/auth/view/widgets/basic_info_widget.dart';
-import 'package:flutter_clinic_app/features/auth/view/widgets/custom_elevated_button.dart';
-import 'package:flutter_clinic_app/features/auth/view/widgets/rule_item.dart';
+import 'package:flutter_clinic_app/features/auth/controller/user_bloc/user_bloc.dart';
+import '../widgets/auth_widgets.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/utils/utils.dart';
@@ -48,7 +48,17 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                     child: CustomElevatedButton(
                       fontSize: 15,
                       title: 'Create Password',
-                      onTap: () {},
+                      onTap: () {
+                        if (submit()) {
+                          context.read<UserBloc>().add(
+                            UserModified(password: _passwordController.text),
+                          );
+                          context.goNamed(
+                            AppRouteConstants.verificationCodeRouteName,
+                          );
+                          // TODO register()
+                        }
+                      },
                       fillColor: Theme.of(context).colorScheme.primary,
                       textColor: Colors.white,
                     ),
@@ -62,71 +72,77 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
     );
   }
 
-  Column _buildTwoFormFields() {
-    return Column(
-      children: [
-        Stack(
-          children: [
-            Positioned(
-              top: 0,
-              right: 10,
-              child: GestureDetector(
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (_) {
-                      return _buildAlertDialog();
-                    },
-                  );
-                },
-                child: Container(
-                  padding: EdgeInsets.all(2),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                  child: Icon(
-                    Icons.question_mark,
-                    color: Colors.white,
-                    size: 20,
+  Widget _buildTwoFormFields() {
+    return Form(
+      key: _formKey,
+
+      child: Column(
+        children: [
+          Stack(
+            children: [
+              Positioned(
+                top: 0,
+                right: 10,
+                child: GestureDetector(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (_) {
+                        return _buildAlertDialog();
+                      },
+                    );
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(2),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                    child: Icon(
+                      Icons.question_mark,
+                      color: Colors.white,
+                      size: 20,
+                    ),
                   ),
                 ),
               ),
-            ),
-            BasicInfoWidget(
-              controller: _passwordController,
-              maxLines: 1,
-              obsecureText: true,
-              validator: (value) {
-                if (!ValidatorUtil.validatePassword(value ?? '')) {
-                  return 'Enter a valid password';
-                } else {
-                  return null;
-                }
-              },
-              title: 'New Password',
-              hintText: 'New Password',
-              keyboardType: TextInputType.text,
-            ),
-          ],
-        ),
-        SizedBox(height: 15),
-        BasicInfoWidget(
-          controller: _confirmPasswordController,
-          maxLines: 1,
-          obsecureText: true,
-          validator: (value) {
-            if (_confirmPasswordController.text == _passwordController.text) {
-              return 'Passwords don\'t match!';
-            } else {
-              return null;
-            }
-          },
-          title: 'Confirm Password',
-          hintText: 'Confirm Password',
-          keyboardType: TextInputType.text,
-        ),
-      ],
+              BasicInfoWidget(
+                controller: _passwordController,
+                maxLines: 1,
+                obsecureText: true,
+                validator: (value) {
+                  if (!ValidatorUtil.validatePassword(value ?? '')) {
+                    return 'Enter a valid password';
+                  } else {
+                    return null;
+                  }
+                },
+                title: 'New Password',
+                hintText: 'New Password',
+                keyboardType: TextInputType.text,
+              ),
+            ],
+          ),
+          SizedBox(height: 15),
+          BasicInfoWidget(
+            textInputAction: TextInputAction.done,
+            controller: _confirmPasswordController,
+            maxLines: 1,
+            obsecureText: true,
+            validator: (value) {
+              if (_confirmPasswordController.text !=
+                  (_passwordController.text)) {
+                return 'Passwords don\'t match!';
+              } else {
+                return null;
+              }
+            },
+            title: 'Confirm Password',
+            hintText: 'Confirm Password',
+            keyboardType: TextInputType.text,
+          ),
+        ],
+      ),
     );
   }
 
@@ -199,4 +215,10 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
       ],
     );
   }
+
+  bool submit() {
+    return _formKey.currentState!.validate();
+  }
+
+  final _formKey = GlobalKey<FormState>();
 }

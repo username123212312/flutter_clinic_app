@@ -1,33 +1,31 @@
 import 'dart:developer';
 
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clinic_app/core/cubits/role/role_cubit.dart';
 import 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
-import 'package:flutter_clinic_app/core/providers/google_provider.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:flutter_clinic_app/core/utils/utils.dart';
 import 'package:flutter_clinic_app/core/utils/validator_util.dart';
-import 'package:flutter_clinic_app/features/auth/controller/user_bloc/user_bloc.dart';
 import '../widgets/auth_widgets.dart';
 
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/enums.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+class ForgotPasswordScreen extends StatefulWidget {
+  const ForgotPasswordScreen({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen>
+class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
     with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _role = context.read<UserBloc>().state.role;
+    _role = context.read<RoleCubit>().state.role;
     _animationController = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 500),
@@ -65,7 +63,6 @@ class _RegisterScreenState extends State<RegisterScreen>
                 _buildTwoSelectable(),
                 _buildFormFields(),
                 _buildTwoLoginButtons(),
-                _buildFooter(),
               ],
             ),
           ),
@@ -74,111 +71,29 @@ class _RegisterScreenState extends State<RegisterScreen>
     );
   }
 
-  Flexible _buildFooter() {
-    return Flexible(
-      flex: 1,
-      fit: FlexFit.tight,
-      child: Column(
-        children: [
-          SizedBox(height: 40),
-          RichText(
-            text: TextSpan(
-              text: 'Already have an account? ',
-              style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                color: Pallete.grayScaleColor500,
-                fontSize: 15,
-              ),
-              children: [
-                TextSpan(
-                  recognizer:
-                      TapGestureRecognizer()
-                        ..onTap = () {
-                          context.goNamed(AppRouteConstants.loginRouteName);
-                        },
-                  text: 'Login',
-                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
-                    fontSize: 15,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Flexible _buildTwoLoginButtons() {
     return Flexible(
       flex: 3,
-      fit: FlexFit.tight,
+      fit: FlexFit.loose,
       child: Padding(
         padding: const EdgeInsets.only(top: 20.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             SizedBox(
               width: screenWidth(context) * 0.85,
               child: CustomElevatedButton(
-                title: 'Register',
+                title: 'Next',
                 onTap: () {
                   if (submit()) {
-                    context.read<UserBloc>().add(
-                      UserModified(email: _emailController.text),
-                    );
                     context.pushNamed(
-                      AppRouteConstants.createPasswordRouteName,
+                      AppRouteConstants.verificationCodeRouteName,
+                      pathParameters: {'email': _emailController.text},
                     );
                   }
                 },
                 fillColor: Theme.of(context).colorScheme.primary,
                 textColor: Colors.white,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30.0),
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10.0),
-                    child: Container(
-                      height: 1,
-                      color: Pallete.grayScaleColor300,
-                      width: screenWidth(context) * 0.36,
-                    ),
-                  ),
-                  Text(
-                    'OR',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Pallete.grayScaleColor500,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: Container(
-                      height: 1,
-                      color: Pallete.grayScaleColor300,
-                      width: screenWidth(context) * 0.36,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              width: screenWidth(context) * 0.85,
-              child: CustomElevatedButton(
-                prefix: Image.asset('assets/icons/ic_google.png'),
-                elevation: 0,
-                borderColor: Pallete.grayScaleColor300,
-                title: 'Google',
-                onTap: () async {
-                  final result = await GoogleAuthService().signIn();
-                  log(result.toString());
-                },
-                fillColor: Colors.transparent,
-                textColor: Colors.black,
               ),
             ),
           ],
@@ -241,7 +156,7 @@ class _RegisterScreenState extends State<RegisterScreen>
 
   Flexible _buildTwoSelectable() {
     return Flexible(
-      flex: 2,
+      flex: 1,
       fit: FlexFit.loose,
       child: TwoSelectableWidget(
         onToggleIndex: (newIndex) {
@@ -273,7 +188,7 @@ class _RegisterScreenState extends State<RegisterScreen>
 
   Flexible _buildHeader() {
     return Flexible(
-      flex: 5,
+      flex: 4,
       fit: FlexFit.loose,
       child: Column(
         children: [
@@ -282,11 +197,11 @@ class _RegisterScreenState extends State<RegisterScreen>
             style: Theme.of(
               context,
             ).textTheme.labelMedium!.copyWith(fontSize: 18),
-            'Register',
+            'Forgot Password',
           ),
           SizedBox(height: 10),
           Text(
-            _role.isPatient ? 'Create a new account' : 'Doctor Text',
+            'Enter your Email/Phone to send a verification code',
             style: Theme.of(context).textTheme.labelSmall!.copyWith(
               color: Pallete.grayScaleColor500,
               fontSize: 11,
@@ -295,7 +210,10 @@ class _RegisterScreenState extends State<RegisterScreen>
           SizedBox(height: 10),
           SizedBox(
             height: screenHeight(context) * 0.23,
-            child: Image.asset('assets/images/login.webp', fit: BoxFit.cover),
+            child: Image.asset(
+              'assets/images/password.webp',
+              fit: BoxFit.cover,
+            ),
           ),
         ],
       ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:flutter_clinic_app/core/utils/utils.dart';
+import 'package:flutter_clinic_app/core/utils/validator_util.dart';
 
 class OTPWidgetField extends StatelessWidget {
   const OTPWidgetField({super.key, this.onSaved, this.isEnd = false});
@@ -14,6 +15,15 @@ class OTPWidgetField extends StatelessWidget {
       width: screenWidth(context) * 0.2,
       height: screenHeight(context) * 0.13,
       child: TextFormField(
+        validator: (value) {
+          if (value != null) {
+            if (value.isEmpty) {
+              return 'Empty!';
+            } else {
+              return null;
+            }
+          }
+        },
         onSaved: onSaved,
         onChanged: (value) {
           if (value.length == 1) {

@@ -1,11 +1,13 @@
 class AppRouteConstants {
   static const welcomeRouteName = 'welcome';
   static const onBoardingRouteName = 'on_boarding';
-  static const loginAsScreen = 'login_as';
-  static const loginScreen = 'login';
-  static const verificationCodeScreen = 'verification';
-  static const yourProfileScreen = 'profile_setup';
-  static const createPassword = 'create_password';
-  static const registerScreen = 'register';
+  static const loginAsRouteName = 'login_as';
+  static const loginRouteName = 'login';
+  static const verificationCodeRouteName = 'verification';
+  static const yourProfileRouteName = 'profile_setup';
+  static const createPasswordRouteName = 'create_password';
+  static const forgotPasswordRouteName = 'forgot_password';
+  static const registerRouteName = 'register';
+  static const homeRouteName = 'home';
   static const errorRouteName = 'error';
 }

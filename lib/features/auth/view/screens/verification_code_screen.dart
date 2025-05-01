@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:flutter_clinic_app/core/utils/utils.dart';
-import 'package:flutter_clinic_app/features/auth/view/widgets/background_container.dart';
-import 'package:flutter_clinic_app/features/auth/view/widgets/custom_elevated_button.dart';
-import 'package:flutter_clinic_app/features/auth/view/widgets/otp_widget_field.dart';
+import 'package:go_router/go_router.dart';
+import '../widgets/auth_widgets.dart';
 
 class VerificationCodeScreen extends StatefulWidget {
   final String email;
@@ -15,6 +15,7 @@ class VerificationCodeScreen extends StatefulWidget {
 
 class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
   int f1 = 0, f2 = 0, f3 = 0, f4 = 0;
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -41,7 +42,11 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                   width: screenWidth(context) * 0.77,
                   child: CustomElevatedButton(
                     title: 'Verify',
-                    onTap: () {},
+                    onTap: () {
+                      if (submit()) {
+                        context.goNamed(AppRouteConstants.yourProfileRouteName);
+                      }
+                    },
                     fillColor: Colors.transparent,
                     textColor: Pallete.primaryColor,
                     elevation: 0,
@@ -78,32 +83,35 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
     );
   }
 
-  Row _buildOTP() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        OTPWidgetField(
-          onSaved: (value) {
-            f1 = int.tryParse(value ?? '') ?? 0;
-          },
-        ),
-        OTPWidgetField(
-          onSaved: (value) {
-            f2 = int.tryParse(value ?? '') ?? 0;
-          },
-        ),
-        OTPWidgetField(
-          onSaved: (value) {
-            f3 = int.tryParse(value ?? '') ?? 0;
-          },
-        ),
-        OTPWidgetField(
-          isEnd: true,
-          onSaved: (value) {
-            f4 = int.tryParse(value ?? '') ?? 0;
-          },
-        ),
-      ],
+  Widget _buildOTP() {
+    return Form(
+      key: _formKey,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          OTPWidgetField(
+            onSaved: (value) {
+              f1 = int.tryParse(value ?? '') ?? 0;
+            },
+          ),
+          OTPWidgetField(
+            onSaved: (value) {
+              f2 = int.tryParse(value ?? '') ?? 0;
+            },
+          ),
+          OTPWidgetField(
+            onSaved: (value) {
+              f3 = int.tryParse(value ?? '') ?? 0;
+            },
+          ),
+          OTPWidgetField(
+            isEnd: true,
+            onSaved: (value) {
+              f4 = int.tryParse(value ?? '') ?? 0;
+            },
+          ),
+        ],
+      ),
     );
   }
 
@@ -135,5 +143,9 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
         ),
       ],
     );
+  }
+
+  bool submit() {
+    return _formKey.currentState!.validate();
   }
 }
