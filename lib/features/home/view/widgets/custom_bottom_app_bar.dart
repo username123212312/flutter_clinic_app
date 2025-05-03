@@ -1,7 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_clinic_app/core/utils/utils.dart';
+import 'package:flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:flutter_clinic_app/features/home/view/widgets/custom_bottom_app_bar_item.dart';
 
 class CustomBottomAppBar extends StatefulWidget {
@@ -77,6 +75,7 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
 
   void _setIndex(int newIndex) {
     setState(() {
+      widget.onChange(newIndex);
       _currentIndex = newIndex;
     });
   }

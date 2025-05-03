@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
-import 'package:flutter_clinic_app/core/utils/utils.dart';
+import 'package:flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:flutter_clinic_app/core/utils/validator_util.dart';
 
 class OTPWidgetField extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/utils.dart';
+import '../../../../core/utils/general_utils.dart';
 import 'choose_from_widget.dart';
 
 class SelectYourGenderWidet extends StatelessWidget {

@@ -42,6 +42,8 @@ dependencies:
   flutter_bloc:
   hydrated_bloc:
   google_sign_in: ^6.3.0
+  skeletonizer: ^1.4.3
+  intl: ^0.20.2
 
 dev_dependencies:
   flutter_test:

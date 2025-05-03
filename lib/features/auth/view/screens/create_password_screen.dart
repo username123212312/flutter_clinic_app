@@ -6,7 +6,7 @@ import 'package:flutter_clinic_app/features/auth/controller/user_bloc/user_bloc.
 import '../widgets/auth_widgets.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/utils/utils.dart';
+import '../../../../core/utils/general_utils.dart';
 
 class CreatePasswordScreen extends StatefulWidget {
   const CreatePasswordScreen({super.key});

@@ -15,6 +15,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/auth/view/screens/forgot_password_screen.dart';
 import '../../features/auth/view/screens/login_screen.dart';
+import '../../features/home/view/screens/appointment_details_screen.dart';
 
 class AppRouteConfig {
   static final router = GoRouter(
@@ -78,6 +79,12 @@ class AppRouteConfig {
         path: '/home',
         pageBuilder: (_, state) => TransitionPage(child: HomeScreen()),
       ),
+      // GoRoute(
+      //   name: AppRouteConstants.appointmentDetailsRouteName,
+      //   path: '/appointment_details',
+      //   pageBuilder:
+      //       (_, state) => TransitionPage(child: AppointmentDetailsScreen()),
+      // ),
     ],
   );
 }

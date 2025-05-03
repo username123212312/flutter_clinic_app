@@ -8,12 +8,20 @@ class Pallete {
   static const Color inactiveColor3 = Color.fromRGBO(196, 196, 196, 1);
   static const Color oxfordBlue = Color.fromRGBO(47, 60, 78, 1);
   static const Color graysGray2 = Color.fromRGBO(174, 174, 178, 1);
+  static const Color graysGray6 = Color.fromRGBO(242, 242, 247, 1);
+  static const Color grayScaleColor0 = Color.fromRGBO(255, 255, 255, 1);
   static const Color grayScaleColor200 = Color.fromRGBO(245, 245, 245, 1);
   static const Color grayScaleColor300 = Color.fromRGBO(217, 217, 217, 1);
   static const Color grayScaleColor400 = Color.fromRGBO(178, 178, 178, 1);
   static const Color grayScaleColor500 = Color.fromRGBO(140, 140, 140, 1);
   static const Color grayScaleColor700 = Color.fromRGBO(31, 31, 31, 1);
   static const Color sliverSand = Color.fromRGBO(176, 190, 195, 1);
+  static const Color statusColorPending = Color.fromRGBO(249, 168, 37, 0.1);
+  static const Color alertWarningColor = Color.fromRGBO(249, 168, 37, 1);
+  static const Color statusColorCanceled = Color.fromRGBO(247, 16, 16, 0.1);
+  static const Color alertDangerColor = Color.fromRGBO(247, 16, 16, 1);
+  static const Color statusColorFinished = Color.fromRGBO(37, 184, 101, 0.1);
+  static const Color alertSuccessColor = Color.fromRGBO(37, 184, 101, 1);
 
   static const cardColor = Color.fromRGBO(30, 30, 30, 1);
   static const greenColor = Colors.green;

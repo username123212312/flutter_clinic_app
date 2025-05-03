@@ -7,7 +7,7 @@ import 'package:flutter_clinic_app/features/auth/view/widgets/custom_elevated_bu
 import 'package:flutter_clinic_app/features/auth/view/widgets/select_your_gender_widet.dart';
 import 'package:flutter_clinic_app/features/auth/view/widgets/selectable_widget.dart';
 
-import '../../../../core/utils/utils.dart';
+import '../../../../core/utils/general_utils.dart';
 
 class ProfileSetupScreen extends StatefulWidget {
   const ProfileSetupScreen({super.key});

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clinic_app/core/cubits/role/role_cubit.dart';
 import 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
-import 'package:flutter_clinic_app/core/utils/utils.dart';
+import 'package:flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:flutter_clinic_app/features/auth/controller/user_bloc/user_bloc.dart';
 import '../widgets/auth_widgets.dart';
 

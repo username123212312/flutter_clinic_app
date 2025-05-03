@@ -1,6 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_clinic_app/core/utils/utils.dart';
-import 'package:flutter_clinic_app/features/home/view/widgets/custom_bottom_app_bar.dart';
+import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
+import 'package:flutter_clinic_app/core/utils/general_utils.dart';
 
 import '../widgets/home_widgets.dart';
 
@@ -23,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen>
     _fadeAnimation = Tween<double>(
       begin: 0.0,
       end: 1.0,
-    ).animate(_fadeAnimation);
+    ).animate(_animationController);
     _animationController.forward();
   }
 
@@ -37,10 +39,34 @@ class _HomeScreenState extends State<HomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          _title,
-          style: Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: 20),
+        title: FadeTransition(
+          opacity: _animationController,
+          child: Text(
+            _currentIndex == 0
+                ? 'Home'
+                : _currentIndex == 1
+                ? 'Appointments'
+                : 'My Profile',
+            style: Theme.of(context).textTheme.labelSmall!.copyWith(
+              fontSize: 20,
+              color: Pallete.grayScaleColor700,
+            ),
+          ),
         ),
+        actionsPadding: EdgeInsets.only(right: 10, top: 20, bottom: 20),
+        actions: [
+          TextButton.icon(
+            icon: Icon(Icons.add),
+            onPressed: () {},
+            label: Text('Add'),
+            style: TextButton.styleFrom(
+              side: BorderSide(
+                color: Theme.of(context).colorScheme.primary,
+                width: 1,
+              ),
+            ),
+          ),
+        ],
         toolbarHeight: screenHeight(context) * 0.1,
       ),
       body: Stack(
@@ -73,10 +99,12 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   Widget setHome(int index) {
+    _animationController.reset();
+    _animationController.forward();
     return switch (index) {
       0 => Placeholder(),
       1 => AppontmentsWidget(),
-      2 => Placeholder(),
+      2 => Placeholder(color: Colors.red),
       _ => Placeholder(),
     };
   }

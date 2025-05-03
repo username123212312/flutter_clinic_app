@@ -9,5 +9,6 @@ class AppRouteConstants {
   static const forgotPasswordRouteName = 'forgot_password';
   static const registerRouteName = 'register';
   static const homeRouteName = 'home';
+  static const appointmentDetailsRouteName = 'appointment_details';
   static const errorRouteName = 'error';
 }

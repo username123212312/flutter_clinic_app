@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_pallete.dart';
-import '../../../../core/utils/utils.dart';
+import '../../../../core/utils/general_utils.dart';
 
 class TwoSelectableWidget extends StatefulWidget {
   const TwoSelectableWidget({

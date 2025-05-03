@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clinic_app/core/utils/utils.dart';
+import 'package:flutter_clinic_app/core/utils/general_utils.dart';
 
 class CustomElevatedButton extends StatelessWidget {
   const CustomElevatedButton({
@@ -12,6 +12,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.borderColor,
     this.prefix,
     this.fontSize,
+    this.borderRadius,
   });
   final String title;
   final double elevation;
@@ -21,6 +22,7 @@ class CustomElevatedButton extends StatelessWidget {
   final void Function() onTap;
   final Widget? prefix;
   final double? fontSize;
+  final double? borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,10 @@ class CustomElevatedButton extends StatelessWidget {
         backgroundColor: fillColor,
         foregroundColor: textColor,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius:
+              borderRadius == null
+                  ? BorderRadius.circular(8)
+                  : BorderRadius.circular(borderRadius!),
           side: BorderSide(color: borderColor ?? Colors.transparent),
         ),
       ),
