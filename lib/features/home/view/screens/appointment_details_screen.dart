@@ -1,14 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clinic_app/core/enums.dart';
-import 'package:flutter_clinic_app/features/auth/view/widgets/custom_elevated_button.dart';
+import 'package:flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
 import 'package:flutter_clinic_app/features/home/model/appointment_model.dart';
-import 'package:intl/intl.dart';
+import '../widgets/home_widgets.dart';
 
 import '../../../../core/theme/app_pallete.dart';
 import '../../../../core/utils/utils.dart';
 
-class AppointmentDetailsScreen extends StatelessWidget {
+class AppointmentDetailsScreen extends StatefulWidget {
   const AppointmentDetailsScreen({super.key, required this.appointment});
+
+  @override
+  State<AppointmentDetailsScreen> createState() =>
+      _AppointmentDetailsScreenState();
+
+  final AppointmentModel appointment;
+}
+
+class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen>
+    with SingleTickerProviderStateMixin {
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 1),
+    );
+    _fadeAnimation = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(_animationController);
+    _animationController.forward();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,33 +48,110 @@ class AppointmentDetailsScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Align(
-            alignment: Alignment.center,
-            child: Container(
-              width: screenWidth(context) * 0.9,
-              height: screenHeight(context) * 0.603,
-              decoration: BoxDecoration(
-                border: Border.all(color: Pallete.grayScaleColor400, width: 1),
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              padding: EdgeInsets.all(13),
-              child: Column(
-                children: [
-                  _buildHeader(context),
-                  Divider(color: Pallete.sliverSand),
-                  SizedBox(height: 5),
-                  _buildBodyList(),
-                ],
-              ),
+          if (widget.appointment.appointmentStatus.isFinished)
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                  child: TwoSelectableWidget(
+                    leftPadding: 12,
+                    twoTitles: ['Information', 'Results'],
+                    onToggleIndex: (index) {
+                      _changeIndex(index);
+                    },
+                  ),
+                ),
+                SizedBox(height: 10),
+              ],
             ),
-          ),
+          if (_currentIndex == 0)
+            FadeTransition(
+              opacity: _fadeAnimation,
+              child: _buildAppointmentDetails(),
+            ),
+          if (_currentIndex == 1)
+            FadeTransition(
+              opacity: _fadeAnimation,
+              child: _buildAppointmentResults(),
+            ),
 
-          if (appointment.appointmentStatus.isPending)
-            _buildPendingFooter(context),
+          if (widget.appointment.appointmentStatus.isPending)
+            _buildPendingFooter(),
+        ],
+      ),
+    );
+  }
+
+  void _changeIndex(int index) {
+    setState(() {
+      _animationController.reset();
+      _animationController.forward();
+      _currentIndex = index;
+    });
+  }
+
+  Widget _buildAppointmentDetails() {
+    return Align(
+      alignment: Alignment.center,
+      child: AppointmentCard(appointment: widget.appointment),
+    );
+  }
+
+  Widget _buildAppointmentResults() {
+    return SingleChildScrollView(
+      child: Align(
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            ResultCard(
+              title: 'Diagnosis',
+              iconImagePath: 'assets/icons/tabler_device-heart-monitor.png',
+              listItems: [
+                [
+                  'The patient has symptoms of low-grade hypertension kidney disorder.',
+                ],
+              ],
+            ),
+            SizedBox(height: 20),
+            ResultCard(
+              title: 'Notes & Instructions',
+              iconImagePath: 'assets/icons/ic_notes.png',
+              listItems: [
+                ['Use medication as prescribed'],
+                ['Exercise regularly, balance between work and rest'],
+                [
+                  'Eat more vegetables, tubers & fruits; reduce fried, fatty foods...',
+                ],
+              ],
+            ),
+            SizedBox(height: 20),
+
+            ResultCard(
+              title: 'Notes & Instructions',
+              iconImagePath: 'assets/icons/ic_medicine.png',
+              listItems: [
+                [
+                  'Allopurinol 500mg',
+                  '2 pills, once a day2 pills, once a day',
+                  'After Eating',
+                ],
+                ['Diuretik 250mg', '2 pills, twice a day', 'After Eating'],
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Expanded _buildPendingFooter() {
+    return Expanded(
+      child: Column(
+        children: [
+          _buildPendingFooterText(context),
           Spacer(),
-          if (appointment.appointmentStatus.isPending)
-            _buildTwoButtons(context),
+          _buildTwoButtons(context),
         ],
       ),
     );
@@ -92,7 +191,7 @@ class AppointmentDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildPendingFooter(BuildContext context) {
+  Widget _buildPendingFooterText(BuildContext context) {
     return Column(
       children: [
         SizedBox(height: 10),
@@ -115,168 +214,126 @@ class AppointmentDetailsScreen extends StatelessWidget {
     );
   }
 
-  Column _buildBodyList() {
-    return Column(
-      children: [
-        AppointmentDetailsListItem(
-          title: 'Service',
-          subtitle: appointment.service,
-          iconImagePath: 'assets/icons/ic_service.png',
-        ),
-        AppointmentDetailsListItem(
-          title: 'Doctor',
-          subtitle: appointment.doctor.name,
-          thirdtitle: appointment.doctor.specality,
-          iconImagePath: 'assets/icons/ic_doctor.png',
-        ),
-        AppointmentDetailsListItem(
-          title: 'Department',
-          subtitle: appointment.department,
-          iconImagePath: 'assets/icons/ic_clinic.png',
-        ),
-        AppointmentDetailsListItem(
-          title: 'Date & Time',
-          subtitle: DateFormat(
-            'EEEE, MMMM d, y - HH:MM',
-          ).format(appointment.dateAndTime),
-          iconImagePath: 'assets/icons/ic_time.png',
-        ),
-        AppointmentDetailsListItem(
-          title: 'Patient',
-          subtitle: appointment.patient.name,
-          iconImagePath: 'assets/icons/ic_user_circle.png',
-        ),
-      ],
-    );
-  }
-
-  Row _buildHeader(BuildContext context) {
-    return Row(
-      children: [
-        Image.asset(
-          'assets/icons/tabler_clipboard-list.png',
-          width: 30,
-          height: 30,
-          fit: BoxFit.cover,
-        ),
-        SizedBox(width: 10),
-        Text(
-          'Appointment',
-          style: Theme.of(
-            context,
-          ).textTheme.labelMedium!.copyWith(fontSize: 15),
-        ),
-        Spacer(),
-        Container(
-          width: screenWidth(context) * 0.23,
-          height: screenHeight(context) * 0.043,
-          decoration: BoxDecoration(
-            color: _selectColor(appointment.appointmentStatus)[0],
-            borderRadius: BorderRadius.circular(18),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Icon(
-                Icons.circle,
-                size: 15,
-                color: _selectColor(appointment.appointmentStatus)[1],
-              ),
-              Text(
-                appointment.appointmentStatus.name,
-                style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                  color: _selectColor(appointment.appointmentStatus)[1],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  List<Color> _selectColor(AppointmentStatus appointmentStatus) {
-    return switch (appointmentStatus) {
-      AppointmentStatus.pending => [
-        Pallete.statusColorPending,
-        Pallete.alertWarningColor,
-      ],
-      AppointmentStatus.finished => [
-        Pallete.statusColorFinished,
-        Pallete.alertSuccessColor,
-      ],
-      AppointmentStatus.canceled => [
-        Pallete.statusColorCanceled,
-        Pallete.alertDangerColor,
-      ],
-    };
-  }
-
-  final AppointmentModel appointment;
+  late final AnimationController _animationController;
+  late final Animation<double> _fadeAnimation;
+  int _currentIndex = 0;
 }
 
-class AppointmentDetailsListItem extends StatelessWidget {
-  const AppointmentDetailsListItem({
+class ResultCard extends StatelessWidget {
+  const ResultCard({
     super.key,
     required this.title,
-    required this.subtitle,
-    this.thirdtitle,
     required this.iconImagePath,
+    required this.listItems,
   });
   final String title;
-  final String subtitle;
-  final String? thirdtitle;
   final String iconImagePath;
+  final List<List<String>> listItems;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
-          width: screenWidth(context) * 0.15,
-          height: screenHeight(context) * 0.068,
-          decoration: BoxDecoration(
-            color: Pallete.graysGray6,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          padding: EdgeInsets.all(0),
-          child: Image.asset(iconImagePath, width: 24, height: 24, scale: 0.7),
-        ),
-        SizedBox(width: 10),
-        SizedBox(
-          height: screenHeight(context) * 0.1,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Container(
+      width: screenWidth(context) * 0.9,
+      decoration: BoxDecoration(
+        border: Border.all(color: Pallete.grayScaleColor400, width: 1),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      padding: EdgeInsets.all(13),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
             children: [
-              if (thirdtitle == null) SizedBox(height: 10),
+              Image.asset(iconImagePath),
+              SizedBox(width: 10),
               Text(
                 title,
-                style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                  color: Pallete.sliverSand,
-                  fontSize: 15,
-                ),
-              ),
-
-              Text(
-                subtitle,
                 style: Theme.of(
                   context,
                 ).textTheme.labelSmall!.copyWith(fontSize: 15),
               ),
-              if (thirdtitle == null) SizedBox(height: 10),
-              if (thirdtitle != null)
-                Text(
-                  thirdtitle!,
-                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                    fontSize: 10,
-                    color: Pallete.sliverSand,
-                  ),
-                ),
             ],
           ),
-        ),
-      ],
+          Padding(
+            padding: const EdgeInsets.only(right: 5.0, left: 5.0, top: 10),
+            child: Column(
+              children:
+                  listItems
+                      .map(
+                        (e) => Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 2.0),
+                          child: Row(
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  if (listItems.length > 1)
+                                    Icon(
+                                      Icons.circle,
+                                      size: 15,
+                                      color: Pallete.grayScaleColor500,
+                                    ),
+                                  if (listItems.length > 1) SizedBox(width: 6),
+                                  Column(
+                                    children: [
+                                      SizedBox(
+                                        width: screenWidth(context) * 0.75,
+                                        child: Text(
+                                          e[0],
+
+                                          style: Theme.of(
+                                            context,
+                                          ).textTheme.titleSmall!.copyWith(
+                                            fontSize: 13,
+                                            color: Pallete.grayScaleColor400,
+                                          ),
+                                        ),
+                                      ),
+                                      if (e.length > 1)
+                                        SizedBox(
+                                          width: screenWidth(context) * 0.75,
+                                          child: Text(
+                                            e[1],
+
+                                            style: Theme.of(
+                                              context,
+                                            ).textTheme.titleSmall!.copyWith(
+                                              fontSize: 13,
+                                              color: Pallete.sliverSand,
+                                            ),
+                                          ),
+                                        ),
+                                      if (e.length > 2)
+                                        SizedBox(
+                                          width: screenWidth(context) * 0.75,
+                                          child: Text(
+                                            e[2],
+
+                                            style: Theme.of(
+                                              context,
+                                            ).textTheme.titleSmall!.copyWith(
+                                              fontSize: 13,
+                                              color:
+                                                  Theme.of(
+                                                    context,
+                                                  ).colorScheme.primary,
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                      .toList(),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

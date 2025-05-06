@@ -2,18 +2,20 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
-import '../../../../core/theme/app_pallete.dart';
-import '../../../../core/utils/general_utils.dart';
+import '../theme/app_pallete.dart';
+import '../utils/general_utils.dart';
 
 class TwoSelectableWidget extends StatefulWidget {
   const TwoSelectableWidget({
     super.key,
     required this.twoTitles,
     required this.onToggleIndex,
+    this.leftPadding,
   });
 
   final List<String> twoTitles;
   final void Function(int index) onToggleIndex;
+  final double? leftPadding;
 
   @override
   State<TwoSelectableWidget> createState() => _TwoSelectableWidgetState();
@@ -78,7 +80,7 @@ class _TwoSelectableWidgetState extends State<TwoSelectableWidget>
             children: [
               Positioned(
                 bottom: 20,
-                left: 17,
+                left: widget.leftPadding ?? 17,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

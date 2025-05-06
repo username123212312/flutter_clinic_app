@@ -99,6 +99,10 @@ flutter:
           weight: 600
         - asset: assets/fonts/Poppins/Poppins-Medium.ttf
           weight: 500
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans/static/OpenSans-Bold.ttf
+          weight: 700
           
         # - asset: fonts/Schyler-Italic.ttf
         #   style: italic

@@ -10,6 +10,10 @@ import 'package:flutter_clinic_app/features/home/model/appointment_model.dart';
 import 'package:flutter_clinic_app/features/home/model/doctor_model.dart';
 import 'package:flutter_clinic_app/features/home/model/patient_model.dart';
 import 'package:flutter_clinic_app/features/home/view/screens/appointment_details_screen.dart';
+import 'package:flutter_clinic_app/features/home/view/screens/book_new_appointment_screen.dart';
+import 'package:flutter_clinic_app/features/home/view/screens/home_screen.dart';
+
+import 'features/home/view/widgets/home_widgets.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,16 +37,7 @@ class ClinicApp extends StatelessWidget {
         themeMode: ThemeMode.system,
         theme: AppTheme.lightThemeMode,
         darkTheme: AppTheme.darkThemeMode,
-        home: AppointmentDetailsScreen(
-          appointment: AppointmentModel(
-            service: 'service',
-            doctor: DoctorModel(name: 'name', specality: 'specality'),
-            department: 'department',
-            dateAndTime: DateTime.now(),
-            patient: PatientModel(name: 'name'),
-            appointmentStatus: AppointmentStatus.pending,
-          ),
-        ),
+        home: BookNewAppointmentScreen(),
       ),
 
       // MaterialApp.router(

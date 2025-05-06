@@ -7,4 +7,4 @@ export 'otp_widget_field.dart';
 export 'rule_item.dart';
 export 'selectable_widget.dart';
 export 'select_your_gender_widet.dart';
-export 'two_sellectable_widget.dart';
+export '../../../../core/widgets/two_sellectable_widget.dart';

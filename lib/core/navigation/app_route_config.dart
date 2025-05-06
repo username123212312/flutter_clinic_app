@@ -10,6 +10,7 @@ import 'package:flutter_clinic_app/features/auth/view/screens/register_screen.da
 import 'package:flutter_clinic_app/features/auth/view/screens/verification_code_screen.dart';
 import 'package:flutter_clinic_app/features/auth/view/screens/welcome_screen.dart';
 import 'package:flutter_clinic_app/features/auth/view/screens/profile_setup_screen.dart';
+import 'package:flutter_clinic_app/features/home/model/appointment_model.dart';
 import 'package:flutter_clinic_app/features/home/view/screens/home_screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -79,12 +80,6 @@ class AppRouteConfig {
         path: '/home',
         pageBuilder: (_, state) => TransitionPage(child: HomeScreen()),
       ),
-      // GoRoute(
-      //   name: AppRouteConstants.appointmentDetailsRouteName,
-      //   path: '/appointment_details',
-      //   pageBuilder:
-      //       (_, state) => TransitionPage(child: AppointmentDetailsScreen()),
-      // ),
     ],
   );
 }

@@ -39,6 +39,7 @@ class _HomeScreenState extends State<HomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        forceMaterialTransparency: true,
         title: FadeTransition(
           opacity: _animationController,
           child: Text(
@@ -55,17 +56,18 @@ class _HomeScreenState extends State<HomeScreen>
         ),
         actionsPadding: EdgeInsets.only(right: 10, top: 20, bottom: 20),
         actions: [
-          TextButton.icon(
-            icon: Icon(Icons.add),
-            onPressed: () {},
-            label: Text('Add'),
-            style: TextButton.styleFrom(
-              side: BorderSide(
-                color: Theme.of(context).colorScheme.primary,
-                width: 1,
+          if (_currentIndex == 1)
+            TextButton.icon(
+              icon: Icon(Icons.add),
+              onPressed: () {},
+              label: Text('Add'),
+              style: TextButton.styleFrom(
+                side: BorderSide(
+                  color: Theme.of(context).colorScheme.primary,
+                  width: 1,
+                ),
               ),
             ),
-          ),
         ],
         toolbarHeight: screenHeight(context) * 0.1,
       ),

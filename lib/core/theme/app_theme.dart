@@ -42,14 +42,17 @@ class AppTheme {
     );
   }
 
-  static TextStyle _textStyle() =>
+  static TextStyle _poppinstextStyle() =>
       TextStyle().copyWith(fontFamily: 'Poppins', color: Colors.black);
+  static TextStyle _opanSanstextStyle() =>
+      TextStyle().copyWith(fontFamily: 'OpanSans', color: Colors.black);
 
   static TextTheme _textTheme() {
     return TextTheme().copyWith(
-      labelMedium: _textStyle().copyWith(fontWeight: FontWeight.w600),
-      labelSmall: _textStyle().copyWith(fontWeight: FontWeight.w500),
-      titleSmall: _textStyle().copyWith(fontWeight: FontWeight.w400),
+      labelMedium: _poppinstextStyle().copyWith(fontWeight: FontWeight.w600),
+      labelSmall: _poppinstextStyle().copyWith(fontWeight: FontWeight.w500),
+      titleSmall: _poppinstextStyle().copyWith(fontWeight: FontWeight.w400),
+      titleMedium: _opanSanstextStyle().copyWith(fontWeight: FontWeight.w700),
     );
   }
 
