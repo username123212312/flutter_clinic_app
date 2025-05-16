@@ -44,7 +44,7 @@ class _AppontmentsWidgetState extends State<AppontmentsWidget> {
                   child: Column(
                     children: [
                       Image.asset(
-                        'assets/images/logo.webp',
+                        'assets/images/il_empty_activity.webp',
                         width: screenWidth(context) * 0.4,
                         height: screenHeight(context) * 0.17,
                         fit: BoxFit.contain,

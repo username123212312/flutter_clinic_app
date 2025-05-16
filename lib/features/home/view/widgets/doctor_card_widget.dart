@@ -90,7 +90,7 @@ class DoctorCardWidget extends StatelessWidget {
               fontSize: 12,
               title: 'Book Appointment',
               onTap: () {},
-              fillColor: Pallete.buttomBG,
+              fillColor: Pallete.buttonBG,
               textColor: Theme.of(context).colorScheme.primary,
             ),
           ),

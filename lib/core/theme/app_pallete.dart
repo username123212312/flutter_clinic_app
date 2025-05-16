@@ -18,7 +18,8 @@ class Pallete {
   static const Color grayScaleColor700 = Color.fromRGBO(31, 31, 31, 1);
   static const Color sliverSand = Color.fromRGBO(176, 190, 195, 1);
   static const Color black1 = Color.fromRGBO(51, 56, 75, 1);
-  static const Color buttomBG = Color.fromRGBO(233, 240, 255, 1);
+  static const Color buttonBG = Color.fromRGBO(233, 240, 255, 1);
+  static const Color buttonBG0 = Color.fromRGBO(240, 244, 252, 1);
   static const Color statusColorPending = Color.fromRGBO(249, 168, 37, 0.1);
   static const Color alertWarningColor = Color.fromRGBO(249, 168, 37, 1);
   static const Color statusColorCanceled = Color.fromRGBO(247, 16, 16, 0.1);

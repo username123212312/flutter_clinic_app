@@ -10,4 +10,5 @@ sealed class DoctorsListEvent with _$DoctorsListEvent {
     required String query,
     required String filter,
   }) = SearchedWithFilter;
+  const factory DoctorsListEvent.filter({required String filter}) = Filter;
 }

@@ -249,6 +249,72 @@ as String,
 }
 
 /// @nodoc
+
+
+class Filter implements DoctorsListEvent {
+  const Filter({required this.filter});
+  
+
+ final  String filter;
+
+/// Create a copy of DoctorsListEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$FilterCopyWith<Filter> get copyWith => _$FilterCopyWithImpl<Filter>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Filter&&(identical(other.filter, filter) || other.filter == filter));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,filter);
+
+@override
+String toString() {
+  return 'DoctorsListEvent.filter(filter: $filter)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $FilterCopyWith<$Res> implements $DoctorsListEventCopyWith<$Res> {
+  factory $FilterCopyWith(Filter value, $Res Function(Filter) _then) = _$FilterCopyWithImpl;
+@useResult
+$Res call({
+ String filter
+});
+
+
+
+
+}
+/// @nodoc
+class _$FilterCopyWithImpl<$Res>
+    implements $FilterCopyWith<$Res> {
+  _$FilterCopyWithImpl(this._self, this._then);
+
+  final Filter _self;
+  final $Res Function(Filter) _then;
+
+/// Create a copy of DoctorsListEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? filter = null,}) {
+  return _then(Filter(
+filter: null == filter ? _self.filter : filter // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+/// @nodoc
 mixin _$DoctorsListState {
 
  List<DoctorModel> get doctorsList;
