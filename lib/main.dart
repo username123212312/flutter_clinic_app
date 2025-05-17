@@ -13,6 +13,7 @@ import 'package:flutter_clinic_app/features/home/view/screens/appointment_detail
 import 'package:flutter_clinic_app/features/home/view/screens/book_new_appointment_screen.dart';
 import 'package:flutter_clinic_app/features/home/view/screens/home_screen.dart';
 
+import 'features/home/view/screens/edit_profile_screen.dart';
 import 'features/home/view/widgets/home_widgets.dart';
 
 void main() {
@@ -37,7 +38,7 @@ class ClinicApp extends StatelessWidget {
         themeMode: ThemeMode.system,
         theme: AppTheme.lightThemeMode,
         darkTheme: AppTheme.darkThemeMode,
-        home: BookNewAppointmentScreen(),
+        home: EditProfileScreen(),
       ),
 
       // MaterialApp.router(

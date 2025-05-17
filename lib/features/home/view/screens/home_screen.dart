@@ -1,10 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:flutter_clinic_app/core/utils/general_utils.dart';
 
 import '../widgets/home_widgets.dart';
+import '../widgets/profile/profile_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -39,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: _currentIndex == 2 ? false : true,
         forceMaterialTransparency: true,
         title: FadeTransition(
           opacity: _animationController,
@@ -106,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen>
     return switch (index) {
       0 => Placeholder(),
       1 => AppontmentsWidget(),
-      2 => Placeholder(color: Colors.red),
+      2 => ProifileWidget(),
       _ => Placeholder(),
     };
   }
@@ -114,6 +114,5 @@ class _HomeScreenState extends State<HomeScreen>
   late final AnimationController _animationController;
   late final Animation<double> _fadeAnimation;
 
-  String _title = 'Home Page';
   int _currentIndex = 0;
 }

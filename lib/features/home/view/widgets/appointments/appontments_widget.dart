@@ -10,8 +10,8 @@ import 'package:flutter_clinic_app/features/home/model/doctor_model.dart';
 import 'package:flutter_clinic_app/features/home/model/patient_model.dart';
 import 'package:flutter_clinic_app/features/home/view/screens/appointment_details_screen.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../core/utils/utils.dart';
-import 'home_widgets.dart';
+import '../../../../../core/utils/utils.dart';
+import '../home_widgets.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class AppontmentsWidget extends StatefulWidget {

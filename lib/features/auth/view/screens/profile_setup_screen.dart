@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:flutter_clinic_app/core/utils/validator_util.dart';
+import 'package:flutter_clinic_app/core/widgets/blood_types_widget.dart';
 import 'package:flutter_clinic_app/features/auth/view/widgets/background_container.dart';
 import 'package:flutter_clinic_app/features/auth/view/widgets/basic_info_widget.dart';
 import 'package:flutter_clinic_app/features/auth/view/widgets/custom_elevated_button.dart';
 import 'package:flutter_clinic_app/features/auth/view/widgets/select_your_gender_widet.dart';
 import 'package:flutter_clinic_app/features/auth/view/widgets/selectable_widget.dart';
 
+import '../../../../core/consts/app_constants.dart';
 import '../../../../core/utils/general_utils.dart';
 
 class ProfileSetupScreen extends StatefulWidget {
@@ -147,29 +149,9 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
     return SizedBox(
       width: screenWidth(context) * 0.9,
       height: screenHeight(context) * 0.2,
-      child: GridView.builder(
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 80,
-          mainAxisExtent: 70,
-          mainAxisSpacing: 20,
-          crossAxisSpacing: 10,
-          childAspectRatio: 0.5,
-        ),
-        itemCount: bloodTypes.length,
-        itemBuilder: (context, index) {
-          final bloodType = bloodTypes[index];
-          return SelectableWidget(
-            onSelect: (id) {
-              setState(() {
-                _selectedBloodType = id;
-              });
-            },
-            title: bloodType,
-            id: index,
-            isSelected: _selectedBloodType == index,
-          );
+      child: BloodTypesWidget(
+        onSelected: (bloodType) {
+          _selectedBloodType = bloodType;
         },
       ),
     );
@@ -349,7 +331,6 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
 
   int _currentIndex = 0;
   int _selectedGender = 0;
-  static const bloodTypes = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
   int _selectedBloodType = 0;
   late final AnimationController _opacityController;
   final firstNameController = TextEditingController();

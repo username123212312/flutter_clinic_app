@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clinic_app/features/home/model/appointment_model.dart';
-import 'package:flutter_clinic_app/features/home/view/widgets/appointment_details_list_item.dart';
+import 'package:flutter_clinic_app/features/home/view/widgets/appointments/appointment_details_list_item.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../core/enums.dart';
-import '../../../../core/theme/app_pallete.dart';
-import '../../../../core/utils/utils.dart';
-import '../screens/appointment_details_screen.dart';
+import '../../../../../core/enums.dart';
+import '../../../../../core/theme/app_pallete.dart';
+import '../../../../../core/utils/utils.dart';
+import '../../screens/appointment_details_screen.dart';
 
 class AppointmentCard extends StatelessWidget {
   const AppointmentCard({super.key, required this.appointment});

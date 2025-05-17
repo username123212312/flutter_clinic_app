@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_clinic_app/features/home/view/widgets/appontments_widget.dart';
+import 'package:flutter_clinic_app/features/home/view/widgets/appointments/appontments_widget.dart';
 
 import '../../../../core/theme/app_pallete.dart';
 import '../../../../core/utils/general_utils.dart';
