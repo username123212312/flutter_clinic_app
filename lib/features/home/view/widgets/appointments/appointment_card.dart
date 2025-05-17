@@ -6,7 +6,6 @@ import 'package:intl/intl.dart';
 import '../../../../../core/enums.dart';
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/utils.dart';
-import '../../screens/appointment_details_screen.dart';
 
 class AppointmentCard extends StatelessWidget {
   const AppointmentCard({super.key, required this.appointment});
