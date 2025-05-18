@@ -18,6 +18,8 @@ import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as p;
 
 import 'core/providers/hive_client/hive_adapters/downloaded_file.dart';
+import 'features/auth/view/screens/nana/login.dart';
+import 'features/auth/view/screens/nana/register.dart';
 import 'features/home/view/screens/documents_screen.dart';
 import 'features/home/view/screens/edit_profile_screen.dart';
 import 'features/home/view/widgets/home_widgets.dart';
@@ -49,7 +51,7 @@ class ClinicApp extends StatelessWidget {
         themeMode: ThemeMode.system,
         theme: AppTheme.lightThemeMode,
         darkTheme: AppTheme.darkThemeMode,
-        home: HomeScreen(),
+        home: NanaRegisterScreen(),
       ),
 
       // MaterialApp.router(

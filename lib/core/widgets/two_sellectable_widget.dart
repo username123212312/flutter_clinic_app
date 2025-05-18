@@ -11,11 +11,13 @@ class TwoSelectableWidget extends StatefulWidget {
     required this.twoTitles,
     required this.onToggleIndex,
     this.leftPadding,
+    this.inBetweenPadding,
   });
 
   final List<String> twoTitles;
   final void Function(int index) onToggleIndex;
   final double? leftPadding;
+  final double? inBetweenPadding;
 
   @override
   State<TwoSelectableWidget> createState() => _TwoSelectableWidgetState();
@@ -71,7 +73,7 @@ class _TwoSelectableWidgetState extends State<TwoSelectableWidget>
         },
         child: Container(
           width: screenWidth(context) * 0.8,
-          height: 60,
+          height: 50,
           decoration: BoxDecoration(
             color: Pallete.grayScaleColor200,
             borderRadius: BorderRadius.circular(28),
@@ -79,7 +81,7 @@ class _TwoSelectableWidgetState extends State<TwoSelectableWidget>
           child: Stack(
             children: [
               Positioned(
-                bottom: 20,
+                bottom: 15,
                 left: widget.leftPadding ?? 17,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -93,7 +95,11 @@ class _TwoSelectableWidgetState extends State<TwoSelectableWidget>
                       textAlign: TextAlign.center,
                       widget.twoTitles[0],
                     ),
-                    SizedBox(width: screenWidth(context) * 0.18),
+                    SizedBox(
+                      width:
+                          widget.inBetweenPadding ??
+                          screenWidth(context) * 0.18,
+                    ),
                     Text(
                       style: Theme.of(context).textTheme.labelSmall!.copyWith(
                         fontSize: 15,
@@ -106,7 +112,6 @@ class _TwoSelectableWidgetState extends State<TwoSelectableWidget>
                 ),
               ),
               Positioned(
-                bottom: 5,
                 left: 10,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -116,7 +121,7 @@ class _TwoSelectableWidgetState extends State<TwoSelectableWidget>
                       child: Container(
                         alignment: Alignment.center,
                         width: screenWidth(context) * 0.38,
-                        height: screenHeight(context) * 0.06,
+                        height: screenHeight(context) * 0.05,
                         decoration: BoxDecoration(
                           color: Theme.of(context).colorScheme.primary,
                           borderRadius: BorderRadius.circular(28),
