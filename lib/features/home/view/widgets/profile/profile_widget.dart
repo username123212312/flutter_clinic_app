@@ -14,7 +14,7 @@ class ProifileWidget extends StatelessWidget {
         child: Column(
           children: [
             _buildHeader(context),
-            SizedBox(height: 30),
+            SizedBox(height: 25),
 
             _buildProfileItems(context),
           ],
@@ -35,15 +35,15 @@ class ProifileWidget extends StatelessWidget {
           child: Row(
             children: [
               Container(
-                width: screenWidth(context) * 0.14,
-                height: screenHeight(context) * 0.065,
+                width: screenWidth(context) * 0.13,
+                height: screenHeight(context) * 0.06,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  color: Pallete.grayScaleColor300,
+                  color: Pallete.grayScaleColor200,
                 ),
                 child: Icon(
                   Icons.notifications_active_outlined,
-                  size: 30,
+                  size: 25,
                   color: Theme.of(context).colorScheme.primary,
                 ),
               ),
@@ -72,15 +72,15 @@ class ProifileWidget extends StatelessWidget {
             child: Row(
               children: [
                 Container(
-                  width: screenWidth(context) * 0.14,
-                  height: screenHeight(context) * 0.065,
+                  width: screenWidth(context) * 0.13,
+                  height: screenHeight(context) * 0.06,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    color: Pallete.grayScaleColor300,
+                    color: Pallete.grayScaleColor200,
                   ),
                   child: Icon(
                     Icons.document_scanner,
-                    size: 30,
+                    size: 25,
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
@@ -111,15 +111,15 @@ class ProifileWidget extends StatelessWidget {
             child: Row(
               children: [
                 Container(
-                  width: screenWidth(context) * 0.14,
-                  height: screenHeight(context) * 0.065,
+                  width: screenWidth(context) * 0.13,
+                  height: screenHeight(context) * 0.06,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    color: Pallete.grayScaleColor300,
+                    color: Pallete.grayScaleColor200,
                   ),
                   child: Icon(
                     Icons.info_outline,
-                    size: 30,
+                    size: 25,
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
@@ -150,15 +150,15 @@ class ProifileWidget extends StatelessWidget {
             child: Row(
               children: [
                 Container(
-                  width: screenWidth(context) * 0.14,
-                  height: screenHeight(context) * 0.065,
+                  width: screenWidth(context) * 0.13,
+                  height: screenHeight(context) * 0.06,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    color: Pallete.grayScaleColor300,
+                    color: Pallete.grayScaleColor200,
                   ),
                   child: Icon(
                     Icons.logout,
-                    size: 30,
+                    size: 25,
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
@@ -166,6 +166,45 @@ class ProifileWidget extends StatelessWidget {
                 SizedBox(width: 10),
                 Text(
                   'Log out',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall!.copyWith(fontSize: 17),
+                ),
+                Spacer(),
+                Icon(Icons.arrow_forward_ios),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(
+          width: screenWidth(context),
+          child: Divider(color: Pallete.grayScaleColor400),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
+          child: GestureDetector(
+            onTap: () {
+              // TODO Navigate to documents
+            },
+            child: Row(
+              children: [
+                Container(
+                  width: screenWidth(context) * 0.13,
+                  height: screenHeight(context) * 0.06,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Pallete.grayScaleColor200,
+                  ),
+                  child: Icon(
+                    Icons.lock,
+                    size: 25,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+
+                SizedBox(width: 10),
+                Text(
+                  'Change Password',
                   style: Theme.of(
                     context,
                   ).textTheme.titleSmall!.copyWith(fontSize: 17),

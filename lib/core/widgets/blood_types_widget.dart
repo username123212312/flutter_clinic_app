@@ -20,15 +20,15 @@ class _BloodTypesWidgetState extends State<BloodTypesWidget> {
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 80,
-        mainAxisExtent: 70,
+        maxCrossAxisExtent: 90,
+        mainAxisExtent: 50,
         mainAxisSpacing: 20,
         crossAxisSpacing: 10,
         childAspectRatio: 0.5,
       ),
-      itemCount: bloodTypes.length,
+      itemCount: AppConstants.bloodTypes.length,
       itemBuilder: (context, index) {
-        final bloodType = bloodTypes[index];
+        final bloodType = AppConstants.bloodTypes[index];
         return SelectableWidget(
           onSelect: (id) {
             setState(() {

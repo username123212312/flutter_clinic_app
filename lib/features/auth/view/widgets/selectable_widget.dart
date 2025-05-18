@@ -25,7 +25,7 @@ class SelectableWidget extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: Pallete.grayScaleColor300,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(10),
           border: Border.all(
             width: isSelected ? 2 : 0,
             color:
@@ -42,7 +42,7 @@ class SelectableWidget extends StatelessWidget {
                 isSelected
                     ? Theme.of(context).colorScheme.primary
                     : Pallete.grayScaleColor500,
-            fontSize: 24,
+            fontSize: 18,
           ),
         ),
       ),

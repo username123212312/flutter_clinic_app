@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,12 +14,20 @@ import 'package:flutter_clinic_app/features/home/model/patient_model.dart';
 import 'package:flutter_clinic_app/features/home/view/screens/appointment_details_screen.dart';
 import 'package:flutter_clinic_app/features/home/view/screens/book_new_appointment_screen.dart';
 import 'package:flutter_clinic_app/features/home/view/screens/home_screen.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart' as p;
 
+import 'core/providers/hive_client/hive_adapters/downloaded_file.dart';
+import 'features/home/view/screens/documents_screen.dart';
 import 'features/home/view/screens/edit_profile_screen.dart';
 import 'features/home/view/widgets/home_widgets.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final Directory dir = await p.getApplicationDocumentsDirectory();
+  Hive.init(dir.path);
+  Hive.registerAdapter(DownloadedFileAdapter());
+  await Hive.openBox<DownloadedFile>('downloadedFiles');
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((
     _,
@@ -34,11 +44,12 @@ class ClinicApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [BlocProvider(create: (_) => UserBloc())],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Clinic App',
         themeMode: ThemeMode.system,
         theme: AppTheme.lightThemeMode,
         darkTheme: AppTheme.darkThemeMode,
-        home: EditProfileScreen(),
+        home: HomeScreen(),
       ),
 
       // MaterialApp.router(

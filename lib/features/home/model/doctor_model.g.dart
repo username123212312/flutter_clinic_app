@@ -7,11 +7,11 @@ part of 'doctor_model.dart';
 // **************************************************************************
 
 _DoctorModel _$DoctorModelFromJson(Map<String, dynamic> json) => _DoctorModel(
-  name: json['name'] as String,
-  specality: json['specality'] as String,
-  rate: (json['rate'] as num?)?.toDouble(),
-  availabilityTime: json['availabilityTime'] as String?,
-);
+      name: json['name'] as String,
+      specality: json['specality'] as String,
+      rate: (json['rate'] as num?)?.toDouble(),
+      availabilityTime: json['availabilityTime'] as String?,
+    );
 
 Map<String, dynamic> _$DoctorModelToJson(_DoctorModel instance) =>
     <String, dynamic>{

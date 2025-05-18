@@ -58,6 +58,6 @@ class AppTheme {
 
   static OutlineInputBorder _border(Color color) => OutlineInputBorder(
     borderRadius: BorderRadius.circular(10),
-    borderSide: BorderSide(color: color, width: 3),
+    borderSide: BorderSide(color: color, width: 1.5),
   );
 }

@@ -35,7 +35,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         forceMaterialTransparency: true,
         title: Text(
           'Edit Profile',
-          style: Theme.of(context).textTheme.titleMedium!.copyWith(
+          style: Theme.of(context).textTheme.titleSmall!.copyWith(
             fontSize: 20,
             color: Pallete.grayScaleColor700,
           ),
@@ -55,6 +55,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             SizedBox(
               width: screenWidth(context),
               child: CustomElevatedButton(
+                fontSize: 16,
                 title: 'Save',
                 onTap: () {
                   //TODO save profile
@@ -76,11 +77,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       children: [
         Text(
           'Medical Data',
-          style: Theme.of(
-            context,
-          ).textTheme.titleMedium!.copyWith(fontSize: 20),
+          style: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 20),
         ),
-        SizedBox(height: 10),
+        SizedBox(height: 20),
         Text(
           'Blood Type (optional)',
           style: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12),
@@ -88,7 +87,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         SizedBox(height: 10),
 
         SizedBox(
-          height: screenHeight(context) * 0.23,
+          height: screenHeight(context) * 0.2,
           child: BloodTypesWidget(
             onSelected: (bloodType) {
               _selectedBloodType = bloodType;
@@ -106,9 +105,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         SizedBox(height: 20),
         Text(
           'First Name',
-          style: Theme.of(
-            context,
-          ).textTheme.titleMedium!.copyWith(fontSize: 12),
+          style: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12),
         ),
         SizedBox(height: 10),
         CustomTextField(
@@ -119,9 +116,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         SizedBox(height: 20),
         Text(
           'Last Name',
-          style: Theme.of(
-            context,
-          ).textTheme.titleMedium!.copyWith(fontSize: 12),
+          style: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12),
         ),
         SizedBox(height: 10),
         CustomTextField(
@@ -133,9 +128,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
         Text(
           'Email',
-          style: Theme.of(
-            context,
-          ).textTheme.titleMedium!.copyWith(fontSize: 12),
+          style: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12),
         ),
         SizedBox(height: 10),
         CustomTextField(
@@ -147,9 +140,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
         Text(
           'Phone Number',
-          style: Theme.of(
-            context,
-          ).textTheme.titleMedium!.copyWith(fontSize: 12),
+          style: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12),
         ),
         SizedBox(height: 10),
         CustomTextField(
@@ -160,9 +151,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         SizedBox(height: 20),
         Text(
           'Gender',
-          style: Theme.of(
-            context,
-          ).textTheme.titleMedium!.copyWith(fontSize: 12),
+          style: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12),
         ),
         SizedBox(height: 10),
 
@@ -190,7 +179,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           keyboardType: TextInputType.text,
         ),
         SizedBox(height: 20),
-        BasicInfoWidget(
+        Text(
+          'Age',
+          style: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12),
+        ),
+        SizedBox(height: 10),
+        CustomTextField(
           onTap: () async {
             final date = await showDatePicker(
               context: context,
@@ -205,7 +199,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           },
           controller: _ageController,
           readOnly: true,
-          title: 'Age',
           hintText: 'Age',
           keyboardType: TextInputType.number,
           suffixIcon: Transform.scale(
@@ -218,7 +211,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           ),
         ),
         SizedBox(height: 20),
-        BasicInfoWidget(
+        Text(
+          'Complete Address',
+          style: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12),
+        ),
+        SizedBox(height: 10),
+        CustomTextField(
           validator: (value) {
             if (value!.trim().isEmpty) {
               return 'Address should not be empty';
@@ -228,7 +226,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           },
           maxLength: 100,
           controller: _completeAddressController,
-          title: 'Complete Address',
           hintText: 'Address',
           keyboardType: TextInputType.name,
           textInputAction: TextInputAction.done,

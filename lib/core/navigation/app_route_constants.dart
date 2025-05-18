@@ -11,5 +11,6 @@ class AppRouteConstants {
   static const homeRouteName = 'home';
   static const appointmentDetailsRouteName = 'appointment_details';
   static const editProfileRouteName = 'edit_profile';
+  static const documentsRouteName = 'documnets';
   static const errorRouteName = 'error';
 }

@@ -4,7 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
-import 'package:flutter_clinic_app/core/providers/google_provider.dart';
+import 'package:flutter_clinic_app/core/services/google_auth_service/google_auth_service.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:flutter_clinic_app/core/utils/validator_util.dart';

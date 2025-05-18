@@ -1,3 +1,5 @@
+import 'package:flutter_clinic_app/features/home/view/screens/documents_screen.dart';
+
 import 'navigation_exports.dart';
 
 class AppRouteConfig {
@@ -66,6 +68,11 @@ class AppRouteConfig {
         name: AppRouteConstants.editProfileRouteName,
         path: '/edit_profile',
         pageBuilder: (_, state) => TransitionPage(child: EditProfileScreen()),
+      ),
+      GoRoute(
+        name: AppRouteConstants.documentsRouteName,
+        path: '/documents',
+        pageBuilder: (_, state) => TransitionPage(child: DocumentsScreen()),
       ),
     ],
   );

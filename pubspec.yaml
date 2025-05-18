@@ -49,6 +49,13 @@ dependencies:
   path_provider: ^2.1.0
   open_file:
   file_picker:
+  dotted_border: ^2.1.0
+  dio:
+  pretty_dio_logger:
+  logger:
+  equatable:
+  hive_generator:
+  permission_handler:
 
 dev_dependencies:
   flutter_test:
