@@ -4,7 +4,7 @@ import 'navigation_exports.dart';
 
 class AppRouteConfig {
   static final router = GoRouter(
-    initialLocation: '/home',
+    initialLocation: '/',
     errorPageBuilder: (_, __) => TransitionPage(child: ErrorScreen()),
     routes: [
       GoRoute(
@@ -33,7 +33,9 @@ class AppRouteConfig {
         pageBuilder:
             (context, state) => TransitionPage(
               child: VerificationCodeScreen(
-                email: context.read<UserBloc>().state.email,
+                email:
+                    context.read<AuthBloc>().state.authUser?.user?.email ??
+                    'johndoe@gmail.com',
               ),
             ),
       ),

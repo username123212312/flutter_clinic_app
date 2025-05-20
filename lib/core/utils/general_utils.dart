@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_clinic_app/core/navigation/navigation_exports.dart';
 
 double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
 double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
@@ -13,4 +14,10 @@ int calculateAge(DateTime birthDate) {
   }
 
   return age;
+}
+
+void clearAndShowSnackBar(BuildContext context, SnackBar snackBar) {
+  ScaffoldMessenger.of(context)
+    ..clearSnackBars()
+    ..showSnackBar(snackBar);
 }

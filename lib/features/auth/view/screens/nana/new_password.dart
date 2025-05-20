@@ -6,7 +6,7 @@ import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/validator_util.dart';
 import '../../widgets/auth_widgets.dart';
 import 'bullet_item.dart';
-import 'button.dart';
+import '../../widgets/custom_button.dart';
 
 class CreatePasswordScreen extends StatefulWidget {
   const CreatePasswordScreen({super.key});

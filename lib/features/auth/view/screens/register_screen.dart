@@ -2,18 +2,13 @@ import 'dart:developer';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
-import 'package:flutter_clinic_app/core/services/google_auth_service/google_auth_service.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
-import 'package:flutter_clinic_app/core/utils/general_utils.dart';
-import 'package:flutter_clinic_app/core/utils/validator_util.dart';
-import 'package:flutter_clinic_app/features/auth/controller/user_bloc/user_bloc.dart';
+
+import '../../../../../core/utils/utils.dart';
+import '../../../../../core/utils/validator_util.dart';
 import '../widgets/auth_widgets.dart';
-
-import 'package:go_router/go_router.dart';
-
-import '../../../../core/enums.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/custom_google_button.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -22,296 +17,199 @@ class RegisterScreen extends StatefulWidget {
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen>
-    with SingleTickerProviderStateMixin {
-  @override
-  void initState() {
-    super.initState();
-    _role = context.read<UserBloc>().state.role;
-    _animationController = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 500),
-    );
+class _RegisterScreenState extends State<RegisterScreen> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-    _slideAnimation = Tween<Offset>(
-      begin: Offset.zero,
-      end: Offset(-2.0, 0.0),
-    ).animate(_animationController);
-    _reverseSlideAnimation = Tween<Offset>(
-      begin: Offset(2.0, 0.0),
-      end: Offset.zero,
-    ).animate(_animationController);
-  }
+  String? savedEmail;
+  String? savedPhone;
+  int _selectedTabIndex = 0;
 
   @override
   void dispose() {
-    _animationController.dispose();
-    _emailController.dispose();
+    emailController.dispose();
+    phoneController.dispose();
     super.dispose();
+  }
+
+  void _submitForm() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).viewInsets.bottom,
-          ),
-          child: BackgroundContainer(
-            child: Column(
-              children: [
-                _buildHeader(),
-                _buildTwoSelectable(),
-                _buildFormFields(),
-                _buildTwoLoginButtons(),
-                _buildFooter(),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Flexible _buildFooter() {
-    return Flexible(
-      flex: 1,
-      fit: FlexFit.tight,
-      child: Column(
-        children: [
-          SizedBox(height: 40),
-          RichText(
-            text: TextSpan(
-              text: 'Already have an account? ',
-              style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                color: Pallete.grayScaleColor500,
-                fontSize: 15,
-              ),
-              children: [
-                TextSpan(
-                  recognizer:
-                      TapGestureRecognizer()
-                        ..onTap = () {
-                          context.goNamed(AppRouteConstants.loginRouteName);
-                        },
-                  text: 'Login',
-                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
-                    fontSize: 15,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Flexible _buildTwoLoginButtons() {
-    return Flexible(
-      flex: 3,
-      fit: FlexFit.tight,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            SizedBox(
-              width: screenWidth(context) * 0.85,
-              child: CustomElevatedButton(
-                title: 'Register',
-                onTap: () {
-                  if (submit()) {
-                    context.read<UserBloc>().add(
-                      UserModified(email: _emailController.text),
-                    );
-                    context.pushNamed(
-                      AppRouteConstants.createPasswordRouteName,
-                    );
-                  }
-                },
-                fillColor: Theme.of(context).colorScheme.primary,
-                textColor: Colors.white,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30.0),
-              child: Row(
+    return Scaffold(
+      backgroundColor: Pallete.backgroundColor,
+      body: SafeArea(
+        child: BackgroundContainer(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(30),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10.0),
-                    child: Container(
-                      height: 1,
-                      color: Pallete.grayScaleColor300,
-                      width: screenWidth(context) * 0.36,
-                    ),
-                  ),
-                  Text(
-                    'OR',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Pallete.grayScaleColor500,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: Container(
-                      height: 1,
-                      color: Pallete.grayScaleColor300,
-                      width: screenWidth(context) * 0.36,
+                  const SizedBox(height: 30),
+                  _buildHeader(),
+                  _buildTwoSelectable(),
+                  const SizedBox(height: 20),
+                  _buildFormField(),
+                  const SizedBox(height: 45),
+                  Text.rich(
+                    TextSpan(
+                      text: 'Already have an account? ',
+                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                        fontSize: 14,
+                        color: Pallete.grayScaleColor700,
+                      ),
+                      children: [
+                        TextSpan(
+                          recognizer:
+                              TapGestureRecognizer()
+                                ..onTap = () {
+                                  //TODO navigate to login
+                                },
+                          text: 'Login',
+                          style: Theme.of(
+                            context,
+                          ).textTheme.titleSmall!.copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
             ),
-            SizedBox(
-              width: screenWidth(context) * 0.85,
-              child: CustomElevatedButton(
-                prefix: Image.asset('assets/icons/ic_google.png'),
-                elevation: 0,
-                borderColor: Pallete.grayScaleColor300,
-                title: 'Google',
-                onTap: () async {
-                  final result = await GoogleAuthService().signIn();
-                  log(result.toString());
-                },
-                fillColor: Colors.transparent,
-                textColor: Colors.black,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Flexible _buildFormFields() {
-    return Flexible(
-      flex: 2,
-      fit: FlexFit.loose,
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 30),
-        child: Form(
-          key: _formKey,
-          child: ListView(
-            shrinkWrap: true,
-            children: [
-              SizedBox(height: 10),
-              if (_currentLoginMethod == 0)
-                SlideTransition(
-                  position: _slideAnimation,
-                  child: CustomTextField(
-                    textInputAction: TextInputAction.done,
-                    controller: _emailController,
-                    validator: (value) {
-                      if (!ValidatorUtil.validateEmail(value)) {
-                        return 'Enter a valid Email';
-                      } else {
-                        return null;
-                      }
-                    },
-                    hintText: 'Email',
-                    keyboardType: TextInputType.text,
-                  ),
-                ),
-              if (_currentLoginMethod == 1)
-                SlideTransition(
-                  position: _reverseSlideAnimation,
-                  child: CustomTextField(
-                    controller: _phoneController,
-                    validator: (value) {
-                      if (!ValidatorUtil.validatePhone(value)) {
-                        return 'Enter a valid Phone number';
-                      } else {
-                        return null;
-                      }
-                    },
-                    hintText: 'Phone',
-                    keyboardType: TextInputType.phone,
-                  ),
-                ),
-            ],
           ),
         ),
       ),
     );
   }
 
-  Flexible _buildTwoSelectable() {
-    return Flexible(
-      flex: 2,
-      fit: FlexFit.loose,
-      child: TwoSelectableWidget(
-        onToggleIndex: (newIndex) {
-          log(newIndex.toString());
-          _changeLoginMethod(newIndex);
-        },
-        twoTitles: ['Email', 'Phone Number'],
-      ),
-    );
-  }
-
-  void _changeLoginMethod(int newIndex) {
-    if (_animationController.isCompleted) {
-      setState(() {
-        _animationController.reverse();
-        FocusScope.of(context).unfocus();
-        _currentLoginMethod = newIndex;
-      });
-    } else {
-      setState(() {
-        // _animationController.reset();
-        _animationController.forward();
-        _formKey.currentState!.reset();
-        FocusScope.of(context).unfocus();
-        _currentLoginMethod = newIndex;
-      });
-    }
-  }
-
-  Flexible _buildHeader() {
-    return Flexible(
-      flex: 5,
-      fit: FlexFit.loose,
+  Form _buildFormField() {
+    return Form(
+      key: _formKey,
       child: Column(
         children: [
-          SizedBox(height: 50),
-          Text(
-            style: Theme.of(
-              context,
-            ).textTheme.labelMedium!.copyWith(fontSize: 18),
-            'Register',
-          ),
-          SizedBox(height: 10),
-          Text(
-            _role.isPatient ? 'Create a new account' : 'Doctor Text',
-            style: Theme.of(context).textTheme.labelSmall!.copyWith(
-              color: Pallete.grayScaleColor500,
-              fontSize: 11,
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              _selectedTabIndex == 0 ? "Email" : "Phone Number",
+              style: const TextStyle(
+                color: Pallete.grayScaleColor400,
+                fontSize: 14,
+              ),
             ),
           ),
-          SizedBox(height: 10),
-          SizedBox(
-            height: screenHeight(context) * 0.23,
-            child: Image.asset('assets/images/login.webp', fit: BoxFit.cover),
+          const SizedBox(height: 10),
+          CustomTextField(
+            hintText: _selectedTabIndex == 0 ? 'Email' : '+963',
+            controller:
+                _selectedTabIndex == 0 ? emailController : phoneController,
+            keyboardType:
+                _selectedTabIndex == 0
+                    ? TextInputType.emailAddress
+                    : TextInputType.phone,
+            fillColor: Pallete.transparentColor,
+            validator: (value) {
+              if (!(_selectedTabIndex == 0 &&
+                  ValidatorUtil.validateEmail(value))) {
+                return 'Enter a vailid email';
+              } else if (!(_selectedTabIndex == 1 &&
+                  ValidatorUtil.validatePhone(value))) {
+                return 'Enter a valid phone number';
+              } else {
+                return null;
+              }
+            },
+            onSaved: (value) {
+              if (_selectedTabIndex == 0) {
+                savedEmail = value;
+              } else {
+                savedPhone = value;
+              }
+            },
+          ),
+          const SizedBox(height: 20),
+          CustomButton(
+            text: 'Register',
+            onPressed: _submitForm,
+            width: double.infinity,
+            height: 56,
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            color: Pallete.primaryColor,
+            textColor: Colors.white,
+            borderRadius: 8,
+            fontSize: 16,
+          ),
+          const SizedBox(height: 10),
+          Text(
+            'OR',
+            style: Theme.of(context).textTheme.titleSmall!.copyWith(
+              fontSize: 15,
+              color: Pallete.grayScaleColor700,
+            ),
+          ),
+          const SizedBox(height: 10),
+          CustomGoogleButton(
+            onPressed: () {
+              log('Google button pressed!');
+            },
+            text: 'Google',
+            imagePath: 'assets/icons/ic_google.png',
           ),
         ],
       ),
     );
   }
 
-  bool submit() {
-    return _formKey.currentState!.validate();
+  SizedBox _buildTwoSelectable() {
+    return SizedBox(
+      width: screenWidth(context) * 0.8,
+      child: FittedBox(
+        child: TwoSelectableWidget(
+          inBetweenPadding: screenWidth(context) * 0.3,
+          twoTitles: ['Email', 'Phone'],
+          onToggleIndex: (newIndex) {
+            setState(() {
+              _selectedTabIndex = newIndex;
+            });
+          },
+        ),
+      ),
+    );
   }
 
-  late final AnimationController _animationController;
-  late final Animation<Offset> _slideAnimation;
-  late final Animation<Offset> _reverseSlideAnimation;
-  late final Role _role;
-  int _currentLoginMethod = 0;
-  final _emailController = TextEditingController();
-  final _phoneController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  SizedBox _buildHeader() {
+    return SizedBox(
+      height: 280,
+      width: 328,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            "Register",
+            style: Theme.of(context).textTheme.labelMedium!.copyWith(
+              fontSize: 18,
+              color: Colors.black,
+            ),
+          ),
+          const SizedBox(height: 5),
+          const Text(
+            "create a new account",
+            style: TextStyle(color: Pallete.grayScaleColor500, fontSize: 15),
+          ),
+          const SizedBox(height: 10),
+          Image.asset("assets/images/login.webp", height: 191, width: 211),
+        ],
+      ),
+    );
+  }
 }

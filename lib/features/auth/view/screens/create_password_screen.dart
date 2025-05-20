@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clinic_app/core/models/usermodel.dart';
 import 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
 import 'package:flutter_clinic_app/core/utils/validator_util.dart';
-import 'package:flutter_clinic_app/features/auth/controller/user_bloc/user_bloc.dart';
+import 'package:flutter_clinic_app/core/blocs/auth_bloc/auth_bloc.dart';
 import '../widgets/auth_widgets.dart';
 import 'package:go_router/go_router.dart';
 
@@ -50,8 +51,12 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                       title: 'Create Password',
                       onTap: () {
                         if (submit()) {
-                          context.read<UserBloc>().add(
-                            UserModified(password: _passwordController.text),
+                          context.read<AuthBloc>().add(
+                            UserModified(
+                              user: UserModel(
+                                password: _passwordController.text,
+                              ),
+                            ),
                           );
                           context.goNamed(
                             AppRouteConstants.verificationCodeRouteName,

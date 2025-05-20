@@ -20,6 +20,7 @@ mixin _$UserModel {
   String? get email;
   String? get phone;
   String? get password;
+  String? get id;
   Role? get role;
 
   /// Create a copy of UserModel
@@ -45,17 +46,18 @@ mixin _$UserModel {
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.password, password) ||
                 other.password == password) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.role, role) || other.role == role));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, firstName, lastName, email, phone, password, role);
+      runtimeType, firstName, lastName, email, phone, password, id, role);
 
   @override
   String toString() {
-    return 'UserModel(firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, password: $password, role: $role)';
+    return 'UserModel(firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, password: $password, id: $id, role: $role)';
   }
 }
 
@@ -70,6 +72,7 @@ abstract mixin class $UserModelCopyWith<$Res> {
       String? email,
       String? phone,
       String? password,
+      String? id,
       Role? role});
 }
 
@@ -90,6 +93,7 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
     Object? email = freezed,
     Object? phone = freezed,
     Object? password = freezed,
+    Object? id = freezed,
     Object? role = freezed,
   }) {
     return _then(_self.copyWith(
@@ -113,6 +117,10 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
           ? _self.password
           : password // ignore: cast_nullable_to_non_nullable
               as String?,
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       role: freezed == role
           ? _self.role
           : role // ignore: cast_nullable_to_non_nullable
@@ -130,6 +138,7 @@ class _UserModel implements UserModel {
       this.email = '',
       this.phone = '',
       this.password = '',
+      this.id = '',
       this.role = Role.patient});
   factory _UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
@@ -149,6 +158,9 @@ class _UserModel implements UserModel {
   @override
   @JsonKey()
   final String? password;
+  @override
+  @JsonKey()
+  final String? id;
   @override
   @JsonKey()
   final Role? role;
@@ -181,17 +193,18 @@ class _UserModel implements UserModel {
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.password, password) ||
                 other.password == password) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.role, role) || other.role == role));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, firstName, lastName, email, phone, password, role);
+      runtimeType, firstName, lastName, email, phone, password, id, role);
 
   @override
   String toString() {
-    return 'UserModel(firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, password: $password, role: $role)';
+    return 'UserModel(firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, password: $password, id: $id, role: $role)';
   }
 }
 
@@ -209,6 +222,7 @@ abstract mixin class _$UserModelCopyWith<$Res>
       String? email,
       String? phone,
       String? password,
+      String? id,
       Role? role});
 }
 
@@ -229,6 +243,7 @@ class __$UserModelCopyWithImpl<$Res> implements _$UserModelCopyWith<$Res> {
     Object? email = freezed,
     Object? phone = freezed,
     Object? password = freezed,
+    Object? id = freezed,
     Object? role = freezed,
   }) {
     return _then(_UserModel(
@@ -251,6 +266,10 @@ class __$UserModelCopyWithImpl<$Res> implements _$UserModelCopyWith<$Res> {
       password: freezed == password
           ? _self.password
           : password // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       role: freezed == role
           ? _self.role

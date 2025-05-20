@@ -15,366 +15,274 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$UserEvent {
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is UserEvent);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  String toString() {
-    return 'UserEvent()';
-  }
-}
-
-/// @nodoc
-class $UserEventCopyWith<$Res> {
-  $UserEventCopyWith(UserEvent _, $Res Function(UserEvent) __);
-}
-
-/// @nodoc
-
-class UserModified implements UserEvent {
-  const UserModified({this.email, this.password, this.role});
-
-  final String? email;
-  final String? password;
-  final Role? role;
+  UserModel get user;
 
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $UserModifiedCopyWith<UserModified> get copyWith =>
-      _$UserModifiedCopyWithImpl<UserModified>(this, _$identity);
+  $UserEventCopyWith<UserEvent> get copyWith =>
+      _$UserEventCopyWithImpl<UserEvent>(this as UserEvent, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is UserModified &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.role, role) || other.role == role));
+            other is UserEvent &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password, role);
+  int get hashCode => Object.hash(runtimeType, user);
 
   @override
   String toString() {
-    return 'UserEvent.userModified(email: $email, password: $password, role: $role)';
+    return 'UserEvent(user: $user)';
   }
 }
 
 /// @nodoc
-abstract mixin class $UserModifiedCopyWith<$Res>
-    implements $UserEventCopyWith<$Res> {
-  factory $UserModifiedCopyWith(
-          UserModified value, $Res Function(UserModified) _then) =
-      _$UserModifiedCopyWithImpl;
+abstract mixin class $UserEventCopyWith<$Res> {
+  factory $UserEventCopyWith(UserEvent value, $Res Function(UserEvent) _then) =
+      _$UserEventCopyWithImpl;
   @useResult
-  $Res call({String? email, String? password, Role? role});
+  $Res call({UserModel user});
+
+  $UserModelCopyWith<$Res> get user;
 }
 
 /// @nodoc
-class _$UserModifiedCopyWithImpl<$Res> implements $UserModifiedCopyWith<$Res> {
-  _$UserModifiedCopyWithImpl(this._self, this._then);
+class _$UserEventCopyWithImpl<$Res> implements $UserEventCopyWith<$Res> {
+  _$UserEventCopyWithImpl(this._self, this._then);
 
-  final UserModified _self;
-  final $Res Function(UserModified) _then;
+  final UserEvent _self;
+  final $Res Function(UserEvent) _then;
 
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  @override
   $Res call({
-    Object? email = freezed,
-    Object? password = freezed,
-    Object? role = freezed,
+    Object? user = null,
   }) {
-    return _then(UserModified(
-      email: freezed == email
-          ? _self.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      password: freezed == password
-          ? _self.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String?,
-      role: freezed == role
-          ? _self.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as Role?,
+    return _then(_self.copyWith(
+      user: null == user
+          ? _self.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel,
     ));
+  }
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res> get user {
+    return $UserModelCopyWith<$Res>(_self.user, (value) {
+      return _then(_self.copyWith(user: value));
+    });
   }
 }
 
 /// @nodoc
 
-class UserReset implements UserEvent {
-  const UserReset();
+class _UserLoggedIn implements UserEvent {
+  const _UserLoggedIn({required this.user});
+
+  @override
+  final UserModel user;
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$UserLoggedInCopyWith<_UserLoggedIn> get copyWith =>
+      __$UserLoggedInCopyWithImpl<_UserLoggedIn>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is UserReset);
+        (other.runtimeType == runtimeType &&
+            other is _UserLoggedIn &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, user);
 
   @override
   String toString() {
-    return 'UserEvent.userReset()';
+    return 'UserEvent.userLoggedIn(user: $user)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$UserLoggedInCopyWith<$Res>
+    implements $UserEventCopyWith<$Res> {
+  factory _$UserLoggedInCopyWith(
+          _UserLoggedIn value, $Res Function(_UserLoggedIn) _then) =
+      __$UserLoggedInCopyWithImpl;
+  @override
+  @useResult
+  $Res call({UserModel user});
+
+  @override
+  $UserModelCopyWith<$Res> get user;
+}
+
+/// @nodoc
+class __$UserLoggedInCopyWithImpl<$Res>
+    implements _$UserLoggedInCopyWith<$Res> {
+  __$UserLoggedInCopyWithImpl(this._self, this._then);
+
+  final _UserLoggedIn _self;
+  final $Res Function(_UserLoggedIn) _then;
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? user = null,
+  }) {
+    return _then(_UserLoggedIn(
+      user: null == user
+          ? _self.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel,
+    ));
+  }
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res> get user {
+    return $UserModelCopyWith<$Res>(_self.user, (value) {
+      return _then(_self.copyWith(user: value));
+    });
   }
 }
 
 /// @nodoc
 mixin _$UserState {
-  String get email;
-  String get password;
-  Role get role;
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is UserState);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'UserState()';
+  }
+}
+
+/// @nodoc
+class $UserStateCopyWith<$Res> {
+  $UserStateCopyWith(UserState _, $Res Function(UserState) __);
+}
+
+/// @nodoc
+
+class _UserState implements UserState {
+  const _UserState({required this.user});
+
+  final UserModel? user;
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $UserStateCopyWith<UserState> get copyWith =>
-      _$UserStateCopyWithImpl<UserState>(this as UserState, _$identity);
+  _$UserStateCopyWith<_UserState> get copyWith =>
+      __$UserStateCopyWithImpl<_UserState>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is UserState &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.role, role) || other.role == role));
+            other is _UserState &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password, role);
+  int get hashCode => Object.hash(runtimeType, user);
 
   @override
   String toString() {
-    return 'UserState(email: $email, password: $password, role: $role)';
+    return 'UserState(user: $user)';
   }
 }
 
 /// @nodoc
-abstract mixin class $UserStateCopyWith<$Res> {
-  factory $UserStateCopyWith(UserState value, $Res Function(UserState) _then) =
-      _$UserStateCopyWithImpl;
-  @useResult
-  $Res call({String email, String password, Role role});
-}
-
-/// @nodoc
-class _$UserStateCopyWithImpl<$Res> implements $UserStateCopyWith<$Res> {
-  _$UserStateCopyWithImpl(this._self, this._then);
-
-  final UserState _self;
-  final $Res Function(UserState) _then;
-
-  /// Create a copy of UserState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? email = null,
-    Object? password = null,
-    Object? role = null,
-  }) {
-    return _then(_self.copyWith(
-      email: null == email
-          ? _self.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _self.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      role: null == role
-          ? _self.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as Role,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _UserInitial implements UserState {
-  const _UserInitial(
-      {required this.email, required this.password, required this.role});
-
-  @override
-  final String email;
-  @override
-  final String password;
-  @override
-  final Role role;
-
-  /// Create a copy of UserState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$UserInitialCopyWith<_UserInitial> get copyWith =>
-      __$UserInitialCopyWithImpl<_UserInitial>(this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _UserInitial &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.role, role) || other.role == role));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, email, password, role);
-
-  @override
-  String toString() {
-    return 'UserState.initial(email: $email, password: $password, role: $role)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$UserInitialCopyWith<$Res>
+abstract mixin class _$UserStateCopyWith<$Res>
     implements $UserStateCopyWith<$Res> {
-  factory _$UserInitialCopyWith(
-          _UserInitial value, $Res Function(_UserInitial) _then) =
-      __$UserInitialCopyWithImpl;
-  @override
+  factory _$UserStateCopyWith(
+          _UserState value, $Res Function(_UserState) _then) =
+      __$UserStateCopyWithImpl;
   @useResult
-  $Res call({String email, String password, Role role});
+  $Res call({UserModel? user});
+
+  $UserModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
-class __$UserInitialCopyWithImpl<$Res> implements _$UserInitialCopyWith<$Res> {
-  __$UserInitialCopyWithImpl(this._self, this._then);
+class __$UserStateCopyWithImpl<$Res> implements _$UserStateCopyWith<$Res> {
+  __$UserStateCopyWithImpl(this._self, this._then);
 
-  final _UserInitial _self;
-  final $Res Function(_UserInitial) _then;
+  final _UserState _self;
+  final $Res Function(_UserState) _then;
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? user = freezed,
+  }) {
+    return _then(_UserState(
+      user: freezed == user
+          ? _self.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
+    ));
+  }
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? email = null,
-    Object? password = null,
-    Object? role = null,
-  }) {
-    return _then(_UserInitial(
-      email: null == email
-          ? _self.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _self.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      role: null == role
-          ? _self.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as Role,
-    ));
+  $UserModelCopyWith<$Res>? get user {
+    if (_self.user == null) {
+      return null;
+    }
+
+    return $UserModelCopyWith<$Res>(_self.user!, (value) {
+      return _then(_self.copyWith(user: value));
+    });
   }
 }
 
 /// @nodoc
 
-class _UserModified implements UserState {
-  const _UserModified(
-      {required this.email, required this.password, required this.role});
-
-  @override
-  final String email;
-  @override
-  final String password;
-  @override
-  final Role role;
-
-  /// Create a copy of UserState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$UserModifiedCopyWith<_UserModified> get copyWith =>
-      __$UserModifiedCopyWithImpl<_UserModified>(this, _$identity);
+class _UserLoading implements UserState {
+  const _UserLoading();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _UserModified &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.role, role) || other.role == role));
+        (other.runtimeType == runtimeType && other is _UserLoading);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password, role);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   String toString() {
-    return 'UserState.modified(email: $email, password: $password, role: $role)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$UserModifiedCopyWith<$Res>
-    implements $UserStateCopyWith<$Res> {
-  factory _$UserModifiedCopyWith(
-          _UserModified value, $Res Function(_UserModified) _then) =
-      __$UserModifiedCopyWithImpl;
-  @override
-  @useResult
-  $Res call({String email, String password, Role role});
-}
-
-/// @nodoc
-class __$UserModifiedCopyWithImpl<$Res>
-    implements _$UserModifiedCopyWith<$Res> {
-  __$UserModifiedCopyWithImpl(this._self, this._then);
-
-  final _UserModified _self;
-  final $Res Function(_UserModified) _then;
-
-  /// Create a copy of UserState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? email = null,
-    Object? password = null,
-    Object? role = null,
-  }) {
-    return _then(_UserModified(
-      email: null == email
-          ? _self.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _self.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      role: null == role
-          ? _self.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as Role,
-    ));
+    return 'UserState.loading()';
   }
 }
 

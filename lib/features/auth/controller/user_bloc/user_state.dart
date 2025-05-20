@@ -2,14 +2,13 @@ part of 'user_bloc.dart';
 
 @freezed
 sealed class UserState with _$UserState {
-  const factory UserState.initial({
-    required String email,
-    required String password,
-    required Role role,
-  }) = _UserInitial;
-  const factory UserState.modified({
-    required String email,
-    required String password,
-    required Role role,
-  }) = _UserModified;
+  const factory UserState({required UserModel? user}) = _UserState;
+
+  factory UserState.initial() {
+    return UserState(user: null);
+  }
+  const factory UserState.loading() = _UserLoading;
+  factory UserState.modified({required UserModel user}) {
+    return UserState(user: user);
+  }
 }

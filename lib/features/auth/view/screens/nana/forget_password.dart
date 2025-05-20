@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/validator_util.dart';
 import '../../widgets/auth_widgets.dart';
-import 'button.dart';
+import '../../widgets/custom_button.dart';
 
 class ForgotPasswordscreen extends StatefulWidget {
   const ForgotPasswordscreen({super.key});

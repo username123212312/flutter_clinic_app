@@ -12,6 +12,7 @@ sealed class UserModel with _$UserModel {
     @Default('') String? email,
     @Default('') String? phone,
     @Default('') String? password,
+    @Default('') String? id,
     @Default(Role.patient) Role? role,
   }) = _UserModel;
 

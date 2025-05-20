@@ -2,7 +2,7 @@ export 'package:flutter/material.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
 export 'package:flutter_clinic_app/core/widgets/error_screen.dart';
-export 'package:flutter_clinic_app/features/auth/controller/user_bloc/user_bloc.dart';
+export 'package:flutter_clinic_app/core/blocs/auth_bloc/auth_bloc.dart';
 export 'package:flutter_clinic_app/features/auth/view/screens/create_password_screen.dart';
 export 'package:flutter_clinic_app/features/auth/view/screens/login_as_screen.dart';
 export 'package:flutter_clinic_app/features/auth/view/screens/on_boarding_screen.dart';
