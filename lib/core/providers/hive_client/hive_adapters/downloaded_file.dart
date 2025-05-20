@@ -1,7 +1,7 @@
 // downloaded_file.dart
 import 'package:hive/hive.dart';
 
-part 'downloaded_file.g.dart'; // For code generation
+// part 'downloaded_file.g.dart'; // For code generation
 
 @HiveType(typeId: 0)
 class DownloadedFile {

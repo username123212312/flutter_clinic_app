@@ -15,134 +15,139 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$Model {
+  String get name;
 
- String get name;
-/// Create a copy of Model
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$ModelCopyWith<Model> get copyWith => _$ModelCopyWithImpl<Model>(this as Model, _$identity);
+  /// Create a copy of Model
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ModelCopyWith<Model> get copyWith =>
+      _$ModelCopyWithImpl<Model>(this as Model, _$identity);
 
   /// Serializes this Model to a JSON map.
   Map<String, dynamic> toJson();
 
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Model &&
+            (identical(other.name, name) || other.name == name));
+  }
 
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Model&&(identical(other.name, name) || other.name == name));
-}
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, name);
 
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,name);
-
-@override
-String toString() {
-  return 'Model(name: $name)';
-}
-
-
+  @override
+  String toString() {
+    return 'Model(name: $name)';
+  }
 }
 
 /// @nodoc
-abstract mixin class $ModelCopyWith<$Res>  {
-  factory $ModelCopyWith(Model value, $Res Function(Model) _then) = _$ModelCopyWithImpl;
-@useResult
-$Res call({
- String name
-});
-
-
-
-
+abstract mixin class $ModelCopyWith<$Res> {
+  factory $ModelCopyWith(Model value, $Res Function(Model) _then) =
+      _$ModelCopyWithImpl;
+  @useResult
+  $Res call({String name});
 }
+
 /// @nodoc
-class _$ModelCopyWithImpl<$Res>
-    implements $ModelCopyWith<$Res> {
+class _$ModelCopyWithImpl<$Res> implements $ModelCopyWith<$Res> {
   _$ModelCopyWithImpl(this._self, this._then);
 
   final Model _self;
   final $Res Function(Model) _then;
 
-/// Create a copy of Model
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,}) {
-  return _then(_self.copyWith(
-name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
+  /// Create a copy of Model
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+  }) {
+    return _then(_self.copyWith(
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
-
-}
-
 
 /// @nodoc
 @JsonSerializable()
-
 class _Model implements Model {
-   _Model({required this.name});
+  _Model({required this.name});
   factory _Model.fromJson(Map<String, dynamic> json) => _$ModelFromJson(json);
 
-@override final  String name;
+  @override
+  final String name;
 
-/// Create a copy of Model
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$ModelCopyWith<_Model> get copyWith => __$ModelCopyWithImpl<_Model>(this, _$identity);
+  /// Create a copy of Model
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ModelCopyWith<_Model> get copyWith =>
+      __$ModelCopyWithImpl<_Model>(this, _$identity);
 
-@override
-Map<String, dynamic> toJson() {
-  return _$ModelToJson(this, );
-}
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ModelToJson(
+      this,
+    );
+  }
 
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Model&&(identical(other.name, name) || other.name == name));
-}
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _Model &&
+            (identical(other.name, name) || other.name == name));
+  }
 
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,name);
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, name);
 
-@override
-String toString() {
-  return 'Model(name: $name)';
-}
-
-
+  @override
+  String toString() {
+    return 'Model(name: $name)';
+  }
 }
 
 /// @nodoc
 abstract mixin class _$ModelCopyWith<$Res> implements $ModelCopyWith<$Res> {
-  factory _$ModelCopyWith(_Model value, $Res Function(_Model) _then) = __$ModelCopyWithImpl;
-@override @useResult
-$Res call({
- String name
-});
-
-
-
-
+  factory _$ModelCopyWith(_Model value, $Res Function(_Model) _then) =
+      __$ModelCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String name});
 }
+
 /// @nodoc
-class __$ModelCopyWithImpl<$Res>
-    implements _$ModelCopyWith<$Res> {
+class __$ModelCopyWithImpl<$Res> implements _$ModelCopyWith<$Res> {
   __$ModelCopyWithImpl(this._self, this._then);
 
   final _Model _self;
   final $Res Function(_Model) _then;
 
-/// Create a copy of Model
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,}) {
-  return _then(_Model(
-name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
-
+  /// Create a copy of Model
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? name = null,
+  }) {
+    return _then(_Model(
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 // dart format on

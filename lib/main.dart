@@ -28,7 +28,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final Directory dir = await p.getApplicationDocumentsDirectory();
   Hive.init(dir.path);
-  Hive.registerAdapter(DownloadedFileAdapter());
+  // Hive.registerAdapter(DownloadedFileAdapter());
   await Hive.openBox<DownloadedFile>('downloadedFiles');
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((
