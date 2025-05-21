@@ -112,6 +112,89 @@ class _$UserModifiedCopyWithImpl<$Res> implements $UserModifiedCopyWith<$Res> {
 
 /// @nodoc
 
+class UserAuthenticated implements AuthEvent {
+  const UserAuthenticated({required this.user, required this.token});
+
+  final UserModel user;
+  final String token;
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $UserAuthenticatedCopyWith<UserAuthenticated> get copyWith =>
+      _$UserAuthenticatedCopyWithImpl<UserAuthenticated>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is UserAuthenticated &&
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.token, token) || other.token == token));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, user, token);
+
+  @override
+  String toString() {
+    return 'AuthEvent.userAuthenticated(user: $user, token: $token)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $UserAuthenticatedCopyWith<$Res>
+    implements $AuthEventCopyWith<$Res> {
+  factory $UserAuthenticatedCopyWith(
+          UserAuthenticated value, $Res Function(UserAuthenticated) _then) =
+      _$UserAuthenticatedCopyWithImpl;
+  @useResult
+  $Res call({UserModel user, String token});
+
+  $UserModelCopyWith<$Res> get user;
+}
+
+/// @nodoc
+class _$UserAuthenticatedCopyWithImpl<$Res>
+    implements $UserAuthenticatedCopyWith<$Res> {
+  _$UserAuthenticatedCopyWithImpl(this._self, this._then);
+
+  final UserAuthenticated _self;
+  final $Res Function(UserAuthenticated) _then;
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? user = null,
+    Object? token = null,
+  }) {
+    return _then(UserAuthenticated(
+      user: null == user
+          ? _self.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel,
+      token: null == token
+          ? _self.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res> get user {
+    return $UserModelCopyWith<$Res>(_self.user, (value) {
+      return _then(_self.copyWith(user: value));
+    });
+  }
+}
+
+/// @nodoc
+
 class UserReset implements AuthEvent {
   const UserReset();
 
@@ -134,7 +217,7 @@ class UserReset implements AuthEvent {
 mixin _$AuthState {
   AuthUser? get authUser;
   String? get token;
-  bool? get isAuth;
+  bool get isAuth;
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -168,7 +251,7 @@ abstract mixin class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) _then) =
       _$AuthStateCopyWithImpl;
   @useResult
-  $Res call({AuthUser? authUser, String? token, bool? isAuth});
+  $Res call({AuthUser? authUser, String? token, bool isAuth});
 
   $AuthUserCopyWith<$Res>? get authUser;
 }
@@ -187,7 +270,7 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
   $Res call({
     Object? authUser = freezed,
     Object? token = freezed,
-    Object? isAuth = freezed,
+    Object? isAuth = null,
   }) {
     return _then(_self.copyWith(
       authUser: freezed == authUser
@@ -198,10 +281,10 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
           ? _self.token
           : token // ignore: cast_nullable_to_non_nullable
               as String?,
-      isAuth: freezed == isAuth
+      isAuth: null == isAuth
           ? _self.isAuth
           : isAuth // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
     ));
   }
 
@@ -223,14 +306,15 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
 /// @nodoc
 
 class _AuthState implements AuthState {
-  const _AuthState({this.authUser, this.token, this.isAuth});
+  const _AuthState({this.authUser, this.token, this.isAuth = false});
 
   @override
   final AuthUser? authUser;
   @override
   final String? token;
   @override
-  final bool? isAuth;
+  @JsonKey()
+  final bool isAuth;
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -268,7 +352,7 @@ abstract mixin class _$AuthStateCopyWith<$Res>
       __$AuthStateCopyWithImpl;
   @override
   @useResult
-  $Res call({AuthUser? authUser, String? token, bool? isAuth});
+  $Res call({AuthUser? authUser, String? token, bool isAuth});
 
   @override
   $AuthUserCopyWith<$Res>? get authUser;
@@ -288,7 +372,7 @@ class __$AuthStateCopyWithImpl<$Res> implements _$AuthStateCopyWith<$Res> {
   $Res call({
     Object? authUser = freezed,
     Object? token = freezed,
-    Object? isAuth = freezed,
+    Object? isAuth = null,
   }) {
     return _then(_AuthState(
       authUser: freezed == authUser
@@ -299,10 +383,10 @@ class __$AuthStateCopyWithImpl<$Res> implements _$AuthStateCopyWith<$Res> {
           ? _self.token
           : token // ignore: cast_nullable_to_non_nullable
               as String?,
-      isAuth: freezed == isAuth
+      isAuth: null == isAuth
           ? _self.isAuth
           : isAuth // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
     ));
   }
 

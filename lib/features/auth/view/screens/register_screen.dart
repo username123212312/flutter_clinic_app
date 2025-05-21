@@ -2,10 +2,13 @@ import 'dart:developer';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clinic_app/core/models/usermodel.dart';
+import 'package:flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
+import 'package:flutter_clinic_app/features/auth/controller/user_bloc/user_bloc.dart';
 
 import '../../../../../core/utils/utils.dart';
-import '../../../../../core/utils/validator_util.dart';
 import '../widgets/auth_widgets.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_google_button.dart';
@@ -35,7 +38,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
+      if (phoneController.text.trim().isEmpty) {
+        context.read<UserBloc>().add(
+          UserEvent.userModified(
+            user: UserModel(email: emailController.text.trim(), phone: null),
+          ),
+        );
+      } else {
+        context.read<UserBloc>().add(
+          UserEvent.userModified(
+            user: UserModel(phone: phoneController.text.trim(), email: null),
+          ),
+        );
+      }
+      context.pushNamed(AppRouteConstants.createPasswordRouteName);
     }
   }
 
@@ -110,6 +126,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
           const SizedBox(height: 10),
           CustomTextField(
+            textInputAction: TextInputAction.done,
             hintText: _selectedTabIndex == 0 ? 'Email' : '+963',
             controller:
                 _selectedTabIndex == 0 ? emailController : phoneController,
@@ -119,11 +136,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     : TextInputType.phone,
             fillColor: Pallete.transparentColor,
             validator: (value) {
-              if (!(_selectedTabIndex == 0 &&
-                  ValidatorUtil.validateEmail(value))) {
+              if (_selectedTabIndex == 0 &&
+                  !ValidatorUtil.validateEmail(value)) {
                 return 'Enter a vailid email';
-              } else if (!(_selectedTabIndex == 1 &&
-                  ValidatorUtil.validatePhone(value))) {
+              } else if (_selectedTabIndex == 1 &&
+                  !ValidatorUtil.validatePhone(value)) {
                 return 'Enter a valid phone number';
               } else {
                 return null;
@@ -180,6 +197,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
           onToggleIndex: (newIndex) {
             setState(() {
               _selectedTabIndex = newIndex;
+              emailController.clear();
+              phoneController.clear();
             });
           },
         ),

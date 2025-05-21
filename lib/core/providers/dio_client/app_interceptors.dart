@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 
 import '../../blocs/auth_bloc/auth_bloc.dart';
 import '../../models/app_response.dart';
+import '../../utils/utils.dart';
 
 class AppInterceptors extends Interceptor {
   static AppInterceptors? _singleton;

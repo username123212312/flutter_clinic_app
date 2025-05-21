@@ -13,9 +13,13 @@ class BulletItem extends StatelessWidget {
           "• ",
           style: TextStyle(fontSize: 16, color: Pallete.sliverSand),
         ),
-        Text(
-          text,
-          style: const TextStyle(fontSize: 14, color: Pallete.sliverSand),
+        SizedBox(
+          child: FittedBox(
+            child: Text(
+              text,
+              style: const TextStyle(fontSize: 14, color: Pallete.sliverSand),
+            ),
+          ),
         ),
       ],
     );

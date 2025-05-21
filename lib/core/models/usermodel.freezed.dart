@@ -20,7 +20,8 @@ mixin _$UserModel {
   String? get email;
   String? get phone;
   String? get password;
-  String? get id;
+  int? get id;
+  String? get token;
   Role? get role;
 
   /// Create a copy of UserModel
@@ -47,17 +48,18 @@ mixin _$UserModel {
             (identical(other.password, password) ||
                 other.password == password) &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.token, token) || other.token == token) &&
             (identical(other.role, role) || other.role == role));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, firstName, lastName, email, phone, password, id, role);
+  int get hashCode => Object.hash(runtimeType, firstName, lastName, email,
+      phone, password, id, token, role);
 
   @override
   String toString() {
-    return 'UserModel(firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, password: $password, id: $id, role: $role)';
+    return 'UserModel(firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, password: $password, id: $id, token: $token, role: $role)';
   }
 }
 
@@ -72,7 +74,8 @@ abstract mixin class $UserModelCopyWith<$Res> {
       String? email,
       String? phone,
       String? password,
-      String? id,
+      int? id,
+      String? token,
       Role? role});
 }
 
@@ -94,6 +97,7 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
     Object? phone = freezed,
     Object? password = freezed,
     Object? id = freezed,
+    Object? token = freezed,
     Object? role = freezed,
   }) {
     return _then(_self.copyWith(
@@ -120,6 +124,10 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
       id: freezed == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      token: freezed == token
+          ? _self.token
+          : token // ignore: cast_nullable_to_non_nullable
               as String?,
       role: freezed == role
           ? _self.role
@@ -135,10 +143,11 @@ class _UserModel implements UserModel {
   _UserModel(
       {this.firstName = '',
       this.lastName = '',
-      this.email = '',
-      this.phone = '',
+      this.email,
+      this.phone,
       this.password = '',
-      this.id = '',
+      this.id = 0,
+      this.token = '',
       this.role = Role.patient});
   factory _UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
@@ -150,17 +159,18 @@ class _UserModel implements UserModel {
   @JsonKey()
   final String? lastName;
   @override
-  @JsonKey()
   final String? email;
   @override
-  @JsonKey()
   final String? phone;
   @override
   @JsonKey()
   final String? password;
   @override
   @JsonKey()
-  final String? id;
+  final int? id;
+  @override
+  @JsonKey()
+  final String? token;
   @override
   @JsonKey()
   final Role? role;
@@ -194,17 +204,18 @@ class _UserModel implements UserModel {
             (identical(other.password, password) ||
                 other.password == password) &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.token, token) || other.token == token) &&
             (identical(other.role, role) || other.role == role));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, firstName, lastName, email, phone, password, id, role);
+  int get hashCode => Object.hash(runtimeType, firstName, lastName, email,
+      phone, password, id, token, role);
 
   @override
   String toString() {
-    return 'UserModel(firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, password: $password, id: $id, role: $role)';
+    return 'UserModel(firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, password: $password, id: $id, token: $token, role: $role)';
   }
 }
 
@@ -222,7 +233,8 @@ abstract mixin class _$UserModelCopyWith<$Res>
       String? email,
       String? phone,
       String? password,
-      String? id,
+      int? id,
+      String? token,
       Role? role});
 }
 
@@ -244,6 +256,7 @@ class __$UserModelCopyWithImpl<$Res> implements _$UserModelCopyWith<$Res> {
     Object? phone = freezed,
     Object? password = freezed,
     Object? id = freezed,
+    Object? token = freezed,
     Object? role = freezed,
   }) {
     return _then(_UserModel(
@@ -270,6 +283,10 @@ class __$UserModelCopyWithImpl<$Res> implements _$UserModelCopyWith<$Res> {
       id: freezed == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      token: freezed == token
+          ? _self.token
+          : token // ignore: cast_nullable_to_non_nullable
               as String?,
       role: freezed == role
           ? _self.role

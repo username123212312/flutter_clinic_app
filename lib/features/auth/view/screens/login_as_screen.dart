@@ -7,6 +7,7 @@ import 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:flutter_clinic_app/core/blocs/auth_bloc/auth_bloc.dart';
+import '../../controller/user_bloc/user_bloc.dart';
 import '../widgets/auth_widgets.dart';
 
 import 'package:go_router/go_router.dart';
@@ -82,8 +83,8 @@ class _LoginAsScreenState extends State<LoginAsScreen> {
                 title: 'Continue',
                 onTap: () {
                   log('message');
-                  context.read<AuthBloc>().add(
-                    UserModified(user: UserModel(role: _currentRole)),
+                  context.read<UserBloc>().add(
+                    UserEvent.userModified(user: UserModel(role: _currentRole)),
                   );
                   context.pushNamed(AppRouteConstants.loginRouteName);
                 },

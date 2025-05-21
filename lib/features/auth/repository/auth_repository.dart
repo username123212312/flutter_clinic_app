@@ -1,28 +1,109 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:flutter_clinic_app/core/models/app_response.dart';
 import 'package:flutter_clinic_app/core/models/usermodel.dart';
+import 'package:flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:flutter_clinic_app/core/providers/dio_client/dio_client.dart';
+import 'package:flutter_clinic_app/core/utils/logger.dart';
+import 'package:fpdart/fpdart.dart';
 
+import '../../../core/models/app_failure.dart';
 import '../model/requests/auth_requests.dart';
 
 class AuthRepository {
   AuthRepository({Dio? dio}) : _dio = dio ?? DioClient().instance;
 
-  Future<AppResponse<UserModel>> registerPatient(
+  Future<Either<AppFailure, AppResponse<UserModel>>> registerPatient(
     RegisterPatientRequest request,
   ) async {
-    final response = await _dio.post(
-      AppConstants.registerPath,
-      data: request.toJson(),
-    );
-    return AppResponse<UserModel>.fromJson(
-      response.data,
-      (dynamic json) =>
-          json != null && (json.statusCode >= 200 && json.statusCode < 300)
-              ? UserModel.fromJson(json['user'])
-              : UserModel(),
-    );
+    try {
+      final isPhone = request.email == null || request.email!.trim().isEmpty;
+      final response = await _dio.post(
+        AppConstants.registerPath,
+        data: {
+          if (!isPhone) 'email': request.email,
+          if (isPhone) 'phone': request.phone,
+          'password': request.password,
+          'password_confirmation': request.passwordConfirmation,
+        },
+      );
+      eLog(response.data);
+      return Right(
+        AppResponse<UserModel>(
+          success: response.data['statusCode'] < 300,
+          message:
+              '${response.data['email']?[0] ?? ''}'
+              '\n${response.data['phone']?[0] ?? ''}',
+          statusCode: response.data['statusCode'],
+          statusMessage: response.data['statusMessage'],
+          data:
+              response.data['user'] == null
+                  ? null
+                  : UserModel.fromJson(response.data['user']),
+        ),
+      );
+    } on DioException catch (e) {
+      eLog(StackTrace.current);
+      return Left(
+        AppFailure(
+          message: e.error.toString(),
+          stacktracte: StackTrace.current,
+        ),
+      );
+    }
+  }
+
+  Future<Either<AppFailure, AppResponse<UserModel>>> logUserIn(
+    LogPatientInRequest request,
+  ) async {
+    final isPhone = request.email == null || request.email!.trim().isEmpty;
+    try {
+      final response = await _dio.post(
+        AppConstants.loginPath,
+        data: {
+          if (!isPhone) 'email': request.email,
+          if (isPhone) 'phone': request.phone,
+          'password': request.password,
+        },
+      );
+      return Right(
+        AppResponse(
+          message: response.data['statusMessage'] ?? 'Message',
+          success: response.data['statusCode'] < 300,
+          data: UserModel.fromJson(response.data['user']),
+          statusCode: response.data['statusCode'],
+          statusMessage:
+              response.data['statusCode'] < 300
+                  ? response.data['message']
+                  : 'User logged in successfully',
+        ),
+      );
+    } catch (e) {
+      return Left(
+        AppFailure(message: e.toString(), stacktracte: StackTrace.current),
+      );
+    }
+  }
+
+  Future<Either<AppFailure, AppResponse<UserModel>>> logUserOut() async {
+    try {
+      final response = await _dio.post(AppConstants.logoutPath);
+      return Right(
+        AppResponse<UserModel>(
+          success: response.data['statusCode'] < 300,
+          message: response.data['message'],
+          data: null,
+          statusCode: response.data['statusCode'],
+          statusMessage: response.data['statusMessage'],
+        ),
+      );
+    } catch (e) {
+      return Left(
+        AppFailure(message: e.toString(), stacktracte: StackTrace.current),
+      );
+    }
   }
 
   final Dio _dio;

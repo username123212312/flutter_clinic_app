@@ -36,7 +36,11 @@ class AppTheme {
         backgroundColor: Pallete.backgroundColor,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(backgroundColor: colorScheme.primary),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: colorScheme.primary,
+          disabledBackgroundColor: Pallete.grayScaleColor400,
+          disabledForegroundColor: Pallete.grayScaleColor200,
+        ),
       ),
       textTheme: _textTheme(),
     );

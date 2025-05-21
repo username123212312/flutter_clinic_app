@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:flutter_clinic_app/core/utils/validator_util.dart';
+import 'package:flutter_clinic_app/features/auth/controller/user_bloc/user_bloc.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 
@@ -36,7 +37,23 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _login() {
-    if (_formKey.currentState!.validate()) {}
+    if (_formKey.currentState!.validate()) {
+      if (_phoneController.text.trim().isEmpty) {
+        context.read<UserBloc>().add(
+          UserEvent.userLoggedInWithEmail(
+            email: _emailController.text,
+            password: _passwordController.text,
+          ),
+        );
+      } else {
+        context.read<UserBloc>().add(
+          UserEvent.userLoggedInWithPhone(
+            phone: _phoneController.text,
+            password: _passwordController.text,
+          ),
+        );
+      }
+    }
   }
 
   @override
@@ -72,7 +89,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       children: [
                         TextSpan(
-                          recognizer: TapGestureRecognizer()..onTap = () {},
+                          recognizer:
+                              TapGestureRecognizer()
+                                ..onTap = () {
+                                  context.goNamed(
+                                    AppRouteConstants.registerRouteName,
+                                  );
+                                },
                           text: 'Register',
                           style: Theme.of(
                             context,
@@ -99,16 +122,26 @@ class _LoginScreenState extends State<LoginScreen> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        CustomButton(
-          text: 'Login',
-          onPressed: _login,
-          width: double.infinity,
-          height: 56,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          color: Pallete.primaryColor,
-          textColor: Colors.white,
-          borderRadius: 8,
-          fontSize: 16,
+        BlocListener<UserBloc, UserState>(
+          listener: (context, state) {
+            clearAndShowSnackBar(context, state.statusMessage);
+          },
+
+          child: BlocBuilder<UserBloc, UserState>(
+            builder: (context, state) {
+              return CustomButton(
+                text: 'Login',
+                onPressed: state.status.isLoading ? null : _login,
+                width: double.infinity,
+                height: 56,
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                color: Pallete.primaryColor,
+                textColor: Colors.white,
+                borderRadius: 8,
+                fontSize: 16,
+              );
+            },
+          ),
         ),
         const SizedBox(height: 10),
         Text(
@@ -239,7 +272,8 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         const SizedBox(height: 30),
         SizedBox(
-          width: screenWidth(context) * 0.65,
+          width: screenWidth(context) * 0.8,
+
           child: FittedBox(
             child: TwoSelectableWidget(
               inBetweenPadding: screenWidth(context) * 0.3,
@@ -247,6 +281,8 @@ class _LoginScreenState extends State<LoginScreen> {
               onToggleIndex: (newIndex) {
                 setState(() {
                   _selectedTabIndex = newIndex;
+                  _emailController.clear();
+                  _passwordController.clear();
                 });
               },
             ),

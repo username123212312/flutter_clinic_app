@@ -11,16 +11,16 @@ class AppConstants {
     'AB+',
     'AB-',
   ];
-  static const ipAddress = '192.168.1.4';
+  static const ipAddress = '192.168.1.7';
   static const serverUrl = 'http://$ipAddress:8000/api';
   static const patientPath = 'patient';
   static const doctorPath = 'Doctor';
   static const homePath = 'Home';
 
   //! Auth
-  static const registerPath = 'register';
-  static const loginPath = 'login';
-  static const logoutPath = 'logout';
+  static const registerPath = '/register';
+  static const loginPath = '/login';
+  static const logoutPath = '/logout';
 
   //! Home
   static const showDoctorsPath = '/$homePath/showDoctors';

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clinic_app/core/models/usermodel.dart';
-import 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
 import 'package:flutter_clinic_app/core/utils/validator_util.dart';
-import 'package:flutter_clinic_app/core/blocs/auth_bloc/auth_bloc.dart';
+import '../../controller/user_bloc/user_bloc.dart';
 import '../widgets/auth_widgets.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../core/utils/general_utils.dart';
 
@@ -46,26 +43,24 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                   SizedBox(height: 50),
                   SizedBox(
                     width: screenWidth(context) * 0.9,
-                    child: CustomElevatedButton(
-                      fontSize: 15,
-                      title: 'Create Password',
-                      onTap: () {
-                        if (submit()) {
-                          context.read<AuthBloc>().add(
-                            UserModified(
-                              user: UserModel(
-                                password: _passwordController.text,
-                              ),
-                            ),
-                          );
-                          context.goNamed(
-                            AppRouteConstants.verificationCodeRouteName,
-                          );
-                          // TODO register()
-                        }
+                    child: BlocListener<UserBloc, UserState>(
+                      listener: (context, state) {
+                        clearAndShowSnackBar(context, state.statusMessage);
                       },
-                      fillColor: Theme.of(context).colorScheme.primary,
-                      textColor: Colors.white,
+                      child: BlocBuilder<UserBloc, UserState>(
+                        buildWhen:
+                            (previous, current) => current.status.isLoading,
+                        builder: (context, state) {
+                          return CustomElevatedButton(
+                            isEnabled: !state.status.isLoading,
+                            fontSize: 15,
+                            title: 'Create Password',
+                            onTap: submit,
+                            fillColor: Theme.of(context).colorScheme.primary,
+                            textColor: Colors.white,
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ],
@@ -190,7 +185,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
       ),
       actions: [
         TextButton(
-          onPressed: () => context.pop(),
+          onPressed: () => Navigator.of(context).pop(),
           child: Text(
             'GOT IT',
             style: TextStyle(
@@ -221,8 +216,21 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
     );
   }
 
-  bool submit() {
-    return _formKey.currentState!.validate();
+  void submit() {
+    final userBloc = context.read<UserBloc>();
+    if (_formKey.currentState!.validate()) {
+      if (userBloc.state.user?.phone == null ||
+          userBloc.state.user!.phone!.trim().isEmpty) {
+        userBloc.add(
+          UserEvent.userRegisteredWithEmail(password: _passwordController.text),
+        );
+      } else if (userBloc.state.user?.email == null ||
+          userBloc.state.user!.email!.trim().isEmpty) {
+        userBloc.add(
+          UserEvent.userRegisteredWithPhone(password: _passwordController.text),
+        );
+      }
+    }
   }
 
   final _formKey = GlobalKey<FormState>();

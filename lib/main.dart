@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,10 +21,13 @@ import 'package:path_provider/path_provider.dart' as p;
 
 import 'core/observers/custom_bloc_observer.dart';
 import 'core/providers/hive_client/hive_adapters/downloaded_file.dart';
+import 'features/auth/controller/user_bloc/user_bloc.dart';
+import 'features/auth/view/screens/nana/new_password.dart';
 import 'features/auth/view/screens/register_screen.dart';
 import 'features/home/view/screens/documents_screen.dart';
 import 'features/home/view/screens/edit_profile_screen.dart';
 import 'features/home/view/widgets/home_widgets.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 void main() async {
   await initMain();
@@ -42,23 +46,32 @@ class ClinicApp extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [RepositoryProvider(create: (_) => AuthRepository())],
       child: MultiBlocProvider(
-        providers: [BlocProvider(create: (context) => AuthBloc())],
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Clinic App',
-          themeMode: ThemeMode.system,
-          theme: AppTheme.lightThemeMode,
-          darkTheme: AppTheme.darkThemeMode,
-          home: LoginScreen(),
-        ),
-        // MaterialApp.router(
+        providers: [
+          BlocProvider(create: (context) => AuthBloc()),
+          BlocProvider(
+            create:
+                (context) => UserBloc(
+                  authBloc: context.read<AuthBloc>(),
+                  authRepository: context.read<AuthRepository>(),
+                ),
+          ),
+        ],
+        // child: MaterialApp(
         //   debugShowCheckedModeBanner: false,
-        //   routerConfig: AppRouteConfig.router,
         //   title: 'Clinic App',
         //   themeMode: ThemeMode.system,
         //   theme: AppTheme.lightThemeMode,
         //   darkTheme: AppTheme.darkThemeMode,
+        //   home: CreatePasswordScreen(),
         // ),
+        child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          routerConfig: AppRouteConfig.router,
+          title: 'Clinic App',
+          themeMode: ThemeMode.system,
+          theme: AppTheme.lightThemeMode,
+          darkTheme: AppTheme.darkThemeMode,
+        ),
       ),
     );
   }
@@ -66,8 +79,14 @@ class ClinicApp extends StatelessWidget {
 
 Future<void> initMain() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final Directory dir = await p.getApplicationDocumentsDirectory();
-  Hive.init(dir.path);
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory:
+        kIsWeb
+            ? HydratedStorageDirectory.web
+            : HydratedStorageDirectory((await p.getTemporaryDirectory()).path),
+  );
+  final Directory hiveDir = await p.getApplicationDocumentsDirectory();
+  Hive.init(hiveDir.path);
   Bloc.observer = CustomBlocObserver();
   // Hive.registerAdapter(DownloadedFileAdapter());
   await Hive.openBox<DownloadedFile>('downloadedFiles');

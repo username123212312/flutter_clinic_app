@@ -1,12 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
+import 'package:flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:flutter_clinic_app/core/utils/general_utils.dart';
+import 'package:flutter_clinic_app/core/utils/utils.dart';
 import 'package:go_router/go_router.dart';
 import '../widgets/auth_widgets.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
+
+  @override
+  State<WelcomeScreen> createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen> {
+  @override
+  void didChangeDependencies() {
+    _initialize();
+    super.didChangeDependencies();
+  }
+
+  void _initialize() {
+    if (!_isInit) {
+      if (mounted) {
+        final authState = context.read<AuthBloc>().state;
+        eLog(authState.toString());
+
+        final redirectScreen =
+            authState.isAuth ? AppRouteConstants.homeRouteName : null;
+        if (redirectScreen != null) {
+          context.go(redirectScreen);
+        }
+        _isInit = true;
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,4 +94,6 @@ class WelcomeScreen extends StatelessWidget {
       ),
     );
   }
+
+  bool _isInit = false;
 }

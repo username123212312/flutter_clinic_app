@@ -16,7 +16,6 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AuthUser {
   UserModel? get user;
-  bool get isAuth;
   String get token;
 
   /// Create a copy of AuthUser
@@ -35,17 +34,16 @@ mixin _$AuthUser {
         (other.runtimeType == runtimeType &&
             other is AuthUser &&
             (identical(other.user, user) || other.user == user) &&
-            (identical(other.isAuth, isAuth) || other.isAuth == isAuth) &&
             (identical(other.token, token) || other.token == token));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, user, isAuth, token);
+  int get hashCode => Object.hash(runtimeType, user, token);
 
   @override
   String toString() {
-    return 'AuthUser(user: $user, isAuth: $isAuth, token: $token)';
+    return 'AuthUser(user: $user, token: $token)';
   }
 }
 
@@ -54,7 +52,7 @@ abstract mixin class $AuthUserCopyWith<$Res> {
   factory $AuthUserCopyWith(AuthUser value, $Res Function(AuthUser) _then) =
       _$AuthUserCopyWithImpl;
   @useResult
-  $Res call({UserModel? user, bool isAuth, String token});
+  $Res call({UserModel? user, String token});
 
   $UserModelCopyWith<$Res>? get user;
 }
@@ -72,7 +70,6 @@ class _$AuthUserCopyWithImpl<$Res> implements $AuthUserCopyWith<$Res> {
   @override
   $Res call({
     Object? user = freezed,
-    Object? isAuth = null,
     Object? token = null,
   }) {
     return _then(_self.copyWith(
@@ -80,10 +77,6 @@ class _$AuthUserCopyWithImpl<$Res> implements $AuthUserCopyWith<$Res> {
           ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserModel?,
-      isAuth: null == isAuth
-          ? _self.isAuth
-          : isAuth // ignore: cast_nullable_to_non_nullable
-              as bool,
       token: null == token
           ? _self.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -109,14 +102,12 @@ class _$AuthUserCopyWithImpl<$Res> implements $AuthUserCopyWith<$Res> {
 /// @nodoc
 @JsonSerializable()
 class _AuthUser implements AuthUser {
-  _AuthUser({this.user, required this.isAuth, required this.token});
+  _AuthUser({this.user, required this.token});
   factory _AuthUser.fromJson(Map<String, dynamic> json) =>
       _$AuthUserFromJson(json);
 
   @override
   final UserModel? user;
-  @override
-  final bool isAuth;
   @override
   final String token;
 
@@ -141,17 +132,16 @@ class _AuthUser implements AuthUser {
         (other.runtimeType == runtimeType &&
             other is _AuthUser &&
             (identical(other.user, user) || other.user == user) &&
-            (identical(other.isAuth, isAuth) || other.isAuth == isAuth) &&
             (identical(other.token, token) || other.token == token));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, user, isAuth, token);
+  int get hashCode => Object.hash(runtimeType, user, token);
 
   @override
   String toString() {
-    return 'AuthUser(user: $user, isAuth: $isAuth, token: $token)';
+    return 'AuthUser(user: $user, token: $token)';
   }
 }
 
@@ -162,7 +152,7 @@ abstract mixin class _$AuthUserCopyWith<$Res>
       __$AuthUserCopyWithImpl;
   @override
   @useResult
-  $Res call({UserModel? user, bool isAuth, String token});
+  $Res call({UserModel? user, String token});
 
   @override
   $UserModelCopyWith<$Res>? get user;
@@ -181,7 +171,6 @@ class __$AuthUserCopyWithImpl<$Res> implements _$AuthUserCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   $Res call({
     Object? user = freezed,
-    Object? isAuth = null,
     Object? token = null,
   }) {
     return _then(_AuthUser(
@@ -189,10 +178,6 @@ class __$AuthUserCopyWithImpl<$Res> implements _$AuthUserCopyWith<$Res> {
           ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserModel?,
-      isAuth: null == isAuth
-          ? _self.isAuth
-          : isAuth // ignore: cast_nullable_to_non_nullable
-              as bool,
       token: null == token
           ? _self.token
           : token // ignore: cast_nullable_to_non_nullable

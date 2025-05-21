@@ -55,6 +55,7 @@ dependencies:
   logger:
   equatable:
   permission_handler:
+  fpdart: ^1.1.1
 
 dev_dependencies:
   flutter_test:

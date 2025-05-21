@@ -9,10 +9,11 @@ sealed class UserModel with _$UserModel {
   factory UserModel({
     @Default('') String? firstName,
     @Default('') String? lastName,
-    @Default('') String? email,
-    @Default('') String? phone,
+    String? email,
+    String? phone,
     @Default('') String? password,
-    @Default('') String? id,
+    @Default(0) int? id,
+    @Default('') String? token,
     @Default(Role.patient) Role? role,
   }) = _UserModel;
 

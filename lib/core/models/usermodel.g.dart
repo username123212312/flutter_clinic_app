@@ -9,10 +9,11 @@ part of 'usermodel.dart';
 _UserModel _$UserModelFromJson(Map<String, dynamic> json) => _UserModel(
       firstName: json['firstName'] as String? ?? '',
       lastName: json['lastName'] as String? ?? '',
-      email: json['email'] as String? ?? '',
-      phone: json['phone'] as String? ?? '',
+      email: json['email'] as String?,
+      phone: json['phone'] as String?,
       password: json['password'] as String? ?? '',
-      id: json['id'] as String? ?? '',
+      id: (json['id'] as num?)?.toInt() ?? 0,
+      token: json['token'] as String? ?? '',
       role: $enumDecodeNullable(_$RoleEnumMap, json['role']) ?? Role.patient,
     );
 
@@ -24,6 +25,7 @@ Map<String, dynamic> _$UserModelToJson(_UserModel instance) =>
       'phone': instance.phone,
       'password': instance.password,
       'id': instance.id,
+      'token': instance.token,
       'role': _$RoleEnumMap[instance.role],
     };
 

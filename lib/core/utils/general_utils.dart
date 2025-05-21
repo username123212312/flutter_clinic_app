@@ -16,8 +16,8 @@ int calculateAge(DateTime birthDate) {
   return age;
 }
 
-void clearAndShowSnackBar(BuildContext context, SnackBar snackBar) {
+void clearAndShowSnackBar(BuildContext context, String message) {
   ScaffoldMessenger.of(context)
     ..clearSnackBars()
-    ..showSnackBar(snackBar);
+    ..showSnackBar(SnackBar(content: Text(message)));
 }
