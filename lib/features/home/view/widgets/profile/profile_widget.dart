@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
+import 'package:flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:flutter_clinic_app/core/utils/general_utils.dart';
+import 'package:flutter_clinic_app/core/utils/logger.dart';
+import 'package:flutter_clinic_app/features/auth/controller/user_bloc/user_bloc.dart';
 import 'package:flutter_clinic_app/features/home/view/widgets/custom_switch.dart';
+import 'package:go_router/go_router.dart';
 
 class ProifileWidget extends StatelessWidget {
   const ProifileWidget({super.key});
@@ -67,7 +73,7 @@ class ProifileWidget extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
           child: GestureDetector(
             onTap: () {
-              // TODO Navigate to documents
+              context.pushNamed(AppRouteConstants.documentsRouteName);
             },
             child: Row(
               children: [
@@ -141,38 +147,46 @@ class ProifileWidget extends StatelessWidget {
           width: screenWidth(context),
           child: Divider(color: Pallete.grayScaleColor400),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
-          child: GestureDetector(
-            onTap: () {
-              // TODO logout
+        GestureDetector(
+          onTap: () {
+            context.read<UserBloc>().add(UserLoggedOut());
+          },
+          child: BlocListener<UserBloc, UserState>(
+            listener: (context, state) {
+              clearAndShowSnackBar(context, state.statusMessage);
             },
-            child: Row(
-              children: [
-                Container(
-                  width: screenWidth(context) * 0.13,
-                  height: screenHeight(context) * 0.06,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Pallete.grayScaleColor200,
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                vertical: 10.0,
+                horizontal: 10,
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    width: screenWidth(context) * 0.13,
+                    height: screenHeight(context) * 0.06,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Pallete.grayScaleColor200,
+                    ),
+                    child: Icon(
+                      Icons.logout,
+                      size: 25,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
                   ),
-                  child: Icon(
-                    Icons.logout,
-                    size: 25,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
 
-                SizedBox(width: 10),
-                Text(
-                  'Log out',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleSmall!.copyWith(fontSize: 17),
-                ),
-                Spacer(),
-                Icon(Icons.arrow_forward_ios),
-              ],
+                  SizedBox(width: 10),
+                  Text(
+                    'Log out',
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleSmall!.copyWith(fontSize: 17),
+                  ),
+                  Spacer(),
+                  Icon(Icons.arrow_forward_ios),
+                ],
+              ),
             ),
           ),
         ),

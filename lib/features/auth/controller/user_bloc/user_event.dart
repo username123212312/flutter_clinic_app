@@ -16,4 +16,5 @@ sealed class UserEvent with _$UserEvent {
       UserRegisteredWithPhone;
   const factory UserEvent.userModified({required UserModel? user}) =
       UserModified;
+  const factory UserEvent.userLoggedOut() = UserLoggedOut;
 }

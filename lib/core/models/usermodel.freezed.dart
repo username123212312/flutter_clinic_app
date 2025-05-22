@@ -15,7 +15,9 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$UserModel {
+  @JsonKey(name: 'first_name')
   String? get firstName;
+  @JsonKey(name: 'last_name')
   String? get lastName;
   String? get email;
   String? get phone;
@@ -69,8 +71,8 @@ abstract mixin class $UserModelCopyWith<$Res> {
       _$UserModelCopyWithImpl;
   @useResult
   $Res call(
-      {String? firstName,
-      String? lastName,
+      {@JsonKey(name: 'first_name') String? firstName,
+      @JsonKey(name: 'last_name') String? lastName,
       String? email,
       String? phone,
       String? password,
@@ -141,8 +143,8 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
 @JsonSerializable()
 class _UserModel implements UserModel {
   _UserModel(
-      {this.firstName = '',
-      this.lastName = '',
+      {@JsonKey(name: 'first_name') this.firstName = '',
+      @JsonKey(name: 'last_name') this.lastName = '',
       this.email,
       this.phone,
       this.password = '',
@@ -153,10 +155,10 @@ class _UserModel implements UserModel {
       _$UserModelFromJson(json);
 
   @override
-  @JsonKey()
+  @JsonKey(name: 'first_name')
   final String? firstName;
   @override
-  @JsonKey()
+  @JsonKey(name: 'last_name')
   final String? lastName;
   @override
   final String? email;
@@ -228,8 +230,8 @@ abstract mixin class _$UserModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? firstName,
-      String? lastName,
+      {@JsonKey(name: 'first_name') String? firstName,
+      @JsonKey(name: 'last_name') String? lastName,
       String? email,
       String? phone,
       String? password,

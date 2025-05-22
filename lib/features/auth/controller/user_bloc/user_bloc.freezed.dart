@@ -393,6 +393,26 @@ class _$UserModifiedCopyWithImpl<$Res> implements $UserModifiedCopyWith<$Res> {
 }
 
 /// @nodoc
+
+class UserLoggedOut implements UserEvent {
+  const UserLoggedOut();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is UserLoggedOut);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'UserEvent.userLoggedOut()';
+  }
+}
+
+/// @nodoc
 mixin _$UserState {
   UserModel? get user;
   UserStatus get status;

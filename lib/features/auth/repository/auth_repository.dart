@@ -68,16 +68,22 @@ class AuthRepository {
           'password': request.password,
         },
       );
+      eLog(response.data);
       return Right(
         AppResponse(
-          message: response.data['statusMessage'] ?? 'Message',
-          success: response.data['statusCode'] < 300,
-          data: UserModel.fromJson(response.data['user']),
-          statusCode: response.data['statusCode'],
-          statusMessage:
+          message:
               response.data['statusCode'] < 300
                   ? response.data['message']
-                  : 'User logged in successfully',
+                  : response.data['error'],
+          success: response.data['statusCode'] < 300,
+          data:
+              response.data['statusCode'] < 300
+                  ? UserModel.fromJson(
+                    response.data['user'],
+                  ).copyWith(token: response.data['token'])
+                  : null,
+          statusCode: response.data['statusCode'],
+          statusMessage: response.data['statusMessage'],
         ),
       );
     } catch (e) {
@@ -87,13 +93,17 @@ class AuthRepository {
     }
   }
 
-  Future<Either<AppFailure, AppResponse<UserModel>>> logUserOut() async {
+  Future<Either<AppFailure, AppResponse>> logUserOut() async {
     try {
       final response = await _dio.post(AppConstants.logoutPath);
+      eLog(response.data);
       return Right(
-        AppResponse<UserModel>(
+        AppResponse(
           success: response.data['statusCode'] < 300,
-          message: response.data['message'],
+          message:
+              response.data['statusCode'] < 300
+                  ? response.data['message']
+                  : response.data['error'],
           data: null,
           statusCode: response.data['statusCode'],
           statusMessage: response.data['statusMessage'],

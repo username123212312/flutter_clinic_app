@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clinic_app/core/blocs/auth_bloc/auth_bloc.dart';
+import 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:flutter_clinic_app/core/utils/general_utils.dart';
+import 'package:go_router/go_router.dart';
 
 import '../widgets/home_widgets.dart';
 import '../widgets/profile/profile_widget.dart';
@@ -71,31 +75,38 @@ class _HomeScreenState extends State<HomeScreen>
         ],
         toolbarHeight: screenHeight(context) * 0.1,
       ),
-      body: Stack(
-        children: [
-          Positioned(
-            bottom: screenHeight(context) * 0.12,
-            top: 0,
-            left: 0,
-            right: 0,
-            child: FadeTransition(
-              opacity: _fadeAnimation,
-              child: setHome(_currentIndex),
+      body: BlocListener<AuthBloc, AuthState>(
+        listener: (context, state) {
+          if (state.isAuth == false) {
+            context.goNamed(AppRouteConstants.welcomeRouteName);
+          }
+        },
+        child: Stack(
+          children: [
+            Positioned(
+              bottom: screenHeight(context) * 0.12,
+              top: 0,
+              left: 0,
+              right: 0,
+              child: FadeTransition(
+                opacity: _fadeAnimation,
+                child: setHome(_currentIndex),
+              ),
             ),
-          ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: CustomBottomAppBar(
-              onChange: (index) {
-                setState(() {
-                  _currentIndex = index;
-                });
-              },
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: CustomBottomAppBar(
+                onChange: (index) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

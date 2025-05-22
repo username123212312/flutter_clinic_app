@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clinic_app/core/blocs/auth_bloc/auth_bloc.dart';
-import 'package:flutter_clinic_app/core/utils/logger.dart';
 import 'package:flutter_clinic_app/features/auth/model/requests/auth_requests.dart';
 import 'package:flutter_clinic_app/features/auth/repository/auth_repository.dart';
 import 'package:fpdart/fpdart.dart';
@@ -36,6 +35,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserLoggedInWithPhone>(_logUserIn);
     on<UserRegisteredWithEmail>(_registerUser);
     on<UserRegisteredWithPhone>(_registerUser);
+    on<UserLoggedOut>(_logUserOut);
   }
   Future<void> _registerUser(UserEvent event, Emitter<UserState> emit) async {
     (state as _UserState).user;
@@ -100,6 +100,30 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       ),
     };
     emit(newState);
+
+    if (!state.status.isError) {
+      if (state.user != null) {
+        _authBloc.add(
+          UserAuthenticated(user: state.user!, token: state.user!.token!),
+        );
+      }
+    }
+  }
+
+  Future<void> _logUserOut(UserEvent event, Emitter emit) async {
+    final response = await _authRepository.logUserOut();
+    final newState = switch (response) {
+      Left(value: final l) => UserState(
+        user: state.user,
+        status: UserStatus.error,
+        statusMessage: l.message,
+      ),
+      Right() => UserState.initial(),
+    };
+    emit(newState);
+    if (!newState.status.isError) {
+      _authBloc.add(UserReset());
+    }
   }
 
   final AuthBloc _authBloc;

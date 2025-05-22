@@ -7,8 +7,8 @@ part 'usermodel.g.dart';
 @freezed
 sealed class UserModel with _$UserModel {
   factory UserModel({
-    @Default('') String? firstName,
-    @Default('') String? lastName,
+    @Default('') @JsonKey(name: 'first_name') String? firstName,
+    @Default('') @JsonKey(name: 'last_name') String? lastName,
     String? email,
     String? phone,
     @Default('') String? password,

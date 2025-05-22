@@ -294,7 +294,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
           ),
           SizedBox(
             height: screenHeight(context) * 0.1,
-            width: screenWidth(context) * 0.6,
+            width: screenWidth(context) * 0.7,
             child: FittedBox(
               child: TwoSelectableWidget(
                 twoTitles: ['Uploaded', 'New'],

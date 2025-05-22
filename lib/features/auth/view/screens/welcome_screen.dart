@@ -17,8 +17,8 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   void didChangeDependencies() {
-    _initialize();
     super.didChangeDependencies();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) => _initialize());
   }
 
   void _initialize() {
@@ -28,9 +28,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         eLog(authState.toString());
 
         final redirectScreen =
-            authState.isAuth ? AppRouteConstants.homeRouteName : null;
+            authState.isAuth! ? AppRouteConstants.homeRouteName : null;
         if (redirectScreen != null) {
-          context.go(redirectScreen);
+          context.goNamed(redirectScreen);
         }
         _isInit = true;
       }
@@ -57,6 +57,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   width: screenWidth(context) * 0.5,
                   height: screenHeight(context) * 0.23,
                 ),
+
                 SizedBox(height: 10),
                 RichText(
                   text: TextSpan(

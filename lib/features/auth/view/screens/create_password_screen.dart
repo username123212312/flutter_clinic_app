@@ -31,7 +31,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
         ),
         body: SingleChildScrollView(
           padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).viewInsets.bottom,
+            bottom: MediaQuery.of(context).viewInsets.bottom * 0.3,
           ),
           child: BackgroundContainer(
             child: Padding(
@@ -48,8 +48,6 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                         clearAndShowSnackBar(context, state.statusMessage);
                       },
                       child: BlocBuilder<UserBloc, UserState>(
-                        buildWhen:
-                            (previous, current) => current.status.isLoading,
                         builder: (context, state) {
                           return CustomElevatedButton(
                             isEnabled: !state.status.isLoading,

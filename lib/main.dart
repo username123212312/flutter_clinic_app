@@ -64,13 +64,20 @@ class ClinicApp extends StatelessWidget {
         //   darkTheme: AppTheme.darkThemeMode,
         //   home: CreatePasswordScreen(),
         // ),
-        child: MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          routerConfig: AppRouteConfig.router,
-          title: 'Clinic App',
-          themeMode: ThemeMode.system,
-          theme: AppTheme.lightThemeMode,
-          darkTheme: AppTheme.darkThemeMode,
+        child: BlocBuilder<AuthBloc, AuthState>(
+          buildWhen: (previous, current) {
+            return previous.isAuth != current.isAuth;
+          },
+          builder: (context, state) {
+            return MaterialApp.router(
+              debugShowCheckedModeBanner: false,
+              routerConfig: AppRouteConfig.router,
+              title: 'Clinic App',
+              themeMode: ThemeMode.system,
+              theme: AppTheme.lightThemeMode,
+              darkTheme: AppTheme.darkThemeMode,
+            );
+          },
         ),
       ),
     );

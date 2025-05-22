@@ -86,7 +86,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           recognizer:
                               TapGestureRecognizer()
                                 ..onTap = () {
-                                  //TODO navigate to login
+                                  context.goNamed(
+                                    AppRouteConstants.loginRouteName,
+                                  );
                                 },
                           text: 'Login',
                           style: Theme.of(

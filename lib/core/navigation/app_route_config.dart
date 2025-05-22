@@ -3,7 +3,8 @@ import 'package:flutter_clinic_app/features/home/view/screens/documents_screen.d
 import 'navigation_exports.dart';
 
 class AppRouteConfig {
-  static final router = GoRouter(
+  static GoRouter get router => _router;
+  static final GoRouter _router = GoRouter(
     initialLocation: '/',
     errorPageBuilder: (_, __) => TransitionPage(child: ErrorScreen()),
     routes: [

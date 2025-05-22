@@ -21,12 +21,19 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
+  late final bool _isDoctor;
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   int _selectedTabIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _isDoctor = context.read<UserBloc>().state.user!.role!.isDoctor;
+  }
 
   @override
   void dispose() {
@@ -80,34 +87,35 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 10),
                   _buildTwoButtons(),
                   const SizedBox(height: 25),
-                  Text.rich(
-                    TextSpan(
-                      text: 'Don\'t have an account? ',
-                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                        fontSize: 14,
-                        color: Pallete.grayScaleColor700,
-                      ),
-                      children: [
-                        TextSpan(
-                          recognizer:
-                              TapGestureRecognizer()
-                                ..onTap = () {
-                                  context.goNamed(
-                                    AppRouteConstants.registerRouteName,
-                                  );
-                                },
-                          text: 'Register',
-                          style: Theme.of(
-                            context,
-                          ).textTheme.titleSmall!.copyWith(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
+                  if (!_isDoctor)
+                    Text.rich(
+                      TextSpan(
+                        text: 'Don\'t have an account? ',
+                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                          fontSize: 14,
+                          color: Pallete.grayScaleColor700,
                         ),
-                      ],
+                        children: [
+                          TextSpan(
+                            recognizer:
+                                TapGestureRecognizer()
+                                  ..onTap = () {
+                                    context.goNamed(
+                                      AppRouteConstants.registerRouteName,
+                                    );
+                                  },
+                            text: 'Register',
+                            style: Theme.of(
+                              context,
+                            ).textTheme.titleSmall!.copyWith(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
                 ],
               ),
             ),
@@ -122,10 +130,21 @@ class _LoginScreenState extends State<LoginScreen> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        BlocListener<UserBloc, UserState>(
-          listener: (context, state) {
-            clearAndShowSnackBar(context, state.statusMessage);
-          },
+        MultiBlocListener(
+          listeners: [
+            BlocListener<UserBloc, UserState>(
+              listener: (context, state) {
+                clearAndShowSnackBar(context, state.statusMessage);
+              },
+            ),
+            BlocListener<AuthBloc, AuthState>(
+              listener: (context, state) {
+                if (state.isAuth!) {
+                  context.goNamed(AppRouteConstants.homeRouteName);
+                }
+              },
+            ),
+          ],
 
           child: BlocBuilder<UserBloc, UserState>(
             builder: (context, state) {

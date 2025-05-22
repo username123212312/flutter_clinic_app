@@ -191,19 +191,21 @@ class _AppontmentsWidgetState extends State<AppontmentsWidget> {
   }
 
   Future<void> _loadData() async {
-    setState(() {
-      _isLoading = true;
-    });
-    // Simulate network delay
-    await Future.delayed(Duration(seconds: 3));
-    _items.clear();
+    if (mounted) {
+      setState(() {
+        _isLoading = true;
+      });
+      // Simulate network delay
+      await Future.delayed(Duration(seconds: 3));
+      _items.clear();
 
-    for (int i = 0; i < 10; i++) {
-      _addItem();
+      for (int i = 0; i < 10; i++) {
+        _addItem();
+      }
+      setState(() {
+        _isLoading = false;
+      });
     }
-    setState(() {
-      _isLoading = false;
-    });
   }
 
   void _changeIndex(int newIndex) {

@@ -217,7 +217,7 @@ class UserReset implements AuthEvent {
 mixin _$AuthState {
   AuthUser? get authUser;
   String? get token;
-  bool get isAuth;
+  bool? get isAuth;
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -251,7 +251,7 @@ abstract mixin class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) _then) =
       _$AuthStateCopyWithImpl;
   @useResult
-  $Res call({AuthUser? authUser, String? token, bool isAuth});
+  $Res call({AuthUser? authUser, String? token, bool? isAuth});
 
   $AuthUserCopyWith<$Res>? get authUser;
 }
@@ -270,7 +270,7 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
   $Res call({
     Object? authUser = freezed,
     Object? token = freezed,
-    Object? isAuth = null,
+    Object? isAuth = freezed,
   }) {
     return _then(_self.copyWith(
       authUser: freezed == authUser
@@ -281,10 +281,10 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
           ? _self.token
           : token // ignore: cast_nullable_to_non_nullable
               as String?,
-      isAuth: null == isAuth
+      isAuth: freezed == isAuth
           ? _self.isAuth
           : isAuth // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ));
   }
 
@@ -314,7 +314,7 @@ class _AuthState implements AuthState {
   final String? token;
   @override
   @JsonKey()
-  final bool isAuth;
+  final bool? isAuth;
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -352,7 +352,7 @@ abstract mixin class _$AuthStateCopyWith<$Res>
       __$AuthStateCopyWithImpl;
   @override
   @useResult
-  $Res call({AuthUser? authUser, String? token, bool isAuth});
+  $Res call({AuthUser? authUser, String? token, bool? isAuth});
 
   @override
   $AuthUserCopyWith<$Res>? get authUser;
@@ -372,7 +372,7 @@ class __$AuthStateCopyWithImpl<$Res> implements _$AuthStateCopyWith<$Res> {
   $Res call({
     Object? authUser = freezed,
     Object? token = freezed,
-    Object? isAuth = null,
+    Object? isAuth = freezed,
   }) {
     return _then(_AuthState(
       authUser: freezed == authUser
@@ -383,10 +383,10 @@ class __$AuthStateCopyWithImpl<$Res> implements _$AuthStateCopyWith<$Res> {
           ? _self.token
           : token // ignore: cast_nullable_to_non_nullable
               as String?,
-      isAuth: null == isAuth
+      isAuth: freezed == isAuth
           ? _self.isAuth
           : isAuth // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ));
   }
 
