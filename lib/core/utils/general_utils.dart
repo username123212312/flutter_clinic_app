@@ -21,3 +21,7 @@ void clearAndShowSnackBar(BuildContext context, String message) {
     ..clearSnackBars()
     ..showSnackBar(SnackBar(content: Text(message)));
 }
+
+String? checkEmptiness(String value) {
+  return value.trim().isEmpty ? null : value;
+}

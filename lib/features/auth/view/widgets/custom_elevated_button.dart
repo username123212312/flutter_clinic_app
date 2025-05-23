@@ -21,7 +21,7 @@ class CustomElevatedButton extends StatelessWidget {
   final Color? fillColor;
   final Color textColor;
   final Color? borderColor;
-  final void Function() onTap;
+  final void Function()? onTap;
   final Widget? prefix;
   final double? fontSize;
   final double? borderRadius;

@@ -15,3 +15,15 @@ enum AppointmentStatus {
   bool get isFinished => this == AppointmentStatus.finished;
   bool get isCanceled => this == AppointmentStatus.canceled;
 }
+
+enum DataStatus {
+  data,
+  loading,
+  noData,
+  error;
+
+  bool get isData => this == DataStatus.data;
+  bool get isLoading => this == DataStatus.loading;
+  bool get isError => this == DataStatus.error;
+  bool get isNoData => this == DataStatus.noData;
+}

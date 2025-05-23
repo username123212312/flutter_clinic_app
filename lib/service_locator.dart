@@ -1,9 +1,11 @@
 import 'package:flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
 import 'package:flutter_clinic_app/features/auth/repository/user_repository.dart';
+import 'package:flutter_clinic_app/features/home/repository/analysis_repository.dart';
 import 'package:get_it/get_it.dart';
 
 import 'core/repositories/auth_repository.dart';
+import 'features/home/controller/analysis_list_bloc/analysis_list_bloc.dart';
 
 class ServiceLocator {
   static final GetIt _instance = GetIt.instance;
@@ -23,6 +25,11 @@ class ServiceLocator {
         authBloc: _instance<AuthBloc>(),
         userRepository: _instance<UserRepository>(),
       ),
+    );
+    _instance.registerFactory<AnalysisRepository>(() => AnalysisRepository());
+    _instance.registerLazySingleton<AnalysisListBloc>(
+      () =>
+          AnalysisListBloc(analysisRepository: _instance<AnalysisRepository>()),
     );
   }
 }

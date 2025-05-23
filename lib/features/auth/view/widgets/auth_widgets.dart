@@ -1,4 +1,4 @@
-export 'background_container.dart';
+export '../../../../core/widgets/background_container.dart';
 export 'basic_info_widget.dart';
 export 'choose_from_widget.dart';
 export 'custom_elevated_button.dart';

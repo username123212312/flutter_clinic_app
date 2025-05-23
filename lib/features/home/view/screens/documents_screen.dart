@@ -1,6 +1,8 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
@@ -16,6 +18,13 @@ class DocumentsScreen extends StatefulWidget {
 }
 
 class _DocumentsScreenState extends State<DocumentsScreen> {
+  @override
+  void dispose() {
+    _fileNameController.dispose();
+    _fileDescriptionController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,6 +104,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
           ),
           SizedBox(height: 10),
           CustomTextField(
+            controller: _fileNameController,
             hintText: 'File name',
             keyboardType: TextInputType.text,
           ),
@@ -117,6 +127,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
           SizedBox(height: 10),
 
           CustomTextField(
+            controller: _fileDescriptionController,
             hintText: 'File description',
             keyboardType: TextInputType.text,
             maxLength: 100,
@@ -143,39 +154,95 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
           width: screenWidth(context),
           height: screenHeight(context) * 0.3,
           child: GestureDetector(
-            onTap: () {
-              log('upload');
-              //TODO upload document
-            },
+            onTap: _pickFile,
             child: DottedBorder(
               borderType: BorderType.RRect,
               radius: Radius.circular(12),
               dashPattern: [10, 5],
               child: Align(
                 alignment: Alignment.center,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    SizedBox(height: screenHeight(context) * 0.03),
-                    Text(
-                      'Upload Document',
-                      style: Theme.of(
-                        context,
-                      ).textTheme.titleSmall!.copyWith(fontSize: 20),
-                    ),
-                    Icon(
-                      size: 60,
-                      Icons.arrow_circle_up_outlined,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                  ],
-                ),
+                child:
+                    (_chosenFile != null || _chosenImage != null)
+                        ? Column(
+                          children: [
+                            SizedBox(
+                              height:
+                                  (_chosenFile != null)
+                                      ? screenHeight(context) * 0.08
+                                      : screenHeight(context) * 0.07,
+                            ),
+                            _chosenFile == null
+                                ? Image.file(
+                                  _chosenImage!,
+                                  width: 100,
+                                  height: 100,
+                                  fit: BoxFit.cover,
+                                )
+                                : Icon(
+                                  size: 50,
+                                  Icons.picture_as_pdf,
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                            SizedBox(height: screenHeight(context) * 0.01),
+                            SizedBox(
+                              width: screenWidth(context) * 0.4,
+                              child: Text(
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.center,
+                                maxLines: 3,
+                                (_chosenFile ?? _chosenImage)!.path
+                                    .split('/')
+                                    .last,
+                                style: Theme.of(
+                                  context,
+                                ).textTheme.titleSmall!.copyWith(fontSize: 13),
+                              ),
+                            ),
+                          ],
+                        )
+                        : Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            SizedBox(height: screenHeight(context) * 0.03),
+                            Text(
+                              'Upload Document',
+                              style: Theme.of(
+                                context,
+                              ).textTheme.titleSmall!.copyWith(fontSize: 20),
+                            ),
+                            Icon(
+                              size: 60,
+                              Icons.arrow_circle_up_outlined,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ],
+                        ),
               ),
             ),
           ),
         ),
       ],
     );
+  }
+
+  Future<void> _pickFile() async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf', 'jpg', 'jpeg', 'png'],
+    );
+    if (result != null && result.files.single.path != null) {
+      if (result.files.single.path!.split('.').last.toLowerCase() == 'pdf') {
+        setState(() {
+          _chosenFile = File(result.files.single.path!);
+          _chosenImage = null;
+        });
+      } else {
+        setState(() {
+          _chosenImage = File(result.files.single.path!);
+          _chosenFile = null;
+        });
+      }
+    }
   }
 
   Widget _buildUploaded() {
@@ -303,6 +370,8 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
                     _isUpload = newIndex == 1 ? true : false;
                     if (newIndex == 0) {
                       _currentIndex = 0;
+                      _chosenFile = null;
+                      _chosenImage = null;
                     }
                   });
                 },
@@ -316,4 +385,8 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
 
   int _currentIndex = 0;
   bool _isUpload = false;
+  File? _chosenFile;
+  File? _chosenImage;
+  final _fileNameController = TextEditingController();
+  final _fileDescriptionController = TextEditingController();
 }

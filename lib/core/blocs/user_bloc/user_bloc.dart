@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clinic_app/core/blocs/auth_bloc/auth_bloc.dart';
 import 'package:flutter_clinic_app/features/auth/model/requests/auth_requests.dart';
+import 'package:flutter_clinic_app/features/auth/model/requests/modify_password_request.dart';
 import 'package:flutter_clinic_app/features/auth/repository/user_repository.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -37,6 +38,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserRegisteredWithPhone>(_registerUser);
     on<UserLoggedOut>(_logUserOut);
     on<UserCompletedProfileData>(_completeUserProfileData);
+    on<UserModifiedProfileData>(_modifyUserProfileData);
+    on<UserModifiedPassword>(_modifyUserPassword);
   }
   Future<void> _registerUser(UserEvent event, Emitter<UserState> emit) async {
     (state as _UserState).user;
@@ -175,6 +178,108 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       _authBloc.add(
         UserAuthenticated(user: state.user!, token: state.user!.token!),
       );
+    }
+  }
+
+  Future<void> _modifyUserProfileData(
+    UserModifiedProfileData event,
+    Emitter<UserState> emit,
+  ) async {
+    late final CompleteUserInfoRequest request;
+    request = CompleteUserInfoRequest(
+      firstName: event.user.firstName,
+      lastName: event.user.lastName,
+      age: event.user.age,
+      bloodType: event.user.bloodType,
+      gender: event.user.gender,
+      address: event.user.address,
+      email: event.user.email,
+      phone: event.user.phone,
+    );
+    final response = await _userRepository.modifyUserInfo(request);
+    final newState = switch (response) {
+      Left(value: final l) => UserState(
+        user: state.user,
+        status: UserStatus.error,
+        statusMessage: l.message,
+      ),
+      Right(value: final r) => UserState(
+        user:
+            state.user?.copyWith(
+              firstName: r.data?.firstName,
+              lastName: r.data?.lastName,
+              age: r.data?.age,
+              bloodType: r.data?.bloodType,
+              gender: r.data?.gender,
+              address: r.data?.address,
+              email: r.data?.email,
+              phone: r.data?.phone,
+            ) ??
+            UserModel(
+              firstName: r.data?.firstName,
+              lastName: r.data?.lastName,
+              age: r.data?.age,
+              bloodType: r.data?.bloodType,
+              gender: r.data?.gender,
+              address: r.data?.address,
+              email: r.data?.email,
+              phone: r.data?.phone,
+            ),
+        statusMessage: r.message,
+        status: UserStatus.modified,
+      ),
+    };
+    emit(newState);
+    if (!newState.status.isError) {
+      _authBloc.add(AuthEvent.userModified(user: state.user!));
+    }
+  }
+
+  Future<void> _modifyUserPassword(
+    UserModifiedPassword event,
+    Emitter<UserState> emit,
+  ) async {
+    late final ModifyPasswordRequest request;
+    request = ModifyPasswordRequest(
+      newPassword: event.newPassword,
+      oldPassword: event.oldPassword,
+    );
+    final response = await _userRepository.modifyUserPassword(request);
+    final newState = switch (response) {
+      Left(value: final l) => UserState(
+        user: state.user,
+        status: UserStatus.error,
+        statusMessage: l.message,
+      ),
+      Right(value: final r) => UserState(
+        user:
+            state.user?.copyWith(
+              firstName: r.data?.firstName,
+              lastName: r.data?.lastName,
+              age: r.data?.age,
+              bloodType: r.data?.bloodType,
+              gender: r.data?.gender,
+              address: r.data?.address,
+              email: r.data?.email,
+              phone: r.data?.phone,
+            ) ??
+            UserModel(
+              firstName: r.data?.firstName,
+              lastName: r.data?.lastName,
+              age: r.data?.age,
+              bloodType: r.data?.bloodType,
+              gender: r.data?.gender,
+              address: r.data?.address,
+              email: r.data?.email,
+              phone: r.data?.phone,
+            ),
+        statusMessage: r.message,
+        status: UserStatus.modified,
+      ),
+    };
+    emit(newState);
+    if (!newState.status.isError) {
+      _authBloc.add(AuthEvent.userModified(user: state.user!));
     }
   }
 

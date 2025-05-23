@@ -8,6 +8,7 @@ import 'package:flutter_clinic_app/core/models/usermodel.dart';
 import 'package:flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:flutter_clinic_app/core/providers/dio_client/dio_client.dart';
 import 'package:flutter_clinic_app/core/utils/logger.dart';
+import 'package:flutter_clinic_app/features/home/model/requests/home_requests.dart';
 import 'package:fpdart/fpdart.dart';
 
 import '../../../core/models/app_failure.dart';
@@ -63,6 +64,10 @@ class UserRepository {
       eLog(StackTrace.current);
       return Left(
         AppFailure(message: e.message, stacktracte: StackTrace.current),
+      );
+    } catch (e) {
+      return Left(
+        AppFailure(message: e.toString(), stacktracte: StackTrace.current),
       );
     }
   }
@@ -168,6 +173,107 @@ class UserRepository {
     } on HttpException catch (e) {
       return Left(
         AppFailure(message: e.message, stacktracte: StackTrace.current),
+      );
+    } catch (e) {
+      return Left(
+        AppFailure(message: e.toString(), stacktracte: StackTrace.current),
+      );
+    }
+  }
+
+  Future<Either<AppFailure, AppResponse<UserModel>>> modifyUserInfo(
+    CompleteUserInfoRequest request,
+  ) async {
+    try {
+      final response = await _dio.post(
+        AppConstants.patientEditProfilePath,
+        data: {
+          if (request.firstName != null) 'first_name': request.firstName,
+          if (request.lastName != null) 'last_name': request.lastName,
+          if (request.email != null) 'email': request.email,
+          if (request.phone != null) 'phone': request.phone,
+          if (request.gender != null) 'gender': request.gender,
+          if (request.age != null) 'age': request.age,
+          if (request.address != null) 'address': request.address,
+          if (request.bloodType != null) 'blood_type': request.bloodType,
+        },
+      );
+      wLog(response.data);
+      if (response.data['statusCode'] < 300) {
+        wLog(response.data);
+
+        return Right(
+          AppResponse<UserModel>(
+            success: true,
+            message: response.data['message'],
+            data: UserModel.fromJson(response.data['data']),
+            statusCode: response.data['statusCode'],
+            statusMessage: response.data['statusMessage'],
+          ),
+        );
+      } else {
+        throw HttpException((response.data['message'] as List<dynamic>)[0]);
+      }
+    } on DioException catch (e) {
+      return Left(
+        AppFailure(
+          message: e.message ?? 'Error',
+          stacktracte: StackTrace.current,
+        ),
+      );
+    } on HttpException catch (e) {
+      return Left(
+        AppFailure(message: e.message, stacktracte: StackTrace.current),
+      );
+    } catch (e) {
+      return Left(
+        AppFailure(message: e.toString(), stacktracte: StackTrace.current),
+      );
+    }
+  }
+
+  Future<Either<AppFailure, AppResponse<UserModel>>> modifyUserPassword(
+    ModifyPasswordRequest request,
+  ) async {
+    try {
+      final response = await _dio.post(
+        AppConstants.patientEditProfilePath,
+        data: {
+          'password': request.newPassword,
+          'old_password': request.oldPassword,
+          'password_confirmation': request.newPassword,
+        },
+      );
+      wLog(response.data);
+      if (response.data['statusCode'] < 300) {
+        wLog(response.data);
+
+        return Right(
+          AppResponse<UserModel>(
+            success: true,
+            message: response.data['message'],
+            data: UserModel.fromJson(response.data['data']),
+            statusCode: response.data['statusCode'],
+            statusMessage: response.data['statusMessage'],
+          ),
+        );
+      } else {
+        throw HttpException((response.data['message'] as List<dynamic>)[0]);
+      }
+    } on DioException catch (e) {
+      return Left(
+        AppFailure(
+          message: e.message ?? 'Error',
+          stacktracte: StackTrace.current,
+        ),
+      );
+    } on HttpException catch (e) {
+      return Left(
+        AppFailure(message: e.message, stacktracte: StackTrace.current),
+      );
+    } catch (e) {
+      return Left(
+        AppFailure(message: e.toString(), stacktracte: StackTrace.current),
       );
     }
   }

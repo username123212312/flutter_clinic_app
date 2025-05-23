@@ -72,6 +72,7 @@ class ProifileWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
           child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
             onTap: () {
               context.pushNamed(AppRouteConstants.documentsRouteName);
             },
@@ -111,6 +112,7 @@ class ProifileWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
           child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
             onTap: () {
               // TODO Navigate to info
             },
@@ -148,6 +150,7 @@ class ProifileWidget extends StatelessWidget {
           child: Divider(color: Pallete.grayScaleColor400),
         ),
         GestureDetector(
+          behavior: HitTestBehavior.opaque,
           onTap: () {
             context.read<UserBloc>().add(UserLoggedOut());
           },
@@ -197,8 +200,9 @@ class ProifileWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
           child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
             onTap: () {
-              // TODO Navigate to documents
+              context.pushNamed(AppRouteConstants.modifyPasswordRouteName);
             },
             child: Row(
               children: [
@@ -262,6 +266,8 @@ class ProifileWidget extends StatelessWidget {
           ),
 
           GestureDetector(
+            behavior: HitTestBehavior.opaque,
+
             onTap: () {
               context.pushNamed(AppRouteConstants.editProfileRouteName);
             },

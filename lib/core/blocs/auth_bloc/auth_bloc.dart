@@ -29,6 +29,11 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
       (event, emit) =>
           emit(AuthState(authUser: null, token: '', isAuth: false)),
     );
+    on<UserModified>(
+      (event, emit) => emit(
+        state.copyWith(authUser: state.authUser?.copyWith(user: event.user)),
+      ),
+    );
     on<CheckUserAuthState>(_checkAuthState);
   }
   _checkAuthState(CheckUserAuthState event, Emitter emit) async {

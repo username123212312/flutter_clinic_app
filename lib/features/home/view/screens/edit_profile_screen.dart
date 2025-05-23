@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
 import 'package:flutter_clinic_app/core/consts/app_constants.dart';
+import 'package:flutter_clinic_app/core/models/usermodel.dart';
 import 'package:flutter_clinic_app/core/utils/utils.dart';
 import 'package:flutter_clinic_app/core/widgets/blood_types_widget.dart';
 import 'package:flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/blocs/auth_bloc/auth_bloc.dart';
 import '../../../../core/theme/app_pallete.dart';
@@ -61,17 +64,64 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             _buildBloodTypes(),
             SizedBox(
               width: screenWidth(context),
-              child: CustomElevatedButton(
-                fontSize: 16,
-                title: 'Save',
-                onTap: () {
-                  //TODO save profile
+              child: BlocBuilder<UserBloc, UserState>(
+                builder: (context, state) {
+                  return CustomElevatedButton(
+                    fontSize: 16,
+                    title: 'Save',
+                    onTap:
+                        state.status.isLoading
+                            ? null
+                            : () {
+                              context.read<UserBloc>().add(
+                                UserModifiedProfileData(
+                                  user: UserModel(
+                                    firstName: checkEmptiness(
+                                      _firstNameController.text,
+                                    ),
+                                    lastName: checkEmptiness(
+                                      _lastNameController.text,
+                                    ),
+                                    email: checkEmptiness(
+                                      _emailController.text,
+                                    ),
+                                    phone: checkEmptiness(
+                                      _phoneController.text,
+                                    ),
+                                    gender: checkEmptiness(
+                                      _genderController.text,
+                                    ),
+                                    age: int.tryParse(
+                                      checkEmptiness(_ageController.text) ??
+                                          '0',
+                                    ),
+                                    address: checkEmptiness(
+                                      _completeAddressController.text,
+                                    ),
+                                    bloodType:
+                                        AppConstants
+                                            .bloodTypes[_selectedBloodType],
+                                  ),
+                                ),
+                              );
+                            },
+                    fillColor: Theme.of(context).colorScheme.primary,
+                    textColor: Colors.white,
+                  );
                 },
-                fillColor: Theme.of(context).colorScheme.primary,
-                textColor: Colors.white,
               ),
             ),
-            SizedBox(height: 20),
+            BlocListener<UserBloc, UserState>(
+              listenWhen: (previous, current) {
+                return previous.status.isLoading && current.status.isModified;
+              },
+              listener: (context, state) {
+                if (!state.status.isError) {
+                  context.pop();
+                }
+              },
+              child: SizedBox(height: 20),
+            ),
           ],
         ),
       ),

@@ -567,6 +567,81 @@ class _$UserModifiedProfileDataCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
+class UserModifiedPassword implements UserEvent {
+  const UserModifiedPassword(
+      {required this.newPassword, required this.oldPassword});
+
+  final String newPassword;
+  final String oldPassword;
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $UserModifiedPasswordCopyWith<UserModifiedPassword> get copyWith =>
+      _$UserModifiedPasswordCopyWithImpl<UserModifiedPassword>(
+          this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is UserModifiedPassword &&
+            (identical(other.newPassword, newPassword) ||
+                other.newPassword == newPassword) &&
+            (identical(other.oldPassword, oldPassword) ||
+                other.oldPassword == oldPassword));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, newPassword, oldPassword);
+
+  @override
+  String toString() {
+    return 'UserEvent.userModifiedPassword(newPassword: $newPassword, oldPassword: $oldPassword)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $UserModifiedPasswordCopyWith<$Res>
+    implements $UserEventCopyWith<$Res> {
+  factory $UserModifiedPasswordCopyWith(UserModifiedPassword value,
+          $Res Function(UserModifiedPassword) _then) =
+      _$UserModifiedPasswordCopyWithImpl;
+  @useResult
+  $Res call({String newPassword, String oldPassword});
+}
+
+/// @nodoc
+class _$UserModifiedPasswordCopyWithImpl<$Res>
+    implements $UserModifiedPasswordCopyWith<$Res> {
+  _$UserModifiedPasswordCopyWithImpl(this._self, this._then);
+
+  final UserModifiedPassword _self;
+  final $Res Function(UserModifiedPassword) _then;
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? newPassword = null,
+    Object? oldPassword = null,
+  }) {
+    return _then(UserModifiedPassword(
+      newPassword: null == newPassword
+          ? _self.newPassword
+          : newPassword // ignore: cast_nullable_to_non_nullable
+              as String,
+      oldPassword: null == oldPassword
+          ? _self.oldPassword
+          : oldPassword // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
 mixin _$UserState {
   UserModel? get user;
   UserStatus get status;

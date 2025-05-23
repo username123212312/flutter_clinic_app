@@ -35,6 +35,7 @@ class AppConstants {
   static const patientEditProfilePath = '/$patientPath/editProfile';
   static const ratePath = '/$patientPath/rate';
   static const showProfilePath = '/$patientPath/showProfile';
+  static const addAnalysisPath = '/$patientPath/addAnalysis';
 
   //*   Appointment
   static const showAppointmentPath = '/$patientPath/showAppointment';

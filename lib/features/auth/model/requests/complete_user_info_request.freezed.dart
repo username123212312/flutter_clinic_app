@@ -24,6 +24,8 @@ mixin _$CompleteUserInfoRequest {
   String? get bloodType;
   String? get gender;
   String? get address;
+  String? get email;
+  String? get phone;
 
   /// Create a copy of CompleteUserInfoRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -49,17 +51,19 @@ mixin _$CompleteUserInfoRequest {
             (identical(other.bloodType, bloodType) ||
                 other.bloodType == bloodType) &&
             (identical(other.gender, gender) || other.gender == gender) &&
-            (identical(other.address, address) || other.address == address));
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.phone, phone) || other.phone == phone));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, firstName, lastName, age, bloodType, gender, address);
+  int get hashCode => Object.hash(runtimeType, firstName, lastName, age,
+      bloodType, gender, address, email, phone);
 
   @override
   String toString() {
-    return 'CompleteUserInfoRequest(firstName: $firstName, lastName: $lastName, age: $age, bloodType: $bloodType, gender: $gender, address: $address)';
+    return 'CompleteUserInfoRequest(firstName: $firstName, lastName: $lastName, age: $age, bloodType: $bloodType, gender: $gender, address: $address, email: $email, phone: $phone)';
   }
 }
 
@@ -75,7 +79,9 @@ abstract mixin class $CompleteUserInfoRequestCopyWith<$Res> {
       int? age,
       @JsonKey(name: 'blood_type') String? bloodType,
       String? gender,
-      String? address});
+      String? address,
+      String? email,
+      String? phone});
 }
 
 /// @nodoc
@@ -97,6 +103,8 @@ class _$CompleteUserInfoRequestCopyWithImpl<$Res>
     Object? bloodType = freezed,
     Object? gender = freezed,
     Object? address = freezed,
+    Object? email = freezed,
+    Object? phone = freezed,
   }) {
     return _then(_self.copyWith(
       firstName: freezed == firstName
@@ -123,6 +131,14 @@ class _$CompleteUserInfoRequestCopyWithImpl<$Res>
           ? _self.address
           : address // ignore: cast_nullable_to_non_nullable
               as String?,
+      email: freezed == email
+          ? _self.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _self.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -136,7 +152,9 @@ class _CompleteUserInfoRequest implements CompleteUserInfoRequest {
       this.age,
       @JsonKey(name: 'blood_type') this.bloodType,
       this.gender,
-      this.address});
+      this.address,
+      this.email,
+      this.phone});
   factory _CompleteUserInfoRequest.fromJson(Map<String, dynamic> json) =>
       _$CompleteUserInfoRequestFromJson(json);
 
@@ -155,6 +173,10 @@ class _CompleteUserInfoRequest implements CompleteUserInfoRequest {
   final String? gender;
   @override
   final String? address;
+  @override
+  final String? email;
+  @override
+  final String? phone;
 
   /// Create a copy of CompleteUserInfoRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -185,17 +207,19 @@ class _CompleteUserInfoRequest implements CompleteUserInfoRequest {
             (identical(other.bloodType, bloodType) ||
                 other.bloodType == bloodType) &&
             (identical(other.gender, gender) || other.gender == gender) &&
-            (identical(other.address, address) || other.address == address));
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.phone, phone) || other.phone == phone));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, firstName, lastName, age, bloodType, gender, address);
+  int get hashCode => Object.hash(runtimeType, firstName, lastName, age,
+      bloodType, gender, address, email, phone);
 
   @override
   String toString() {
-    return 'CompleteUserInfoRequest(firstName: $firstName, lastName: $lastName, age: $age, bloodType: $bloodType, gender: $gender, address: $address)';
+    return 'CompleteUserInfoRequest(firstName: $firstName, lastName: $lastName, age: $age, bloodType: $bloodType, gender: $gender, address: $address, email: $email, phone: $phone)';
   }
 }
 
@@ -213,7 +237,9 @@ abstract mixin class _$CompleteUserInfoRequestCopyWith<$Res>
       int? age,
       @JsonKey(name: 'blood_type') String? bloodType,
       String? gender,
-      String? address});
+      String? address,
+      String? email,
+      String? phone});
 }
 
 /// @nodoc
@@ -235,6 +261,8 @@ class __$CompleteUserInfoRequestCopyWithImpl<$Res>
     Object? bloodType = freezed,
     Object? gender = freezed,
     Object? address = freezed,
+    Object? email = freezed,
+    Object? phone = freezed,
   }) {
     return _then(_CompleteUserInfoRequest(
       firstName: freezed == firstName
@@ -260,6 +288,14 @@ class __$CompleteUserInfoRequestCopyWithImpl<$Res>
       address: freezed == address
           ? _self.address
           : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _self.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _self.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }

@@ -1,7 +1,3 @@
-import 'package:flutter_clinic_app/features/home/view/screens/book_new_appointment_screen.dart';
-import 'package:flutter_clinic_app/features/home/view/screens/documents_screen.dart';
-import 'package:flutter_clinic_app/service_locator.dart';
-
 import 'navigation_exports.dart';
 
 class AppRouteConfig {
@@ -84,6 +80,12 @@ class AppRouteConfig {
         path: '/book_new_appointment',
         pageBuilder:
             (_, state) => TransitionPage(child: BookNewAppointmentScreen()),
+      ),
+      GoRoute(
+        name: AppRouteConstants.modifyPasswordRouteName,
+        path: '/modify_password',
+        pageBuilder:
+            (_, state) => TransitionPage(child: ModifyPasswordScreen()),
       ),
     ],
   );

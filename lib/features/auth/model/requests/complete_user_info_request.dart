@@ -12,6 +12,8 @@ sealed class CompleteUserInfoRequest with _$CompleteUserInfoRequest {
     @JsonKey(name: 'blood_type') String? bloodType,
     String? gender,
     String? address,
+    String? email,
+    String? phone,
   }) = _CompleteUserInfoRequest;
 
   factory CompleteUserInfoRequest.fromJson(Map<String, dynamic> json) =>

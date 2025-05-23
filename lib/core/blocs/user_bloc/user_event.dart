@@ -21,4 +21,8 @@ sealed class UserEvent with _$UserEvent {
       UserCompletedProfileData;
   const factory UserEvent.userModifiedProfileData({required UserModel user}) =
       UserModifiedProfileData;
+  const factory UserEvent.userModifiedPassword({
+    required String newPassword,
+    required String oldPassword,
+  }) = UserModifiedPassword;
 }

@@ -6,6 +6,7 @@ class AppRouteConstants {
   static const verificationCodeRouteName = 'verification';
   static const yourProfileRouteName = 'profile_setup';
   static const createPasswordRouteName = 'create_password';
+  static const modifyPasswordRouteName = 'modify_password';
   static const forgotPasswordRouteName = 'forgot_password';
   static const registerRouteName = 'register';
   static const homeRouteName = 'home';
