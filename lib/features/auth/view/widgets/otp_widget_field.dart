@@ -22,6 +22,8 @@ class OTPWidgetField extends StatelessWidget {
             } else {
               return null;
             }
+          } else {
+            return null;
           }
         },
         onSaved: onSaved,

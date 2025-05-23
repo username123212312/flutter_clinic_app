@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clinic_app/core/models/usermodel.dart';
 import 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
+import 'package:flutter_clinic_app/core/utils/utils.dart';
 import 'package:flutter_clinic_app/core/utils/validator_util.dart';
 import 'package:flutter_clinic_app/core/widgets/blood_types_widget.dart';
 import 'package:flutter_clinic_app/features/auth/view/widgets/background_container.dart';
@@ -14,7 +15,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/consts/app_constants.dart';
 import '../../../../core/consts/app_constants.dart';
 import '../../../../core/utils/general_utils.dart';
-import '../../controller/user_bloc/user_bloc.dart';
+import '../../../../core/blocs/user_bloc/user_bloc.dart';
 
 class ProfileSetupScreen extends StatefulWidget {
   const ProfileSetupScreen({super.key});

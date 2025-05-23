@@ -5,14 +5,24 @@ import '../../features/auth/view/widgets/auth_widgets.dart';
 import '../consts/app_constants.dart';
 
 class BloodTypesWidget extends StatefulWidget {
-  const BloodTypesWidget({super.key, required this.onSelected});
-  final void Function(int bloodType) onSelected;
+  const BloodTypesWidget({
+    super.key,
+    required this.onSelected,
+    this.selectedBloodType = 0,
+  });
+  final void Function(int bloodType)? onSelected;
+  final int selectedBloodType;
   @override
   State<BloodTypesWidget> createState() => _BloodTypesWidgetState();
 }
 
 class _BloodTypesWidgetState extends State<BloodTypesWidget> {
-  int _selectedBloodType = 0;
+  late int _selectedBloodType;
+  @override
+  void initState() {
+    super.initState();
+    _selectedBloodType = widget.selectedBloodType;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +43,9 @@ class _BloodTypesWidgetState extends State<BloodTypesWidget> {
           onSelect: (id) {
             setState(() {
               _selectedBloodType = id;
+              if (widget.onSelected != null) {
+                widget.onSelected!(id);
+              }
             });
           },
           title: bloodType,

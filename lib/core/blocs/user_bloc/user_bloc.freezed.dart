@@ -490,6 +490,83 @@ class _$UserCompletedProfileDataCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
+class UserModifiedProfileData implements UserEvent {
+  const UserModifiedProfileData({required this.user});
+
+  final UserModel user;
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $UserModifiedProfileDataCopyWith<UserModifiedProfileData> get copyWith =>
+      _$UserModifiedProfileDataCopyWithImpl<UserModifiedProfileData>(
+          this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is UserModifiedProfileData &&
+            (identical(other.user, user) || other.user == user));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, user);
+
+  @override
+  String toString() {
+    return 'UserEvent.userModifiedProfileData(user: $user)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $UserModifiedProfileDataCopyWith<$Res>
+    implements $UserEventCopyWith<$Res> {
+  factory $UserModifiedProfileDataCopyWith(UserModifiedProfileData value,
+          $Res Function(UserModifiedProfileData) _then) =
+      _$UserModifiedProfileDataCopyWithImpl;
+  @useResult
+  $Res call({UserModel user});
+
+  $UserModelCopyWith<$Res> get user;
+}
+
+/// @nodoc
+class _$UserModifiedProfileDataCopyWithImpl<$Res>
+    implements $UserModifiedProfileDataCopyWith<$Res> {
+  _$UserModifiedProfileDataCopyWithImpl(this._self, this._then);
+
+  final UserModifiedProfileData _self;
+  final $Res Function(UserModifiedProfileData) _then;
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? user = null,
+  }) {
+    return _then(UserModifiedProfileData(
+      user: null == user
+          ? _self.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel,
+    ));
+  }
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res> get user {
+    return $UserModelCopyWith<$Res>(_self.user, (value) {
+      return _then(_self.copyWith(user: value));
+    });
+  }
+}
+
+/// @nodoc
 mixin _$UserState {
   UserModel? get user;
   UserStatus get status;

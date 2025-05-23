@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clinic_app/core/models/usermodel.dart';
 import 'package:flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
-import 'package:flutter_clinic_app/features/auth/controller/user_bloc/user_bloc.dart';
+import 'package:flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
 
 import '../../../../../core/utils/utils.dart';
 import '../widgets/auth_widgets.dart';

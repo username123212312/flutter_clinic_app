@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:flutter_clinic_app/core/utils/utils.dart';
 import 'package:flutter_clinic_app/core/widgets/blood_types_widget.dart';
 import 'package:flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
 
+import '../../../../core/blocs/auth_bloc/auth_bloc.dart';
 import '../../../../core/theme/app_pallete.dart';
 
 class EditProfileScreen extends StatefulWidget {
@@ -50,7 +53,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildFormFields(),
+            BlocBuilder<AuthBloc, AuthState>(
+              builder: (context, state) {
+                return _buildFormFields(state);
+              },
+            ),
             _buildBloodTypes(),
             SizedBox(
               width: screenWidth(context),
@@ -88,9 +95,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
         SizedBox(
           height: screenHeight(context) * 0.2,
-          child: BloodTypesWidget(
-            onSelected: (bloodType) {
-              _selectedBloodType = bloodType;
+          child: BlocBuilder<AuthBloc, AuthState>(
+            builder: (context, state) {
+              return BloodTypesWidget(
+                selectedBloodType: AppConstants.bloodTypes.indexOf(
+                  state.authUser!.user!.bloodType ?? 'A+',
+                ),
+                onSelected: (bloodType) {
+                  _selectedBloodType = bloodType;
+                },
+              );
             },
           ),
         ),
@@ -98,19 +112,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     );
   }
 
-  Column _buildFormFields() {
+  Column _buildFormFields(AuthState state) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 20),
         Text(
-          'First Name',
+          'First name',
           style: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12),
         ),
         SizedBox(height: 10),
         CustomTextField(
           controller: _firstNameController,
-          hintText: 'John',
+          hintText: state.authUser!.user!.firstName!,
           keyboardType: TextInputType.text,
         ),
         SizedBox(height: 20),
@@ -121,7 +135,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         SizedBox(height: 10),
         CustomTextField(
           controller: _lastNameController,
-          hintText: 'John',
+          hintText: state.authUser!.user!.lastName!,
           keyboardType: TextInputType.text,
         ),
         SizedBox(height: 20),
@@ -133,7 +147,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         SizedBox(height: 10),
         CustomTextField(
           controller: _emailController,
-          hintText: 'jhon.doe@gmail.com',
+          hintText:
+              (state.authUser!.user!.email == null)
+                  ? '+963X-XXXX-XXXX'
+                  : state.authUser!.user!.email!,
           keyboardType: TextInputType.emailAddress,
         ),
         SizedBox(height: 20),
@@ -145,7 +162,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         SizedBox(height: 10),
         CustomTextField(
           controller: _phoneController,
-          hintText: '+963X-XXXX-XXXX',
+          hintText:
+              (state.authUser!.user!.phone == null)
+                  ? '+963X-XXXX-XXXX'
+                  : state.authUser!.user!.phone!,
           keyboardType: TextInputType.phone,
         ),
         SizedBox(height: 20),
@@ -156,9 +176,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         SizedBox(height: 10),
 
         CustomTextField(
-          controller: _genderController,
+          controller:
+              _genderController..text = (state.authUser!.user!.gender ?? ''),
           readOnly: true,
-          suffixIcon: DropdownButton(
+          suffixIcon: DropdownButton<int>(
+            value:
+                (state.authUser!.user!.gender == null)
+                    ? state.authUser!.user!.gender! == 'Male'
+                        ? 0
+                        : 1
+                    : 0,
             underline: Container(color: Colors.transparent),
             icon: Icon(
               Icons.arrow_drop_down,
@@ -193,11 +220,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             );
             if (date != null) {
               setState(() {
-                // _ageController.text = calculateAge(date).toString();
+                _ageController.text = calculateAge(date).toString();
               });
             }
           },
-          controller: _ageController,
+          controller:
+              _ageController
+                ..text = state.authUser!.user!.age?.toString() ?? '',
           readOnly: true,
           hintText: 'Age',
           keyboardType: TextInputType.number,
@@ -225,7 +254,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             }
           },
           maxLength: 100,
-          controller: _completeAddressController,
+          controller:
+              _completeAddressController
+                ..text = state.authUser!.user!.address ?? '',
           hintText: 'Address',
           keyboardType: TextInputType.name,
           textInputAction: TextInputAction.done,

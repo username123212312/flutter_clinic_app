@@ -5,7 +5,7 @@ import 'package:flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:flutter_clinic_app/core/utils/logger.dart';
-import 'package:flutter_clinic_app/features/auth/controller/user_bloc/user_bloc.dart';
+import 'package:flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
 import 'package:flutter_clinic_app/features/home/view/widgets/custom_switch.dart';
 import 'package:go_router/go_router.dart';
 
@@ -239,27 +239,31 @@ class ProifileWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'John Doe',
-                style: Theme.of(
-                  context,
-                ).textTheme.titleMedium!.copyWith(fontSize: 20),
-              ),
-              Text(
-                'john.doe@gmail.com',
-                style: Theme.of(
-                  context,
-                ).textTheme.titleSmall!.copyWith(fontSize: 12),
-              ),
-            ],
+          BlocBuilder<AuthBloc, AuthState>(
+            builder: (context, state) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '${state.authUser!.user!.firstName!} ${state.authUser!.user!.lastName!}',
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleMedium!.copyWith(fontSize: 20),
+                  ),
+                  Text(
+                    state.authUser!.user!.email!,
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleSmall!.copyWith(fontSize: 12),
+                  ),
+                ],
+              );
+            },
           ),
 
           GestureDetector(
             onTap: () {
-              //TODO Navigate to edit profile
+              context.pushNamed(AppRouteConstants.editProfileRouteName);
             },
             child: Icon(
               Icons.edit_square,

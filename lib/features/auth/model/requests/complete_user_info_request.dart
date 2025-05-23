@@ -9,8 +9,8 @@ sealed class CompleteUserInfoRequest with _$CompleteUserInfoRequest {
     @JsonKey(name: 'first_name') String? firstName,
     @JsonKey(name: 'last_name') String? lastName,
     int? age,
-    String? gender,
     @JsonKey(name: 'blood_type') String? bloodType,
+    String? gender,
     String? address,
   }) = _CompleteUserInfoRequest;
 

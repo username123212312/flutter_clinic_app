@@ -22,7 +22,7 @@ import 'package:path_provider/path_provider.dart' as p;
 
 import 'core/observers/custom_bloc_observer.dart';
 import 'core/providers/hive_client/hive_adapters/downloaded_file.dart';
-import 'features/auth/controller/user_bloc/user_bloc.dart';
+import 'core/blocs/user_bloc/user_bloc.dart';
 import 'features/auth/view/screens/nana/new_password.dart';
 import 'features/auth/view/screens/register_screen.dart';
 import 'features/home/view/screens/documents_screen.dart';

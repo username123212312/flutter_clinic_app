@@ -19,4 +19,6 @@ sealed class UserEvent with _$UserEvent {
   const factory UserEvent.userLoggedOut() = UserLoggedOut;
   const factory UserEvent.userCompletedProfileData({required UserModel user}) =
       UserCompletedProfileData;
+  const factory UserEvent.userModifiedProfileData({required UserModel user}) =
+      UserModifiedProfileData;
 }

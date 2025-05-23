@@ -1,5 +1,5 @@
 import 'package:flutter_clinic_app/core/navigation/navigation_exports.dart';
-import 'package:flutter_clinic_app/features/auth/controller/user_bloc/user_bloc.dart';
+import 'package:flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
 import 'package:flutter_clinic_app/features/auth/repository/user_repository.dart';
 import 'package:get_it/get_it.dart';
 

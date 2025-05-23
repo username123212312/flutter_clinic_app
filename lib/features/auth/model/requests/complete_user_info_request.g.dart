@@ -12,8 +12,8 @@ _CompleteUserInfoRequest _$CompleteUserInfoRequestFromJson(
       firstName: json['first_name'] as String?,
       lastName: json['last_name'] as String?,
       age: (json['age'] as num?)?.toInt(),
-      gender: json['gender'] as String?,
       bloodType: json['blood_type'] as String?,
+      gender: json['gender'] as String?,
       address: json['address'] as String?,
     );
 
@@ -23,7 +23,7 @@ Map<String, dynamic> _$CompleteUserInfoRequestToJson(
       'first_name': instance.firstName,
       'last_name': instance.lastName,
       'age': instance.age,
-      'gender': instance.gender,
       'blood_type': instance.bloodType,
+      'gender': instance.gender,
       'address': instance.address,
     };

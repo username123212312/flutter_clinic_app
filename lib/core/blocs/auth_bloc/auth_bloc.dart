@@ -1,7 +1,7 @@
 import 'package:flutter_clinic_app/core/models/authuser.dart';
 import 'package:flutter_clinic_app/core/repositories/auth_repository.dart';
 import 'package:flutter_clinic_app/core/utils/utils.dart';
-import 'package:flutter_clinic_app/features/auth/controller/user_bloc/user_bloc.dart';
+import 'package:flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';

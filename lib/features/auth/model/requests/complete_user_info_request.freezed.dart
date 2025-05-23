@@ -20,9 +20,9 @@ mixin _$CompleteUserInfoRequest {
   @JsonKey(name: 'last_name')
   String? get lastName;
   int? get age;
-  String? get gender;
   @JsonKey(name: 'blood_type')
   String? get bloodType;
+  String? get gender;
   String? get address;
 
   /// Create a copy of CompleteUserInfoRequest
@@ -46,20 +46,20 @@ mixin _$CompleteUserInfoRequest {
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
             (identical(other.age, age) || other.age == age) &&
-            (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.bloodType, bloodType) ||
                 other.bloodType == bloodType) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.address, address) || other.address == address));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, firstName, lastName, age, gender, bloodType, address);
+      runtimeType, firstName, lastName, age, bloodType, gender, address);
 
   @override
   String toString() {
-    return 'CompleteUserInfoRequest(firstName: $firstName, lastName: $lastName, age: $age, gender: $gender, bloodType: $bloodType, address: $address)';
+    return 'CompleteUserInfoRequest(firstName: $firstName, lastName: $lastName, age: $age, bloodType: $bloodType, gender: $gender, address: $address)';
   }
 }
 
@@ -73,8 +73,8 @@ abstract mixin class $CompleteUserInfoRequestCopyWith<$Res> {
       {@JsonKey(name: 'first_name') String? firstName,
       @JsonKey(name: 'last_name') String? lastName,
       int? age,
-      String? gender,
       @JsonKey(name: 'blood_type') String? bloodType,
+      String? gender,
       String? address});
 }
 
@@ -94,8 +94,8 @@ class _$CompleteUserInfoRequestCopyWithImpl<$Res>
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? age = freezed,
-    Object? gender = freezed,
     Object? bloodType = freezed,
+    Object? gender = freezed,
     Object? address = freezed,
   }) {
     return _then(_self.copyWith(
@@ -111,13 +111,13 @@ class _$CompleteUserInfoRequestCopyWithImpl<$Res>
           ? _self.age
           : age // ignore: cast_nullable_to_non_nullable
               as int?,
-      gender: freezed == gender
-          ? _self.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as String?,
       bloodType: freezed == bloodType
           ? _self.bloodType
           : bloodType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gender: freezed == gender
+          ? _self.gender
+          : gender // ignore: cast_nullable_to_non_nullable
               as String?,
       address: freezed == address
           ? _self.address
@@ -134,8 +134,8 @@ class _CompleteUserInfoRequest implements CompleteUserInfoRequest {
       {@JsonKey(name: 'first_name') this.firstName,
       @JsonKey(name: 'last_name') this.lastName,
       this.age,
-      this.gender,
       @JsonKey(name: 'blood_type') this.bloodType,
+      this.gender,
       this.address});
   factory _CompleteUserInfoRequest.fromJson(Map<String, dynamic> json) =>
       _$CompleteUserInfoRequestFromJson(json);
@@ -149,10 +149,10 @@ class _CompleteUserInfoRequest implements CompleteUserInfoRequest {
   @override
   final int? age;
   @override
-  final String? gender;
-  @override
   @JsonKey(name: 'blood_type')
   final String? bloodType;
+  @override
+  final String? gender;
   @override
   final String? address;
 
@@ -182,20 +182,20 @@ class _CompleteUserInfoRequest implements CompleteUserInfoRequest {
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
             (identical(other.age, age) || other.age == age) &&
-            (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.bloodType, bloodType) ||
                 other.bloodType == bloodType) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.address, address) || other.address == address));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, firstName, lastName, age, gender, bloodType, address);
+      runtimeType, firstName, lastName, age, bloodType, gender, address);
 
   @override
   String toString() {
-    return 'CompleteUserInfoRequest(firstName: $firstName, lastName: $lastName, age: $age, gender: $gender, bloodType: $bloodType, address: $address)';
+    return 'CompleteUserInfoRequest(firstName: $firstName, lastName: $lastName, age: $age, bloodType: $bloodType, gender: $gender, address: $address)';
   }
 }
 
@@ -211,8 +211,8 @@ abstract mixin class _$CompleteUserInfoRequestCopyWith<$Res>
       {@JsonKey(name: 'first_name') String? firstName,
       @JsonKey(name: 'last_name') String? lastName,
       int? age,
-      String? gender,
       @JsonKey(name: 'blood_type') String? bloodType,
+      String? gender,
       String? address});
 }
 
@@ -232,8 +232,8 @@ class __$CompleteUserInfoRequestCopyWithImpl<$Res>
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? age = freezed,
-    Object? gender = freezed,
     Object? bloodType = freezed,
+    Object? gender = freezed,
     Object? address = freezed,
   }) {
     return _then(_CompleteUserInfoRequest(
@@ -249,13 +249,13 @@ class __$CompleteUserInfoRequestCopyWithImpl<$Res>
           ? _self.age
           : age // ignore: cast_nullable_to_non_nullable
               as int?,
-      gender: freezed == gender
-          ? _self.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as String?,
       bloodType: freezed == bloodType
           ? _self.bloodType
           : bloodType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gender: freezed == gender
+          ? _self.gender
+          : gender // ignore: cast_nullable_to_non_nullable
               as String?,
       address: freezed == address
           ? _self.address

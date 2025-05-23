@@ -7,7 +7,7 @@ import 'package:flutter_clinic_app/features/auth/repository/user_repository.dart
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../core/models/usermodel.dart';
+import '../../models/usermodel.dart';
 
 part 'user_event.dart';
 part 'user_state.dart';
@@ -171,6 +171,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       ),
     };
     emit(newState);
+    if (!newState.status.isError) {
+      _authBloc.add(
+        UserAuthenticated(user: state.user!, token: state.user!.token!),
+      );
+    }
   }
 
   final AuthBloc _authBloc;
