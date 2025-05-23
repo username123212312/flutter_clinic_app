@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clinic_app/core/models/usermodel.dart';
+import 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
 import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:flutter_clinic_app/core/utils/validator_util.dart';
 import 'package:flutter_clinic_app/core/widgets/blood_types_widget.dart';
@@ -7,9 +10,11 @@ import 'package:flutter_clinic_app/features/auth/view/widgets/basic_info_widget.
 import 'package:flutter_clinic_app/features/auth/view/widgets/custom_elevated_button.dart';
 import 'package:flutter_clinic_app/features/auth/view/widgets/select_your_gender_widet.dart';
 import 'package:flutter_clinic_app/features/auth/view/widgets/selectable_widget.dart';
-
+import 'package:go_router/go_router.dart';
+import '../../../../core/consts/app_constants.dart';
 import '../../../../core/consts/app_constants.dart';
 import '../../../../core/utils/general_utils.dart';
+import '../../controller/user_bloc/user_bloc.dart';
 
 class ProfileSetupScreen extends StatefulWidget {
   const ProfileSetupScreen({super.key});
@@ -76,7 +81,15 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
                   children: [
                     SizedBox(height: 30),
                     _buildStepper(),
-                    SizedBox(height: 15),
+                    BlocListener<UserBloc, UserState>(
+                      listener: (context, state) {
+                        if (state.user?.firstName != null) {
+                          clearAndShowSnackBar(context, state.statusMessage);
+                          context.goNamed(AppRouteConstants.homeRouteName);
+                        }
+                      },
+                      child: SizedBox(height: 15),
+                    ),
                     Align(
                       alignment: Alignment(-0.9, 0.0),
                       child: Text(
@@ -270,7 +283,18 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
                 _opacityController.forward();
               });
             } else {
-              return;
+              context.read<UserBloc>().add(
+                UserEvent.userCompletedProfileData(
+                  user: UserModel(
+                    firstName: firstNameController.text,
+                    lastName: lastNameController.text,
+                    age: int.tryParse(_ageController.text) ?? 0,
+                    address: completeAddressController.text,
+                    bloodType: AppConstants.bloodTypes[_selectedBloodType],
+                    gender: _selectedGender == 0 ? 'Male' : 'Female',
+                  ),
+                ),
+              );
             }
           },
           elevation: 0,

@@ -1,4 +1,6 @@
+import 'package:flutter_clinic_app/features/home/view/screens/book_new_appointment_screen.dart';
 import 'package:flutter_clinic_app/features/home/view/screens/documents_screen.dart';
+import 'package:flutter_clinic_app/service_locator.dart';
 
 import 'navigation_exports.dart';
 
@@ -76,6 +78,12 @@ class AppRouteConfig {
         name: AppRouteConstants.documentsRouteName,
         path: '/documents',
         pageBuilder: (_, state) => TransitionPage(child: DocumentsScreen()),
+      ),
+      GoRoute(
+        name: AppRouteConstants.bookNewAppointmentRouteName,
+        path: '/book_new_appointment',
+        pageBuilder:
+            (_, state) => TransitionPage(child: BookNewAppointmentScreen()),
       ),
     ],
   );

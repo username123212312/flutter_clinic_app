@@ -9,13 +9,14 @@ import 'package:flutter_clinic_app/core/navigation/app_route_config.dart';
 import 'package:flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:flutter_clinic_app/core/theme/app_theme.dart';
 import 'package:flutter_clinic_app/core/blocs/auth_bloc/auth_bloc.dart';
-import 'package:flutter_clinic_app/features/auth/repository/auth_repository.dart';
+import 'package:flutter_clinic_app/features/auth/repository/user_repository.dart';
 import 'package:flutter_clinic_app/features/home/model/appointment_model.dart';
 import 'package:flutter_clinic_app/features/home/model/doctor_model.dart';
 import 'package:flutter_clinic_app/features/home/model/patient_model.dart';
 import 'package:flutter_clinic_app/features/home/view/screens/appointment_details_screen.dart';
 import 'package:flutter_clinic_app/features/home/view/screens/book_new_appointment_screen.dart';
 import 'package:flutter_clinic_app/features/home/view/screens/home_screen.dart';
+import 'package:flutter_clinic_app/service_locator.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as p;
 
@@ -43,42 +44,33 @@ class ClinicApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
-      providers: [RepositoryProvider(create: (_) => AuthRepository())],
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (context) => AuthBloc()),
-          BlocProvider(
-            create:
-                (context) => UserBloc(
-                  authBloc: context.read<AuthBloc>(),
-                  authRepository: context.read<AuthRepository>(),
-                ),
-          ),
-        ],
-        // child: MaterialApp(
-        //   debugShowCheckedModeBanner: false,
-        //   title: 'Clinic App',
-        //   themeMode: ThemeMode.system,
-        //   theme: AppTheme.lightThemeMode,
-        //   darkTheme: AppTheme.darkThemeMode,
-        //   home: CreatePasswordScreen(),
-        // ),
-        child: BlocBuilder<AuthBloc, AuthState>(
-          buildWhen: (previous, current) {
-            return previous.isAuth != current.isAuth;
-          },
-          builder: (context, state) {
-            return MaterialApp.router(
-              debugShowCheckedModeBanner: false,
-              routerConfig: AppRouteConfig.router,
-              title: 'Clinic App',
-              themeMode: ThemeMode.system,
-              theme: AppTheme.lightThemeMode,
-              darkTheme: AppTheme.darkThemeMode,
-            );
-          },
-        ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider.value(value: ServiceLocator.instance<AuthBloc>()),
+        BlocProvider.value(value: ServiceLocator.instance<UserBloc>()),
+      ],
+      // child: MaterialApp(
+      //   debugShowCheckedModeBanner: false,
+      //   title: 'Clinic App',
+      //   themeMode: ThemeMode.system,
+      //   theme: AppTheme.lightThemeMode,
+      //   darkTheme: AppTheme.darkThemeMode,
+      //   home: CreatePasswordScreen(),
+      // ),
+      child: BlocBuilder<AuthBloc, AuthState>(
+        buildWhen: (previous, current) {
+          return previous.isAuth != current.isAuth;
+        },
+        builder: (context, state) {
+          return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            routerConfig: AppRouteConfig.router,
+            title: 'Clinic App',
+            themeMode: ThemeMode.system,
+            theme: AppTheme.lightThemeMode,
+            darkTheme: AppTheme.darkThemeMode,
+          );
+        },
       ),
     );
   }
@@ -90,11 +82,14 @@ Future<void> initMain() async {
     storageDirectory:
         kIsWeb
             ? HydratedStorageDirectory.web
-            : HydratedStorageDirectory((await p.getTemporaryDirectory()).path),
+            : HydratedStorageDirectory(
+              (await p.getApplicationDocumentsDirectory()).path,
+            ),
   );
   final Directory hiveDir = await p.getApplicationDocumentsDirectory();
   Hive.init(hiveDir.path);
   Bloc.observer = CustomBlocObserver();
   // Hive.registerAdapter(DownloadedFileAdapter());
   await Hive.openBox<DownloadedFile>('downloadedFiles');
+  ServiceLocator.setup();
 }

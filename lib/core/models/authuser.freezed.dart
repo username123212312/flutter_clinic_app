@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AuthUser {
   UserModel? get user;
-  String get token;
+  String? get token;
 
   /// Create a copy of AuthUser
   /// with the given fields replaced by the non-null parameter values.
@@ -52,7 +52,7 @@ abstract mixin class $AuthUserCopyWith<$Res> {
   factory $AuthUserCopyWith(AuthUser value, $Res Function(AuthUser) _then) =
       _$AuthUserCopyWithImpl;
   @useResult
-  $Res call({UserModel? user, String token});
+  $Res call({UserModel? user, String? token});
 
   $UserModelCopyWith<$Res>? get user;
 }
@@ -70,17 +70,17 @@ class _$AuthUserCopyWithImpl<$Res> implements $AuthUserCopyWith<$Res> {
   @override
   $Res call({
     Object? user = freezed,
-    Object? token = null,
+    Object? token = freezed,
   }) {
     return _then(_self.copyWith(
       user: freezed == user
           ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserModel?,
-      token: null == token
+      token: freezed == token
           ? _self.token
           : token // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 
@@ -102,14 +102,14 @@ class _$AuthUserCopyWithImpl<$Res> implements $AuthUserCopyWith<$Res> {
 /// @nodoc
 @JsonSerializable()
 class _AuthUser implements AuthUser {
-  _AuthUser({this.user, required this.token});
+  _AuthUser({this.user, this.token});
   factory _AuthUser.fromJson(Map<String, dynamic> json) =>
       _$AuthUserFromJson(json);
 
   @override
   final UserModel? user;
   @override
-  final String token;
+  final String? token;
 
   /// Create a copy of AuthUser
   /// with the given fields replaced by the non-null parameter values.
@@ -152,7 +152,7 @@ abstract mixin class _$AuthUserCopyWith<$Res>
       __$AuthUserCopyWithImpl;
   @override
   @useResult
-  $Res call({UserModel? user, String token});
+  $Res call({UserModel? user, String? token});
 
   @override
   $UserModelCopyWith<$Res>? get user;
@@ -171,17 +171,17 @@ class __$AuthUserCopyWithImpl<$Res> implements _$AuthUserCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   $Res call({
     Object? user = freezed,
-    Object? token = null,
+    Object? token = freezed,
   }) {
     return _then(_AuthUser(
       user: freezed == user
           ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserModel?,
-      token: null == token
+      token: freezed == token
           ? _self.token
           : token // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 

@@ -56,6 +56,10 @@ dependencies:
   equatable:
   permission_handler:
   fpdart: ^1.1.1
+  get_it: ^8.0.3
+  location: ^8.0.0
+  latlong2: ^0.9.1
+  flutter_map: ^8.1.1
 
 dev_dependencies:
   flutter_test:

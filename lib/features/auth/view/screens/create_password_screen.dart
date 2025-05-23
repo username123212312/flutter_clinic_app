@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:flutter_clinic_app/core/utils/validator_util.dart';
+import 'package:go_router/go_router.dart';
 import '../../controller/user_bloc/user_bloc.dart';
 import '../widgets/auth_widgets.dart';
 
@@ -31,9 +33,10 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
         ),
         body: SingleChildScrollView(
           padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).viewInsets.bottom * 0.3,
+            bottom: MediaQuery.of(context).viewInsets.bottom * 0.1,
           ),
           child: BackgroundContainer(
+            height: screenHeight(context) * 0.86,
             child: Padding(
               padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
               child: Column(
@@ -43,10 +46,25 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                   SizedBox(height: 50),
                   SizedBox(
                     width: screenWidth(context) * 0.9,
-                    child: BlocListener<UserBloc, UserState>(
-                      listener: (context, state) {
-                        clearAndShowSnackBar(context, state.statusMessage);
-                      },
+                    child: MultiBlocListener(
+                      listeners: [
+                        BlocListener<UserBloc, UserState>(
+                          listener:
+                              (context, state) => clearAndShowSnackBar(
+                                context,
+                                state.statusMessage,
+                              ),
+                        ),
+                        BlocListener<AuthBloc, AuthState>(
+                          listener: (context, state) {
+                            if (state.isAuth != null && state.isAuth!) {
+                              context.goNamed(
+                                AppRouteConstants.yourProfileRouteName,
+                              );
+                            }
+                          },
+                        ),
+                      ],
                       child: BlocBuilder<UserBloc, UserState>(
                         builder: (context, state) {
                           return CustomElevatedButton(

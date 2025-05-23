@@ -1,10 +1,11 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_clinic_app/core/utils/utils.dart';
+import 'package:flutter_clinic_app/service_locator.dart';
 
 import '../../blocs/auth_bloc/auth_bloc.dart';
 import '../../models/app_response.dart';
-import '../../utils/utils.dart';
 
 class AppInterceptors extends Interceptor {
   static AppInterceptors? _singleton;
@@ -21,7 +22,7 @@ class AppInterceptors extends Interceptor {
   ) async {
     /// Tries to add Authorization header only if Authorization header not extisted
     if (!options.headers.containsKey(HttpHeaders.authorizationHeader)) {
-      final state = AuthBloc().state;
+      final state = ServiceLocator.instance<AuthBloc>().state;
 
       if (state.token != null) {
         options.headers[HttpHeaders.authorizationHeader] =

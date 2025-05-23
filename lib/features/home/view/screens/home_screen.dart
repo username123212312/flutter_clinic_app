@@ -63,7 +63,11 @@ class _HomeScreenState extends State<HomeScreen>
           if (_currentIndex == 1)
             TextButton.icon(
               icon: Icon(Icons.add),
-              onPressed: () {},
+              onPressed: () {
+                context.pushNamed(
+                  AppRouteConstants.bookNewAppointmentRouteName,
+                );
+              },
               label: Text('Add'),
               style: TextButton.styleFrom(
                 side: BorderSide(

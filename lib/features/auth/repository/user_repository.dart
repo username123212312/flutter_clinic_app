@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_clinic_app/core/consts/app_constants.dart';
@@ -12,8 +13,8 @@ import 'package:fpdart/fpdart.dart';
 import '../../../core/models/app_failure.dart';
 import '../model/requests/auth_requests.dart';
 
-class AuthRepository {
-  AuthRepository({Dio? dio}) : _dio = dio ?? DioClient().instance;
+class UserRepository {
+  UserRepository({Dio? dio}) : _dio = dio ?? DioClient().instance;
 
   Future<Either<AppFailure, AppResponse<UserModel>>> registerPatient(
     RegisterPatientRequest request,
@@ -30,27 +31,38 @@ class AuthRepository {
         },
       );
       eLog(response.data);
-      return Right(
-        AppResponse<UserModel>(
-          success: response.data['statusCode'] < 300,
-          message:
-              '${response.data['email']?[0] ?? ''}'
-              '\n${response.data['phone']?[0] ?? ''}',
-          statusCode: response.data['statusCode'],
-          statusMessage: response.data['statusMessage'],
-          data:
-              response.data['user'] == null
-                  ? null
-                  : UserModel.fromJson(response.data['user']),
-        ),
-      );
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse<UserModel>(
+            success: response.data['statusCode'] < 300,
+            message:
+                '${response.data['email']?[0] ?? ''}'
+                '\n${response.data['phone']?[0] ?? ''}',
+            statusCode: response.data['statusCode'],
+            statusMessage: response.data['statusMessage'],
+            data:
+                response.data['user'] == null
+                    ? null
+                    : UserModel.fromJson(
+                      response.data['user'],
+                    ).copyWith(token: response.data['token']),
+          ),
+        );
+      } else {
+        return throw HttpException(response.data['error']);
+      }
     } on DioException catch (e) {
       eLog(StackTrace.current);
       return Left(
         AppFailure(
-          message: e.error.toString(),
+          message: e.message ?? 'Some error occurred',
           stacktracte: StackTrace.current,
         ),
+      );
+    } on HttpException catch (e) {
+      eLog(StackTrace.current);
+      return Left(
+        AppFailure(message: e.message, stacktracte: StackTrace.current),
       );
     }
   }
@@ -112,6 +124,50 @@ class AuthRepository {
     } catch (e) {
       return Left(
         AppFailure(message: e.toString(), stacktracte: StackTrace.current),
+      );
+    }
+  }
+
+  Future<Either<AppFailure, AppResponse<UserModel>>> completeUserInfo(
+    CompleteUserInfoRequest request,
+  ) async {
+    try {
+      final response = await _dio.post(
+        AppConstants.completeInfoPath,
+        data: {
+          if (request.firstName != null) 'first_name': request.firstName,
+          if (request.lastName != null) 'last_name': request.lastName,
+          if (request.age != null) 'age': request.age,
+          if (request.gender != null) 'gender': request.gender,
+          if (request.bloodType != null) 'blood_type': request.bloodType,
+          if (request.address != null) 'address': request.address,
+        },
+      );
+      if (response.data['statusCode'] < 300) {
+        wLog(response.data);
+
+        return Right(
+          AppResponse<UserModel>(
+            success: true,
+            message: response.data['message'],
+            data: UserModel.fromJson(response.data['data']),
+            statusCode: response.data['statusCode'],
+            statusMessage: response.data['statusMessage'],
+          ),
+        );
+      } else {
+        throw HttpException(response.data['message']);
+      }
+    } on DioException catch (e) {
+      return Left(
+        AppFailure(
+          message: e.message ?? 'Error',
+          stacktracte: StackTrace.current,
+        ),
+      );
+    } on HttpException catch (e) {
+      return Left(
+        AppFailure(message: e.message, stacktracte: StackTrace.current),
       );
     }
   }

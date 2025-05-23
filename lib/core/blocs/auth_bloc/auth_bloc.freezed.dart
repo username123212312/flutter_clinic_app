@@ -214,6 +214,26 @@ class UserReset implements AuthEvent {
 }
 
 /// @nodoc
+
+class CheckUserAuthState implements AuthEvent {
+  const CheckUserAuthState();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is CheckUserAuthState);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'AuthEvent.checkUserAuthState()';
+  }
+}
+
+/// @nodoc
 mixin _$AuthState {
   AuthUser? get authUser;
   String? get token;

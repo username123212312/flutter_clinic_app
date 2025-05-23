@@ -6,6 +6,6 @@ class CustomBlocObserver extends BlocObserver {
   @override
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
-    wLog('${bloc.runtimeType} : $transition');
+    wLog('${bloc.runtimeType} : ${transition.nextState}');
   }
 }

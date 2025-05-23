@@ -413,6 +413,83 @@ class UserLoggedOut implements UserEvent {
 }
 
 /// @nodoc
+
+class UserCompletedProfileData implements UserEvent {
+  const UserCompletedProfileData({required this.user});
+
+  final UserModel user;
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $UserCompletedProfileDataCopyWith<UserCompletedProfileData> get copyWith =>
+      _$UserCompletedProfileDataCopyWithImpl<UserCompletedProfileData>(
+          this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is UserCompletedProfileData &&
+            (identical(other.user, user) || other.user == user));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, user);
+
+  @override
+  String toString() {
+    return 'UserEvent.userCompletedProfileData(user: $user)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $UserCompletedProfileDataCopyWith<$Res>
+    implements $UserEventCopyWith<$Res> {
+  factory $UserCompletedProfileDataCopyWith(UserCompletedProfileData value,
+          $Res Function(UserCompletedProfileData) _then) =
+      _$UserCompletedProfileDataCopyWithImpl;
+  @useResult
+  $Res call({UserModel user});
+
+  $UserModelCopyWith<$Res> get user;
+}
+
+/// @nodoc
+class _$UserCompletedProfileDataCopyWithImpl<$Res>
+    implements $UserCompletedProfileDataCopyWith<$Res> {
+  _$UserCompletedProfileDataCopyWithImpl(this._self, this._then);
+
+  final UserCompletedProfileData _self;
+  final $Res Function(UserCompletedProfileData) _then;
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? user = null,
+  }) {
+    return _then(UserCompletedProfileData(
+      user: null == user
+          ? _self.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel,
+    ));
+  }
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res> get user {
+    return $UserModelCopyWith<$Res>(_self.user, (value) {
+      return _then(_self.copyWith(user: value));
+    });
+  }
+}
+
+/// @nodoc
 mixin _$UserState {
   UserModel? get user;
   UserStatus get status;

@@ -6,7 +6,7 @@ part 'authuser.g.dart';
 
 @freezed
 sealed class AuthUser with _$AuthUser {
-  factory AuthUser({UserModel? user, required String token}) = _AuthUser;
+  factory AuthUser({UserModel? user, String? token}) = _AuthUser;
 
   factory AuthUser.fromJson(Map<String, dynamic> json) =>
       _$AuthUserFromJson(json);

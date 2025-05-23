@@ -12,21 +12,23 @@ class AppConstants {
     'AB-',
   ];
   static const ipAddress = '192.168.1.7';
-  static const serverUrl = 'http://$ipAddress:8000/api';
+  static const serverUrl = 'http://$ipAddress:8000';
   static const patientPath = 'patient';
   static const doctorPath = 'Doctor';
   static const homePath = 'Home';
+  static const apiPath = 'api';
 
   //! Auth
-  static const registerPath = '/register';
-  static const loginPath = '/login';
-  static const logoutPath = '/logout';
+  static const registerPath = '/$apiPath/register';
+  static const loginPath = '/$apiPath/login';
+  static const logoutPath = '/$apiPath/logout';
 
   //! Home
-  static const showDoctorsPath = '/$homePath/showDoctors';
-  static const showDoctorDetailsPath = '/$homePath/showDoctorDetails';
-  static const showClinincDoctorsPath = '/$homePath/showClinincDoctors';
-  static const searchDoctorPath = '/$homePath/searchDoctor';
+  static const showDoctorsPath = '/$apiPath/$homePath/showDoctors';
+  static const showDoctorDetailsPath = '/$apiPath/$homePath/showDoctorDetails';
+  static const showClinincDoctorsPath =
+      '/$apiPath/$homePath/showClinincDoctors';
+  static const searchDoctorPath = '/$apiPath/$homePath/searchDoctor';
 
   //? Patient
   static const completeInfoPath = '/$patientPath/completeInfo';
