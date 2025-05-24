@@ -24,7 +24,7 @@ class _AnalysisItemWidgetState extends State<AnalysisItemWidget> {
   void initState() {
     super.initState();
     _analysisItemCubit = AnalysisItemCubit(
-      cubitId: widget.analysis.name,
+      cubitId: widget.analysis.name + widget.analysis.id.toString(),
       analysis: widget.analysis,
       analysisItemRepository: AnalysisItemRepository(),
     );

@@ -25,8 +25,8 @@ class ChooseFromWidget extends StatelessWidget {
         onToggleSelect();
       },
       child: Container(
-        width: screenWidth(context) * 0.4,
-        height: screenHeight(context) * 0.33,
+        width: screenWidth(context) * 0.35,
+        height: screenHeight(context) * 0.19,
         decoration: BoxDecoration(
           color: Pallete.backgroundColor,
           borderRadius: BorderRadius.circular(12),

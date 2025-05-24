@@ -24,6 +24,7 @@ class LoginAsScreen extends StatefulWidget {
 class _LoginAsScreenState extends State<LoginAsScreen> {
   bool _patientSelected = true;
   bool _doctorSelected = false;
+  bool _biologistSelected = false;
   Role _currentRole = Role.patient;
 
   @override
@@ -78,7 +79,15 @@ class _LoginAsScreenState extends State<LoginAsScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: screenHeight(context) * 0.23),
+              SizedBox(height: 20),
+              ChooseFromWidget(
+                onToggleSelect: () => _toggleRoles(Role.biologist),
+                isSelected: _biologistSelected,
+                title: 'Biologist',
+                imagePath: 'assets/images/biologist_photo.png',
+              ),
+
+              SizedBox(height: screenHeight(context) * 0.13),
               CustomElevatedButton(
                 title: 'Continue',
                 onTap: () {
@@ -104,13 +113,24 @@ class _LoginAsScreenState extends State<LoginAsScreen> {
         _currentRole = Role.patient;
         _patientSelected = true;
         _doctorSelected = false;
+        _biologistSelected = false;
       });
     }
     if (role.isDoctor && !_doctorSelected) {
       setState(() {
         _currentRole = Role.doctor;
-        _patientSelected = false;
         _doctorSelected = true;
+        _patientSelected = false;
+        _biologistSelected = false;
+      });
+    }
+    if (role.isBiologist && !_biologistSelected) {
+      setState(() {
+        _currentRole = Role.biologist;
+        _biologistSelected = true;
+
+        _patientSelected = false;
+        _doctorSelected = false;
       });
     }
   }

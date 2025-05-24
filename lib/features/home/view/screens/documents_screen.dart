@@ -439,7 +439,6 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
                               color: Pallete.grayScaleColor200,
                               borderRadius: BorderRadius.circular(10),
                               image: DecorationImage(
-                                colorFilter: ColorFilter.linearToSrgbGamma(),
                                 image: AssetImage('assets/icons/pdf_icon.png'),
                               ),
                             ),

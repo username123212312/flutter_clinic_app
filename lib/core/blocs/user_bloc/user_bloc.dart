@@ -2,11 +2,13 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clinic_app/core/blocs/auth_bloc/auth_bloc.dart';
+import 'package:flutter_clinic_app/core/providers/file_manager/file_manager.dart';
 import 'package:flutter_clinic_app/features/auth/model/requests/auth_requests.dart';
 import 'package:flutter_clinic_app/features/auth/model/requests/modify_password_request.dart';
 import 'package:flutter_clinic_app/features/auth/repository/user_repository.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 import '../../models/usermodel.dart';
 
@@ -137,6 +139,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     emit(newState);
     if (!newState.status.isError) {
       _authBloc.add(UserReset());
+      await FileManager.deleteAllStoredFiles();
     }
   }
 

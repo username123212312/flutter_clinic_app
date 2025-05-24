@@ -1,8 +1,10 @@
 enum Role {
   doctor,
+  biologist,
   patient;
 
   bool get isPatient => this == Role.patient;
+  bool get isBiologist => this == Role.biologist;
   bool get isDoctor => this == Role.doctor;
 }
 

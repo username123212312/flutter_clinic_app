@@ -5,6 +5,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:flutter_clinic_app/core/providers/dio_client/dio_client.dart';
 import 'package:flutter_clinic_app/core/utils/logger.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:dio/dio.dart';
@@ -107,7 +108,6 @@ class FileManager {
 
             Headers.contentTypeHeader: 'application/json',
           },
-          // responseType: ResponseType.bytes,
           followRedirects: true,
 
           validateStatus: (status) => status! < 500,
@@ -124,8 +124,6 @@ class FileManager {
       }
 
       final file = File(savePath);
-      // File file = File(savePath);
-      // await file.writeAsBytes(response.data!);
 
       final stat = await file.stat();
 
@@ -146,6 +144,24 @@ class FileManager {
       await OpenFilex.open(filePath);
     } catch (e) {
       throw Exception('Could not open file: \$e');
+    }
+  }
+
+  static Future<void> deleteAllStoredFiles() async {
+    try {
+      final dir = await getApplicationDocumentsDirectory();
+      final files = dir.listSync();
+      await HydratedBloc.storage.clear();
+      for (var fileEntity in files) {
+        if (fileEntity is File) {
+          await fileEntity.delete();
+          eLog('Deleted file: ${fileEntity.path}');
+        }
+      }
+
+      eLog('All stored files deleted.');
+    } catch (e) {
+      throw Exception('Failed to delete stored files: $e');
     }
   }
 }
