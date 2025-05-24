@@ -15,77 +15,25 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$AnalysisListEvent {
-  AnalysisModel get analysis;
-
-  /// Create a copy of AnalysisListEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $AnalysisListEventCopyWith<AnalysisListEvent> get copyWith =>
-      _$AnalysisListEventCopyWithImpl<AnalysisListEvent>(
-          this as AnalysisListEvent, _$identity);
-
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is AnalysisListEvent &&
-            (identical(other.analysis, analysis) ||
-                other.analysis == analysis));
+        (other.runtimeType == runtimeType && other is AnalysisListEvent);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, analysis);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   String toString() {
-    return 'AnalysisListEvent(analysis: $analysis)';
+    return 'AnalysisListEvent()';
   }
 }
 
 /// @nodoc
-abstract mixin class $AnalysisListEventCopyWith<$Res> {
-  factory $AnalysisListEventCopyWith(
-          AnalysisListEvent value, $Res Function(AnalysisListEvent) _then) =
-      _$AnalysisListEventCopyWithImpl;
-  @useResult
-  $Res call({AnalysisModel analysis});
-
-  $AnalysisModelCopyWith<$Res> get analysis;
-}
-
-/// @nodoc
-class _$AnalysisListEventCopyWithImpl<$Res>
-    implements $AnalysisListEventCopyWith<$Res> {
-  _$AnalysisListEventCopyWithImpl(this._self, this._then);
-
-  final AnalysisListEvent _self;
-  final $Res Function(AnalysisListEvent) _then;
-
-  /// Create a copy of AnalysisListEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? analysis = null,
-  }) {
-    return _then(_self.copyWith(
-      analysis: null == analysis
-          ? _self.analysis
-          : analysis // ignore: cast_nullable_to_non_nullable
-              as AnalysisModel,
-    ));
-  }
-
-  /// Create a copy of AnalysisListEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AnalysisModelCopyWith<$Res> get analysis {
-    return $AnalysisModelCopyWith<$Res>(_self.analysis, (value) {
-      return _then(_self.copyWith(analysis: value));
-    });
-  }
+class $AnalysisListEventCopyWith<$Res> {
+  $AnalysisListEventCopyWith(
+      AnalysisListEvent _, $Res Function(AnalysisListEvent) __);
 }
 
 /// @nodoc
@@ -93,12 +41,10 @@ class _$AnalysisListEventCopyWithImpl<$Res>
 class AnaysisAdded implements AnalysisListEvent {
   const AnaysisAdded({required this.analysis});
 
-  @override
   final AnalysisModel analysis;
 
   /// Create a copy of AnalysisListEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $AnaysisAddedCopyWith<AnaysisAdded> get copyWith =>
@@ -128,11 +74,9 @@ abstract mixin class $AnaysisAddedCopyWith<$Res>
   factory $AnaysisAddedCopyWith(
           AnaysisAdded value, $Res Function(AnaysisAdded) _then) =
       _$AnaysisAddedCopyWithImpl;
-  @override
   @useResult
   $Res call({AnalysisModel analysis});
 
-  @override
   $AnalysisModelCopyWith<$Res> get analysis;
 }
 
@@ -145,7 +89,6 @@ class _$AnaysisAddedCopyWithImpl<$Res> implements $AnaysisAddedCopyWith<$Res> {
 
   /// Create a copy of AnalysisListEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @pragma('vm:prefer-inline')
   $Res call({
     Object? analysis = null,
@@ -170,9 +113,162 @@ class _$AnaysisAddedCopyWithImpl<$Res> implements $AnaysisAddedCopyWith<$Res> {
 }
 
 /// @nodoc
+
+class AnalysisRemoved implements AnalysisListEvent {
+  const AnalysisRemoved({required this.analysisId});
+
+  final int analysisId;
+
+  /// Create a copy of AnalysisListEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $AnalysisRemovedCopyWith<AnalysisRemoved> get copyWith =>
+      _$AnalysisRemovedCopyWithImpl<AnalysisRemoved>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is AnalysisRemoved &&
+            (identical(other.analysisId, analysisId) ||
+                other.analysisId == analysisId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, analysisId);
+
+  @override
+  String toString() {
+    return 'AnalysisListEvent.analysisRemoved(analysisId: $analysisId)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $AnalysisRemovedCopyWith<$Res>
+    implements $AnalysisListEventCopyWith<$Res> {
+  factory $AnalysisRemovedCopyWith(
+          AnalysisRemoved value, $Res Function(AnalysisRemoved) _then) =
+      _$AnalysisRemovedCopyWithImpl;
+  @useResult
+  $Res call({int analysisId});
+}
+
+/// @nodoc
+class _$AnalysisRemovedCopyWithImpl<$Res>
+    implements $AnalysisRemovedCopyWith<$Res> {
+  _$AnalysisRemovedCopyWithImpl(this._self, this._then);
+
+  final AnalysisRemoved _self;
+  final $Res Function(AnalysisRemoved) _then;
+
+  /// Create a copy of AnalysisListEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? analysisId = null,
+  }) {
+    return _then(AnalysisRemoved(
+      analysisId: null == analysisId
+          ? _self.analysisId
+          : analysisId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class AnalysisFetchRequested implements AnalysisListEvent {
+  const AnalysisFetchRequested();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is AnalysisFetchRequested);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'AnalysisListEvent.analysisFetchRequested()';
+  }
+}
+
+/// @nodoc
+
+class AnalysisFilterRequested implements AnalysisListEvent {
+  const AnalysisFilterRequested({required this.analysisStatus});
+
+  final AnalysisStatus analysisStatus;
+
+  /// Create a copy of AnalysisListEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $AnalysisFilterRequestedCopyWith<AnalysisFilterRequested> get copyWith =>
+      _$AnalysisFilterRequestedCopyWithImpl<AnalysisFilterRequested>(
+          this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is AnalysisFilterRequested &&
+            (identical(other.analysisStatus, analysisStatus) ||
+                other.analysisStatus == analysisStatus));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, analysisStatus);
+
+  @override
+  String toString() {
+    return 'AnalysisListEvent.analysisFilterRequested(analysisStatus: $analysisStatus)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $AnalysisFilterRequestedCopyWith<$Res>
+    implements $AnalysisListEventCopyWith<$Res> {
+  factory $AnalysisFilterRequestedCopyWith(AnalysisFilterRequested value,
+          $Res Function(AnalysisFilterRequested) _then) =
+      _$AnalysisFilterRequestedCopyWithImpl;
+  @useResult
+  $Res call({AnalysisStatus analysisStatus});
+}
+
+/// @nodoc
+class _$AnalysisFilterRequestedCopyWithImpl<$Res>
+    implements $AnalysisFilterRequestedCopyWith<$Res> {
+  _$AnalysisFilterRequestedCopyWithImpl(this._self, this._then);
+
+  final AnalysisFilterRequested _self;
+  final $Res Function(AnalysisFilterRequested) _then;
+
+  /// Create a copy of AnalysisListEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? analysisStatus = null,
+  }) {
+    return _then(AnalysisFilterRequested(
+      analysisStatus: null == analysisStatus
+          ? _self.analysisStatus
+          : analysisStatus // ignore: cast_nullable_to_non_nullable
+              as AnalysisStatus,
+    ));
+  }
+}
+
+/// @nodoc
 mixin _$AnalysisListState {
   List<AnalysisModel>? get analysisList;
   DataStatus get status;
+  String get statusMessage;
+  double get progressValue;
 
   /// Create a copy of AnalysisListState
   /// with the given fields replaced by the non-null parameter values.
@@ -189,16 +285,24 @@ mixin _$AnalysisListState {
             other is AnalysisListState &&
             const DeepCollectionEquality()
                 .equals(other.analysisList, analysisList) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.statusMessage, statusMessage) ||
+                other.statusMessage == statusMessage) &&
+            (identical(other.progressValue, progressValue) ||
+                other.progressValue == progressValue));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(analysisList), status);
+      runtimeType,
+      const DeepCollectionEquality().hash(analysisList),
+      status,
+      statusMessage,
+      progressValue);
 
   @override
   String toString() {
-    return 'AnalysisListState(analysisList: $analysisList, status: $status)';
+    return 'AnalysisListState(analysisList: $analysisList, status: $status, statusMessage: $statusMessage, progressValue: $progressValue)';
   }
 }
 
@@ -208,7 +312,11 @@ abstract mixin class $AnalysisListStateCopyWith<$Res> {
           AnalysisListState value, $Res Function(AnalysisListState) _then) =
       _$AnalysisListStateCopyWithImpl;
   @useResult
-  $Res call({List<AnalysisModel>? analysisList, DataStatus status});
+  $Res call(
+      {List<AnalysisModel>? analysisList,
+      DataStatus status,
+      String statusMessage,
+      double progressValue});
 }
 
 /// @nodoc
@@ -226,6 +334,8 @@ class _$AnalysisListStateCopyWithImpl<$Res>
   $Res call({
     Object? analysisList = freezed,
     Object? status = null,
+    Object? statusMessage = null,
+    Object? progressValue = null,
   }) {
     return _then(_self.copyWith(
       analysisList: freezed == analysisList
@@ -236,6 +346,14 @@ class _$AnalysisListStateCopyWithImpl<$Res>
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
               as DataStatus,
+      statusMessage: null == statusMessage
+          ? _self.statusMessage
+          : statusMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+      progressValue: null == progressValue
+          ? _self.progressValue
+          : progressValue // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -244,7 +362,10 @@ class _$AnalysisListStateCopyWithImpl<$Res>
 
 class _AnalysisListState implements AnalysisListState {
   const _AnalysisListState(
-      {final List<AnalysisModel>? analysisList, required this.status})
+      {final List<AnalysisModel>? analysisList,
+      required this.status,
+      this.statusMessage = 'no change',
+      this.progressValue = 0.0})
       : _analysisList = analysisList;
 
   final List<AnalysisModel>? _analysisList;
@@ -259,6 +380,12 @@ class _AnalysisListState implements AnalysisListState {
 
   @override
   final DataStatus status;
+  @override
+  @JsonKey()
+  final String statusMessage;
+  @override
+  @JsonKey()
+  final double progressValue;
 
   /// Create a copy of AnalysisListState
   /// with the given fields replaced by the non-null parameter values.
@@ -275,16 +402,24 @@ class _AnalysisListState implements AnalysisListState {
             other is _AnalysisListState &&
             const DeepCollectionEquality()
                 .equals(other._analysisList, _analysisList) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.statusMessage, statusMessage) ||
+                other.statusMessage == statusMessage) &&
+            (identical(other.progressValue, progressValue) ||
+                other.progressValue == progressValue));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_analysisList), status);
+      runtimeType,
+      const DeepCollectionEquality().hash(_analysisList),
+      status,
+      statusMessage,
+      progressValue);
 
   @override
   String toString() {
-    return 'AnalysisListState(analysisList: $analysisList, status: $status)';
+    return 'AnalysisListState(analysisList: $analysisList, status: $status, statusMessage: $statusMessage, progressValue: $progressValue)';
   }
 }
 
@@ -296,7 +431,11 @@ abstract mixin class _$AnalysisListStateCopyWith<$Res>
       __$AnalysisListStateCopyWithImpl;
   @override
   @useResult
-  $Res call({List<AnalysisModel>? analysisList, DataStatus status});
+  $Res call(
+      {List<AnalysisModel>? analysisList,
+      DataStatus status,
+      String statusMessage,
+      double progressValue});
 }
 
 /// @nodoc
@@ -314,6 +453,8 @@ class __$AnalysisListStateCopyWithImpl<$Res>
   $Res call({
     Object? analysisList = freezed,
     Object? status = null,
+    Object? statusMessage = null,
+    Object? progressValue = null,
   }) {
     return _then(_AnalysisListState(
       analysisList: freezed == analysisList
@@ -324,6 +465,14 @@ class __$AnalysisListStateCopyWithImpl<$Res>
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
               as DataStatus,
+      statusMessage: null == statusMessage
+          ? _self.statusMessage
+          : statusMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+      progressValue: null == progressValue
+          ? _self.progressValue
+          : progressValue // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }

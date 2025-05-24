@@ -120,7 +120,14 @@ Response<dynamic> mapResponseData({
 }) {
   final bool hasResponseData = response?.data != null;
 
-  Map<String, dynamic>? responseData = response?.data;
+  Map<String, dynamic>? responseData = {};
+  if (response?.data is List<dynamic>) {
+    responseData.addAll({"items": response?.data});
+  } else if (response?.data is ResponseBody) {
+    responseData.addAll({'stream': response?.data.toString()});
+  } else {
+    responseData = response?.data;
+  }
 
   if (hasResponseData) {
     responseData!.addAll({

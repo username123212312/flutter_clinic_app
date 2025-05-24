@@ -47,7 +47,6 @@ dependencies:
   hive:
   hive_flutter:
   path_provider: ^2.1.0
-  open_file:
   file_picker:
   dotted_border: ^2.1.0
   dio:
@@ -60,6 +59,8 @@ dependencies:
   location: ^8.0.0
   latlong2: ^0.9.1
   flutter_map: ^8.1.1
+  open_filex: ^4.7.0
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_test:

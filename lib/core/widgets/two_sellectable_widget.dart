@@ -12,12 +12,14 @@ class TwoSelectableWidget extends StatefulWidget {
     required this.onToggleIndex,
     this.leftPadding,
     this.inBetweenPadding,
+    this.currentIndex,
   });
 
   final List<String> twoTitles;
   final void Function(int index) onToggleIndex;
   final double? leftPadding;
   final double? inBetweenPadding;
+  final int? currentIndex;
 
   @override
   State<TwoSelectableWidget> createState() => _TwoSelectableWidgetState();
@@ -28,10 +30,11 @@ class _TwoSelectableWidgetState extends State<TwoSelectableWidget>
   late final AnimationController _animationController;
   late final Animation<Offset> _slideAnimation;
 
-  int _currentIndex = 0;
+  late int? _currentIndex;
 
   @override
   void initState() {
+    _currentIndex = widget.currentIndex ?? 0;
     super.initState();
     _animationController = AnimationController(
       vsync: this,
@@ -111,31 +114,31 @@ class _TwoSelectableWidgetState extends State<TwoSelectableWidget>
                   ],
                 ),
               ),
-              Positioned(
-                left: 10,
+              AnimatedPositioned(
+                duration: Duration(milliseconds: 200),
+
+                left:
+                    (widget.currentIndex ?? _currentIndex) == 0
+                        ? 10
+                        : screenWidth(context) * 0.4,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    SlideTransition(
-                      position: _slideAnimation,
-                      child: Container(
-                        alignment: Alignment.center,
-                        width: screenWidth(context) * 0.38,
-                        height: screenHeight(context) * 0.05,
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.primary,
-                          borderRadius: BorderRadius.circular(28),
+                    Container(
+                      alignment: Alignment.center,
+                      width: screenWidth(context) * 0.38,
+                      height: screenHeight(context) * 0.05,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primary,
+                        borderRadius: BorderRadius.circular(28),
+                      ),
+                      child: Text(
+                        style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                          fontSize: 15,
+                          color: Colors.white,
                         ),
-                        child: Text(
-                          style: Theme.of(context).textTheme.labelSmall!
-                              .copyWith(fontSize: 15, color: Colors.white),
-                          textAlign: TextAlign.center,
-                          _currentIndex == 0
-                              ? widget.twoTitles[0]
-                              : _currentIndex == 1
-                              ? widget.twoTitles[1]
-                              : '',
-                        ),
+                        textAlign: TextAlign.center,
+                        widget.twoTitles[widget.currentIndex ?? _currentIndex!],
                       ),
                     ),
                     Container(

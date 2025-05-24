@@ -25,7 +25,9 @@ class _AppontmentsWidgetState extends State<AppontmentsWidget> {
   @override
   void initState() {
     super.initState();
-    _loadData();
+    if (mounted) {
+      _loadData();
+    }
   }
 
   @override
@@ -202,9 +204,11 @@ class _AppontmentsWidgetState extends State<AppontmentsWidget> {
       for (int i = 0; i < 10; i++) {
         _addItem();
       }
-      setState(() {
-        _isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
   }
 

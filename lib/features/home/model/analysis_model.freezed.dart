@@ -15,12 +15,13 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$AnalysisModel {
+  int? get id;
   String get name;
-  String get description;
+  String? get description;
   @JsonKey(name: 'result_file')
-  String get resultFile;
+  String? get resultFile;
   @JsonKey(name: 'result_photo')
-  String get resultPhoto;
+  String? get resultPhoto;
 
   /// Create a copy of AnalysisModel
   /// with the given fields replaced by the non-null parameter values.
@@ -38,6 +39,7 @@ mixin _$AnalysisModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is AnalysisModel &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -50,11 +52,11 @@ mixin _$AnalysisModel {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, name, description, resultFile, resultPhoto);
+      Object.hash(runtimeType, id, name, description, resultFile, resultPhoto);
 
   @override
   String toString() {
-    return 'AnalysisModel(name: $name, description: $description, resultFile: $resultFile, resultPhoto: $resultPhoto)';
+    return 'AnalysisModel(id: $id, name: $name, description: $description, resultFile: $resultFile, resultPhoto: $resultPhoto)';
   }
 }
 
@@ -65,10 +67,11 @@ abstract mixin class $AnalysisModelCopyWith<$Res> {
       _$AnalysisModelCopyWithImpl;
   @useResult
   $Res call(
-      {String name,
-      String description,
-      @JsonKey(name: 'result_file') String resultFile,
-      @JsonKey(name: 'result_photo') String resultPhoto});
+      {int? id,
+      String name,
+      String? description,
+      @JsonKey(name: 'result_file') String? resultFile,
+      @JsonKey(name: 'result_photo') String? resultPhoto});
 }
 
 /// @nodoc
@@ -84,28 +87,33 @@ class _$AnalysisModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = null,
-    Object? description = null,
-    Object? resultFile = null,
-    Object? resultPhoto = null,
+    Object? description = freezed,
+    Object? resultFile = freezed,
+    Object? resultPhoto = freezed,
   }) {
     return _then(_self.copyWith(
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       name: null == name
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: freezed == description
           ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      resultFile: null == resultFile
+              as String?,
+      resultFile: freezed == resultFile
           ? _self.resultFile
           : resultFile // ignore: cast_nullable_to_non_nullable
-              as String,
-      resultPhoto: null == resultPhoto
+              as String?,
+      resultPhoto: freezed == resultPhoto
           ? _self.resultPhoto
           : resultPhoto // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -114,23 +122,27 @@ class _$AnalysisModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _AnalysisModel implements AnalysisModel {
   _AnalysisModel(
-      {required this.name,
-      required this.description,
-      @JsonKey(name: 'result_file') required this.resultFile,
-      @JsonKey(name: 'result_photo') required this.resultPhoto});
+      {this.id = 0,
+      required this.name,
+      this.description,
+      @JsonKey(name: 'result_file') this.resultFile,
+      @JsonKey(name: 'result_photo') this.resultPhoto});
   factory _AnalysisModel.fromJson(Map<String, dynamic> json) =>
       _$AnalysisModelFromJson(json);
 
   @override
+  @JsonKey()
+  final int? id;
+  @override
   final String name;
   @override
-  final String description;
+  final String? description;
   @override
   @JsonKey(name: 'result_file')
-  final String resultFile;
+  final String? resultFile;
   @override
   @JsonKey(name: 'result_photo')
-  final String resultPhoto;
+  final String? resultPhoto;
 
   /// Create a copy of AnalysisModel
   /// with the given fields replaced by the non-null parameter values.
@@ -152,6 +164,7 @@ class _AnalysisModel implements AnalysisModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _AnalysisModel &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -164,11 +177,11 @@ class _AnalysisModel implements AnalysisModel {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, name, description, resultFile, resultPhoto);
+      Object.hash(runtimeType, id, name, description, resultFile, resultPhoto);
 
   @override
   String toString() {
-    return 'AnalysisModel(name: $name, description: $description, resultFile: $resultFile, resultPhoto: $resultPhoto)';
+    return 'AnalysisModel(id: $id, name: $name, description: $description, resultFile: $resultFile, resultPhoto: $resultPhoto)';
   }
 }
 
@@ -181,10 +194,11 @@ abstract mixin class _$AnalysisModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String name,
-      String description,
-      @JsonKey(name: 'result_file') String resultFile,
-      @JsonKey(name: 'result_photo') String resultPhoto});
+      {int? id,
+      String name,
+      String? description,
+      @JsonKey(name: 'result_file') String? resultFile,
+      @JsonKey(name: 'result_photo') String? resultPhoto});
 }
 
 /// @nodoc
@@ -200,28 +214,33 @@ class __$AnalysisModelCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $Res call({
+    Object? id = freezed,
     Object? name = null,
-    Object? description = null,
-    Object? resultFile = null,
-    Object? resultPhoto = null,
+    Object? description = freezed,
+    Object? resultFile = freezed,
+    Object? resultPhoto = freezed,
   }) {
     return _then(_AnalysisModel(
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       name: null == name
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: freezed == description
           ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      resultFile: null == resultFile
+              as String?,
+      resultFile: freezed == resultFile
           ? _self.resultFile
           : resultFile // ignore: cast_nullable_to_non_nullable
-              as String,
-      resultPhoto: null == resultPhoto
+              as String?,
+      resultPhoto: freezed == resultPhoto
           ? _self.resultPhoto
           : resultPhoto // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }

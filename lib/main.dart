@@ -10,6 +10,7 @@ import 'package:flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:flutter_clinic_app/core/theme/app_theme.dart';
 import 'package:flutter_clinic_app/core/blocs/auth_bloc/auth_bloc.dart';
 import 'package:flutter_clinic_app/features/auth/repository/user_repository.dart';
+import 'package:flutter_clinic_app/features/home/controller/analysis_list_bloc/analysis_list_bloc.dart';
 import 'package:flutter_clinic_app/features/home/model/appointment_model.dart';
 import 'package:flutter_clinic_app/features/home/model/doctor_model.dart';
 import 'package:flutter_clinic_app/features/home/model/patient_model.dart';
@@ -21,7 +22,6 @@ import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as p;
 
 import 'core/observers/custom_bloc_observer.dart';
-import 'core/providers/hive_client/hive_adapters/downloaded_file.dart';
 import 'core/blocs/user_bloc/user_bloc.dart';
 import 'features/auth/view/screens/nana/new_password.dart';
 import 'features/auth/view/screens/register_screen.dart';
@@ -48,6 +48,7 @@ class ClinicApp extends StatelessWidget {
       providers: [
         BlocProvider.value(value: ServiceLocator.instance<AuthBloc>()),
         BlocProvider.value(value: ServiceLocator.instance<UserBloc>()),
+        BlocProvider.value(value: ServiceLocator.instance<AnalysisListBloc>()),
       ],
       // child: MaterialApp(
       //   debugShowCheckedModeBanner: false,
@@ -86,10 +87,6 @@ Future<void> initMain() async {
               (await p.getApplicationDocumentsDirectory()).path,
             ),
   );
-  final Directory hiveDir = await p.getApplicationDocumentsDirectory();
-  Hive.init(hiveDir.path);
   Bloc.observer = CustomBlocObserver();
-  // Hive.registerAdapter(DownloadedFileAdapter());
-  await Hive.openBox<DownloadedFile>('downloadedFiles');
   ServiceLocator.setup();
 }
