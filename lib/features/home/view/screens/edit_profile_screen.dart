@@ -149,7 +149,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             builder: (context, state) {
               return BloodTypesWidget(
                 selectedBloodType: AppConstants.bloodTypes.indexOf(
-                  state.authUser!.user!.bloodType ?? 'A+',
+                  state.authUser?.user?.bloodType ?? 'A+',
                 ),
                 onSelected: (bloodType) {
                   _selectedBloodType = bloodType;
@@ -174,7 +174,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         SizedBox(height: 10),
         CustomTextField(
           controller: _firstNameController,
-          hintText: state.authUser!.user!.firstName!,
+          hintText: state.authUser?.user?.firstName ?? 'No',
           keyboardType: TextInputType.text,
         ),
         SizedBox(height: 20),
@@ -185,7 +185,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         SizedBox(height: 10),
         CustomTextField(
           controller: _lastNameController,
-          hintText: state.authUser!.user!.lastName!,
+          hintText: state.authUser?.user?.lastName ?? 'User',
           keyboardType: TextInputType.text,
         ),
         SizedBox(height: 20),
@@ -198,9 +198,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         CustomTextField(
           controller: _emailController,
           hintText:
-              (state.authUser!.user!.email == null)
+              (state.authUser?.user?.email == null)
                   ? '+963X-XXXX-XXXX'
-                  : state.authUser!.user!.email!,
+                  : state.authUser?.user?.email ?? 'No Email',
           keyboardType: TextInputType.emailAddress,
         ),
         SizedBox(height: 20),
@@ -213,9 +213,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         CustomTextField(
           controller: _phoneController,
           hintText:
-              (state.authUser!.user!.phone == null)
+              (state.authUser?.user?.phone == null)
                   ? '+963X-XXXX-XXXX'
-                  : state.authUser!.user!.phone!,
+                  : state.authUser?.user?.phone ?? 'No phone',
           keyboardType: TextInputType.phone,
         ),
         SizedBox(height: 20),
@@ -227,12 +227,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
         CustomTextField(
           controller:
-              _genderController..text = (state.authUser!.user!.gender ?? ''),
+              _genderController..text = (state.authUser?.user?.gender ?? ''),
           readOnly: true,
           suffixIcon: DropdownButton<int>(
             value:
-                (state.authUser!.user!.gender == null)
-                    ? state.authUser!.user!.gender! == 'Male'
+                (state.authUser?.user?.gender == null)
+                    ? (state.authUser?.user?.gender ?? 'Male') == 'Male'
                         ? 0
                         : 1
                     : 0,
@@ -276,7 +276,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           },
           controller:
               _ageController
-                ..text = state.authUser!.user!.age?.toString() ?? '',
+                ..text = state.authUser?.user?.age?.toString() ?? '',
           readOnly: true,
           hintText: 'Age',
           keyboardType: TextInputType.number,
@@ -306,7 +306,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           maxLength: 100,
           controller:
               _completeAddressController
-                ..text = state.authUser!.user!.address ?? '',
+                ..text = state.authUser?.user?.address ?? '',
           hintText: 'Address',
           keyboardType: TextInputType.name,
           textInputAction: TextInputAction.done,

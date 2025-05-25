@@ -77,8 +77,10 @@ class AppointmentCard extends StatelessWidget {
               ),
               AppointmentDetailsListItem(
                 title: 'Doctor',
-                subtitle: appointment.doctor.name,
-                thirdtitle: appointment.doctor.specality,
+                subtitle:
+                    appointment.doctor.firstName ??
+                    'No ${appointment.doctor.lastName ?? 'doctor'}',
+                thirdtitle: appointment.doctor.speciality,
                 iconImagePath: 'assets/icons/ic_doctor.png',
               ),
               AppointmentDetailsListItem(

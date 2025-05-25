@@ -11,7 +11,7 @@ class AppConstants {
     'AB+',
     'AB-',
   ];
-  static const ipAddress = '192.168.1.7';
+  static const ipAddress = '192.168.55.76';
   static const serverUrl = 'http://$ipAddress:8000';
   static const patientPath = 'patient';
   static const doctorPath = 'Doctor';

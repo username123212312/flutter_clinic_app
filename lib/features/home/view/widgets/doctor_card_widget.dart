@@ -34,14 +34,14 @@ class DoctorCardWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    doctor.name,
+                    '${(doctor.firstName ?? 'No')} ${doctor.lastName ?? 'Doctor'}',
                     style: Theme.of(context).textTheme.labelMedium!.copyWith(
                       fontSize: 14,
                       color: Pallete.black1,
                     ),
                   ),
                   Text(
-                    doctor.specality,
+                    doctor.speciality ?? 'No speciality',
                     style: Theme.of(context).textTheme.labelMedium!.copyWith(
                       fontSize: 14,
                       color: Pallete.graysGray2,
@@ -55,7 +55,7 @@ class DoctorCardWidget extends StatelessWidget {
           Row(
             children: [
               Text(
-                doctor.rate.toString(),
+                doctor.finalRate.toString(),
                 style: Theme.of(context).textTheme.titleSmall!.copyWith(
                   fontSize: 14,
                   color: Pallete.black1,
@@ -73,7 +73,7 @@ class DoctorCardWidget extends StatelessWidget {
               ),
 
               Text(
-                doctor.availabilityTime ?? '10:30am - 5:30pm',
+                doctor.visitFee.toString(),
                 style: Theme.of(context).textTheme.titleSmall!.copyWith(
                   fontSize: 14,
                   color: Pallete.black1,

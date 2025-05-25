@@ -7,16 +7,34 @@ part of 'doctor_model.dart';
 // **************************************************************************
 
 _DoctorModel _$DoctorModelFromJson(Map<String, dynamic> json) => _DoctorModel(
-      name: json['name'] as String,
-      specality: json['specality'] as String,
-      rate: (json['rate'] as num?)?.toDouble(),
-      availabilityTime: json['availabilityTime'] as String?,
+      id: (json['id'] as num?)?.toInt(),
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
+      phone: json['phone'] as String?,
+      clinic: json['clinic'] as String?,
+      photoPath: json['photoPath'] as String?,
+      treated: json['treated'] as bool?,
+      speciality: json['speciality'] as String?,
+      department: json['department'] as String?,
+      finalRate: json['finalRate'] as String?,
+      visitFee: (json['visitFee'] as num?)?.toDouble(),
+      excperience: json['excperience'] as String?,
+      status: json['status'] as String?,
     );
 
 Map<String, dynamic> _$DoctorModelToJson(_DoctorModel instance) =>
     <String, dynamic>{
-      'name': instance.name,
-      'specality': instance.specality,
-      'rate': instance.rate,
-      'availabilityTime': instance.availabilityTime,
+      'id': instance.id,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'phone': instance.phone,
+      'clinic': instance.clinic,
+      'photoPath': instance.photoPath,
+      'treated': instance.treated,
+      'speciality': instance.speciality,
+      'department': instance.department,
+      'finalRate': instance.finalRate,
+      'visitFee': instance.visitFee,
+      'excperience': instance.excperience,
+      'status': instance.status,
     };

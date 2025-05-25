@@ -147,8 +147,8 @@ class _AppontmentsWidgetState extends State<AppontmentsWidget> {
                 appointment: AppointmentModel(
                   service: 'Consultation',
                   doctor: DoctorModel(
-                    name: 'dr. Kureha Yasmin $index',
-                    specality: 'Internal Medicine Specialist',
+                    firstName: 'dr. Kureha Yasmin $index',
+                    speciality: 'Internal Medicine Specialist',
                   ),
                   department: 'Klinik First Care',
                   dateAndTime: DateTime.now(),

@@ -15,10 +15,19 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$DoctorModel {
-  String get name;
-  String get specality;
-  double? get rate;
-  String? get availabilityTime;
+  int? get id;
+  String? get firstName;
+  String? get lastName;
+  String? get phone;
+  String? get clinic;
+  String? get photoPath;
+  bool? get treated;
+  String? get speciality;
+  String? get department;
+  String? get finalRate;
+  double? get visitFee;
+  String? get excperience;
+  String? get status;
 
   /// Create a copy of DoctorModel
   /// with the given fields replaced by the non-null parameter values.
@@ -35,22 +44,50 @@ mixin _$DoctorModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is DoctorModel &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.specality, specality) ||
-                other.specality == specality) &&
-            (identical(other.rate, rate) || other.rate == rate) &&
-            (identical(other.availabilityTime, availabilityTime) ||
-                other.availabilityTime == availabilityTime));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.clinic, clinic) || other.clinic == clinic) &&
+            (identical(other.photoPath, photoPath) ||
+                other.photoPath == photoPath) &&
+            (identical(other.treated, treated) || other.treated == treated) &&
+            (identical(other.speciality, speciality) ||
+                other.speciality == speciality) &&
+            (identical(other.department, department) ||
+                other.department == department) &&
+            (identical(other.finalRate, finalRate) ||
+                other.finalRate == finalRate) &&
+            (identical(other.visitFee, visitFee) ||
+                other.visitFee == visitFee) &&
+            (identical(other.excperience, excperience) ||
+                other.excperience == excperience) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, specality, rate, availabilityTime);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      firstName,
+      lastName,
+      phone,
+      clinic,
+      photoPath,
+      treated,
+      speciality,
+      department,
+      finalRate,
+      visitFee,
+      excperience,
+      status);
 
   @override
   String toString() {
-    return 'DoctorModel(name: $name, specality: $specality, rate: $rate, availabilityTime: $availabilityTime)';
+    return 'DoctorModel(id: $id, firstName: $firstName, lastName: $lastName, phone: $phone, clinic: $clinic, photoPath: $photoPath, treated: $treated, speciality: $speciality, department: $department, finalRate: $finalRate, visitFee: $visitFee, excperience: $excperience, status: $status)';
   }
 }
 
@@ -61,7 +98,19 @@ abstract mixin class $DoctorModelCopyWith<$Res> {
       _$DoctorModelCopyWithImpl;
   @useResult
   $Res call(
-      {String name, String specality, double? rate, String? availabilityTime});
+      {int? id,
+      String? firstName,
+      String? lastName,
+      String? phone,
+      String? clinic,
+      String? photoPath,
+      bool? treated,
+      String? speciality,
+      String? department,
+      String? finalRate,
+      double? visitFee,
+      String? excperience,
+      String? status});
 }
 
 /// @nodoc
@@ -76,27 +125,72 @@ class _$DoctorModelCopyWithImpl<$Res> implements $DoctorModelCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? specality = null,
-    Object? rate = freezed,
-    Object? availabilityTime = freezed,
+    Object? id = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
+    Object? phone = freezed,
+    Object? clinic = freezed,
+    Object? photoPath = freezed,
+    Object? treated = freezed,
+    Object? speciality = freezed,
+    Object? department = freezed,
+    Object? finalRate = freezed,
+    Object? visitFee = freezed,
+    Object? excperience = freezed,
+    Object? status = freezed,
   }) {
     return _then(_self.copyWith(
-      name: null == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      specality: null == specality
-          ? _self.specality
-          : specality // ignore: cast_nullable_to_non_nullable
-              as String,
-      rate: freezed == rate
-          ? _self.rate
-          : rate // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      firstName: freezed == firstName
+          ? _self.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _self.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _self.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      clinic: freezed == clinic
+          ? _self.clinic
+          : clinic // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photoPath: freezed == photoPath
+          ? _self.photoPath
+          : photoPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      treated: freezed == treated
+          ? _self.treated
+          : treated // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      speciality: freezed == speciality
+          ? _self.speciality
+          : speciality // ignore: cast_nullable_to_non_nullable
+              as String?,
+      department: freezed == department
+          ? _self.department
+          : department // ignore: cast_nullable_to_non_nullable
+              as String?,
+      finalRate: freezed == finalRate
+          ? _self.finalRate
+          : finalRate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      visitFee: freezed == visitFee
+          ? _self.visitFee
+          : visitFee // ignore: cast_nullable_to_non_nullable
               as double?,
-      availabilityTime: freezed == availabilityTime
-          ? _self.availabilityTime
-          : availabilityTime // ignore: cast_nullable_to_non_nullable
+      excperience: freezed == excperience
+          ? _self.excperience
+          : excperience // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -106,21 +200,48 @@ class _$DoctorModelCopyWithImpl<$Res> implements $DoctorModelCopyWith<$Res> {
 @JsonSerializable()
 class _DoctorModel implements DoctorModel {
   _DoctorModel(
-      {required this.name,
-      required this.specality,
-      this.rate,
-      this.availabilityTime});
+      {this.id,
+      this.firstName,
+      this.lastName,
+      this.phone,
+      this.clinic,
+      this.photoPath,
+      this.treated,
+      this.speciality,
+      this.department,
+      this.finalRate,
+      this.visitFee,
+      this.excperience,
+      this.status});
   factory _DoctorModel.fromJson(Map<String, dynamic> json) =>
       _$DoctorModelFromJson(json);
 
   @override
-  final String name;
+  final int? id;
   @override
-  final String specality;
+  final String? firstName;
   @override
-  final double? rate;
+  final String? lastName;
   @override
-  final String? availabilityTime;
+  final String? phone;
+  @override
+  final String? clinic;
+  @override
+  final String? photoPath;
+  @override
+  final bool? treated;
+  @override
+  final String? speciality;
+  @override
+  final String? department;
+  @override
+  final String? finalRate;
+  @override
+  final double? visitFee;
+  @override
+  final String? excperience;
+  @override
+  final String? status;
 
   /// Create a copy of DoctorModel
   /// with the given fields replaced by the non-null parameter values.
@@ -142,22 +263,50 @@ class _DoctorModel implements DoctorModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _DoctorModel &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.specality, specality) ||
-                other.specality == specality) &&
-            (identical(other.rate, rate) || other.rate == rate) &&
-            (identical(other.availabilityTime, availabilityTime) ||
-                other.availabilityTime == availabilityTime));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.clinic, clinic) || other.clinic == clinic) &&
+            (identical(other.photoPath, photoPath) ||
+                other.photoPath == photoPath) &&
+            (identical(other.treated, treated) || other.treated == treated) &&
+            (identical(other.speciality, speciality) ||
+                other.speciality == speciality) &&
+            (identical(other.department, department) ||
+                other.department == department) &&
+            (identical(other.finalRate, finalRate) ||
+                other.finalRate == finalRate) &&
+            (identical(other.visitFee, visitFee) ||
+                other.visitFee == visitFee) &&
+            (identical(other.excperience, excperience) ||
+                other.excperience == excperience) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, specality, rate, availabilityTime);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      firstName,
+      lastName,
+      phone,
+      clinic,
+      photoPath,
+      treated,
+      speciality,
+      department,
+      finalRate,
+      visitFee,
+      excperience,
+      status);
 
   @override
   String toString() {
-    return 'DoctorModel(name: $name, specality: $specality, rate: $rate, availabilityTime: $availabilityTime)';
+    return 'DoctorModel(id: $id, firstName: $firstName, lastName: $lastName, phone: $phone, clinic: $clinic, photoPath: $photoPath, treated: $treated, speciality: $speciality, department: $department, finalRate: $finalRate, visitFee: $visitFee, excperience: $excperience, status: $status)';
   }
 }
 
@@ -170,7 +319,19 @@ abstract mixin class _$DoctorModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String name, String specality, double? rate, String? availabilityTime});
+      {int? id,
+      String? firstName,
+      String? lastName,
+      String? phone,
+      String? clinic,
+      String? photoPath,
+      bool? treated,
+      String? speciality,
+      String? department,
+      String? finalRate,
+      double? visitFee,
+      String? excperience,
+      String? status});
 }
 
 /// @nodoc
@@ -185,27 +346,72 @@ class __$DoctorModelCopyWithImpl<$Res> implements _$DoctorModelCopyWith<$Res> {
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? name = null,
-    Object? specality = null,
-    Object? rate = freezed,
-    Object? availabilityTime = freezed,
+    Object? id = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
+    Object? phone = freezed,
+    Object? clinic = freezed,
+    Object? photoPath = freezed,
+    Object? treated = freezed,
+    Object? speciality = freezed,
+    Object? department = freezed,
+    Object? finalRate = freezed,
+    Object? visitFee = freezed,
+    Object? excperience = freezed,
+    Object? status = freezed,
   }) {
     return _then(_DoctorModel(
-      name: null == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      specality: null == specality
-          ? _self.specality
-          : specality // ignore: cast_nullable_to_non_nullable
-              as String,
-      rate: freezed == rate
-          ? _self.rate
-          : rate // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      firstName: freezed == firstName
+          ? _self.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _self.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _self.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      clinic: freezed == clinic
+          ? _self.clinic
+          : clinic // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photoPath: freezed == photoPath
+          ? _self.photoPath
+          : photoPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      treated: freezed == treated
+          ? _self.treated
+          : treated // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      speciality: freezed == speciality
+          ? _self.speciality
+          : speciality // ignore: cast_nullable_to_non_nullable
+              as String?,
+      department: freezed == department
+          ? _self.department
+          : department // ignore: cast_nullable_to_non_nullable
+              as String?,
+      finalRate: freezed == finalRate
+          ? _self.finalRate
+          : finalRate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      visitFee: freezed == visitFee
+          ? _self.visitFee
+          : visitFee // ignore: cast_nullable_to_non_nullable
               as double?,
-      availabilityTime: freezed == availabilityTime
-          ? _self.availabilityTime
-          : availabilityTime // ignore: cast_nullable_to_non_nullable
+      excperience: freezed == excperience
+          ? _self.excperience
+          : excperience // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }

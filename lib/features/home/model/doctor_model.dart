@@ -7,10 +7,19 @@ part 'doctor_model.g.dart';
 @freezed
 sealed class DoctorModel with _$DoctorModel {
   factory DoctorModel({
-    required String name,
-    required String specality,
-    double? rate,
-    String? availabilityTime,
+    int? id,
+    String? firstName,
+    String? lastName,
+    String? phone,
+    String? clinic,
+    String? photoPath,
+    bool? treated,
+    String? speciality,
+    String? department,
+    String? finalRate,
+    double? visitFee,
+    String? excperience,
+    String? status,
   }) = _DoctorModel;
 
   factory DoctorModel.fromJson(Map<String, dynamic> json) =>
