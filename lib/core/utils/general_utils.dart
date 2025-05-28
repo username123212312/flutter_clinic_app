@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/widgets.dart';
-import 'package:flutter_clinic_app/core/navigation/navigation_exports.dart';
+import 'package:intl/intl.dart';
+import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 
 double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
 double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
@@ -24,4 +27,31 @@ void clearAndShowSnackBar(BuildContext context, String message) {
 
 String? checkEmptiness(String value) {
   return value.trim().isEmpty ? null : value;
+}
+
+Future<DateTime?> showRestrictedDatePicker({
+  required BuildContext context,
+  required List<DateTime> availableDates,
+}) async {
+  return await showDatePicker(
+    context: context,
+    initialDate: availableDates.first,
+    firstDate: availableDates.first,
+    lastDate: availableDates.last,
+    selectableDayPredicate: (DateTime day) {
+      // Only enable dates that exist in availableDates
+      return availableDates.any(
+        (availableDate) =>
+            day.year == availableDate.year &&
+            day.month == availableDate.month &&
+            day.day == availableDate.day,
+      );
+    },
+  );
+}
+
+TimeOfDay parseTimeWithDateFormat(String timeString) {
+  final format = DateFormat('HH:mm');
+  final dateTime = format.parse(timeString);
+  return TimeOfDay.fromDateTime(dateTime);
 }

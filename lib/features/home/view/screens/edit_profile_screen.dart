@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
-import 'package:flutter_clinic_app/core/consts/app_constants.dart';
-import 'package:flutter_clinic_app/core/models/usermodel.dart';
-import 'package:flutter_clinic_app/core/utils/utils.dart';
-import 'package:flutter_clinic_app/core/widgets/blood_types_widget.dart';
-import 'package:flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
+import 'package:our_flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
+import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
+import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
+import 'package:our_flutter_clinic_app/core/utils/utils.dart';
+import 'package:our_flutter_clinic_app/core/widgets/blood_types_widget.dart';
+import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/blocs/auth_bloc/auth_bloc.dart';

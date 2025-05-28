@@ -2,9 +2,9 @@
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter_clinic_app/core/consts/app_constants.dart';
-import 'package:flutter_clinic_app/core/providers/dio_client/dio_client.dart';
-import 'package:flutter_clinic_app/core/utils/logger.dart';
+import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
+import 'package:our_flutter_clinic_app/core/providers/dio_client/dio_client.dart';
+import 'package:our_flutter_clinic_app/core/utils/logger.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';

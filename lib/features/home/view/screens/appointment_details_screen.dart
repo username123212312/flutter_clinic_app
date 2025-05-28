@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
-import 'package:flutter_clinic_app/features/home/model/appointment_model.dart';
+import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
+import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
 import '../widgets/home_widgets.dart';
 
 import '../../../../core/theme/app_pallete.dart';

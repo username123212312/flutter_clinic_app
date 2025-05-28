@@ -1,4 +1,4 @@
-import 'package:flutter_clinic_app/core/enums.dart';
+import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'usermodel.freezed.dart';

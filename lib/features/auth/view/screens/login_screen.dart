@@ -1,13 +1,15 @@
 import 'dart:developer';
 
 import 'package:flutter/gestures.dart';
-import 'package:flutter_clinic_app/core/navigation/navigation_exports.dart';
-import 'package:flutter_clinic_app/core/utils/general_utils.dart';
-import 'package:flutter_clinic_app/core/utils/validator_util.dart';
-import 'package:flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
+import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
+import 'package:our_flutter_clinic_app/core/services/google_auth_service/google_auth_service.dart';
+import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
+import 'package:our_flutter_clinic_app/core/utils/validator_util.dart';
+import 'package:our_flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 
+import '../../../../core/utils/logger.dart';
 import '../widgets/auth_widgets.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_google_button.dart';
@@ -172,8 +174,9 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         const SizedBox(height: 10),
         CustomGoogleButton(
-          onPressed: () {
-            log('Google button pressed!');
+          onPressed: () async {
+            final response = await GoogleAuthService().signIn();
+            eLog(response.toString());
           },
           text: 'Google',
           imagePath: 'assets/icons/ic_google.png',

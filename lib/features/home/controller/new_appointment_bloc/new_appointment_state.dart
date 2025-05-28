@@ -8,12 +8,14 @@ sealed class NewAppointmentState with _$NewAppointmentState {
     String? statusMessage,
     List<DoctorModel>? doctors,
     List<ClinicModel>? clinics,
+    List<DateTime>? dates,
     DateTime? date,
-    List<String>? availableSchedules,
+    List<TimeOfDay>? availableSchedules,
     DataStatus? status,
   }) = _NewAppointmentState;
   factory NewAppointmentState.initial() {
     return NewAppointmentState(
+      dates: [],
       doctor: DoctorModel(firstName: 'Choose', lastName: ' a doctor'),
       clinics: [],
       statusMessage: 'Initial',

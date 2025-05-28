@@ -1,14 +1,14 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_clinic_app/core/enums.dart';
-import 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
-import 'package:flutter_clinic_app/core/navigation/fade_page_route_builder.dart';
-import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
-import 'package:flutter_clinic_app/features/home/model/appointment_model.dart';
-import 'package:flutter_clinic_app/features/home/model/doctor_model.dart';
-import 'package:flutter_clinic_app/features/home/model/patient_model.dart';
-import 'package:flutter_clinic_app/features/home/view/screens/appointment_details_screen.dart';
+import 'package:our_flutter_clinic_app/core/enums.dart';
+import 'package:our_flutter_clinic_app/core/navigation/app_route_constants.dart';
+import 'package:our_flutter_clinic_app/core/navigation/fade_page_route_builder.dart';
+import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
+import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
+import 'package:our_flutter_clinic_app/features/home/model/doctor_model.dart';
+import 'package:our_flutter_clinic_app/features/home/model/patient_model.dart';
+import 'package:our_flutter_clinic_app/features/home/view/screens/appointment_details_screen.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../core/utils/utils.dart';
 import '../home_widgets.dart';

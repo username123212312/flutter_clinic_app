@@ -26,7 +26,7 @@ class AppConstants {
   //! Home
   static const showDoctorsPath = '/$apiPath/$homePath/showDoctors';
   static const showDoctorDetailsPath = '/$apiPath/$homePath/showDoctorDetails';
-  static const showClinincDoctorsPath = '/$homePath/showClinincDoctors';
+  static const showClinicDoctorsPath = '/$homePath/showClinicDoctors';
   static const searchDoctorPath = '/$apiPath/$homePath/searchDoctor';
   static const showClinicsPath = '/$homePath/showClinics';
 

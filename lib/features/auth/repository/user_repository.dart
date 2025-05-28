@@ -2,13 +2,13 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_clinic_app/core/consts/app_constants.dart';
-import 'package:flutter_clinic_app/core/models/app_response.dart';
-import 'package:flutter_clinic_app/core/models/usermodel.dart';
-import 'package:flutter_clinic_app/core/navigation/navigation_exports.dart';
-import 'package:flutter_clinic_app/core/providers/dio_client/dio_client.dart';
-import 'package:flutter_clinic_app/core/utils/logger.dart';
-import 'package:flutter_clinic_app/features/home/model/requests/home_requests.dart';
+import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
+import 'package:our_flutter_clinic_app/core/models/app_response.dart';
+import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
+import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
+import 'package:our_flutter_clinic_app/core/providers/dio_client/dio_client.dart';
+import 'package:our_flutter_clinic_app/core/utils/logger.dart';
+import 'package:our_flutter_clinic_app/features/home/model/requests/home_requests.dart';
 import 'package:fpdart/fpdart.dart';
 
 import '../../../core/models/app_failure.dart';

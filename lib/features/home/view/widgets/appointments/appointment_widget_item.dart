@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
-import 'package:flutter_clinic_app/core/utils/time_range.dart';
-import 'package:flutter_clinic_app/core/utils/general_utils.dart';
-import 'package:flutter_clinic_app/features/auth/view/widgets/custom_elevated_button.dart';
+import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
+import 'package:our_flutter_clinic_app/core/utils/time_range.dart';
+import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
+import 'package:our_flutter_clinic_app/features/auth/view/widgets/custom_elevated_button.dart';
 import 'package:intl/intl.dart';
 
 class AppointmentWidgetItem extends StatelessWidget {

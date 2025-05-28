@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_clinic_app/core/models/downloaded_file.dart';
-import 'package:flutter_clinic_app/core/providers/file_manager/file_manager.dart';
+import 'package:our_flutter_clinic_app/core/models/downloaded_file.dart';
+import 'package:our_flutter_clinic_app/core/providers/file_manager/file_manager.dart';
 import 'package:fpdart/fpdart.dart';
 
 import '../../../core/models/app_failure.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clinic_app/core/utils/general_utils.dart';
+import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 
 class BackgroundContainer extends StatelessWidget {
   const BackgroundContainer({

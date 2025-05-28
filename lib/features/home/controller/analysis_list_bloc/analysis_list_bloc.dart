@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter_clinic_app/core/utils/utils.dart';
-import 'package:flutter_clinic_app/features/home/model/analysis_model.dart';
-import 'package:flutter_clinic_app/features/home/model/requests/add_analysis_request.dart';
-import 'package:flutter_clinic_app/features/home/repository/analysis_repository.dart';
+import 'package:our_flutter_clinic_app/core/utils/utils.dart';
+import 'package:our_flutter_clinic_app/features/home/model/analysis_model.dart';
+import 'package:our_flutter_clinic_app/features/home/model/requests/add_analysis_request.dart';
+import 'package:our_flutter_clinic_app/features/home/repository/analysis_repository.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';

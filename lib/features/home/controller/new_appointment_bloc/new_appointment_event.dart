@@ -9,6 +9,7 @@ class NewAppointmentEvent with _$NewAppointmentEvent {
   const factory NewAppointmentEvent.doctorSelected({
     required DoctorModel doctor,
   }) = DoctorSelected;
-  const factory NewAppointmentEvent.dateSelected() = DateSelected;
+  const factory NewAppointmentEvent.dateSelected({required DateTime date}) =
+      DateSelected;
   const factory NewAppointmentEvent.scheduleSelected() = ScheduleSelected;
 }

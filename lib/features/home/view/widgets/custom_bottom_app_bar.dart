@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clinic_app/core/utils/general_utils.dart';
-import 'package:flutter_clinic_app/features/home/view/widgets/custom_bottom_app_bar_item.dart';
+import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
+import 'package:our_flutter_clinic_app/features/home/view/widgets/custom_bottom_app_bar_item.dart';
 
 class CustomBottomAppBar extends StatefulWidget {
   const CustomBottomAppBar({super.key, required this.onChange});

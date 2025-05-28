@@ -1,13 +1,14 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_clinic_app/core/consts/app_constants.dart';
-import 'package:flutter_clinic_app/core/models/app_failure.dart';
-import 'package:flutter_clinic_app/core/models/app_response.dart';
-import 'package:flutter_clinic_app/core/providers/dio_client/dio_client.dart';
-import 'package:flutter_clinic_app/core/utils/utils.dart';
-import 'package:flutter_clinic_app/features/home/model/clinic_model.dart';
-import 'package:flutter_clinic_app/features/home/model/doctor_model.dart';
+import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
+import 'package:our_flutter_clinic_app/core/models/app_failure.dart';
+import 'package:our_flutter_clinic_app/core/models/app_response.dart';
+import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
+import 'package:our_flutter_clinic_app/core/providers/dio_client/dio_client.dart';
+import 'package:our_flutter_clinic_app/core/utils/utils.dart';
+import 'package:our_flutter_clinic_app/features/home/model/clinic_model.dart';
+import 'package:our_flutter_clinic_app/features/home/model/doctor_model.dart';
 import 'package:fpdart/fpdart.dart';
 
 class NewAppointmentRepository {
@@ -56,7 +57,7 @@ class NewAppointmentRepository {
   ) async {
     try {
       final response = await _dio.post(
-        AppConstants.showClinincDoctorsPath,
+        AppConstants.showClinicDoctorsPath,
         data: {'clinic_id': clinicId},
       );
       eLog(response.data);
@@ -94,7 +95,7 @@ class NewAppointmentRepository {
     }
   }
 
-  Future<Either<AppFailure, AppResponse<List<DoctorModel>>>> showDoctorWorkDays(
+  Future<Either<AppFailure, AppResponse<List<DateTime>>>> showDoctorWorkDays(
     int clinicId,
     int doctorId,
   ) async {
@@ -112,8 +113,57 @@ class NewAppointmentRepository {
             statusCode: response.data['statusCode'],
             statusMessage: response.data['statusMessage'],
             data:
-                (response.data['items'] as List<dynamic>).map((doctor) {
-                  return DoctorModel.fromJson(doctor);
+                (response.data['available_dates'] as List<dynamic>).map((date) {
+                  return DateTime.tryParse(date) ?? DateTime.now();
+                }).toList(),
+          ),
+        );
+      } else {
+        throw HttpException(response.data['message'] ?? response.data['error']);
+      }
+    } on DioException catch (e) {
+      return Left(
+        AppFailure(
+          message: e.message ?? 'Error',
+          stacktracte: StackTrace.current,
+        ),
+      );
+    } on HttpException catch (e) {
+      return Left(
+        AppFailure(message: e.message, stacktracte: StackTrace.current),
+      );
+    } catch (e) {
+      return Left(
+        AppFailure(message: e.toString(), stacktracte: StackTrace.current),
+      );
+    }
+  }
+
+  Future<Either<AppFailure, AppResponse<List<TimeOfDay>>>> showDoctorWorkTimes(
+    int clinicId,
+    int doctorId,
+    DateTime selectedDate,
+  ) async {
+    try {
+      final response = await _dio.post(
+        AppConstants.showTimesPath,
+        data: {
+          'clinic_id': clinicId,
+          'doctor_id': doctorId,
+          'date': selectedDate.toString(),
+        },
+      );
+      eLog(response.data);
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse(
+            success: true,
+            message: 'Doctor work days fetched successfully',
+            statusCode: response.data['statusCode'],
+            statusMessage: response.data['statusMessage'],
+            data:
+                (response.data as List<dynamic>).map((time) {
+                  return parseTimeWithDateFormat(time);
                 }).toList(),
           ),
         );

@@ -1,5 +1,5 @@
-import 'package:flutter_clinic_app/core/navigation/navigation_exports.dart';
-import 'package:flutter_clinic_app/core/utils/validator_util.dart';
+import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
+import 'package:our_flutter_clinic_app/core/utils/validator_util.dart';
 import '../../../../core/blocs/user_bloc/user_bloc.dart';
 
 import '../../../../core/utils/general_utils.dart';

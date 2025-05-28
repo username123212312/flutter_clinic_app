@@ -2,15 +2,15 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clinic_app/core/data/dummy_data.dart';
-import 'package:flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
-import 'package:flutter_clinic_app/features/home/controller/new_appointment_bloc/new_appointment_bloc.dart';
-import 'package:flutter_clinic_app/features/home/model/clinic_model.dart';
-import 'package:flutter_clinic_app/features/home/repository/new_appointment_repository.dart';
-import 'package:flutter_clinic_app/features/home/view/widgets/appointments/schedules_item_widget.dart';
-import 'package:flutter_clinic_app/features/home/view/widgets/custom_drop_down_widget.dart';
-import 'package:flutter_clinic_app/features/home/view/widgets/doctor_card_widget.dart';
-import 'package:flutter_clinic_app/features/home/view/widgets/search_text_field.dart';
+import 'package:our_flutter_clinic_app/core/data/dummy_data.dart';
+import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
+import 'package:our_flutter_clinic_app/features/home/controller/new_appointment_bloc/new_appointment_bloc.dart';
+import 'package:our_flutter_clinic_app/features/home/model/clinic_model.dart';
+import 'package:our_flutter_clinic_app/features/home/repository/new_appointment_repository.dart';
+import 'package:our_flutter_clinic_app/features/home/view/widgets/appointments/schedules_item_widget.dart';
+import 'package:our_flutter_clinic_app/features/home/view/widgets/custom_drop_down_widget.dart';
+import 'package:our_flutter_clinic_app/features/home/view/widgets/doctor_card_widget.dart';
+import 'package:our_flutter_clinic_app/features/home/view/widgets/search_text_field.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/theme/app_pallete.dart';
@@ -74,7 +74,7 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
             SizedBox(height: 20),
             _buildDatePicker(),
             SizedBox(height: 20),
-            _buildSchedules(),
+            _buildSchedules([]),
             SizedBox(height: 30),
             SizedBox(
               width: screenWidth(context),
@@ -92,7 +92,7 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
     );
   }
 
-  Column _buildSchedules() {
+  Column _buildSchedules(List<TimeOfDay> times) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -184,31 +184,51 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
           ).textTheme.labelMedium!.copyWith(fontSize: 18),
         ),
         SizedBox(height: 10),
-        CustomTextField(
-          onTap: () {
-            _selectDate();
-            _newAppointmentBloc.add(NewAppointmentEvent.dateSelected());
+        BlocBuilder<NewAppointmentBloc, NewAppointmentState>(
+          bloc: _newAppointmentBloc,
+          builder: (context, state) {
+            return CustomTextField(
+              onTap: () async {
+                final selectedDate = await _selectDate(state.dates!);
+                if (selectedDate != null ||
+                    state.dates == null ||
+                    state.dates!.isEmpty) {
+                  _newAppointmentBloc.add(
+                    NewAppointmentEvent.dateSelected(date: selectedDate!),
+                  );
+                }
+              },
+              hintText: 'Select Date',
+              keyboardType: TextInputType.datetime,
+              readOnly: true,
+              controller: _dateController,
+              suffixIcon: Image.asset('assets/icons/ic_calendar.png'),
+            );
           },
-          hintText: 'Select Date',
-          keyboardType: TextInputType.datetime,
-          readOnly: true,
-          controller: _dateController,
-          suffixIcon: Image.asset('assets/icons/ic_calendar.png'),
         ),
       ],
     );
   }
 
-  _selectDate() async {
-    final date = await showDatePicker(
+  Future<DateTime?> _selectDate(List<DateTime> availableDates) async {
+    final date = await showRestrictedDatePicker(
       context: context,
-      firstDate: DateTime.now(),
-      lastDate: DateTime(2030),
+      availableDates: [
+        DateTime.parse('2025-05-28'),
+        DateTime.parse('2025-05-29'),
+        DateTime.parse('2025-06-01'),
+        DateTime.parse('2025-06-03'),
+        DateTime.parse('2025-06-07'),
+        DateTime.parse('2025-06-09'),
+      ],
     );
     if (date != null) {
       setState(() {
         _dateController.text = DateFormat.yMMMMEEEEd().format(date);
       });
+      return date;
+    } else {
+      return null;
     }
   }
 

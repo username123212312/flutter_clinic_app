@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_clinic_app/core/enums.dart';
+import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'doctor_model.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clinic_app/features/auth/view/screens/profile_setup_screen.dart';
+import 'package:our_flutter_clinic_app/features/auth/view/screens/profile_setup_screen.dart';
 
 import '../../features/auth/view/widgets/auth_widgets.dart';
 import '../consts/app_constants.dart';

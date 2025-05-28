@@ -1,4 +1,4 @@
-import 'package:flutter_clinic_app/core/models/usermodel.dart';
+import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'authuser.freezed.dart';

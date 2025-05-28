@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clinic_app/core/enums.dart';
-import 'package:flutter_clinic_app/core/models/downloaded_file.dart';
-import 'package:flutter_clinic_app/core/utils/utils.dart';
-import 'package:flutter_clinic_app/features/home/model/analysis_model.dart';
-import 'package:flutter_clinic_app/features/home/repository/analysis_item_repository.dart';
+import 'package:our_flutter_clinic_app/core/enums.dart';
+import 'package:our_flutter_clinic_app/core/models/downloaded_file.dart';
+import 'package:our_flutter_clinic_app/core/utils/utils.dart';
+import 'package:our_flutter_clinic_app/features/home/model/analysis_model.dart';
+import 'package:our_flutter_clinic_app/features/home/repository/analysis_item_repository.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';

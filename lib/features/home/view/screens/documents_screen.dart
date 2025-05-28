@@ -2,15 +2,15 @@ import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter_clinic_app/core/enums.dart';
-import 'package:flutter_clinic_app/core/navigation/navigation_exports.dart';
-import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
-import 'package:flutter_clinic_app/core/utils/general_utils.dart';
-import 'package:flutter_clinic_app/core/utils/utils.dart';
-import 'package:flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
-import 'package:flutter_clinic_app/features/home/controller/analysis_list_bloc/analysis_list_bloc.dart';
-import 'package:flutter_clinic_app/features/home/model/analysis_model.dart';
-import 'package:flutter_clinic_app/features/home/view/widgets/analysis_item_widget.dart';
+import 'package:our_flutter_clinic_app/core/enums.dart';
+import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
+import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
+import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
+import 'package:our_flutter_clinic_app/core/utils/utils.dart';
+import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
+import 'package:our_flutter_clinic_app/features/home/controller/analysis_list_bloc/analysis_list_bloc.dart';
+import 'package:our_flutter_clinic_app/features/home/model/analysis_model.dart';
+import 'package:our_flutter_clinic_app/features/home/view/widgets/analysis_item_widget.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class DocumentsScreen extends StatefulWidget {

@@ -1,6 +1,6 @@
 {
-    "name": "flutter_clinic_app",
-    "short_name": "flutter_clinic_app",
+    "name": "our_flutter_clinic_app",
+    "short_name": "our_flutter_clinic_app",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -12,7 +12,13 @@ class GoogleAuthService {
   GoogleSignIn? get instance => _googleSignIn;
 
   Future<void> _createGoogleSignIn() async {
-    _googleSignIn = instance ?? GoogleSignIn(scopes: ['email']);
+    _googleSignIn =
+        instance ??
+        GoogleSignIn(
+          scopes: ['email'],
+          clientId:
+              '850302585778-82oubbqe67hjp2boorq1j7im828ad50d.apps.googleusercontent.com',
+        );
   }
 
   // Sign in and return user data

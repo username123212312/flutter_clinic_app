@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
-import 'package:flutter_clinic_app/core/utils/utils.dart';
-import 'package:flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
-import 'package:flutter_clinic_app/features/home/model/doctor_model.dart';
+import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
+import 'package:our_flutter_clinic_app/core/utils/utils.dart';
+import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
+import 'package:our_flutter_clinic_app/features/home/model/doctor_model.dart';
 
 class DoctorCardWidget extends StatelessWidget {
   const DoctorCardWidget({super.key, required this.doctor});

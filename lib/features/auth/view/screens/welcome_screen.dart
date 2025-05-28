@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clinic_app/core/navigation/app_route_constants.dart';
-import 'package:flutter_clinic_app/core/navigation/navigation_exports.dart';
-import 'package:flutter_clinic_app/core/theme/app_pallete.dart';
-import 'package:flutter_clinic_app/core/utils/general_utils.dart';
-import 'package:flutter_clinic_app/core/utils/utils.dart';
+import 'package:our_flutter_clinic_app/core/navigation/app_route_constants.dart';
+import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
+import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
+import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
+import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/blocs/auth_bloc/auth_bloc.dart';
 import '../widgets/auth_widgets.dart';

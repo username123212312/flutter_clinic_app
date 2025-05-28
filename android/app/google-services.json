@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "850302585778",
+    "project_id": "mediverse-project-461206",
+    "storage_bucket": "mediverse-project-461206.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850302585778:android:8410b26e6921cce68af2ab",
+        "android_client_info": {
+          "package_name": "com.example.our_flutter_clinic_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "850302585778-82oubbqe67hjp2boorq1j7im828ad50d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.our_flutter_clinic_app",
+            "certificate_hash": "5a8476bb5d5d230320363245bab0377d1467d999"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxW8IUux83DD07flFuAwqflO9r6qAzxdE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

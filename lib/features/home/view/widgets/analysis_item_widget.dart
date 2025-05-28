@@ -1,9 +1,9 @@
-import 'package:flutter_clinic_app/core/consts/app_constants.dart';
-import 'package:flutter_clinic_app/core/navigation/navigation_exports.dart';
-import 'package:flutter_clinic_app/core/utils/logger.dart';
-import 'package:flutter_clinic_app/features/home/controller/analysis_item_cubit/analysis_item_cubit.dart';
-import 'package:flutter_clinic_app/features/home/model/analysis_model.dart';
-import 'package:flutter_clinic_app/features/home/repository/analysis_item_repository.dart';
+import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
+import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
+import 'package:our_flutter_clinic_app/core/utils/logger.dart';
+import 'package:our_flutter_clinic_app/features/home/controller/analysis_item_cubit/analysis_item_cubit.dart';
+import 'package:our_flutter_clinic_app/features/home/model/analysis_model.dart';
+import 'package:our_flutter_clinic_app/features/home/repository/analysis_item_repository.dart';
 
 import 'package:open_filex/open_filex.dart';
 import 'package:url_launcher/url_launcher.dart';

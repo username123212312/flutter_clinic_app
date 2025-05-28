@@ -1,4 +1,4 @@
-# flutter_clinic_app
+# our_flutter_clinic_app
 
 Our Project1 Application
 
