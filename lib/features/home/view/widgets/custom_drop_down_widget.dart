@@ -1,28 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clinic_app/features/home/view/screens/book_new_appointment_screen.dart';
 
 import '../../../../core/theme/app_pallete.dart';
 import '../../../../core/utils/utils.dart';
 
-class CustomDropDownWidget extends StatefulWidget {
+class CustomDropDownWidget<T> extends StatefulWidget {
   const CustomDropDownWidget({
     super.key,
     this.options,
     this.contentItem,
-    this.onSelected,
+    required this.onSelected,
     required this.initialOption,
+    this.values,
+    this.iniaialValue,
   });
   final List<String>? options;
   final Widget? contentItem;
-  final void Function(String option)? onSelected;
-
+  final void Function(String option, T? value)? onSelected;
+  final List<T?>? values;
+  final T? iniaialValue;
   final String initialOption;
 
   @override
-  State<CustomDropDownWidget> createState() => _CustomDropDownWidgetState();
+  State<CustomDropDownWidget<T>> createState() =>
+      _CustomDropDownWidgetState<T>();
 }
 
-class _CustomDropDownWidgetState extends State<CustomDropDownWidget>
+class _CustomDropDownWidgetState<T> extends State<CustomDropDownWidget<T>>
     with SingleTickerProviderStateMixin {
   @override
   void initState() {
@@ -122,32 +125,33 @@ class _CustomDropDownWidgetState extends State<CustomDropDownWidget>
                   borderRadius: BorderRadius.circular(8),
                   child: SizedBox(
                     height: screenHeight(context) * 0.3,
-                    child: ListView(
+                    child: ListView.builder(
                       padding: EdgeInsets.zero,
                       shrinkWrap: true,
-                      children:
-                          (widget.options ?? []).map((option) {
-                            return ListTile(
-                              title: Text(
-                                option,
-                                style: Theme.of(
-                                  context,
-                                ).textTheme.titleSmall!.copyWith(
-                                  fontSize: 14,
-                                  color: Pallete.grayScaleColor500,
-                                ),
-                              ),
-                              onTap: () {
-                                setState(() {
-                                  _selectedOption = option;
-                                });
-                                if (widget.onSelected != null) {
-                                  widget.onSelected!(option);
-                                }
-                                _toggleDropdown();
-                              },
-                            );
-                          }).toList(),
+                      itemCount: (widget.options ?? []).length,
+                      itemBuilder: (_, index) {
+                        final option = widget.options?[index] ?? 'no element';
+                        return ListTile(
+                          title: Text(
+                            option,
+                            style: Theme.of(
+                              context,
+                            ).textTheme.titleSmall!.copyWith(
+                              fontSize: 14,
+                              color: Pallete.grayScaleColor500,
+                            ),
+                          ),
+                          onTap: () {
+                            setState(() {
+                              _selectedOption = option;
+                            });
+                            if (widget.onSelected != null) {
+                              widget.onSelected!(option, widget.values?[index]);
+                            }
+                            _toggleDropdown();
+                          },
+                        );
+                      },
                     ),
                   ),
                 ),

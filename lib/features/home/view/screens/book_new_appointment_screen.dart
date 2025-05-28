@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clinic_app/core/data/dummy_data.dart';
 import 'package:flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
 import 'package:flutter_clinic_app/features/home/controller/new_appointment_bloc/new_appointment_bloc.dart';
+import 'package:flutter_clinic_app/features/home/model/clinic_model.dart';
+import 'package:flutter_clinic_app/features/home/repository/new_appointment_repository.dart';
 import 'package:flutter_clinic_app/features/home/view/widgets/appointments/schedules_item_widget.dart';
 import 'package:flutter_clinic_app/features/home/view/widgets/custom_drop_down_widget.dart';
 import 'package:flutter_clinic_app/features/home/view/widgets/doctor_card_widget.dart';
@@ -13,18 +15,7 @@ import 'package:intl/intl.dart';
 
 import '../../../../core/theme/app_pallete.dart';
 import '../../../../core/utils/utils.dart';
-
-final List<String> _departments = [
-  'Choose Department',
-  'Heart',
-  'Lung',
-  'Brain',
-  'Dental',
-  'Kidney',
-  'Mental',
-  'Stomamch',
-  'Liver',
-];
+import '../../model/doctor_model.dart';
 
 class BookNewAppointmentScreen extends StatefulWidget {
   const BookNewAppointmentScreen({super.key});
@@ -39,7 +30,9 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
   void initState() {
     super.initState();
     _searchFocusNode = FocusNode();
-    _newAppointmentBloc = NewAppointmentBloc();
+    _newAppointmentBloc = NewAppointmentBloc(
+      newAppointmentRepository: NewAppointmentRepository(),
+    )..add(NewAppointmentEvent.clinicsFetched());
   }
 
   @override
@@ -222,14 +215,23 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
   Column _buildTwoDropdowns() {
     return Column(
       children: [
-        CustomDropDownWidget(
-          initialOption: _departments[0],
-          options: _departments,
-          onSelected: (option) {
-            _newAppointmentBloc.add(
-              NewAppointmentEvent.doctorsFetched(
-                clinicId: _departments.indexOf(option),
-              ),
+        BlocBuilder<NewAppointmentBloc, NewAppointmentState>(
+          bloc: _newAppointmentBloc,
+          builder: (context, state) {
+            return CustomDropDownWidget<ClinicModel>(
+              values: state.clinics,
+              initialOption: state.department?.name ?? 'Choose Department',
+              options:
+                  (state.clinics!).map((clinic) {
+                    return clinic.name ?? 'wrong';
+                  }).toList(),
+              onSelected: (option, value) {
+                if (value != null) {
+                  _newAppointmentBloc.add(
+                    NewAppointmentEvent.doctorsFetched(clinic: value),
+                  );
+                }
+              },
             );
           },
         ),
@@ -237,25 +239,23 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
         BlocBuilder<NewAppointmentBloc, NewAppointmentState>(
           bloc: _newAppointmentBloc,
           builder: (context, state) {
-            return CustomDropDownWidget(
-              onSelected: (option) {
-                _newAppointmentBloc.add(
-                  NewAppointmentEvent.doctorSelected(
-                    doctor:
-                        doctorsList.where((doctor) {
-                          return doctor.firstName == option;
-                        }).first,
-                  ),
-                );
+            return CustomDropDownWidget<DoctorModel>(
+              values: state.doctors,
+              onSelected: (option, value) {
+                if (value != null) {
+                  _newAppointmentBloc.add(
+                    NewAppointmentEvent.doctorSelected(doctor: value),
+                  );
+                }
               },
               initialOption:
-                  state.doctors.isEmpty
-                      ? 'Choose a Doctor'
-                      : state.doctors[0].firstName ?? 'No doctor',
+                  '${state.doctor?.firstName ?? 'Choose '} ${state.doctor?.lastName ?? 'a doctor'}',
               options:
-                  state.doctors.map((doctor) {
-                    return doctor.firstName ?? 'No doctor';
-                  }).toList(),
+                  state.doctors == null || state.doctors!.isEmpty
+                      ? []
+                      : state.doctors!.map((doctor) {
+                        return '${doctor.firstName ?? 'No'} ${doctor.lastName ?? 'Doctor'}';
+                      }).toList(),
             );
           },
         ),
@@ -352,9 +352,9 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
         return ListView.builder(
           padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
           shrinkWrap: true,
-          itemCount: state.doctors.length,
+          itemCount: (state.doctors ?? []).length,
           itemBuilder: (_, index) {
-            final doctor = state.doctors[index];
+            final doctor = (state.doctors ?? [])[index];
             return Padding(
               padding: const EdgeInsets.only(bottom: 10.0),
               child: DoctorCardWidget(doctor: doctor),
@@ -370,4 +370,5 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
   late final NewAppointmentBloc _newAppointmentBloc;
   String _currentDate = 'Select Date';
   final _dateController = TextEditingController();
+  final List<ClinicModel> _departments = [];
 }

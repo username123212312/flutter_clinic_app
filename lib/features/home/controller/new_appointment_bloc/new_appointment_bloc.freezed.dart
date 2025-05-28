@@ -59,9 +59,9 @@ class ClinicsFetched implements NewAppointmentEvent {
 /// @nodoc
 
 class DoctorsFetched implements NewAppointmentEvent {
-  const DoctorsFetched({required this.clinicId});
+  const DoctorsFetched({required this.clinic});
 
-  final int clinicId;
+  final ClinicModel clinic;
 
   /// Create a copy of NewAppointmentEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -75,16 +75,15 @@ class DoctorsFetched implements NewAppointmentEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is DoctorsFetched &&
-            (identical(other.clinicId, clinicId) ||
-                other.clinicId == clinicId));
+            (identical(other.clinic, clinic) || other.clinic == clinic));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, clinicId);
+  int get hashCode => Object.hash(runtimeType, clinic);
 
   @override
   String toString() {
-    return 'NewAppointmentEvent.doctorsFetched(clinicId: $clinicId)';
+    return 'NewAppointmentEvent.doctorsFetched(clinic: $clinic)';
   }
 }
 
@@ -95,7 +94,9 @@ abstract mixin class $DoctorsFetchedCopyWith<$Res>
           DoctorsFetched value, $Res Function(DoctorsFetched) _then) =
       _$DoctorsFetchedCopyWithImpl;
   @useResult
-  $Res call({int clinicId});
+  $Res call({ClinicModel clinic});
+
+  $ClinicModelCopyWith<$Res> get clinic;
 }
 
 /// @nodoc
@@ -110,14 +111,24 @@ class _$DoctorsFetchedCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? clinicId = null,
+    Object? clinic = null,
   }) {
     return _then(DoctorsFetched(
-      clinicId: null == clinicId
-          ? _self.clinicId
-          : clinicId // ignore: cast_nullable_to_non_nullable
-              as int,
+      clinic: null == clinic
+          ? _self.clinic
+          : clinic // ignore: cast_nullable_to_non_nullable
+              as ClinicModel,
     ));
+  }
+
+  /// Create a copy of NewAppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ClinicModelCopyWith<$Res> get clinic {
+    return $ClinicModelCopyWith<$Res>(_self.clinic, (value) {
+      return _then(_self.copyWith(clinic: value));
+    });
   }
 }
 
@@ -239,10 +250,14 @@ class ScheduleSelected implements NewAppointmentEvent {
 
 /// @nodoc
 mixin _$NewAppointmentState {
-  String get departmentId;
-  List<DoctorModel> get doctors;
-  DateTime get date;
-  List<String> get availableSchedules;
+  ClinicModel? get department;
+  DoctorModel? get doctor;
+  String? get statusMessage;
+  List<DoctorModel>? get doctors;
+  List<ClinicModel>? get clinics;
+  DateTime? get date;
+  List<String>? get availableSchedules;
+  DataStatus? get status;
 
   /// Create a copy of NewAppointmentState
   /// with the given fields replaced by the non-null parameter values.
@@ -257,25 +272,34 @@ mixin _$NewAppointmentState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is NewAppointmentState &&
-            (identical(other.departmentId, departmentId) ||
-                other.departmentId == departmentId) &&
+            (identical(other.department, department) ||
+                other.department == department) &&
+            (identical(other.doctor, doctor) || other.doctor == doctor) &&
+            (identical(other.statusMessage, statusMessage) ||
+                other.statusMessage == statusMessage) &&
             const DeepCollectionEquality().equals(other.doctors, doctors) &&
+            const DeepCollectionEquality().equals(other.clinics, clinics) &&
             (identical(other.date, date) || other.date == date) &&
             const DeepCollectionEquality()
-                .equals(other.availableSchedules, availableSchedules));
+                .equals(other.availableSchedules, availableSchedules) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      departmentId,
+      department,
+      doctor,
+      statusMessage,
       const DeepCollectionEquality().hash(doctors),
+      const DeepCollectionEquality().hash(clinics),
       date,
-      const DeepCollectionEquality().hash(availableSchedules));
+      const DeepCollectionEquality().hash(availableSchedules),
+      status);
 
   @override
   String toString() {
-    return 'NewAppointmentState(departmentId: $departmentId, doctors: $doctors, date: $date, availableSchedules: $availableSchedules)';
+    return 'NewAppointmentState(department: $department, doctor: $doctor, statusMessage: $statusMessage, doctors: $doctors, clinics: $clinics, date: $date, availableSchedules: $availableSchedules, status: $status)';
   }
 }
 
@@ -286,10 +310,17 @@ abstract mixin class $NewAppointmentStateCopyWith<$Res> {
       _$NewAppointmentStateCopyWithImpl;
   @useResult
   $Res call(
-      {String departmentId,
-      List<DoctorModel> doctors,
-      DateTime date,
-      List<String> availableSchedules});
+      {ClinicModel? department,
+      DoctorModel? doctor,
+      String? statusMessage,
+      List<DoctorModel>? doctors,
+      List<ClinicModel>? clinics,
+      DateTime? date,
+      List<String>? availableSchedules,
+      DataStatus? status});
+
+  $ClinicModelCopyWith<$Res>? get department;
+  $DoctorModelCopyWith<$Res>? get doctor;
 }
 
 /// @nodoc
@@ -305,29 +336,77 @@ class _$NewAppointmentStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? departmentId = null,
-    Object? doctors = null,
-    Object? date = null,
-    Object? availableSchedules = null,
+    Object? department = freezed,
+    Object? doctor = freezed,
+    Object? statusMessage = freezed,
+    Object? doctors = freezed,
+    Object? clinics = freezed,
+    Object? date = freezed,
+    Object? availableSchedules = freezed,
+    Object? status = freezed,
   }) {
     return _then(_self.copyWith(
-      departmentId: null == departmentId
-          ? _self.departmentId
-          : departmentId // ignore: cast_nullable_to_non_nullable
-              as String,
-      doctors: null == doctors
+      department: freezed == department
+          ? _self.department
+          : department // ignore: cast_nullable_to_non_nullable
+              as ClinicModel?,
+      doctor: freezed == doctor
+          ? _self.doctor
+          : doctor // ignore: cast_nullable_to_non_nullable
+              as DoctorModel?,
+      statusMessage: freezed == statusMessage
+          ? _self.statusMessage
+          : statusMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      doctors: freezed == doctors
           ? _self.doctors
           : doctors // ignore: cast_nullable_to_non_nullable
-              as List<DoctorModel>,
-      date: null == date
+              as List<DoctorModel>?,
+      clinics: freezed == clinics
+          ? _self.clinics
+          : clinics // ignore: cast_nullable_to_non_nullable
+              as List<ClinicModel>?,
+      date: freezed == date
           ? _self.date
           : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      availableSchedules: null == availableSchedules
+              as DateTime?,
+      availableSchedules: freezed == availableSchedules
           ? _self.availableSchedules
           : availableSchedules // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as DataStatus?,
     ));
+  }
+
+  /// Create a copy of NewAppointmentState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ClinicModelCopyWith<$Res>? get department {
+    if (_self.department == null) {
+      return null;
+    }
+
+    return $ClinicModelCopyWith<$Res>(_self.department!, (value) {
+      return _then(_self.copyWith(department: value));
+    });
+  }
+
+  /// Create a copy of NewAppointmentState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DoctorModelCopyWith<$Res>? get doctor {
+    if (_self.doctor == null) {
+      return null;
+    }
+
+    return $DoctorModelCopyWith<$Res>(_self.doctor!, (value) {
+      return _then(_self.copyWith(doctor: value));
+    });
   }
 }
 
@@ -335,33 +414,59 @@ class _$NewAppointmentStateCopyWithImpl<$Res>
 
 class _NewAppointmentState implements NewAppointmentState {
   const _NewAppointmentState(
-      {required this.departmentId,
-      required final List<DoctorModel> doctors,
-      required this.date,
-      required final List<String> availableSchedules})
+      {this.department,
+      this.doctor,
+      this.statusMessage,
+      final List<DoctorModel>? doctors,
+      final List<ClinicModel>? clinics,
+      this.date,
+      final List<String>? availableSchedules,
+      this.status})
       : _doctors = doctors,
+        _clinics = clinics,
         _availableSchedules = availableSchedules;
 
   @override
-  final String departmentId;
-  final List<DoctorModel> _doctors;
+  final ClinicModel? department;
   @override
-  List<DoctorModel> get doctors {
+  final DoctorModel? doctor;
+  @override
+  final String? statusMessage;
+  final List<DoctorModel>? _doctors;
+  @override
+  List<DoctorModel>? get doctors {
+    final value = _doctors;
+    if (value == null) return null;
     if (_doctors is EqualUnmodifiableListView) return _doctors;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_doctors);
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<ClinicModel>? _clinics;
+  @override
+  List<ClinicModel>? get clinics {
+    final value = _clinics;
+    if (value == null) return null;
+    if (_clinics is EqualUnmodifiableListView) return _clinics;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
   }
 
   @override
-  final DateTime date;
-  final List<String> _availableSchedules;
+  final DateTime? date;
+  final List<String>? _availableSchedules;
   @override
-  List<String> get availableSchedules {
+  List<String>? get availableSchedules {
+    final value = _availableSchedules;
+    if (value == null) return null;
     if (_availableSchedules is EqualUnmodifiableListView)
       return _availableSchedules;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_availableSchedules);
+    return EqualUnmodifiableListView(value);
   }
+
+  @override
+  final DataStatus? status;
 
   /// Create a copy of NewAppointmentState
   /// with the given fields replaced by the non-null parameter values.
@@ -377,25 +482,34 @@ class _NewAppointmentState implements NewAppointmentState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _NewAppointmentState &&
-            (identical(other.departmentId, departmentId) ||
-                other.departmentId == departmentId) &&
+            (identical(other.department, department) ||
+                other.department == department) &&
+            (identical(other.doctor, doctor) || other.doctor == doctor) &&
+            (identical(other.statusMessage, statusMessage) ||
+                other.statusMessage == statusMessage) &&
             const DeepCollectionEquality().equals(other._doctors, _doctors) &&
+            const DeepCollectionEquality().equals(other._clinics, _clinics) &&
             (identical(other.date, date) || other.date == date) &&
             const DeepCollectionEquality()
-                .equals(other._availableSchedules, _availableSchedules));
+                .equals(other._availableSchedules, _availableSchedules) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      departmentId,
+      department,
+      doctor,
+      statusMessage,
       const DeepCollectionEquality().hash(_doctors),
+      const DeepCollectionEquality().hash(_clinics),
       date,
-      const DeepCollectionEquality().hash(_availableSchedules));
+      const DeepCollectionEquality().hash(_availableSchedules),
+      status);
 
   @override
   String toString() {
-    return 'NewAppointmentState(departmentId: $departmentId, doctors: $doctors, date: $date, availableSchedules: $availableSchedules)';
+    return 'NewAppointmentState(department: $department, doctor: $doctor, statusMessage: $statusMessage, doctors: $doctors, clinics: $clinics, date: $date, availableSchedules: $availableSchedules, status: $status)';
   }
 }
 
@@ -408,10 +522,19 @@ abstract mixin class _$NewAppointmentStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String departmentId,
-      List<DoctorModel> doctors,
-      DateTime date,
-      List<String> availableSchedules});
+      {ClinicModel? department,
+      DoctorModel? doctor,
+      String? statusMessage,
+      List<DoctorModel>? doctors,
+      List<ClinicModel>? clinics,
+      DateTime? date,
+      List<String>? availableSchedules,
+      DataStatus? status});
+
+  @override
+  $ClinicModelCopyWith<$Res>? get department;
+  @override
+  $DoctorModelCopyWith<$Res>? get doctor;
 }
 
 /// @nodoc
@@ -427,29 +550,77 @@ class __$NewAppointmentStateCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? departmentId = null,
-    Object? doctors = null,
-    Object? date = null,
-    Object? availableSchedules = null,
+    Object? department = freezed,
+    Object? doctor = freezed,
+    Object? statusMessage = freezed,
+    Object? doctors = freezed,
+    Object? clinics = freezed,
+    Object? date = freezed,
+    Object? availableSchedules = freezed,
+    Object? status = freezed,
   }) {
     return _then(_NewAppointmentState(
-      departmentId: null == departmentId
-          ? _self.departmentId
-          : departmentId // ignore: cast_nullable_to_non_nullable
-              as String,
-      doctors: null == doctors
+      department: freezed == department
+          ? _self.department
+          : department // ignore: cast_nullable_to_non_nullable
+              as ClinicModel?,
+      doctor: freezed == doctor
+          ? _self.doctor
+          : doctor // ignore: cast_nullable_to_non_nullable
+              as DoctorModel?,
+      statusMessage: freezed == statusMessage
+          ? _self.statusMessage
+          : statusMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      doctors: freezed == doctors
           ? _self._doctors
           : doctors // ignore: cast_nullable_to_non_nullable
-              as List<DoctorModel>,
-      date: null == date
+              as List<DoctorModel>?,
+      clinics: freezed == clinics
+          ? _self._clinics
+          : clinics // ignore: cast_nullable_to_non_nullable
+              as List<ClinicModel>?,
+      date: freezed == date
           ? _self.date
           : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      availableSchedules: null == availableSchedules
+              as DateTime?,
+      availableSchedules: freezed == availableSchedules
           ? _self._availableSchedules
           : availableSchedules // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as DataStatus?,
     ));
+  }
+
+  /// Create a copy of NewAppointmentState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ClinicModelCopyWith<$Res>? get department {
+    if (_self.department == null) {
+      return null;
+    }
+
+    return $ClinicModelCopyWith<$Res>(_self.department!, (value) {
+      return _then(_self.copyWith(department: value));
+    });
+  }
+
+  /// Create a copy of NewAppointmentState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DoctorModelCopyWith<$Res>? get doctor {
+    if (_self.doctor == null) {
+      return null;
+    }
+
+    return $DoctorModelCopyWith<$Res>(_self.doctor!, (value) {
+      return _then(_self.copyWith(doctor: value));
+    });
   }
 }
 

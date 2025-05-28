@@ -161,7 +161,7 @@ class UserRepository {
           ),
         );
       } else {
-        throw HttpException(response.data['message']);
+        throw HttpException(response.data['message'][0]);
       }
     } on DioException catch (e) {
       return Left(

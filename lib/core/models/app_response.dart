@@ -38,8 +38,8 @@ class AppResponse<T> extends Equatable {
     return AppResponse._(
       success: success,
       message: message,
-      statusCode: statusCode ?? 200,
-      statusMessage: statusMessage ?? "The request has succeeded.",
+      statusCode: statusCode ?? 500,
+      statusMessage: statusMessage ?? "Some Error occurred.",
       data: data,
     );
   }

@@ -7,7 +7,6 @@ import 'package:flutter_clinic_app/core/models/app_failure.dart';
 import 'package:flutter_clinic_app/core/models/app_response.dart';
 import 'package:flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:flutter_clinic_app/core/providers/dio_client/dio_client.dart';
-import 'package:flutter_clinic_app/core/providers/file_manager/file_manager.dart';
 import 'package:flutter_clinic_app/core/utils/utils.dart';
 import 'package:flutter_clinic_app/features/home/model/analysis_model.dart';
 import 'package:flutter_clinic_app/features/home/model/requests/add_analysis_request.dart';

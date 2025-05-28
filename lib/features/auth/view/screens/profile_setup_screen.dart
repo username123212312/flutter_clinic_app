@@ -84,6 +84,8 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
                     _buildStepper(),
                     BlocListener<UserBloc, UserState>(
                       listener: (context, state) {
+                        clearAndShowSnackBar(context, state.statusMessage);
+
                         if (state.user?.firstName != null) {
                           clearAndShowSnackBar(context, state.statusMessage);
                           context.goNamed(AppRouteConstants.homeRouteName);
@@ -292,7 +294,7 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
                     age: int.tryParse(_ageController.text) ?? 0,
                     address: completeAddressController.text,
                     bloodType: AppConstants.bloodTypes[_selectedBloodType],
-                    gender: _selectedGender == 0 ? 'Male' : 'Female',
+                    gender: _selectedGender == 0 ? 'male' : 'female',
                   ),
                 ),
               );

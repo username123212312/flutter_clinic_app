@@ -16,14 +16,18 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$DoctorModel {
   int? get id;
+  @JsonKey(name: 'first_name')
   String? get firstName;
+  @JsonKey(name: 'last_name')
   String? get lastName;
   String? get phone;
   String? get clinic;
+  @JsonKey(name: 'photo_path')
   String? get photoPath;
   bool? get treated;
   String? get speciality;
   String? get department;
+  @JsonKey(name: 'final_rate')
   String? get finalRate;
   double? get visitFee;
   String? get excperience;
@@ -99,15 +103,15 @@ abstract mixin class $DoctorModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
-      String? firstName,
-      String? lastName,
+      @JsonKey(name: 'first_name') String? firstName,
+      @JsonKey(name: 'last_name') String? lastName,
       String? phone,
       String? clinic,
-      String? photoPath,
+      @JsonKey(name: 'photo_path') String? photoPath,
       bool? treated,
       String? speciality,
       String? department,
-      String? finalRate,
+      @JsonKey(name: 'final_rate') String? finalRate,
       double? visitFee,
       String? excperience,
       String? status});
@@ -201,15 +205,15 @@ class _$DoctorModelCopyWithImpl<$Res> implements $DoctorModelCopyWith<$Res> {
 class _DoctorModel implements DoctorModel {
   _DoctorModel(
       {this.id,
-      this.firstName,
-      this.lastName,
+      @JsonKey(name: 'first_name') this.firstName,
+      @JsonKey(name: 'last_name') this.lastName,
       this.phone,
       this.clinic,
-      this.photoPath,
+      @JsonKey(name: 'photo_path') this.photoPath,
       this.treated,
       this.speciality,
       this.department,
-      this.finalRate,
+      @JsonKey(name: 'final_rate') this.finalRate,
       this.visitFee,
       this.excperience,
       this.status});
@@ -219,14 +223,17 @@ class _DoctorModel implements DoctorModel {
   @override
   final int? id;
   @override
+  @JsonKey(name: 'first_name')
   final String? firstName;
   @override
+  @JsonKey(name: 'last_name')
   final String? lastName;
   @override
   final String? phone;
   @override
   final String? clinic;
   @override
+  @JsonKey(name: 'photo_path')
   final String? photoPath;
   @override
   final bool? treated;
@@ -235,6 +242,7 @@ class _DoctorModel implements DoctorModel {
   @override
   final String? department;
   @override
+  @JsonKey(name: 'final_rate')
   final String? finalRate;
   @override
   final double? visitFee;
@@ -320,15 +328,15 @@ abstract mixin class _$DoctorModelCopyWith<$Res>
   @useResult
   $Res call(
       {int? id,
-      String? firstName,
-      String? lastName,
+      @JsonKey(name: 'first_name') String? firstName,
+      @JsonKey(name: 'last_name') String? lastName,
       String? phone,
       String? clinic,
-      String? photoPath,
+      @JsonKey(name: 'photo_path') String? photoPath,
       bool? treated,
       String? speciality,
       String? department,
-      String? finalRate,
+      @JsonKey(name: 'final_rate') String? finalRate,
       double? visitFee,
       String? excperience,
       String? status});
