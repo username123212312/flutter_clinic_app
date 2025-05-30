@@ -17,14 +17,14 @@ import '../../../../../core/utils/utils.dart';
 import '../home_widgets.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class AppontmentsWidget extends StatefulWidget {
-  const AppontmentsWidget({super.key});
+class AppontmentsScreen extends StatefulWidget {
+  const AppontmentsScreen({super.key});
 
   @override
-  State<AppontmentsWidget> createState() => _AppontmentsWidgetState();
+  State<AppontmentsScreen> createState() => _AppontmentsScreenState();
 }
 
-class _AppontmentsWidgetState extends State<AppontmentsWidget> {
+class _AppontmentsScreenState extends State<AppontmentsScreen> {
   @override
   void initState() {
     super.initState();

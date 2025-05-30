@@ -15,11 +15,22 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$AppointmentModel {
+  @JsonKey(name: 'appointment_id')
   int? get id;
+  String? get type;
+  String? get finalRate;
+  @JsonKey(name: 'clinic_id')
+  int? get clinicId;
+  @JsonKey(name: 'clinic_name')
+  String? get clinicName;
+  @JsonKey(name: 'doctor_id')
+  int? get doctorId;
   @JsonKey(name: 'doctor_photo')
   String? get doctorPhoto;
   @JsonKey(name: 'doctor_name')
   String? get doctorName;
+  @JsonKey(name: 'visit_fee')
+  double? get visitFee;
   @JsonKey(name: 'doctor_speciality')
   String? get doctorSpeciality;
   @JsonKey(name: 'reservation_date')
@@ -46,10 +57,21 @@ mixin _$AppointmentModel {
         (other.runtimeType == runtimeType &&
             other is AppointmentModel &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.finalRate, finalRate) ||
+                other.finalRate == finalRate) &&
+            (identical(other.clinicId, clinicId) ||
+                other.clinicId == clinicId) &&
+            (identical(other.clinicName, clinicName) ||
+                other.clinicName == clinicName) &&
+            (identical(other.doctorId, doctorId) ||
+                other.doctorId == doctorId) &&
             (identical(other.doctorPhoto, doctorPhoto) ||
                 other.doctorPhoto == doctorPhoto) &&
             (identical(other.doctorName, doctorName) ||
                 other.doctorName == doctorName) &&
+            (identical(other.visitFee, visitFee) ||
+                other.visitFee == visitFee) &&
             (identical(other.doctorSpeciality, doctorSpeciality) ||
                 other.doctorSpeciality == doctorSpeciality) &&
             (identical(other.reservationDate, reservationDate) ||
@@ -61,12 +83,25 @@ mixin _$AppointmentModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, doctorPhoto, doctorName,
-      doctorSpeciality, reservationDate, reservationHour, status);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      type,
+      finalRate,
+      clinicId,
+      clinicName,
+      doctorId,
+      doctorPhoto,
+      doctorName,
+      visitFee,
+      doctorSpeciality,
+      reservationDate,
+      reservationHour,
+      status);
 
   @override
   String toString() {
-    return 'AppointmentModel(id: $id, doctorPhoto: $doctorPhoto, doctorName: $doctorName, doctorSpeciality: $doctorSpeciality, reservationDate: $reservationDate, reservationHour: $reservationHour, status: $status)';
+    return 'AppointmentModel(id: $id, type: $type, finalRate: $finalRate, clinicId: $clinicId, clinicName: $clinicName, doctorId: $doctorId, doctorPhoto: $doctorPhoto, doctorName: $doctorName, visitFee: $visitFee, doctorSpeciality: $doctorSpeciality, reservationDate: $reservationDate, reservationHour: $reservationHour, status: $status)';
   }
 }
 
@@ -77,9 +112,15 @@ abstract mixin class $AppointmentModelCopyWith<$Res> {
       _$AppointmentModelCopyWithImpl;
   @useResult
   $Res call(
-      {int? id,
+      {@JsonKey(name: 'appointment_id') int? id,
+      String? type,
+      String? finalRate,
+      @JsonKey(name: 'clinic_id') int? clinicId,
+      @JsonKey(name: 'clinic_name') String? clinicName,
+      @JsonKey(name: 'doctor_id') int? doctorId,
       @JsonKey(name: 'doctor_photo') String? doctorPhoto,
       @JsonKey(name: 'doctor_name') String? doctorName,
+      @JsonKey(name: 'visit_fee') double? visitFee,
       @JsonKey(name: 'doctor_speciality') String? doctorSpeciality,
       @JsonKey(name: 'reservation_date') DateTime? reservationDate,
       @JsonKey(name: 'reservation_hour')
@@ -102,8 +143,14 @@ class _$AppointmentModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? type = freezed,
+    Object? finalRate = freezed,
+    Object? clinicId = freezed,
+    Object? clinicName = freezed,
+    Object? doctorId = freezed,
     Object? doctorPhoto = freezed,
     Object? doctorName = freezed,
+    Object? visitFee = freezed,
     Object? doctorSpeciality = freezed,
     Object? reservationDate = freezed,
     Object? reservationHour = freezed,
@@ -114,6 +161,26 @@ class _$AppointmentModelCopyWithImpl<$Res>
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
+      type: freezed == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      finalRate: freezed == finalRate
+          ? _self.finalRate
+          : finalRate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      clinicId: freezed == clinicId
+          ? _self.clinicId
+          : clinicId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      clinicName: freezed == clinicName
+          ? _self.clinicName
+          : clinicName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      doctorId: freezed == doctorId
+          ? _self.doctorId
+          : doctorId // ignore: cast_nullable_to_non_nullable
+              as int?,
       doctorPhoto: freezed == doctorPhoto
           ? _self.doctorPhoto
           : doctorPhoto // ignore: cast_nullable_to_non_nullable
@@ -122,6 +189,10 @@ class _$AppointmentModelCopyWithImpl<$Res>
           ? _self.doctorName
           : doctorName // ignore: cast_nullable_to_non_nullable
               as String?,
+      visitFee: freezed == visitFee
+          ? _self.visitFee
+          : visitFee // ignore: cast_nullable_to_non_nullable
+              as double?,
       doctorSpeciality: freezed == doctorSpeciality
           ? _self.doctorSpeciality
           : doctorSpeciality // ignore: cast_nullable_to_non_nullable
@@ -146,9 +217,15 @@ class _$AppointmentModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _AppointmentModel implements AppointmentModel {
   _AppointmentModel(
-      {this.id,
+      {@JsonKey(name: 'appointment_id') this.id,
+      this.type,
+      this.finalRate,
+      @JsonKey(name: 'clinic_id') this.clinicId,
+      @JsonKey(name: 'clinic_name') this.clinicName,
+      @JsonKey(name: 'doctor_id') this.doctorId,
       @JsonKey(name: 'doctor_photo') this.doctorPhoto,
       @JsonKey(name: 'doctor_name') this.doctorName,
+      @JsonKey(name: 'visit_fee') this.visitFee,
       @JsonKey(name: 'doctor_speciality') this.doctorSpeciality,
       @JsonKey(name: 'reservation_date') this.reservationDate,
       @JsonKey(name: 'reservation_hour')
@@ -159,13 +236,30 @@ class _AppointmentModel implements AppointmentModel {
       _$AppointmentModelFromJson(json);
 
   @override
+  @JsonKey(name: 'appointment_id')
   final int? id;
+  @override
+  final String? type;
+  @override
+  final String? finalRate;
+  @override
+  @JsonKey(name: 'clinic_id')
+  final int? clinicId;
+  @override
+  @JsonKey(name: 'clinic_name')
+  final String? clinicName;
+  @override
+  @JsonKey(name: 'doctor_id')
+  final int? doctorId;
   @override
   @JsonKey(name: 'doctor_photo')
   final String? doctorPhoto;
   @override
   @JsonKey(name: 'doctor_name')
   final String? doctorName;
+  @override
+  @JsonKey(name: 'visit_fee')
+  final double? visitFee;
   @override
   @JsonKey(name: 'doctor_speciality')
   final String? doctorSpeciality;
@@ -200,10 +294,21 @@ class _AppointmentModel implements AppointmentModel {
         (other.runtimeType == runtimeType &&
             other is _AppointmentModel &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.finalRate, finalRate) ||
+                other.finalRate == finalRate) &&
+            (identical(other.clinicId, clinicId) ||
+                other.clinicId == clinicId) &&
+            (identical(other.clinicName, clinicName) ||
+                other.clinicName == clinicName) &&
+            (identical(other.doctorId, doctorId) ||
+                other.doctorId == doctorId) &&
             (identical(other.doctorPhoto, doctorPhoto) ||
                 other.doctorPhoto == doctorPhoto) &&
             (identical(other.doctorName, doctorName) ||
                 other.doctorName == doctorName) &&
+            (identical(other.visitFee, visitFee) ||
+                other.visitFee == visitFee) &&
             (identical(other.doctorSpeciality, doctorSpeciality) ||
                 other.doctorSpeciality == doctorSpeciality) &&
             (identical(other.reservationDate, reservationDate) ||
@@ -215,12 +320,25 @@ class _AppointmentModel implements AppointmentModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, doctorPhoto, doctorName,
-      doctorSpeciality, reservationDate, reservationHour, status);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      type,
+      finalRate,
+      clinicId,
+      clinicName,
+      doctorId,
+      doctorPhoto,
+      doctorName,
+      visitFee,
+      doctorSpeciality,
+      reservationDate,
+      reservationHour,
+      status);
 
   @override
   String toString() {
-    return 'AppointmentModel(id: $id, doctorPhoto: $doctorPhoto, doctorName: $doctorName, doctorSpeciality: $doctorSpeciality, reservationDate: $reservationDate, reservationHour: $reservationHour, status: $status)';
+    return 'AppointmentModel(id: $id, type: $type, finalRate: $finalRate, clinicId: $clinicId, clinicName: $clinicName, doctorId: $doctorId, doctorPhoto: $doctorPhoto, doctorName: $doctorName, visitFee: $visitFee, doctorSpeciality: $doctorSpeciality, reservationDate: $reservationDate, reservationHour: $reservationHour, status: $status)';
   }
 }
 
@@ -233,9 +351,15 @@ abstract mixin class _$AppointmentModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? id,
+      {@JsonKey(name: 'appointment_id') int? id,
+      String? type,
+      String? finalRate,
+      @JsonKey(name: 'clinic_id') int? clinicId,
+      @JsonKey(name: 'clinic_name') String? clinicName,
+      @JsonKey(name: 'doctor_id') int? doctorId,
       @JsonKey(name: 'doctor_photo') String? doctorPhoto,
       @JsonKey(name: 'doctor_name') String? doctorName,
+      @JsonKey(name: 'visit_fee') double? visitFee,
       @JsonKey(name: 'doctor_speciality') String? doctorSpeciality,
       @JsonKey(name: 'reservation_date') DateTime? reservationDate,
       @JsonKey(name: 'reservation_hour')
@@ -258,8 +382,14 @@ class __$AppointmentModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? id = freezed,
+    Object? type = freezed,
+    Object? finalRate = freezed,
+    Object? clinicId = freezed,
+    Object? clinicName = freezed,
+    Object? doctorId = freezed,
     Object? doctorPhoto = freezed,
     Object? doctorName = freezed,
+    Object? visitFee = freezed,
     Object? doctorSpeciality = freezed,
     Object? reservationDate = freezed,
     Object? reservationHour = freezed,
@@ -270,6 +400,26 @@ class __$AppointmentModelCopyWithImpl<$Res>
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
+      type: freezed == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      finalRate: freezed == finalRate
+          ? _self.finalRate
+          : finalRate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      clinicId: freezed == clinicId
+          ? _self.clinicId
+          : clinicId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      clinicName: freezed == clinicName
+          ? _self.clinicName
+          : clinicName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      doctorId: freezed == doctorId
+          ? _self.doctorId
+          : doctorId // ignore: cast_nullable_to_non_nullable
+              as int?,
       doctorPhoto: freezed == doctorPhoto
           ? _self.doctorPhoto
           : doctorPhoto // ignore: cast_nullable_to_non_nullable
@@ -278,6 +428,10 @@ class __$AppointmentModelCopyWithImpl<$Res>
           ? _self.doctorName
           : doctorName // ignore: cast_nullable_to_non_nullable
               as String?,
+      visitFee: freezed == visitFee
+          ? _self.visitFee
+          : visitFee // ignore: cast_nullable_to_non_nullable
+              as double?,
       doctorSpeciality: freezed == doctorSpeciality
           ? _self.doctorSpeciality
           : doctorSpeciality // ignore: cast_nullable_to_non_nullable

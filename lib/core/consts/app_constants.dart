@@ -43,6 +43,8 @@ class AppConstants {
 
   //*   Appointment
   static const showAppointmentPath = '/$patientPath/showAppointment';
+  static const showAppointmentInfoPath = '/$patientPath/showAppointmentInfo';
+  static const editReservationPath = '/$patientPath/editReservation';
   static const cancelReservationPath = '/$patientPath/cancelReservation';
 
   //*   Reservation

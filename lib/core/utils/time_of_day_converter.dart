@@ -15,6 +15,6 @@ class TimeOfDayConverter implements JsonConverter<TimeOfDay?, String?> {
   String? toJson(TimeOfDay? time) {
     if (time == null) return null;
     // Return as HH:mm:ss with seconds as "00"
-    return '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}:00';
+    return '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}';
   }
 }

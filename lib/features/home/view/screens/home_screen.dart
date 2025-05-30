@@ -120,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen>
     _animationController.forward();
     return switch (index) {
       0 => Placeholder(),
-      1 => AppontmentsWidget(),
+      1 => AppontmentsScreen(),
       2 => ProifileWidget(),
       _ => Placeholder(),
     };

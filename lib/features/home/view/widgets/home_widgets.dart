@@ -1,5 +1,5 @@
 export 'custom_bottom_app_bar.dart';
-export 'appointments/appontments_widget.dart';
+export 'appointments/appontments_screen.dart';
 export 'appointments/appointment_widget_item.dart';
 export 'three_selectable_widget.dart';
 export 'appointments/appointment_card.dart';

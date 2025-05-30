@@ -30,21 +30,25 @@ Future<DateTime?> showRestrictedDatePicker({
   required BuildContext context,
   required List<DateTime> availableDates,
 }) async {
-  return await showDatePicker(
-    context: context,
-    initialDate: availableDates.first,
-    firstDate: availableDates.first,
-    lastDate: availableDates.last,
-    selectableDayPredicate: (DateTime day) {
-      // Only enable dates that exist in availableDates
-      return availableDates.any(
-        (availableDate) =>
-            day.year == availableDate.year &&
-            day.month == availableDate.month &&
-            day.day == availableDate.day,
-      );
-    },
-  );
+  if (availableDates.isNotEmpty) {
+    return await showDatePicker(
+      context: context,
+      initialDate: availableDates.first,
+      firstDate: availableDates.first,
+      lastDate: availableDates.last,
+      selectableDayPredicate: (DateTime day) {
+        // Only enable dates that exist in availableDates
+        return availableDates.any(
+          (availableDate) =>
+              day.year == availableDate.year &&
+              day.month == availableDate.month &&
+              day.day == availableDate.day,
+        );
+      },
+    );
+  } else {
+    return null;
+  }
 }
 
 TimeOfDay parseTimeWithDateFormat(String timeString) {

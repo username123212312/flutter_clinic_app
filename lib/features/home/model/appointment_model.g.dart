@@ -8,9 +8,15 @@ part of 'appointment_model.dart';
 
 _AppointmentModel _$AppointmentModelFromJson(Map<String, dynamic> json) =>
     _AppointmentModel(
-      id: (json['id'] as num?)?.toInt(),
+      id: (json['appointment_id'] as num?)?.toInt(),
+      type: json['type'] as String?,
+      finalRate: json['finalRate'] as String?,
+      clinicId: (json['clinic_id'] as num?)?.toInt(),
+      clinicName: json['clinic_name'] as String?,
+      doctorId: (json['doctor_id'] as num?)?.toInt(),
       doctorPhoto: json['doctor_photo'] as String?,
       doctorName: json['doctor_name'] as String?,
+      visitFee: (json['visit_fee'] as num?)?.toDouble(),
       doctorSpeciality: json['doctor_speciality'] as String?,
       reservationDate: json['reservation_date'] == null
           ? null
@@ -22,9 +28,15 @@ _AppointmentModel _$AppointmentModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$AppointmentModelToJson(_AppointmentModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'appointment_id': instance.id,
+      'type': instance.type,
+      'finalRate': instance.finalRate,
+      'clinic_id': instance.clinicId,
+      'clinic_name': instance.clinicName,
+      'doctor_id': instance.doctorId,
       'doctor_photo': instance.doctorPhoto,
       'doctor_name': instance.doctorName,
+      'visit_fee': instance.visitFee,
       'doctor_speciality': instance.doctorSpeciality,
       'reservation_date': instance.reservationDate?.toIso8601String(),
       'reservation_hour':

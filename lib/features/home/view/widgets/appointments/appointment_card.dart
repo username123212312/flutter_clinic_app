@@ -72,7 +72,7 @@ class AppointmentCard extends StatelessWidget {
             children: [
               AppointmentDetailsListItem(
                 title: 'Service',
-                subtitle: appointment.status!.name,
+                subtitle: appointment.status?.name ?? 'No service',
                 iconImagePath: 'assets/icons/ic_service.png',
               ),
               AppointmentDetailsListItem(
@@ -86,7 +86,7 @@ class AppointmentCard extends StatelessWidget {
               ),
               AppointmentDetailsListItem(
                 title: 'Department',
-                subtitle: appointment.status!.name,
+                subtitle: appointment.status?.name ?? 'No Department',
                 iconImagePath: 'assets/icons/ic_clinic.png',
               ),
               AppointmentDetailsListItem(

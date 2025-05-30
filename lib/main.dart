@@ -1,14 +1,8 @@
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:our_flutter_clinic_app/core/navigation/app_route_config.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/theme/app_theme.dart';
-import 'package:our_flutter_clinic_app/core/blocs/auth_bloc/auth_bloc.dart';
 import 'package:our_flutter_clinic_app/features/auth/repository/user_repository.dart';
 import 'package:our_flutter_clinic_app/features/home/controller/analysis_list_bloc/analysis_list_bloc.dart';
 import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
@@ -18,7 +12,6 @@ import 'package:our_flutter_clinic_app/features/home/view/screens/appointment_de
 import 'package:our_flutter_clinic_app/features/home/view/screens/book_new_appointment_screen.dart';
 import 'package:our_flutter_clinic_app/features/home/view/screens/home_screen.dart';
 import 'package:our_flutter_clinic_app/service_locator.dart';
-import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as p;
 
 import 'core/observers/custom_bloc_observer.dart';
@@ -27,6 +20,7 @@ import 'features/auth/view/screens/nana/new_password.dart';
 import 'features/auth/view/screens/register_screen.dart';
 import 'features/home/view/screens/documents_screen.dart';
 import 'features/home/view/screens/edit_profile_screen.dart';
+import 'features/home/view/screens/reschedule_screen.dart';
 import 'features/home/view/widgets/home_widgets.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
@@ -56,7 +50,9 @@ class ClinicApp extends StatelessWidget {
       //   themeMode: ThemeMode.system,
       //   theme: AppTheme.lightThemeMode,
       //   darkTheme: AppTheme.darkThemeMode,
-      //   home: CreatePasswordScreen(),
+      //   home: RescheduleScreen(
+      //     appointment: AppointmentModel(id: 55, clinicId: 1, doctorId: 5),
+      //   ),
       // ),
       child: BlocBuilder<AuthBloc, AuthState>(
         buildWhen: (previous, current) {
