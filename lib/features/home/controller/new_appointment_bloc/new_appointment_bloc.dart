@@ -1,8 +1,11 @@
 import 'dart:async';
 
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
+import 'package:our_flutter_clinic_app/core/utils/logger.dart';
 import 'package:our_flutter_clinic_app/features/home/model/clinic_model.dart';
+import 'package:our_flutter_clinic_app/features/home/model/requests/add_new_appointment_request.dart';
 import 'package:our_flutter_clinic_app/features/home/repository/new_appointment_repository.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -21,21 +24,28 @@ class NewAppointmentBloc
   }) : _newAppointmentRepository = newAppointmentRepository,
        super(NewAppointmentState.initial()) {
     on<NewAppointmentEvent>((event, emit) {
+      if (event is! ScheduleSelected) {
+        emit(
+          state.copyWith(statusMessage: 'loading', status: DataStatus.loading),
+        );
+      }
+    });
+    on<ClinicsFetched>(_fetchClinics);
+    on<ClinicDoctorsFetched>(_fetchClinicDoctors);
+    on<DoctorSelected>(_showDoctorWorkDays);
+    on<DateSelected>(_showAvailableTimes);
+    on<ScheduleSelected>((event, emit) {
       emit(
-        NewAppointmentState(
-          clinics: state.clinics,
-          status: DataStatus.loading,
-          department: state.department,
-          doctors: state.doctors,
-          date: state.date,
-          availableSchedules: state.availableSchedules,
+        state.copyWith(
+          time: event.time,
+          status: DataStatus.data,
+          statusMessage: 'Schedule added',
         ),
       );
     });
-    on<ClinicsFetched>(_fetchClinics);
-    on<DoctorsFetched>(_fetchDoctors);
-    on<DoctorSelected>(_showDoctorWorkDays);
-    on<DateSelected>(_showAvailableTimes);
+    on<BookedNewAppointment>(_bookNewAppointment);
+    on<DoctorSearched>(_searchDoctor, transformer: restartable());
+    on<AllDoctorsFetched>(_fetchAllDoctors);
   }
 
   Future<void> _fetchClinics(
@@ -45,49 +55,28 @@ class NewAppointmentBloc
     try {
       final response = await _newAppointmentRepository.fetchAllClinics();
       final newState = switch (response) {
-        Left(value: final l) => NewAppointmentState(
-          dates: state.dates,
-          doctor: state.doctor,
+        Left(value: final l) => state.copyWith(
           statusMessage: l.message,
-          department: state.department,
-          doctors: state.doctors,
-          clinics: state.clinics,
-          date: state.date,
-          availableSchedules: state.availableSchedules,
-          status: state.status,
+          status: DataStatus.error,
         ),
-        Right(value: final r) => NewAppointmentState(
-          dates: state.dates,
-          doctor: state.doctor,
+        Right(value: final r) => state.copyWith(
           statusMessage: r.message,
-          department: ClinicModel(name: 'Choose Department'),
-          doctors: null,
+          department:
+              state.department ?? ClinicModel(name: 'Choose Department'),
           clinics: r.data,
-          date: null,
-          availableSchedules: null,
           status: DataStatus.data,
         ),
       };
       emit(newState);
     } catch (e) {
       emit(
-        NewAppointmentState(
-          dates: state.dates,
-          doctor: state.doctor,
-          statusMessage: e.toString(),
-          department: state.department,
-          clinics: state.clinics,
-          doctors: state.doctors,
-          date: state.date,
-          availableSchedules: state.availableSchedules,
-          status: DataStatus.error,
-        ),
+        state.copyWith(statusMessage: e.toString(), status: DataStatus.error),
       );
     }
   }
 
-  Future<void> _fetchDoctors(
-    DoctorsFetched event,
+  Future<void> _fetchClinicDoctors(
+    ClinicDoctorsFetched event,
     Emitter<NewAppointmentState> emit,
   ) async {
     try {
@@ -95,43 +84,46 @@ class NewAppointmentBloc
         event.clinic.id ?? 0,
       );
       final newState = switch (response) {
-        Left(value: final l) => NewAppointmentState(
-          dates: state.dates,
-          doctor: state.doctor,
+        Left(value: final l) => state.copyWith(
           statusMessage: l.message,
-          department: state.department,
-          doctors: state.doctors,
-          clinics: state.clinics,
-          date: state.date,
-          availableSchedules: state.availableSchedules,
-          status: state.status,
+          status: DataStatus.error,
         ),
-        Right(value: final r) => NewAppointmentState(
-          dates: state.dates,
-          doctor: state.doctor,
+        Right(value: final r) => state.copyWith(
           statusMessage: r.message,
           department: event.clinic,
           doctors: r.data,
-          clinics: state.clinics,
-          date: null,
-          availableSchedules: null,
           status: DataStatus.data,
         ),
       };
       emit(newState);
     } catch (e) {
       emit(
-        NewAppointmentState(
-          dates: state.dates,
-          doctor: state.doctor,
-          statusMessage: e.toString(),
-          department: state.department,
-          clinics: state.clinics,
-          doctors: state.doctors,
-          date: state.date,
-          availableSchedules: state.availableSchedules,
+        state.copyWith(statusMessage: e.toString(), status: DataStatus.error),
+      );
+    }
+  }
+
+  Future<void> _fetchAllDoctors(
+    AllDoctorsFetched event,
+    Emitter<NewAppointmentState> emit,
+  ) async {
+    try {
+      final response = await _newAppointmentRepository.fetchAllDoctors();
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          statusMessage: l.message,
           status: DataStatus.error,
         ),
+        Right(value: final r) => state.copyWith(
+          statusMessage: r.message,
+          searchList: r.data,
+          status: DataStatus.data,
+        ),
+      };
+      emit(newState);
+    } catch (e) {
+      emit(
+        state.copyWith(statusMessage: e.toString(), status: DataStatus.error),
       );
     }
   }
@@ -146,48 +138,25 @@ class NewAppointmentBloc
         event.doctor.id ?? 0,
       );
       final newState = switch (response) {
-        Left(value: final l) => NewAppointmentState(
+        Left(value: final l) => state.copyWith(
           statusMessage: l.message,
-          department: state.department,
-          doctors: state.doctors,
-          clinics: state.clinics,
-          dates: state.dates,
-          doctor: state.doctor,
-          date: state.date,
-          availableSchedules: state.availableSchedules,
-          status: state.status,
+          status: DataStatus.error,
         ),
-        Right(value: final r) => NewAppointmentState(
+        Right(value: final r) => state.copyWith(
           statusMessage: r.message,
-          department: state.department,
-          doctors: state.doctors,
-          clinics: state.clinics,
-          doctor: state.doctor,
-          date: null,
           dates: r.data,
-          availableSchedules: null,
+          doctor: event.doctor,
           status: DataStatus.data,
         ),
       };
+
       emit(newState);
     } catch (e) {
       emit(
-        NewAppointmentState(
-          statusMessage: e.toString(),
-          department: state.department,
-          clinics: state.clinics,
-          doctors: state.doctors,
-          dates: state.dates,
-          doctor: state.doctor,
-          date: state.date,
-          availableSchedules: state.availableSchedules,
-          status: DataStatus.error,
-        ),
+        state.copyWith(statusMessage: e.toString(), status: DataStatus.error),
       );
     }
   }
-
-  final NewAppointmentRepository _newAppointmentRepository;
 
   Future<void> _showAvailableTimes(
     DateSelected event,
@@ -200,44 +169,82 @@ class NewAppointmentBloc
         event.date,
       );
       final newState = switch (response) {
-        Left(value: final l) => NewAppointmentState(
+        Left(value: final l) => state.copyWith(
           statusMessage: l.message,
-          department: state.department,
-          doctors: state.doctors,
-          clinics: state.clinics,
-          dates: state.dates,
-          doctor: state.doctor,
-          date: state.date,
-          availableSchedules: state.availableSchedules,
-          status: state.status,
+          status: DataStatus.error,
         ),
-        Right(value: final r) => NewAppointmentState(
+        Right(value: final r) => state.copyWith(
           statusMessage: r.message,
-          department: state.department,
-          doctors: state.doctors,
-          clinics: state.clinics,
-          doctor: state.doctor,
           date: event.date,
-          dates: state.dates,
-          availableSchedules: r.data,
+          availableTimes: r.data,
           status: DataStatus.data,
         ),
       };
       emit(newState);
     } catch (e) {
       emit(
-        NewAppointmentState(
-          statusMessage: e.toString(),
-          department: state.department,
-          clinics: state.clinics,
-          doctors: state.doctors,
-          dates: state.dates,
-          doctor: state.doctor,
-          date: state.date,
-          availableSchedules: state.availableSchedules,
-          status: DataStatus.error,
-        ),
+        state.copyWith(statusMessage: e.toString(), status: DataStatus.error),
       );
     }
   }
+
+  Future<void> _bookNewAppointment(
+    BookedNewAppointment event,
+    Emitter<NewAppointmentState> emit,
+  ) async {
+    try {
+      final response = await _newAppointmentRepository.addNewAppointment(
+        AddNewAppointmentRequest(
+          clinicId: state.department?.id ?? 0,
+          doctorId: state.doctor?.id ?? 0,
+          date: state.date ?? DateTime.now(),
+          time: state.time ?? TimeOfDay.now(),
+        ),
+      );
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          statusMessage: l.message,
+          status: DataStatus.error,
+        ),
+        Right(value: final r) => state.copyWith(
+          statusMessage: r.message,
+          status: DataStatus.data,
+        ),
+      };
+      emit(newState);
+    } catch (e) {
+      emit(
+        state.copyWith(statusMessage: e.toString(), status: DataStatus.error),
+      );
+    }
+  }
+
+  Future<void> _searchDoctor(
+    DoctorSearched event,
+    Emitter<NewAppointmentState> emit,
+  ) async {
+    try {
+      final response = await _newAppointmentRepository.searchDoctor(
+        event.query,
+      );
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          statusMessage: l.message,
+          status: DataStatus.error,
+        ),
+        Right(value: final r) => state.copyWith(
+          statusMessage: r.message,
+          searchList: r.data,
+          status: DataStatus.data,
+        ),
+      };
+      emit(newState);
+    } catch (e) {
+      emit(
+        state.copyWith(statusMessage: e.toString(), status: DataStatus.error),
+      );
+    }
+  }
+
+  final NewAppointmentRepository _newAppointmentRepository;
 }

@@ -58,8 +58,8 @@ class ClinicsFetched implements NewAppointmentEvent {
 
 /// @nodoc
 
-class DoctorsFetched implements NewAppointmentEvent {
-  const DoctorsFetched({required this.clinic});
+class ClinicDoctorsFetched implements NewAppointmentEvent {
+  const ClinicDoctorsFetched({required this.clinic});
 
   final ClinicModel clinic;
 
@@ -67,14 +67,15 @@ class DoctorsFetched implements NewAppointmentEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $DoctorsFetchedCopyWith<DoctorsFetched> get copyWith =>
-      _$DoctorsFetchedCopyWithImpl<DoctorsFetched>(this, _$identity);
+  $ClinicDoctorsFetchedCopyWith<ClinicDoctorsFetched> get copyWith =>
+      _$ClinicDoctorsFetchedCopyWithImpl<ClinicDoctorsFetched>(
+          this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is DoctorsFetched &&
+            other is ClinicDoctorsFetched &&
             (identical(other.clinic, clinic) || other.clinic == clinic));
   }
 
@@ -83,16 +84,16 @@ class DoctorsFetched implements NewAppointmentEvent {
 
   @override
   String toString() {
-    return 'NewAppointmentEvent.doctorsFetched(clinic: $clinic)';
+    return 'NewAppointmentEvent.clinicDoctorsFetched(clinic: $clinic)';
   }
 }
 
 /// @nodoc
-abstract mixin class $DoctorsFetchedCopyWith<$Res>
+abstract mixin class $ClinicDoctorsFetchedCopyWith<$Res>
     implements $NewAppointmentEventCopyWith<$Res> {
-  factory $DoctorsFetchedCopyWith(
-          DoctorsFetched value, $Res Function(DoctorsFetched) _then) =
-      _$DoctorsFetchedCopyWithImpl;
+  factory $ClinicDoctorsFetchedCopyWith(ClinicDoctorsFetched value,
+          $Res Function(ClinicDoctorsFetched) _then) =
+      _$ClinicDoctorsFetchedCopyWithImpl;
   @useResult
   $Res call({ClinicModel clinic});
 
@@ -100,12 +101,12 @@ abstract mixin class $DoctorsFetchedCopyWith<$Res>
 }
 
 /// @nodoc
-class _$DoctorsFetchedCopyWithImpl<$Res>
-    implements $DoctorsFetchedCopyWith<$Res> {
-  _$DoctorsFetchedCopyWithImpl(this._self, this._then);
+class _$ClinicDoctorsFetchedCopyWithImpl<$Res>
+    implements $ClinicDoctorsFetchedCopyWith<$Res> {
+  _$ClinicDoctorsFetchedCopyWithImpl(this._self, this._then);
 
-  final DoctorsFetched _self;
-  final $Res Function(DoctorsFetched) _then;
+  final ClinicDoctorsFetched _self;
+  final $Res Function(ClinicDoctorsFetched) _then;
 
   /// Create a copy of NewAppointmentEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -113,7 +114,7 @@ class _$DoctorsFetchedCopyWithImpl<$Res>
   $Res call({
     Object? clinic = null,
   }) {
-    return _then(DoctorsFetched(
+    return _then(ClinicDoctorsFetched(
       clinic: null == clinic
           ? _self.clinic
           : clinic // ignore: cast_nullable_to_non_nullable
@@ -129,6 +130,26 @@ class _$DoctorsFetchedCopyWithImpl<$Res>
     return $ClinicModelCopyWith<$Res>(_self.clinic, (value) {
       return _then(_self.copyWith(clinic: value));
     });
+  }
+}
+
+/// @nodoc
+
+class AllDoctorsFetched implements NewAppointmentEvent {
+  const AllDoctorsFetched();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is AllDoctorsFetched);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'NewAppointmentEvent.allDoctorsFetched()';
   }
 }
 
@@ -274,12 +295,76 @@ class _$DateSelectedCopyWithImpl<$Res> implements $DateSelectedCopyWith<$Res> {
 /// @nodoc
 
 class ScheduleSelected implements NewAppointmentEvent {
-  const ScheduleSelected();
+  const ScheduleSelected({required this.time});
+
+  final TimeOfDay time;
+
+  /// Create a copy of NewAppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ScheduleSelectedCopyWith<ScheduleSelected> get copyWith =>
+      _$ScheduleSelectedCopyWithImpl<ScheduleSelected>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is ScheduleSelected);
+        (other.runtimeType == runtimeType &&
+            other is ScheduleSelected &&
+            (identical(other.time, time) || other.time == time));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, time);
+
+  @override
+  String toString() {
+    return 'NewAppointmentEvent.scheduleSelected(time: $time)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ScheduleSelectedCopyWith<$Res>
+    implements $NewAppointmentEventCopyWith<$Res> {
+  factory $ScheduleSelectedCopyWith(
+          ScheduleSelected value, $Res Function(ScheduleSelected) _then) =
+      _$ScheduleSelectedCopyWithImpl;
+  @useResult
+  $Res call({TimeOfDay time});
+}
+
+/// @nodoc
+class _$ScheduleSelectedCopyWithImpl<$Res>
+    implements $ScheduleSelectedCopyWith<$Res> {
+  _$ScheduleSelectedCopyWithImpl(this._self, this._then);
+
+  final ScheduleSelected _self;
+  final $Res Function(ScheduleSelected) _then;
+
+  /// Create a copy of NewAppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? time = null,
+  }) {
+    return _then(ScheduleSelected(
+      time: null == time
+          ? _self.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as TimeOfDay,
+    ));
+  }
+}
+
+/// @nodoc
+
+class BookedNewAppointment implements NewAppointmentEvent {
+  const BookedNewAppointment();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is BookedNewAppointment);
   }
 
   @override
@@ -287,7 +372,71 @@ class ScheduleSelected implements NewAppointmentEvent {
 
   @override
   String toString() {
-    return 'NewAppointmentEvent.scheduleSelected()';
+    return 'NewAppointmentEvent.bookedNewAppointment()';
+  }
+}
+
+/// @nodoc
+
+class DoctorSearched implements NewAppointmentEvent {
+  const DoctorSearched({required this.query});
+
+  final String query;
+
+  /// Create a copy of NewAppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DoctorSearchedCopyWith<DoctorSearched> get copyWith =>
+      _$DoctorSearchedCopyWithImpl<DoctorSearched>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is DoctorSearched &&
+            (identical(other.query, query) || other.query == query));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, query);
+
+  @override
+  String toString() {
+    return 'NewAppointmentEvent.doctorSearched(query: $query)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $DoctorSearchedCopyWith<$Res>
+    implements $NewAppointmentEventCopyWith<$Res> {
+  factory $DoctorSearchedCopyWith(
+          DoctorSearched value, $Res Function(DoctorSearched) _then) =
+      _$DoctorSearchedCopyWithImpl;
+  @useResult
+  $Res call({String query});
+}
+
+/// @nodoc
+class _$DoctorSearchedCopyWithImpl<$Res>
+    implements $DoctorSearchedCopyWith<$Res> {
+  _$DoctorSearchedCopyWithImpl(this._self, this._then);
+
+  final DoctorSearched _self;
+  final $Res Function(DoctorSearched) _then;
+
+  /// Create a copy of NewAppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? query = null,
+  }) {
+    return _then(DoctorSearched(
+      query: null == query
+          ? _self.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
@@ -295,12 +444,14 @@ class ScheduleSelected implements NewAppointmentEvent {
 mixin _$NewAppointmentState {
   ClinicModel? get department;
   DoctorModel? get doctor;
+  List<DoctorModel>? get searchList;
   String? get statusMessage;
   List<DoctorModel>? get doctors;
   List<ClinicModel>? get clinics;
   List<DateTime>? get dates;
   DateTime? get date;
-  List<TimeOfDay>? get availableSchedules;
+  List<TimeOfDay>? get availableTimes;
+  TimeOfDay? get time;
   DataStatus? get status;
 
   /// Create a copy of NewAppointmentState
@@ -319,6 +470,8 @@ mixin _$NewAppointmentState {
             (identical(other.department, department) ||
                 other.department == department) &&
             (identical(other.doctor, doctor) || other.doctor == doctor) &&
+            const DeepCollectionEquality()
+                .equals(other.searchList, searchList) &&
             (identical(other.statusMessage, statusMessage) ||
                 other.statusMessage == statusMessage) &&
             const DeepCollectionEquality().equals(other.doctors, doctors) &&
@@ -326,7 +479,8 @@ mixin _$NewAppointmentState {
             const DeepCollectionEquality().equals(other.dates, dates) &&
             (identical(other.date, date) || other.date == date) &&
             const DeepCollectionEquality()
-                .equals(other.availableSchedules, availableSchedules) &&
+                .equals(other.availableTimes, availableTimes) &&
+            (identical(other.time, time) || other.time == time) &&
             (identical(other.status, status) || other.status == status));
   }
 
@@ -335,17 +489,19 @@ mixin _$NewAppointmentState {
       runtimeType,
       department,
       doctor,
+      const DeepCollectionEquality().hash(searchList),
       statusMessage,
       const DeepCollectionEquality().hash(doctors),
       const DeepCollectionEquality().hash(clinics),
       const DeepCollectionEquality().hash(dates),
       date,
-      const DeepCollectionEquality().hash(availableSchedules),
+      const DeepCollectionEquality().hash(availableTimes),
+      time,
       status);
 
   @override
   String toString() {
-    return 'NewAppointmentState(department: $department, doctor: $doctor, statusMessage: $statusMessage, doctors: $doctors, clinics: $clinics, dates: $dates, date: $date, availableSchedules: $availableSchedules, status: $status)';
+    return 'NewAppointmentState(department: $department, doctor: $doctor, searchList: $searchList, statusMessage: $statusMessage, doctors: $doctors, clinics: $clinics, dates: $dates, date: $date, availableTimes: $availableTimes, time: $time, status: $status)';
   }
 }
 
@@ -358,12 +514,14 @@ abstract mixin class $NewAppointmentStateCopyWith<$Res> {
   $Res call(
       {ClinicModel? department,
       DoctorModel? doctor,
+      List<DoctorModel>? searchList,
       String? statusMessage,
       List<DoctorModel>? doctors,
       List<ClinicModel>? clinics,
       List<DateTime>? dates,
       DateTime? date,
-      List<TimeOfDay>? availableSchedules,
+      List<TimeOfDay>? availableTimes,
+      TimeOfDay? time,
       DataStatus? status});
 
   $ClinicModelCopyWith<$Res>? get department;
@@ -385,12 +543,14 @@ class _$NewAppointmentStateCopyWithImpl<$Res>
   $Res call({
     Object? department = freezed,
     Object? doctor = freezed,
+    Object? searchList = freezed,
     Object? statusMessage = freezed,
     Object? doctors = freezed,
     Object? clinics = freezed,
     Object? dates = freezed,
     Object? date = freezed,
-    Object? availableSchedules = freezed,
+    Object? availableTimes = freezed,
+    Object? time = freezed,
     Object? status = freezed,
   }) {
     return _then(_self.copyWith(
@@ -402,6 +562,10 @@ class _$NewAppointmentStateCopyWithImpl<$Res>
           ? _self.doctor
           : doctor // ignore: cast_nullable_to_non_nullable
               as DoctorModel?,
+      searchList: freezed == searchList
+          ? _self.searchList
+          : searchList // ignore: cast_nullable_to_non_nullable
+              as List<DoctorModel>?,
       statusMessage: freezed == statusMessage
           ? _self.statusMessage
           : statusMessage // ignore: cast_nullable_to_non_nullable
@@ -422,10 +586,14 @@ class _$NewAppointmentStateCopyWithImpl<$Res>
           ? _self.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      availableSchedules: freezed == availableSchedules
-          ? _self.availableSchedules
-          : availableSchedules // ignore: cast_nullable_to_non_nullable
+      availableTimes: freezed == availableTimes
+          ? _self.availableTimes
+          : availableTimes // ignore: cast_nullable_to_non_nullable
               as List<TimeOfDay>?,
+      time: freezed == time
+          ? _self.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as TimeOfDay?,
       status: freezed == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -468,22 +636,35 @@ class _NewAppointmentState implements NewAppointmentState {
   const _NewAppointmentState(
       {this.department,
       this.doctor,
+      final List<DoctorModel>? searchList,
       this.statusMessage,
       final List<DoctorModel>? doctors,
       final List<ClinicModel>? clinics,
       final List<DateTime>? dates,
       this.date,
-      final List<TimeOfDay>? availableSchedules,
+      final List<TimeOfDay>? availableTimes,
+      this.time,
       this.status})
-      : _doctors = doctors,
+      : _searchList = searchList,
+        _doctors = doctors,
         _clinics = clinics,
         _dates = dates,
-        _availableSchedules = availableSchedules;
+        _availableTimes = availableTimes;
 
   @override
   final ClinicModel? department;
   @override
   final DoctorModel? doctor;
+  final List<DoctorModel>? _searchList;
+  @override
+  List<DoctorModel>? get searchList {
+    final value = _searchList;
+    if (value == null) return null;
+    if (_searchList is EqualUnmodifiableListView) return _searchList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final String? statusMessage;
   final List<DoctorModel>? _doctors;
@@ -518,17 +699,18 @@ class _NewAppointmentState implements NewAppointmentState {
 
   @override
   final DateTime? date;
-  final List<TimeOfDay>? _availableSchedules;
+  final List<TimeOfDay>? _availableTimes;
   @override
-  List<TimeOfDay>? get availableSchedules {
-    final value = _availableSchedules;
+  List<TimeOfDay>? get availableTimes {
+    final value = _availableTimes;
     if (value == null) return null;
-    if (_availableSchedules is EqualUnmodifiableListView)
-      return _availableSchedules;
+    if (_availableTimes is EqualUnmodifiableListView) return _availableTimes;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
+  @override
+  final TimeOfDay? time;
   @override
   final DataStatus? status;
 
@@ -549,6 +731,8 @@ class _NewAppointmentState implements NewAppointmentState {
             (identical(other.department, department) ||
                 other.department == department) &&
             (identical(other.doctor, doctor) || other.doctor == doctor) &&
+            const DeepCollectionEquality()
+                .equals(other._searchList, _searchList) &&
             (identical(other.statusMessage, statusMessage) ||
                 other.statusMessage == statusMessage) &&
             const DeepCollectionEquality().equals(other._doctors, _doctors) &&
@@ -556,7 +740,8 @@ class _NewAppointmentState implements NewAppointmentState {
             const DeepCollectionEquality().equals(other._dates, _dates) &&
             (identical(other.date, date) || other.date == date) &&
             const DeepCollectionEquality()
-                .equals(other._availableSchedules, _availableSchedules) &&
+                .equals(other._availableTimes, _availableTimes) &&
+            (identical(other.time, time) || other.time == time) &&
             (identical(other.status, status) || other.status == status));
   }
 
@@ -565,17 +750,19 @@ class _NewAppointmentState implements NewAppointmentState {
       runtimeType,
       department,
       doctor,
+      const DeepCollectionEquality().hash(_searchList),
       statusMessage,
       const DeepCollectionEquality().hash(_doctors),
       const DeepCollectionEquality().hash(_clinics),
       const DeepCollectionEquality().hash(_dates),
       date,
-      const DeepCollectionEquality().hash(_availableSchedules),
+      const DeepCollectionEquality().hash(_availableTimes),
+      time,
       status);
 
   @override
   String toString() {
-    return 'NewAppointmentState(department: $department, doctor: $doctor, statusMessage: $statusMessage, doctors: $doctors, clinics: $clinics, dates: $dates, date: $date, availableSchedules: $availableSchedules, status: $status)';
+    return 'NewAppointmentState(department: $department, doctor: $doctor, searchList: $searchList, statusMessage: $statusMessage, doctors: $doctors, clinics: $clinics, dates: $dates, date: $date, availableTimes: $availableTimes, time: $time, status: $status)';
   }
 }
 
@@ -590,12 +777,14 @@ abstract mixin class _$NewAppointmentStateCopyWith<$Res>
   $Res call(
       {ClinicModel? department,
       DoctorModel? doctor,
+      List<DoctorModel>? searchList,
       String? statusMessage,
       List<DoctorModel>? doctors,
       List<ClinicModel>? clinics,
       List<DateTime>? dates,
       DateTime? date,
-      List<TimeOfDay>? availableSchedules,
+      List<TimeOfDay>? availableTimes,
+      TimeOfDay? time,
       DataStatus? status});
 
   @override
@@ -619,12 +808,14 @@ class __$NewAppointmentStateCopyWithImpl<$Res>
   $Res call({
     Object? department = freezed,
     Object? doctor = freezed,
+    Object? searchList = freezed,
     Object? statusMessage = freezed,
     Object? doctors = freezed,
     Object? clinics = freezed,
     Object? dates = freezed,
     Object? date = freezed,
-    Object? availableSchedules = freezed,
+    Object? availableTimes = freezed,
+    Object? time = freezed,
     Object? status = freezed,
   }) {
     return _then(_NewAppointmentState(
@@ -636,6 +827,10 @@ class __$NewAppointmentStateCopyWithImpl<$Res>
           ? _self.doctor
           : doctor // ignore: cast_nullable_to_non_nullable
               as DoctorModel?,
+      searchList: freezed == searchList
+          ? _self._searchList
+          : searchList // ignore: cast_nullable_to_non_nullable
+              as List<DoctorModel>?,
       statusMessage: freezed == statusMessage
           ? _self.statusMessage
           : statusMessage // ignore: cast_nullable_to_non_nullable
@@ -656,10 +851,14 @@ class __$NewAppointmentStateCopyWithImpl<$Res>
           ? _self.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      availableSchedules: freezed == availableSchedules
-          ? _self._availableSchedules
-          : availableSchedules // ignore: cast_nullable_to_non_nullable
+      availableTimes: freezed == availableTimes
+          ? _self._availableTimes
+          : availableTimes // ignore: cast_nullable_to_non_nullable
               as List<TimeOfDay>?,
+      time: freezed == time
+          ? _self.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as TimeOfDay?,
       status: freezed == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable

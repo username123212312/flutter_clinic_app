@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 import 'package:our_flutter_clinic_app/service_locator.dart';
 
 import '../../blocs/auth_bloc/auth_bloc.dart';
@@ -125,6 +124,8 @@ Response<dynamic> mapResponseData({
     responseData.addAll({"items": response?.data});
   } else if (response?.data is ResponseBody) {
     responseData.addAll({'stream': response?.data.toString()});
+  } else if (response?.data is String) {
+    responseData.addAll({'message': response?.data});
   } else {
     responseData = response?.data;
   }

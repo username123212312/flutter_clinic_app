@@ -122,6 +122,35 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     }
   }
 
+  Future<void> _logUserInWithGoogle(
+    UserLoggedInWithGoogle event,
+    Emitter<UserState> emit,
+  ) async {
+    final response = await _userRepository.logUserInWithGoogle();
+    log(response.toString());
+    final newState = switch (response) {
+      Left(value: final l) => UserState(
+        user: state.user,
+        status: UserStatus.error,
+        statusMessage: l.message,
+      ),
+      Right(value: final r) => UserState(
+        user: r.data,
+        status: UserStatus.modified,
+        statusMessage: r.message,
+      ),
+    };
+    emit(newState);
+
+    if (!state.status.isError) {
+      if (state.user != null) {
+        _authBloc.add(
+          UserAuthenticated(user: state.user!, token: state.user!.token!),
+        );
+      }
+    }
+  }
+
   Future<void> _logUserOut(UserEvent event, Emitter<UserState> emit) async {
     final response = await _userRepository.logUserOut();
     final newState = switch (response) {

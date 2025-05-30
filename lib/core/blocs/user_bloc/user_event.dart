@@ -10,6 +10,7 @@ sealed class UserEvent with _$UserEvent {
     required String phone,
     required String password,
   }) = UserLoggedInWithPhone;
+  const factory UserEvent.userLoggedInWithGoogle() = UserLoggedInWithGoogle;
   const factory UserEvent.userRegisteredWithEmail({required String password}) =
       UserRegisteredWithEmail;
   const factory UserEvent.userRegisteredWithPhone({required String password}) =

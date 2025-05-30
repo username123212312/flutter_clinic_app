@@ -4,23 +4,21 @@ import 'package:our_flutter_clinic_app/core/utils/time_range.dart';
 import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/custom_elevated_button.dart';
 import 'package:intl/intl.dart';
+import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
 
 class AppointmentWidgetItem extends StatelessWidget {
   const AppointmentWidgetItem({
     super.key,
-    required this.title,
-    required this.subtitle,
-    required this.date,
-    required this.timeRange,
-    required this.imagePath,
+
     this.onTap,
+    required this.appointment,
+    this.onCancel,
+    this.onReschedule,
   });
-  final String title;
-  final String subtitle;
-  final DateTime date;
-  final TimeRange timeRange;
-  final String imagePath;
+  final AppointmentModel appointment;
   final void Function()? onTap;
+  final void Function()? onCancel;
+  final void Function()? onReschedule;
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +39,8 @@ class AppointmentWidgetItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             color: Pallete.grayScaleColor0,
           ),
-          height: screenHeight(context) * 0.27,
 
+          height: screenHeight(context) * (onCancel != null ? 0.27 : 0.22),
           padding: EdgeInsets.all(7),
           child: Column(
             children: [
@@ -54,7 +52,10 @@ class AppointmentWidgetItem extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Pallete.grayScaleColor200,
                       image: DecorationImage(
-                        image: AssetImage(imagePath),
+                        image:
+                            appointment.doctorPhoto == null
+                                ? AssetImage('assets/images/logo.webp')
+                                : NetworkImage(appointment.doctorPhoto!),
                         fit: BoxFit.contain,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -65,14 +66,14 @@ class AppointmentWidgetItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        title,
+                        appointment.doctorName ?? 'No doctor',
                         style: Theme.of(
                           context,
                         ).textTheme.labelSmall!.copyWith(fontSize: 13),
                       ),
                       SizedBox(height: 5),
                       Text(
-                        subtitle,
+                        appointment.doctorSpeciality ?? 'No speciality',
                         style: Theme.of(context).textTheme.titleSmall!.copyWith(
                           fontSize: 10,
                           color: Pallete.sliverSand,
@@ -93,7 +94,9 @@ class AppointmentWidgetItem extends StatelessWidget {
                   ),
                   SizedBox(width: 10),
                   Text(
-                    DateFormat('EEEE, MMMM d, y').format(date),
+                    DateFormat(
+                      'EEEE, MMMM d, y',
+                    ).format(appointment.reservationDate ?? DateTime.now()),
                     style: Theme.of(
                       context,
                     ).textTheme.titleSmall!.copyWith(fontSize: 12),
@@ -111,54 +114,54 @@ class AppointmentWidgetItem extends StatelessWidget {
                   ),
                   SizedBox(width: 10),
                   Text(
-                    timeRange.toString(),
+                    formatTime(appointment.reservationHour ?? TimeOfDay.now()),
                     style: Theme.of(
                       context,
                     ).textTheme.titleSmall!.copyWith(fontSize: 12),
                   ),
                 ],
               ),
-              SizedBox(height: 15),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: SizedBox(
-                      height: screenHeight(context) * 0.045,
-                      child: CustomElevatedButton(
-                        borderRadius: 32,
-                        fontSize: 13,
-                        title: 'Cancel',
-                        onTap: () {},
-                        fillColor: Colors.transparent,
-                        elevation: 0,
-                        borderColor: Pallete.primaryColor,
-                        textColor: Pallete.primaryColor,
+              if (onCancel != null) SizedBox(height: 15),
+              if (onCancel != null)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: SizedBox(
+                        height: screenHeight(context) * 0.045,
+                        child: CustomElevatedButton(
+                          borderRadius: 32,
+                          fontSize: 13,
+                          title: 'Cancel',
+                          onTap: onCancel,
+                          fillColor: Colors.transparent,
+                          elevation: 0,
+                          borderColor: Pallete.primaryColor,
+                          textColor: Pallete.primaryColor,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(width: 10),
-                  Expanded(
-                    flex: 1,
-                    child: SizedBox(
-                      height: screenHeight(context) * 0.045,
-                      child: CustomElevatedButton(
-                        borderRadius: 32,
-                        fontSize: 13,
-                        title: 'Reschedule',
-                        // fontSize: 12,
-                        onTap: () {},
-                        fillColor: Pallete.primaryColor,
-                        elevation: 0,
-                        borderColor: Pallete.primaryColor,
-                        textColor: Colors.white,
+                    SizedBox(width: 10),
+                    Expanded(
+                      flex: 1,
+                      child: SizedBox(
+                        height: screenHeight(context) * 0.045,
+                        child: CustomElevatedButton(
+                          borderRadius: 32,
+                          fontSize: 13,
+                          title: 'Reschedule',
+                          // fontSize: 12,
+                          onTap: onReschedule,
+                          fillColor: Pallete.primaryColor,
+                          elevation: 0,
+                          borderColor: Pallete.primaryColor,
+                          textColor: Colors.white,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
             ],
           ),
         ),

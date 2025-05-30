@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:our_flutter_clinic_app/core/models/app_failure.dart';
 import 'package:our_flutter_clinic_app/core/models/app_response.dart';
-import 'package:our_flutter_clinic_app/core/models/authuser.dart';
 import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
 import 'package:our_flutter_clinic_app/core/providers/dio_client/dio_client.dart';
 import 'package:our_flutter_clinic_app/core/utils/utils.dart';

@@ -48,7 +48,7 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen>
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          if (widget.appointment.appointmentStatus.isFinished)
+          if (widget.appointment.status!.isFinished)
             Column(
               children: [
                 Padding(
@@ -75,8 +75,7 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen>
               child: _buildAppointmentResults(),
             ),
 
-          if (widget.appointment.appointmentStatus.isPending)
-            _buildPendingFooter(),
+          if (widget.appointment.status!.isPending) _buildPendingFooter(),
         ],
       ),
     );

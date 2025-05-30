@@ -176,7 +176,7 @@ class _LoginScreenState extends State<LoginScreen> {
         CustomGoogleButton(
           onPressed: () async {
             final response = await GoogleAuthService().signIn();
-            eLog(response.toString());
+            wLog(response.toString());
           },
           text: 'Google',
           imagePath: 'assets/icons/ic_google.png',

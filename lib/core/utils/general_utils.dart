@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 
@@ -54,4 +51,11 @@ TimeOfDay parseTimeWithDateFormat(String timeString) {
   final format = DateFormat('HH:mm');
   final dateTime = format.parse(timeString);
   return TimeOfDay.fromDateTime(dateTime);
+}
+
+String formatTime(TimeOfDay time, [bool isPeriodic = true]) {
+  final hour = time.hourOfPeriod; // 12-hour format
+  final minute = time.minute.toString().padLeft(2, '0');
+  final period = time.period == DayPeriod.am ? 'AM' : 'PM';
+  return '${hour < 10 ? '0$hour' : hour}:$minute ${isPeriodic ? period : ''}';
 }

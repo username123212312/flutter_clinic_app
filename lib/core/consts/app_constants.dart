@@ -21,13 +21,14 @@ class AppConstants {
   //! Auth
   static const registerPath = '/$apiPath/register';
   static const loginPath = '/$apiPath/login';
+  static const loginWithGooglePath = '/$apiPath/auth/google';
   static const logoutPath = '/$apiPath/logout';
 
   //! Home
-  static const showDoctorsPath = '/$apiPath/$homePath/showDoctors';
+  static const showDoctorsPath = '/$homePath/showDoctors';
   static const showDoctorDetailsPath = '/$apiPath/$homePath/showDoctorDetails';
   static const showClinicDoctorsPath = '/$homePath/showClinicDoctors';
-  static const searchDoctorPath = '/$apiPath/$homePath/searchDoctor';
+  static const searchDoctorPath = '/$homePath/searchDoctor';
   static const showClinicsPath = '/$homePath/showClinics';
 
   //? Patient
@@ -42,6 +43,7 @@ class AppConstants {
 
   //*   Appointment
   static const showAppointmentPath = '/$patientPath/showAppointment';
+  static const cancelReservationPath = '/$patientPath/cancelReservation';
 
   //*   Reservation
   static const showDoctorWorkDaysPath = '/$patientPath/showDoctorWorkDays';

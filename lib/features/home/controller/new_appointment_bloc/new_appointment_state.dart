@@ -5,24 +5,28 @@ sealed class NewAppointmentState with _$NewAppointmentState {
   const factory NewAppointmentState({
     ClinicModel? department,
     DoctorModel? doctor,
+    List<DoctorModel>? searchList,
     String? statusMessage,
     List<DoctorModel>? doctors,
     List<ClinicModel>? clinics,
     List<DateTime>? dates,
     DateTime? date,
-    List<TimeOfDay>? availableSchedules,
+    List<TimeOfDay>? availableTimes,
+    TimeOfDay? time,
     DataStatus? status,
   }) = _NewAppointmentState;
   factory NewAppointmentState.initial() {
     return NewAppointmentState(
       dates: [],
+      time: TimeOfDay.now(),
+      searchList: [],
       doctor: DoctorModel(firstName: 'Choose', lastName: ' a doctor'),
       clinics: [],
       statusMessage: 'Initial',
       status: DataStatus.noData,
       department: ClinicModel(name: 'Choose department'),
       doctors: [],
-      availableSchedules: [],
+      availableTimes: [],
       date: DateTime.now(),
     );
   }

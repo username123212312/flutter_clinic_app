@@ -44,7 +44,7 @@ class AppointmentCard extends StatelessWidget {
                 width: screenWidth(context) * 0.23,
                 height: screenHeight(context) * 0.043,
                 decoration: BoxDecoration(
-                  color: _selectColor(appointment.appointmentStatus)[0],
+                  color: _selectColor(appointment.status!)[0],
                   borderRadius: BorderRadius.circular(18),
                 ),
                 child: Row(
@@ -53,12 +53,12 @@ class AppointmentCard extends StatelessWidget {
                     Icon(
                       Icons.circle,
                       size: 15,
-                      color: _selectColor(appointment.appointmentStatus)[1],
+                      color: _selectColor(appointment.status!)[1],
                     ),
                     Text(
-                      appointment.appointmentStatus.name,
+                      appointment.status!.name,
                       style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                        color: _selectColor(appointment.appointmentStatus)[1],
+                        color: _selectColor(appointment.status!)[1],
                       ),
                     ),
                   ],
@@ -72,32 +72,35 @@ class AppointmentCard extends StatelessWidget {
             children: [
               AppointmentDetailsListItem(
                 title: 'Service',
-                subtitle: appointment.service,
+                subtitle: appointment.status!.name,
                 iconImagePath: 'assets/icons/ic_service.png',
               ),
               AppointmentDetailsListItem(
                 title: 'Doctor',
-                subtitle:
-                    appointment.doctor.firstName ??
-                    'No ${appointment.doctor.lastName ?? 'doctor'}',
-                thirdtitle: appointment.doctor.speciality,
+                subtitle: 'null',
+                // subtitle:
+                //     appointment.doctor.firstName ??
+                //     'No ${appointment.doctor.lastName ?? 'doctor'}',
+                // thirdtitle: appointment.doctor.speciality,
                 iconImagePath: 'assets/icons/ic_doctor.png',
               ),
               AppointmentDetailsListItem(
                 title: 'Department',
-                subtitle: appointment.department,
+                subtitle: appointment.status!.name,
                 iconImagePath: 'assets/icons/ic_clinic.png',
               ),
               AppointmentDetailsListItem(
                 title: 'Date & Time',
-                subtitle: DateFormat(
-                  'EEEE, MMMM d, y - HH:MM',
-                ).format(appointment.dateAndTime),
+                subtitle: 'null',
+                // subtitle: DateFormat(
+                //   'EEEE, MMMM d, y - HH:MM',
+                // ).format(appointment.dateAndTime),
                 iconImagePath: 'assets/icons/ic_time.png',
               ),
               AppointmentDetailsListItem(
                 title: 'Patient',
-                subtitle: appointment.patient.name,
+                subtitle: 'null',
+                // subtitle: appointment.patient.name,
                 iconImagePath: 'assets/icons/ic_user_circle.png',
               ),
             ],

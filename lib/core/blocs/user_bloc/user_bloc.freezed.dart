@@ -183,6 +183,26 @@ class _$UserLoggedInWithPhoneCopyWithImpl<$Res>
 
 /// @nodoc
 
+class UserLoggedInWithGoogle implements UserEvent {
+  const UserLoggedInWithGoogle();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is UserLoggedInWithGoogle);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'UserEvent.userLoggedInWithGoogle()';
+  }
+}
+
+/// @nodoc
+
 class UserRegisteredWithEmail implements UserEvent {
   const UserRegisteredWithEmail({required this.password});
 

@@ -14,13 +14,20 @@ part of 'appointment_model.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$AppointmentModel implements DiagnosticableTreeMixin {
-  String get service;
-  DoctorModel get doctor;
-  String get department;
-  DateTime get dateAndTime;
-  PatientModel get patient;
-  AppointmentStatus get appointmentStatus;
+mixin _$AppointmentModel {
+  int? get id;
+  @JsonKey(name: 'doctor_photo')
+  String? get doctorPhoto;
+  @JsonKey(name: 'doctor_name')
+  String? get doctorName;
+  @JsonKey(name: 'doctor_speciality')
+  String? get doctorSpeciality;
+  @JsonKey(name: 'reservation_date')
+  DateTime? get reservationDate;
+  @JsonKey(name: 'reservation_hour')
+  @TimeOfDayConverter()
+  TimeOfDay? get reservationHour;
+  AppointmentStatus? get status;
 
   /// Create a copy of AppointmentModel
   /// with the given fields replaced by the non-null parameter values.
@@ -34,41 +41,32 @@ mixin _$AppointmentModel implements DiagnosticableTreeMixin {
   Map<String, dynamic> toJson();
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    properties
-      ..add(DiagnosticsProperty('type', 'AppointmentModel'))
-      ..add(DiagnosticsProperty('service', service))
-      ..add(DiagnosticsProperty('doctor', doctor))
-      ..add(DiagnosticsProperty('department', department))
-      ..add(DiagnosticsProperty('dateAndTime', dateAndTime))
-      ..add(DiagnosticsProperty('patient', patient))
-      ..add(DiagnosticsProperty('appointmentStatus', appointmentStatus));
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is AppointmentModel &&
-            (identical(other.service, service) || other.service == service) &&
-            (identical(other.doctor, doctor) || other.doctor == doctor) &&
-            (identical(other.department, department) ||
-                other.department == department) &&
-            (identical(other.dateAndTime, dateAndTime) ||
-                other.dateAndTime == dateAndTime) &&
-            (identical(other.patient, patient) || other.patient == patient) &&
-            (identical(other.appointmentStatus, appointmentStatus) ||
-                other.appointmentStatus == appointmentStatus));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.doctorPhoto, doctorPhoto) ||
+                other.doctorPhoto == doctorPhoto) &&
+            (identical(other.doctorName, doctorName) ||
+                other.doctorName == doctorName) &&
+            (identical(other.doctorSpeciality, doctorSpeciality) ||
+                other.doctorSpeciality == doctorSpeciality) &&
+            (identical(other.reservationDate, reservationDate) ||
+                other.reservationDate == reservationDate) &&
+            (identical(other.reservationHour, reservationHour) ||
+                other.reservationHour == reservationHour) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, service, doctor, department,
-      dateAndTime, patient, appointmentStatus);
+  int get hashCode => Object.hash(runtimeType, id, doctorPhoto, doctorName,
+      doctorSpeciality, reservationDate, reservationHour, status);
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AppointmentModel(service: $service, doctor: $doctor, department: $department, dateAndTime: $dateAndTime, patient: $patient, appointmentStatus: $appointmentStatus)';
+  String toString() {
+    return 'AppointmentModel(id: $id, doctorPhoto: $doctorPhoto, doctorName: $doctorName, doctorSpeciality: $doctorSpeciality, reservationDate: $reservationDate, reservationHour: $reservationHour, status: $status)';
   }
 }
 
@@ -79,15 +77,15 @@ abstract mixin class $AppointmentModelCopyWith<$Res> {
       _$AppointmentModelCopyWithImpl;
   @useResult
   $Res call(
-      {String service,
-      DoctorModel doctor,
-      String department,
-      DateTime dateAndTime,
-      PatientModel patient,
-      AppointmentStatus appointmentStatus});
-
-  $DoctorModelCopyWith<$Res> get doctor;
-  $PatientModelCopyWith<$Res> get patient;
+      {int? id,
+      @JsonKey(name: 'doctor_photo') String? doctorPhoto,
+      @JsonKey(name: 'doctor_name') String? doctorName,
+      @JsonKey(name: 'doctor_speciality') String? doctorSpeciality,
+      @JsonKey(name: 'reservation_date') DateTime? reservationDate,
+      @JsonKey(name: 'reservation_hour')
+      @TimeOfDayConverter()
+      TimeOfDay? reservationHour,
+      AppointmentStatus? status});
 }
 
 /// @nodoc
@@ -103,89 +101,83 @@ class _$AppointmentModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? service = null,
-    Object? doctor = null,
-    Object? department = null,
-    Object? dateAndTime = null,
-    Object? patient = null,
-    Object? appointmentStatus = null,
+    Object? id = freezed,
+    Object? doctorPhoto = freezed,
+    Object? doctorName = freezed,
+    Object? doctorSpeciality = freezed,
+    Object? reservationDate = freezed,
+    Object? reservationHour = freezed,
+    Object? status = freezed,
   }) {
     return _then(_self.copyWith(
-      service: null == service
-          ? _self.service
-          : service // ignore: cast_nullable_to_non_nullable
-              as String,
-      doctor: null == doctor
-          ? _self.doctor
-          : doctor // ignore: cast_nullable_to_non_nullable
-              as DoctorModel,
-      department: null == department
-          ? _self.department
-          : department // ignore: cast_nullable_to_non_nullable
-              as String,
-      dateAndTime: null == dateAndTime
-          ? _self.dateAndTime
-          : dateAndTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      patient: null == patient
-          ? _self.patient
-          : patient // ignore: cast_nullable_to_non_nullable
-              as PatientModel,
-      appointmentStatus: null == appointmentStatus
-          ? _self.appointmentStatus
-          : appointmentStatus // ignore: cast_nullable_to_non_nullable
-              as AppointmentStatus,
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      doctorPhoto: freezed == doctorPhoto
+          ? _self.doctorPhoto
+          : doctorPhoto // ignore: cast_nullable_to_non_nullable
+              as String?,
+      doctorName: freezed == doctorName
+          ? _self.doctorName
+          : doctorName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      doctorSpeciality: freezed == doctorSpeciality
+          ? _self.doctorSpeciality
+          : doctorSpeciality // ignore: cast_nullable_to_non_nullable
+              as String?,
+      reservationDate: freezed == reservationDate
+          ? _self.reservationDate
+          : reservationDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      reservationHour: freezed == reservationHour
+          ? _self.reservationHour
+          : reservationHour // ignore: cast_nullable_to_non_nullable
+              as TimeOfDay?,
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as AppointmentStatus?,
     ));
-  }
-
-  /// Create a copy of AppointmentModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $DoctorModelCopyWith<$Res> get doctor {
-    return $DoctorModelCopyWith<$Res>(_self.doctor, (value) {
-      return _then(_self.copyWith(doctor: value));
-    });
-  }
-
-  /// Create a copy of AppointmentModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PatientModelCopyWith<$Res> get patient {
-    return $PatientModelCopyWith<$Res>(_self.patient, (value) {
-      return _then(_self.copyWith(patient: value));
-    });
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _AppointmentModel
-    with DiagnosticableTreeMixin
-    implements AppointmentModel {
+class _AppointmentModel implements AppointmentModel {
   _AppointmentModel(
-      {required this.service,
-      required this.doctor,
-      required this.department,
-      required this.dateAndTime,
-      required this.patient,
-      required this.appointmentStatus});
+      {this.id,
+      @JsonKey(name: 'doctor_photo') this.doctorPhoto,
+      @JsonKey(name: 'doctor_name') this.doctorName,
+      @JsonKey(name: 'doctor_speciality') this.doctorSpeciality,
+      @JsonKey(name: 'reservation_date') this.reservationDate,
+      @JsonKey(name: 'reservation_hour')
+      @TimeOfDayConverter()
+      this.reservationHour,
+      this.status});
   factory _AppointmentModel.fromJson(Map<String, dynamic> json) =>
       _$AppointmentModelFromJson(json);
 
   @override
-  final String service;
+  final int? id;
   @override
-  final DoctorModel doctor;
+  @JsonKey(name: 'doctor_photo')
+  final String? doctorPhoto;
   @override
-  final String department;
+  @JsonKey(name: 'doctor_name')
+  final String? doctorName;
   @override
-  final DateTime dateAndTime;
+  @JsonKey(name: 'doctor_speciality')
+  final String? doctorSpeciality;
   @override
-  final PatientModel patient;
+  @JsonKey(name: 'reservation_date')
+  final DateTime? reservationDate;
   @override
-  final AppointmentStatus appointmentStatus;
+  @JsonKey(name: 'reservation_hour')
+  @TimeOfDayConverter()
+  final TimeOfDay? reservationHour;
+  @override
+  final AppointmentStatus? status;
 
   /// Create a copy of AppointmentModel
   /// with the given fields replaced by the non-null parameter values.
@@ -203,41 +195,32 @@ class _AppointmentModel
   }
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    properties
-      ..add(DiagnosticsProperty('type', 'AppointmentModel'))
-      ..add(DiagnosticsProperty('service', service))
-      ..add(DiagnosticsProperty('doctor', doctor))
-      ..add(DiagnosticsProperty('department', department))
-      ..add(DiagnosticsProperty('dateAndTime', dateAndTime))
-      ..add(DiagnosticsProperty('patient', patient))
-      ..add(DiagnosticsProperty('appointmentStatus', appointmentStatus));
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _AppointmentModel &&
-            (identical(other.service, service) || other.service == service) &&
-            (identical(other.doctor, doctor) || other.doctor == doctor) &&
-            (identical(other.department, department) ||
-                other.department == department) &&
-            (identical(other.dateAndTime, dateAndTime) ||
-                other.dateAndTime == dateAndTime) &&
-            (identical(other.patient, patient) || other.patient == patient) &&
-            (identical(other.appointmentStatus, appointmentStatus) ||
-                other.appointmentStatus == appointmentStatus));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.doctorPhoto, doctorPhoto) ||
+                other.doctorPhoto == doctorPhoto) &&
+            (identical(other.doctorName, doctorName) ||
+                other.doctorName == doctorName) &&
+            (identical(other.doctorSpeciality, doctorSpeciality) ||
+                other.doctorSpeciality == doctorSpeciality) &&
+            (identical(other.reservationDate, reservationDate) ||
+                other.reservationDate == reservationDate) &&
+            (identical(other.reservationHour, reservationHour) ||
+                other.reservationHour == reservationHour) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, service, doctor, department,
-      dateAndTime, patient, appointmentStatus);
+  int get hashCode => Object.hash(runtimeType, id, doctorPhoto, doctorName,
+      doctorSpeciality, reservationDate, reservationHour, status);
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AppointmentModel(service: $service, doctor: $doctor, department: $department, dateAndTime: $dateAndTime, patient: $patient, appointmentStatus: $appointmentStatus)';
+  String toString() {
+    return 'AppointmentModel(id: $id, doctorPhoto: $doctorPhoto, doctorName: $doctorName, doctorSpeciality: $doctorSpeciality, reservationDate: $reservationDate, reservationHour: $reservationHour, status: $status)';
   }
 }
 
@@ -250,17 +233,15 @@ abstract mixin class _$AppointmentModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String service,
-      DoctorModel doctor,
-      String department,
-      DateTime dateAndTime,
-      PatientModel patient,
-      AppointmentStatus appointmentStatus});
-
-  @override
-  $DoctorModelCopyWith<$Res> get doctor;
-  @override
-  $PatientModelCopyWith<$Res> get patient;
+      {int? id,
+      @JsonKey(name: 'doctor_photo') String? doctorPhoto,
+      @JsonKey(name: 'doctor_name') String? doctorName,
+      @JsonKey(name: 'doctor_speciality') String? doctorSpeciality,
+      @JsonKey(name: 'reservation_date') DateTime? reservationDate,
+      @JsonKey(name: 'reservation_hour')
+      @TimeOfDayConverter()
+      TimeOfDay? reservationHour,
+      AppointmentStatus? status});
 }
 
 /// @nodoc
@@ -276,59 +257,44 @@ class __$AppointmentModelCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? service = null,
-    Object? doctor = null,
-    Object? department = null,
-    Object? dateAndTime = null,
-    Object? patient = null,
-    Object? appointmentStatus = null,
+    Object? id = freezed,
+    Object? doctorPhoto = freezed,
+    Object? doctorName = freezed,
+    Object? doctorSpeciality = freezed,
+    Object? reservationDate = freezed,
+    Object? reservationHour = freezed,
+    Object? status = freezed,
   }) {
     return _then(_AppointmentModel(
-      service: null == service
-          ? _self.service
-          : service // ignore: cast_nullable_to_non_nullable
-              as String,
-      doctor: null == doctor
-          ? _self.doctor
-          : doctor // ignore: cast_nullable_to_non_nullable
-              as DoctorModel,
-      department: null == department
-          ? _self.department
-          : department // ignore: cast_nullable_to_non_nullable
-              as String,
-      dateAndTime: null == dateAndTime
-          ? _self.dateAndTime
-          : dateAndTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      patient: null == patient
-          ? _self.patient
-          : patient // ignore: cast_nullable_to_non_nullable
-              as PatientModel,
-      appointmentStatus: null == appointmentStatus
-          ? _self.appointmentStatus
-          : appointmentStatus // ignore: cast_nullable_to_non_nullable
-              as AppointmentStatus,
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      doctorPhoto: freezed == doctorPhoto
+          ? _self.doctorPhoto
+          : doctorPhoto // ignore: cast_nullable_to_non_nullable
+              as String?,
+      doctorName: freezed == doctorName
+          ? _self.doctorName
+          : doctorName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      doctorSpeciality: freezed == doctorSpeciality
+          ? _self.doctorSpeciality
+          : doctorSpeciality // ignore: cast_nullable_to_non_nullable
+              as String?,
+      reservationDate: freezed == reservationDate
+          ? _self.reservationDate
+          : reservationDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      reservationHour: freezed == reservationHour
+          ? _self.reservationHour
+          : reservationHour // ignore: cast_nullable_to_non_nullable
+              as TimeOfDay?,
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as AppointmentStatus?,
     ));
-  }
-
-  /// Create a copy of AppointmentModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $DoctorModelCopyWith<$Res> get doctor {
-    return $DoctorModelCopyWith<$Res>(_self.doctor, (value) {
-      return _then(_self.copyWith(doctor: value));
-    });
-  }
-
-  /// Create a copy of AppointmentModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PatientModelCopyWith<$Res> get patient {
-    return $PatientModelCopyWith<$Res>(_self.patient, (value) {
-      return _then(_self.copyWith(patient: value));
-    });
   }
 }
 

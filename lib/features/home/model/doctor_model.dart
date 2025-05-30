@@ -1,4 +1,3 @@
-import 'package:our_flutter_clinic_app/core/utils/time_range.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'doctor_model.freezed.dart';
@@ -11,7 +10,7 @@ sealed class DoctorModel with _$DoctorModel {
     @JsonKey(name: 'first_name') String? firstName,
     @JsonKey(name: 'last_name') String? lastName,
     String? phone,
-    String? clinic,
+    @JsonKey(name: 'clinic_id') int? clinicId,
     @JsonKey(name: 'photo_path') String? photoPath,
     bool? treated,
     String? speciality,

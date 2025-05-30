@@ -4,36 +4,46 @@ import 'package:our_flutter_clinic_app/features/home/view/screens/book_new_appoi
 
 import '../../../../../core/theme/app_pallete.dart';
 
-class SchedulesItemWidget extends StatefulWidget {
+class SchedulesItemWidget<T> extends StatefulWidget {
   const SchedulesItemWidget({
     super.key,
-    required this.timeRange,
+    required this.data,
     this.onSelected,
     this.isSelected,
+    required this.value,
   });
-  final TimeRange timeRange;
-  final void Function(String newValue)? onSelected;
+  final T data;
+  final String value;
+  final void Function(T newValue)? onSelected;
   final bool? isSelected;
 
   @override
-  State<SchedulesItemWidget> createState() => _SchedulesItemWidgetState();
+  State<SchedulesItemWidget<T>> createState() => _SchedulesItemWidgetState<T>();
 }
 
-class _SchedulesItemWidgetState extends State<SchedulesItemWidget> {
+class _SchedulesItemWidgetState<T> extends State<SchedulesItemWidget<T>> {
   bool _isSelected = false;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      style: ElevatedButton.styleFrom(backgroundColor: Pallete.buttonBG0),
-      onPressed: () => _toggleSelected(),
-      child: Text(
-        widget.timeRange.toString(),
-        style: Theme.of(context).textTheme.labelMedium!.copyWith(
-          fontSize: 11,
-          color:
-              widget.isSelected ?? _isSelected
-                  ? Pallete.black1
-                  : Pallete.black1.withValues(alpha: 0.5),
+      style: ElevatedButton.styleFrom(
+        backgroundColor:
+            (widget.isSelected ?? _isSelected)
+                ? Theme.of(context).colorScheme.primary.withAlpha(150)
+                : Pallete.buttonBG0,
+        disabledBackgroundColor: Pallete.buttonBG0,
+      ),
+      onPressed: widget.onSelected == null ? null : () => _toggleSelected(),
+      child: FittedBox(
+        child: Text(
+          widget.value,
+          style: Theme.of(context).textTheme.labelMedium!.copyWith(
+            fontSize: 11,
+            color:
+                (widget.isSelected ?? _isSelected)
+                    ? Pallete.whiteColor
+                    : Pallete.black1.withValues(alpha: 0.5),
+          ),
         ),
       ),
     );
@@ -44,7 +54,7 @@ class _SchedulesItemWidgetState extends State<SchedulesItemWidget> {
       _isSelected = !_isSelected;
     });
     if (widget.onSelected != null) {
-      widget.onSelected!(widget.timeRange.toString());
+      widget.onSelected!(widget.data);
     }
   }
 }

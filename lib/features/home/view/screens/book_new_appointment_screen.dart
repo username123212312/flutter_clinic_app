@@ -1,8 +1,9 @@
 import 'dart:developer';
 
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:our_flutter_clinic_app/core/data/dummy_data.dart';
+import 'package:lottie/lottie.dart';
+import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
+import 'package:our_flutter_clinic_app/core/widgets/custom_dialog.dart';
+import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
 import 'package:our_flutter_clinic_app/features/home/controller/new_appointment_bloc/new_appointment_bloc.dart';
 import 'package:our_flutter_clinic_app/features/home/model/clinic_model.dart';
@@ -12,9 +13,11 @@ import 'package:our_flutter_clinic_app/features/home/view/widgets/custom_drop_do
 import 'package:our_flutter_clinic_app/features/home/view/widgets/doctor_card_widget.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/search_text_field.dart';
 import 'package:intl/intl.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/theme/app_pallete.dart';
 import '../../../../core/utils/utils.dart';
+import '../../../../core/widgets/transparent_content_dialog.dart';
 import '../../model/doctor_model.dart';
 
 class BookNewAppointmentScreen extends StatefulWidget {
@@ -74,25 +77,89 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
             SizedBox(height: 20),
             _buildDatePicker(),
             SizedBox(height: 20),
-            _buildSchedules([]),
+            _buildSchedules(),
             SizedBox(height: 30),
-            SizedBox(
-              width: screenWidth(context),
-              child: CustomElevatedButton(
-                borderRadius: 32,
-                title: 'Next',
-                onTap: () {},
-                fillColor: Theme.of(context).colorScheme.primary,
-                textColor: Colors.white,
-              ),
-            ),
+            _buildBottomButton(),
           ],
         ),
       ),
     );
   }
 
-  Column _buildSchedules(List<TimeOfDay> times) {
+  SizedBox _buildBottomButton() {
+    return SizedBox(
+      width: screenWidth(context),
+      child: BlocListener<NewAppointmentBloc, NewAppointmentState>(
+        bloc: _newAppointmentBloc,
+        listener: (context, state) async {
+          if (state.status!.isLoading && !_isOverlayOpened) {
+            LoadingOverlay().show(context);
+          } else {
+            LoadingOverlay().hideAll();
+          }
+          if (state.statusMessage == 'Appointment added successfully') {
+            await TransparentDialog.show(
+              context: context,
+              barrierDismissible: false,
+              builder:
+                  (_) => CustomDialog(
+                    content: Column(
+                      children: [
+                        Align(
+                          alignment: Alignment(-0.2, 0.0),
+                          child: Lottie.asset(
+                            'assets/lottie/successfully_animation.json',
+                            fit: BoxFit.cover,
+                            width: screenWidth(context) * 0.2,
+                            height: screenHeight(context) * 0.15,
+                          ),
+                        ),
+                        Text(
+                          textAlign: TextAlign.center,
+                          state.statusMessage ??
+                              'Appointment Added Successfully!',
+                          style: Theme.of(context).textTheme.labelMedium!
+                              .copyWith(color: Colors.black, fontSize: 15),
+                        ),
+                        SizedBox(height: 25),
+                        SizedBox(
+                          width: screenWidth(context) * 0.5,
+                          height: screenHeight(context) * 0.05,
+                          child: CustomElevatedButton(
+                            fontSize: 12,
+                            title: 'Back to Home',
+                            onTap: () {
+                              context.pop();
+                              context.goNamed(AppRouteConstants.homeRouteName);
+                            },
+                            fillColor: Theme.of(context).colorScheme.primary,
+                            textColor: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+            );
+          }
+        },
+        child: CustomElevatedButton(
+          borderRadius: 32,
+          title: 'Next',
+          onTap: () {
+            if (_currentSchedule != null) {
+              _newAppointmentBloc.add(BookedNewAppointment());
+            } else {
+              clearAndShowSnackBar(context, 'You must select a time');
+            }
+          },
+          fillColor: Theme.of(context).colorScheme.primary,
+          textColor: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  Column _buildSchedules() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -103,71 +170,48 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
           ).textTheme.labelMedium!.copyWith(fontSize: 18),
         ),
         SizedBox(height: 10),
-        GridView(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 0.5,
-            crossAxisSpacing: 10,
-            mainAxisExtent: screenHeight(context) * 0.06,
-            mainAxisSpacing: 10,
-          ),
-          shrinkWrap: true,
-          children: [
-            SchedulesItemWidget(
-              onSelected: (newValue) {
-                _newAppointmentBloc.add(NewAppointmentEvent.scheduleSelected());
-              },
-              timeRange: TimeRange(
-                TimeOfDay(hour: 10, minute: 30),
-                TimeOfDay(hour: 11, minute: 30),
+        BlocBuilder<NewAppointmentBloc, NewAppointmentState>(
+          bloc: _newAppointmentBloc,
+          builder: (context, state) {
+            return GridView(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 0.5,
+                crossAxisSpacing: 10,
+                mainAxisExtent: screenHeight(context) * 0.06,
+                mainAxisSpacing: 10,
               ),
-            ),
-            SchedulesItemWidget(
-              onSelected: (newValue) {
-                _newAppointmentBloc.add(NewAppointmentEvent.scheduleSelected());
-              },
-              timeRange: TimeRange(
-                TimeOfDay(hour: 11, minute: 30),
-                TimeOfDay(hour: 12, minute: 30),
-              ),
-            ),
-            SchedulesItemWidget(
-              onSelected: (newValue) {
-                _newAppointmentBloc.add(NewAppointmentEvent.scheduleSelected());
-              },
-              timeRange: TimeRange(
-                TimeOfDay(hour: 12, minute: 30),
-                TimeOfDay(hour: 13, minute: 30),
-              ),
-            ),
-            SchedulesItemWidget(
-              onSelected: (newValue) {
-                _newAppointmentBloc.add(NewAppointmentEvent.scheduleSelected());
-              },
-              timeRange: TimeRange(
-                TimeOfDay(hour: 14, minute: 30),
-                TimeOfDay(hour: 15, minute: 30),
-              ),
-            ),
-            SchedulesItemWidget(
-              onSelected: (newValue) {
-                _newAppointmentBloc.add(NewAppointmentEvent.scheduleSelected());
-              },
-              timeRange: TimeRange(
-                TimeOfDay(hour: 15, minute: 30),
-                TimeOfDay(hour: 16, minute: 30),
-              ),
-            ),
-            SchedulesItemWidget(
-              onSelected: (newValue) {
-                _newAppointmentBloc.add(NewAppointmentEvent.scheduleSelected());
-              },
-              timeRange: TimeRange(
-                TimeOfDay(hour: 16, minute: 30),
-                TimeOfDay(hour: 17, minute: 30),
-              ),
-            ),
-          ],
+              shrinkWrap: true,
+              children: List.generate(6, (index) {
+                final time = TimeOfDay(hour: 09 + index, minute: 00);
+                return SchedulesItemWidget<TimeOfDay>(
+                  isSelected:
+                      _currentSchedule == null
+                          ? null
+                          : _currentSchedule == index,
+                  onSelected:
+                      (state.availableTimes == null ||
+                              state.availableTimes!.isEmpty ||
+                              !state.availableTimes!.any(
+                                (listTime) => listTime == time,
+                              ))
+                          ? null
+                          : (newValue) {
+                            setState(() {
+                              _currentSchedule = index;
+                            });
+                            _newAppointmentBloc.add(
+                              NewAppointmentEvent.scheduleSelected(
+                                time: newValue,
+                              ),
+                            );
+                          },
+                  value: formatTime(time),
+                  data: time,
+                );
+              }),
+            );
+          },
         ),
       ],
     );
@@ -188,16 +232,19 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
           bloc: _newAppointmentBloc,
           builder: (context, state) {
             return CustomTextField(
-              onTap: () async {
-                final selectedDate = await _selectDate(state.dates!);
-                if (selectedDate != null ||
-                    state.dates == null ||
-                    state.dates!.isEmpty) {
-                  _newAppointmentBloc.add(
-                    NewAppointmentEvent.dateSelected(date: selectedDate!),
-                  );
-                }
-              },
+              onTap:
+                  (state.dates != null && state.dates!.isEmpty)
+                      ? null
+                      : () async {
+                        final selectedDate = await _selectDate(state.dates!);
+                        if (selectedDate != null) {
+                          _newAppointmentBloc.add(
+                            NewAppointmentEvent.dateSelected(
+                              date: selectedDate,
+                            ),
+                          );
+                        }
+                      },
               hintText: 'Select Date',
               keyboardType: TextInputType.datetime,
               readOnly: true,
@@ -213,14 +260,7 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
   Future<DateTime?> _selectDate(List<DateTime> availableDates) async {
     final date = await showRestrictedDatePicker(
       context: context,
-      availableDates: [
-        DateTime.parse('2025-05-28'),
-        DateTime.parse('2025-05-29'),
-        DateTime.parse('2025-06-01'),
-        DateTime.parse('2025-06-03'),
-        DateTime.parse('2025-06-07'),
-        DateTime.parse('2025-06-09'),
-      ],
+      availableDates: availableDates,
     );
     if (date != null) {
       setState(() {
@@ -248,7 +288,7 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
               onSelected: (option, value) {
                 if (value != null) {
                   _newAppointmentBloc.add(
-                    NewAppointmentEvent.doctorsFetched(clinic: value),
+                    NewAppointmentEvent.clinicDoctorsFetched(clinic: value),
                   );
                 }
               },
@@ -259,7 +299,9 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
         BlocBuilder<NewAppointmentBloc, NewAppointmentState>(
           bloc: _newAppointmentBloc,
           builder: (context, state) {
+            eLog(state.doctor?.firstName ?? 'No doctor yet');
             return CustomDropDownWidget<DoctorModel>(
+              iniaialValue: state.doctor,
               values: state.doctors,
               onSelected: (option, value) {
                 if (value != null) {
@@ -308,13 +350,13 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
   }
 
   void _showSearchOverlay() {
+    _newAppointmentBloc.add(AllDoctorsFetched());
+    _isOverlayOpened = true;
     final overlay = Overlay.of(context);
     final renderBox = context.findRenderObject() as RenderBox;
     final offset = renderBox.localToGlobal(Offset.zero);
 
-    OverlayEntry? overlayEntry;
-
-    overlayEntry = OverlayEntry(
+    _overlayEntry = OverlayEntry(
       builder:
           (context) => Stack(
             children: [
@@ -322,12 +364,12 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
               Positioned.fill(
                 child: GestureDetector(
                   onTap: () {
-                    overlayEntry?.remove();
+                    _overlayEntry?.remove();
+                    Focus.of(context).unfocus();
                   },
                   child: Container(color: Colors.black.withValues(alpha: 0.5)),
                 ),
               ),
-              // Search bar positioned at top
               Positioned(
                 top:
                     offset.dy +
@@ -344,7 +386,9 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
                       children: [
                         SearchTextField(
                           onChange: (value) {
-                            log('message');
+                            _newAppointmentBloc.add(
+                              DoctorSearched(query: value),
+                            );
                           },
                           searchController: _searchController,
                           hintText: 'Search for the name of the doctor',
@@ -361,25 +405,53 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
             ],
           ),
     );
-    overlay.insert(overlayEntry);
-    _searchFocusNode.requestFocus();
+    if (_overlayEntry != null) {
+      overlay.insert(_overlayEntry!);
+      _searchFocusNode.requestFocus();
+    }
   }
 
   Widget _buildListItems() {
     return BlocBuilder<NewAppointmentBloc, NewAppointmentState>(
       bloc: _newAppointmentBloc,
       builder: (context, state) {
-        return ListView.builder(
-          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-          shrinkWrap: true,
-          itemCount: (state.doctors ?? []).length,
-          itemBuilder: (_, index) {
-            final doctor = (state.doctors ?? [])[index];
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 10.0),
-              child: DoctorCardWidget(doctor: doctor),
-            );
-          },
+        return Skeletonizer(
+          enabled: state.status!.isLoading,
+          child: ListView.builder(
+            padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+            shrinkWrap: true,
+            itemCount:
+                (state.searchList ?? List.generate(4, (_) => DoctorModel()))
+                    .length,
+            itemBuilder: (_, index) {
+              final doctor = (state.searchList ?? [])[index];
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 10.0),
+                child: DoctorCardWidget(
+                  doctor: doctor,
+                  isButton: false,
+                  onTap: (doctor) async {
+                    _newAppointmentBloc.add(
+                      ClinicDoctorsFetched(
+                        clinic: state.clinics!.firstWhere(
+                          (clinic) => clinic.id == doctor.clinicId,
+                        ),
+                      ),
+                    );
+                    await for (final newState in _newAppointmentBloc.stream) {
+                      if (newState.status!.isData) {
+                        _newAppointmentBloc.add(DoctorSelected(doctor: doctor));
+                        break;
+                      }
+                    }
+                    _overlayEntry?.remove();
+                    _isOverlayOpened = false;
+                    Focus.of(context).unfocus();
+                  },
+                ),
+              );
+            },
+          ),
         );
       },
     );
@@ -388,7 +460,8 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
   late FocusNode _searchFocusNode;
   final _searchController = TextEditingController();
   late final NewAppointmentBloc _newAppointmentBloc;
-  String _currentDate = 'Select Date';
+  int? _currentSchedule;
   final _dateController = TextEditingController();
-  final List<ClinicModel> _departments = [];
+  OverlayEntry? _overlayEntry;
+  bool _isOverlayOpened = false;
 }

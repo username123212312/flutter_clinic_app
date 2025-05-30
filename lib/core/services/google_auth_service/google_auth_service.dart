@@ -16,19 +16,20 @@ class GoogleAuthService {
         instance ??
         GoogleSignIn(
           scopes: ['email'],
-          clientId:
-              '850302585778-82oubbqe67hjp2boorq1j7im828ad50d.apps.googleusercontent.com',
+          serverClientId:
+              '850302585778-adpro2l6nusini5qmpqo9h9bffj81fi3.apps.googleusercontent.com',
         );
   }
 
   // Sign in and return user data
   Future<Map<String, dynamic>?> signIn() async {
     try {
+      await _googleSignIn!.signOut();
       final GoogleSignInAccount? account = await _googleSignIn!.signIn();
       if (account == null) return null;
 
       final GoogleSignInAuthentication auth = await account.authentication;
-
+      log(auth.idToken ?? 'No');
       return {
         'id': account.id,
         'email': account.email,
