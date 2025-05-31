@@ -1,11 +1,13 @@
 enum Role {
   doctor,
   biologist,
-  patient;
+  patient,
+  admin;
 
   bool get isPatient => this == Role.patient;
   bool get isBiologist => this == Role.biologist;
   bool get isDoctor => this == Role.doctor;
+  bool get isAdmin => this == Role.admin;
 }
 
 enum AppointmentStatus {
@@ -36,6 +38,7 @@ enum DataStatus {
   uploading,
   downloading,
   noData,
+  done,
   error;
 
   bool get isData => this == DataStatus.data;
@@ -44,4 +47,5 @@ enum DataStatus {
   bool get isDownloading => this == DataStatus.downloading;
   bool get isError => this == DataStatus.error;
   bool get isNoData => this == DataStatus.noData;
+  bool get isDone => this == DataStatus.done;
 }

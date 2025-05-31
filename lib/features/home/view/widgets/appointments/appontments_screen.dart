@@ -14,6 +14,7 @@ import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dar
 import 'package:our_flutter_clinic_app/features/home/repository/appointments_repository.dart';
 import 'package:our_flutter_clinic_app/features/home/view/screens/appointment_details_screen.dart';
 import '../../../../../core/utils/utils.dart';
+import '../../screens/reschedule_screen.dart';
 import '../home_widgets.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -28,9 +29,7 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
   @override
   void initState() {
     super.initState();
-    _appointmentsBloc = AppointmentsBloc(
-      appointmentsRepository: AppointmentsRepository(),
-    );
+    // _appointmentsBloc = context.read<AppointmentsBloc>();
     if (mounted) {
       _loadData();
     }
@@ -43,7 +42,6 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
         _loadData();
       },
       child: BlocBuilder<AppointmentsBloc, AppointmentsState>(
-        bloc: _appointmentsBloc,
         builder: (context, state) {
           return CustomScrollView(
             slivers: [
@@ -133,7 +131,7 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
         titles: ['Pending', 'Finished', 'Canceled'],
         onChange: (newIndex) {
           _changeIndex(newIndex);
-          _appointmentsBloc.add(
+          context.read<AppointmentsBloc>().add(
             AppointmentStatusChanged(appointmentStatus: _currentStatus),
           );
           _loadData();
@@ -154,73 +152,19 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
         onCancel:
             state.appointmentStatus!.isPending
                 ? () async {
-                  await TransparentDialog.show(
-                    barrierDismissible: false,
-                    context: context,
-                    builder:
-                        (_) => CustomDialog(
-                          size: Size(
-                            screenWidth(context) * 0.8,
-                            screenHeight(context) * 0.17,
-                          ),
-                          content: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Are you sure?',
-                                style: Theme.of(
-                                  context,
-                                ).textTheme.labelMedium!.copyWith(
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                ),
-                              ),
-                              SizedBox(height: 50),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  SizedBox(
-                                    width: screenWidth(context) * 0.3,
-                                    height: screenHeight(context) * 0.05,
-                                    child: CustomElevatedButton(
-                                      fontSize: 12,
-                                      title: 'back',
-                                      onTap: () {
-                                        context.pop();
-                                      },
-                                      fillColor: Pallete.grayScaleColor400,
-                                      textColor: Colors.black,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: screenWidth(context) * 0.3,
-                                    height: screenHeight(context) * 0.05,
-                                    child: CustomElevatedButton(
-                                      fontSize: 12,
-                                      title: 'Yes',
-                                      onTap: () {
-                                        _appointmentsBloc.add(
-                                          AppointmentCanceled(
-                                            reservationId: item.id ?? 0,
-                                          ),
-                                        );
-                                        context.pop();
-                                      },
-                                      fillColor:
-                                          Theme.of(context).colorScheme.primary,
-                                      textColor: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
+                  await _showTDialog(item);
+                }
+                : null,
+        onReschedule:
+            state.appointmentStatus!.isPending
+                ? () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => RescheduleScreen(appointment: item),
+                    ),
                   );
                 }
                 : null,
-        onReschedule: state.appointmentStatus!.isPending ? () {} : null,
         appointment: item,
         onTap: () {
           Navigator.of(context).push(
@@ -243,34 +187,69 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
     );
   }
 
-  void _addItem() {
-    final int newIndex = _items.length;
-    _items.add('assets/images/logo.webp');
-    _listKey.currentState?.insertItem(newIndex);
-  }
-
-  void _removeItem({int? index}) {
-    final int removeIndex = index ?? _items.length - 1;
-
-    // Add bounds checking
-    if (removeIndex < 0 || removeIndex >= _items.length) {
-      return; // Don't attempt to remove if index is invalid
-    }
-
-    final String removedItem = _items[removeIndex];
-    setState(() {
-      _items.removeAt(removeIndex);
-    });
-
-    // _listKey.currentState?.removeItem(
-    //   removeIndex,
-    //   (context, animation) => _buildItem(removedItem, animation, removeIndex),
-    //   duration: const Duration(milliseconds: 300),
-    // );
+  Future<dynamic> _showTDialog(AppointmentModel item) {
+    return TransparentDialog.show(
+      barrierDismissible: false,
+      context: context,
+      builder:
+          (_) => CustomDialog(
+            size: Size(
+              screenWidth(context) * 0.8,
+              screenHeight(context) * 0.17,
+            ),
+            content: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Are you sure?',
+                  style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                    color: Colors.black,
+                    fontSize: 15,
+                  ),
+                ),
+                SizedBox(height: 50),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(
+                      width: screenWidth(context) * 0.3,
+                      height: screenHeight(context) * 0.05,
+                      child: CustomElevatedButton(
+                        fontSize: 12,
+                        title: 'back',
+                        onTap: () {
+                          context.pop();
+                        },
+                        fillColor: Pallete.grayScaleColor400,
+                        textColor: Colors.black,
+                      ),
+                    ),
+                    SizedBox(
+                      width: screenWidth(context) * 0.3,
+                      height: screenHeight(context) * 0.05,
+                      child: CustomElevatedButton(
+                        fontSize: 12,
+                        title: 'Yes',
+                        onTap: () {
+                          context.read<AppointmentsBloc>().add(
+                            AppointmentCanceled(reservationId: item.id ?? 0),
+                          );
+                          context.pop();
+                        },
+                        fillColor: Theme.of(context).colorScheme.primary,
+                        textColor: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+    );
   }
 
   Future<void> _loadData() async {
-    _appointmentsBloc.add(AppointmentsFetched());
+    context.read<AppointmentsBloc>().add(AppointmentsFetched());
   }
 
   void _changeIndex(int newIndex) {
@@ -289,7 +268,6 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
   }
 
   AppointmentStatus _currentStatus = AppointmentStatus.pending;
-  late final AppointmentsBloc _appointmentsBloc;
 
   final GlobalKey<SliverAnimatedListState> _listKey =
       GlobalKey<SliverAnimatedListState>();

@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
+import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:our_flutter_clinic_app/core/models/app_response.dart';
 import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
@@ -116,10 +117,11 @@ class UserRepository {
     try {
       final userMap = await GoogleAuthService().signIn();
       if (userMap != null) {
-        final tokenId = userMap['tokenId'];
+        final idToken = userMap['idToken'];
+        eLog(userMap.toString());
         final response = await _dio.post(
           AppConstants.loginWithGooglePath,
-          data: {'id_token': tokenId},
+          data: {'id_token': idToken},
         );
         if (response.data['statusCode'] < 300) {
           return Right(
@@ -128,14 +130,28 @@ class UserRepository {
               message: 'User Logged in successfully',
               statusCode: response.data['statusCode'],
               statusMessage: response.data['statusMessage'],
+              data: UserModel.fromJson(
+                response.data['user'],
+              ).copyWith(token: response.data['token'], role: Role.patient),
             ),
           );
         } else {
-          throw HttpException('Error');
+          throw HttpException(response.data['message']);
         }
       } else {
         return Left(AppFailure(message: 'No user'));
       }
+    } on DioException catch (e) {
+      return Left(
+        AppFailure(
+          message: e.message ?? 'Error',
+          stacktracte: StackTrace.current,
+        ),
+      );
+    } on HttpException catch (e) {
+      return Left(
+        AppFailure(message: e.message, stacktracte: StackTrace.current),
+      );
     } catch (e) {
       return Left(
         AppFailure(message: e.toString(), stacktracte: StackTrace.current),

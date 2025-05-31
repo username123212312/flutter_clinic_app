@@ -1,8 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
@@ -179,7 +177,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           const SizedBox(height: 10),
           CustomGoogleButton(
             onPressed: () {
-              log('Google button pressed!');
+              context.read<UserBloc>().add(UserLoggedInWithGoogle());
             },
             text: 'Google',
             imagePath: 'assets/icons/ic_google.png',

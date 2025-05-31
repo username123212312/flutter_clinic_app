@@ -152,15 +152,15 @@ class RescheduleAppointmentRepository {
     EditReservationRequest request,
   ) async {
     try {
+      final t = formatTime(request.newTime, false);
       final response = await _dio.post(
         AppConstants.editReservationPath,
         data: {
-          'old_date': DateFormat('dd/MM/yy').format(request.oldDate),
-          'old_time': formatTime(request.oldTime, true),
+          'appointment_id': request.appointmentId,
           'clinic_id': request.clinicId,
           'doctor_id': request.doctorId,
           'new_date': DateFormat('dd/MM/yy').format(request.newDate),
-          'new_time': formatTime(request.newTime, true),
+          'new_time': t,
         },
       );
       if (response.data['statusCode'] < 300) {

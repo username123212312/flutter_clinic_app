@@ -41,4 +41,5 @@ const _$RoleEnumMap = {
   Role.doctor: 'doctor',
   Role.biologist: 'biologist',
   Role.patient: 'patient',
+  Role.admin: 'admin',
 };

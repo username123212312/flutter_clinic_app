@@ -15,8 +15,7 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$EditReservationRequest {
-  DateTime get oldDate;
-  TimeOfDay get oldTime;
+  int get appointmentId;
   int get clinicId;
   int get doctorId;
   DateTime get newDate;
@@ -35,8 +34,8 @@ mixin _$EditReservationRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is EditReservationRequest &&
-            (identical(other.oldDate, oldDate) || other.oldDate == oldDate) &&
-            (identical(other.oldTime, oldTime) || other.oldTime == oldTime) &&
+            (identical(other.appointmentId, appointmentId) ||
+                other.appointmentId == appointmentId) &&
             (identical(other.clinicId, clinicId) ||
                 other.clinicId == clinicId) &&
             (identical(other.doctorId, doctorId) ||
@@ -47,11 +46,11 @@ mixin _$EditReservationRequest {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, oldDate, oldTime, clinicId, doctorId, newDate, newTime);
+      runtimeType, appointmentId, clinicId, doctorId, newDate, newTime);
 
   @override
   String toString() {
-    return 'EditReservationRequest(oldDate: $oldDate, oldTime: $oldTime, clinicId: $clinicId, doctorId: $doctorId, newDate: $newDate, newTime: $newTime)';
+    return 'EditReservationRequest(appointmentId: $appointmentId, clinicId: $clinicId, doctorId: $doctorId, newDate: $newDate, newTime: $newTime)';
   }
 }
 
@@ -62,8 +61,7 @@ abstract mixin class $EditReservationRequestCopyWith<$Res> {
       _$EditReservationRequestCopyWithImpl;
   @useResult
   $Res call(
-      {DateTime oldDate,
-      TimeOfDay oldTime,
+      {int appointmentId,
       int clinicId,
       int doctorId,
       DateTime newDate,
@@ -83,22 +81,17 @@ class _$EditReservationRequestCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? oldDate = null,
-    Object? oldTime = null,
+    Object? appointmentId = null,
     Object? clinicId = null,
     Object? doctorId = null,
     Object? newDate = null,
     Object? newTime = null,
   }) {
     return _then(_self.copyWith(
-      oldDate: null == oldDate
-          ? _self.oldDate
-          : oldDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      oldTime: null == oldTime
-          ? _self.oldTime
-          : oldTime // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay,
+      appointmentId: null == appointmentId
+          ? _self.appointmentId
+          : appointmentId // ignore: cast_nullable_to_non_nullable
+              as int,
       clinicId: null == clinicId
           ? _self.clinicId
           : clinicId // ignore: cast_nullable_to_non_nullable
@@ -123,17 +116,14 @@ class _$EditReservationRequestCopyWithImpl<$Res>
 
 class _EditReservationRequest implements EditReservationRequest {
   _EditReservationRequest(
-      {required this.oldDate,
-      required this.oldTime,
+      {required this.appointmentId,
       required this.clinicId,
       required this.doctorId,
       required this.newDate,
       required this.newTime});
 
   @override
-  final DateTime oldDate;
-  @override
-  final TimeOfDay oldTime;
+  final int appointmentId;
   @override
   final int clinicId;
   @override
@@ -157,8 +147,8 @@ class _EditReservationRequest implements EditReservationRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _EditReservationRequest &&
-            (identical(other.oldDate, oldDate) || other.oldDate == oldDate) &&
-            (identical(other.oldTime, oldTime) || other.oldTime == oldTime) &&
+            (identical(other.appointmentId, appointmentId) ||
+                other.appointmentId == appointmentId) &&
             (identical(other.clinicId, clinicId) ||
                 other.clinicId == clinicId) &&
             (identical(other.doctorId, doctorId) ||
@@ -169,11 +159,11 @@ class _EditReservationRequest implements EditReservationRequest {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, oldDate, oldTime, clinicId, doctorId, newDate, newTime);
+      runtimeType, appointmentId, clinicId, doctorId, newDate, newTime);
 
   @override
   String toString() {
-    return 'EditReservationRequest(oldDate: $oldDate, oldTime: $oldTime, clinicId: $clinicId, doctorId: $doctorId, newDate: $newDate, newTime: $newTime)';
+    return 'EditReservationRequest(appointmentId: $appointmentId, clinicId: $clinicId, doctorId: $doctorId, newDate: $newDate, newTime: $newTime)';
   }
 }
 
@@ -186,8 +176,7 @@ abstract mixin class _$EditReservationRequestCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {DateTime oldDate,
-      TimeOfDay oldTime,
+      {int appointmentId,
       int clinicId,
       int doctorId,
       DateTime newDate,
@@ -207,22 +196,17 @@ class __$EditReservationRequestCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? oldDate = null,
-    Object? oldTime = null,
+    Object? appointmentId = null,
     Object? clinicId = null,
     Object? doctorId = null,
     Object? newDate = null,
     Object? newTime = null,
   }) {
     return _then(_EditReservationRequest(
-      oldDate: null == oldDate
-          ? _self.oldDate
-          : oldDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      oldTime: null == oldTime
-          ? _self.oldTime
-          : oldTime // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay,
+      appointmentId: null == appointmentId
+          ? _self.appointmentId
+          : appointmentId // ignore: cast_nullable_to_non_nullable
+              as int,
       clinicId: null == clinicId
           ? _self.clinicId
           : clinicId // ignore: cast_nullable_to_non_nullable

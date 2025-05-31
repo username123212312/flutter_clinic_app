@@ -28,7 +28,7 @@ class _SchedulesItemWidgetState<T> extends State<SchedulesItemWidget<T>> {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor:
-            (widget.isSelected ?? _isSelected)
+            (widget.isSelected ?? false)
                 ? Theme.of(context).colorScheme.primary.withAlpha(150)
                 : Pallete.buttonBG0,
         disabledBackgroundColor: Pallete.buttonBG0,
@@ -40,7 +40,7 @@ class _SchedulesItemWidgetState<T> extends State<SchedulesItemWidget<T>> {
           style: Theme.of(context).textTheme.labelMedium!.copyWith(
             fontSize: 11,
             color:
-                (widget.isSelected ?? _isSelected)
+                (widget.isSelected ?? false)
                     ? Pallete.whiteColor
                     : Pallete.black1.withValues(alpha: 0.5),
           ),

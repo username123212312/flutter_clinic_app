@@ -264,7 +264,7 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
     );
     if (date != null) {
       setState(() {
-        _dateController.text = DateFormat.yMMMMEEEEd().format(date);
+        _dateController.text = DateFormat('EEEE, MMMM, d, y').format(date);
       });
       return date;
     } else {

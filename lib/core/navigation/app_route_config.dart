@@ -1,3 +1,6 @@
+import 'package:our_flutter_clinic_app/features/home/repository/appointments_repository.dart';
+
+import '../../features/home/controller/appointments_bloc/appointments_bloc.dart';
 import 'navigation_exports.dart';
 
 class AppRouteConfig {

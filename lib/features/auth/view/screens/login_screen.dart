@@ -175,8 +175,7 @@ class _LoginScreenState extends State<LoginScreen> {
         const SizedBox(height: 10),
         CustomGoogleButton(
           onPressed: () async {
-            final response = await GoogleAuthService().signIn();
-            wLog(response.toString());
+            context.read<UserBloc>().add(UserLoggedInWithGoogle());
           },
           text: 'Google',
           imagePath: 'assets/icons/ic_google.png',

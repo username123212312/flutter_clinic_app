@@ -4,6 +4,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
+import 'package:our_flutter_clinic_app/features/home/model/edit_reservation_request.dart';
 import 'package:our_flutter_clinic_app/features/home/repository/reschedule_appointment_repository.dart';
 
 part 'reschedule_appointment_state.dart';
@@ -51,6 +52,7 @@ class RescheduleAppointmentCubit extends Cubit<RescheduleAppointmentState> {
         ),
         Right(value: final r) => state.copyWith(
           statusMessage: r.message,
+          availableDates: r.data ?? [],
           status: DataStatus.data,
         ),
       };
@@ -63,20 +65,23 @@ class RescheduleAppointmentCubit extends Cubit<RescheduleAppointmentState> {
     }
   }
 
-  Future<void> showAvailableTimes(
-    int clinicId,
-    int doctorId,
-    DateTime date,
-  ) async {
+  Future<void> showAvailableTimes(DateTime date) async {
     try {
+      _emitLoading();
       final response = await _rescheduleAppointmentRepository
-          .showDoctorWorkTimes(clinicId, doctorId, date);
+          .showDoctorWorkTimes(
+            state.appointment?.clinicId ?? 0,
+            state.appointment?.doctorId ?? 0,
+            date,
+          );
       final newState = switch (response) {
         Left(value: final l) => state.copyWith(
           statusMessage: l.message,
           status: DataStatus.error,
         ),
         Right(value: final r) => state.copyWith(
+          availableTimes: r.data ?? [],
+          selectedDate: date,
           statusMessage: r.message,
           status: DataStatus.data,
         ),
@@ -87,6 +92,40 @@ class RescheduleAppointmentCubit extends Cubit<RescheduleAppointmentState> {
         state.copyWith(statusMessage: e.toString(), status: DataStatus.error),
       );
     }
+  }
+
+  Future<void> editReservation() async {
+    try {
+      _emitLoading();
+      final response = await _rescheduleAppointmentRepository.editReservation(
+        EditReservationRequest(
+          appointmentId: state.appointment?.id ?? 0,
+          clinicId: state.appointment?.clinicId ?? 0,
+          doctorId: state.appointment?.doctorId ?? 0,
+          newDate: state.selectedDate ?? DateTime.now(),
+          newTime: state.selectedTime ?? TimeOfDay.now(),
+        ),
+      );
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          statusMessage: l.message,
+          status: DataStatus.error,
+        ),
+        Right(value: final r) => state.copyWith(
+          statusMessage: r.message,
+          status: DataStatus.done,
+        ),
+      };
+      emit(newState);
+    } catch (e) {
+      emit(
+        state.copyWith(statusMessage: e.toString(), status: DataStatus.error),
+      );
+    }
+  }
+
+  void selectTime(TimeOfDay time) {
+    emit(state.copyWith(selectedTime: time));
   }
 
   void _emitLoading() {

@@ -42,6 +42,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserCompletedProfileData>(_completeUserProfileData);
     on<UserModifiedProfileData>(_modifyUserProfileData);
     on<UserModifiedPassword>(_modifyUserPassword);
+    on<UserLoggedInWithGoogle>(_logUserInWithGoogle);
   }
   Future<void> _registerUser(UserEvent event, Emitter<UserState> emit) async {
     (state as _UserState).user;

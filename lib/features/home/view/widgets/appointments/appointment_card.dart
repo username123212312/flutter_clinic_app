@@ -76,17 +76,14 @@ class AppointmentCard extends StatelessWidget {
                 iconImagePath: 'assets/icons/ic_service.png',
               ),
               AppointmentDetailsListItem(
-                title: 'Doctor',
-                subtitle: 'null',
-                // subtitle:
-                //     appointment.doctor.firstName ??
-                //     'No ${appointment.doctor.lastName ?? 'doctor'}',
+                title: appointment.doctorName ?? 'No Doctor',
+                subtitle: appointment.doctorSpeciality ?? 'No speciality',
                 // thirdtitle: appointment.doctor.speciality,
                 iconImagePath: 'assets/icons/ic_doctor.png',
               ),
               AppointmentDetailsListItem(
                 title: 'Department',
-                subtitle: appointment.status?.name ?? 'No Department',
+                subtitle: appointment.clinicName ?? 'No Department',
                 iconImagePath: 'assets/icons/ic_clinic.png',
               ),
               AppointmentDetailsListItem(
