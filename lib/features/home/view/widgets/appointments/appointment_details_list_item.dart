@@ -9,11 +9,13 @@ class AppointmentDetailsListItem extends StatelessWidget {
     required this.subtitle,
     this.thirdtitle,
     required this.iconImagePath,
+    this.fontSize,
   });
   final String title;
   final String subtitle;
   final String? thirdtitle;
   final String iconImagePath;
+  final double? fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +46,11 @@ class AppointmentDetailsListItem extends StatelessWidget {
                   fontSize: 14,
                 ),
               ),
-
               Text(
                 subtitle,
                 style: Theme.of(
                   context,
-                ).textTheme.labelSmall!.copyWith(fontSize: 14),
+                ).textTheme.labelSmall!.copyWith(fontSize: fontSize ?? 14),
               ),
               if (thirdtitle == null) SizedBox(height: 10),
               if (thirdtitle != null)

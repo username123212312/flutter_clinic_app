@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:our_flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
+import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/appointments/appointment_details_list_item.dart';
 import 'package:intl/intl.dart';
@@ -56,7 +58,9 @@ class AppointmentCard extends StatelessWidget {
                       color: _selectColor(appointment.status!)[1],
                     ),
                     Text(
-                      appointment.status!.name,
+                      appointment.status!.isVisited
+                          ? 'Finished'
+                          : appointment.status!.name,
                       style: Theme.of(context).textTheme.labelSmall!.copyWith(
                         color: _selectColor(appointment.status!)[1],
                       ),
@@ -72,7 +76,13 @@ class AppointmentCard extends StatelessWidget {
             children: [
               AppointmentDetailsListItem(
                 title: 'Service',
-                subtitle: appointment.status?.name ?? 'No service',
+                subtitle:
+                    (appointment.status == null
+                        ? 'No service'
+                        : appointment.status!.isVisited
+                        ? 'Finished'
+                        : appointment.status?.name) ??
+                    'No service',
                 iconImagePath: 'assets/icons/ic_service.png',
               ),
               AppointmentDetailsListItem(
@@ -87,16 +97,18 @@ class AppointmentCard extends StatelessWidget {
                 iconImagePath: 'assets/icons/ic_clinic.png',
               ),
               AppointmentDetailsListItem(
+                fontSize: 11,
                 title: 'Date & Time',
-                subtitle: 'null',
-                // subtitle: DateFormat(
-                //   'EEEE, MMMM d, y - HH:MM',
-                // ).format(appointment.dateAndTime),
+                subtitle:
+                    '${DateFormat('EEEE, MMMM, d, y').format(appointment.reservationDate ?? DateTime.now())} '
+                    ', ${formatTime(appointment.reservationHour ?? TimeOfDay.now())}',
                 iconImagePath: 'assets/icons/ic_time.png',
               ),
               AppointmentDetailsListItem(
                 title: 'Patient',
-                subtitle: 'null',
+                subtitle:
+                    '${context.read<AuthBloc>().state.authUser?.user?.firstName ?? 'No'} '
+                    '${context.read<AuthBloc>().state.authUser?.user?.lastName ?? 'User'}',
                 // subtitle: appointment.patient.name,
                 iconImagePath: 'assets/icons/ic_user_circle.png',
               ),
@@ -113,7 +125,7 @@ class AppointmentCard extends StatelessWidget {
         Pallete.statusColorPending,
         Pallete.alertWarningColor,
       ],
-      AppointmentStatus.finished => [
+      AppointmentStatus.visited => [
         Pallete.statusColorFinished,
         Pallete.alertSuccessColor,
       ],

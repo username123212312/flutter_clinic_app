@@ -1,6 +1,10 @@
+import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
 import 'package:our_flutter_clinic_app/features/home/repository/appointments_repository.dart';
+import 'package:our_flutter_clinic_app/features/home/view/screens/reschedule_screen.dart';
 
 import '../../features/home/controller/appointments_bloc/appointments_bloc.dart';
+import '../../features/home/view/screens/about_us_screen.dart';
+import '../../features/home/view/screens/appointment_details_screen.dart';
 import 'navigation_exports.dart';
 
 class AppRouteConfig {
@@ -89,6 +93,33 @@ class AppRouteConfig {
         path: '/modify_password',
         pageBuilder:
             (_, state) => TransitionPage(child: ModifyPasswordScreen()),
+      ),
+      GoRoute(
+        name: AppRouteConstants.appointmentDetailsRouteName,
+        path: '/appointment_details',
+        pageBuilder: (_, state) {
+          final appointment = state.extra as AppointmentModel;
+          return TransitionPage(
+            child: AppointmentDetailsScreen(appointment: appointment),
+          );
+        },
+      ),
+      GoRoute(
+        name: AppRouteConstants.rescheduleRouteName,
+        path: '/reschedule',
+        pageBuilder: (_, state) {
+          final appointment = state.extra as AppointmentModel;
+          return TransitionPage(
+            child: RescheduleScreen(appointment: appointment),
+          );
+        },
+      ),
+      GoRoute(
+        name: AppRouteConstants.aboutUsRouteName,
+        path: '/about_us',
+        pageBuilder: (_, state) {
+          return TransitionPage(child: AboutUsScreen());
+        },
       ),
     ],
   );

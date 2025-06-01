@@ -29,7 +29,7 @@ class GoogleAuthService {
       if (account == null) return null;
 
       final GoogleSignInAuthentication auth = await account.authentication;
-      // log(auth.idToken ?? 'No');
+      log(auth.idToken ?? 'No');
       return {
         'id': account.id,
         'email': account.email,

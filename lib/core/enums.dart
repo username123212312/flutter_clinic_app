@@ -12,11 +12,11 @@ enum Role {
 
 enum AppointmentStatus {
   pending,
-  finished,
+  visited,
   canceled;
 
   bool get isPending => this == AppointmentStatus.pending;
-  bool get isFinished => this == AppointmentStatus.finished;
+  bool get isVisited => this == AppointmentStatus.visited;
   bool get isCanceled => this == AppointmentStatus.canceled;
 }
 

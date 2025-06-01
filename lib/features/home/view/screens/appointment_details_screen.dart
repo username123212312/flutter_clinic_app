@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
+import 'package:our_flutter_clinic_app/core/providers/file_manager/file_manager.dart';
+import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
+import 'package:our_flutter_clinic_app/features/home/controller/appointment_details/appointment_details_bloc.dart';
 import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
+import 'package:our_flutter_clinic_app/features/home/repository/appointment_details_repository.dart';
+import 'package:our_flutter_clinic_app/features/home/view/widgets/result_card.dart';
+import '../../../../core/widgets/transparent_content_dialog.dart';
+import '../../../../core/widgets/widgets.dart';
+import '../../controller/appointments_bloc/appointments_bloc.dart';
 import '../widgets/home_widgets.dart';
 
 import '../../../../core/theme/app_pallete.dart';
 import '../../../../core/utils/utils.dart';
+import 'reschedule_screen.dart';
 
 class AppointmentDetailsScreen extends StatefulWidget {
   const AppointmentDetailsScreen({super.key, required this.appointment});
@@ -21,6 +33,10 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen>
   @override
   void initState() {
     super.initState();
+    _appointmentDetailsBloc = AppointmentDetailsBloc(
+      appointmentDetailsRepository: AppointmentDetailsRepository(),
+      appointment: widget.appointment,
+    )..add(AppointmentFetched());
     _animationController = AnimationController(
       vsync: this,
       duration: Duration(seconds: 1),
@@ -45,39 +61,94 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen>
         ),
         toolbarHeight: screenHeight(context) * 0.1,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          if (widget.appointment.status!.isFinished)
-            Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                  child: TwoSelectableWidget(
-                    leftPadding: 12,
-                    twoTitles: ['Information', 'Results'],
-                    onToggleIndex: (index) {
-                      _changeIndex(index);
-                    },
+      body: PopScope(
+        canPop: true,
+        onPopInvokedWithResult: (didPop, result) {
+          if (didPop) {
+            context.read<AppointmentsBloc>().add(AppointmentsFetched());
+          }
+        },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            if (widget.appointment.status!.isVisited)
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                    child: TwoSelectableWidget(
+                      leftPadding: 12,
+                      twoTitles: ['Information', 'Results'],
+                      onToggleIndex: (index) {
+                        _changeIndex(index);
+                      },
+                    ),
                   ),
-                ),
-                SizedBox(height: 10),
-              ],
-            ),
-          if (_currentIndex == 0)
-            FadeTransition(
-              opacity: _fadeAnimation,
-              child: _buildAppointmentDetails(),
-            ),
-          if (_currentIndex == 1)
-            FadeTransition(
-              opacity: _fadeAnimation,
-              child: _buildAppointmentResults(),
-            ),
+                  SizedBox(height: 10),
+                ],
+              ),
+            if (_currentIndex == 0)
+              FadeTransition(
+                opacity: _fadeAnimation,
+                child: _buildAppointmentDetails(),
+              ),
+            if (_currentIndex == 1)
+              FadeTransition(
+                opacity: _fadeAnimation,
+                child: _buildAppointmentResults(),
+              ),
 
-          if (widget.appointment.status!.isPending) _buildPendingFooter(),
-        ],
+            if (widget.appointment.status!.isPending) _buildPendingFooter(),
+          ],
+        ),
       ),
+
+      floatingActionButton:
+          !(widget.appointment.status?.isVisited ?? true)
+              ? null
+              : BlocBuilder<AppointmentDetailsBloc, AppointmentDetailsState>(
+                bloc: _appointmentDetailsBloc,
+                builder: (context, state) {
+                  if (state.medicalInfo?.prescription == null) {
+                    return Center();
+                  } else {
+                    return FloatingActionButton(
+                      tooltip:
+                          state.prescriptionFilePath == null
+                              ? 'Download prescription'
+                              : 'Open prescription',
+                      onPressed:
+                          state.prescriptionFilePath == null
+                              ? () {
+                                _appointmentDetailsBloc.add(
+                                  PrescriptionDownloaded(
+                                    prescriptionId:
+                                        state.medicalInfo?.prescription?.id ??
+                                        0,
+                                  ),
+                                );
+                              }
+                              : () {
+                                FileManager.openFile(
+                                  state.prescriptionFilePath!,
+                                );
+                              },
+                      child:
+                          state.status.isDownloading
+                              ? CircularProgressIndicator(
+                                value: state.downloadProgress,
+                                color: Colors.white,
+                              )
+                              : Icon(
+                                state.prescriptionFilePath == null
+                                    ? Icons.download
+                                    : Icons.picture_as_pdf,
+                                color: Colors.white,
+                              ),
+                    );
+                  }
+                },
+              ),
     );
   }
 
@@ -92,55 +163,78 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen>
   Widget _buildAppointmentDetails() {
     return Align(
       alignment: Alignment.center,
-      child: AppointmentCard(appointment: widget.appointment),
+      child: BlocConsumer<AppointmentDetailsBloc, AppointmentDetailsState>(
+        bloc: _appointmentDetailsBloc,
+        listener: (context, state) {
+          if (state.status.isLoading) {
+            LoadingOverlay().show(context);
+          } else {
+            LoadingOverlay().hideAll();
+          }
+        },
+        builder: (context, state) {
+          return AppointmentCard(
+            appointment: state.appointment ?? widget.appointment,
+          );
+        },
+      ),
     );
   }
 
   Widget _buildAppointmentResults() {
-    return SingleChildScrollView(
-      child: Align(
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            ResultCard(
-              title: 'Diagnosis',
-              iconImagePath: 'assets/icons/tabler_device-heart-monitor.png',
-              listItems: [
-                [
-                  'The patient has symptoms of low-grade hypertension kidney disorder.',
-                ],
-              ],
-            ),
-            SizedBox(height: 20),
-            ResultCard(
-              title: 'Notes & Instructions',
-              iconImagePath: 'assets/icons/ic_notes.png',
-              listItems: [
-                ['Use medication as prescribed'],
-                ['Exercise regularly, balance between work and rest'],
-                [
-                  'Eat more vegetables, tubers & fruits; reduce fried, fatty foods...',
-                ],
-              ],
-            ),
-            SizedBox(height: 20),
+    return BlocBuilder<AppointmentDetailsBloc, AppointmentDetailsState>(
+      bloc: _appointmentDetailsBloc,
+      builder: (context, state) {
+        return SingleChildScrollView(
+          child: Align(
+            alignment: Alignment.center,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ResultCard(
+                  title: 'Diagnosis',
+                  iconImagePath: 'assets/icons/tabler_device-heart-monitor.png',
+                  listItems: [
+                    [state.medicalInfo?.diagnosis ?? 'No diagnosis'],
+                  ],
+                ),
+                SizedBox(height: 20),
+                ResultCard(
+                  title: 'Notes & Instructions',
+                  iconImagePath: 'assets/icons/ic_notes.png',
+                  listItems: [
+                    if (state.medicalInfo?.doctorNote != null)
+                      [state.medicalInfo!.doctorNote ?? ''],
+                    if (state.medicalInfo?.patientNote != null)
+                      [state.medicalInfo?.patientNote ?? ''],
+                    if (state.medicalInfo?.prescription != null &&
+                        state.medicalInfo?.prescription?.note != null)
+                      [state.medicalInfo?.prescription!.note! ?? ''],
+                  ],
+                ),
+                if (state.medicalInfo?.prescription?.medicines != null)
+                  SizedBox(height: 20),
 
-            ResultCard(
-              title: 'Notes & Instructions',
-              iconImagePath: 'assets/icons/ic_medicine.png',
-              listItems: [
-                [
-                  'Allopurinol 500mg',
-                  '2 pills, once a day2 pills, once a day',
-                  'After Eating',
-                ],
-                ['Diuretik 250mg', '2 pills, twice a day', 'After Eating'],
+                if (state.medicalInfo?.prescription?.medicines != null)
+                  ResultCard(
+                    title: 'Medicines',
+                    iconImagePath: 'assets/icons/ic_medicine.png',
+                    listItems:
+                        state.medicalInfo!.prescription!.medicines!.map((
+                          medicine,
+                        ) {
+                          return [
+                            '${medicine.name} ${medicine.dose}',
+                            '${medicine.dose}, ${medicine.frequency}, ${medicine.until}',
+                            '${medicine.whenToTake}',
+                          ];
+                        }).toList(),
+                  ),
               ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 
@@ -169,18 +263,36 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen>
                 elevation: 0,
                 borderRadius: 32,
                 title: 'Cancel',
-                onTap: () {},
+                onTap: () async {
+                  if (_appointmentDetailsBloc.state.appointment != null) {
+                    await _showTDialog(
+                      _appointmentDetailsBloc.state.appointment!,
+                    );
+                  }
+                },
                 fillColor: Colors.transparent,
                 textColor: Theme.of(context).colorScheme.primary,
               ),
-              CustomElevatedButton(
-                fontSize: 15,
-                elevation: 0,
-                borderRadius: 32,
-                title: 'Reschedule',
-                onTap: () {},
-                fillColor: Theme.of(context).colorScheme.primary,
-                textColor: Colors.white,
+              BlocBuilder<AppointmentDetailsBloc, AppointmentDetailsState>(
+                bloc: _appointmentDetailsBloc,
+                builder: (context, state) {
+                  return CustomElevatedButton(
+                    fontSize: 15,
+                    elevation: 0,
+                    borderRadius: 32,
+                    title: 'Reschedule',
+                    onTap: () {
+                      if (state.appointment != null) {
+                        context.pushNamed(
+                          AppRouteConstants.rescheduleRouteName,
+                          extra: state.appointment,
+                        );
+                      }
+                    },
+                    fillColor: Theme.of(context).colorScheme.primary,
+                    textColor: Colors.white,
+                  );
+                },
               ),
             ],
           ),
@@ -213,126 +325,72 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen>
     );
   }
 
+  Future<dynamic> _showTDialog(AppointmentModel item) {
+    return TransparentDialog.show(
+      barrierDismissible: false,
+      context: context,
+      builder:
+          (_) => CustomDialog(
+            size: Size(
+              screenWidth(context) * 0.8,
+              screenHeight(context) * 0.17,
+            ),
+            content: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Are you sure?',
+                  style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                    color: Colors.black,
+                    fontSize: 15,
+                  ),
+                ),
+                SizedBox(height: 50),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(
+                      width: screenWidth(context) * 0.3,
+                      height: screenHeight(context) * 0.05,
+                      child: CustomElevatedButton(
+                        fontSize: 12,
+                        title: 'back',
+                        onTap: () {
+                          context.pop();
+                        },
+                        fillColor: Pallete.grayScaleColor400,
+                        textColor: Colors.black,
+                      ),
+                    ),
+                    SizedBox(
+                      width: screenWidth(context) * 0.3,
+                      height: screenHeight(context) * 0.05,
+                      child: CustomElevatedButton(
+                        fontSize: 12,
+                        title: 'Yes',
+                        onTap: () {
+                          context.read<AppointmentsBloc>()
+                            ..add(
+                              AppointmentCanceled(reservationId: item.id ?? 0),
+                            )
+                            ..add(AppointmentsFetched());
+                          context.pop();
+                          context.pop();
+                        },
+                        fillColor: Theme.of(context).colorScheme.primary,
+                        textColor: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+    );
+  }
+
   late final AnimationController _animationController;
   late final Animation<double> _fadeAnimation;
   int _currentIndex = 0;
-}
-
-class ResultCard extends StatelessWidget {
-  const ResultCard({
-    super.key,
-    required this.title,
-    required this.iconImagePath,
-    required this.listItems,
-  });
-  final String title;
-  final String iconImagePath;
-  final List<List<String>> listItems;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: screenWidth(context) * 0.9,
-      decoration: BoxDecoration(
-        border: Border.all(color: Pallete.grayScaleColor400, width: 1),
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      padding: EdgeInsets.all(13),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Image.asset(iconImagePath),
-              SizedBox(width: 10),
-              Text(
-                title,
-                style: Theme.of(
-                  context,
-                ).textTheme.labelSmall!.copyWith(fontSize: 15),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 5.0, left: 5.0, top: 10),
-            child: Column(
-              children:
-                  listItems
-                      .map(
-                        (e) => Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 2.0),
-                          child: Row(
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  if (listItems.length > 1)
-                                    Icon(
-                                      Icons.circle,
-                                      size: 15,
-                                      color: Pallete.grayScaleColor500,
-                                    ),
-                                  if (listItems.length > 1) SizedBox(width: 6),
-                                  Column(
-                                    children: [
-                                      SizedBox(
-                                        width: screenWidth(context) * 0.75,
-                                        child: Text(
-                                          e[0],
-
-                                          style: Theme.of(
-                                            context,
-                                          ).textTheme.titleSmall!.copyWith(
-                                            fontSize: 13,
-                                            color: Pallete.grayScaleColor400,
-                                          ),
-                                        ),
-                                      ),
-                                      if (e.length > 1)
-                                        SizedBox(
-                                          width: screenWidth(context) * 0.75,
-                                          child: Text(
-                                            e[1],
-
-                                            style: Theme.of(
-                                              context,
-                                            ).textTheme.titleSmall!.copyWith(
-                                              fontSize: 13,
-                                              color: Pallete.sliverSand,
-                                            ),
-                                          ),
-                                        ),
-                                      if (e.length > 2)
-                                        SizedBox(
-                                          width: screenWidth(context) * 0.75,
-                                          child: Text(
-                                            e[2],
-
-                                            style: Theme.of(
-                                              context,
-                                            ).textTheme.titleSmall!.copyWith(
-                                              fontSize: 13,
-                                              color:
-                                                  Theme.of(
-                                                    context,
-                                                  ).colorScheme.primary,
-                                            ),
-                                          ),
-                                        ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      )
-                      .toList(),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  late final AppointmentDetailsBloc _appointmentDetailsBloc;
 }

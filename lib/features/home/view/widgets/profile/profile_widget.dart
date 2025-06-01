@@ -114,7 +114,7 @@ class ProifileWidget extends StatelessWidget {
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,
             onTap: () {
-              // TODO Navigate to info
+              context.pushNamed(AppRouteConstants.aboutUsRouteName);
             },
             child: Row(
               children: [

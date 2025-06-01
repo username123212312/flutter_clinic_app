@@ -5,6 +5,7 @@ import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/widgets/custom_dialog.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
+import 'package:our_flutter_clinic_app/features/home/controller/appointments_bloc/appointments_bloc.dart';
 import 'package:our_flutter_clinic_app/features/home/controller/new_appointment_bloc/new_appointment_bloc.dart';
 import 'package:our_flutter_clinic_app/features/home/model/clinic_model.dart';
 import 'package:our_flutter_clinic_app/features/home/repository/new_appointment_repository.dart';
@@ -129,6 +130,9 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
                             fontSize: 12,
                             title: 'Back to Home',
                             onTap: () {
+                              context.read<AppointmentsBloc>().add(
+                                AppointmentsFetched(),
+                              );
                               context.pop();
                               context.goNamed(AppRouteConstants.homeRouteName);
                             },
@@ -299,7 +303,6 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
         BlocBuilder<NewAppointmentBloc, NewAppointmentState>(
           bloc: _newAppointmentBloc,
           builder: (context, state) {
-            eLog(state.doctor?.firstName ?? 'No doctor yet');
             return CustomDropDownWidget<DoctorModel>(
               iniaialValue: state.doctor,
               values: state.doctors,

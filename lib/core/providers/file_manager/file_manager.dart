@@ -1,4 +1,6 @@
 // Simplified file_manager.dart (Hive removed, Dio retained)
+import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
@@ -147,11 +149,76 @@ class FileManager {
     }
   }
 
+  static Future<File> convertLargeBase64ToPdf({
+    required String base64String,
+    required String fileName,
+    void Function(double progress)? onProgress,
+  }) async {
+    try {
+      // Get the application documents directory
+      final Directory directory =
+          await getExternalStorageDirectory() ??
+          await getApplicationDocumentsDirectory();
+      final filePath = '${directory.path}/$fileName';
+      final file = File(filePath);
+
+      // Remove data URI prefix if present
+      final cleanBase64 = base64String.replaceFirst(
+        RegExp(r'^data:application\/pdf;base64,'),
+        '',
+      );
+
+      // Open the file for writing
+      final sink = file.openWrite();
+
+      // Process in chunks to avoid memory issues
+      const chunkSize = 1024; // Adjust based on testing
+      var bytesProcessed = 0;
+      final totalBytes = cleanBase64.length;
+
+      for (var i = 0; i < cleanBase64.length; i += chunkSize) {
+        final end = (i + chunkSize).clamp(0, cleanBase64.length);
+        final chunk = cleanBase64.substring(i, end);
+
+        // Decode and write chunk
+        final decodedBytes = base64.decode(chunk);
+        sink.add(decodedBytes);
+
+        // Update progress
+        bytesProcessed += chunk.length;
+        final progress = bytesProcessed / totalBytes;
+        onProgress?.call(progress);
+
+        // Yield to event loop to keep UI responsive
+        await Future.delayed(Duration.zero);
+      }
+
+      // Close the file
+      await sink.close();
+
+      return file;
+    } catch (e) {
+      log('Error converting large base64 to PDF: $e');
+      throw Exception('Failed to convert large PDF: ${e.toString()}');
+    }
+  }
+
   static Future<void> deleteAllStoredFiles() async {
     try {
       final dir = await getApplicationDocumentsDirectory();
-      final files = dir.listSync();
+      final exDir = await getExternalStorageDirectory();
       await HydratedBloc.storage.clear();
+
+      if (exDir != null) {
+        final files = exDir.listSync();
+        for (var fileEntity in files) {
+          if (fileEntity is File) {
+            await fileEntity.delete();
+            eLog('Deleted file: ${fileEntity.path}');
+          }
+        }
+      }
+      final files = dir.listSync();
       for (var fileEntity in files) {
         if (fileEntity is File) {
           await fileEntity.delete();

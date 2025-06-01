@@ -4,7 +4,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
-import 'package:our_flutter_clinic_app/features/home/model/edit_reservation_request.dart';
+import 'package:our_flutter_clinic_app/features/home/model/requests/edit_reservation_request.dart';
 import 'package:our_flutter_clinic_app/features/home/repository/reschedule_appointment_repository.dart';
 
 part 'reschedule_appointment_state.dart';

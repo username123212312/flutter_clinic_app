@@ -11,7 +11,7 @@ import '../../../core/models/app_failure.dart';
 import '../../../core/models/app_response.dart';
 import '../../../core/navigation/navigation_exports.dart';
 import '../model/appointment_model.dart';
-import '../model/edit_reservation_request.dart';
+import '../model/requests/edit_reservation_request.dart';
 
 class RescheduleAppointmentRepository {
   RescheduleAppointmentRepository({Dio? dio})

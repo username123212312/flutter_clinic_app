@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:our_flutter_clinic_app/core/navigation/fade_page_route_builder.dart';
+import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:our_flutter_clinic_app/core/widgets/transparent_content_dialog.dart';
 import 'package:our_flutter_clinic_app/core/widgets/widgets.dart';
@@ -29,7 +30,6 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
   @override
   void initState() {
     super.initState();
-    // _appointmentsBloc = context.read<AppointmentsBloc>();
     if (mounted) {
       _loadData();
     }
@@ -129,12 +129,18 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
       toolbarHeight: screenHeight(context) * 0.1,
       title: ThreeSelectableWidget(
         titles: ['Pending', 'Finished', 'Canceled'],
-        onChange: (newIndex) {
+        onChange: (newIndex) async {
           _changeIndex(newIndex);
           context.read<AppointmentsBloc>().add(
             AppointmentStatusChanged(appointmentStatus: _currentStatus),
           );
-          _loadData();
+          await for (final newState
+              in context.read<AppointmentsBloc>().stream) {
+            if (newState.status?.isData ?? false) {
+              _loadData();
+              break;
+            }
+          }
         },
       ),
     );
@@ -158,28 +164,24 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
         onReschedule:
             state.appointmentStatus!.isPending
                 ? () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => RescheduleScreen(appointment: item),
-                    ),
+                  context.pushNamed(
+                    AppRouteConstants.rescheduleRouteName,
+                    extra: item,
                   );
                 }
                 : null,
         appointment: item,
         onTap: () {
-          Navigator.of(context).push(
-            FadePageRouteBuilder(
-              AppointmentDetailsScreen(
-                appointment: AppointmentModel(
-                  doctorName: item.doctorName,
-                  doctorPhoto: item.doctorPhoto,
-                  doctorSpeciality: item.doctorSpeciality,
-                  reservationHour: item.reservationHour,
-                  id: item.id,
-                  reservationDate: item.reservationDate,
-                  status: state.appointmentStatus,
-                ),
-              ),
+          context.pushNamed(
+            AppRouteConstants.appointmentDetailsRouteName,
+            extra: AppointmentModel(
+              doctorName: item.doctorName,
+              doctorPhoto: item.doctorPhoto,
+              doctorSpeciality: item.doctorSpeciality,
+              reservationHour: item.reservationHour,
+              id: item.id,
+              reservationDate: item.reservationDate,
+              status: state.appointmentStatus,
             ),
           );
         },
@@ -249,7 +251,9 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
   }
 
   Future<void> _loadData() async {
-    context.read<AppointmentsBloc>().add(AppointmentsFetched());
+    if (mounted) {
+      context.read<AppointmentsBloc>().add(AppointmentsFetched());
+    }
   }
 
   void _changeIndex(int newIndex) {
@@ -258,7 +262,7 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
         _currentStatus = AppointmentStatus.pending;
         break;
       case 1:
-        _currentStatus = AppointmentStatus.finished;
+        _currentStatus = AppointmentStatus.visited;
         break;
       case 2:
         _currentStatus = AppointmentStatus.canceled;
