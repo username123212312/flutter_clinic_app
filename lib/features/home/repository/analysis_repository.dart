@@ -154,9 +154,9 @@ class AnalysisRepository {
 
   Future<Either<AppFailure, AppResponse>> deleteAnalysis(int analysisId) async {
     try {
-      final response = await _dio.post(
+      final response = await _dio.delete(
         AppConstants.deleteAnalysisPath,
-        data: {'analyse_id': analysisId},
+        queryParameters: {'analyse_id': analysisId},
       );
       if (response.data['statusCode'] < 300) {
         return Right(

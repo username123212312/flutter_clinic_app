@@ -20,9 +20,9 @@ class RescheduleAppointmentRepository {
   Future<Either<AppFailure, AppResponse<AppointmentModel>>>
   fetchAppointmentDetails(int appointmentId) async {
     try {
-      final response = await _dio.post(
+      final response = await _dio.get(
         AppConstants.showAppointmentInfoPath,
-        data: {'appointment_id': appointmentId},
+        queryParameters: {'appointment_id': appointmentId},
       );
       if (response.data['statusCode'] < 300) {
         return Right(
@@ -60,9 +60,9 @@ class RescheduleAppointmentRepository {
     int doctorId,
   ) async {
     try {
-      final response = await _dio.post(
+      final response = await _dio.get(
         AppConstants.showDoctorWorkDaysPath,
-        data: {'clinic_id': clinicId, 'doctor_id': doctorId},
+        queryParameters: {'doctor_id': doctorId},
       );
       eLog(response.data);
       if (response.data['statusCode'] < 300) {

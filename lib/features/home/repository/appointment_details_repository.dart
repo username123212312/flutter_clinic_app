@@ -17,9 +17,9 @@ class AppointmentDetailsRepository {
     int appointmentId,
   ) async {
     try {
-      final response = await _dio.post(
+      final response = await _dio.get(
         AppConstants.showAppointmentInfoPath,
-        data: {'appointment_id': appointmentId},
+        queryParameters: {'appointment_id': appointmentId},
       );
       if (response.data['statusCode'] < 300) {
         return Right(
@@ -55,9 +55,9 @@ class AppointmentDetailsRepository {
   Future<Either<AppFailure, AppResponse<MedicalInfoModel>>>
   fetchAppointmentResults(int appointmentId) async {
     try {
-      final response = await _dio.post(
+      final response = await _dio.get(
         AppConstants.showAppointmentResultsPath,
-        data: {'appointment_id': appointmentId},
+        queryParameters: {'appointment_id': appointmentId},
       );
       if (response.data['statusCode'] < 300) {
         return Right(

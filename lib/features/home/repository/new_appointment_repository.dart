@@ -58,9 +58,9 @@ class NewAppointmentRepository {
     int clinicId,
   ) async {
     try {
-      final response = await _dio.post(
+      final response = await _dio.get(
         AppConstants.showClinicDoctorsPath,
-        data: {'clinic_id': clinicId},
+        queryParameters: {'clinic_id': clinicId},
       );
       eLog(response.data);
       if (response.data['statusCode'] < 300) {
@@ -141,9 +141,9 @@ class NewAppointmentRepository {
     int doctorId,
   ) async {
     try {
-      final response = await _dio.post(
+      final response = await _dio.get(
         AppConstants.showDoctorWorkDaysPath,
-        data: {'clinic_id': clinicId, 'doctor_id': doctorId},
+        queryParameters: {'doctor_id': doctorId},
       );
       eLog(response.data);
       if (response.data['statusCode'] < 300) {
