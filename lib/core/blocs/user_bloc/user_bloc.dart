@@ -67,7 +67,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       Right(value: final r) => UserState(
         user: r.data ?? state.user,
         status: UserStatus.modified,
-        statusMessage: r.statusMessage,
+        statusMessage: r.message,
       ),
       Left(value: final l) => UserState(
         user: state.user,

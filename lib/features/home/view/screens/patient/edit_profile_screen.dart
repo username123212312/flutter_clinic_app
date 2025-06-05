@@ -8,8 +8,8 @@ import 'package:our_flutter_clinic_app/core/widgets/blood_types_widget.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/blocs/auth_bloc/auth_bloc.dart';
-import '../../../../core/theme/app_pallete.dart';
+import '../../../../../core/blocs/auth_bloc/auth_bloc.dart';
+import '../../../../../core/theme/app_pallete.dart';
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});

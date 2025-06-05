@@ -255,7 +255,9 @@ class ProifileWidget extends StatelessWidget {
                     ).textTheme.titleMedium!.copyWith(fontSize: 20),
                   ),
                   Text(
-                    state.authUser!.user!.email!,
+                    state.authUser?.user?.email == null
+                        ? (state.authUser?.user?.phone ?? 'no phone')
+                        : state.authUser!.user!.email!,
                     style: Theme.of(
                       context,
                     ).textTheme.titleSmall!.copyWith(fontSize: 12),

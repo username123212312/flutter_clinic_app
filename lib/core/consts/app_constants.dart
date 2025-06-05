@@ -11,7 +11,7 @@ class AppConstants {
     'AB+',
     'AB-',
   ];
-  static const ipAddress = '192.168.131.76'; //10.0.2.2
+  static const ipAddress = '192.168.1.3'; //10.0.2.2
   static const serverUrl = 'http://$ipAddress:8000';
   static const apiPath = 'api';
   static const patientPath = '/$apiPath/patient';
@@ -22,6 +22,7 @@ class AppConstants {
   //! Auth
   static const registerPath = '/$apiPath/register';
   static const loginPath = '/$apiPath/login';
+  static const authWithTokenPath = '/$apiPath/user';
   static const loginWithGooglePath = '/$apiPath/auth/google';
   static const logoutPath = '/$apiPath/logout';
 

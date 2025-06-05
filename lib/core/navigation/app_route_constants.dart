@@ -8,6 +8,12 @@ class AppRouteConstants {
   static const createPasswordRouteName = 'create_password';
   static const modifyPasswordRouteName = 'modify_password';
   static const forgotPasswordRouteName = 'forgot_password';
+
+  //?Labtech
+  static const labtechHomeRouteName = 'lab_tech_home';
+  static const analysisInfoRouteName = 'analysis_info';
+
+  //? Patient
   static const registerRouteName = 'register';
   static const homeRouteName = 'home';
   static const appointmentDetailsRouteName = 'appointment_details';

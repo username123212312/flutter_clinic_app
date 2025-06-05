@@ -55,7 +55,6 @@ class CustomElevatedButton extends StatelessWidget {
         children: [
           if (prefix != null) prefix!,
           if (prefix != null) Spacer(flex: 1),
-
           Text(
             title,
             style: Theme.of(context).textTheme.labelMedium!.copyWith(

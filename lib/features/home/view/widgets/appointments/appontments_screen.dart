@@ -13,9 +13,9 @@ import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.d
 import 'package:our_flutter_clinic_app/features/home/controller/appointments_bloc/appointments_bloc.dart';
 import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
 import 'package:our_flutter_clinic_app/features/home/repository/appointments_repository.dart';
-import 'package:our_flutter_clinic_app/features/home/view/screens/appointment_details_screen.dart';
+import 'package:our_flutter_clinic_app/features/home/view/screens/patient/appointment_details_screen.dart';
 import '../../../../../core/utils/utils.dart';
-import '../../screens/reschedule_screen.dart';
+import '../../screens/patient/reschedule_screen.dart';
 import '../home_widgets.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 

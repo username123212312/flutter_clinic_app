@@ -9,13 +9,13 @@ import 'package:our_flutter_clinic_app/features/home/controller/appointment_deta
 import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
 import 'package:our_flutter_clinic_app/features/home/repository/appointment_details_repository.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/result_card.dart';
-import '../../../../core/widgets/transparent_content_dialog.dart';
-import '../../../../core/widgets/widgets.dart';
-import '../../controller/appointments_bloc/appointments_bloc.dart';
-import '../widgets/home_widgets.dart';
+import '../../../../../core/widgets/transparent_content_dialog.dart';
+import '../../../../../core/widgets/widgets.dart';
+import '../../../controller/appointments_bloc/appointments_bloc.dart';
+import '../../widgets/home_widgets.dart';
 
-import '../../../../core/theme/app_pallete.dart';
-import '../../../../core/utils/utils.dart';
+import '../../../../../core/theme/app_pallete.dart';
+import '../../../../../core/utils/utils.dart';
 import 'reschedule_screen.dart';
 
 class AppointmentDetailsScreen extends StatefulWidget {

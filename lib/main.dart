@@ -3,26 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:our_flutter_clinic_app/core/navigation/app_route_config.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/theme/app_theme.dart';
-import 'package:our_flutter_clinic_app/features/auth/repository/user_repository.dart';
 import 'package:our_flutter_clinic_app/features/home/controller/analysis_list_bloc/analysis_list_bloc.dart';
 import 'package:our_flutter_clinic_app/features/home/controller/appointments_bloc/appointments_bloc.dart';
-import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
-import 'package:our_flutter_clinic_app/features/home/model/doctor_model.dart';
-import 'package:our_flutter_clinic_app/features/home/model/patient_model.dart';
-import 'package:our_flutter_clinic_app/features/home/view/screens/appointment_details_screen.dart';
-import 'package:our_flutter_clinic_app/features/home/view/screens/book_new_appointment_screen.dart';
-import 'package:our_flutter_clinic_app/features/home/view/screens/home_screen.dart';
 import 'package:our_flutter_clinic_app/service_locator.dart';
 import 'package:path_provider/path_provider.dart' as p;
 
 import 'core/observers/custom_bloc_observer.dart';
 import 'core/blocs/user_bloc/user_bloc.dart';
-import 'features/auth/view/screens/nana/new_password.dart';
-import 'features/auth/view/screens/register_screen.dart';
-import 'features/home/view/screens/documents_screen.dart';
-import 'features/home/view/screens/edit_profile_screen.dart';
-import 'features/home/view/screens/reschedule_screen.dart';
-import 'features/home/view/widgets/home_widgets.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 void main() async {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:our_flutter_clinic_app/core/utils/utils.dart';
-import 'package:our_flutter_clinic_app/features/home/view/screens/book_new_appointment_screen.dart';
+import 'package:our_flutter_clinic_app/features/home/view/screens/patient/book_new_appointment_screen.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 

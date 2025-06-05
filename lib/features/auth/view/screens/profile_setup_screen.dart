@@ -1,8 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
 import 'package:our_flutter_clinic_app/core/navigation/app_route_constants.dart';
+import 'package:our_flutter_clinic_app/core/services/map_service/map_service.dart';
 import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 import 'package:our_flutter_clinic_app/core/widgets/background_container.dart';
@@ -13,6 +17,8 @@ import 'package:our_flutter_clinic_app/features/auth/view/widgets/select_your_ge
 
 import '../../../../core/blocs/user_bloc/user_bloc.dart';
 import '../../../../core/consts/app_constants.dart';
+import '../../../../core/widgets/map_location_picker.dart';
+import '../../../../core/widgets/transparent_content_dialog.dart';
 
 class ProfileSetupScreen extends StatefulWidget {
   const ProfileSetupScreen({super.key});
@@ -41,7 +47,7 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
     _opacityController.dispose();
     firstNameController.dispose();
     lastNameController.dispose();
-    completeAddressController.dispose();
+    _completeAddressController.dispose();
     super.dispose();
   }
 
@@ -213,7 +219,8 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
                 final date = await showDatePicker(
                   context: context,
                   firstDate: DateTime(1920),
-                  lastDate: DateTime.now(),
+                  lastDate: DateTime(2016),
+                  initialDate: DateTime(2015),
                 );
                 if (date != null) {
                   setState(() {
@@ -244,8 +251,12 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
                   return null;
                 }
               },
+              onTap: () async {
+                await _pickLocation();
+              },
+              readOnly: true,
               maxLength: 100,
-              controller: completeAddressController,
+              controller: _completeAddressController,
               title: 'Complete Address',
               hintText: 'Address',
               keyboardType: TextInputType.name,
@@ -268,6 +279,7 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
             fillColor: Colors.transparent,
             textColor: Theme.of(context).colorScheme.primary,
           ),
+
         CustomElevatedButton(
           title: 'Continue',
           onTap: () {
@@ -289,7 +301,7 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
                     firstName: firstNameController.text,
                     lastName: lastNameController.text,
                     age: int.tryParse(_ageController.text) ?? 0,
-                    address: completeAddressController.text,
+                    address: _completeAddressController.text,
                     bloodType: AppConstants.bloodTypes[_selectedBloodType],
                     gender: _selectedGender == 0 ? 'male' : 'female',
                   ),
@@ -303,6 +315,24 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
         ),
       ],
     );
+  }
+
+  Future<void> _pickLocation() async {
+    LatLng? picked = await TransparentDialog.show<LatLng>(
+      context: context,
+      builder: (context) => MapLocationPicker(),
+    );
+
+    if (picked != null) {
+      final pickedLocation = await MapService().reverseGeocode(picked);
+      log("User selected location: ${picked.latitude}, ${picked.longitude}");
+
+      if (pickedLocation != null) {
+        setState(() {
+          _completeAddressController.text = pickedLocation;
+        });
+      }
+    }
   }
 
   Widget _buildStepper() {
@@ -360,6 +390,7 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final _ageController = TextEditingController();
-  final completeAddressController = TextEditingController();
+  final _completeAddressController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  LatLng? _chosenLocation;
 }

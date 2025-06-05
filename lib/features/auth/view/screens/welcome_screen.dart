@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:our_flutter_clinic_app/core/navigation/app_route_constants.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
@@ -47,7 +48,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         eLog('New AuthState: $state');
         if (state.isAuth != null) {
           if (state.isAuth!) {
-            context.goNamed(AppRouteConstants.homeRouteName);
+            navigateByRole(
+              context,
+              role: state.authUser?.user?.role ?? Role.patient,
+            );
           }
         }
       },

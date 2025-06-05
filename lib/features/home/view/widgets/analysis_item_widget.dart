@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/logger.dart';
+import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 import 'package:our_flutter_clinic_app/features/home/controller/analysis_item_cubit/analysis_item_cubit.dart';
 import 'package:our_flutter_clinic_app/features/home/model/analysis_model.dart';
 import 'package:our_flutter_clinic_app/features/home/repository/analysis_item_repository.dart';
@@ -11,8 +14,9 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/theme/app_pallete.dart';
 
 class AnalysisItemWidget extends StatefulWidget {
-  const AnalysisItemWidget({super.key, required this.analysis});
+  const AnalysisItemWidget({super.key, required this.analysis, this.onTap});
   final AnalysisModel analysis;
+  final void Function()? onTap;
 
   @override
   State<AnalysisItemWidget> createState() => _AnalysisItemWidgetState();
@@ -34,15 +38,17 @@ class _AnalysisItemWidgetState extends State<AnalysisItemWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: () async {
-        if (_analysisItemCubit.state.downloadedAnalysis != null) {
-          await OpenFilex.open(
-            _analysisItemCubit.state.downloadedAnalysis!.localPath!,
-          );
-        } else {
-          _analysisItemCubit.downloadAnalysis();
-        }
-      },
+      onTap:
+          widget.onTap ??
+          () async {
+            if (_analysisItemCubit.state.downloadedAnalysis != null) {
+              await OpenFilex.open(
+                _analysisItemCubit.state.downloadedAnalysis!.localPath!,
+              );
+            } else {
+              _analysisItemCubit.downloadAnalysis();
+            }
+          },
       child: Container(
         decoration: BoxDecoration(
           color: Pallete.grayScaleColor300.withAlpha(100),
@@ -51,15 +57,18 @@ class _AnalysisItemWidgetState extends State<AnalysisItemWidget> {
         padding: EdgeInsets.all(10),
         child: Row(
           children: [
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: Pallete.grayScaleColor200,
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
-                  fit: BoxFit.scaleDown,
-                  image: AssetImage('assets/images/medical_file_icon.png'),
+            GestureDetector(
+              onTap: () => log('message'),
+              child: Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: Pallete.grayScaleColor200,
+                  borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(
+                    fit: BoxFit.scaleDown,
+                    image: AssetImage('assets/images/medical_file_icon.png'),
+                  ),
                 ),
               ),
             ),
@@ -74,33 +83,44 @@ class _AnalysisItemWidgetState extends State<AnalysisItemWidget> {
                     context,
                   ).textTheme.labelSmall!.copyWith(fontSize: 14),
                 ),
-                Text(
-                  widget.analysis.description ?? 'no description',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.labelSmall!.copyWith(fontSize: 10),
+                SizedBox(
+                  width: screenWidth(context) * 0.53,
+                  child: Text(
+                    overflow: TextOverflow.ellipsis,
+                    widget.analysis.description ?? 'no description',
+                    style: Theme.of(
+                      context,
+                    ).textTheme.labelSmall!.copyWith(fontSize: 10),
+                  ),
                 ),
               ],
             ),
-            Spacer(),
-            BlocBuilder<AnalysisItemCubit, AnalysisItemState>(
-              bloc: _analysisItemCubit,
-              builder: (context, state) {
-                return state.downloadedAnalysis == null
-                    ? state.status.isDownloading
-                        ? SizedBox(
-                          height: 30,
-                          width: 30,
-                          child: CircularProgressIndicator(
-                            value: state.downloadProgress,
-                          ),
-                        )
-                        : Icon(Icons.download)
-                    : state.status.isError
-                    ? Icon(Icons.refresh)
-                    : Icon(Icons.folder_open_outlined);
-              },
-            ),
+            if (widget.onTap == null) Spacer(),
+            if (widget.onTap == null)
+              BlocBuilder<AnalysisItemCubit, AnalysisItemState>(
+                bloc: _analysisItemCubit,
+                builder: (context, state) {
+                  if (state.downloadedAnalysis == null) {
+                    return Icon(Icons.download);
+                  }
+                  if (state.status.isDownloading) {
+                    return SizedBox(
+                      height: 30,
+                      width: 30,
+                      child: CircularProgressIndicator(
+                        value: state.downloadProgress,
+                      ),
+                    );
+                  }
+                  if (state.status.isError) {
+                    return Icon(Icons.refresh);
+                  } else {
+                    return state.downloadedAnalysis == null
+                        ? Icon(Icons.download)
+                        : Icon(Icons.folder_open_outlined);
+                  }
+                },
+              ),
           ],
         ),
       ),

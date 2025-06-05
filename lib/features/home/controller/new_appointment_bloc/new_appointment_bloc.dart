@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/logger.dart';
 import 'package:our_flutter_clinic_app/features/home/model/clinic_model.dart';
 import 'package:our_flutter_clinic_app/features/home/model/requests/add_new_appointment_request.dart';

@@ -1,6 +1,8 @@
 import 'package:intl/intl.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 
+import '../enums.dart';
+
 double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
 double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
 int calculateAge(DateTime birthDate) {
@@ -74,4 +76,21 @@ String parseStringList(List<String> strings) {
     }
   }
   return finishedString;
+}
+
+void navigateByRole(BuildContext context, {required Role role}) {
+  switch (role) {
+    case Role.patient:
+      context.goNamed(AppRouteConstants.homeRouteName);
+      return;
+    case Role.doctor:
+      context.goNamed(AppRouteConstants.homeRouteName);
+      return;
+    case Role.biologist:
+      context.goNamed(AppRouteConstants.homeRouteName);
+      return;
+    default:
+      context.goNamed(AppRouteConstants.homeRouteName);
+      return;
+  }
 }

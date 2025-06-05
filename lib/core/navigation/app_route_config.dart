@@ -1,16 +1,19 @@
+import 'package:our_flutter_clinic_app/features/home/model/analysis_model.dart';
 import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
 import 'package:our_flutter_clinic_app/features/home/repository/appointments_repository.dart';
-import 'package:our_flutter_clinic_app/features/home/view/screens/reschedule_screen.dart';
+import 'package:our_flutter_clinic_app/features/home/view/screens/labtech/analysis_info_screen.dart';
+import 'package:our_flutter_clinic_app/features/home/view/screens/patient/reschedule_screen.dart';
 
 import '../../features/home/controller/appointments_bloc/appointments_bloc.dart';
-import '../../features/home/view/screens/about_us_screen.dart';
-import '../../features/home/view/screens/appointment_details_screen.dart';
+import '../../features/home/view/screens/labtech/labtech_home_screen.dart';
+import '../../features/home/view/screens/patient/about_us_screen.dart';
+import '../../features/home/view/screens/patient/appointment_details_screen.dart';
 import 'navigation_exports.dart';
 
 class AppRouteConfig {
   static GoRouter get router => _router;
   static final GoRouter _router = GoRouter(
-    initialLocation: '/',
+    initialLocation: '/lab_tech_home',
     errorPageBuilder: (_, __) => TransitionPage(child: ErrorScreen()),
     routes: [
       GoRoute(
@@ -119,6 +122,25 @@ class AppRouteConfig {
         path: '/about_us',
         pageBuilder: (_, state) {
           return TransitionPage(child: AboutUsScreen());
+        },
+      ),
+      GoRoute(
+        name: AppRouteConstants.labtechHomeRouteName,
+        path: '/lab_tech_home',
+        pageBuilder: (_, state) {
+          return TransitionPage(child: LabtechHomeScreen());
+        },
+      ),
+      GoRoute(
+        name: AppRouteConstants.analysisInfoRouteName,
+        path: '/analysis_info',
+        pageBuilder: (_, state) {
+          return TransitionPage(
+            child: AnalysisInfoScreen(
+              analysis:
+                  state.extra as AnalysisModel? ?? AnalysisModel(name: 'name'),
+            ),
+          );
         },
       ),
     ],

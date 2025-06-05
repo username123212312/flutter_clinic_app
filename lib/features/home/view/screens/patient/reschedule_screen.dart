@@ -10,13 +10,13 @@ import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dar
 import 'package:our_flutter_clinic_app/features/home/repository/reschedule_appointment_repository.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/home_widgets.dart';
 
-import '../../../../core/navigation/navigation_exports.dart';
-import '../../../../core/utils/utils.dart';
-import '../../../../core/widgets/widgets.dart';
-import '../../../auth/view/widgets/auth_widgets.dart';
-import '../../controller/appointments_bloc/appointments_bloc.dart';
-import '../../controller/reschedule_appointment_cubit/reschedule_appointment_cubit.dart';
-import '../widgets/appointments/schedules_item_widget.dart';
+import '../../../../../core/navigation/navigation_exports.dart';
+import '../../../../../core/utils/utils.dart';
+import '../../../../../core/widgets/widgets.dart';
+import '../../../../auth/view/widgets/auth_widgets.dart';
+import '../../../controller/appointments_bloc/appointments_bloc.dart';
+import '../../../controller/reschedule_appointment_cubit/reschedule_appointment_cubit.dart';
+import '../../widgets/appointments/schedules_item_widget.dart';
 
 class RescheduleScreen extends StatefulWidget {
   const RescheduleScreen({super.key, required this.appointment});

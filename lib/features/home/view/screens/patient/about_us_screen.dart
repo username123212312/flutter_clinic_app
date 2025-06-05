@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 import 'package:our_flutter_clinic_app/core/widgets/background_container.dart';
 
-import '../../../../core/theme/app_pallete.dart';
+import '../../../../../core/theme/app_pallete.dart';
 
 class AboutUsScreen extends StatelessWidget {
   const AboutUsScreen({super.key});

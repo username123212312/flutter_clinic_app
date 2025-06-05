@@ -23,6 +23,10 @@ class AnalysisItemCubit extends HydratedCubit<AnalysisItemState> {
 
   Future<void> downloadAnalysis() async {
     String uploadingFilePath;
+    if (state.analysis?.resultFile == null &&
+        state.analysis?.resultPhoto == null) {
+      return;
+    }
     if (state.analysis!.resultFile == null) {
       uploadingFilePath = state.analysis!.resultPhoto!;
     } else {

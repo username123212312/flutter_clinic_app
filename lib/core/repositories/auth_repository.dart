@@ -16,13 +16,13 @@ class AuthRepository {
   Future<Either<AppFailure, AppResponse<UserModel>>> checkAuthState() async {
     final Response response;
     try {
-      response = await _dio.get(AppConstants.showProfilePath);
+      response = await _dio.get(AppConstants.authWithTokenPath);
       eLog(response.data);
       if (response.data['statusCode']! < 300) {
         return Right(
           AppResponse<UserModel>(
             success: true,
-            message: response.data['message'],
+            message: 'Successfully authenticated with token',
             data: UserModel.fromJson(response.data['data']),
             statusCode: response.statusCode,
             statusMessage: response.statusMessage,

@@ -6,8 +6,8 @@ import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:go_router/go_router.dart';
 
-import '../widgets/home_widgets.dart';
-import '../widgets/profile/profile_widget.dart';
+import '../../widgets/home_widgets.dart';
+import '../../widgets/profile/profile_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

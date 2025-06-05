@@ -38,9 +38,7 @@ class UserRepository {
         return Right(
           AppResponse<UserModel>(
             success: response.data['statusCode'] < 300,
-            message:
-                '${response.data['email']?[0] ?? ''}'
-                '\n${response.data['phone']?[0] ?? ''}',
+            message: 'User created successfully!',
             statusCode: response.data['statusCode'],
             statusMessage: response.data['statusMessage'],
             data:

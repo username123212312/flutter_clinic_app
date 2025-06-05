@@ -1,9 +1,9 @@
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/validator_util.dart';
-import '../../../../core/blocs/user_bloc/user_bloc.dart';
+import '../../../../../core/blocs/user_bloc/user_bloc.dart';
 
-import '../../../../core/utils/general_utils.dart';
-import '../../../auth/view/widgets/auth_widgets.dart';
+import '../../../../../core/utils/general_utils.dart';
+import '../../../../auth/view/widgets/auth_widgets.dart';
 
 class ModifyPasswordScreen extends StatefulWidget {
   const ModifyPasswordScreen({super.key});

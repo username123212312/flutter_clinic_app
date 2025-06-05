@@ -16,10 +16,10 @@ import 'package:our_flutter_clinic_app/features/home/view/widgets/search_text_fi
 import 'package:intl/intl.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../../../core/theme/app_pallete.dart';
-import '../../../../core/utils/utils.dart';
-import '../../../../core/widgets/transparent_content_dialog.dart';
-import '../../model/doctor_model.dart';
+import '../../../../../core/theme/app_pallete.dart';
+import '../../../../../core/utils/utils.dart';
+import '../../../../../core/widgets/transparent_content_dialog.dart';
+import '../../../model/doctor_model.dart';
 
 class BookNewAppointmentScreen extends StatefulWidget {
   const BookNewAppointmentScreen({super.key});
