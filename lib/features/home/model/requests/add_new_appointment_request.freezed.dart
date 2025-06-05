@@ -15,7 +15,6 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$AddNewAppointmentRequest {
-  int get clinicId;
   int get doctorId;
   DateTime get date;
   TimeOfDay get time;
@@ -33,8 +32,6 @@ mixin _$AddNewAppointmentRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is AddNewAppointmentRequest &&
-            (identical(other.clinicId, clinicId) ||
-                other.clinicId == clinicId) &&
             (identical(other.doctorId, doctorId) ||
                 other.doctorId == doctorId) &&
             (identical(other.date, date) || other.date == date) &&
@@ -42,11 +39,11 @@ mixin _$AddNewAppointmentRequest {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, clinicId, doctorId, date, time);
+  int get hashCode => Object.hash(runtimeType, doctorId, date, time);
 
   @override
   String toString() {
-    return 'AddNewAppointmentRequest(clinicId: $clinicId, doctorId: $doctorId, date: $date, time: $time)';
+    return 'AddNewAppointmentRequest(doctorId: $doctorId, date: $date, time: $time)';
   }
 }
 
@@ -56,7 +53,7 @@ abstract mixin class $AddNewAppointmentRequestCopyWith<$Res> {
           $Res Function(AddNewAppointmentRequest) _then) =
       _$AddNewAppointmentRequestCopyWithImpl;
   @useResult
-  $Res call({int clinicId, int doctorId, DateTime date, TimeOfDay time});
+  $Res call({int doctorId, DateTime date, TimeOfDay time});
 }
 
 /// @nodoc
@@ -72,16 +69,11 @@ class _$AddNewAppointmentRequestCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? clinicId = null,
     Object? doctorId = null,
     Object? date = null,
     Object? time = null,
   }) {
     return _then(_self.copyWith(
-      clinicId: null == clinicId
-          ? _self.clinicId
-          : clinicId // ignore: cast_nullable_to_non_nullable
-              as int,
       doctorId: null == doctorId
           ? _self.doctorId
           : doctorId // ignore: cast_nullable_to_non_nullable
@@ -102,13 +94,8 @@ class _$AddNewAppointmentRequestCopyWithImpl<$Res>
 
 class _AddNewAppointmentRequest implements AddNewAppointmentRequest {
   _AddNewAppointmentRequest(
-      {required this.clinicId,
-      required this.doctorId,
-      required this.date,
-      required this.time});
+      {required this.doctorId, required this.date, required this.time});
 
-  @override
-  final int clinicId;
   @override
   final int doctorId;
   @override
@@ -130,8 +117,6 @@ class _AddNewAppointmentRequest implements AddNewAppointmentRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _AddNewAppointmentRequest &&
-            (identical(other.clinicId, clinicId) ||
-                other.clinicId == clinicId) &&
             (identical(other.doctorId, doctorId) ||
                 other.doctorId == doctorId) &&
             (identical(other.date, date) || other.date == date) &&
@@ -139,11 +124,11 @@ class _AddNewAppointmentRequest implements AddNewAppointmentRequest {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, clinicId, doctorId, date, time);
+  int get hashCode => Object.hash(runtimeType, doctorId, date, time);
 
   @override
   String toString() {
-    return 'AddNewAppointmentRequest(clinicId: $clinicId, doctorId: $doctorId, date: $date, time: $time)';
+    return 'AddNewAppointmentRequest(doctorId: $doctorId, date: $date, time: $time)';
   }
 }
 
@@ -155,7 +140,7 @@ abstract mixin class _$AddNewAppointmentRequestCopyWith<$Res>
       __$AddNewAppointmentRequestCopyWithImpl;
   @override
   @useResult
-  $Res call({int clinicId, int doctorId, DateTime date, TimeOfDay time});
+  $Res call({int doctorId, DateTime date, TimeOfDay time});
 }
 
 /// @nodoc
@@ -171,16 +156,11 @@ class __$AddNewAppointmentRequestCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? clinicId = null,
     Object? doctorId = null,
     Object? date = null,
     Object? time = null,
   }) {
     return _then(_AddNewAppointmentRequest(
-      clinicId: null == clinicId
-          ? _self.clinicId
-          : clinicId // ignore: cast_nullable_to_non_nullable
-              as int,
       doctorId: null == doctorId
           ? _self.doctorId
           : doctorId // ignore: cast_nullable_to_non_nullable

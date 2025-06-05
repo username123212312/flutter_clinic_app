@@ -195,7 +195,6 @@ class NewAppointmentBloc
     try {
       final response = await _newAppointmentRepository.addNewAppointment(
         AddNewAppointmentRequest(
-          clinicId: state.department?.id ?? 0,
           doctorId: state.doctor?.id ?? 0,
           date: state.date ?? DateTime.now(),
           time: state.time ?? TimeOfDay.now(),

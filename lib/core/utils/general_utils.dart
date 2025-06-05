@@ -63,3 +63,15 @@ String formatTime(TimeOfDay time, [bool isPeriodic = true]) {
   final period = time.period == DayPeriod.am ? 'AM' : 'PM';
   return '${hour < 10 ? '0$hour' : hour}:$minute ${isPeriodic ? period : ''}';
 }
+
+String parseStringList(List<String> strings) {
+  var finishedString = '';
+  for (var i = 0; i < strings.length; i++) {
+    if (i == 0) {
+      finishedString += strings[i];
+    } else {
+      finishedString += '\n ${strings[i]}';
+    }
+  }
+  return finishedString;
+}

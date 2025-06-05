@@ -237,7 +237,6 @@ class NewAppointmentRepository {
       final response = await _dio.post(
         AppConstants.addReservationPath,
         data: {
-          'clinic_id': request.clinicId,
           'doctor_id': request.doctorId,
           'date': DateFormat('dd/MM/yy').format(request.date),
           'time': time,
