@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:flutter/material.dart';
 import 'package:our_flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
 import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
@@ -29,6 +26,23 @@ class _LabtechHomeScreenState extends State<LabtechHomeScreen> {
         forceMaterialTransparency: true,
         toolbarHeight: screenHeight(context) * 0.11,
         title: Text('Analysis'),
+        actions: [
+          IconButton.outlined(
+            style: IconButton.styleFrom(
+              fixedSize: Size(20, 20),
+              side: BorderSide(color: Theme.of(context).colorScheme.primary),
+            ),
+            alignment: Alignment.center,
+            onPressed: () {
+              context.pushNamed(AppRouteConstants.labtechAddAnalysisRouteName);
+            },
+            icon: Icon(
+              Icons.add,
+              size: 25,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          ),
+        ],
         titleTextStyle: Theme.of(
           context,
         ).textTheme.titleMedium!.copyWith(fontSize: 25),
@@ -53,12 +67,12 @@ class _LabtechHomeScreenState extends State<LabtechHomeScreen> {
                   padding: const EdgeInsets.only(bottom: 15.0),
                   child: AnalysisItemWidget(
                     onTap: () {
-                      context.goNamed(
+                      context.pushNamed(
                         AppRouteConstants.analysisInfoRouteName,
-                        extra: AnalysisModel(name: 'name $index'),
+                        extra: AnalysisModel(name: 'Analysis $index'),
                       );
                     },
-                    analysis: AnalysisModel(name: 'name $index'),
+                    analysis: AnalysisModel(name: 'Analysis $index'),
                   ),
                 );
               },
@@ -83,8 +97,8 @@ class _LabtechHomeScreenState extends State<LabtechHomeScreen> {
           ),
           SizedBox(height: 15),
           Text(
-            (currentUser?.firstName ?? 'No ') +
-                (currentUser?.lastName ?? 'User'),
+            (currentUser?.firstName ?? 'Lab ') +
+                (currentUser?.lastName ?? 'Tech'),
             style: Theme.of(context).textTheme.labelMedium!.copyWith(
               fontSize: 20,
               color: Theme.of(context).colorScheme.tertiary,

@@ -5,6 +5,8 @@ import 'package:our_flutter_clinic_app/features/home/view/screens/labtech/analys
 import 'package:our_flutter_clinic_app/features/home/view/screens/patient/reschedule_screen.dart';
 
 import '../../features/home/controller/appointments_bloc/appointments_bloc.dart';
+import '../../features/home/view/screens/labtech/add_new_analysis_screen.dart';
+import '../../features/home/view/screens/labtech/add_result_screen.dart';
 import '../../features/home/view/screens/labtech/labtech_home_screen.dart';
 import '../../features/home/view/screens/patient/about_us_screen.dart';
 import '../../features/home/view/screens/patient/appointment_details_screen.dart';
@@ -141,6 +143,20 @@ class AppRouteConfig {
                   state.extra as AnalysisModel? ?? AnalysisModel(name: 'name'),
             ),
           );
+        },
+      ),
+      GoRoute(
+        name: AppRouteConstants.labtechAddAnalysisRouteName,
+        path: '/labtech_add_analysis',
+        pageBuilder: (_, state) {
+          return TransitionPage(child: AddNewAnalysisScreen());
+        },
+      ),
+      GoRoute(
+        name: AppRouteConstants.labtechAddAnalysisResultRouteName,
+        path: '/labtech_add_analysis_result',
+        pageBuilder: (_, state) {
+          return TransitionPage(child: AddResultScreen());
         },
       ),
     ],

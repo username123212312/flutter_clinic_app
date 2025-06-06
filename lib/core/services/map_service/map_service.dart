@@ -4,6 +4,8 @@ import 'package:location/location.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:dio/dio.dart';
 
+import '../../utils/utils.dart';
+
 class MapService {
   static final MapService _instance = MapService._internal();
   factory MapService() => _instance;
@@ -52,10 +54,18 @@ class MapService {
         },
       );
 
-      if (response.statusCode == 200) {
-        return response.data['display_name'];
-      } else {
-        log("Nominatim failed: ${response.statusCode}");
+      final data = response.data;
+      eLog(data.toString());
+
+      if (data != null && data['address'] != null) {
+        final addr = data['address'];
+
+        final district = addr['city'] ?? addr['city_district'];
+        final state = addr['state'];
+        final country = addr['country'];
+
+        // Build the custom formatted address
+        return [district, state, country].where((e) => e != null).join(', ');
       }
     } catch (e) {
       log("Dio error: $e");

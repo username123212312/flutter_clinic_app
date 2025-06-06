@@ -113,8 +113,9 @@ class MapLocationPickerState extends State<MapLocationPicker> {
           SizedBox(height: 20),
           SizedBox(
             height: screenHeight(context) * 0.05,
+            width: screenWidth(context) * 0.4,
             child: CustomElevatedButton(
-              fontSize: 12,
+              fontSize: 11,
               textColor: Colors.white,
               fillColor: Theme.of(context).colorScheme.primary,
 

@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/validator_util.dart';
-import 'package:go_router/go_router.dart';
 import '../../../../core/blocs/user_bloc/user_bloc.dart';
 import '../widgets/auth_widgets.dart';
 
 import '../../../../core/utils/general_utils.dart';
+import 'nana/bullet_item.dart';
 
 class CreatePasswordScreen extends StatefulWidget {
   const CreatePasswordScreen({super.key});
@@ -38,12 +36,44 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
           child: BackgroundContainer(
             height: screenHeight(context) * 0.86,
             child: Padding(
-              padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
+              padding: const EdgeInsets.only(left: 40, right: 40),
               child: Column(
                 children: [
                   _buildHeader(),
                   _buildTwoFormFields(),
-                  SizedBox(height: 50),
+                  SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 0.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            BulletItem(
+                              text: 'Minimum 8 characters',
+                              fontSize: 13,
+                            ),
+                            BulletItem(text: 'Contains numbers', fontSize: 13),
+                          ],
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            BulletItem(
+                              text: 'Has lowercase letters',
+                              fontSize: 13,
+                            ),
+                            BulletItem(
+                              text: 'Has capital letters',
+                              fontSize: 13,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: screenHeight(context) * 0.08),
                   SizedBox(
                     width: screenWidth(context) * 0.9,
                     child: MultiBlocListener(
@@ -94,50 +124,20 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
 
       child: Column(
         children: [
-          Stack(
-            children: [
-              Positioned(
-                top: 0,
-                right: 10,
-                child: GestureDetector(
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (_) {
-                        return _buildAlertDialog();
-                      },
-                    );
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(2),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    child: Icon(
-                      Icons.question_mark,
-                      color: Colors.white,
-                      size: 20,
-                    ),
-                  ),
-                ),
-              ),
-              BasicInfoWidget(
-                controller: _passwordController,
-                maxLines: 1,
-                obsecureText: true,
-                validator: (value) {
-                  if (!ValidatorUtil.validatePassword(value ?? '')) {
-                    return 'Enter a valid password';
-                  } else {
-                    return null;
-                  }
-                },
-                title: 'New Password',
-                hintText: 'New Password',
-                keyboardType: TextInputType.text,
-              ),
-            ],
+          BasicInfoWidget(
+            controller: _passwordController,
+            maxLines: 1,
+            obsecureText: true,
+            validator: (value) {
+              if (!ValidatorUtil.validatePassword(value ?? '')) {
+                return 'Enter a valid password';
+              } else {
+                return null;
+              }
+            },
+            title: 'New Password',
+            hintText: 'New Password',
+            keyboardType: TextInputType.text,
           ),
           SizedBox(height: 15),
           BasicInfoWidget(
@@ -226,7 +226,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
         Image.asset(
           'assets/images/password.webp',
           width: screenWidth(context) * 0.6,
-          height: screenHeight(context) * 0.3,
+          height: screenHeight(context) * 0.25,
         ),
       ],
     );

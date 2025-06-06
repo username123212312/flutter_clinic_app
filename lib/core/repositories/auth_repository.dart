@@ -23,7 +23,7 @@ class AuthRepository {
           AppResponse<UserModel>(
             success: true,
             message: 'Successfully authenticated with token',
-            data: UserModel.fromJson(response.data['data']),
+            data: UserModel.fromJson(response.data),
             statusCode: response.statusCode,
             statusMessage: response.statusMessage,
           ),

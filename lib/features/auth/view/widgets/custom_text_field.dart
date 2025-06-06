@@ -89,7 +89,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
           ).textTheme.titleSmall!.copyWith(fontSize: 13),
           contentPadding: EdgeInsets.only(left: 20, top: 40),
           hintText: widget.hintText,
-          hintStyle: const TextStyle(color: Pallete.grayScaleColor500),
+          hintStyle: const TextStyle(
+            fontSize: 13,
+            color: Pallete.grayScaleColor500,
+          ),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
 
           filled: true,

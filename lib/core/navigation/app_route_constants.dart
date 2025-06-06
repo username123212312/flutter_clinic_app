@@ -12,6 +12,9 @@ class AppRouteConstants {
   //?Labtech
   static const labtechHomeRouteName = 'lab_tech_home';
   static const analysisInfoRouteName = 'analysis_info';
+  static const labtechAddAnalysisRouteName = 'labtech_add_analysis';
+  static const labtechAddAnalysisResultRouteName =
+      'labtech_add_analysis_result';
 
   //? Patient
   static const registerRouteName = 'register';
