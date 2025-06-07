@@ -87,7 +87,7 @@ void navigateByRole(BuildContext context, {required Role role}) {
       context.goNamed(AppRouteConstants.homeRouteName);
       return;
     case Role.biologist:
-      context.goNamed(AppRouteConstants.homeRouteName);
+      context.goNamed(AppRouteConstants.labtechHomeRouteName);
       return;
     default:
       context.goNamed(AppRouteConstants.homeRouteName);

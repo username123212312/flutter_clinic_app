@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../core/theme/app_pallete.dart';
 
@@ -17,6 +18,7 @@ class CustomTextField extends StatefulWidget {
   final String? Function(String?)? validator;
   final void Function(String?)? onSaved;
   final TextInputAction? textInputAction;
+  final List<TextInputFormatter>? formatters;
 
   const CustomTextField({
     super.key,
@@ -34,6 +36,7 @@ class CustomTextField extends StatefulWidget {
     this.validator,
     this.onSaved,
     this.textInputAction = TextInputAction.next,
+    this.formatters,
   });
 
   @override
@@ -71,6 +74,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       transform:
           _isFocused ? (Matrix4.identity()..scale(1.02)) : Matrix4.identity(),
       child: TextFormField(
+        inputFormatters: widget.formatters,
         textInputAction: widget.textInputAction,
         validator: widget.validator,
         onSaved: widget.onSaved,

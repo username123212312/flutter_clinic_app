@@ -4,7 +4,7 @@ import '../../../../core/blocs/user_bloc/user_bloc.dart';
 import '../widgets/auth_widgets.dart';
 
 import '../../../../core/utils/general_utils.dart';
-import 'nana/bullet_item.dart';
+import '../widgets/bullet_item.dart';
 
 class CreatePasswordScreen extends StatefulWidget {
   const CreatePasswordScreen({super.key});

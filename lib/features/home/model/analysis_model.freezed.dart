@@ -22,6 +22,13 @@ mixin _$AnalysisModel {
   String? get resultFile;
   @JsonKey(name: 'result_photo')
   String? get resultPhoto;
+  String? get clinic;
+  @JsonKey(name: 'patient_first_name')
+  String? get patientFirstName;
+  @JsonKey(name: 'patient_last_name')
+  String? get patientLastName;
+  @JsonKey(name: 'patient_id')
+  int? get patientId;
 
   /// Create a copy of AnalysisModel
   /// with the given fields replaced by the non-null parameter values.
@@ -46,17 +53,33 @@ mixin _$AnalysisModel {
             (identical(other.resultFile, resultFile) ||
                 other.resultFile == resultFile) &&
             (identical(other.resultPhoto, resultPhoto) ||
-                other.resultPhoto == resultPhoto));
+                other.resultPhoto == resultPhoto) &&
+            (identical(other.clinic, clinic) || other.clinic == clinic) &&
+            (identical(other.patientFirstName, patientFirstName) ||
+                other.patientFirstName == patientFirstName) &&
+            (identical(other.patientLastName, patientLastName) ||
+                other.patientLastName == patientLastName) &&
+            (identical(other.patientId, patientId) ||
+                other.patientId == patientId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, description, resultFile, resultPhoto);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      description,
+      resultFile,
+      resultPhoto,
+      clinic,
+      patientFirstName,
+      patientLastName,
+      patientId);
 
   @override
   String toString() {
-    return 'AnalysisModel(id: $id, name: $name, description: $description, resultFile: $resultFile, resultPhoto: $resultPhoto)';
+    return 'AnalysisModel(id: $id, name: $name, description: $description, resultFile: $resultFile, resultPhoto: $resultPhoto, clinic: $clinic, patientFirstName: $patientFirstName, patientLastName: $patientLastName, patientId: $patientId)';
   }
 }
 
@@ -71,7 +94,11 @@ abstract mixin class $AnalysisModelCopyWith<$Res> {
       String name,
       String? description,
       @JsonKey(name: 'result_file') String? resultFile,
-      @JsonKey(name: 'result_photo') String? resultPhoto});
+      @JsonKey(name: 'result_photo') String? resultPhoto,
+      String? clinic,
+      @JsonKey(name: 'patient_first_name') String? patientFirstName,
+      @JsonKey(name: 'patient_last_name') String? patientLastName,
+      @JsonKey(name: 'patient_id') int? patientId});
 }
 
 /// @nodoc
@@ -92,6 +119,10 @@ class _$AnalysisModelCopyWithImpl<$Res>
     Object? description = freezed,
     Object? resultFile = freezed,
     Object? resultPhoto = freezed,
+    Object? clinic = freezed,
+    Object? patientFirstName = freezed,
+    Object? patientLastName = freezed,
+    Object? patientId = freezed,
   }) {
     return _then(_self.copyWith(
       id: freezed == id
@@ -114,6 +145,22 @@ class _$AnalysisModelCopyWithImpl<$Res>
           ? _self.resultPhoto
           : resultPhoto // ignore: cast_nullable_to_non_nullable
               as String?,
+      clinic: freezed == clinic
+          ? _self.clinic
+          : clinic // ignore: cast_nullable_to_non_nullable
+              as String?,
+      patientFirstName: freezed == patientFirstName
+          ? _self.patientFirstName
+          : patientFirstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      patientLastName: freezed == patientLastName
+          ? _self.patientLastName
+          : patientLastName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      patientId: freezed == patientId
+          ? _self.patientId
+          : patientId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -126,7 +173,11 @@ class _AnalysisModel implements AnalysisModel {
       required this.name,
       this.description,
       @JsonKey(name: 'result_file') this.resultFile,
-      @JsonKey(name: 'result_photo') this.resultPhoto});
+      @JsonKey(name: 'result_photo') this.resultPhoto,
+      this.clinic,
+      @JsonKey(name: 'patient_first_name') this.patientFirstName,
+      @JsonKey(name: 'patient_last_name') this.patientLastName,
+      @JsonKey(name: 'patient_id') this.patientId});
   factory _AnalysisModel.fromJson(Map<String, dynamic> json) =>
       _$AnalysisModelFromJson(json);
 
@@ -143,6 +194,17 @@ class _AnalysisModel implements AnalysisModel {
   @override
   @JsonKey(name: 'result_photo')
   final String? resultPhoto;
+  @override
+  final String? clinic;
+  @override
+  @JsonKey(name: 'patient_first_name')
+  final String? patientFirstName;
+  @override
+  @JsonKey(name: 'patient_last_name')
+  final String? patientLastName;
+  @override
+  @JsonKey(name: 'patient_id')
+  final int? patientId;
 
   /// Create a copy of AnalysisModel
   /// with the given fields replaced by the non-null parameter values.
@@ -171,17 +233,33 @@ class _AnalysisModel implements AnalysisModel {
             (identical(other.resultFile, resultFile) ||
                 other.resultFile == resultFile) &&
             (identical(other.resultPhoto, resultPhoto) ||
-                other.resultPhoto == resultPhoto));
+                other.resultPhoto == resultPhoto) &&
+            (identical(other.clinic, clinic) || other.clinic == clinic) &&
+            (identical(other.patientFirstName, patientFirstName) ||
+                other.patientFirstName == patientFirstName) &&
+            (identical(other.patientLastName, patientLastName) ||
+                other.patientLastName == patientLastName) &&
+            (identical(other.patientId, patientId) ||
+                other.patientId == patientId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, description, resultFile, resultPhoto);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      description,
+      resultFile,
+      resultPhoto,
+      clinic,
+      patientFirstName,
+      patientLastName,
+      patientId);
 
   @override
   String toString() {
-    return 'AnalysisModel(id: $id, name: $name, description: $description, resultFile: $resultFile, resultPhoto: $resultPhoto)';
+    return 'AnalysisModel(id: $id, name: $name, description: $description, resultFile: $resultFile, resultPhoto: $resultPhoto, clinic: $clinic, patientFirstName: $patientFirstName, patientLastName: $patientLastName, patientId: $patientId)';
   }
 }
 
@@ -198,7 +276,11 @@ abstract mixin class _$AnalysisModelCopyWith<$Res>
       String name,
       String? description,
       @JsonKey(name: 'result_file') String? resultFile,
-      @JsonKey(name: 'result_photo') String? resultPhoto});
+      @JsonKey(name: 'result_photo') String? resultPhoto,
+      String? clinic,
+      @JsonKey(name: 'patient_first_name') String? patientFirstName,
+      @JsonKey(name: 'patient_last_name') String? patientLastName,
+      @JsonKey(name: 'patient_id') int? patientId});
 }
 
 /// @nodoc
@@ -219,6 +301,10 @@ class __$AnalysisModelCopyWithImpl<$Res>
     Object? description = freezed,
     Object? resultFile = freezed,
     Object? resultPhoto = freezed,
+    Object? clinic = freezed,
+    Object? patientFirstName = freezed,
+    Object? patientLastName = freezed,
+    Object? patientId = freezed,
   }) {
     return _then(_AnalysisModel(
       id: freezed == id
@@ -241,6 +327,22 @@ class __$AnalysisModelCopyWithImpl<$Res>
           ? _self.resultPhoto
           : resultPhoto // ignore: cast_nullable_to_non_nullable
               as String?,
+      clinic: freezed == clinic
+          ? _self.clinic
+          : clinic // ignore: cast_nullable_to_non_nullable
+              as String?,
+      patientFirstName: freezed == patientFirstName
+          ? _self.patientFirstName
+          : patientFirstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      patientLastName: freezed == patientLastName
+          ? _self.patientLastName
+          : patientLastName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      patientId: freezed == patientId
+          ? _self.patientId
+          : patientId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }

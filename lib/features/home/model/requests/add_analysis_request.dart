@@ -8,6 +8,8 @@ sealed class AddAnalysisRequest with _$AddAnalysisRequest {
   factory AddAnalysisRequest({
     required String name,
     String? description,
+    int? id,
+    int? clinicId,
     String? resultFilePath,
     String? resultImagePath,
   }) = _AddAnalysisRequest;

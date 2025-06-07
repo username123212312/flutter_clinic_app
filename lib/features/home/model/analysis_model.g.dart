@@ -13,6 +13,10 @@ _AnalysisModel _$AnalysisModelFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String?,
       resultFile: json['result_file'] as String?,
       resultPhoto: json['result_photo'] as String?,
+      clinic: json['clinic'] as String?,
+      patientFirstName: json['patient_first_name'] as String?,
+      patientLastName: json['patient_last_name'] as String?,
+      patientId: (json['patient_id'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$AnalysisModelToJson(_AnalysisModel instance) =>
@@ -22,4 +26,8 @@ Map<String, dynamic> _$AnalysisModelToJson(_AnalysisModel instance) =>
       'description': instance.description,
       'result_file': instance.resultFile,
       'result_photo': instance.resultPhoto,
+      'clinic': instance.clinic,
+      'patient_first_name': instance.patientFirstName,
+      'patient_last_name': instance.patientLastName,
+      'patient_id': instance.patientId,
     };

@@ -17,6 +17,8 @@ T _$identity<T>(T value) => value;
 mixin _$AddAnalysisRequest {
   String get name;
   String? get description;
+  int? get id;
+  int? get clinicId;
   String? get resultFilePath;
   String? get resultImagePath;
 
@@ -39,6 +41,9 @@ mixin _$AddAnalysisRequest {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.clinicId, clinicId) ||
+                other.clinicId == clinicId) &&
             (identical(other.resultFilePath, resultFilePath) ||
                 other.resultFilePath == resultFilePath) &&
             (identical(other.resultImagePath, resultImagePath) ||
@@ -47,12 +52,12 @@ mixin _$AddAnalysisRequest {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, name, description, resultFilePath, resultImagePath);
+  int get hashCode => Object.hash(runtimeType, name, description, id, clinicId,
+      resultFilePath, resultImagePath);
 
   @override
   String toString() {
-    return 'AddAnalysisRequest(name: $name, description: $description, resultFilePath: $resultFilePath, resultImagePath: $resultImagePath)';
+    return 'AddAnalysisRequest(name: $name, description: $description, id: $id, clinicId: $clinicId, resultFilePath: $resultFilePath, resultImagePath: $resultImagePath)';
   }
 }
 
@@ -65,6 +70,8 @@ abstract mixin class $AddAnalysisRequestCopyWith<$Res> {
   $Res call(
       {String name,
       String? description,
+      int? id,
+      int? clinicId,
       String? resultFilePath,
       String? resultImagePath});
 }
@@ -84,6 +91,8 @@ class _$AddAnalysisRequestCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? description = freezed,
+    Object? id = freezed,
+    Object? clinicId = freezed,
     Object? resultFilePath = freezed,
     Object? resultImagePath = freezed,
   }) {
@@ -96,6 +105,14 @@ class _$AddAnalysisRequestCopyWithImpl<$Res>
           ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      clinicId: freezed == clinicId
+          ? _self.clinicId
+          : clinicId // ignore: cast_nullable_to_non_nullable
+              as int?,
       resultFilePath: freezed == resultFilePath
           ? _self.resultFilePath
           : resultFilePath // ignore: cast_nullable_to_non_nullable
@@ -114,6 +131,8 @@ class _AddAnalysisRequest implements AddAnalysisRequest {
   _AddAnalysisRequest(
       {required this.name,
       this.description,
+      this.id,
+      this.clinicId,
       this.resultFilePath,
       this.resultImagePath});
   factory _AddAnalysisRequest.fromJson(Map<String, dynamic> json) =>
@@ -123,6 +142,10 @@ class _AddAnalysisRequest implements AddAnalysisRequest {
   final String name;
   @override
   final String? description;
+  @override
+  final int? id;
+  @override
+  final int? clinicId;
   @override
   final String? resultFilePath;
   @override
@@ -151,6 +174,9 @@ class _AddAnalysisRequest implements AddAnalysisRequest {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.clinicId, clinicId) ||
+                other.clinicId == clinicId) &&
             (identical(other.resultFilePath, resultFilePath) ||
                 other.resultFilePath == resultFilePath) &&
             (identical(other.resultImagePath, resultImagePath) ||
@@ -159,12 +185,12 @@ class _AddAnalysisRequest implements AddAnalysisRequest {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, name, description, resultFilePath, resultImagePath);
+  int get hashCode => Object.hash(runtimeType, name, description, id, clinicId,
+      resultFilePath, resultImagePath);
 
   @override
   String toString() {
-    return 'AddAnalysisRequest(name: $name, description: $description, resultFilePath: $resultFilePath, resultImagePath: $resultImagePath)';
+    return 'AddAnalysisRequest(name: $name, description: $description, id: $id, clinicId: $clinicId, resultFilePath: $resultFilePath, resultImagePath: $resultImagePath)';
   }
 }
 
@@ -179,6 +205,8 @@ abstract mixin class _$AddAnalysisRequestCopyWith<$Res>
   $Res call(
       {String name,
       String? description,
+      int? id,
+      int? clinicId,
       String? resultFilePath,
       String? resultImagePath});
 }
@@ -198,6 +226,8 @@ class __$AddAnalysisRequestCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? description = freezed,
+    Object? id = freezed,
+    Object? clinicId = freezed,
     Object? resultFilePath = freezed,
     Object? resultImagePath = freezed,
   }) {
@@ -210,6 +240,14 @@ class __$AddAnalysisRequestCopyWithImpl<$Res>
           ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      clinicId: freezed == clinicId
+          ? _self.clinicId
+          : clinicId // ignore: cast_nullable_to_non_nullable
+              as int?,
       resultFilePath: freezed == resultFilePath
           ? _self.resultFilePath
           : resultFilePath // ignore: cast_nullable_to_non_nullable

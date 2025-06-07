@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
 import 'package:our_flutter_clinic_app/features/home/model/clinic_model.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/custom_drop_down_widget.dart';
@@ -32,8 +33,12 @@ class _AddNewAnalysisScreenState extends State<AddNewAnalysisScreen> {
           context,
         ).textTheme.titleMedium!.copyWith(fontSize: 25),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.only(
+          left: 20.0,
+          right: 20,
+          bottom: MediaQuery.of(context).viewInsets.bottom * 0.3,
+        ),
         child: Form(
           key: _formKey,
           child: Column(
@@ -51,6 +56,7 @@ class _AddNewAnalysisScreenState extends State<AddNewAnalysisScreen> {
                     ).textTheme.titleSmall!.copyWith(fontSize: 18),
                   ),
                   CustomTextField(
+                    formatters: [FilteringTextInputFormatter.digitsOnly],
                     validator: (value) {
                       if (!ValidatorUtil.validateNumbers(value)) {
                         return 'Enter a valid number';
@@ -60,7 +66,6 @@ class _AddNewAnalysisScreenState extends State<AddNewAnalysisScreen> {
                     },
                     hintText: 'Patient number',
                     keyboardType: TextInputType.number,
-                    textInputAction: TextInputAction.done,
                   ),
                 ],
               ),
@@ -126,7 +131,9 @@ class _AddNewAnalysisScreenState extends State<AddNewAnalysisScreen> {
                 width: screenWidth(context),
                 child: CustomElevatedButton(
                   title: 'Add',
-                  onTap: () {},
+                  onTap: () {
+                    if (!_formKey.currentState!.validate()) {}
+                  },
                   fillColor: Theme.of(context).colorScheme.primary,
                   textColor: Colors.white,
                 ),

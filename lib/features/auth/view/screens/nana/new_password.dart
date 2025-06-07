@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/validator_util.dart';
 import '../../widgets/auth_widgets.dart';
-import 'bullet_item.dart';
+import '../../widgets/bullet_item.dart';
 import '../../widgets/custom_button.dart';
 
 class NanaCreatePasswordScreen extends StatefulWidget {
