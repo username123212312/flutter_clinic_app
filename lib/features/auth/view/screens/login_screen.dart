@@ -6,9 +6,11 @@ import 'package:our_flutter_clinic_app/core/services/google_auth_service/google_
 import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:our_flutter_clinic_app/core/utils/validator_util.dart';
 import 'package:our_flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
+import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 
+import '../../../../core/enums.dart';
 import '../../../../core/utils/logger.dart';
 import '../widgets/auth_widgets.dart';
 import '../widgets/custom_button.dart';
@@ -23,7 +25,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  late final bool _isDoctor;
+  late final bool _isPatient;
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
@@ -34,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    _isDoctor = context.read<UserBloc>().state.user!.role!.isDoctor;
+    _isPatient = context.read<UserBloc>().state.user!.role!.isPatient;
   }
 
   @override
@@ -87,9 +89,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 20),
                   _buildFormFields(),
                   SizedBox(height: 10),
+                  if (!_isPatient)
+                    SizedBox(height: screenHeight(context) * 0.1),
                   _buildTwoButtons(),
                   const SizedBox(height: 25),
-                  if (!_isDoctor)
+                  if (_isPatient)
                     Text.rich(
                       TextSpan(
                         text: 'Don\'t have an account? ',
@@ -136,13 +140,21 @@ class _LoginScreenState extends State<LoginScreen> {
           listeners: [
             BlocListener<UserBloc, UserState>(
               listener: (context, state) {
+                if (state.status.isLoading) {
+                  LoadingOverlay().show(context);
+                } else {
+                  LoadingOverlay().hideAll();
+                }
                 clearAndShowSnackBar(context, state.statusMessage);
               },
             ),
             BlocListener<AuthBloc, AuthState>(
               listener: (context, state) {
                 if (state.isAuth!) {
-                  context.goNamed(AppRouteConstants.homeRouteName);
+                  navigateByRole(
+                    context,
+                    role: state.authUser?.user?.role ?? Role.patient,
+                  );
                 }
               },
             ),
@@ -164,22 +176,27 @@ class _LoginScreenState extends State<LoginScreen> {
             },
           ),
         ),
-        const SizedBox(height: 10),
-        Text(
-          'OR',
-          style: Theme.of(context).textTheme.titleSmall!.copyWith(
-            fontSize: 15,
-            color: Pallete.grayScaleColor700,
+        if (_isPatient)
+          Column(
+            children: [
+              const SizedBox(height: 10),
+              Text(
+                'OR',
+                style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  fontSize: 15,
+                  color: Pallete.grayScaleColor700,
+                ),
+              ),
+              const SizedBox(height: 10),
+              CustomGoogleButton(
+                onPressed: () async {
+                  context.read<UserBloc>().add(UserLoggedInWithGoogle());
+                },
+                text: 'Google',
+                imagePath: 'assets/icons/ic_google.png',
+              ),
+            ],
           ),
-        ),
-        const SizedBox(height: 10),
-        CustomGoogleButton(
-          onPressed: () async {
-            context.read<UserBloc>().add(UserLoggedInWithGoogle());
-          },
-          text: 'Google',
-          imagePath: 'assets/icons/ic_google.png',
-        ),
       ],
     );
   }

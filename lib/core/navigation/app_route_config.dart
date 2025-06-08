@@ -3,8 +3,10 @@ import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dar
 import 'package:our_flutter_clinic_app/features/home/repository/appointments_repository.dart';
 import 'package:our_flutter_clinic_app/features/home/view/screens/labtech/analysis_info_screen.dart';
 import 'package:our_flutter_clinic_app/features/home/view/screens/patient/reschedule_screen.dart';
+import 'package:our_flutter_clinic_app/service_locator.dart';
 
 import '../../features/home/controller/appointments_bloc/appointments_bloc.dart';
+import '../../features/home/controller/labtech_analysis_bloc/labtech_analysis_bloc.dart';
 import '../../features/home/view/screens/labtech/add_new_analysis_screen.dart';
 import '../../features/home/view/screens/labtech/add_result_screen.dart';
 import '../../features/home/view/screens/labtech/labtech_home_screen.dart';
@@ -15,7 +17,7 @@ import 'navigation_exports.dart';
 class AppRouteConfig {
   static GoRouter get router => _router;
   static final GoRouter _router = GoRouter(
-    initialLocation: '/lab_tech_home',
+    initialLocation: '/',
     errorPageBuilder: (_, __) => TransitionPage(child: ErrorScreen()),
     routes: [
       GoRoute(

@@ -17,7 +17,7 @@ class AppConstants {
   static const patientPath = '/$apiPath/patient';
   static const homePath = '/$apiPath/home';
   static const doctorPath = '/$apiPath/doctor';
-  static const labTechPath = '/$apiPath/labTech';
+  static const labTechPath = '/labTech';
 
   //! Auth
   static const registerPath = '/$apiPath/register';

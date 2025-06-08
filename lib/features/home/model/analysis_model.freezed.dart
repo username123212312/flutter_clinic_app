@@ -18,6 +18,7 @@ mixin _$AnalysisModel {
   int? get id;
   String get name;
   String? get description;
+  AnalysisStatus? get status;
   @JsonKey(name: 'result_file')
   String? get resultFile;
   @JsonKey(name: 'result_photo')
@@ -50,6 +51,7 @@ mixin _$AnalysisModel {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.resultFile, resultFile) ||
                 other.resultFile == resultFile) &&
             (identical(other.resultPhoto, resultPhoto) ||
@@ -70,6 +72,7 @@ mixin _$AnalysisModel {
       id,
       name,
       description,
+      status,
       resultFile,
       resultPhoto,
       clinic,
@@ -79,7 +82,7 @@ mixin _$AnalysisModel {
 
   @override
   String toString() {
-    return 'AnalysisModel(id: $id, name: $name, description: $description, resultFile: $resultFile, resultPhoto: $resultPhoto, clinic: $clinic, patientFirstName: $patientFirstName, patientLastName: $patientLastName, patientId: $patientId)';
+    return 'AnalysisModel(id: $id, name: $name, description: $description, status: $status, resultFile: $resultFile, resultPhoto: $resultPhoto, clinic: $clinic, patientFirstName: $patientFirstName, patientLastName: $patientLastName, patientId: $patientId)';
   }
 }
 
@@ -93,6 +96,7 @@ abstract mixin class $AnalysisModelCopyWith<$Res> {
       {int? id,
       String name,
       String? description,
+      AnalysisStatus? status,
       @JsonKey(name: 'result_file') String? resultFile,
       @JsonKey(name: 'result_photo') String? resultPhoto,
       String? clinic,
@@ -117,6 +121,7 @@ class _$AnalysisModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = null,
     Object? description = freezed,
+    Object? status = freezed,
     Object? resultFile = freezed,
     Object? resultPhoto = freezed,
     Object? clinic = freezed,
@@ -137,6 +142,10 @@ class _$AnalysisModelCopyWithImpl<$Res>
           ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as AnalysisStatus?,
       resultFile: freezed == resultFile
           ? _self.resultFile
           : resultFile // ignore: cast_nullable_to_non_nullable
@@ -172,6 +181,7 @@ class _AnalysisModel implements AnalysisModel {
       {this.id = 0,
       required this.name,
       this.description,
+      this.status,
       @JsonKey(name: 'result_file') this.resultFile,
       @JsonKey(name: 'result_photo') this.resultPhoto,
       this.clinic,
@@ -188,6 +198,8 @@ class _AnalysisModel implements AnalysisModel {
   final String name;
   @override
   final String? description;
+  @override
+  final AnalysisStatus? status;
   @override
   @JsonKey(name: 'result_file')
   final String? resultFile;
@@ -230,6 +242,7 @@ class _AnalysisModel implements AnalysisModel {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.resultFile, resultFile) ||
                 other.resultFile == resultFile) &&
             (identical(other.resultPhoto, resultPhoto) ||
@@ -250,6 +263,7 @@ class _AnalysisModel implements AnalysisModel {
       id,
       name,
       description,
+      status,
       resultFile,
       resultPhoto,
       clinic,
@@ -259,7 +273,7 @@ class _AnalysisModel implements AnalysisModel {
 
   @override
   String toString() {
-    return 'AnalysisModel(id: $id, name: $name, description: $description, resultFile: $resultFile, resultPhoto: $resultPhoto, clinic: $clinic, patientFirstName: $patientFirstName, patientLastName: $patientLastName, patientId: $patientId)';
+    return 'AnalysisModel(id: $id, name: $name, description: $description, status: $status, resultFile: $resultFile, resultPhoto: $resultPhoto, clinic: $clinic, patientFirstName: $patientFirstName, patientLastName: $patientLastName, patientId: $patientId)';
   }
 }
 
@@ -275,6 +289,7 @@ abstract mixin class _$AnalysisModelCopyWith<$Res>
       {int? id,
       String name,
       String? description,
+      AnalysisStatus? status,
       @JsonKey(name: 'result_file') String? resultFile,
       @JsonKey(name: 'result_photo') String? resultPhoto,
       String? clinic,
@@ -299,6 +314,7 @@ class __$AnalysisModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = null,
     Object? description = freezed,
+    Object? status = freezed,
     Object? resultFile = freezed,
     Object? resultPhoto = freezed,
     Object? clinic = freezed,
@@ -319,6 +335,10 @@ class __$AnalysisModelCopyWithImpl<$Res>
           ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as AnalysisStatus?,
       resultFile: freezed == resultFile
           ? _self.resultFile
           : resultFile // ignore: cast_nullable_to_non_nullable

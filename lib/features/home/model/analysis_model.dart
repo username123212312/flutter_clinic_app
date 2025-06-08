@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:our_flutter_clinic_app/core/enums.dart';
 
 part 'analysis_model.freezed.dart';
 part 'analysis_model.g.dart';
@@ -11,6 +12,7 @@ sealed class AnalysisModel with _$AnalysisModel {
     @Default(0) int? id,
     required String name,
     String? description,
+    AnalysisStatus? status,
     @JsonKey(name: 'result_file') String? resultFile,
     @JsonKey(name: 'result_photo') String? resultPhoto,
     String? clinic,

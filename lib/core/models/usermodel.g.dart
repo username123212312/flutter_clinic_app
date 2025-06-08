@@ -39,7 +39,7 @@ Map<String, dynamic> _$UserModelToJson(_UserModel instance) =>
 
 const _$RoleEnumMap = {
   Role.doctor: 'doctor',
-  Role.biologist: 'biologist',
+  Role.labtech: 'labtech',
   Role.patient: 'patient',
   Role.admin: 'admin',
 };

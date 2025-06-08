@@ -22,7 +22,7 @@ class LabtechAnalysisRepository {
     try {
       final response = await _dio.post(
         AppConstants.labTechShowAllAnalysisPath,
-        data: {'status': analysisStatus.name},
+        data: {'status': analysisStatus.name.toLowerCase()},
       );
 
       eLog(response.data.toString());
@@ -33,7 +33,7 @@ class LabtechAnalysisRepository {
             success: true,
             message: 'Analysis fetched successfully!',
             data:
-                (response.data as List<dynamic>).map((analysis) {
+                (response.data['items'] as List<dynamic>).map((analysis) {
                   return AnalysisModel.fromJson(analysis);
                 }).toList(),
           ),
@@ -104,7 +104,7 @@ class LabtechAnalysisRepository {
       });
 
       final response = await _dio.post(
-        AppConstants.labTechShowAnalysePath,
+        AppConstants.labTechAddAnalyseResultPath,
         data: formData,
         onSendProgress:
             (count, total) =>

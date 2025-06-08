@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 
@@ -86,11 +89,35 @@ void navigateByRole(BuildContext context, {required Role role}) {
     case Role.doctor:
       context.goNamed(AppRouteConstants.homeRouteName);
       return;
-    case Role.biologist:
+    case Role.labtech:
       context.goNamed(AppRouteConstants.labtechHomeRouteName);
       return;
     default:
       context.goNamed(AppRouteConstants.homeRouteName);
       return;
+  }
+}
+
+Future<File?> pickFile() async {
+  final result = await FilePicker.platform.pickFiles(
+    type: FileType.custom,
+    allowedExtensions: ['pdf'],
+  );
+  if (result != null && result.files.single.path != null) {
+    return File(result.files.single.path!);
+  } else {
+    return null;
+  }
+}
+
+Future<File?> pickPhoto() async {
+  final result = await FilePicker.platform.pickFiles(
+    type: FileType.custom,
+    allowedExtensions: ['jpg', 'jpeg', 'png'],
+  );
+  if (result != null && result.files.single.path != null) {
+    return File(result.files.single.path!);
+  } else {
+    return null;
   }
 }

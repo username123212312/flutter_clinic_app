@@ -15,6 +15,8 @@ import 'package:permission_handler/permission_handler.dart';
 
 import '../../models/downloaded_file.dart';
 
+final Directory downloadsDir = Directory('/storage/emulated/0/Download');
+
 class FileManager {
   static final FileManager _singleton = FileManager._internal();
 
@@ -95,7 +97,10 @@ class FileManager {
     void Function(int received, int total)? onReceiveProgress,
   }) async {
     try {
-      final dir = await getApplicationDocumentsDirectory();
+      // final dir =
+      //     await getExternalStorageDirectory() ??
+      //     await getApplicationDocumentsDirectory();
+      final dir = downloadsDir;
       final fileName = url.split('/').last;
       final savePath = '${dir.path}/$fileName';
 
@@ -156,9 +161,10 @@ class FileManager {
   }) async {
     try {
       // Get the application documents directory
-      final Directory directory =
-          await getExternalStorageDirectory() ??
-          await getApplicationDocumentsDirectory();
+      // final Directory directory =
+      //     await getExternalStorageDirectory() ??
+      //     await getApplicationDocumentsDirectory();
+      final directory = downloadsDir;
       final filePath = '${directory.path}/$fileName';
       final file = File(filePath);
 
@@ -206,20 +212,20 @@ class FileManager {
   static Future<void> deleteAllStoredFiles() async {
     try {
       final dir = await getApplicationDocumentsDirectory();
-      final exDir = await getExternalStorageDirectory();
+      // final exDir = await getExternalStorageDirectory();
+      final exDir = downloadsDir;
+
       await HydratedBloc.storage.clear();
 
-      if (exDir != null) {
-        final files = exDir.listSync();
-        for (var fileEntity in files) {
-          if (fileEntity is File) {
-            await fileEntity.delete();
-            eLog('Deleted file: ${fileEntity.path}');
-          }
+      final files = exDir.listSync();
+      for (var fileEntity in files) {
+        if (fileEntity is File) {
+          await fileEntity.delete();
+          eLog('Deleted file: ${fileEntity.path}');
         }
       }
-      final files = dir.listSync();
-      for (var fileEntity in files) {
+      final dfiles = dir.listSync();
+      for (var fileEntity in dfiles) {
         if (fileEntity is File) {
           await fileEntity.delete();
           eLog('Deleted file: ${fileEntity.path}');

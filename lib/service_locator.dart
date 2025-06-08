@@ -8,6 +8,9 @@ import 'package:our_flutter_clinic_app/features/home/repository/appointments_rep
 
 import 'core/repositories/auth_repository.dart';
 import 'features/home/controller/analysis_list_bloc/analysis_list_bloc.dart';
+import 'features/home/controller/labtech_analysis_bloc/labtech_analysis_bloc.dart';
+import 'features/home/controller/labtech_analysis_info/labtech_analysis_info_bloc.dart';
+import 'features/home/repository/labtech_analysis_repository.dart';
 
 class ServiceLocator {
   static final GetIt _instance = GetIt.instance;
@@ -41,6 +44,14 @@ class ServiceLocator {
     _instance.registerFactory<AppointmentsBloc>(
       () => AppointmentsBloc(
         appointmentsRepository: _instance<AppointmentsRepository>(),
+      ),
+    );
+    _instance.registerLazySingleton<LabtechAnalysisRepository>(
+      () => LabtechAnalysisRepository(),
+    );
+    _instance.registerLazySingleton<LabtechAnalysisBloc>(
+      () => LabtechAnalysisBloc(
+        labtechAnalysisRepository: _instance<LabtechAnalysisRepository>(),
       ),
     );
   }

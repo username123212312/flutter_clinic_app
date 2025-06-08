@@ -13,7 +13,7 @@ class LoadingOverlay {
   void show(
     BuildContext context, {
     String lottieAsset = 'assets/lottie/clinic_loading_animation.json',
-    bool dismissOnTap = true,
+    bool dismissOnTap = false,
     VoidCallback? onDismiss,
   }) {
     _showCount++;

@@ -39,7 +39,27 @@ class $LabtechAnalysisEventCopyWith<$Res> {
 /// @nodoc
 
 class AnalysisFetched implements LabtechAnalysisEvent {
-  const AnalysisFetched({required this.analysisStatus});
+  const AnalysisFetched();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is AnalysisFetched);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'LabtechAnalysisEvent.analysisFetched()';
+  }
+}
+
+/// @nodoc
+
+class AnalysisStatusChanged implements LabtechAnalysisEvent {
+  const AnalysisStatusChanged({required this.analysisStatus});
 
   final AnalysisStatus analysisStatus;
 
@@ -47,14 +67,15 @@ class AnalysisFetched implements LabtechAnalysisEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $AnalysisFetchedCopyWith<AnalysisFetched> get copyWith =>
-      _$AnalysisFetchedCopyWithImpl<AnalysisFetched>(this, _$identity);
+  $AnalysisStatusChangedCopyWith<AnalysisStatusChanged> get copyWith =>
+      _$AnalysisStatusChangedCopyWithImpl<AnalysisStatusChanged>(
+          this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AnalysisFetched &&
+            other is AnalysisStatusChanged &&
             (identical(other.analysisStatus, analysisStatus) ||
                 other.analysisStatus == analysisStatus));
   }
@@ -64,27 +85,27 @@ class AnalysisFetched implements LabtechAnalysisEvent {
 
   @override
   String toString() {
-    return 'LabtechAnalysisEvent.analysisFetched(analysisStatus: $analysisStatus)';
+    return 'LabtechAnalysisEvent.analysisStatusChanged(analysisStatus: $analysisStatus)';
   }
 }
 
 /// @nodoc
-abstract mixin class $AnalysisFetchedCopyWith<$Res>
+abstract mixin class $AnalysisStatusChangedCopyWith<$Res>
     implements $LabtechAnalysisEventCopyWith<$Res> {
-  factory $AnalysisFetchedCopyWith(
-          AnalysisFetched value, $Res Function(AnalysisFetched) _then) =
-      _$AnalysisFetchedCopyWithImpl;
+  factory $AnalysisStatusChangedCopyWith(AnalysisStatusChanged value,
+          $Res Function(AnalysisStatusChanged) _then) =
+      _$AnalysisStatusChangedCopyWithImpl;
   @useResult
   $Res call({AnalysisStatus analysisStatus});
 }
 
 /// @nodoc
-class _$AnalysisFetchedCopyWithImpl<$Res>
-    implements $AnalysisFetchedCopyWith<$Res> {
-  _$AnalysisFetchedCopyWithImpl(this._self, this._then);
+class _$AnalysisStatusChangedCopyWithImpl<$Res>
+    implements $AnalysisStatusChangedCopyWith<$Res> {
+  _$AnalysisStatusChangedCopyWithImpl(this._self, this._then);
 
-  final AnalysisFetched _self;
-  final $Res Function(AnalysisFetched) _then;
+  final AnalysisStatusChanged _self;
+  final $Res Function(AnalysisStatusChanged) _then;
 
   /// Create a copy of LabtechAnalysisEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -92,7 +113,7 @@ class _$AnalysisFetchedCopyWithImpl<$Res>
   $Res call({
     Object? analysisStatus = null,
   }) {
-    return _then(AnalysisFetched(
+    return _then(AnalysisStatusChanged(
       analysisStatus: null == analysisStatus
           ? _self.analysisStatus
           : analysisStatus // ignore: cast_nullable_to_non_nullable

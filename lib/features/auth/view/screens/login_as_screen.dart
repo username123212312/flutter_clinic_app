@@ -81,7 +81,7 @@ class _LoginAsScreenState extends State<LoginAsScreen> {
               ),
               SizedBox(height: 20),
               ChooseFromWidget(
-                onToggleSelect: () => _toggleRoles(Role.biologist),
+                onToggleSelect: () => _toggleRoles(Role.labtech),
                 isSelected: _biologistSelected,
                 title: 'Biologist',
                 imagePath: 'assets/images/biologist_photo.png',
@@ -124,9 +124,9 @@ class _LoginAsScreenState extends State<LoginAsScreen> {
         _biologistSelected = false;
       });
     }
-    if (role.isBiologist && !_biologistSelected) {
+    if (role.isLabtech && !_biologistSelected) {
       setState(() {
-        _currentRole = Role.biologist;
+        _currentRole = Role.labtech;
         _biologistSelected = true;
 
         _patientSelected = false;
