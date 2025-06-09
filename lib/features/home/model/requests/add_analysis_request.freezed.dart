@@ -17,7 +17,8 @@ T _$identity<T>(T value) => value;
 mixin _$AddAnalysisRequest {
   String get name;
   String? get description;
-  int? get id;
+  @JsonKey(name: 'patient_number')
+  int? get patientNumber;
   int? get clinicId;
   String? get resultFilePath;
   String? get resultImagePath;
@@ -41,7 +42,8 @@ mixin _$AddAnalysisRequest {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.patientNumber, patientNumber) ||
+                other.patientNumber == patientNumber) &&
             (identical(other.clinicId, clinicId) ||
                 other.clinicId == clinicId) &&
             (identical(other.resultFilePath, resultFilePath) ||
@@ -52,12 +54,12 @@ mixin _$AddAnalysisRequest {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, name, description, id, clinicId,
-      resultFilePath, resultImagePath);
+  int get hashCode => Object.hash(runtimeType, name, description, patientNumber,
+      clinicId, resultFilePath, resultImagePath);
 
   @override
   String toString() {
-    return 'AddAnalysisRequest(name: $name, description: $description, id: $id, clinicId: $clinicId, resultFilePath: $resultFilePath, resultImagePath: $resultImagePath)';
+    return 'AddAnalysisRequest(name: $name, description: $description, patientNumber: $patientNumber, clinicId: $clinicId, resultFilePath: $resultFilePath, resultImagePath: $resultImagePath)';
   }
 }
 
@@ -70,7 +72,7 @@ abstract mixin class $AddAnalysisRequestCopyWith<$Res> {
   $Res call(
       {String name,
       String? description,
-      int? id,
+      @JsonKey(name: 'patient_number') int? patientNumber,
       int? clinicId,
       String? resultFilePath,
       String? resultImagePath});
@@ -91,7 +93,7 @@ class _$AddAnalysisRequestCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? description = freezed,
-    Object? id = freezed,
+    Object? patientNumber = freezed,
     Object? clinicId = freezed,
     Object? resultFilePath = freezed,
     Object? resultImagePath = freezed,
@@ -105,9 +107,9 @@ class _$AddAnalysisRequestCopyWithImpl<$Res>
           ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      id: freezed == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
+      patientNumber: freezed == patientNumber
+          ? _self.patientNumber
+          : patientNumber // ignore: cast_nullable_to_non_nullable
               as int?,
       clinicId: freezed == clinicId
           ? _self.clinicId
@@ -131,7 +133,7 @@ class _AddAnalysisRequest implements AddAnalysisRequest {
   _AddAnalysisRequest(
       {required this.name,
       this.description,
-      this.id,
+      @JsonKey(name: 'patient_number') this.patientNumber,
       this.clinicId,
       this.resultFilePath,
       this.resultImagePath});
@@ -143,7 +145,8 @@ class _AddAnalysisRequest implements AddAnalysisRequest {
   @override
   final String? description;
   @override
-  final int? id;
+  @JsonKey(name: 'patient_number')
+  final int? patientNumber;
   @override
   final int? clinicId;
   @override
@@ -174,7 +177,8 @@ class _AddAnalysisRequest implements AddAnalysisRequest {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.patientNumber, patientNumber) ||
+                other.patientNumber == patientNumber) &&
             (identical(other.clinicId, clinicId) ||
                 other.clinicId == clinicId) &&
             (identical(other.resultFilePath, resultFilePath) ||
@@ -185,12 +189,12 @@ class _AddAnalysisRequest implements AddAnalysisRequest {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, name, description, id, clinicId,
-      resultFilePath, resultImagePath);
+  int get hashCode => Object.hash(runtimeType, name, description, patientNumber,
+      clinicId, resultFilePath, resultImagePath);
 
   @override
   String toString() {
-    return 'AddAnalysisRequest(name: $name, description: $description, id: $id, clinicId: $clinicId, resultFilePath: $resultFilePath, resultImagePath: $resultImagePath)';
+    return 'AddAnalysisRequest(name: $name, description: $description, patientNumber: $patientNumber, clinicId: $clinicId, resultFilePath: $resultFilePath, resultImagePath: $resultImagePath)';
   }
 }
 
@@ -205,7 +209,7 @@ abstract mixin class _$AddAnalysisRequestCopyWith<$Res>
   $Res call(
       {String name,
       String? description,
-      int? id,
+      @JsonKey(name: 'patient_number') int? patientNumber,
       int? clinicId,
       String? resultFilePath,
       String? resultImagePath});
@@ -226,7 +230,7 @@ class __$AddAnalysisRequestCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? description = freezed,
-    Object? id = freezed,
+    Object? patientNumber = freezed,
     Object? clinicId = freezed,
     Object? resultFilePath = freezed,
     Object? resultImagePath = freezed,
@@ -240,9 +244,9 @@ class __$AddAnalysisRequestCopyWithImpl<$Res>
           ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      id: freezed == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
+      patientNumber: freezed == patientNumber
+          ? _self.patientNumber
+          : patientNumber // ignore: cast_nullable_to_non_nullable
               as int?,
       clinicId: freezed == clinicId
           ? _self.clinicId

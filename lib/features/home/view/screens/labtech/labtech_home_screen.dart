@@ -42,30 +42,30 @@ class _LabtechHomeScreenState extends State<LabtechHomeScreen> {
         tooltip: 'New Analysis',
         child: Icon(Icons.add),
       ),
-      appBar: AppBar(
-        forceMaterialTransparency: true,
-        toolbarHeight: screenHeight(context) * 0.11,
-        title: Text('Analysis'),
-        actions: _buildAppBarActions(),
-        titleTextStyle: Theme.of(
-          context,
-        ).textTheme.titleMedium!.copyWith(fontSize: 25),
-      ),
+
       body: RefreshIndicator(
         onRefresh: () async {
           _labtechAnalysisBloc.add(AnalysisFetched());
         },
         child: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(
-              child: Column(
-                children: [
-                  _buildTwoSelectable(),
-                  SizedBox(height: 20),
-                  _buildList(),
-                ],
+            SliverAppBar(
+              toolbarHeight: screenHeight(context) * 0.11,
+              title: Text('Analysis'),
+              titleTextStyle: Theme.of(
+                context,
+              ).textTheme.titleMedium!.copyWith(fontSize: 25),
+              forceMaterialTransparency: true,
+              actions: _buildAppBarActions(),
+              bottom: PreferredSize(
+                preferredSize: Size(
+                  screenWidth(context),
+                  screenHeight(context) * 0.2,
+                ),
+                child: Column(children: [_buildTwoSelectable()]),
               ),
             ),
+            SliverToBoxAdapter(child: Column(children: [_buildList()])),
           ],
         ),
       ),

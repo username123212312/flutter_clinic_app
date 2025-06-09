@@ -8,7 +8,7 @@ sealed class AddAnalysisRequest with _$AddAnalysisRequest {
   factory AddAnalysisRequest({
     required String name,
     String? description,
-    int? id,
+    @JsonKey(name: 'patient_number') int? patientNumber,
     int? clinicId,
     String? resultFilePath,
     String? resultImagePath,

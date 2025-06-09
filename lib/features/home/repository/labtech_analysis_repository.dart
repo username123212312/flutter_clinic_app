@@ -142,7 +142,7 @@ class LabtechAnalysisRepository {
         data: {
           'name': request.name,
           'description': request.description,
-          'id': request.id,
+          'patient_number': request.patientNumber,
           'clinic_id': request.clinicId,
         },
         onSendProgress:
@@ -156,6 +156,41 @@ class LabtechAnalysisRepository {
         return Right(
           AppResponse<AnalysisModel>(
             data: AnalysisModel.fromJson(response.data['data']),
+            success: true,
+            message: 'Analysis modified successfully!',
+          ),
+        );
+      } else {
+        throw HttpException(response.data['message']);
+      }
+    } on DioException catch (e) {
+      return Left(AppFailure(message: e.message ?? 'Error'));
+    } on HttpException catch (e) {
+      return Left(AppFailure(message: e.message));
+    } catch (e) {
+      return Left(AppFailure(message: e.toString()));
+    }
+  }
+
+  Future<Either<AppFailure, AppResponse<List<AnalysisModel>>>> searchAnalysis(
+    String query,
+    AnalysisStatus analysisStatus,
+  ) async {
+    try {
+      final response = await _dio.post(
+        AppConstants.labTechShowAnalysePath,
+        data: {'name': query, 'description': analysisStatus.name.toLowerCase()},
+      );
+
+      eLog(response.data.toString());
+
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse<List<AnalysisModel>>(
+            data:
+                (response.data['items'] as List<dynamic>).map((analysis) {
+                  return AnalysisModel.fromJson(analysis);
+                }).toList(),
             success: true,
             message: 'Analysis modified successfully!',
           ),

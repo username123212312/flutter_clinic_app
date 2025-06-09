@@ -68,4 +68,5 @@ class AppConstants {
   static const labTechAddAnalyseResultPath = '$labTechPath/addAnalyseResult';
   static const labTechShowAllAnalysisPath = '$labTechPath/showAllAnalysis';
   static const labTechShowAnalysePath = '$labTechPath/showAnalyse';
+  static const labTechSearchAnalysePath = '$labTechPath/searchAnalyse';
 }
