@@ -11,7 +11,7 @@ class AppConstants {
     'AB+',
     'AB-',
   ];
-  static const ipAddress = '192.168.73.76'; //10.0.2.2
+  static const ipAddress = '192.168.1.2'; //10.0.2.2
   static const serverUrl = 'http://$ipAddress:8000';
   static const apiPath = 'api';
   static const patientPath = '/$apiPath/patient';
@@ -69,4 +69,5 @@ class AppConstants {
   static const labTechShowAllAnalysisPath = '$labTechPath/showAllAnalysis';
   static const labTechShowAnalysePath = '$labTechPath/showAnalyse';
   static const labTechSearchAnalysePath = '$labTechPath/searchAnalyse';
+  static const labTechShowClinicsPath = '$labTechPath/showClinics';
 }

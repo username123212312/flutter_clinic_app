@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:our_flutter_clinic_app/features/home/view/widgets/appointments/appontments_screen.dart';
 
 import '../../../../core/theme/app_pallete.dart';
 import '../../../../core/utils/general_utils.dart';
@@ -11,9 +10,11 @@ class ThreeSelectableWidget extends StatefulWidget {
     super.key,
     required this.titles,
     required this.onChange,
+    this.currentIndex,
   });
   final List<String> titles;
   final void Function(int newIndex) onChange;
+  final int? currentIndex;
 
   @override
   State<ThreeSelectableWidget> createState() => _ThreeSelectableWidgetState();
@@ -98,7 +99,7 @@ class _ThreeSelectableWidgetState extends State<ThreeSelectableWidget>
                     style: Theme.of(context).textTheme.labelSmall!.copyWith(
                       fontSize: 12,
                       color:
-                          _currentIndex == 0
+                          (widget.currentIndex ?? _currentIndex) == 0
                               ? Colors.white
                               : Pallete.grayScaleColor400,
                     ),
@@ -108,7 +109,7 @@ class _ThreeSelectableWidgetState extends State<ThreeSelectableWidget>
                     style: Theme.of(context).textTheme.labelSmall!.copyWith(
                       fontSize: 12,
                       color:
-                          _currentIndex == 1
+                          (widget.currentIndex ?? _currentIndex) == 1
                               ? Colors.white
                               : Pallete.grayScaleColor400,
                     ),
@@ -118,7 +119,7 @@ class _ThreeSelectableWidgetState extends State<ThreeSelectableWidget>
                     style: Theme.of(context).textTheme.labelSmall!.copyWith(
                       fontSize: 12,
                       color:
-                          _currentIndex == 2
+                          (widget.currentIndex ?? _currentIndex) == 2
                               ? Colors.white
                               : Pallete.grayScaleColor400,
                     ),

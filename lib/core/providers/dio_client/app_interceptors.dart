@@ -138,6 +138,7 @@ Response<dynamic> mapResponseData({
   }
 
   return Response(
+    statusCode: response?.statusCode ?? 500,
     requestOptions: requestOptions,
     data:
         hasResponseData

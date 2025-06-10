@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
@@ -12,6 +11,7 @@ import 'package:our_flutter_clinic_app/features/home/view/widgets/custom_drop_do
 
 import '../../../../../core/utils/utils.dart';
 import '../../../../../core/widgets/widgets.dart';
+import '../../../controller/labtect_new_analysis_cubit/labtech_new_analysis_cubit.dart';
 
 class AddNewAnalysisScreen extends StatefulWidget {
   const AddNewAnalysisScreen({super.key});
@@ -29,6 +29,12 @@ class _AddNewAnalysisScreenState extends State<AddNewAnalysisScreen> {
     LoadingOverlay().hideAll();
 
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _labtechNewAnalysisCubit.fetchAllClinics();
   }
 
   @override
@@ -79,9 +85,36 @@ class _AddNewAnalysisScreenState extends State<AddNewAnalysisScreen> {
                   ),
                 ],
               ),
-              CustomDropDownWidget<ClinicModel>(
-                onSelected: (option, value) {},
-                initialOption: 'Choose Clinic',
+              BlocConsumer<LabtechNewAnalysisCubit, LabtechNewAnalysisState>(
+                bloc: _labtechNewAnalysisCubit,
+                listener: (
+                  BuildContext context,
+                  LabtechNewAnalysisState state,
+                ) {
+                  if (state.status.isLoading) {
+                    LoadingOverlay().show(context);
+                  } else {
+                    LoadingOverlay().hideAll();
+                  }
+                },
+                builder: (context, state) {
+                  return CustomDropDownWidget<ClinicModel>(
+                    onSelected: (option, value) {
+                      if (value != null) {
+                        _labtechNewAnalysisCubit.selectClinic(value);
+                        _selectedClinid = value.id;
+                      }
+                    },
+                    initialOption:
+                        state.selectedClinic?.name ?? 'Choose clinic',
+                    options:
+                        state.clinics.map((clinic) {
+                          return clinic.name ?? '';
+                        }).toList(),
+                    values: state.clinics,
+                    iniaialValue: state.selectedClinic,
+                  );
+                },
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -163,12 +196,13 @@ class _AddNewAnalysisScreenState extends State<AddNewAnalysisScreen> {
                   child: CustomElevatedButton(
                     title: 'Add',
                     onTap: () {
-                      if (_formKey.currentState!.validate()) {
+                      if (_formKey.currentState!.validate() &&
+                          _selectedClinid != null) {
                         context.read<LabtechAnalysisBloc>().add(
                           AnalysisAdded(
                             request: AddAnalysisRequest(
                               name: _analysisNameController.text,
-                              clinicId: 1,
+                              clinicId: _selectedClinid,
                               description: _analysisDescriptionController.text,
                               patientNumber: int.tryParse(
                                 _patientNumberController.text,
@@ -245,5 +279,8 @@ class _AddNewAnalysisScreenState extends State<AddNewAnalysisScreen> {
   final _analysisNameController = TextEditingController();
   final _analysisDescriptionController = TextEditingController();
   final _patientNumberController = TextEditingController();
+  final LabtechNewAnalysisCubit _labtechNewAnalysisCubit =
+      LabtechNewAnalysisCubit();
+  int? _selectedClinid;
   final _formKey = GlobalKey<FormState>();
 }

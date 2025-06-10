@@ -146,6 +146,7 @@ class _LabtechHomeScreenState extends State<LabtechHomeScreen> {
         return Skeletonizer(
           enabled: state.status.isLoading,
           child: ListView.builder(
+            reverse: true,
             itemExtent: screenHeight(context) * 0.1,
             padding: EdgeInsets.symmetric(horizontal: 30),
             itemCount: state.analysisList.length,

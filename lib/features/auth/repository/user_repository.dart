@@ -14,6 +14,7 @@ import 'package:our_flutter_clinic_app/features/home/model/requests/home_request
 import 'package:fpdart/fpdart.dart';
 
 import '../../../core/models/app_failure.dart';
+import '../../../core/utils/utils.dart';
 import '../model/requests/auth_requests.dart';
 
 class UserRepository {
@@ -274,7 +275,7 @@ class UserRepository {
           ),
         );
       } else {
-        throw HttpException((response.data['message'] as List<dynamic>)[0]);
+        throw HttpException(parseStringList(response.data['message']));
       }
     } on DioException catch (e) {
       return Left(
@@ -320,7 +321,7 @@ class UserRepository {
           ),
         );
       } else {
-        throw HttpException((response.data['message'] as List<dynamic>)[0]);
+        throw HttpException(parseStringList(response.data['message']));
       }
     } on DioException catch (e) {
       return Left(

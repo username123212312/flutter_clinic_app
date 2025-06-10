@@ -1,5 +1,6 @@
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/validator_util.dart';
+import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import '../../../../../core/blocs/user_bloc/user_bloc.dart';
 
 import '../../../../../core/utils/general_utils.dart';
@@ -63,11 +64,17 @@ class _ModifyPasswordScreenState extends State<ModifyPasswordScreen> {
                     child: MultiBlocListener(
                       listeners: [
                         BlocListener<UserBloc, UserState>(
-                          listener:
-                              (context, state) => clearAndShowSnackBar(
+                          listener: (context, state) {
+                            if (state.status.isLoading) {
+                              LoadingOverlay().show(context);
+                            } else {
+                              LoadingOverlay().hideAll();
+                              clearAndShowSnackBar(
                                 context,
                                 state.statusMessage,
-                              ),
+                              );
+                            }
+                          },
                         ),
                         BlocListener<AuthBloc, AuthState>(
                           listener: (context, state) {

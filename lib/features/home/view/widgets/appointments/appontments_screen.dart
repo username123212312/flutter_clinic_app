@@ -31,6 +31,9 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
   void initState() {
     super.initState();
     if (mounted) {
+      context.read<AppointmentsBloc>().add(
+        AppointmentStatusChanged(appointmentStatus: _currentStatus),
+      );
       _loadData();
     }
   }
@@ -275,5 +278,4 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
 
   final GlobalKey<SliverAnimatedListState> _listKey =
       GlobalKey<SliverAnimatedListState>();
-  final List<String> _items = [];
 }
