@@ -46,7 +46,10 @@ class AppointmentCard extends StatelessWidget {
                 width: screenWidth(context) * 0.23,
                 height: screenHeight(context) * 0.043,
                 decoration: BoxDecoration(
-                  color: _selectColor(appointment.status!)[0],
+                  color:
+                      _selectColor(
+                        appointment.status ?? AppointmentStatus.pending,
+                      )[0],
                   borderRadius: BorderRadius.circular(18),
                 ),
                 child: Row(

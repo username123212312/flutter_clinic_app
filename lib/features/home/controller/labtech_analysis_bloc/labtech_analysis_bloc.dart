@@ -1,9 +1,11 @@
 import 'dart:async';
 
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:our_flutter_clinic_app/features/home/model/analysis_model.dart';
+import 'package:our_flutter_clinic_app/features/home/model/requests/add_analysis_request.dart';
 
 import '../../../../core/enums.dart';
 import '../../repository/labtech_analysis_repository.dart';
@@ -28,6 +30,8 @@ class LabtechAnalysisBloc
       emit(state.copyWith(analysisStatus: event.analysisStatus));
       add(AnalysisFetched());
     });
+    on<AnalysisSearched>(_searchAnalysis, transformer: restartable());
+    on<AnalysisAdded>(_addAnalysis);
   }
 
   Future<void> _fetchAnalysis(
@@ -47,6 +51,56 @@ class LabtechAnalysisBloc
         Right(value: final r) => state.copyWith(
           analysisList: r.data ?? state.analysisList,
           status: DataStatus.data,
+          message: r.message,
+        ),
+      };
+      emit(newState);
+    } catch (e) {
+      emit(state.copyWith(status: DataStatus.error, message: e.toString()));
+    }
+  }
+
+  Future<void> _searchAnalysis(
+    AnalysisSearched event,
+    Emitter<LabtechAnalysisState> emit,
+  ) async {
+    try {
+      final response = await _labtechAnalysisRepository.searchAnalysis(
+        event.query,
+        state.analysisStatus,
+      );
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          status: DataStatus.error,
+          message: l.message,
+        ),
+        Right(value: final r) => state.copyWith(
+          status: DataStatus.data,
+          message: r.message,
+          analysisList: r.data ?? state.analysisList,
+        ),
+      };
+      emit(newState);
+    } catch (e) {
+      emit(state.copyWith(status: DataStatus.error, message: e.toString()));
+    }
+  }
+
+  Future<void> _addAnalysis(
+    AnalysisAdded event,
+    Emitter<LabtechAnalysisState> emit,
+  ) async {
+    try {
+      final response = await _labtechAnalysisRepository.addAnalysis(
+        event.request,
+      );
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          status: DataStatus.error,
+          message: l.message,
+        ),
+        Right(value: final r) => state.copyWith(
+          status: DataStatus.done,
           message: r.message,
         ),
       };

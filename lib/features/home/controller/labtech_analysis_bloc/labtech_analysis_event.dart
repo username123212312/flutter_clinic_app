@@ -8,4 +8,9 @@ sealed class LabtechAnalysisEvent with _$LabtechAnalysisEvent {
   }) = AnalysisStatusChanged;
   const factory LabtechAnalysisEvent.analysisShown({required int analysisId}) =
       AnalysisShown;
+  const factory LabtechAnalysisEvent.searched({required String query}) =
+      AnalysisSearched;
+  const factory LabtechAnalysisEvent.addAnalysis({
+    required AddAnalysisRequest request,
+  }) = AnalysisAdded;
 }

@@ -3,17 +3,13 @@ import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
-import 'package:our_flutter_clinic_app/features/auth/view/widgets/custom_elevated_button.dart';
-import 'package:our_flutter_clinic_app/features/home/model/analysis_model.dart';
+import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/analysis_item_widget.dart';
-import 'package:our_flutter_clinic_app/features/home/view/widgets/home_widgets.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/utils.dart';
-import '../../../../../core/widgets/widgets.dart';
 import '../../../controller/labtech_analysis_bloc/labtech_analysis_bloc.dart';
-import '../../../repository/labtech_analysis_repository.dart';
 
 class LabtechHomeScreen extends StatefulWidget {
   const LabtechHomeScreen({super.key});
@@ -28,6 +24,12 @@ class _LabtechHomeScreenState extends State<LabtechHomeScreen> {
     super.initState();
     _labtechAnalysisBloc = context.read<LabtechAnalysisBloc>();
     _labtechAnalysisBloc.add(AnalysisFetched());
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
   }
 
   @override
@@ -49,28 +51,89 @@ class _LabtechHomeScreenState extends State<LabtechHomeScreen> {
         },
         child: CustomScrollView(
           slivers: [
-            SliverAppBar(
-              toolbarHeight: screenHeight(context) * 0.11,
-              title: Text('Analysis'),
-              titleTextStyle: Theme.of(
-                context,
-              ).textTheme.titleMedium!.copyWith(fontSize: 25),
-              forceMaterialTransparency: true,
-              actions: _buildAppBarActions(),
-              bottom: PreferredSize(
-                preferredSize: Size(
-                  screenWidth(context),
-                  screenHeight(context) * 0.2,
-                ),
-                child: Column(children: [_buildTwoSelectable()]),
-              ),
+            _buildAppBar(),
+            SliverToBoxAdapter(
+              child: Column(children: [SizedBox(height: 20), _buildList()]),
             ),
-            SliverToBoxAdapter(child: Column(children: [_buildList()])),
           ],
         ),
       ),
 
       drawer: _buildDrawer(context, currentUser),
+    );
+  }
+
+  SliverAppBar _buildAppBar() {
+    return SliverAppBar(
+      floating: true,
+      snap: true,
+      toolbarHeight: screenHeight(context) * 0.11,
+      expandedHeight: screenHeight(context) * 0.12,
+      title: Text('Analysis'),
+      titleTextStyle: Theme.of(
+        context,
+      ).textTheme.titleMedium!.copyWith(fontSize: 25),
+      forceMaterialTransparency: true,
+      bottom: PreferredSize(
+        preferredSize: Size(screenWidth(context), screenHeight(context) * 0.13),
+        child: Column(
+          children: [
+            _buildTwoSelectable(),
+            SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: TextFormField(
+                onFieldSubmitted: (value) {
+                  if (value.isNotEmpty) {
+                    _labtechAnalysisBloc.add(AnalysisSearched(query: value));
+                  }
+                },
+                onChanged:
+                    (value) => _labtechAnalysisBloc.add(
+                      AnalysisSearched(query: value),
+                    ),
+                controller: _searchController,
+                style: Theme.of(
+                  context,
+                ).textTheme.labelMedium!.copyWith(fontSize: 15),
+                textInputAction: TextInputAction.search,
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+
+                    borderSide: BorderSide(
+                      color: Pallete.grayBorderColor,
+
+                      width: 1,
+                    ),
+                  ),
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 13,
+                    horizontal: 15,
+                  ),
+                  suffixIcon: IconButton(
+                    icon: Icon(Icons.clear),
+                    color: Pallete.grayScaleColor500,
+                    iconSize: 20,
+                    onPressed: () {
+                      if (_searchController.text.isNotEmpty) {
+                        _searchController.clear();
+                        _labtechAnalysisBloc.add(AnalysisFetched());
+                      }
+                    },
+                  ),
+                  hintText: 'Search analysis',
+                  hintStyle: Theme.of(context).textTheme.labelMedium!.copyWith(
+                    fontSize: 15,
+                    color: Pallete.grayScaleColor500,
+                  ),
+                ),
+                keyboardType: TextInputType.text,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -111,39 +174,37 @@ class _LabtechHomeScreenState extends State<LabtechHomeScreen> {
 
   Center _buildTwoSelectable() {
     return Center(
-      child: TwoSelectableWidget(
-        twoTitles: ['Pending', 'Finished'],
-        onToggleIndex: (newIndex) async {
-          if (newIndex == 0) {
-            _labtechAnalysisBloc.add(
-              AnalysisStatusChanged(analysisStatus: AnalysisStatus.pending),
-            );
-          } else {
-            _labtechAnalysisBloc.add(
-              AnalysisStatusChanged(analysisStatus: AnalysisStatus.finished),
-            );
-          }
-        },
+      child: SizedBox(
+        height: screenHeight(context) * 0.08,
+        width: screenWidth(context) * 0.9,
+        child: FittedBox(
+          child: TwoSelectableWidget(
+            currentIndex: _currentStatusindex,
+            twoTitles: ['Pending', 'Finished'],
+            onToggleIndex: (newIndex) async {
+              setState(() {
+                _currentStatusindex = newIndex;
+              });
+
+              if (_searchController.text.isNotEmpty) {
+                _searchController.clear();
+              }
+              if (newIndex == 0) {
+                _labtechAnalysisBloc.add(
+                  AnalysisStatusChanged(analysisStatus: AnalysisStatus.pending),
+                );
+              } else {
+                _labtechAnalysisBloc.add(
+                  AnalysisStatusChanged(
+                    analysisStatus: AnalysisStatus.finished,
+                  ),
+                );
+              }
+            },
+          ),
+        ),
       ),
     );
-  }
-
-  List<Widget> _buildAppBarActions() {
-    return [
-      IconButton.outlined(
-        style: IconButton.styleFrom(
-          fixedSize: Size(20, 20),
-          side: BorderSide(color: Theme.of(context).colorScheme.primary),
-        ),
-        alignment: Alignment.center,
-        onPressed: () {},
-        icon: Icon(
-          Icons.search,
-          size: 25,
-          color: Theme.of(context).colorScheme.primary,
-        ),
-      ),
-    ];
   }
 
   Column _buildEmpty() {
@@ -176,14 +237,20 @@ class _LabtechHomeScreenState extends State<LabtechHomeScreen> {
 
   Drawer _buildDrawer(BuildContext context, UserModel? currentUser) {
     return Drawer(
-      backgroundColor: Pallete.grayScaleColor200,
+      backgroundColor: Colors.white,
       child: Column(
         children: [
           SizedBox(height: screenHeight(context) * 0.08),
           Center(
             child: CircleAvatar(
+              backgroundColor: Colors.transparent,
               radius: 40,
-              child: Icon(Icons.account_circle, size: 60),
+              child: Image.asset(
+                width: 50,
+                height: 50,
+                fit: BoxFit.cover,
+                'assets/icons/labtech_icon.png',
+              ),
             ),
           ),
           SizedBox(height: 15),
@@ -196,7 +263,13 @@ class _LabtechHomeScreenState extends State<LabtechHomeScreen> {
             ),
           ),
           SizedBox(height: 20),
-          Text(currentUser?.email ?? currentUser?.phone ?? 'No Email'),
+          Text(
+            currentUser?.email ?? currentUser?.phone ?? 'No Email',
+            style: Theme.of(context).textTheme.labelMedium!.copyWith(
+              fontSize: 12,
+              color: Colors.black,
+            ),
+          ),
           SizedBox(height: screenHeight(context) * 0.5),
 
           MultiBlocListener(
@@ -235,4 +308,6 @@ class _LabtechHomeScreenState extends State<LabtechHomeScreen> {
   }
 
   late LabtechAnalysisBloc _labtechAnalysisBloc;
+  final _searchController = TextEditingController();
+  int _currentStatusindex = 0;
 }

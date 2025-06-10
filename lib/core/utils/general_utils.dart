@@ -101,7 +101,7 @@ void navigateByRole(BuildContext context, {required Role role}) {
 Future<File?> pickFile() async {
   final result = await FilePicker.platform.pickFiles(
     type: FileType.custom,
-    allowedExtensions: ['pdf'],
+    allowedExtensions: ['pdf', 'jpg', 'jpeg', 'png'],
   );
   if (result != null && result.files.single.path != null) {
     return File(result.files.single.path!);

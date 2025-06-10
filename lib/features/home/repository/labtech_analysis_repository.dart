@@ -133,21 +133,17 @@ class LabtechAnalysisRepository {
   }
 
   Future<Either<AppFailure, AppResponse<AnalysisModel>>> addAnalysis(
-    AddAnalysisRequest request, [
-    Function(double)? onSendProgress,
-  ]) async {
+    AddAnalysisRequest request,
+  ) async {
     try {
       final response = await _dio.post(
-        AppConstants.labTechShowAnalysePath,
+        AppConstants.labTechAddAnalysePath,
         data: {
           'name': request.name,
           'description': request.description,
           'patient_number': request.patientNumber,
           'clinic_id': request.clinicId,
         },
-        onSendProgress:
-            (count, total) =>
-                onSendProgress == null ? null : onSendProgress(count / total),
       );
 
       eLog(response.data.toString());
@@ -178,8 +174,8 @@ class LabtechAnalysisRepository {
   ) async {
     try {
       final response = await _dio.post(
-        AppConstants.labTechShowAnalysePath,
-        data: {'name': query, 'description': analysisStatus.name.toLowerCase()},
+        AppConstants.labTechSearchAnalysePath,
+        data: {'name': query, 'status': analysisStatus.name.toLowerCase()},
       );
 
       eLog(response.data.toString());
@@ -192,7 +188,15 @@ class LabtechAnalysisRepository {
                   return AnalysisModel.fromJson(analysis);
                 }).toList(),
             success: true,
-            message: 'Analysis modified successfully!',
+            message: 'Analysis searched successfully!',
+          ),
+        );
+      } else if (response.data['statusCode'] == 404) {
+        return Right(
+          AppResponse<List<AnalysisModel>>(
+            data: [],
+            success: true,
+            message: 'Analysis searched successfully!',
           ),
         );
       } else {

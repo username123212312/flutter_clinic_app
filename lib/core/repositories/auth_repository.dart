@@ -6,7 +6,6 @@ import 'package:our_flutter_clinic_app/core/models/app_failure.dart';
 import 'package:our_flutter_clinic_app/core/models/app_response.dart';
 import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
 import 'package:our_flutter_clinic_app/core/providers/dio_client/dio_client.dart';
-import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 import 'package:fpdart/fpdart.dart';
 
 class AuthRepository {
@@ -17,7 +16,6 @@ class AuthRepository {
     final Response response;
     try {
       response = await _dio.get(AppConstants.authWithTokenPath);
-      eLog(response.data);
       if (response.data['statusCode']! < 300) {
         return Right(
           AppResponse<UserModel>(

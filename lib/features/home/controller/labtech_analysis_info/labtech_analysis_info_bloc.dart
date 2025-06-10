@@ -136,5 +136,7 @@ class LabtechAnalysisInfoBloc
   String get id =>
       '${state.analysis.id.toString()}'
       '${state.downloadedFile?.fileName ?? 'no file'}'
-      ' ${state.downloadedPhoto?.fileName ?? 'no photo'}';
+      ' ${state.downloadedPhoto?.fileName ?? 'no photo'} '
+      '${state.analysis.resultFile ?? 'no remote file'}'
+      '${state.analysis.resultPhoto ?? 'no remote photo'}';
 }

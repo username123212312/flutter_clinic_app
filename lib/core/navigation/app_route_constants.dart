@@ -25,5 +25,8 @@ class AppRouteConstants {
   static const rescheduleRouteName = 'reschedule';
   static const bookNewAppointmentRouteName = 'book_new_appointment';
   static const aboutUsRouteName = 'about_us';
+  static const departmentsRouteName = 'departments';
+  static const doctorListRouteName = 'doctor_list';
+  static const findPharmaciesRouteName = 'find_pharmacies';
   static const errorRouteName = 'error';
 }

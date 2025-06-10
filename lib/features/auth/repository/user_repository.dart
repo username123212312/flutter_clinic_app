@@ -86,22 +86,37 @@ class UserRepository {
         },
       );
       eLog(response.data);
-      return Right(
-        AppResponse(
-          message:
-              response.data['statusCode'] < 300
-                  ? response.data['message']
-                  : response.data['error'],
-          success: response.data['statusCode'] < 300,
-          data:
-              response.data['statusCode'] < 300
-                  ? UserModel.fromJson(
-                    response.data['user'],
-                  ).copyWith(token: response.data['token'])
-                  : null,
-          statusCode: response.data['statusCode'],
-          statusMessage: response.data['statusMessage'],
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse(
+            message:
+                response.data['statusCode'] < 300
+                    ? response.data['message']
+                    : response.data['error'],
+            success: response.data['statusCode'] < 300,
+            data:
+                response.data['statusCode'] < 300
+                    ? UserModel.fromJson(
+                      response.data['user'],
+                    ).copyWith(token: response.data['token'])
+                    : null,
+            statusCode: response.data['statusCode'],
+            statusMessage: response.data['statusMessage'],
+          ),
+        );
+      } else {
+        throw HttpException(response.data['error'] ?? 'Some error occurred');
+      }
+    } on DioException catch (e) {
+      return Left(
+        AppFailure(
+          message: e.message ?? 'Error',
+          stacktracte: StackTrace.current,
         ),
+      );
+    } on HttpException catch (e) {
+      return Left(
+        AppFailure(message: e.message, stacktracte: StackTrace.current),
       );
     } catch (e) {
       return Left(

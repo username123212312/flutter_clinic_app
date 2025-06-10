@@ -188,6 +188,146 @@ class _$AnalysisShownCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
+class AnalysisSearched implements LabtechAnalysisEvent {
+  const AnalysisSearched({required this.query});
+
+  final String query;
+
+  /// Create a copy of LabtechAnalysisEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $AnalysisSearchedCopyWith<AnalysisSearched> get copyWith =>
+      _$AnalysisSearchedCopyWithImpl<AnalysisSearched>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is AnalysisSearched &&
+            (identical(other.query, query) || other.query == query));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, query);
+
+  @override
+  String toString() {
+    return 'LabtechAnalysisEvent.searched(query: $query)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $AnalysisSearchedCopyWith<$Res>
+    implements $LabtechAnalysisEventCopyWith<$Res> {
+  factory $AnalysisSearchedCopyWith(
+          AnalysisSearched value, $Res Function(AnalysisSearched) _then) =
+      _$AnalysisSearchedCopyWithImpl;
+  @useResult
+  $Res call({String query});
+}
+
+/// @nodoc
+class _$AnalysisSearchedCopyWithImpl<$Res>
+    implements $AnalysisSearchedCopyWith<$Res> {
+  _$AnalysisSearchedCopyWithImpl(this._self, this._then);
+
+  final AnalysisSearched _self;
+  final $Res Function(AnalysisSearched) _then;
+
+  /// Create a copy of LabtechAnalysisEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? query = null,
+  }) {
+    return _then(AnalysisSearched(
+      query: null == query
+          ? _self.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class AnalysisAdded implements LabtechAnalysisEvent {
+  const AnalysisAdded({required this.request});
+
+  final AddAnalysisRequest request;
+
+  /// Create a copy of LabtechAnalysisEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $AnalysisAddedCopyWith<AnalysisAdded> get copyWith =>
+      _$AnalysisAddedCopyWithImpl<AnalysisAdded>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is AnalysisAdded &&
+            (identical(other.request, request) || other.request == request));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, request);
+
+  @override
+  String toString() {
+    return 'LabtechAnalysisEvent.addAnalysis(request: $request)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $AnalysisAddedCopyWith<$Res>
+    implements $LabtechAnalysisEventCopyWith<$Res> {
+  factory $AnalysisAddedCopyWith(
+          AnalysisAdded value, $Res Function(AnalysisAdded) _then) =
+      _$AnalysisAddedCopyWithImpl;
+  @useResult
+  $Res call({AddAnalysisRequest request});
+
+  $AddAnalysisRequestCopyWith<$Res> get request;
+}
+
+/// @nodoc
+class _$AnalysisAddedCopyWithImpl<$Res>
+    implements $AnalysisAddedCopyWith<$Res> {
+  _$AnalysisAddedCopyWithImpl(this._self, this._then);
+
+  final AnalysisAdded _self;
+  final $Res Function(AnalysisAdded) _then;
+
+  /// Create a copy of LabtechAnalysisEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? request = null,
+  }) {
+    return _then(AnalysisAdded(
+      request: null == request
+          ? _self.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as AddAnalysisRequest,
+    ));
+  }
+
+  /// Create a copy of LabtechAnalysisEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AddAnalysisRequestCopyWith<$Res> get request {
+    return $AddAnalysisRequestCopyWith<$Res>(_self.request, (value) {
+      return _then(_self.copyWith(request: value));
+    });
+  }
+}
+
+/// @nodoc
 mixin _$LabtechAnalysisState {
   List<AnalysisModel> get analysisList;
   AnalysisStatus get analysisStatus;

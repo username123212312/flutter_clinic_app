@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/providers/file_manager/file_manager.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
@@ -199,18 +196,21 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen>
                   ],
                 ),
                 SizedBox(height: 20),
-                ResultCard(
-                  title: 'Notes & Instructions',
-                  iconImagePath: 'assets/icons/ic_notes.png',
-                  listItems: [
-                    if (state.medicalInfo?.doctorNote != null)
-                      [state.medicalInfo!.doctorNote ?? ''],
-                    if (state.medicalInfo?.patientNote != null)
-                      [state.medicalInfo?.patientNote ?? ''],
-                    if (state.medicalInfo?.prescription != null &&
-                        state.medicalInfo?.prescription?.note != null)
-                      [state.medicalInfo?.prescription!.note! ?? ''],
-                  ],
+                SizedBox(
+                  width: screenWidth(context) * 0.92,
+                  child: ResultCard(
+                    title: 'Notes & Instructions',
+                    iconImagePath: 'assets/icons/ic_notes.png',
+                    listItems: [
+                      if (state.medicalInfo?.doctorNote != null)
+                        [state.medicalInfo!.doctorNote ?? ''],
+                      if (state.medicalInfo?.patientNote != null)
+                        [state.medicalInfo?.patientNote ?? ''],
+                      if (state.medicalInfo?.prescription != null &&
+                          state.medicalInfo?.prescription?.note != null)
+                        [state.medicalInfo?.prescription!.note! ?? ''],
+                    ],
+                  ),
                 ),
                 if (state.medicalInfo?.prescription?.medicines != null)
                   SizedBox(height: 20),

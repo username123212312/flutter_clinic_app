@@ -12,6 +12,9 @@ import '../../features/home/view/screens/labtech/add_result_screen.dart';
 import '../../features/home/view/screens/labtech/labtech_home_screen.dart';
 import '../../features/home/view/screens/patient/about_us_screen.dart';
 import '../../features/home/view/screens/patient/appointment_details_screen.dart';
+import '../../features/home/view/screens/patient/department_screen.dart';
+import '../../features/home/view/screens/patient/doctor_list.dart';
+import '../../features/home/view/screens/patient/pharmecy_screen.dart';
 import 'navigation_exports.dart';
 
 class AppRouteConfig {
@@ -94,6 +97,22 @@ class AppRouteConfig {
         path: '/book_new_appointment',
         pageBuilder:
             (_, state) => TransitionPage(child: BookNewAppointmentScreen()),
+      ),
+      GoRoute(
+        name: AppRouteConstants.departmentsRouteName,
+        path: '/departments',
+        pageBuilder:
+            (_, state) => TransitionPage(child: AllDepartmentsScreen()),
+      ),
+      GoRoute(
+        name: AppRouteConstants.doctorListRouteName,
+        path: '/doctor_list',
+        pageBuilder: (_, state) => TransitionPage(child: DoctorList()),
+      ),
+      GoRoute(
+        name: AppRouteConstants.findPharmaciesRouteName,
+        path: '/find_pharmacies',
+        pageBuilder: (_, state) => TransitionPage(child: PharmacyListScreen()),
       ),
       GoRoute(
         name: AppRouteConstants.modifyPasswordRouteName,

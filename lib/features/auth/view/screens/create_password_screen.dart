@@ -22,6 +22,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          forceMaterialTransparency: true,
           elevation: 0,
           toolbarHeight: screenHeight(context) * 0.1,
           title: Text('Create a Password'),
@@ -41,7 +42,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                 children: [
                   _buildHeader(),
                   _buildTwoFormFields(),
-                  SizedBox(height: 20),
+                  SizedBox(height: 40),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 0.0),
                     child: Row(
@@ -73,7 +74,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(height: screenHeight(context) * 0.08),
+                  SizedBox(height: screenHeight(context) * 0.05),
                   SizedBox(
                     width: screenWidth(context) * 0.9,
                     child: MultiBlocListener(
