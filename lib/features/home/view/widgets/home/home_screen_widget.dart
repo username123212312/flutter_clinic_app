@@ -37,7 +37,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
     {
       'doctorName': 'Ahmed Sami',
       'specialty': 'Dentist',
-      'imagePath': 'assets/images/Jennifer Miller.jpg',
+      'imagePath': 'assets/images/Jennifer_Miller.png',
       'appointmentTime': '1:00 PM',
       'appointmentdate': '5 Oct',
       'rating': 4.5,
