@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 
-import '../../../../../../../core/theme/app_pallete.dart';
-import '../../../../../../../core/utils/utils.dart';
-import '../../../../widgets/custom_button.dart';
-import '../widget_doctor/appointment_details_card.dart';
-import '../widget_doctor/info_box.dart';
+import '../../../../../core/theme/app_pallete.dart';
+import '../../../../../core/utils/utils.dart';
+import '../../../../auth/view/widgets/custom_button.dart';
+import '../../widgets/widget_doctor/appointment_details_card.dart';
+import '../../widgets/widget_doctor/info_box.dart';
 
-class AppointmentDetailsScreen extends StatelessWidget {
-  const AppointmentDetailsScreen({super.key});
+class ReservationDetailsScreen extends StatelessWidget {
+  const ReservationDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,9 @@ class AppointmentDetailsScreen extends StatelessWidget {
         ),
         backgroundColor: Pallete.grayScaleColor0,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            context.pop();
+          },
           icon: Icon(
             FontAwesomeIcons.arrowLeft,
             color: Pallete.black1,
@@ -40,7 +43,7 @@ class AppointmentDetailsScreen extends StatelessWidget {
             AppointmentDetailsCard(
               doctorName: 'David H. Brown',
               specialty: 'Psychologist',
-              imagePath: 'im/profile.png',
+              imagePath: 'assets/images/profile.png',
               hourlyRate: "Hourly Rate:\$25.00",
               rating: 4.8,
               backgroundColor: Pallete.graysGray5,
@@ -81,9 +84,10 @@ class AppointmentDetailsScreen extends StatelessWidget {
             Center(
               child: CustomButton(
                 text: "Checkout",
-                onPressed: () {},
+                onPressed: () {
+                  context.pushNamed(AppRouteConstants.paymentMethodRouteName);
+                },
                 color: Pallete.primaryColor,
-
                 width: screenWidth(context) * 0.75,
                 height: screenHeight(context) * 0.065,
                 padding: const EdgeInsets.all(16),

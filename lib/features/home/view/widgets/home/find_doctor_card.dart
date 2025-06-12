@@ -38,7 +38,7 @@ class FindDoctorCard extends StatelessWidget {
         width: screenWidth(context) * 1,
         padding:
             padding == null
-                ? EdgeInsets.symmetric(horizontal: 20, vertical: 16)
+                ? EdgeInsets.symmetric(horizontal: 20, vertical: 10)
                 : EdgeInsets.all(padding!),
         decoration: BoxDecoration(
           color: Pallete.graysGray5,
@@ -46,7 +46,7 @@ class FindDoctorCard extends StatelessWidget {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
           children: [
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -119,7 +119,7 @@ class FindDoctorCard extends StatelessWidget {
                   onPressed: buttonOnTap,
                   color: Pallete.buttonBG,
                   width: screenWidth(context) * 0.9,
-                  height: screenHeight(context) * 0.047,
+                  height: screenHeight(context) * 0.05,
                   padding: const EdgeInsets.symmetric(vertical: 6),
                   borderRadius: 32,
                   textColor: Pallete.primaryColor,

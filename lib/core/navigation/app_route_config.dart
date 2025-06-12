@@ -1,12 +1,11 @@
 import 'package:our_flutter_clinic_app/features/home/model/analysis_model.dart';
 import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
-import 'package:our_flutter_clinic_app/features/home/repository/appointments_repository.dart';
+import 'package:our_flutter_clinic_app/features/home/model/doctor_model.dart';
 import 'package:our_flutter_clinic_app/features/home/view/screens/labtech/analysis_info_screen.dart';
 import 'package:our_flutter_clinic_app/features/home/view/screens/patient/reschedule_screen.dart';
-import 'package:our_flutter_clinic_app/service_locator.dart';
 
-import '../../features/home/controller/appointments_bloc/appointments_bloc.dart';
-import '../../features/home/controller/labtech_analysis_bloc/labtech_analysis_bloc.dart';
+import '../../features/home/view/screens/patient/reservation_details_screen.dart';
+import '../../features/home/view/widgets/widget_doctor/doctor_rating_widget.dart';
 import '../../features/home/view/screens/labtech/add_new_analysis_screen.dart';
 import '../../features/home/view/screens/labtech/add_result_screen.dart';
 import '../../features/home/view/screens/labtech/labtech_home_screen.dart';
@@ -14,6 +13,8 @@ import '../../features/home/view/screens/patient/about_us_screen.dart';
 import '../../features/home/view/screens/patient/appointment_details_screen.dart';
 import '../../features/home/view/screens/patient/department_screen.dart';
 import '../../features/home/view/screens/patient/doctor_list.dart';
+import '../../features/home/view/screens/patient/information_doctor.dart';
+import '../../features/home/view/screens/patient/payment_method_screen.dart';
 import '../../features/home/view/screens/patient/pharmecy_screen.dart';
 import 'navigation_exports.dart';
 
@@ -110,6 +111,29 @@ class AppRouteConfig {
         pageBuilder: (_, state) => TransitionPage(child: DoctorList()),
       ),
       GoRoute(
+        name: AppRouteConstants.doctorInfoRouteName,
+        path: '/doctor_info',
+        pageBuilder: (_, state) => TransitionPage(child: DoctorInfoScreen()),
+      ),
+      GoRoute(
+        name: AppRouteConstants.reservationDetailsRouteName,
+        path: '/reservation_details',
+        pageBuilder:
+            (_, state) => TransitionPage(child: ReservationDetailsScreen()),
+      ),
+      GoRoute(
+        name: AppRouteConstants.doctorRatingRouteName,
+        path: '/doctor_rating',
+        pageBuilder:
+            (_, state) => TransitionPage(
+              child: RatingScreen(
+                doctorName:
+                    '${(state.extra as DoctorModel).firstName ?? 'No'}'
+                    ' ${(state.extra as DoctorModel).lastName ?? 'Doctor'}',
+              ),
+            ),
+      ),
+      GoRoute(
         name: AppRouteConstants.findPharmaciesRouteName,
         path: '/find_pharmacies',
         pageBuilder: (_, state) => TransitionPage(child: PharmacyListScreen()),
@@ -119,6 +143,11 @@ class AppRouteConfig {
         path: '/modify_password',
         pageBuilder:
             (_, state) => TransitionPage(child: ModifyPasswordScreen()),
+      ),
+      GoRoute(
+        name: AppRouteConstants.paymentMethodRouteName,
+        path: '/payment_method',
+        pageBuilder: (_, state) => TransitionPage(child: PaymentMethodScreen()),
       ),
       GoRoute(
         name: AppRouteConstants.appointmentDetailsRouteName,

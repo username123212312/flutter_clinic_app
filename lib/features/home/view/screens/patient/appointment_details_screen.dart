@@ -99,9 +99,11 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen>
           ],
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
 
       floatingActionButton:
-          !(widget.appointment.status?.isVisited ?? true)
+          !((widget.appointment.status?.isVisited ?? true) &&
+                  _currentIndex == 1)
               ? null
               : BlocBuilder<AppointmentDetailsBloc, AppointmentDetailsState>(
                 bloc: _appointmentDetailsBloc,
@@ -109,11 +111,13 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen>
                   if (state.medicalInfo?.prescription == null) {
                     return Center();
                   } else {
-                    return FloatingActionButton(
-                      tooltip:
-                          state.prescriptionFilePath == null
-                              ? 'Download prescription'
-                              : 'Open prescription',
+                    return ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        fixedSize: Size(
+                          screenWidth(context) * 0.9,
+                          screenHeight(context) * 0.07,
+                        ),
+                      ),
                       onPressed:
                           state.prescriptionFilePath == null
                               ? () {
@@ -130,18 +134,39 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen>
                                   state.prescriptionFilePath!,
                                 );
                               },
-                      child:
-                          state.status.isDownloading
-                              ? CircularProgressIndicator(
-                                value: state.downloadProgress,
-                                color: Colors.white,
-                              )
-                              : Icon(
-                                state.prescriptionFilePath == null
-                                    ? Icons.download
-                                    : Icons.picture_as_pdf,
-                                color: Colors.white,
-                              ),
+
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        spacing: 10,
+                        children: [
+                          if (state.status.isDownloading)
+                            CircularProgressIndicator(color: Colors.white),
+                          if (!state.status.isDownloading)
+                            Icon(
+                              state.prescriptionFilePath == null
+                                  ? Icons.download
+                                  : Icons.picture_as_pdf,
+                              color: Colors.white,
+                            ),
+                          Text(
+                            'Download Prescription',
+                            style: Theme.of(context).textTheme.labelMedium!
+                                .copyWith(fontSize: 13, color: Colors.white),
+                          ),
+                          if (state.status.isDownloading)
+                            CircularProgressIndicator(
+                              value: state.downloadProgress,
+                              color: Colors.white,
+                            ),
+                          if (!state.status.isDownloading)
+                            Icon(
+                              state.prescriptionFilePath == null
+                                  ? Icons.download
+                                  : Icons.picture_as_pdf,
+                              color: Colors.white,
+                            ),
+                        ],
+                      ),
                     );
                   }
                 },

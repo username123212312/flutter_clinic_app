@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:our_flutter_clinic_app/core/blocs/auth_bloc/auth_bloc.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
+import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/home/upcoming_%20appointment_cards.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
@@ -28,7 +29,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
     {
       'doctorName': 'Melisa Adam',
       'specialty': 'Dentist',
-      'imagePath': 'assets/icons/pro.avif',
+      'imagePath': 'assets/images/Jennifer_Miller.png',
       'appointmentTime': '10:30pm',
       'appointmentdate': '5 Oct',
       'rating': 4.8,
@@ -36,7 +37,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
     {
       'doctorName': 'Ahmed Sami',
       'specialty': 'Dentist',
-      'imagePath': 'assets/icons/pro.avif',
+      'imagePath': 'assets/images/Jennifer Miller.jpg',
       'appointmentTime': '1:00 PM',
       'appointmentdate': '5 Oct',
       'rating': 4.5,
@@ -219,7 +220,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                     child: Padding(
                       padding: const EdgeInsets.only(right: 12),
                       child: SizedBox(
-                        width: 350,
+                        width: screenWidth(context) * 0.8,
                         child: FindDoctorCard(
                           buttonOnTap: () {},
                           title: 'Jennifer Miller',

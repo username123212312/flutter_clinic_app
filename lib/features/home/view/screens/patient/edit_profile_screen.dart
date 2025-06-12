@@ -20,6 +20,13 @@ class EditProfileScreen extends StatefulWidget {
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
+  void initState() {
+    super.initState();
+    _ageController.text =
+        context.read<AuthBloc>().state.authUser?.user?.age?.toString() ?? '';
+  }
+
+  @override
   void dispose() {
     _firstNameController.dispose();
     _lastNameController.dispose();
@@ -266,7 +273,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             final date = await showDatePicker(
               context: context,
               firstDate: DateTime(1920),
-              lastDate: DateTime.now(),
+              lastDate: DateTime(2016),
+              initialDate: DateTime(2015),
             );
             if (date != null) {
               setState(() {
@@ -274,9 +282,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               });
             }
           },
-          controller:
-              _ageController
-                ..text = state.authUser?.user?.age?.toString() ?? '',
+          controller: _ageController,
           readOnly: true,
           hintText: 'Age',
           keyboardType: TextInputType.number,

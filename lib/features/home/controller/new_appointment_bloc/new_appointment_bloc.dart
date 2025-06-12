@@ -91,6 +91,7 @@ class NewAppointmentBloc
         Right(value: final r) => state.copyWith(
           statusMessage: r.message,
           department: event.clinic,
+          doctor: null,
           doctors: r.data,
           status: DataStatus.data,
         ),

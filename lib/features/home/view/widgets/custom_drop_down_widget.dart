@@ -68,7 +68,7 @@ class _CustomDropDownWidgetState<T> extends State<CustomDropDownWidget<T>>
                   fontSize: 14,
                   color: Pallete.grayScaleColor500,
                 ),
-                text: _selectedOption ?? widget.initialOption,
+                text: widget.initialOption,
                 children: [
                   TextSpan(
                     text: ' *',

@@ -34,7 +34,7 @@ class PharmacyCard extends StatelessWidget {
     return Container(
       width: screenWidth(context) * 1,
       padding: const EdgeInsets.all(16),
-      margin: const EdgeInsets.only(bottom: 8),
+      margin: const EdgeInsets.only(bottom: 0),
       decoration: BoxDecoration(
         color: Pallete.graysGray5,
         borderRadius: BorderRadius.circular(12),

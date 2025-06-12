@@ -28,7 +28,11 @@ class _AnalysisItemWidgetState extends State<AnalysisItemWidget> {
   void initState() {
     super.initState();
     _analysisItemCubit = AnalysisItemCubit(
-      cubitId: widget.analysis.name + widget.analysis.id.toString(),
+      cubitId:
+          widget.analysis.name +
+          widget.analysis.id.toString() +
+          (widget.analysis.resultFile ?? 'No file') +
+          (widget.analysis.resultPhoto ?? 'No photo'),
       analysis: widget.analysis,
       analysisItemRepository: AnalysisItemRepository(),
     );
@@ -96,7 +100,8 @@ class _AnalysisItemWidgetState extends State<AnalysisItemWidget> {
               ],
             ),
             if (widget.onTap == null) Spacer(),
-            if (widget.onTap == null)
+            if (!(widget.analysis.resultFile == null &&
+                widget.analysis.resultPhoto == null))
               BlocBuilder<AnalysisItemCubit, AnalysisItemState>(
                 bloc: _analysisItemCubit,
                 builder: (context, state) {

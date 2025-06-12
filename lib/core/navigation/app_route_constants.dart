@@ -27,6 +27,10 @@ class AppRouteConstants {
   static const aboutUsRouteName = 'about_us';
   static const departmentsRouteName = 'departments';
   static const doctorListRouteName = 'doctor_list';
+  static const doctorInfoRouteName = 'doctor_info';
+  static const doctorRatingRouteName = 'doctor_rating';
+  static const reservationDetailsRouteName = 'reservation_details';
+  static const paymentMethodRouteName = 'payment_method';
   static const findPharmaciesRouteName = 'find_pharmacies';
   static const errorRouteName = 'error';
 }

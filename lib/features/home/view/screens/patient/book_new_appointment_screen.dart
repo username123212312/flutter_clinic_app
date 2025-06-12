@@ -98,6 +98,12 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
           } else {
             LoadingOverlay().hideAll();
           }
+          if (state.status?.isError ?? false) {
+            clearAndShowSnackBar(
+              context,
+              state.statusMessage ?? 'Appointment is not added',
+            );
+          }
           if (state.statusMessage == 'Appointment added successfully') {
             await TransparentDialog.show(
               context: context,
@@ -247,6 +253,9 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
                               date: selectedDate,
                             ),
                           );
+                          setState(() {
+                            _currentSchedule = null;
+                          });
                         }
                       },
               hintText: 'Select Date',
@@ -304,7 +313,9 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
           bloc: _newAppointmentBloc,
           builder: (context, state) {
             return CustomDropDownWidget<DoctorModel>(
-              iniaialValue: state.doctor,
+              iniaialValue:
+                  state.doctor ??
+                  DoctorModel(firstName: 'Choose', lastName: 'Doctor'),
               values: state.doctors,
               onSelected: (option, value) {
                 if (value != null) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../../core/theme/app_pallete.dart';
-import '../../../../../../../core/utils/utils.dart';
+import '../../../../../core/theme/app_pallete.dart';
+import '../../../../../core/utils/utils.dart';
 
 class InfoBox extends StatelessWidget {
   final String title;
@@ -36,11 +36,18 @@ class InfoBox extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 4),
-          Text(
-            subtitle,
-            style: Theme.of(context).textTheme.titleSmall!.copyWith(
-              fontSize: 14,
-              color: Pallete.graysGray2,
+          SizedBox(
+            height: screenHeight(context) * 0.03,
+            width: screenWidth(context),
+            child: FittedBox(
+              child: Text(
+                textAlign: TextAlign.center,
+                subtitle,
+                style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  fontSize: 14,
+                  color: Pallete.graysGray2,
+                ),
+              ),
             ),
           ),
         ],

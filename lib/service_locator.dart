@@ -38,10 +38,10 @@ class ServiceLocator {
           AnalysisListBloc(analysisRepository: _instance<AnalysisRepository>()),
     );
 
-    _instance.registerFactory<AppointmentsRepository>(
+    _instance.registerLazySingleton<AppointmentsRepository>(
       () => AppointmentsRepository(),
     );
-    _instance.registerFactory<AppointmentsBloc>(
+    _instance.registerLazySingleton<AppointmentsBloc>(
       () => AppointmentsBloc(
         appointmentsRepository: _instance<AppointmentsRepository>(),
       ),

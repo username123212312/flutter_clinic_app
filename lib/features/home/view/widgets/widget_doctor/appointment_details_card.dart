@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../../core/theme/app_pallete.dart';
-import '../../../../../../../core/utils/utils.dart';
+import '../../../../../core/theme/app_pallete.dart';
+import '../../../../../core/utils/utils.dart';
 
 class AppointmentDetailsCard extends StatelessWidget {
   final String doctorName;
@@ -26,7 +26,7 @@ class AppointmentDetailsCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: screenHeight(context) * 0.12,
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(16),

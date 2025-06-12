@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../../core/theme/app_pallete.dart';
-import '../../../../../../../core/utils/utils.dart';
-import '../../../../widgets/custom_button.dart';
-import '../../../../../../home/view/widgets/home/timeRangeWidget.dart';
+import '../../../../../core/theme/app_pallete.dart';
+import '../../../../../core/utils/utils.dart';
+import '../home/TimeRangeWidget.dart';
+import '../../../../auth/view/widgets/custom_button.dart';
 
 class DoctorInfCard extends StatelessWidget {
   final String doctorName;

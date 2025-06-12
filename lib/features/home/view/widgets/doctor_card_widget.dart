@@ -35,7 +35,7 @@ class DoctorCardWidget extends StatelessWidget {
                 CircleAvatar(
                   minRadius: 20,
                   backgroundImage: AssetImage(
-                    'assets/images/Jennifer Miller.jpg',
+                    'assets/images/Jennifer_Miller.png',
                   ),
                 ),
                 SizedBox(width: 10),

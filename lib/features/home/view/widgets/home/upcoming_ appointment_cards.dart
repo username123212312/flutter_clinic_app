@@ -27,7 +27,7 @@ class UpcomingAppointmentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: screenWidth(context) * 0.57,
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primary,
         borderRadius: BorderRadius.circular(12),
@@ -41,7 +41,7 @@ class UpcomingAppointmentCard extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 16,
-                backgroundImage: AssetImage(imagePath),
+                foregroundImage: AssetImage(imagePath),
                 backgroundColor: Pallete.graysGray4,
               ),
               const SizedBox(width: 10),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../../core/theme/app_pallete.dart';
-import '../../../../../../../core/utils/utils.dart';
+import '../../../../../core/theme/app_pallete.dart';
+import '../../../../../core/utils/utils.dart';
 
 class PaymentMethodTile extends StatelessWidget {
   final String methodName;
@@ -37,7 +37,15 @@ class PaymentMethodTile extends StatelessWidget {
               groupValue: isSelected,
               onChanged: (_) => onChanged(),
               activeColor: Pallete.primaryColor,
+
+              fillColor: WidgetStateProperty.resolveWith<Color>((states) {
+                if (states.contains(WidgetState.selected)) {
+                  return Pallete.primaryColor; // Selected color
+                }
+                return Colors.grey; // Unselected color
+              }),
             ),
+
             const SizedBox(width: 10),
             Text(
               methodName,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import '../../../../../core/theme/app_pallete.dart';
 import '../../widgets/home/find_doctor_card.dart';
 import '../../widgets/home/department_dropdown_filter.dart';
@@ -192,7 +193,11 @@ class _DoctorListState extends State<DoctorList> {
                             final doctor = filteredDoctors[index];
                             return FindDoctorCard(
                               padding: 25,
-                              onTap: () {},
+                              onTap: () {
+                                context.pushNamed(
+                                  AppRouteConstants.doctorInfoRouteName,
+                                );
+                              },
                               title: doctor['title'],
                               subtitle: doctor['subtitle'],
                               imagePath: doctor['imagePath'],

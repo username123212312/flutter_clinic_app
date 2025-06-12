@@ -65,6 +65,7 @@ dependencies:
   bloc_concurrency: ^0.3.0
   top_snackbar_flutter: ^3.3.0
   font_awesome_flutter: ^10.8.0
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:

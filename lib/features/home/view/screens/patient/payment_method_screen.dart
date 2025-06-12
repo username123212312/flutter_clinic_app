@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../../core/theme/app_pallete.dart';
 import '../../../../../../../core/utils/utils.dart';
-import '../../../../widgets/custom_button.dart';
-import '../widget_doctor/payment_method_tile.dart';
+import '../../../../auth/view/widgets/custom_button.dart';
+import '../../widgets/widget_doctor/payment_method_tile.dart';
 
 class PaymentMethodScreen extends StatefulWidget {
   const PaymentMethodScreen({super.key});
@@ -17,11 +18,11 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
   String selectedMethod = 'Visa';
 
   final List<Map<String, dynamic>> paymentMethods = [
-    {'name': 'Mastercard', 'image': 'im/Mastercard.png'},
-    {'name': 'Visa', 'image': 'im/Visa.png'},
-    {'name': 'Payoneer', 'image': 'im/Payoneer.png'},
-    {'name': 'Gpay', 'image': 'im/google.png'},
-    {'name': 'Paypal', 'image': 'im/Paypal.png'},
+    {'name': 'Mastercard', 'image': 'assets/images/Mastercard.png'},
+    {'name': 'Visa', 'image': 'assets/images/Visa.png'},
+    {'name': 'Payoneer', 'image': 'assets/images/Payoneer.png'},
+    {'name': 'Gpay', 'image': 'assets/images/google.png'},
+    {'name': 'Paypal', 'image': 'assets/images/Paypal.png'},
   ];
 
   @override
@@ -29,6 +30,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
     return Scaffold(
       backgroundColor: Pallete.backgroundColor,
       appBar: AppBar(
+        centerTitle: false,
         title: Text(
           'Payment Methods',
           style: Theme.of(context).textTheme.titleMedium!.copyWith(
@@ -38,7 +40,9 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
         ),
         backgroundColor: Pallete.grayScaleColor0,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            context.pop();
+          },
           icon: Icon(
             FontAwesomeIcons.arrowLeft,
             color: Pallete.black1,
@@ -90,6 +94,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                 text: "Book Appointment",
                 onPressed: () {},
                 color: Pallete.primaryColor,
+
                 width: screenWidth(context) * 0.75,
                 height: screenHeight(context) * 0.065,
                 padding: const EdgeInsets.all(16),
