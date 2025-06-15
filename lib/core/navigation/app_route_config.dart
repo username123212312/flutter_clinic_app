@@ -4,6 +4,7 @@ import 'package:our_flutter_clinic_app/features/home/model/doctor_model.dart';
 import 'package:our_flutter_clinic_app/features/home/view/screens/labtech/analysis_info_screen.dart';
 import 'package:our_flutter_clinic_app/features/home/view/screens/patient/reschedule_screen.dart';
 
+import '../../features/home/view/screens/patient/my_wallet_screen.dart';
 import '../../features/home/view/screens/patient/reservation_details_screen.dart';
 import '../../features/home/view/widgets/widget_doctor/doctor_rating_widget.dart';
 import '../../features/home/view/screens/labtech/add_new_analysis_screen.dart';
@@ -13,7 +14,7 @@ import '../../features/home/view/screens/patient/about_us_screen.dart';
 import '../../features/home/view/screens/patient/appointment_details_screen.dart';
 import '../../features/home/view/screens/patient/department_screen.dart';
 import '../../features/home/view/screens/patient/doctor_list.dart';
-import '../../features/home/view/screens/patient/information_doctor.dart';
+import '../../features/home/view/screens/patient/doctor_information_screen.dart';
 import '../../features/home/view/screens/patient/payment_method_screen.dart';
 import '../../features/home/view/screens/patient/pharmecy_screen.dart';
 import 'navigation_exports.dart';
@@ -94,6 +95,11 @@ class AppRouteConfig {
         pageBuilder: (_, state) => TransitionPage(child: DocumentsScreen()),
       ),
       GoRoute(
+        name: AppRouteConstants.myWalletRouteName,
+        path: '/my_wallet',
+        pageBuilder: (_, state) => TransitionPage(child: MyWalletScreen()),
+      ),
+      GoRoute(
         name: AppRouteConstants.bookNewAppointmentRouteName,
         path: '/book_new_appointment',
         pageBuilder:
@@ -117,9 +123,17 @@ class AppRouteConfig {
       ),
       GoRoute(
         name: AppRouteConstants.reservationDetailsRouteName,
-        path: '/reservation_details',
+        path: '/reservation_details/:appointmetnId',
         pageBuilder:
-            (_, state) => TransitionPage(child: ReservationDetailsScreen()),
+            (_, state) => TransitionPage(
+              child: ReservationDetailsScreen(
+                appointmentId:
+                    int.tryParse(
+                      state.pathParameters['appointmetnId'] ?? '0',
+                    ) ??
+                    0,
+              ),
+            ),
       ),
       GoRoute(
         name: AppRouteConstants.doctorRatingRouteName,

@@ -6,14 +6,15 @@ part of 'clinic_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_ClinicModel _$ClinicModelFromJson(Map<String, dynamic> json) => _ClinicModel(
+_$ClinicModelImpl _$$ClinicModelImplFromJson(Map<String, dynamic> json) =>
+    _$ClinicModelImpl(
       id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
       numOfDoctors: (json['numOfDoctors'] as num?)?.toInt(),
       location: json['location'] as String?,
     );
 
-Map<String, dynamic> _$ClinicModelToJson(_ClinicModel instance) =>
+Map<String, dynamic> _$$ClinicModelImplToJson(_$ClinicModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

@@ -1,4 +1,3 @@
-// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,90 +9,65 @@ part of 'reschedule_appointment_cubit.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$RescheduleAppointmentState {
-  AppointmentModel? get appointment;
-  DateTime? get selectedDate;
-  List<DateTime> get availableDates;
-  TimeOfDay? get selectedTime;
-  List<TimeOfDay> get availableTimes;
-  DataStatus? get status;
-  String? get statusMessage;
+  AppointmentModel? get appointment => throw _privateConstructorUsedError;
+  DateTime? get selectedDate => throw _privateConstructorUsedError;
+  List<DateTime> get availableDates => throw _privateConstructorUsedError;
+  TimeOfDay? get selectedTime => throw _privateConstructorUsedError;
+  List<TimeOfDay> get availableTimes => throw _privateConstructorUsedError;
+  DataStatus? get status => throw _privateConstructorUsedError;
+  String? get statusMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of RescheduleAppointmentState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $RescheduleAppointmentStateCopyWith<RescheduleAppointmentState>
-      get copyWith =>
-          _$RescheduleAppointmentStateCopyWithImpl<RescheduleAppointmentState>(
-              this as RescheduleAppointmentState, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is RescheduleAppointmentState &&
-            (identical(other.appointment, appointment) ||
-                other.appointment == appointment) &&
-            (identical(other.selectedDate, selectedDate) ||
-                other.selectedDate == selectedDate) &&
-            const DeepCollectionEquality()
-                .equals(other.availableDates, availableDates) &&
-            (identical(other.selectedTime, selectedTime) ||
-                other.selectedTime == selectedTime) &&
-            const DeepCollectionEquality()
-                .equals(other.availableTimes, availableTimes) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.statusMessage, statusMessage) ||
-                other.statusMessage == statusMessage));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      appointment,
-      selectedDate,
-      const DeepCollectionEquality().hash(availableDates),
-      selectedTime,
-      const DeepCollectionEquality().hash(availableTimes),
-      status,
-      statusMessage);
-
-  @override
-  String toString() {
-    return 'RescheduleAppointmentState(appointment: $appointment, selectedDate: $selectedDate, availableDates: $availableDates, selectedTime: $selectedTime, availableTimes: $availableTimes, status: $status, statusMessage: $statusMessage)';
-  }
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $RescheduleAppointmentStateCopyWith<$Res> {
-  factory $RescheduleAppointmentStateCopyWith(RescheduleAppointmentState value,
-          $Res Function(RescheduleAppointmentState) _then) =
-      _$RescheduleAppointmentStateCopyWithImpl;
+abstract class $RescheduleAppointmentStateCopyWith<$Res> {
+  factory $RescheduleAppointmentStateCopyWith(
+    RescheduleAppointmentState value,
+    $Res Function(RescheduleAppointmentState) then,
+  ) =
+      _$RescheduleAppointmentStateCopyWithImpl<
+        $Res,
+        RescheduleAppointmentState
+      >;
   @useResult
-  $Res call(
-      {AppointmentModel? appointment,
-      DateTime? selectedDate,
-      List<DateTime> availableDates,
-      TimeOfDay? selectedTime,
-      List<TimeOfDay> availableTimes,
-      DataStatus? status,
-      String? statusMessage});
+  $Res call({
+    AppointmentModel? appointment,
+    DateTime? selectedDate,
+    List<DateTime> availableDates,
+    TimeOfDay? selectedTime,
+    List<TimeOfDay> availableTimes,
+    DataStatus? status,
+    String? statusMessage,
+  });
 
   $AppointmentModelCopyWith<$Res>? get appointment;
 }
 
 /// @nodoc
-class _$RescheduleAppointmentStateCopyWithImpl<$Res>
+class _$RescheduleAppointmentStateCopyWithImpl<
+  $Res,
+  $Val extends RescheduleAppointmentState
+>
     implements $RescheduleAppointmentStateCopyWith<$Res> {
-  _$RescheduleAppointmentStateCopyWithImpl(this._self, this._then);
+  _$RescheduleAppointmentStateCopyWithImpl(this._value, this._then);
 
-  final RescheduleAppointmentState _self;
-  final $Res Function(RescheduleAppointmentState) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of RescheduleAppointmentState
   /// with the given fields replaced by the non-null parameter values.
@@ -108,36 +82,46 @@ class _$RescheduleAppointmentStateCopyWithImpl<$Res>
     Object? status = freezed,
     Object? statusMessage = freezed,
   }) {
-    return _then(_self.copyWith(
-      appointment: freezed == appointment
-          ? _self.appointment
-          : appointment // ignore: cast_nullable_to_non_nullable
-              as AppointmentModel?,
-      selectedDate: freezed == selectedDate
-          ? _self.selectedDate
-          : selectedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      availableDates: null == availableDates
-          ? _self.availableDates
-          : availableDates // ignore: cast_nullable_to_non_nullable
-              as List<DateTime>,
-      selectedTime: freezed == selectedTime
-          ? _self.selectedTime
-          : selectedTime // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay?,
-      availableTimes: null == availableTimes
-          ? _self.availableTimes
-          : availableTimes // ignore: cast_nullable_to_non_nullable
-              as List<TimeOfDay>,
-      status: freezed == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as DataStatus?,
-      statusMessage: freezed == statusMessage
-          ? _self.statusMessage
-          : statusMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _value.copyWith(
+            appointment:
+                freezed == appointment
+                    ? _value.appointment
+                    : appointment // ignore: cast_nullable_to_non_nullable
+                        as AppointmentModel?,
+            selectedDate:
+                freezed == selectedDate
+                    ? _value.selectedDate
+                    : selectedDate // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
+            availableDates:
+                null == availableDates
+                    ? _value.availableDates
+                    : availableDates // ignore: cast_nullable_to_non_nullable
+                        as List<DateTime>,
+            selectedTime:
+                freezed == selectedTime
+                    ? _value.selectedTime
+                    : selectedTime // ignore: cast_nullable_to_non_nullable
+                        as TimeOfDay?,
+            availableTimes:
+                null == availableTimes
+                    ? _value.availableTimes
+                    : availableTimes // ignore: cast_nullable_to_non_nullable
+                        as List<TimeOfDay>,
+            status:
+                freezed == status
+                    ? _value.status
+                    : status // ignore: cast_nullable_to_non_nullable
+                        as DataStatus?,
+            statusMessage:
+                freezed == statusMessage
+                    ? _value.statusMessage
+                    : statusMessage // ignore: cast_nullable_to_non_nullable
+                        as String?,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of RescheduleAppointmentState
@@ -145,29 +129,120 @@ class _$RescheduleAppointmentStateCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $AppointmentModelCopyWith<$Res>? get appointment {
-    if (_self.appointment == null) {
+    if (_value.appointment == null) {
       return null;
     }
 
-    return $AppointmentModelCopyWith<$Res>(_self.appointment!, (value) {
-      return _then(_self.copyWith(appointment: value));
+    return $AppointmentModelCopyWith<$Res>(_value.appointment!, (value) {
+      return _then(_value.copyWith(appointment: value) as $Val);
     });
   }
 }
 
 /// @nodoc
+abstract class _$$RescheduleAppointmentStateImplCopyWith<$Res>
+    implements $RescheduleAppointmentStateCopyWith<$Res> {
+  factory _$$RescheduleAppointmentStateImplCopyWith(
+    _$RescheduleAppointmentStateImpl value,
+    $Res Function(_$RescheduleAppointmentStateImpl) then,
+  ) = __$$RescheduleAppointmentStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({
+    AppointmentModel? appointment,
+    DateTime? selectedDate,
+    List<DateTime> availableDates,
+    TimeOfDay? selectedTime,
+    List<TimeOfDay> availableTimes,
+    DataStatus? status,
+    String? statusMessage,
+  });
 
-class _RescheduleAppointmentState implements RescheduleAppointmentState {
-  const _RescheduleAppointmentState(
-      {this.appointment,
-      this.selectedDate,
-      required final List<DateTime> availableDates,
-      this.selectedTime,
-      required final List<TimeOfDay> availableTimes,
-      this.status,
-      this.statusMessage})
-      : _availableDates = availableDates,
-        _availableTimes = availableTimes;
+  @override
+  $AppointmentModelCopyWith<$Res>? get appointment;
+}
+
+/// @nodoc
+class __$$RescheduleAppointmentStateImplCopyWithImpl<$Res>
+    extends
+        _$RescheduleAppointmentStateCopyWithImpl<
+          $Res,
+          _$RescheduleAppointmentStateImpl
+        >
+    implements _$$RescheduleAppointmentStateImplCopyWith<$Res> {
+  __$$RescheduleAppointmentStateImplCopyWithImpl(
+    _$RescheduleAppointmentStateImpl _value,
+    $Res Function(_$RescheduleAppointmentStateImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of RescheduleAppointmentState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? appointment = freezed,
+    Object? selectedDate = freezed,
+    Object? availableDates = null,
+    Object? selectedTime = freezed,
+    Object? availableTimes = null,
+    Object? status = freezed,
+    Object? statusMessage = freezed,
+  }) {
+    return _then(
+      _$RescheduleAppointmentStateImpl(
+        appointment:
+            freezed == appointment
+                ? _value.appointment
+                : appointment // ignore: cast_nullable_to_non_nullable
+                    as AppointmentModel?,
+        selectedDate:
+            freezed == selectedDate
+                ? _value.selectedDate
+                : selectedDate // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
+        availableDates:
+            null == availableDates
+                ? _value._availableDates
+                : availableDates // ignore: cast_nullable_to_non_nullable
+                    as List<DateTime>,
+        selectedTime:
+            freezed == selectedTime
+                ? _value.selectedTime
+                : selectedTime // ignore: cast_nullable_to_non_nullable
+                    as TimeOfDay?,
+        availableTimes:
+            null == availableTimes
+                ? _value._availableTimes
+                : availableTimes // ignore: cast_nullable_to_non_nullable
+                    as List<TimeOfDay>,
+        status:
+            freezed == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                    as DataStatus?,
+        statusMessage:
+            freezed == statusMessage
+                ? _value.statusMessage
+                : statusMessage // ignore: cast_nullable_to_non_nullable
+                    as String?,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$RescheduleAppointmentStateImpl implements _RescheduleAppointmentState {
+  const _$RescheduleAppointmentStateImpl({
+    this.appointment,
+    this.selectedDate,
+    required final List<DateTime> availableDates,
+    this.selectedTime,
+    required final List<TimeOfDay> availableTimes,
+    this.status,
+    this.statusMessage,
+  }) : _availableDates = availableDates,
+       _availableTimes = availableTimes;
 
   @override
   final AppointmentModel? appointment;
@@ -196,30 +271,30 @@ class _RescheduleAppointmentState implements RescheduleAppointmentState {
   @override
   final String? statusMessage;
 
-  /// Create a copy of RescheduleAppointmentState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$RescheduleAppointmentStateCopyWith<_RescheduleAppointmentState>
-      get copyWith => __$RescheduleAppointmentStateCopyWithImpl<
-          _RescheduleAppointmentState>(this, _$identity);
+  String toString() {
+    return 'RescheduleAppointmentState(appointment: $appointment, selectedDate: $selectedDate, availableDates: $availableDates, selectedTime: $selectedTime, availableTimes: $availableTimes, status: $status, statusMessage: $statusMessage)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _RescheduleAppointmentState &&
+            other is _$RescheduleAppointmentStateImpl &&
             (identical(other.appointment, appointment) ||
                 other.appointment == appointment) &&
             (identical(other.selectedDate, selectedDate) ||
                 other.selectedDate == selectedDate) &&
-            const DeepCollectionEquality()
-                .equals(other._availableDates, _availableDates) &&
+            const DeepCollectionEquality().equals(
+              other._availableDates,
+              _availableDates,
+            ) &&
             (identical(other.selectedTime, selectedTime) ||
                 other.selectedTime == selectedTime) &&
-            const DeepCollectionEquality()
-                .equals(other._availableTimes, _availableTimes) &&
+            const DeepCollectionEquality().equals(
+              other._availableTimes,
+              _availableTimes,
+            ) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.statusMessage, statusMessage) ||
                 other.statusMessage == statusMessage));
@@ -227,109 +302,58 @@ class _RescheduleAppointmentState implements RescheduleAppointmentState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      appointment,
-      selectedDate,
-      const DeepCollectionEquality().hash(_availableDates),
-      selectedTime,
-      const DeepCollectionEquality().hash(_availableTimes),
-      status,
-      statusMessage);
+    runtimeType,
+    appointment,
+    selectedDate,
+    const DeepCollectionEquality().hash(_availableDates),
+    selectedTime,
+    const DeepCollectionEquality().hash(_availableTimes),
+    status,
+    statusMessage,
+  );
 
+  /// Create a copy of RescheduleAppointmentState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'RescheduleAppointmentState(appointment: $appointment, selectedDate: $selectedDate, availableDates: $availableDates, selectedTime: $selectedTime, availableTimes: $availableTimes, status: $status, statusMessage: $statusMessage)';
-  }
+  @pragma('vm:prefer-inline')
+  _$$RescheduleAppointmentStateImplCopyWith<_$RescheduleAppointmentStateImpl>
+  get copyWith => __$$RescheduleAppointmentStateImplCopyWithImpl<
+    _$RescheduleAppointmentStateImpl
+  >(this, _$identity);
 }
 
-/// @nodoc
-abstract mixin class _$RescheduleAppointmentStateCopyWith<$Res>
-    implements $RescheduleAppointmentStateCopyWith<$Res> {
-  factory _$RescheduleAppointmentStateCopyWith(
-          _RescheduleAppointmentState value,
-          $Res Function(_RescheduleAppointmentState) _then) =
-      __$RescheduleAppointmentStateCopyWithImpl;
-  @override
-  @useResult
-  $Res call(
-      {AppointmentModel? appointment,
-      DateTime? selectedDate,
-      List<DateTime> availableDates,
-      TimeOfDay? selectedTime,
-      List<TimeOfDay> availableTimes,
-      DataStatus? status,
-      String? statusMessage});
+abstract class _RescheduleAppointmentState
+    implements RescheduleAppointmentState {
+  const factory _RescheduleAppointmentState({
+    final AppointmentModel? appointment,
+    final DateTime? selectedDate,
+    required final List<DateTime> availableDates,
+    final TimeOfDay? selectedTime,
+    required final List<TimeOfDay> availableTimes,
+    final DataStatus? status,
+    final String? statusMessage,
+  }) = _$RescheduleAppointmentStateImpl;
 
   @override
-  $AppointmentModelCopyWith<$Res>? get appointment;
-}
-
-/// @nodoc
-class __$RescheduleAppointmentStateCopyWithImpl<$Res>
-    implements _$RescheduleAppointmentStateCopyWith<$Res> {
-  __$RescheduleAppointmentStateCopyWithImpl(this._self, this._then);
-
-  final _RescheduleAppointmentState _self;
-  final $Res Function(_RescheduleAppointmentState) _then;
+  AppointmentModel? get appointment;
+  @override
+  DateTime? get selectedDate;
+  @override
+  List<DateTime> get availableDates;
+  @override
+  TimeOfDay? get selectedTime;
+  @override
+  List<TimeOfDay> get availableTimes;
+  @override
+  DataStatus? get status;
+  @override
+  String? get statusMessage;
 
   /// Create a copy of RescheduleAppointmentState
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? appointment = freezed,
-    Object? selectedDate = freezed,
-    Object? availableDates = null,
-    Object? selectedTime = freezed,
-    Object? availableTimes = null,
-    Object? status = freezed,
-    Object? statusMessage = freezed,
-  }) {
-    return _then(_RescheduleAppointmentState(
-      appointment: freezed == appointment
-          ? _self.appointment
-          : appointment // ignore: cast_nullable_to_non_nullable
-              as AppointmentModel?,
-      selectedDate: freezed == selectedDate
-          ? _self.selectedDate
-          : selectedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      availableDates: null == availableDates
-          ? _self._availableDates
-          : availableDates // ignore: cast_nullable_to_non_nullable
-              as List<DateTime>,
-      selectedTime: freezed == selectedTime
-          ? _self.selectedTime
-          : selectedTime // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay?,
-      availableTimes: null == availableTimes
-          ? _self._availableTimes
-          : availableTimes // ignore: cast_nullable_to_non_nullable
-              as List<TimeOfDay>,
-      status: freezed == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as DataStatus?,
-      statusMessage: freezed == statusMessage
-          ? _self.statusMessage
-          : statusMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-
-  /// Create a copy of RescheduleAppointmentState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AppointmentModelCopyWith<$Res>? get appointment {
-    if (_self.appointment == null) {
-      return null;
-    }
-
-    return $AppointmentModelCopyWith<$Res>(_self.appointment!, (value) {
-      return _then(_self.copyWith(appointment: value));
-    });
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$RescheduleAppointmentStateImplCopyWith<_$RescheduleAppointmentStateImpl>
+  get copyWith => throw _privateConstructorUsedError;
 }
-
-// dart format on

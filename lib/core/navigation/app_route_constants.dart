@@ -32,5 +32,6 @@ class AppRouteConstants {
   static const reservationDetailsRouteName = 'reservation_details';
   static const paymentMethodRouteName = 'payment_method';
   static const findPharmaciesRouteName = 'find_pharmacies';
+  static const myWalletRouteName = 'my_wallet';
   static const errorRouteName = 'error';
 }

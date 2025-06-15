@@ -1,4 +1,3 @@
-// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,73 +9,55 @@ part of 'labtech_new_analysis_cubit.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$LabtechNewAnalysisState {
-  List<ClinicModel> get clinics;
-  DataStatus get status;
-  String get statusMessage;
-  ClinicModel? get selectedClinic;
+  List<ClinicModel> get clinics => throw _privateConstructorUsedError;
+  DataStatus get status => throw _privateConstructorUsedError;
+  String get statusMessage => throw _privateConstructorUsedError;
+  ClinicModel? get selectedClinic => throw _privateConstructorUsedError;
 
   /// Create a copy of LabtechNewAnalysisState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $LabtechNewAnalysisStateCopyWith<LabtechNewAnalysisState> get copyWith =>
-      _$LabtechNewAnalysisStateCopyWithImpl<LabtechNewAnalysisState>(
-          this as LabtechNewAnalysisState, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is LabtechNewAnalysisState &&
-            const DeepCollectionEquality().equals(other.clinics, clinics) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.statusMessage, statusMessage) ||
-                other.statusMessage == statusMessage) &&
-            (identical(other.selectedClinic, selectedClinic) ||
-                other.selectedClinic == selectedClinic));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(clinics),
-      status,
-      statusMessage,
-      selectedClinic);
-
-  @override
-  String toString() {
-    return 'LabtechNewAnalysisState(clinics: $clinics, status: $status, statusMessage: $statusMessage, selectedClinic: $selectedClinic)';
-  }
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $LabtechNewAnalysisStateCopyWith<$Res> {
-  factory $LabtechNewAnalysisStateCopyWith(LabtechNewAnalysisState value,
-          $Res Function(LabtechNewAnalysisState) _then) =
-      _$LabtechNewAnalysisStateCopyWithImpl;
+abstract class $LabtechNewAnalysisStateCopyWith<$Res> {
+  factory $LabtechNewAnalysisStateCopyWith(
+    LabtechNewAnalysisState value,
+    $Res Function(LabtechNewAnalysisState) then,
+  ) = _$LabtechNewAnalysisStateCopyWithImpl<$Res, LabtechNewAnalysisState>;
   @useResult
-  $Res call(
-      {List<ClinicModel> clinics,
-      DataStatus status,
-      String statusMessage,
-      ClinicModel? selectedClinic});
+  $Res call({
+    List<ClinicModel> clinics,
+    DataStatus status,
+    String statusMessage,
+    ClinicModel? selectedClinic,
+  });
 
   $ClinicModelCopyWith<$Res>? get selectedClinic;
 }
 
 /// @nodoc
-class _$LabtechNewAnalysisStateCopyWithImpl<$Res>
+class _$LabtechNewAnalysisStateCopyWithImpl<
+  $Res,
+  $Val extends LabtechNewAnalysisState
+>
     implements $LabtechNewAnalysisStateCopyWith<$Res> {
-  _$LabtechNewAnalysisStateCopyWithImpl(this._self, this._then);
+  _$LabtechNewAnalysisStateCopyWithImpl(this._value, this._then);
 
-  final LabtechNewAnalysisState _self;
-  final $Res Function(LabtechNewAnalysisState) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of LabtechNewAnalysisState
   /// with the given fields replaced by the non-null parameter values.
@@ -88,24 +69,31 @@ class _$LabtechNewAnalysisStateCopyWithImpl<$Res>
     Object? statusMessage = null,
     Object? selectedClinic = freezed,
   }) {
-    return _then(_self.copyWith(
-      clinics: null == clinics
-          ? _self.clinics
-          : clinics // ignore: cast_nullable_to_non_nullable
-              as List<ClinicModel>,
-      status: null == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as DataStatus,
-      statusMessage: null == statusMessage
-          ? _self.statusMessage
-          : statusMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-      selectedClinic: freezed == selectedClinic
-          ? _self.selectedClinic
-          : selectedClinic // ignore: cast_nullable_to_non_nullable
-              as ClinicModel?,
-    ));
+    return _then(
+      _value.copyWith(
+            clinics:
+                null == clinics
+                    ? _value.clinics
+                    : clinics // ignore: cast_nullable_to_non_nullable
+                        as List<ClinicModel>,
+            status:
+                null == status
+                    ? _value.status
+                    : status // ignore: cast_nullable_to_non_nullable
+                        as DataStatus,
+            statusMessage:
+                null == statusMessage
+                    ? _value.statusMessage
+                    : statusMessage // ignore: cast_nullable_to_non_nullable
+                        as String,
+            selectedClinic:
+                freezed == selectedClinic
+                    ? _value.selectedClinic
+                    : selectedClinic // ignore: cast_nullable_to_non_nullable
+                        as ClinicModel?,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of LabtechNewAnalysisState
@@ -113,25 +101,95 @@ class _$LabtechNewAnalysisStateCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $ClinicModelCopyWith<$Res>? get selectedClinic {
-    if (_self.selectedClinic == null) {
+    if (_value.selectedClinic == null) {
       return null;
     }
 
-    return $ClinicModelCopyWith<$Res>(_self.selectedClinic!, (value) {
-      return _then(_self.copyWith(selectedClinic: value));
+    return $ClinicModelCopyWith<$Res>(_value.selectedClinic!, (value) {
+      return _then(_value.copyWith(selectedClinic: value) as $Val);
     });
   }
 }
 
 /// @nodoc
+abstract class _$$LabtechNewAnalysisStateImplCopyWith<$Res>
+    implements $LabtechNewAnalysisStateCopyWith<$Res> {
+  factory _$$LabtechNewAnalysisStateImplCopyWith(
+    _$LabtechNewAnalysisStateImpl value,
+    $Res Function(_$LabtechNewAnalysisStateImpl) then,
+  ) = __$$LabtechNewAnalysisStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({
+    List<ClinicModel> clinics,
+    DataStatus status,
+    String statusMessage,
+    ClinicModel? selectedClinic,
+  });
 
-class _LabtechNewAnalysisState implements LabtechNewAnalysisState {
-  const _LabtechNewAnalysisState(
-      {required final List<ClinicModel> clinics,
-      required this.status,
-      required this.statusMessage,
-      this.selectedClinic})
-      : _clinics = clinics;
+  @override
+  $ClinicModelCopyWith<$Res>? get selectedClinic;
+}
+
+/// @nodoc
+class __$$LabtechNewAnalysisStateImplCopyWithImpl<$Res>
+    extends
+        _$LabtechNewAnalysisStateCopyWithImpl<
+          $Res,
+          _$LabtechNewAnalysisStateImpl
+        >
+    implements _$$LabtechNewAnalysisStateImplCopyWith<$Res> {
+  __$$LabtechNewAnalysisStateImplCopyWithImpl(
+    _$LabtechNewAnalysisStateImpl _value,
+    $Res Function(_$LabtechNewAnalysisStateImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of LabtechNewAnalysisState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? clinics = null,
+    Object? status = null,
+    Object? statusMessage = null,
+    Object? selectedClinic = freezed,
+  }) {
+    return _then(
+      _$LabtechNewAnalysisStateImpl(
+        clinics:
+            null == clinics
+                ? _value._clinics
+                : clinics // ignore: cast_nullable_to_non_nullable
+                    as List<ClinicModel>,
+        status:
+            null == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                    as DataStatus,
+        statusMessage:
+            null == statusMessage
+                ? _value.statusMessage
+                : statusMessage // ignore: cast_nullable_to_non_nullable
+                    as String,
+        selectedClinic:
+            freezed == selectedClinic
+                ? _value.selectedClinic
+                : selectedClinic // ignore: cast_nullable_to_non_nullable
+                    as ClinicModel?,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$LabtechNewAnalysisStateImpl implements _LabtechNewAnalysisState {
+  const _$LabtechNewAnalysisStateImpl({
+    required final List<ClinicModel> clinics,
+    required this.status,
+    required this.statusMessage,
+    this.selectedClinic,
+  }) : _clinics = clinics;
 
   final List<ClinicModel> _clinics;
   @override
@@ -148,20 +206,16 @@ class _LabtechNewAnalysisState implements LabtechNewAnalysisState {
   @override
   final ClinicModel? selectedClinic;
 
-  /// Create a copy of LabtechNewAnalysisState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$LabtechNewAnalysisStateCopyWith<_LabtechNewAnalysisState> get copyWith =>
-      __$LabtechNewAnalysisStateCopyWithImpl<_LabtechNewAnalysisState>(
-          this, _$identity);
+  String toString() {
+    return 'LabtechNewAnalysisState(clinics: $clinics, status: $status, statusMessage: $statusMessage, selectedClinic: $selectedClinic)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _LabtechNewAnalysisState &&
+            other is _$LabtechNewAnalysisStateImpl &&
             const DeepCollectionEquality().equals(other._clinics, _clinics) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.statusMessage, statusMessage) ||
@@ -172,87 +226,45 @@ class _LabtechNewAnalysisState implements LabtechNewAnalysisState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_clinics),
-      status,
-      statusMessage,
-      selectedClinic);
+    runtimeType,
+    const DeepCollectionEquality().hash(_clinics),
+    status,
+    statusMessage,
+    selectedClinic,
+  );
 
+  /// Create a copy of LabtechNewAnalysisState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'LabtechNewAnalysisState(clinics: $clinics, status: $status, statusMessage: $statusMessage, selectedClinic: $selectedClinic)';
-  }
+  @pragma('vm:prefer-inline')
+  _$$LabtechNewAnalysisStateImplCopyWith<_$LabtechNewAnalysisStateImpl>
+  get copyWith => __$$LabtechNewAnalysisStateImplCopyWithImpl<
+    _$LabtechNewAnalysisStateImpl
+  >(this, _$identity);
 }
 
-/// @nodoc
-abstract mixin class _$LabtechNewAnalysisStateCopyWith<$Res>
-    implements $LabtechNewAnalysisStateCopyWith<$Res> {
-  factory _$LabtechNewAnalysisStateCopyWith(_LabtechNewAnalysisState value,
-          $Res Function(_LabtechNewAnalysisState) _then) =
-      __$LabtechNewAnalysisStateCopyWithImpl;
-  @override
-  @useResult
-  $Res call(
-      {List<ClinicModel> clinics,
-      DataStatus status,
-      String statusMessage,
-      ClinicModel? selectedClinic});
+abstract class _LabtechNewAnalysisState implements LabtechNewAnalysisState {
+  const factory _LabtechNewAnalysisState({
+    required final List<ClinicModel> clinics,
+    required final DataStatus status,
+    required final String statusMessage,
+    final ClinicModel? selectedClinic,
+  }) = _$LabtechNewAnalysisStateImpl;
 
   @override
-  $ClinicModelCopyWith<$Res>? get selectedClinic;
-}
-
-/// @nodoc
-class __$LabtechNewAnalysisStateCopyWithImpl<$Res>
-    implements _$LabtechNewAnalysisStateCopyWith<$Res> {
-  __$LabtechNewAnalysisStateCopyWithImpl(this._self, this._then);
-
-  final _LabtechNewAnalysisState _self;
-  final $Res Function(_LabtechNewAnalysisState) _then;
+  List<ClinicModel> get clinics;
+  @override
+  DataStatus get status;
+  @override
+  String get statusMessage;
+  @override
+  ClinicModel? get selectedClinic;
 
   /// Create a copy of LabtechNewAnalysisState
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? clinics = null,
-    Object? status = null,
-    Object? statusMessage = null,
-    Object? selectedClinic = freezed,
-  }) {
-    return _then(_LabtechNewAnalysisState(
-      clinics: null == clinics
-          ? _self._clinics
-          : clinics // ignore: cast_nullable_to_non_nullable
-              as List<ClinicModel>,
-      status: null == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as DataStatus,
-      statusMessage: null == statusMessage
-          ? _self.statusMessage
-          : statusMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-      selectedClinic: freezed == selectedClinic
-          ? _self.selectedClinic
-          : selectedClinic // ignore: cast_nullable_to_non_nullable
-              as ClinicModel?,
-    ));
-  }
-
-  /// Create a copy of LabtechNewAnalysisState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ClinicModelCopyWith<$Res>? get selectedClinic {
-    if (_self.selectedClinic == null) {
-      return null;
-    }
-
-    return $ClinicModelCopyWith<$Res>(_self.selectedClinic!, (value) {
-      return _then(_self.copyWith(selectedClinic: value));
-    });
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LabtechNewAnalysisStateImplCopyWith<_$LabtechNewAnalysisStateImpl>
+  get copyWith => throw _privateConstructorUsedError;
 }
-
-// dart format on

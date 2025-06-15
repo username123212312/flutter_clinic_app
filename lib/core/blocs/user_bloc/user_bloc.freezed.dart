@@ -1,4 +1,3 @@
-// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,52 +9,192 @@ part of 'user_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$UserEvent {
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is UserEvent);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  String toString() {
-    return 'UserEvent()';
-  }
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password)
+    userLoggedInWithEmail,
+    required TResult Function(String phone, String password)
+    userLoggedInWithPhone,
+    required TResult Function() userLoggedInWithGoogle,
+    required TResult Function(String password) userRegisteredWithEmail,
+    required TResult Function(String password) userRegisteredWithPhone,
+    required TResult Function(UserModel? user) userModified,
+    required TResult Function() userLoggedOut,
+    required TResult Function(UserModel user) userCompletedProfileData,
+    required TResult Function(UserModel user) userModifiedProfileData,
+    required TResult Function(String newPassword, String oldPassword)
+    userModifiedPassword,
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? userLoggedInWithEmail,
+    TResult? Function(String phone, String password)? userLoggedInWithPhone,
+    TResult? Function()? userLoggedInWithGoogle,
+    TResult? Function(String password)? userRegisteredWithEmail,
+    TResult? Function(String password)? userRegisteredWithPhone,
+    TResult? Function(UserModel? user)? userModified,
+    TResult? Function()? userLoggedOut,
+    TResult? Function(UserModel user)? userCompletedProfileData,
+    TResult? Function(UserModel user)? userModifiedProfileData,
+    TResult? Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? userLoggedInWithEmail,
+    TResult Function(String phone, String password)? userLoggedInWithPhone,
+    TResult Function()? userLoggedInWithGoogle,
+    TResult Function(String password)? userRegisteredWithEmail,
+    TResult Function(String password)? userRegisteredWithPhone,
+    TResult Function(UserModel? user)? userModified,
+    TResult Function()? userLoggedOut,
+    TResult Function(UserModel user)? userCompletedProfileData,
+    TResult Function(UserModel user)? userModifiedProfileData,
+    TResult Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    required TResult orElse(),
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserLoggedInWithEmail value)
+    userLoggedInWithEmail,
+    required TResult Function(UserLoggedInWithPhone value)
+    userLoggedInWithPhone,
+    required TResult Function(UserLoggedInWithGoogle value)
+    userLoggedInWithGoogle,
+    required TResult Function(UserRegisteredWithEmail value)
+    userRegisteredWithEmail,
+    required TResult Function(UserRegisteredWithPhone value)
+    userRegisteredWithPhone,
+    required TResult Function(UserModified value) userModified,
+    required TResult Function(UserLoggedOut value) userLoggedOut,
+    required TResult Function(UserCompletedProfileData value)
+    userCompletedProfileData,
+    required TResult Function(UserModifiedProfileData value)
+    userModifiedProfileData,
+    required TResult Function(UserModifiedPassword value) userModifiedPassword,
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult? Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult? Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult? Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult? Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult? Function(UserModified value)? userModified,
+    TResult? Function(UserLoggedOut value)? userLoggedOut,
+    TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult Function(UserModified value)? userModified,
+    TResult Function(UserLoggedOut value)? userLoggedOut,
+    TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    required TResult orElse(),
+  }) => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-class $UserEventCopyWith<$Res> {
-  $UserEventCopyWith(UserEvent _, $Res Function(UserEvent) __);
+abstract class $UserEventCopyWith<$Res> {
+  factory $UserEventCopyWith(UserEvent value, $Res Function(UserEvent) then) =
+      _$UserEventCopyWithImpl<$Res, UserEvent>;
 }
 
 /// @nodoc
+class _$UserEventCopyWithImpl<$Res, $Val extends UserEvent>
+    implements $UserEventCopyWith<$Res> {
+  _$UserEventCopyWithImpl(this._value, this._then);
 
-class UserLoggedInWithEmail implements UserEvent {
-  const UserLoggedInWithEmail({required this.email, required this.password});
-
-  final String email;
-  final String password;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+}
+
+/// @nodoc
+abstract class _$$UserLoggedInWithEmailImplCopyWith<$Res> {
+  factory _$$UserLoggedInWithEmailImplCopyWith(
+    _$UserLoggedInWithEmailImpl value,
+    $Res Function(_$UserLoggedInWithEmailImpl) then,
+  ) = __$$UserLoggedInWithEmailImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String email, String password});
+}
+
+/// @nodoc
+class __$$UserLoggedInWithEmailImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserLoggedInWithEmailImpl>
+    implements _$$UserLoggedInWithEmailImplCopyWith<$Res> {
+  __$$UserLoggedInWithEmailImplCopyWithImpl(
+    _$UserLoggedInWithEmailImpl _value,
+    $Res Function(_$UserLoggedInWithEmailImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  $UserLoggedInWithEmailCopyWith<UserLoggedInWithEmail> get copyWith =>
-      _$UserLoggedInWithEmailCopyWithImpl<UserLoggedInWithEmail>(
-          this, _$identity);
+  @override
+  $Res call({Object? email = null, Object? password = null}) {
+    return _then(
+      _$UserLoggedInWithEmailImpl(
+        email:
+            null == email
+                ? _value.email
+                : email // ignore: cast_nullable_to_non_nullable
+                    as String,
+        password:
+            null == password
+                ? _value.password
+                : password // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$UserLoggedInWithEmailImpl implements UserLoggedInWithEmail {
+  const _$UserLoggedInWithEmailImpl({
+    required this.email,
+    required this.password,
+  });
+
+  @override
+  final String email;
+  @override
+  final String password;
+
+  @override
+  String toString() {
+    return 'UserEvent.userLoggedInWithEmail(email: $email, password: $password)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is UserLoggedInWithEmail &&
+            other is _$UserLoggedInWithEmailImpl &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password));
@@ -64,71 +203,221 @@ class UserLoggedInWithEmail implements UserEvent {
   @override
   int get hashCode => Object.hash(runtimeType, email, password);
 
-  @override
-  String toString() {
-    return 'UserEvent.userLoggedInWithEmail(email: $email, password: $password)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $UserLoggedInWithEmailCopyWith<$Res>
-    implements $UserEventCopyWith<$Res> {
-  factory $UserLoggedInWithEmailCopyWith(UserLoggedInWithEmail value,
-          $Res Function(UserLoggedInWithEmail) _then) =
-      _$UserLoggedInWithEmailCopyWithImpl;
-  @useResult
-  $Res call({String email, String password});
-}
-
-/// @nodoc
-class _$UserLoggedInWithEmailCopyWithImpl<$Res>
-    implements $UserLoggedInWithEmailCopyWith<$Res> {
-  _$UserLoggedInWithEmailCopyWithImpl(this._self, this._then);
-
-  final UserLoggedInWithEmail _self;
-  final $Res Function(UserLoggedInWithEmail) _then;
-
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? email = null,
-    Object? password = null,
+  _$$UserLoggedInWithEmailImplCopyWith<_$UserLoggedInWithEmailImpl>
+  get copyWith =>
+      __$$UserLoggedInWithEmailImplCopyWithImpl<_$UserLoggedInWithEmailImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password)
+    userLoggedInWithEmail,
+    required TResult Function(String phone, String password)
+    userLoggedInWithPhone,
+    required TResult Function() userLoggedInWithGoogle,
+    required TResult Function(String password) userRegisteredWithEmail,
+    required TResult Function(String password) userRegisteredWithPhone,
+    required TResult Function(UserModel? user) userModified,
+    required TResult Function() userLoggedOut,
+    required TResult Function(UserModel user) userCompletedProfileData,
+    required TResult Function(UserModel user) userModifiedProfileData,
+    required TResult Function(String newPassword, String oldPassword)
+    userModifiedPassword,
   }) {
-    return _then(UserLoggedInWithEmail(
-      email: null == email
-          ? _self.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _self.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return userLoggedInWithEmail(email, password);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? userLoggedInWithEmail,
+    TResult? Function(String phone, String password)? userLoggedInWithPhone,
+    TResult? Function()? userLoggedInWithGoogle,
+    TResult? Function(String password)? userRegisteredWithEmail,
+    TResult? Function(String password)? userRegisteredWithPhone,
+    TResult? Function(UserModel? user)? userModified,
+    TResult? Function()? userLoggedOut,
+    TResult? Function(UserModel user)? userCompletedProfileData,
+    TResult? Function(UserModel user)? userModifiedProfileData,
+    TResult? Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+  }) {
+    return userLoggedInWithEmail?.call(email, password);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? userLoggedInWithEmail,
+    TResult Function(String phone, String password)? userLoggedInWithPhone,
+    TResult Function()? userLoggedInWithGoogle,
+    TResult Function(String password)? userRegisteredWithEmail,
+    TResult Function(String password)? userRegisteredWithPhone,
+    TResult Function(UserModel? user)? userModified,
+    TResult Function()? userLoggedOut,
+    TResult Function(UserModel user)? userCompletedProfileData,
+    TResult Function(UserModel user)? userModifiedProfileData,
+    TResult Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    required TResult orElse(),
+  }) {
+    if (userLoggedInWithEmail != null) {
+      return userLoggedInWithEmail(email, password);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserLoggedInWithEmail value)
+    userLoggedInWithEmail,
+    required TResult Function(UserLoggedInWithPhone value)
+    userLoggedInWithPhone,
+    required TResult Function(UserLoggedInWithGoogle value)
+    userLoggedInWithGoogle,
+    required TResult Function(UserRegisteredWithEmail value)
+    userRegisteredWithEmail,
+    required TResult Function(UserRegisteredWithPhone value)
+    userRegisteredWithPhone,
+    required TResult Function(UserModified value) userModified,
+    required TResult Function(UserLoggedOut value) userLoggedOut,
+    required TResult Function(UserCompletedProfileData value)
+    userCompletedProfileData,
+    required TResult Function(UserModifiedProfileData value)
+    userModifiedProfileData,
+    required TResult Function(UserModifiedPassword value) userModifiedPassword,
+  }) {
+    return userLoggedInWithEmail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult? Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult? Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult? Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult? Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult? Function(UserModified value)? userModified,
+    TResult? Function(UserLoggedOut value)? userLoggedOut,
+    TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+  }) {
+    return userLoggedInWithEmail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult Function(UserModified value)? userModified,
+    TResult Function(UserLoggedOut value)? userLoggedOut,
+    TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    required TResult orElse(),
+  }) {
+    if (userLoggedInWithEmail != null) {
+      return userLoggedInWithEmail(this);
+    }
+    return orElse();
   }
 }
 
-/// @nodoc
+abstract class UserLoggedInWithEmail implements UserEvent {
+  const factory UserLoggedInWithEmail({
+    required final String email,
+    required final String password,
+  }) = _$UserLoggedInWithEmailImpl;
 
-class UserLoggedInWithPhone implements UserEvent {
-  const UserLoggedInWithPhone({required this.phone, required this.password});
-
-  final String phone;
-  final String password;
+  String get email;
+  String get password;
 
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UserLoggedInWithEmailImplCopyWith<_$UserLoggedInWithEmailImpl>
+  get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UserLoggedInWithPhoneImplCopyWith<$Res> {
+  factory _$$UserLoggedInWithPhoneImplCopyWith(
+    _$UserLoggedInWithPhoneImpl value,
+    $Res Function(_$UserLoggedInWithPhoneImpl) then,
+  ) = __$$UserLoggedInWithPhoneImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String phone, String password});
+}
+
+/// @nodoc
+class __$$UserLoggedInWithPhoneImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserLoggedInWithPhoneImpl>
+    implements _$$UserLoggedInWithPhoneImplCopyWith<$Res> {
+  __$$UserLoggedInWithPhoneImplCopyWithImpl(
+    _$UserLoggedInWithPhoneImpl _value,
+    $Res Function(_$UserLoggedInWithPhoneImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  $UserLoggedInWithPhoneCopyWith<UserLoggedInWithPhone> get copyWith =>
-      _$UserLoggedInWithPhoneCopyWithImpl<UserLoggedInWithPhone>(
-          this, _$identity);
+  @override
+  $Res call({Object? phone = null, Object? password = null}) {
+    return _then(
+      _$UserLoggedInWithPhoneImpl(
+        phone:
+            null == phone
+                ? _value.phone
+                : phone // ignore: cast_nullable_to_non_nullable
+                    as String,
+        password:
+            null == password
+                ? _value.password
+                : password // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$UserLoggedInWithPhoneImpl implements UserLoggedInWithPhone {
+  const _$UserLoggedInWithPhoneImpl({
+    required this.phone,
+    required this.password,
+  });
+
+  @override
+  final String phone;
+  @override
+  final String password;
+
+  @override
+  String toString() {
+    return 'UserEvent.userLoggedInWithPhone(phone: $phone, password: $password)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is UserLoggedInWithPhone &&
+            other is _$UserLoggedInWithPhoneImpl &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.password, password) ||
                 other.password == password));
@@ -137,156 +426,379 @@ class UserLoggedInWithPhone implements UserEvent {
   @override
   int get hashCode => Object.hash(runtimeType, phone, password);
 
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'UserEvent.userLoggedInWithPhone(phone: $phone, password: $password)';
+  @pragma('vm:prefer-inline')
+  _$$UserLoggedInWithPhoneImplCopyWith<_$UserLoggedInWithPhoneImpl>
+  get copyWith =>
+      __$$UserLoggedInWithPhoneImplCopyWithImpl<_$UserLoggedInWithPhoneImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password)
+    userLoggedInWithEmail,
+    required TResult Function(String phone, String password)
+    userLoggedInWithPhone,
+    required TResult Function() userLoggedInWithGoogle,
+    required TResult Function(String password) userRegisteredWithEmail,
+    required TResult Function(String password) userRegisteredWithPhone,
+    required TResult Function(UserModel? user) userModified,
+    required TResult Function() userLoggedOut,
+    required TResult Function(UserModel user) userCompletedProfileData,
+    required TResult Function(UserModel user) userModifiedProfileData,
+    required TResult Function(String newPassword, String oldPassword)
+    userModifiedPassword,
+  }) {
+    return userLoggedInWithPhone(phone, password);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? userLoggedInWithEmail,
+    TResult? Function(String phone, String password)? userLoggedInWithPhone,
+    TResult? Function()? userLoggedInWithGoogle,
+    TResult? Function(String password)? userRegisteredWithEmail,
+    TResult? Function(String password)? userRegisteredWithPhone,
+    TResult? Function(UserModel? user)? userModified,
+    TResult? Function()? userLoggedOut,
+    TResult? Function(UserModel user)? userCompletedProfileData,
+    TResult? Function(UserModel user)? userModifiedProfileData,
+    TResult? Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+  }) {
+    return userLoggedInWithPhone?.call(phone, password);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? userLoggedInWithEmail,
+    TResult Function(String phone, String password)? userLoggedInWithPhone,
+    TResult Function()? userLoggedInWithGoogle,
+    TResult Function(String password)? userRegisteredWithEmail,
+    TResult Function(String password)? userRegisteredWithPhone,
+    TResult Function(UserModel? user)? userModified,
+    TResult Function()? userLoggedOut,
+    TResult Function(UserModel user)? userCompletedProfileData,
+    TResult Function(UserModel user)? userModifiedProfileData,
+    TResult Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    required TResult orElse(),
+  }) {
+    if (userLoggedInWithPhone != null) {
+      return userLoggedInWithPhone(phone, password);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserLoggedInWithEmail value)
+    userLoggedInWithEmail,
+    required TResult Function(UserLoggedInWithPhone value)
+    userLoggedInWithPhone,
+    required TResult Function(UserLoggedInWithGoogle value)
+    userLoggedInWithGoogle,
+    required TResult Function(UserRegisteredWithEmail value)
+    userRegisteredWithEmail,
+    required TResult Function(UserRegisteredWithPhone value)
+    userRegisteredWithPhone,
+    required TResult Function(UserModified value) userModified,
+    required TResult Function(UserLoggedOut value) userLoggedOut,
+    required TResult Function(UserCompletedProfileData value)
+    userCompletedProfileData,
+    required TResult Function(UserModifiedProfileData value)
+    userModifiedProfileData,
+    required TResult Function(UserModifiedPassword value) userModifiedPassword,
+  }) {
+    return userLoggedInWithPhone(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult? Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult? Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult? Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult? Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult? Function(UserModified value)? userModified,
+    TResult? Function(UserLoggedOut value)? userLoggedOut,
+    TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+  }) {
+    return userLoggedInWithPhone?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult Function(UserModified value)? userModified,
+    TResult Function(UserLoggedOut value)? userLoggedOut,
+    TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    required TResult orElse(),
+  }) {
+    if (userLoggedInWithPhone != null) {
+      return userLoggedInWithPhone(this);
+    }
+    return orElse();
   }
 }
 
-/// @nodoc
-abstract mixin class $UserLoggedInWithPhoneCopyWith<$Res>
-    implements $UserEventCopyWith<$Res> {
-  factory $UserLoggedInWithPhoneCopyWith(UserLoggedInWithPhone value,
-          $Res Function(UserLoggedInWithPhone) _then) =
-      _$UserLoggedInWithPhoneCopyWithImpl;
-  @useResult
-  $Res call({String phone, String password});
-}
+abstract class UserLoggedInWithPhone implements UserEvent {
+  const factory UserLoggedInWithPhone({
+    required final String phone,
+    required final String password,
+  }) = _$UserLoggedInWithPhoneImpl;
 
-/// @nodoc
-class _$UserLoggedInWithPhoneCopyWithImpl<$Res>
-    implements $UserLoggedInWithPhoneCopyWith<$Res> {
-  _$UserLoggedInWithPhoneCopyWithImpl(this._self, this._then);
-
-  final UserLoggedInWithPhone _self;
-  final $Res Function(UserLoggedInWithPhone) _then;
+  String get phone;
+  String get password;
 
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? phone = null,
-    Object? password = null,
-  }) {
-    return _then(UserLoggedInWithPhone(
-      phone: null == phone
-          ? _self.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _self.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UserLoggedInWithPhoneImplCopyWith<_$UserLoggedInWithPhoneImpl>
+  get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UserLoggedInWithGoogleImplCopyWith<$Res> {
+  factory _$$UserLoggedInWithGoogleImplCopyWith(
+    _$UserLoggedInWithGoogleImpl value,
+    $Res Function(_$UserLoggedInWithGoogleImpl) then,
+  ) = __$$UserLoggedInWithGoogleImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UserLoggedInWithGoogleImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserLoggedInWithGoogleImpl>
+    implements _$$UserLoggedInWithGoogleImplCopyWith<$Res> {
+  __$$UserLoggedInWithGoogleImplCopyWithImpl(
+    _$UserLoggedInWithGoogleImpl _value,
+    $Res Function(_$UserLoggedInWithGoogleImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class UserLoggedInWithGoogle implements UserEvent {
-  const UserLoggedInWithGoogle();
+class _$UserLoggedInWithGoogleImpl implements UserLoggedInWithGoogle {
+  const _$UserLoggedInWithGoogleImpl();
+
+  @override
+  String toString() {
+    return 'UserEvent.userLoggedInWithGoogle()';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is UserLoggedInWithGoogle);
+        (other.runtimeType == runtimeType &&
+            other is _$UserLoggedInWithGoogleImpl);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
 
   @override
-  String toString() {
-    return 'UserEvent.userLoggedInWithGoogle()';
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password)
+    userLoggedInWithEmail,
+    required TResult Function(String phone, String password)
+    userLoggedInWithPhone,
+    required TResult Function() userLoggedInWithGoogle,
+    required TResult Function(String password) userRegisteredWithEmail,
+    required TResult Function(String password) userRegisteredWithPhone,
+    required TResult Function(UserModel? user) userModified,
+    required TResult Function() userLoggedOut,
+    required TResult Function(UserModel user) userCompletedProfileData,
+    required TResult Function(UserModel user) userModifiedProfileData,
+    required TResult Function(String newPassword, String oldPassword)
+    userModifiedPassword,
+  }) {
+    return userLoggedInWithGoogle();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? userLoggedInWithEmail,
+    TResult? Function(String phone, String password)? userLoggedInWithPhone,
+    TResult? Function()? userLoggedInWithGoogle,
+    TResult? Function(String password)? userRegisteredWithEmail,
+    TResult? Function(String password)? userRegisteredWithPhone,
+    TResult? Function(UserModel? user)? userModified,
+    TResult? Function()? userLoggedOut,
+    TResult? Function(UserModel user)? userCompletedProfileData,
+    TResult? Function(UserModel user)? userModifiedProfileData,
+    TResult? Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+  }) {
+    return userLoggedInWithGoogle?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? userLoggedInWithEmail,
+    TResult Function(String phone, String password)? userLoggedInWithPhone,
+    TResult Function()? userLoggedInWithGoogle,
+    TResult Function(String password)? userRegisteredWithEmail,
+    TResult Function(String password)? userRegisteredWithPhone,
+    TResult Function(UserModel? user)? userModified,
+    TResult Function()? userLoggedOut,
+    TResult Function(UserModel user)? userCompletedProfileData,
+    TResult Function(UserModel user)? userModifiedProfileData,
+    TResult Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    required TResult orElse(),
+  }) {
+    if (userLoggedInWithGoogle != null) {
+      return userLoggedInWithGoogle();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserLoggedInWithEmail value)
+    userLoggedInWithEmail,
+    required TResult Function(UserLoggedInWithPhone value)
+    userLoggedInWithPhone,
+    required TResult Function(UserLoggedInWithGoogle value)
+    userLoggedInWithGoogle,
+    required TResult Function(UserRegisteredWithEmail value)
+    userRegisteredWithEmail,
+    required TResult Function(UserRegisteredWithPhone value)
+    userRegisteredWithPhone,
+    required TResult Function(UserModified value) userModified,
+    required TResult Function(UserLoggedOut value) userLoggedOut,
+    required TResult Function(UserCompletedProfileData value)
+    userCompletedProfileData,
+    required TResult Function(UserModifiedProfileData value)
+    userModifiedProfileData,
+    required TResult Function(UserModifiedPassword value) userModifiedPassword,
+  }) {
+    return userLoggedInWithGoogle(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult? Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult? Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult? Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult? Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult? Function(UserModified value)? userModified,
+    TResult? Function(UserLoggedOut value)? userLoggedOut,
+    TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+  }) {
+    return userLoggedInWithGoogle?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult Function(UserModified value)? userModified,
+    TResult Function(UserLoggedOut value)? userLoggedOut,
+    TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    required TResult orElse(),
+  }) {
+    if (userLoggedInWithGoogle != null) {
+      return userLoggedInWithGoogle(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserLoggedInWithGoogle implements UserEvent {
+  const factory UserLoggedInWithGoogle() = _$UserLoggedInWithGoogleImpl;
+}
+
+/// @nodoc
+abstract class _$$UserRegisteredWithEmailImplCopyWith<$Res> {
+  factory _$$UserRegisteredWithEmailImplCopyWith(
+    _$UserRegisteredWithEmailImpl value,
+    $Res Function(_$UserRegisteredWithEmailImpl) then,
+  ) = __$$UserRegisteredWithEmailImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String password});
+}
+
+/// @nodoc
+class __$$UserRegisteredWithEmailImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserRegisteredWithEmailImpl>
+    implements _$$UserRegisteredWithEmailImplCopyWith<$Res> {
+  __$$UserRegisteredWithEmailImplCopyWithImpl(
+    _$UserRegisteredWithEmailImpl _value,
+    $Res Function(_$UserRegisteredWithEmailImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? password = null}) {
+    return _then(
+      _$UserRegisteredWithEmailImpl(
+        password:
+            null == password
+                ? _value.password
+                : password // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
-class UserRegisteredWithEmail implements UserEvent {
-  const UserRegisteredWithEmail({required this.password});
+class _$UserRegisteredWithEmailImpl implements UserRegisteredWithEmail {
+  const _$UserRegisteredWithEmailImpl({required this.password});
 
+  @override
   final String password;
-
-  /// Create a copy of UserEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $UserRegisteredWithEmailCopyWith<UserRegisteredWithEmail> get copyWith =>
-      _$UserRegisteredWithEmailCopyWithImpl<UserRegisteredWithEmail>(
-          this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is UserRegisteredWithEmail &&
-            (identical(other.password, password) ||
-                other.password == password));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, password);
 
   @override
   String toString() {
     return 'UserEvent.userRegisteredWithEmail(password: $password)';
   }
-}
-
-/// @nodoc
-abstract mixin class $UserRegisteredWithEmailCopyWith<$Res>
-    implements $UserEventCopyWith<$Res> {
-  factory $UserRegisteredWithEmailCopyWith(UserRegisteredWithEmail value,
-          $Res Function(UserRegisteredWithEmail) _then) =
-      _$UserRegisteredWithEmailCopyWithImpl;
-  @useResult
-  $Res call({String password});
-}
-
-/// @nodoc
-class _$UserRegisteredWithEmailCopyWithImpl<$Res>
-    implements $UserRegisteredWithEmailCopyWith<$Res> {
-  _$UserRegisteredWithEmailCopyWithImpl(this._self, this._then);
-
-  final UserRegisteredWithEmail _self;
-  final $Res Function(UserRegisteredWithEmail) _then;
-
-  /// Create a copy of UserEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? password = null,
-  }) {
-    return _then(UserRegisteredWithEmail(
-      password: null == password
-          ? _self.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class UserRegisteredWithPhone implements UserEvent {
-  const UserRegisteredWithPhone({required this.password});
-
-  final String password;
-
-  /// Create a copy of UserEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $UserRegisteredWithPhoneCopyWith<UserRegisteredWithPhone> get copyWith =>
-      _$UserRegisteredWithPhoneCopyWithImpl<UserRegisteredWithPhone>(
-          this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is UserRegisteredWithPhone &&
+            other is _$UserRegisteredWithEmailImpl &&
             (identical(other.password, password) ||
                 other.password == password));
   }
@@ -294,82 +806,365 @@ class UserRegisteredWithPhone implements UserEvent {
   @override
   int get hashCode => Object.hash(runtimeType, password);
 
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'UserEvent.userRegisteredWithPhone(password: $password)';
+  @pragma('vm:prefer-inline')
+  _$$UserRegisteredWithEmailImplCopyWith<_$UserRegisteredWithEmailImpl>
+  get copyWith => __$$UserRegisteredWithEmailImplCopyWithImpl<
+    _$UserRegisteredWithEmailImpl
+  >(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password)
+    userLoggedInWithEmail,
+    required TResult Function(String phone, String password)
+    userLoggedInWithPhone,
+    required TResult Function() userLoggedInWithGoogle,
+    required TResult Function(String password) userRegisteredWithEmail,
+    required TResult Function(String password) userRegisteredWithPhone,
+    required TResult Function(UserModel? user) userModified,
+    required TResult Function() userLoggedOut,
+    required TResult Function(UserModel user) userCompletedProfileData,
+    required TResult Function(UserModel user) userModifiedProfileData,
+    required TResult Function(String newPassword, String oldPassword)
+    userModifiedPassword,
+  }) {
+    return userRegisteredWithEmail(password);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? userLoggedInWithEmail,
+    TResult? Function(String phone, String password)? userLoggedInWithPhone,
+    TResult? Function()? userLoggedInWithGoogle,
+    TResult? Function(String password)? userRegisteredWithEmail,
+    TResult? Function(String password)? userRegisteredWithPhone,
+    TResult? Function(UserModel? user)? userModified,
+    TResult? Function()? userLoggedOut,
+    TResult? Function(UserModel user)? userCompletedProfileData,
+    TResult? Function(UserModel user)? userModifiedProfileData,
+    TResult? Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+  }) {
+    return userRegisteredWithEmail?.call(password);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? userLoggedInWithEmail,
+    TResult Function(String phone, String password)? userLoggedInWithPhone,
+    TResult Function()? userLoggedInWithGoogle,
+    TResult Function(String password)? userRegisteredWithEmail,
+    TResult Function(String password)? userRegisteredWithPhone,
+    TResult Function(UserModel? user)? userModified,
+    TResult Function()? userLoggedOut,
+    TResult Function(UserModel user)? userCompletedProfileData,
+    TResult Function(UserModel user)? userModifiedProfileData,
+    TResult Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    required TResult orElse(),
+  }) {
+    if (userRegisteredWithEmail != null) {
+      return userRegisteredWithEmail(password);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserLoggedInWithEmail value)
+    userLoggedInWithEmail,
+    required TResult Function(UserLoggedInWithPhone value)
+    userLoggedInWithPhone,
+    required TResult Function(UserLoggedInWithGoogle value)
+    userLoggedInWithGoogle,
+    required TResult Function(UserRegisteredWithEmail value)
+    userRegisteredWithEmail,
+    required TResult Function(UserRegisteredWithPhone value)
+    userRegisteredWithPhone,
+    required TResult Function(UserModified value) userModified,
+    required TResult Function(UserLoggedOut value) userLoggedOut,
+    required TResult Function(UserCompletedProfileData value)
+    userCompletedProfileData,
+    required TResult Function(UserModifiedProfileData value)
+    userModifiedProfileData,
+    required TResult Function(UserModifiedPassword value) userModifiedPassword,
+  }) {
+    return userRegisteredWithEmail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult? Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult? Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult? Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult? Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult? Function(UserModified value)? userModified,
+    TResult? Function(UserLoggedOut value)? userLoggedOut,
+    TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+  }) {
+    return userRegisteredWithEmail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult Function(UserModified value)? userModified,
+    TResult Function(UserLoggedOut value)? userLoggedOut,
+    TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    required TResult orElse(),
+  }) {
+    if (userRegisteredWithEmail != null) {
+      return userRegisteredWithEmail(this);
+    }
+    return orElse();
   }
 }
 
+abstract class UserRegisteredWithEmail implements UserEvent {
+  const factory UserRegisteredWithEmail({required final String password}) =
+      _$UserRegisteredWithEmailImpl;
+
+  String get password;
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UserRegisteredWithEmailImplCopyWith<_$UserRegisteredWithEmailImpl>
+  get copyWith => throw _privateConstructorUsedError;
+}
+
 /// @nodoc
-abstract mixin class $UserRegisteredWithPhoneCopyWith<$Res>
-    implements $UserEventCopyWith<$Res> {
-  factory $UserRegisteredWithPhoneCopyWith(UserRegisteredWithPhone value,
-          $Res Function(UserRegisteredWithPhone) _then) =
-      _$UserRegisteredWithPhoneCopyWithImpl;
+abstract class _$$UserRegisteredWithPhoneImplCopyWith<$Res> {
+  factory _$$UserRegisteredWithPhoneImplCopyWith(
+    _$UserRegisteredWithPhoneImpl value,
+    $Res Function(_$UserRegisteredWithPhoneImpl) then,
+  ) = __$$UserRegisteredWithPhoneImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String password});
 }
 
 /// @nodoc
-class _$UserRegisteredWithPhoneCopyWithImpl<$Res>
-    implements $UserRegisteredWithPhoneCopyWith<$Res> {
-  _$UserRegisteredWithPhoneCopyWithImpl(this._self, this._then);
-
-  final UserRegisteredWithPhone _self;
-  final $Res Function(UserRegisteredWithPhone) _then;
+class __$$UserRegisteredWithPhoneImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserRegisteredWithPhoneImpl>
+    implements _$$UserRegisteredWithPhoneImplCopyWith<$Res> {
+  __$$UserRegisteredWithPhoneImplCopyWithImpl(
+    _$UserRegisteredWithPhoneImpl _value,
+    $Res Function(_$UserRegisteredWithPhoneImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? password = null,
-  }) {
-    return _then(UserRegisteredWithPhone(
-      password: null == password
-          ? _self.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  @override
+  $Res call({Object? password = null}) {
+    return _then(
+      _$UserRegisteredWithPhoneImpl(
+        password:
+            null == password
+                ? _value.password
+                : password // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
-class UserModified implements UserEvent {
-  const UserModified({required this.user});
+class _$UserRegisteredWithPhoneImpl implements UserRegisteredWithPhone {
+  const _$UserRegisteredWithPhoneImpl({required this.password});
 
-  final UserModel? user;
+  @override
+  final String password;
 
-  /// Create a copy of UserEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $UserModifiedCopyWith<UserModified> get copyWith =>
-      _$UserModifiedCopyWithImpl<UserModified>(this, _$identity);
+  @override
+  String toString() {
+    return 'UserEvent.userRegisteredWithPhone(password: $password)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is UserModified &&
-            (identical(other.user, user) || other.user == user));
+            other is _$UserRegisteredWithPhoneImpl &&
+            (identical(other.password, password) ||
+                other.password == password));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode => Object.hash(runtimeType, password);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserRegisteredWithPhoneImplCopyWith<_$UserRegisteredWithPhoneImpl>
+  get copyWith => __$$UserRegisteredWithPhoneImplCopyWithImpl<
+    _$UserRegisteredWithPhoneImpl
+  >(this, _$identity);
 
   @override
-  String toString() {
-    return 'UserEvent.userModified(user: $user)';
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password)
+    userLoggedInWithEmail,
+    required TResult Function(String phone, String password)
+    userLoggedInWithPhone,
+    required TResult Function() userLoggedInWithGoogle,
+    required TResult Function(String password) userRegisteredWithEmail,
+    required TResult Function(String password) userRegisteredWithPhone,
+    required TResult Function(UserModel? user) userModified,
+    required TResult Function() userLoggedOut,
+    required TResult Function(UserModel user) userCompletedProfileData,
+    required TResult Function(UserModel user) userModifiedProfileData,
+    required TResult Function(String newPassword, String oldPassword)
+    userModifiedPassword,
+  }) {
+    return userRegisteredWithPhone(password);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? userLoggedInWithEmail,
+    TResult? Function(String phone, String password)? userLoggedInWithPhone,
+    TResult? Function()? userLoggedInWithGoogle,
+    TResult? Function(String password)? userRegisteredWithEmail,
+    TResult? Function(String password)? userRegisteredWithPhone,
+    TResult? Function(UserModel? user)? userModified,
+    TResult? Function()? userLoggedOut,
+    TResult? Function(UserModel user)? userCompletedProfileData,
+    TResult? Function(UserModel user)? userModifiedProfileData,
+    TResult? Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+  }) {
+    return userRegisteredWithPhone?.call(password);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? userLoggedInWithEmail,
+    TResult Function(String phone, String password)? userLoggedInWithPhone,
+    TResult Function()? userLoggedInWithGoogle,
+    TResult Function(String password)? userRegisteredWithEmail,
+    TResult Function(String password)? userRegisteredWithPhone,
+    TResult Function(UserModel? user)? userModified,
+    TResult Function()? userLoggedOut,
+    TResult Function(UserModel user)? userCompletedProfileData,
+    TResult Function(UserModel user)? userModifiedProfileData,
+    TResult Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    required TResult orElse(),
+  }) {
+    if (userRegisteredWithPhone != null) {
+      return userRegisteredWithPhone(password);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserLoggedInWithEmail value)
+    userLoggedInWithEmail,
+    required TResult Function(UserLoggedInWithPhone value)
+    userLoggedInWithPhone,
+    required TResult Function(UserLoggedInWithGoogle value)
+    userLoggedInWithGoogle,
+    required TResult Function(UserRegisteredWithEmail value)
+    userRegisteredWithEmail,
+    required TResult Function(UserRegisteredWithPhone value)
+    userRegisteredWithPhone,
+    required TResult Function(UserModified value) userModified,
+    required TResult Function(UserLoggedOut value) userLoggedOut,
+    required TResult Function(UserCompletedProfileData value)
+    userCompletedProfileData,
+    required TResult Function(UserModifiedProfileData value)
+    userModifiedProfileData,
+    required TResult Function(UserModifiedPassword value) userModifiedPassword,
+  }) {
+    return userRegisteredWithPhone(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult? Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult? Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult? Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult? Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult? Function(UserModified value)? userModified,
+    TResult? Function(UserLoggedOut value)? userLoggedOut,
+    TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+  }) {
+    return userRegisteredWithPhone?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult Function(UserModified value)? userModified,
+    TResult Function(UserLoggedOut value)? userLoggedOut,
+    TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    required TResult orElse(),
+  }) {
+    if (userRegisteredWithPhone != null) {
+      return userRegisteredWithPhone(this);
+    }
+    return orElse();
   }
 }
 
+abstract class UserRegisteredWithPhone implements UserEvent {
+  const factory UserRegisteredWithPhone({required final String password}) =
+      _$UserRegisteredWithPhoneImpl;
+
+  String get password;
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UserRegisteredWithPhoneImplCopyWith<_$UserRegisteredWithPhoneImpl>
+  get copyWith => throw _privateConstructorUsedError;
+}
+
 /// @nodoc
-abstract mixin class $UserModifiedCopyWith<$Res>
-    implements $UserEventCopyWith<$Res> {
-  factory $UserModifiedCopyWith(
-          UserModified value, $Res Function(UserModified) _then) =
-      _$UserModifiedCopyWithImpl;
+abstract class _$$UserModifiedImplCopyWith<$Res> {
+  factory _$$UserModifiedImplCopyWith(
+    _$UserModifiedImpl value,
+    $Res Function(_$UserModifiedImpl) then,
+  ) = __$$UserModifiedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({UserModel? user});
 
@@ -377,24 +1172,28 @@ abstract mixin class $UserModifiedCopyWith<$Res>
 }
 
 /// @nodoc
-class _$UserModifiedCopyWithImpl<$Res> implements $UserModifiedCopyWith<$Res> {
-  _$UserModifiedCopyWithImpl(this._self, this._then);
-
-  final UserModified _self;
-  final $Res Function(UserModified) _then;
+class __$$UserModifiedImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserModifiedImpl>
+    implements _$$UserModifiedImplCopyWith<$Res> {
+  __$$UserModifiedImplCopyWithImpl(
+    _$UserModifiedImpl _value,
+    $Res Function(_$UserModifiedImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? user = freezed,
-  }) {
-    return _then(UserModified(
-      user: freezed == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel?,
-    ));
+  @override
+  $Res call({Object? user = freezed}) {
+    return _then(
+      _$UserModifiedImpl(
+        user:
+            freezed == user
+                ? _value.user
+                : user // ignore: cast_nullable_to_non_nullable
+                    as UserModel?,
+      ),
+    );
   }
 
   /// Create a copy of UserEvent
@@ -402,151 +1201,575 @@ class _$UserModifiedCopyWithImpl<$Res> implements $UserModifiedCopyWith<$Res> {
   @override
   @pragma('vm:prefer-inline')
   $UserModelCopyWith<$Res>? get user {
-    if (_self.user == null) {
+    if (_value.user == null) {
       return null;
     }
 
-    return $UserModelCopyWith<$Res>(_self.user!, (value) {
-      return _then(_self.copyWith(user: value));
+    return $UserModelCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value));
     });
   }
 }
 
 /// @nodoc
 
-class UserLoggedOut implements UserEvent {
-  const UserLoggedOut();
+class _$UserModifiedImpl implements UserModified {
+  const _$UserModifiedImpl({required this.user});
+
+  @override
+  final UserModel? user;
+
+  @override
+  String toString() {
+    return 'UserEvent.userModified(user: $user)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is UserLoggedOut);
+        (other.runtimeType == runtimeType &&
+            other is _$UserModifiedImpl &&
+            (identical(other.user, user) || other.user == user));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, user);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserModifiedImplCopyWith<_$UserModifiedImpl> get copyWith =>
+      __$$UserModifiedImplCopyWithImpl<_$UserModifiedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password)
+    userLoggedInWithEmail,
+    required TResult Function(String phone, String password)
+    userLoggedInWithPhone,
+    required TResult Function() userLoggedInWithGoogle,
+    required TResult Function(String password) userRegisteredWithEmail,
+    required TResult Function(String password) userRegisteredWithPhone,
+    required TResult Function(UserModel? user) userModified,
+    required TResult Function() userLoggedOut,
+    required TResult Function(UserModel user) userCompletedProfileData,
+    required TResult Function(UserModel user) userModifiedProfileData,
+    required TResult Function(String newPassword, String oldPassword)
+    userModifiedPassword,
+  }) {
+    return userModified(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? userLoggedInWithEmail,
+    TResult? Function(String phone, String password)? userLoggedInWithPhone,
+    TResult? Function()? userLoggedInWithGoogle,
+    TResult? Function(String password)? userRegisteredWithEmail,
+    TResult? Function(String password)? userRegisteredWithPhone,
+    TResult? Function(UserModel? user)? userModified,
+    TResult? Function()? userLoggedOut,
+    TResult? Function(UserModel user)? userCompletedProfileData,
+    TResult? Function(UserModel user)? userModifiedProfileData,
+    TResult? Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+  }) {
+    return userModified?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? userLoggedInWithEmail,
+    TResult Function(String phone, String password)? userLoggedInWithPhone,
+    TResult Function()? userLoggedInWithGoogle,
+    TResult Function(String password)? userRegisteredWithEmail,
+    TResult Function(String password)? userRegisteredWithPhone,
+    TResult Function(UserModel? user)? userModified,
+    TResult Function()? userLoggedOut,
+    TResult Function(UserModel user)? userCompletedProfileData,
+    TResult Function(UserModel user)? userModifiedProfileData,
+    TResult Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    required TResult orElse(),
+  }) {
+    if (userModified != null) {
+      return userModified(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserLoggedInWithEmail value)
+    userLoggedInWithEmail,
+    required TResult Function(UserLoggedInWithPhone value)
+    userLoggedInWithPhone,
+    required TResult Function(UserLoggedInWithGoogle value)
+    userLoggedInWithGoogle,
+    required TResult Function(UserRegisteredWithEmail value)
+    userRegisteredWithEmail,
+    required TResult Function(UserRegisteredWithPhone value)
+    userRegisteredWithPhone,
+    required TResult Function(UserModified value) userModified,
+    required TResult Function(UserLoggedOut value) userLoggedOut,
+    required TResult Function(UserCompletedProfileData value)
+    userCompletedProfileData,
+    required TResult Function(UserModifiedProfileData value)
+    userModifiedProfileData,
+    required TResult Function(UserModifiedPassword value) userModifiedPassword,
+  }) {
+    return userModified(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult? Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult? Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult? Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult? Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult? Function(UserModified value)? userModified,
+    TResult? Function(UserLoggedOut value)? userLoggedOut,
+    TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+  }) {
+    return userModified?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult Function(UserModified value)? userModified,
+    TResult Function(UserLoggedOut value)? userLoggedOut,
+    TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    required TResult orElse(),
+  }) {
+    if (userModified != null) {
+      return userModified(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserModified implements UserEvent {
+  const factory UserModified({required final UserModel? user}) =
+      _$UserModifiedImpl;
+
+  UserModel? get user;
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UserModifiedImplCopyWith<_$UserModifiedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UserLoggedOutImplCopyWith<$Res> {
+  factory _$$UserLoggedOutImplCopyWith(
+    _$UserLoggedOutImpl value,
+    $Res Function(_$UserLoggedOutImpl) then,
+  ) = __$$UserLoggedOutImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UserLoggedOutImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserLoggedOutImpl>
+    implements _$$UserLoggedOutImplCopyWith<$Res> {
+  __$$UserLoggedOutImplCopyWithImpl(
+    _$UserLoggedOutImpl _value,
+    $Res Function(_$UserLoggedOutImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$UserLoggedOutImpl implements UserLoggedOut {
+  const _$UserLoggedOutImpl();
+
+  @override
+  String toString() {
+    return 'UserEvent.userLoggedOut()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$UserLoggedOutImpl);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
 
   @override
-  String toString() {
-    return 'UserEvent.userLoggedOut()';
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password)
+    userLoggedInWithEmail,
+    required TResult Function(String phone, String password)
+    userLoggedInWithPhone,
+    required TResult Function() userLoggedInWithGoogle,
+    required TResult Function(String password) userRegisteredWithEmail,
+    required TResult Function(String password) userRegisteredWithPhone,
+    required TResult Function(UserModel? user) userModified,
+    required TResult Function() userLoggedOut,
+    required TResult Function(UserModel user) userCompletedProfileData,
+    required TResult Function(UserModel user) userModifiedProfileData,
+    required TResult Function(String newPassword, String oldPassword)
+    userModifiedPassword,
+  }) {
+    return userLoggedOut();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? userLoggedInWithEmail,
+    TResult? Function(String phone, String password)? userLoggedInWithPhone,
+    TResult? Function()? userLoggedInWithGoogle,
+    TResult? Function(String password)? userRegisteredWithEmail,
+    TResult? Function(String password)? userRegisteredWithPhone,
+    TResult? Function(UserModel? user)? userModified,
+    TResult? Function()? userLoggedOut,
+    TResult? Function(UserModel user)? userCompletedProfileData,
+    TResult? Function(UserModel user)? userModifiedProfileData,
+    TResult? Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+  }) {
+    return userLoggedOut?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? userLoggedInWithEmail,
+    TResult Function(String phone, String password)? userLoggedInWithPhone,
+    TResult Function()? userLoggedInWithGoogle,
+    TResult Function(String password)? userRegisteredWithEmail,
+    TResult Function(String password)? userRegisteredWithPhone,
+    TResult Function(UserModel? user)? userModified,
+    TResult Function()? userLoggedOut,
+    TResult Function(UserModel user)? userCompletedProfileData,
+    TResult Function(UserModel user)? userModifiedProfileData,
+    TResult Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    required TResult orElse(),
+  }) {
+    if (userLoggedOut != null) {
+      return userLoggedOut();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserLoggedInWithEmail value)
+    userLoggedInWithEmail,
+    required TResult Function(UserLoggedInWithPhone value)
+    userLoggedInWithPhone,
+    required TResult Function(UserLoggedInWithGoogle value)
+    userLoggedInWithGoogle,
+    required TResult Function(UserRegisteredWithEmail value)
+    userRegisteredWithEmail,
+    required TResult Function(UserRegisteredWithPhone value)
+    userRegisteredWithPhone,
+    required TResult Function(UserModified value) userModified,
+    required TResult Function(UserLoggedOut value) userLoggedOut,
+    required TResult Function(UserCompletedProfileData value)
+    userCompletedProfileData,
+    required TResult Function(UserModifiedProfileData value)
+    userModifiedProfileData,
+    required TResult Function(UserModifiedPassword value) userModifiedPassword,
+  }) {
+    return userLoggedOut(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult? Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult? Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult? Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult? Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult? Function(UserModified value)? userModified,
+    TResult? Function(UserLoggedOut value)? userLoggedOut,
+    TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+  }) {
+    return userLoggedOut?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult Function(UserModified value)? userModified,
+    TResult Function(UserLoggedOut value)? userLoggedOut,
+    TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    required TResult orElse(),
+  }) {
+    if (userLoggedOut != null) {
+      return userLoggedOut(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserLoggedOut implements UserEvent {
+  const factory UserLoggedOut() = _$UserLoggedOutImpl;
+}
+
+/// @nodoc
+abstract class _$$UserCompletedProfileDataImplCopyWith<$Res> {
+  factory _$$UserCompletedProfileDataImplCopyWith(
+    _$UserCompletedProfileDataImpl value,
+    $Res Function(_$UserCompletedProfileDataImpl) then,
+  ) = __$$UserCompletedProfileDataImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({UserModel user});
+
+  $UserModelCopyWith<$Res> get user;
+}
+
+/// @nodoc
+class __$$UserCompletedProfileDataImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserCompletedProfileDataImpl>
+    implements _$$UserCompletedProfileDataImplCopyWith<$Res> {
+  __$$UserCompletedProfileDataImplCopyWithImpl(
+    _$UserCompletedProfileDataImpl _value,
+    $Res Function(_$UserCompletedProfileDataImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? user = null}) {
+    return _then(
+      _$UserCompletedProfileDataImpl(
+        user:
+            null == user
+                ? _value.user
+                : user // ignore: cast_nullable_to_non_nullable
+                    as UserModel,
+      ),
+    );
+  }
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res> get user {
+    return $UserModelCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
+    });
   }
 }
 
 /// @nodoc
 
-class UserCompletedProfileData implements UserEvent {
-  const UserCompletedProfileData({required this.user});
+class _$UserCompletedProfileDataImpl implements UserCompletedProfileData {
+  const _$UserCompletedProfileDataImpl({required this.user});
 
+  @override
   final UserModel user;
-
-  /// Create a copy of UserEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $UserCompletedProfileDataCopyWith<UserCompletedProfileData> get copyWith =>
-      _$UserCompletedProfileDataCopyWithImpl<UserCompletedProfileData>(
-          this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is UserCompletedProfileData &&
-            (identical(other.user, user) || other.user == user));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, user);
 
   @override
   String toString() {
     return 'UserEvent.userCompletedProfileData(user: $user)';
   }
-}
-
-/// @nodoc
-abstract mixin class $UserCompletedProfileDataCopyWith<$Res>
-    implements $UserEventCopyWith<$Res> {
-  factory $UserCompletedProfileDataCopyWith(UserCompletedProfileData value,
-          $Res Function(UserCompletedProfileData) _then) =
-      _$UserCompletedProfileDataCopyWithImpl;
-  @useResult
-  $Res call({UserModel user});
-
-  $UserModelCopyWith<$Res> get user;
-}
-
-/// @nodoc
-class _$UserCompletedProfileDataCopyWithImpl<$Res>
-    implements $UserCompletedProfileDataCopyWith<$Res> {
-  _$UserCompletedProfileDataCopyWithImpl(this._self, this._then);
-
-  final UserCompletedProfileData _self;
-  final $Res Function(UserCompletedProfileData) _then;
-
-  /// Create a copy of UserEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? user = null,
-  }) {
-    return _then(UserCompletedProfileData(
-      user: null == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
-    ));
-  }
-
-  /// Create a copy of UserEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserModelCopyWith<$Res> get user {
-    return $UserModelCopyWith<$Res>(_self.user, (value) {
-      return _then(_self.copyWith(user: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class UserModifiedProfileData implements UserEvent {
-  const UserModifiedProfileData({required this.user});
-
-  final UserModel user;
-
-  /// Create a copy of UserEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $UserModifiedProfileDataCopyWith<UserModifiedProfileData> get copyWith =>
-      _$UserModifiedProfileDataCopyWithImpl<UserModifiedProfileData>(
-          this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is UserModifiedProfileData &&
+            other is _$UserCompletedProfileDataImpl &&
             (identical(other.user, user) || other.user == user));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, user);
 
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'UserEvent.userModifiedProfileData(user: $user)';
+  @pragma('vm:prefer-inline')
+  _$$UserCompletedProfileDataImplCopyWith<_$UserCompletedProfileDataImpl>
+  get copyWith => __$$UserCompletedProfileDataImplCopyWithImpl<
+    _$UserCompletedProfileDataImpl
+  >(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password)
+    userLoggedInWithEmail,
+    required TResult Function(String phone, String password)
+    userLoggedInWithPhone,
+    required TResult Function() userLoggedInWithGoogle,
+    required TResult Function(String password) userRegisteredWithEmail,
+    required TResult Function(String password) userRegisteredWithPhone,
+    required TResult Function(UserModel? user) userModified,
+    required TResult Function() userLoggedOut,
+    required TResult Function(UserModel user) userCompletedProfileData,
+    required TResult Function(UserModel user) userModifiedProfileData,
+    required TResult Function(String newPassword, String oldPassword)
+    userModifiedPassword,
+  }) {
+    return userCompletedProfileData(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? userLoggedInWithEmail,
+    TResult? Function(String phone, String password)? userLoggedInWithPhone,
+    TResult? Function()? userLoggedInWithGoogle,
+    TResult? Function(String password)? userRegisteredWithEmail,
+    TResult? Function(String password)? userRegisteredWithPhone,
+    TResult? Function(UserModel? user)? userModified,
+    TResult? Function()? userLoggedOut,
+    TResult? Function(UserModel user)? userCompletedProfileData,
+    TResult? Function(UserModel user)? userModifiedProfileData,
+    TResult? Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+  }) {
+    return userCompletedProfileData?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? userLoggedInWithEmail,
+    TResult Function(String phone, String password)? userLoggedInWithPhone,
+    TResult Function()? userLoggedInWithGoogle,
+    TResult Function(String password)? userRegisteredWithEmail,
+    TResult Function(String password)? userRegisteredWithPhone,
+    TResult Function(UserModel? user)? userModified,
+    TResult Function()? userLoggedOut,
+    TResult Function(UserModel user)? userCompletedProfileData,
+    TResult Function(UserModel user)? userModifiedProfileData,
+    TResult Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    required TResult orElse(),
+  }) {
+    if (userCompletedProfileData != null) {
+      return userCompletedProfileData(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserLoggedInWithEmail value)
+    userLoggedInWithEmail,
+    required TResult Function(UserLoggedInWithPhone value)
+    userLoggedInWithPhone,
+    required TResult Function(UserLoggedInWithGoogle value)
+    userLoggedInWithGoogle,
+    required TResult Function(UserRegisteredWithEmail value)
+    userRegisteredWithEmail,
+    required TResult Function(UserRegisteredWithPhone value)
+    userRegisteredWithPhone,
+    required TResult Function(UserModified value) userModified,
+    required TResult Function(UserLoggedOut value) userLoggedOut,
+    required TResult Function(UserCompletedProfileData value)
+    userCompletedProfileData,
+    required TResult Function(UserModifiedProfileData value)
+    userModifiedProfileData,
+    required TResult Function(UserModifiedPassword value) userModifiedPassword,
+  }) {
+    return userCompletedProfileData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult? Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult? Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult? Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult? Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult? Function(UserModified value)? userModified,
+    TResult? Function(UserLoggedOut value)? userLoggedOut,
+    TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+  }) {
+    return userCompletedProfileData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult Function(UserModified value)? userModified,
+    TResult Function(UserLoggedOut value)? userLoggedOut,
+    TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    required TResult orElse(),
+  }) {
+    if (userCompletedProfileData != null) {
+      return userCompletedProfileData(this);
+    }
+    return orElse();
   }
 }
 
+abstract class UserCompletedProfileData implements UserEvent {
+  const factory UserCompletedProfileData({required final UserModel user}) =
+      _$UserCompletedProfileDataImpl;
+
+  UserModel get user;
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UserCompletedProfileDataImplCopyWith<_$UserCompletedProfileDataImpl>
+  get copyWith => throw _privateConstructorUsedError;
+}
+
 /// @nodoc
-abstract mixin class $UserModifiedProfileDataCopyWith<$Res>
-    implements $UserEventCopyWith<$Res> {
-  factory $UserModifiedProfileDataCopyWith(UserModifiedProfileData value,
-          $Res Function(UserModifiedProfileData) _then) =
-      _$UserModifiedProfileDataCopyWithImpl;
+abstract class _$$UserModifiedProfileDataImplCopyWith<$Res> {
+  factory _$$UserModifiedProfileDataImplCopyWith(
+    _$UserModifiedProfileDataImpl value,
+    $Res Function(_$UserModifiedProfileDataImpl) then,
+  ) = __$$UserModifiedProfileDataImplCopyWithImpl<$Res>;
   @useResult
   $Res call({UserModel user});
 
@@ -554,25 +1777,28 @@ abstract mixin class $UserModifiedProfileDataCopyWith<$Res>
 }
 
 /// @nodoc
-class _$UserModifiedProfileDataCopyWithImpl<$Res>
-    implements $UserModifiedProfileDataCopyWith<$Res> {
-  _$UserModifiedProfileDataCopyWithImpl(this._self, this._then);
-
-  final UserModifiedProfileData _self;
-  final $Res Function(UserModifiedProfileData) _then;
+class __$$UserModifiedProfileDataImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserModifiedProfileDataImpl>
+    implements _$$UserModifiedProfileDataImplCopyWith<$Res> {
+  __$$UserModifiedProfileDataImplCopyWithImpl(
+    _$UserModifiedProfileDataImpl _value,
+    $Res Function(_$UserModifiedProfileDataImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? user = null,
-  }) {
-    return _then(UserModifiedProfileData(
-      user: null == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
-    ));
+  @override
+  $Res call({Object? user = null}) {
+    return _then(
+      _$UserModifiedProfileDataImpl(
+        user:
+            null == user
+                ? _value.user
+                : user // ignore: cast_nullable_to_non_nullable
+                    as UserModel,
+      ),
+    );
   }
 
   /// Create a copy of UserEvent
@@ -580,34 +1806,246 @@ class _$UserModifiedProfileDataCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $UserModelCopyWith<$Res> get user {
-    return $UserModelCopyWith<$Res>(_self.user, (value) {
-      return _then(_self.copyWith(user: value));
+    return $UserModelCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
     });
   }
 }
 
 /// @nodoc
 
-class UserModifiedPassword implements UserEvent {
-  const UserModifiedPassword(
-      {required this.newPassword, required this.oldPassword});
+class _$UserModifiedProfileDataImpl implements UserModifiedProfileData {
+  const _$UserModifiedProfileDataImpl({required this.user});
 
-  final String newPassword;
-  final String oldPassword;
+  @override
+  final UserModel user;
 
-  /// Create a copy of UserEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $UserModifiedPasswordCopyWith<UserModifiedPassword> get copyWith =>
-      _$UserModifiedPasswordCopyWithImpl<UserModifiedPassword>(
-          this, _$identity);
+  @override
+  String toString() {
+    return 'UserEvent.userModifiedProfileData(user: $user)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is UserModifiedPassword &&
+            other is _$UserModifiedProfileDataImpl &&
+            (identical(other.user, user) || other.user == user));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, user);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserModifiedProfileDataImplCopyWith<_$UserModifiedProfileDataImpl>
+  get copyWith => __$$UserModifiedProfileDataImplCopyWithImpl<
+    _$UserModifiedProfileDataImpl
+  >(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password)
+    userLoggedInWithEmail,
+    required TResult Function(String phone, String password)
+    userLoggedInWithPhone,
+    required TResult Function() userLoggedInWithGoogle,
+    required TResult Function(String password) userRegisteredWithEmail,
+    required TResult Function(String password) userRegisteredWithPhone,
+    required TResult Function(UserModel? user) userModified,
+    required TResult Function() userLoggedOut,
+    required TResult Function(UserModel user) userCompletedProfileData,
+    required TResult Function(UserModel user) userModifiedProfileData,
+    required TResult Function(String newPassword, String oldPassword)
+    userModifiedPassword,
+  }) {
+    return userModifiedProfileData(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? userLoggedInWithEmail,
+    TResult? Function(String phone, String password)? userLoggedInWithPhone,
+    TResult? Function()? userLoggedInWithGoogle,
+    TResult? Function(String password)? userRegisteredWithEmail,
+    TResult? Function(String password)? userRegisteredWithPhone,
+    TResult? Function(UserModel? user)? userModified,
+    TResult? Function()? userLoggedOut,
+    TResult? Function(UserModel user)? userCompletedProfileData,
+    TResult? Function(UserModel user)? userModifiedProfileData,
+    TResult? Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+  }) {
+    return userModifiedProfileData?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? userLoggedInWithEmail,
+    TResult Function(String phone, String password)? userLoggedInWithPhone,
+    TResult Function()? userLoggedInWithGoogle,
+    TResult Function(String password)? userRegisteredWithEmail,
+    TResult Function(String password)? userRegisteredWithPhone,
+    TResult Function(UserModel? user)? userModified,
+    TResult Function()? userLoggedOut,
+    TResult Function(UserModel user)? userCompletedProfileData,
+    TResult Function(UserModel user)? userModifiedProfileData,
+    TResult Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    required TResult orElse(),
+  }) {
+    if (userModifiedProfileData != null) {
+      return userModifiedProfileData(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserLoggedInWithEmail value)
+    userLoggedInWithEmail,
+    required TResult Function(UserLoggedInWithPhone value)
+    userLoggedInWithPhone,
+    required TResult Function(UserLoggedInWithGoogle value)
+    userLoggedInWithGoogle,
+    required TResult Function(UserRegisteredWithEmail value)
+    userRegisteredWithEmail,
+    required TResult Function(UserRegisteredWithPhone value)
+    userRegisteredWithPhone,
+    required TResult Function(UserModified value) userModified,
+    required TResult Function(UserLoggedOut value) userLoggedOut,
+    required TResult Function(UserCompletedProfileData value)
+    userCompletedProfileData,
+    required TResult Function(UserModifiedProfileData value)
+    userModifiedProfileData,
+    required TResult Function(UserModifiedPassword value) userModifiedPassword,
+  }) {
+    return userModifiedProfileData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult? Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult? Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult? Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult? Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult? Function(UserModified value)? userModified,
+    TResult? Function(UserLoggedOut value)? userLoggedOut,
+    TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+  }) {
+    return userModifiedProfileData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult Function(UserModified value)? userModified,
+    TResult Function(UserLoggedOut value)? userLoggedOut,
+    TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    required TResult orElse(),
+  }) {
+    if (userModifiedProfileData != null) {
+      return userModifiedProfileData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserModifiedProfileData implements UserEvent {
+  const factory UserModifiedProfileData({required final UserModel user}) =
+      _$UserModifiedProfileDataImpl;
+
+  UserModel get user;
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UserModifiedProfileDataImplCopyWith<_$UserModifiedProfileDataImpl>
+  get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UserModifiedPasswordImplCopyWith<$Res> {
+  factory _$$UserModifiedPasswordImplCopyWith(
+    _$UserModifiedPasswordImpl value,
+    $Res Function(_$UserModifiedPasswordImpl) then,
+  ) = __$$UserModifiedPasswordImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String newPassword, String oldPassword});
+}
+
+/// @nodoc
+class __$$UserModifiedPasswordImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserModifiedPasswordImpl>
+    implements _$$UserModifiedPasswordImplCopyWith<$Res> {
+  __$$UserModifiedPasswordImplCopyWithImpl(
+    _$UserModifiedPasswordImpl _value,
+    $Res Function(_$UserModifiedPasswordImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? newPassword = null, Object? oldPassword = null}) {
+    return _then(
+      _$UserModifiedPasswordImpl(
+        newPassword:
+            null == newPassword
+                ? _value.newPassword
+                : newPassword // ignore: cast_nullable_to_non_nullable
+                    as String,
+        oldPassword:
+            null == oldPassword
+                ? _value.oldPassword
+                : oldPassword // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$UserModifiedPasswordImpl implements UserModifiedPassword {
+  const _$UserModifiedPasswordImpl({
+    required this.newPassword,
+    required this.oldPassword,
+  });
+
+  @override
+  final String newPassword;
+  @override
+  final String oldPassword;
+
+  @override
+  String toString() {
+    return 'UserEvent.userModifiedPassword(newPassword: $newPassword, oldPassword: $oldPassword)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserModifiedPasswordImpl &&
             (identical(other.newPassword, newPassword) ||
                 other.newPassword == newPassword) &&
             (identical(other.oldPassword, oldPassword) ||
@@ -617,87 +2055,174 @@ class UserModifiedPassword implements UserEvent {
   @override
   int get hashCode => Object.hash(runtimeType, newPassword, oldPassword);
 
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'UserEvent.userModifiedPassword(newPassword: $newPassword, oldPassword: $oldPassword)';
+  @pragma('vm:prefer-inline')
+  _$$UserModifiedPasswordImplCopyWith<_$UserModifiedPasswordImpl>
+  get copyWith =>
+      __$$UserModifiedPasswordImplCopyWithImpl<_$UserModifiedPasswordImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password)
+    userLoggedInWithEmail,
+    required TResult Function(String phone, String password)
+    userLoggedInWithPhone,
+    required TResult Function() userLoggedInWithGoogle,
+    required TResult Function(String password) userRegisteredWithEmail,
+    required TResult Function(String password) userRegisteredWithPhone,
+    required TResult Function(UserModel? user) userModified,
+    required TResult Function() userLoggedOut,
+    required TResult Function(UserModel user) userCompletedProfileData,
+    required TResult Function(UserModel user) userModifiedProfileData,
+    required TResult Function(String newPassword, String oldPassword)
+    userModifiedPassword,
+  }) {
+    return userModifiedPassword(newPassword, oldPassword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? userLoggedInWithEmail,
+    TResult? Function(String phone, String password)? userLoggedInWithPhone,
+    TResult? Function()? userLoggedInWithGoogle,
+    TResult? Function(String password)? userRegisteredWithEmail,
+    TResult? Function(String password)? userRegisteredWithPhone,
+    TResult? Function(UserModel? user)? userModified,
+    TResult? Function()? userLoggedOut,
+    TResult? Function(UserModel user)? userCompletedProfileData,
+    TResult? Function(UserModel user)? userModifiedProfileData,
+    TResult? Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+  }) {
+    return userModifiedPassword?.call(newPassword, oldPassword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? userLoggedInWithEmail,
+    TResult Function(String phone, String password)? userLoggedInWithPhone,
+    TResult Function()? userLoggedInWithGoogle,
+    TResult Function(String password)? userRegisteredWithEmail,
+    TResult Function(String password)? userRegisteredWithPhone,
+    TResult Function(UserModel? user)? userModified,
+    TResult Function()? userLoggedOut,
+    TResult Function(UserModel user)? userCompletedProfileData,
+    TResult Function(UserModel user)? userModifiedProfileData,
+    TResult Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    required TResult orElse(),
+  }) {
+    if (userModifiedPassword != null) {
+      return userModifiedPassword(newPassword, oldPassword);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserLoggedInWithEmail value)
+    userLoggedInWithEmail,
+    required TResult Function(UserLoggedInWithPhone value)
+    userLoggedInWithPhone,
+    required TResult Function(UserLoggedInWithGoogle value)
+    userLoggedInWithGoogle,
+    required TResult Function(UserRegisteredWithEmail value)
+    userRegisteredWithEmail,
+    required TResult Function(UserRegisteredWithPhone value)
+    userRegisteredWithPhone,
+    required TResult Function(UserModified value) userModified,
+    required TResult Function(UserLoggedOut value) userLoggedOut,
+    required TResult Function(UserCompletedProfileData value)
+    userCompletedProfileData,
+    required TResult Function(UserModifiedProfileData value)
+    userModifiedProfileData,
+    required TResult Function(UserModifiedPassword value) userModifiedPassword,
+  }) {
+    return userModifiedPassword(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult? Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult? Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult? Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult? Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult? Function(UserModified value)? userModified,
+    TResult? Function(UserLoggedOut value)? userLoggedOut,
+    TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+  }) {
+    return userModifiedPassword?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult Function(UserModified value)? userModified,
+    TResult Function(UserLoggedOut value)? userLoggedOut,
+    TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    required TResult orElse(),
+  }) {
+    if (userModifiedPassword != null) {
+      return userModifiedPassword(this);
+    }
+    return orElse();
   }
 }
 
-/// @nodoc
-abstract mixin class $UserModifiedPasswordCopyWith<$Res>
-    implements $UserEventCopyWith<$Res> {
-  factory $UserModifiedPasswordCopyWith(UserModifiedPassword value,
-          $Res Function(UserModifiedPassword) _then) =
-      _$UserModifiedPasswordCopyWithImpl;
-  @useResult
-  $Res call({String newPassword, String oldPassword});
-}
+abstract class UserModifiedPassword implements UserEvent {
+  const factory UserModifiedPassword({
+    required final String newPassword,
+    required final String oldPassword,
+  }) = _$UserModifiedPasswordImpl;
 
-/// @nodoc
-class _$UserModifiedPasswordCopyWithImpl<$Res>
-    implements $UserModifiedPasswordCopyWith<$Res> {
-  _$UserModifiedPasswordCopyWithImpl(this._self, this._then);
-
-  final UserModifiedPassword _self;
-  final $Res Function(UserModifiedPassword) _then;
+  String get newPassword;
+  String get oldPassword;
 
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? newPassword = null,
-    Object? oldPassword = null,
-  }) {
-    return _then(UserModifiedPassword(
-      newPassword: null == newPassword
-          ? _self.newPassword
-          : newPassword // ignore: cast_nullable_to_non_nullable
-              as String,
-      oldPassword: null == oldPassword
-          ? _self.oldPassword
-          : oldPassword // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UserModifiedPasswordImplCopyWith<_$UserModifiedPasswordImpl>
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$UserState {
-  UserModel? get user;
-  UserStatus get status;
-  String get statusMessage;
+  UserModel? get user => throw _privateConstructorUsedError;
+  UserStatus get status => throw _privateConstructorUsedError;
+  String get statusMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $UserStateCopyWith<UserState> get copyWith =>
-      _$UserStateCopyWithImpl<UserState>(this as UserState, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is UserState &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.statusMessage, statusMessage) ||
-                other.statusMessage == statusMessage));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, user, status, statusMessage);
-
-  @override
-  String toString() {
-    return 'UserState(user: $user, status: $status, statusMessage: $statusMessage)';
-  }
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $UserStateCopyWith<$Res> {
-  factory $UserStateCopyWith(UserState value, $Res Function(UserState) _then) =
-      _$UserStateCopyWithImpl;
+abstract class $UserStateCopyWith<$Res> {
+  factory $UserStateCopyWith(UserState value, $Res Function(UserState) then) =
+      _$UserStateCopyWithImpl<$Res, UserState>;
   @useResult
   $Res call({UserModel? user, UserStatus status, String statusMessage});
 
@@ -705,11 +2230,14 @@ abstract mixin class $UserStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UserStateCopyWithImpl<$Res> implements $UserStateCopyWith<$Res> {
-  _$UserStateCopyWithImpl(this._self, this._then);
+class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
+    implements $UserStateCopyWith<$Res> {
+  _$UserStateCopyWithImpl(this._value, this._then);
 
-  final UserState _self;
-  final $Res Function(UserState) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
@@ -720,20 +2248,26 @@ class _$UserStateCopyWithImpl<$Res> implements $UserStateCopyWith<$Res> {
     Object? status = null,
     Object? statusMessage = null,
   }) {
-    return _then(_self.copyWith(
-      user: freezed == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel?,
-      status: null == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as UserStatus,
-      statusMessage: null == statusMessage
-          ? _self.statusMessage
-          : statusMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      _value.copyWith(
+            user:
+                freezed == user
+                    ? _value.user
+                    : user // ignore: cast_nullable_to_non_nullable
+                        as UserModel?,
+            status:
+                null == status
+                    ? _value.status
+                    : status // ignore: cast_nullable_to_non_nullable
+                        as UserStatus,
+            statusMessage:
+                null == statusMessage
+                    ? _value.statusMessage
+                    : statusMessage // ignore: cast_nullable_to_non_nullable
+                        as String,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of UserState
@@ -741,23 +2275,79 @@ class _$UserStateCopyWithImpl<$Res> implements $UserStateCopyWith<$Res> {
   @override
   @pragma('vm:prefer-inline')
   $UserModelCopyWith<$Res>? get user {
-    if (_self.user == null) {
+    if (_value.user == null) {
       return null;
     }
 
-    return $UserModelCopyWith<$Res>(_self.user!, (value) {
-      return _then(_self.copyWith(user: value));
+    return $UserModelCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
     });
   }
 }
 
 /// @nodoc
+abstract class _$$UserStateImplCopyWith<$Res>
+    implements $UserStateCopyWith<$Res> {
+  factory _$$UserStateImplCopyWith(
+    _$UserStateImpl value,
+    $Res Function(_$UserStateImpl) then,
+  ) = __$$UserStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({UserModel? user, UserStatus status, String statusMessage});
 
-class _UserState implements UserState {
-  const _UserState(
-      {required this.user,
-      required this.status,
-      this.statusMessage = 'Some error occurred'});
+  @override
+  $UserModelCopyWith<$Res>? get user;
+}
+
+/// @nodoc
+class __$$UserStateImplCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res, _$UserStateImpl>
+    implements _$$UserStateImplCopyWith<$Res> {
+  __$$UserStateImplCopyWithImpl(
+    _$UserStateImpl _value,
+    $Res Function(_$UserStateImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = freezed,
+    Object? status = null,
+    Object? statusMessage = null,
+  }) {
+    return _then(
+      _$UserStateImpl(
+        user:
+            freezed == user
+                ? _value.user
+                : user // ignore: cast_nullable_to_non_nullable
+                    as UserModel?,
+        status:
+            null == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                    as UserStatus,
+        statusMessage:
+            null == statusMessage
+                ? _value.statusMessage
+                : statusMessage // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$UserStateImpl implements _UserState {
+  const _$UserStateImpl({
+    required this.user,
+    required this.status,
+    this.statusMessage = 'Some error occurred',
+  });
 
   @override
   final UserModel? user;
@@ -767,19 +2357,16 @@ class _UserState implements UserState {
   @JsonKey()
   final String statusMessage;
 
-  /// Create a copy of UserState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$UserStateCopyWith<_UserState> get copyWith =>
-      __$UserStateCopyWithImpl<_UserState>(this, _$identity);
+  String toString() {
+    return 'UserState(user: $user, status: $status, statusMessage: $statusMessage)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _UserState &&
+            other is _$UserStateImpl &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.statusMessage, statusMessage) ||
@@ -789,71 +2376,33 @@ class _UserState implements UserState {
   @override
   int get hashCode => Object.hash(runtimeType, user, status, statusMessage);
 
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'UserState(user: $user, status: $status, statusMessage: $statusMessage)';
-  }
+  @pragma('vm:prefer-inline')
+  _$$UserStateImplCopyWith<_$UserStateImpl> get copyWith =>
+      __$$UserStateImplCopyWithImpl<_$UserStateImpl>(this, _$identity);
 }
 
-/// @nodoc
-abstract mixin class _$UserStateCopyWith<$Res>
-    implements $UserStateCopyWith<$Res> {
-  factory _$UserStateCopyWith(
-          _UserState value, $Res Function(_UserState) _then) =
-      __$UserStateCopyWithImpl;
-  @override
-  @useResult
-  $Res call({UserModel? user, UserStatus status, String statusMessage});
+abstract class _UserState implements UserState {
+  const factory _UserState({
+    required final UserModel? user,
+    required final UserStatus status,
+    final String statusMessage,
+  }) = _$UserStateImpl;
 
   @override
-  $UserModelCopyWith<$Res>? get user;
-}
-
-/// @nodoc
-class __$UserStateCopyWithImpl<$Res> implements _$UserStateCopyWith<$Res> {
-  __$UserStateCopyWithImpl(this._self, this._then);
-
-  final _UserState _self;
-  final $Res Function(_UserState) _then;
+  UserModel? get user;
+  @override
+  UserStatus get status;
+  @override
+  String get statusMessage;
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? user = freezed,
-    Object? status = null,
-    Object? statusMessage = null,
-  }) {
-    return _then(_UserState(
-      user: freezed == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel?,
-      status: null == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as UserStatus,
-      statusMessage: null == statusMessage
-          ? _self.statusMessage
-          : statusMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-
-  /// Create a copy of UserState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserModelCopyWith<$Res>? get user {
-    if (_self.user == null) {
-      return null;
-    }
-
-    return $UserModelCopyWith<$Res>(_self.user!, (value) {
-      return _then(_self.copyWith(user: value));
-    });
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UserStateImplCopyWith<_$UserStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
-
-// dart format on

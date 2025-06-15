@@ -1,4 +1,3 @@
-// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,68 +9,86 @@ part of 'auth_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$AuthEvent {
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is AuthEvent);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  String toString() {
-    return 'AuthEvent()';
-  }
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserModel user) userModified,
+    required TResult Function(UserModel user, String token) userAuthenticated,
+    required TResult Function() userReset,
+    required TResult Function() checkUserAuthState,
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(UserModel user)? userModified,
+    TResult? Function(UserModel user, String token)? userAuthenticated,
+    TResult? Function()? userReset,
+    TResult? Function()? checkUserAuthState,
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserModel user)? userModified,
+    TResult Function(UserModel user, String token)? userAuthenticated,
+    TResult Function()? userReset,
+    TResult Function()? checkUserAuthState,
+    required TResult orElse(),
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserModified value) userModified,
+    required TResult Function(UserAuthenticated value) userAuthenticated,
+    required TResult Function(UserReset value) userReset,
+    required TResult Function(CheckUserAuthState value) checkUserAuthState,
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserModified value)? userModified,
+    TResult? Function(UserAuthenticated value)? userAuthenticated,
+    TResult? Function(UserReset value)? userReset,
+    TResult? Function(CheckUserAuthState value)? checkUserAuthState,
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserModified value)? userModified,
+    TResult Function(UserAuthenticated value)? userAuthenticated,
+    TResult Function(UserReset value)? userReset,
+    TResult Function(CheckUserAuthState value)? checkUserAuthState,
+    required TResult orElse(),
+  }) => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-class $AuthEventCopyWith<$Res> {
-  $AuthEventCopyWith(AuthEvent _, $Res Function(AuthEvent) __);
+abstract class $AuthEventCopyWith<$Res> {
+  factory $AuthEventCopyWith(AuthEvent value, $Res Function(AuthEvent) then) =
+      _$AuthEventCopyWithImpl<$Res, AuthEvent>;
 }
 
 /// @nodoc
+class _$AuthEventCopyWithImpl<$Res, $Val extends AuthEvent>
+    implements $AuthEventCopyWith<$Res> {
+  _$AuthEventCopyWithImpl(this._value, this._then);
 
-class UserModified implements AuthEvent {
-  const UserModified({required this.user});
-
-  final UserModel user;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of AuthEvent
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $UserModifiedCopyWith<UserModified> get copyWith =>
-      _$UserModifiedCopyWithImpl<UserModified>(this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is UserModified &&
-            (identical(other.user, user) || other.user == user));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, user);
-
-  @override
-  String toString() {
-    return 'AuthEvent.userModified(user: $user)';
-  }
 }
 
 /// @nodoc
-abstract mixin class $UserModifiedCopyWith<$Res>
-    implements $AuthEventCopyWith<$Res> {
-  factory $UserModifiedCopyWith(
-          UserModified value, $Res Function(UserModified) _then) =
-      _$UserModifiedCopyWithImpl;
+abstract class _$$UserModifiedImplCopyWith<$Res> {
+  factory _$$UserModifiedImplCopyWith(
+    _$UserModifiedImpl value,
+    $Res Function(_$UserModifiedImpl) then,
+  ) = __$$UserModifiedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({UserModel user});
 
@@ -79,24 +96,28 @@ abstract mixin class $UserModifiedCopyWith<$Res>
 }
 
 /// @nodoc
-class _$UserModifiedCopyWithImpl<$Res> implements $UserModifiedCopyWith<$Res> {
-  _$UserModifiedCopyWithImpl(this._self, this._then);
-
-  final UserModified _self;
-  final $Res Function(UserModified) _then;
+class __$$UserModifiedImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$UserModifiedImpl>
+    implements _$$UserModifiedImplCopyWith<$Res> {
+  __$$UserModifiedImplCopyWithImpl(
+    _$UserModifiedImpl _value,
+    $Res Function(_$UserModifiedImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of AuthEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? user = null,
-  }) {
-    return _then(UserModified(
-      user: null == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
-    ));
+  @override
+  $Res call({Object? user = null}) {
+    return _then(
+      _$UserModifiedImpl(
+        user:
+            null == user
+                ? _value.user
+                : user // ignore: cast_nullable_to_non_nullable
+                    as UserModel,
+      ),
+    );
   }
 
   /// Create a copy of AuthEvent
@@ -104,51 +125,138 @@ class _$UserModifiedCopyWithImpl<$Res> implements $UserModifiedCopyWith<$Res> {
   @override
   @pragma('vm:prefer-inline')
   $UserModelCopyWith<$Res> get user {
-    return $UserModelCopyWith<$Res>(_self.user, (value) {
-      return _then(_self.copyWith(user: value));
+    return $UserModelCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
     });
   }
 }
 
 /// @nodoc
 
-class UserAuthenticated implements AuthEvent {
-  const UserAuthenticated({required this.user, required this.token});
+class _$UserModifiedImpl implements UserModified {
+  const _$UserModifiedImpl({required this.user});
 
+  @override
   final UserModel user;
-  final String token;
 
-  /// Create a copy of AuthEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $UserAuthenticatedCopyWith<UserAuthenticated> get copyWith =>
-      _$UserAuthenticatedCopyWithImpl<UserAuthenticated>(this, _$identity);
+  @override
+  String toString() {
+    return 'AuthEvent.userModified(user: $user)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is UserAuthenticated &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.token, token) || other.token == token));
+            other is _$UserModifiedImpl &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user, token);
+  int get hashCode => Object.hash(runtimeType, user);
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserModifiedImplCopyWith<_$UserModifiedImpl> get copyWith =>
+      __$$UserModifiedImplCopyWithImpl<_$UserModifiedImpl>(this, _$identity);
 
   @override
-  String toString() {
-    return 'AuthEvent.userAuthenticated(user: $user, token: $token)';
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserModel user) userModified,
+    required TResult Function(UserModel user, String token) userAuthenticated,
+    required TResult Function() userReset,
+    required TResult Function() checkUserAuthState,
+  }) {
+    return userModified(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(UserModel user)? userModified,
+    TResult? Function(UserModel user, String token)? userAuthenticated,
+    TResult? Function()? userReset,
+    TResult? Function()? checkUserAuthState,
+  }) {
+    return userModified?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserModel user)? userModified,
+    TResult Function(UserModel user, String token)? userAuthenticated,
+    TResult Function()? userReset,
+    TResult Function()? checkUserAuthState,
+    required TResult orElse(),
+  }) {
+    if (userModified != null) {
+      return userModified(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserModified value) userModified,
+    required TResult Function(UserAuthenticated value) userAuthenticated,
+    required TResult Function(UserReset value) userReset,
+    required TResult Function(CheckUserAuthState value) checkUserAuthState,
+  }) {
+    return userModified(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserModified value)? userModified,
+    TResult? Function(UserAuthenticated value)? userAuthenticated,
+    TResult? Function(UserReset value)? userReset,
+    TResult? Function(CheckUserAuthState value)? checkUserAuthState,
+  }) {
+    return userModified?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserModified value)? userModified,
+    TResult Function(UserAuthenticated value)? userAuthenticated,
+    TResult Function(UserReset value)? userReset,
+    TResult Function(CheckUserAuthState value)? checkUserAuthState,
+    required TResult orElse(),
+  }) {
+    if (userModified != null) {
+      return userModified(this);
+    }
+    return orElse();
   }
 }
 
+abstract class UserModified implements AuthEvent {
+  const factory UserModified({required final UserModel user}) =
+      _$UserModifiedImpl;
+
+  UserModel get user;
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UserModifiedImplCopyWith<_$UserModifiedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 /// @nodoc
-abstract mixin class $UserAuthenticatedCopyWith<$Res>
-    implements $AuthEventCopyWith<$Res> {
-  factory $UserAuthenticatedCopyWith(
-          UserAuthenticated value, $Res Function(UserAuthenticated) _then) =
-      _$UserAuthenticatedCopyWithImpl;
+abstract class _$$UserAuthenticatedImplCopyWith<$Res> {
+  factory _$$UserAuthenticatedImplCopyWith(
+    _$UserAuthenticatedImpl value,
+    $Res Function(_$UserAuthenticatedImpl) then,
+  ) = __$$UserAuthenticatedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({UserModel user, String token});
 
@@ -156,30 +264,33 @@ abstract mixin class $UserAuthenticatedCopyWith<$Res>
 }
 
 /// @nodoc
-class _$UserAuthenticatedCopyWithImpl<$Res>
-    implements $UserAuthenticatedCopyWith<$Res> {
-  _$UserAuthenticatedCopyWithImpl(this._self, this._then);
-
-  final UserAuthenticated _self;
-  final $Res Function(UserAuthenticated) _then;
+class __$$UserAuthenticatedImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$UserAuthenticatedImpl>
+    implements _$$UserAuthenticatedImplCopyWith<$Res> {
+  __$$UserAuthenticatedImplCopyWithImpl(
+    _$UserAuthenticatedImpl _value,
+    $Res Function(_$UserAuthenticatedImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of AuthEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? user = null,
-    Object? token = null,
-  }) {
-    return _then(UserAuthenticated(
-      user: null == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
-      token: null == token
-          ? _self.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  @override
+  $Res call({Object? user = null, Object? token = null}) {
+    return _then(
+      _$UserAuthenticatedImpl(
+        user:
+            null == user
+                ? _value.user
+                : user // ignore: cast_nullable_to_non_nullable
+                    as UserModel,
+        token:
+            null == token
+                ? _value.token
+                : token // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 
   /// Create a copy of AuthEvent
@@ -187,89 +298,396 @@ class _$UserAuthenticatedCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $UserModelCopyWith<$Res> get user {
-    return $UserModelCopyWith<$Res>(_self.user, (value) {
-      return _then(_self.copyWith(user: value));
+    return $UserModelCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
     });
   }
 }
 
 /// @nodoc
 
-class UserReset implements AuthEvent {
-  const UserReset();
+class _$UserAuthenticatedImpl implements UserAuthenticated {
+  const _$UserAuthenticatedImpl({required this.user, required this.token});
 
   @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is UserReset);
-  }
-
+  final UserModel user;
   @override
-  int get hashCode => runtimeType.hashCode;
+  final String token;
 
   @override
   String toString() {
-    return 'AuthEvent.userReset()';
+    return 'AuthEvent.userAuthenticated(user: $user, token: $token)';
   }
-}
-
-/// @nodoc
-
-class CheckUserAuthState implements AuthEvent {
-  const CheckUserAuthState();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is CheckUserAuthState);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  String toString() {
-    return 'AuthEvent.checkUserAuthState()';
-  }
-}
-
-/// @nodoc
-mixin _$AuthState {
-  AuthUser? get authUser;
-  String? get token;
-  bool? get isAuth;
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $AuthStateCopyWith<AuthState> get copyWith =>
-      _$AuthStateCopyWithImpl<AuthState>(this as AuthState, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AuthState &&
-            (identical(other.authUser, authUser) ||
-                other.authUser == authUser) &&
-            (identical(other.token, token) || other.token == token) &&
-            (identical(other.isAuth, isAuth) || other.isAuth == isAuth));
+            other is _$UserAuthenticatedImpl &&
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.token, token) || other.token == token));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, authUser, token, isAuth);
+  int get hashCode => Object.hash(runtimeType, user, token);
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserAuthenticatedImplCopyWith<_$UserAuthenticatedImpl> get copyWith =>
+      __$$UserAuthenticatedImplCopyWithImpl<_$UserAuthenticatedImpl>(
+        this,
+        _$identity,
+      );
 
   @override
-  String toString() {
-    return 'AuthState(authUser: $authUser, token: $token, isAuth: $isAuth)';
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserModel user) userModified,
+    required TResult Function(UserModel user, String token) userAuthenticated,
+    required TResult Function() userReset,
+    required TResult Function() checkUserAuthState,
+  }) {
+    return userAuthenticated(user, token);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(UserModel user)? userModified,
+    TResult? Function(UserModel user, String token)? userAuthenticated,
+    TResult? Function()? userReset,
+    TResult? Function()? checkUserAuthState,
+  }) {
+    return userAuthenticated?.call(user, token);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserModel user)? userModified,
+    TResult Function(UserModel user, String token)? userAuthenticated,
+    TResult Function()? userReset,
+    TResult Function()? checkUserAuthState,
+    required TResult orElse(),
+  }) {
+    if (userAuthenticated != null) {
+      return userAuthenticated(user, token);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserModified value) userModified,
+    required TResult Function(UserAuthenticated value) userAuthenticated,
+    required TResult Function(UserReset value) userReset,
+    required TResult Function(CheckUserAuthState value) checkUserAuthState,
+  }) {
+    return userAuthenticated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserModified value)? userModified,
+    TResult? Function(UserAuthenticated value)? userAuthenticated,
+    TResult? Function(UserReset value)? userReset,
+    TResult? Function(CheckUserAuthState value)? checkUserAuthState,
+  }) {
+    return userAuthenticated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserModified value)? userModified,
+    TResult Function(UserAuthenticated value)? userAuthenticated,
+    TResult Function(UserReset value)? userReset,
+    TResult Function(CheckUserAuthState value)? checkUserAuthState,
+    required TResult orElse(),
+  }) {
+    if (userAuthenticated != null) {
+      return userAuthenticated(this);
+    }
+    return orElse();
   }
 }
 
+abstract class UserAuthenticated implements AuthEvent {
+  const factory UserAuthenticated({
+    required final UserModel user,
+    required final String token,
+  }) = _$UserAuthenticatedImpl;
+
+  UserModel get user;
+  String get token;
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UserAuthenticatedImplCopyWith<_$UserAuthenticatedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 /// @nodoc
-abstract mixin class $AuthStateCopyWith<$Res> {
-  factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) _then) =
-      _$AuthStateCopyWithImpl;
+abstract class _$$UserResetImplCopyWith<$Res> {
+  factory _$$UserResetImplCopyWith(
+    _$UserResetImpl value,
+    $Res Function(_$UserResetImpl) then,
+  ) = __$$UserResetImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UserResetImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$UserResetImpl>
+    implements _$$UserResetImplCopyWith<$Res> {
+  __$$UserResetImplCopyWithImpl(
+    _$UserResetImpl _value,
+    $Res Function(_$UserResetImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$UserResetImpl implements UserReset {
+  const _$UserResetImpl();
+
+  @override
+  String toString() {
+    return 'AuthEvent.userReset()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$UserResetImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserModel user) userModified,
+    required TResult Function(UserModel user, String token) userAuthenticated,
+    required TResult Function() userReset,
+    required TResult Function() checkUserAuthState,
+  }) {
+    return userReset();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(UserModel user)? userModified,
+    TResult? Function(UserModel user, String token)? userAuthenticated,
+    TResult? Function()? userReset,
+    TResult? Function()? checkUserAuthState,
+  }) {
+    return userReset?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserModel user)? userModified,
+    TResult Function(UserModel user, String token)? userAuthenticated,
+    TResult Function()? userReset,
+    TResult Function()? checkUserAuthState,
+    required TResult orElse(),
+  }) {
+    if (userReset != null) {
+      return userReset();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserModified value) userModified,
+    required TResult Function(UserAuthenticated value) userAuthenticated,
+    required TResult Function(UserReset value) userReset,
+    required TResult Function(CheckUserAuthState value) checkUserAuthState,
+  }) {
+    return userReset(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserModified value)? userModified,
+    TResult? Function(UserAuthenticated value)? userAuthenticated,
+    TResult? Function(UserReset value)? userReset,
+    TResult? Function(CheckUserAuthState value)? checkUserAuthState,
+  }) {
+    return userReset?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserModified value)? userModified,
+    TResult Function(UserAuthenticated value)? userAuthenticated,
+    TResult Function(UserReset value)? userReset,
+    TResult Function(CheckUserAuthState value)? checkUserAuthState,
+    required TResult orElse(),
+  }) {
+    if (userReset != null) {
+      return userReset(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserReset implements AuthEvent {
+  const factory UserReset() = _$UserResetImpl;
+}
+
+/// @nodoc
+abstract class _$$CheckUserAuthStateImplCopyWith<$Res> {
+  factory _$$CheckUserAuthStateImplCopyWith(
+    _$CheckUserAuthStateImpl value,
+    $Res Function(_$CheckUserAuthStateImpl) then,
+  ) = __$$CheckUserAuthStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CheckUserAuthStateImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$CheckUserAuthStateImpl>
+    implements _$$CheckUserAuthStateImplCopyWith<$Res> {
+  __$$CheckUserAuthStateImplCopyWithImpl(
+    _$CheckUserAuthStateImpl _value,
+    $Res Function(_$CheckUserAuthStateImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$CheckUserAuthStateImpl implements CheckUserAuthState {
+  const _$CheckUserAuthStateImpl();
+
+  @override
+  String toString() {
+    return 'AuthEvent.checkUserAuthState()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$CheckUserAuthStateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserModel user) userModified,
+    required TResult Function(UserModel user, String token) userAuthenticated,
+    required TResult Function() userReset,
+    required TResult Function() checkUserAuthState,
+  }) {
+    return checkUserAuthState();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(UserModel user)? userModified,
+    TResult? Function(UserModel user, String token)? userAuthenticated,
+    TResult? Function()? userReset,
+    TResult? Function()? checkUserAuthState,
+  }) {
+    return checkUserAuthState?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserModel user)? userModified,
+    TResult Function(UserModel user, String token)? userAuthenticated,
+    TResult Function()? userReset,
+    TResult Function()? checkUserAuthState,
+    required TResult orElse(),
+  }) {
+    if (checkUserAuthState != null) {
+      return checkUserAuthState();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserModified value) userModified,
+    required TResult Function(UserAuthenticated value) userAuthenticated,
+    required TResult Function(UserReset value) userReset,
+    required TResult Function(CheckUserAuthState value) checkUserAuthState,
+  }) {
+    return checkUserAuthState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserModified value)? userModified,
+    TResult? Function(UserAuthenticated value)? userAuthenticated,
+    TResult? Function(UserReset value)? userReset,
+    TResult? Function(CheckUserAuthState value)? checkUserAuthState,
+  }) {
+    return checkUserAuthState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserModified value)? userModified,
+    TResult Function(UserAuthenticated value)? userAuthenticated,
+    TResult Function(UserReset value)? userReset,
+    TResult Function(CheckUserAuthState value)? checkUserAuthState,
+    required TResult orElse(),
+  }) {
+    if (checkUserAuthState != null) {
+      return checkUserAuthState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CheckUserAuthState implements AuthEvent {
+  const factory CheckUserAuthState() = _$CheckUserAuthStateImpl;
+}
+
+/// @nodoc
+mixin _$AuthState {
+  AuthUser? get authUser => throw _privateConstructorUsedError;
+  String? get token => throw _privateConstructorUsedError;
+  bool? get isAuth => throw _privateConstructorUsedError;
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $AuthStateCopyWith<AuthState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AuthStateCopyWith<$Res> {
+  factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
+      _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
   $Res call({AuthUser? authUser, String? token, bool? isAuth});
 
@@ -277,11 +695,14 @@ abstract mixin class $AuthStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
-  _$AuthStateCopyWithImpl(this._self, this._then);
+class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
+    implements $AuthStateCopyWith<$Res> {
+  _$AuthStateCopyWithImpl(this._value, this._then);
 
-  final AuthState _self;
-  final $Res Function(AuthState) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -292,20 +713,26 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
     Object? token = freezed,
     Object? isAuth = freezed,
   }) {
-    return _then(_self.copyWith(
-      authUser: freezed == authUser
-          ? _self.authUser
-          : authUser // ignore: cast_nullable_to_non_nullable
-              as AuthUser?,
-      token: freezed == token
-          ? _self.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isAuth: freezed == isAuth
-          ? _self.isAuth
-          : isAuth // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _value.copyWith(
+            authUser:
+                freezed == authUser
+                    ? _value.authUser
+                    : authUser // ignore: cast_nullable_to_non_nullable
+                        as AuthUser?,
+            token:
+                freezed == token
+                    ? _value.token
+                    : token // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            isAuth:
+                freezed == isAuth
+                    ? _value.isAuth
+                    : isAuth // ignore: cast_nullable_to_non_nullable
+                        as bool?,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of AuthState
@@ -313,20 +740,75 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
   @override
   @pragma('vm:prefer-inline')
   $AuthUserCopyWith<$Res>? get authUser {
-    if (_self.authUser == null) {
+    if (_value.authUser == null) {
       return null;
     }
 
-    return $AuthUserCopyWith<$Res>(_self.authUser!, (value) {
-      return _then(_self.copyWith(authUser: value));
+    return $AuthUserCopyWith<$Res>(_value.authUser!, (value) {
+      return _then(_value.copyWith(authUser: value) as $Val);
     });
   }
 }
 
 /// @nodoc
+abstract class _$$AuthStateImplCopyWith<$Res>
+    implements $AuthStateCopyWith<$Res> {
+  factory _$$AuthStateImplCopyWith(
+    _$AuthStateImpl value,
+    $Res Function(_$AuthStateImpl) then,
+  ) = __$$AuthStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({AuthUser? authUser, String? token, bool? isAuth});
 
-class _AuthState implements AuthState {
-  const _AuthState({this.authUser, this.token, this.isAuth = false});
+  @override
+  $AuthUserCopyWith<$Res>? get authUser;
+}
+
+/// @nodoc
+class __$$AuthStateImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AuthStateImpl>
+    implements _$$AuthStateImplCopyWith<$Res> {
+  __$$AuthStateImplCopyWithImpl(
+    _$AuthStateImpl _value,
+    $Res Function(_$AuthStateImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? authUser = freezed,
+    Object? token = freezed,
+    Object? isAuth = freezed,
+  }) {
+    return _then(
+      _$AuthStateImpl(
+        authUser:
+            freezed == authUser
+                ? _value.authUser
+                : authUser // ignore: cast_nullable_to_non_nullable
+                    as AuthUser?,
+        token:
+            freezed == token
+                ? _value.token
+                : token // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        isAuth:
+            freezed == isAuth
+                ? _value.isAuth
+                : isAuth // ignore: cast_nullable_to_non_nullable
+                    as bool?,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$AuthStateImpl implements _AuthState {
+  const _$AuthStateImpl({this.authUser, this.token, this.isAuth = false});
 
   @override
   final AuthUser? authUser;
@@ -336,19 +818,16 @@ class _AuthState implements AuthState {
   @JsonKey()
   final bool? isAuth;
 
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$AuthStateCopyWith<_AuthState> get copyWith =>
-      __$AuthStateCopyWithImpl<_AuthState>(this, _$identity);
+  String toString() {
+    return 'AuthState(authUser: $authUser, token: $token, isAuth: $isAuth)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AuthState &&
+            other is _$AuthStateImpl &&
             (identical(other.authUser, authUser) ||
                 other.authUser == authUser) &&
             (identical(other.token, token) || other.token == token) &&
@@ -358,71 +837,33 @@ class _AuthState implements AuthState {
   @override
   int get hashCode => Object.hash(runtimeType, authUser, token, isAuth);
 
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'AuthState(authUser: $authUser, token: $token, isAuth: $isAuth)';
-  }
+  @pragma('vm:prefer-inline')
+  _$$AuthStateImplCopyWith<_$AuthStateImpl> get copyWith =>
+      __$$AuthStateImplCopyWithImpl<_$AuthStateImpl>(this, _$identity);
 }
 
-/// @nodoc
-abstract mixin class _$AuthStateCopyWith<$Res>
-    implements $AuthStateCopyWith<$Res> {
-  factory _$AuthStateCopyWith(
-          _AuthState value, $Res Function(_AuthState) _then) =
-      __$AuthStateCopyWithImpl;
-  @override
-  @useResult
-  $Res call({AuthUser? authUser, String? token, bool? isAuth});
+abstract class _AuthState implements AuthState {
+  const factory _AuthState({
+    final AuthUser? authUser,
+    final String? token,
+    final bool? isAuth,
+  }) = _$AuthStateImpl;
 
   @override
-  $AuthUserCopyWith<$Res>? get authUser;
-}
-
-/// @nodoc
-class __$AuthStateCopyWithImpl<$Res> implements _$AuthStateCopyWith<$Res> {
-  __$AuthStateCopyWithImpl(this._self, this._then);
-
-  final _AuthState _self;
-  final $Res Function(_AuthState) _then;
+  AuthUser? get authUser;
+  @override
+  String? get token;
+  @override
+  bool? get isAuth;
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? authUser = freezed,
-    Object? token = freezed,
-    Object? isAuth = freezed,
-  }) {
-    return _then(_AuthState(
-      authUser: freezed == authUser
-          ? _self.authUser
-          : authUser // ignore: cast_nullable_to_non_nullable
-              as AuthUser?,
-      token: freezed == token
-          ? _self.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isAuth: freezed == isAuth
-          ? _self.isAuth
-          : isAuth // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
-  }
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AuthUserCopyWith<$Res>? get authUser {
-    if (_self.authUser == null) {
-      return null;
-    }
-
-    return $AuthUserCopyWith<$Res>(_self.authUser!, (value) {
-      return _then(_self.copyWith(authUser: value));
-    });
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AuthStateImplCopyWith<_$AuthStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
-
-// dart format on

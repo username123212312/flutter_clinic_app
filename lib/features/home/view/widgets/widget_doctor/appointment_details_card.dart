@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/utils.dart';
@@ -6,7 +7,7 @@ import '../../../../../core/utils/utils.dart';
 class AppointmentDetailsCard extends StatelessWidget {
   final String doctorName;
   final String specialty;
-  final String imagePath;
+  final String? imagePath;
   final String hourlyRate;
   final double rating;
   final Color backgroundColor;
@@ -40,7 +41,10 @@ class AppointmentDetailsCard extends StatelessWidget {
             child: CircleAvatar(
               backgroundColor: Pallete.graysGray4,
               radius: 32,
-              backgroundImage: AssetImage(imagePath),
+              backgroundImage:
+                  imagePath == null
+                      ? AssetImage('assets/images/profile.png')
+                      : NetworkImage('${AppConstants.serverUrl}/${imagePath!}'),
             ),
           ),
           const SizedBox(width: 12),

@@ -1,4 +1,3 @@
-// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,72 +9,63 @@ part of 'register_patient_request.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
+
+RegisterPatientRequest _$RegisterPatientRequestFromJson(
+  Map<String, dynamic> json,
+) {
+  return _RegisterPatientRequest.fromJson(json);
+}
 
 /// @nodoc
 mixin _$RegisterPatientRequest {
-  String? get email;
-  String? get phone;
-  String get password;
+  String? get email => throw _privateConstructorUsedError;
+  String? get phone => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
   @JsonKey(name: 'password_confirmation')
-  String get passwordConfirmation;
+  String get passwordConfirmation => throw _privateConstructorUsedError;
+
+  /// Serializes this RegisterPatientRequest to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of RegisterPatientRequest
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $RegisterPatientRequestCopyWith<RegisterPatientRequest> get copyWith =>
-      _$RegisterPatientRequestCopyWithImpl<RegisterPatientRequest>(
-          this as RegisterPatientRequest, _$identity);
-
-  /// Serializes this RegisterPatientRequest to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is RegisterPatientRequest &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.passwordConfirmation, passwordConfirmation) ||
-                other.passwordConfirmation == passwordConfirmation));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, email, phone, password, passwordConfirmation);
-
-  @override
-  String toString() {
-    return 'RegisterPatientRequest(email: $email, phone: $phone, password: $password, passwordConfirmation: $passwordConfirmation)';
-  }
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $RegisterPatientRequestCopyWith<$Res> {
-  factory $RegisterPatientRequestCopyWith(RegisterPatientRequest value,
-          $Res Function(RegisterPatientRequest) _then) =
-      _$RegisterPatientRequestCopyWithImpl;
+abstract class $RegisterPatientRequestCopyWith<$Res> {
+  factory $RegisterPatientRequestCopyWith(
+    RegisterPatientRequest value,
+    $Res Function(RegisterPatientRequest) then,
+  ) = _$RegisterPatientRequestCopyWithImpl<$Res, RegisterPatientRequest>;
   @useResult
-  $Res call(
-      {String? email,
-      String? phone,
-      String password,
-      @JsonKey(name: 'password_confirmation') String passwordConfirmation});
+  $Res call({
+    String? email,
+    String? phone,
+    String password,
+    @JsonKey(name: 'password_confirmation') String passwordConfirmation,
+  });
 }
 
 /// @nodoc
-class _$RegisterPatientRequestCopyWithImpl<$Res>
+class _$RegisterPatientRequestCopyWithImpl<
+  $Res,
+  $Val extends RegisterPatientRequest
+>
     implements $RegisterPatientRequestCopyWith<$Res> {
-  _$RegisterPatientRequestCopyWithImpl(this._self, this._then);
+  _$RegisterPatientRequestCopyWithImpl(this._value, this._then);
 
-  final RegisterPatientRequest _self;
-  final $Res Function(RegisterPatientRequest) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of RegisterPatientRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -87,38 +77,110 @@ class _$RegisterPatientRequestCopyWithImpl<$Res>
     Object? password = null,
     Object? passwordConfirmation = null,
   }) {
-    return _then(_self.copyWith(
-      email: freezed == email
-          ? _self.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: freezed == phone
-          ? _self.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      password: null == password
-          ? _self.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      passwordConfirmation: null == passwordConfirmation
-          ? _self.passwordConfirmation
-          : passwordConfirmation // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      _value.copyWith(
+            email:
+                freezed == email
+                    ? _value.email
+                    : email // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            phone:
+                freezed == phone
+                    ? _value.phone
+                    : phone // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            password:
+                null == password
+                    ? _value.password
+                    : password // ignore: cast_nullable_to_non_nullable
+                        as String,
+            passwordConfirmation:
+                null == passwordConfirmation
+                    ? _value.passwordConfirmation
+                    : passwordConfirmation // ignore: cast_nullable_to_non_nullable
+                        as String,
+          )
+          as $Val,
+    );
+  }
+}
+
+/// @nodoc
+abstract class _$$RegisterPatientRequestImplCopyWith<$Res>
+    implements $RegisterPatientRequestCopyWith<$Res> {
+  factory _$$RegisterPatientRequestImplCopyWith(
+    _$RegisterPatientRequestImpl value,
+    $Res Function(_$RegisterPatientRequestImpl) then,
+  ) = __$$RegisterPatientRequestImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({
+    String? email,
+    String? phone,
+    String password,
+    @JsonKey(name: 'password_confirmation') String passwordConfirmation,
+  });
+}
+
+/// @nodoc
+class __$$RegisterPatientRequestImplCopyWithImpl<$Res>
+    extends
+        _$RegisterPatientRequestCopyWithImpl<$Res, _$RegisterPatientRequestImpl>
+    implements _$$RegisterPatientRequestImplCopyWith<$Res> {
+  __$$RegisterPatientRequestImplCopyWithImpl(
+    _$RegisterPatientRequestImpl _value,
+    $Res Function(_$RegisterPatientRequestImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of RegisterPatientRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = freezed,
+    Object? phone = freezed,
+    Object? password = null,
+    Object? passwordConfirmation = null,
+  }) {
+    return _then(
+      _$RegisterPatientRequestImpl(
+        email:
+            freezed == email
+                ? _value.email
+                : email // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        phone:
+            freezed == phone
+                ? _value.phone
+                : phone // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        password:
+            null == password
+                ? _value.password
+                : password // ignore: cast_nullable_to_non_nullable
+                    as String,
+        passwordConfirmation:
+            null == passwordConfirmation
+                ? _value.passwordConfirmation
+                : passwordConfirmation // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _RegisterPatientRequest implements RegisterPatientRequest {
-  _RegisterPatientRequest(
-      {this.email,
-      this.phone,
-      required this.password,
-      @JsonKey(name: 'password_confirmation')
-      required this.passwordConfirmation});
-  factory _RegisterPatientRequest.fromJson(Map<String, dynamic> json) =>
-      _$RegisterPatientRequestFromJson(json);
+class _$RegisterPatientRequestImpl implements _RegisterPatientRequest {
+  _$RegisterPatientRequestImpl({
+    this.email,
+    this.phone,
+    required this.password,
+    @JsonKey(name: 'password_confirmation') required this.passwordConfirmation,
+  });
+
+  factory _$RegisterPatientRequestImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RegisterPatientRequestImplFromJson(json);
 
   @override
   final String? email;
@@ -130,27 +192,16 @@ class _RegisterPatientRequest implements RegisterPatientRequest {
   @JsonKey(name: 'password_confirmation')
   final String passwordConfirmation;
 
-  /// Create a copy of RegisterPatientRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$RegisterPatientRequestCopyWith<_RegisterPatientRequest> get copyWith =>
-      __$RegisterPatientRequestCopyWithImpl<_RegisterPatientRequest>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$RegisterPatientRequestToJson(
-      this,
-    );
+  String toString() {
+    return 'RegisterPatientRequest(email: $email, phone: $phone, password: $password, passwordConfirmation: $passwordConfirmation)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _RegisterPatientRequest &&
+            other is _$RegisterPatientRequestImpl &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.password, password) ||
@@ -164,64 +215,50 @@ class _RegisterPatientRequest implements RegisterPatientRequest {
   int get hashCode =>
       Object.hash(runtimeType, email, phone, password, passwordConfirmation);
 
+  /// Create a copy of RegisterPatientRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'RegisterPatientRequest(email: $email, phone: $phone, password: $password, passwordConfirmation: $passwordConfirmation)';
+  @pragma('vm:prefer-inline')
+  _$$RegisterPatientRequestImplCopyWith<_$RegisterPatientRequestImpl>
+  get copyWith =>
+      __$$RegisterPatientRequestImplCopyWithImpl<_$RegisterPatientRequestImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$RegisterPatientRequestImplToJson(this);
   }
 }
 
-/// @nodoc
-abstract mixin class _$RegisterPatientRequestCopyWith<$Res>
-    implements $RegisterPatientRequestCopyWith<$Res> {
-  factory _$RegisterPatientRequestCopyWith(_RegisterPatientRequest value,
-          $Res Function(_RegisterPatientRequest) _then) =
-      __$RegisterPatientRequestCopyWithImpl;
+abstract class _RegisterPatientRequest implements RegisterPatientRequest {
+  factory _RegisterPatientRequest({
+    final String? email,
+    final String? phone,
+    required final String password,
+    @JsonKey(name: 'password_confirmation')
+    required final String passwordConfirmation,
+  }) = _$RegisterPatientRequestImpl;
+
+  factory _RegisterPatientRequest.fromJson(Map<String, dynamic> json) =
+      _$RegisterPatientRequestImpl.fromJson;
+
   @override
-  @useResult
-  $Res call(
-      {String? email,
-      String? phone,
-      String password,
-      @JsonKey(name: 'password_confirmation') String passwordConfirmation});
-}
-
-/// @nodoc
-class __$RegisterPatientRequestCopyWithImpl<$Res>
-    implements _$RegisterPatientRequestCopyWith<$Res> {
-  __$RegisterPatientRequestCopyWithImpl(this._self, this._then);
-
-  final _RegisterPatientRequest _self;
-  final $Res Function(_RegisterPatientRequest) _then;
+  String? get email;
+  @override
+  String? get phone;
+  @override
+  String get password;
+  @override
+  @JsonKey(name: 'password_confirmation')
+  String get passwordConfirmation;
 
   /// Create a copy of RegisterPatientRequest
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? email = freezed,
-    Object? phone = freezed,
-    Object? password = null,
-    Object? passwordConfirmation = null,
-  }) {
-    return _then(_RegisterPatientRequest(
-      email: freezed == email
-          ? _self.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: freezed == phone
-          ? _self.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      password: null == password
-          ? _self.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      passwordConfirmation: null == passwordConfirmation
-          ? _self.passwordConfirmation
-          : passwordConfirmation // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$RegisterPatientRequestImplCopyWith<_$RegisterPatientRequestImpl>
+  get copyWith => throw _privateConstructorUsedError;
 }
-
-// dart format on

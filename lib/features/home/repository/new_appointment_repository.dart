@@ -229,7 +229,7 @@ class NewAppointmentRepository {
     }
   }
 
-  Future<Either<AppFailure, AppResponse>> addNewAppointment(
+  Future<Either<AppFailure, AppResponse<int>>> addNewAppointment(
     AddNewAppointmentRequest request,
   ) async {
     try {
@@ -244,7 +244,8 @@ class NewAppointmentRepository {
       );
       if (response.data['statusCode'] < 300) {
         return Right(
-          AppResponse(
+          AppResponse<int>(
+            data: response.data['id'],
             success: true,
             message: 'Appointment added successfully',
             statusCode: response.data['statusCode'],

@@ -1,4 +1,3 @@
-// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,104 +9,127 @@ part of 'patient_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
+
+PatientModel _$PatientModelFromJson(Map<String, dynamic> json) {
+  return _PatientModel.fromJson(json);
+}
 
 /// @nodoc
 mixin _$PatientModel {
-  String get name;
+  String get name => throw _privateConstructorUsedError;
+
+  /// Serializes this PatientModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of PatientModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $PatientModelCopyWith<PatientModel> get copyWith =>
-      _$PatientModelCopyWithImpl<PatientModel>(
-          this as PatientModel, _$identity);
-
-  /// Serializes this PatientModel to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is PatientModel &&
-            (identical(other.name, name) || other.name == name));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, name);
-
-  @override
-  String toString() {
-    return 'PatientModel(name: $name)';
-  }
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $PatientModelCopyWith<$Res> {
+abstract class $PatientModelCopyWith<$Res> {
   factory $PatientModelCopyWith(
-          PatientModel value, $Res Function(PatientModel) _then) =
-      _$PatientModelCopyWithImpl;
+    PatientModel value,
+    $Res Function(PatientModel) then,
+  ) = _$PatientModelCopyWithImpl<$Res, PatientModel>;
   @useResult
   $Res call({String name});
 }
 
 /// @nodoc
-class _$PatientModelCopyWithImpl<$Res> implements $PatientModelCopyWith<$Res> {
-  _$PatientModelCopyWithImpl(this._self, this._then);
+class _$PatientModelCopyWithImpl<$Res, $Val extends PatientModel>
+    implements $PatientModelCopyWith<$Res> {
+  _$PatientModelCopyWithImpl(this._value, this._then);
 
-  final PatientModel _self;
-  final $Res Function(PatientModel) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of PatientModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? name = null,
-  }) {
-    return _then(_self.copyWith(
-      name: null == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? name = null}) {
+    return _then(
+      _value.copyWith(
+            name:
+                null == name
+                    ? _value.name
+                    : name // ignore: cast_nullable_to_non_nullable
+                        as String,
+          )
+          as $Val,
+    );
+  }
+}
+
+/// @nodoc
+abstract class _$$PatientModelImplCopyWith<$Res>
+    implements $PatientModelCopyWith<$Res> {
+  factory _$$PatientModelImplCopyWith(
+    _$PatientModelImpl value,
+    $Res Function(_$PatientModelImpl) then,
+  ) = __$$PatientModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String name});
+}
+
+/// @nodoc
+class __$$PatientModelImplCopyWithImpl<$Res>
+    extends _$PatientModelCopyWithImpl<$Res, _$PatientModelImpl>
+    implements _$$PatientModelImplCopyWith<$Res> {
+  __$$PatientModelImplCopyWithImpl(
+    _$PatientModelImpl _value,
+    $Res Function(_$PatientModelImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of PatientModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? name = null}) {
+    return _then(
+      _$PatientModelImpl(
+        name:
+            null == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _PatientModel implements PatientModel {
-  _PatientModel({required this.name});
-  factory _PatientModel.fromJson(Map<String, dynamic> json) =>
-      _$PatientModelFromJson(json);
+class _$PatientModelImpl implements _PatientModel {
+  _$PatientModelImpl({required this.name});
+
+  factory _$PatientModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PatientModelImplFromJson(json);
 
   @override
   final String name;
 
-  /// Create a copy of PatientModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$PatientModelCopyWith<_PatientModel> get copyWith =>
-      __$PatientModelCopyWithImpl<_PatientModel>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$PatientModelToJson(
-      this,
-    );
+  String toString() {
+    return 'PatientModel(name: $name)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _PatientModel &&
+            other is _$PatientModelImpl &&
             (identical(other.name, name) || other.name == name));
   }
 
@@ -115,45 +137,33 @@ class _PatientModel implements PatientModel {
   @override
   int get hashCode => Object.hash(runtimeType, name);
 
+  /// Create a copy of PatientModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'PatientModel(name: $name)';
+  @pragma('vm:prefer-inline')
+  _$$PatientModelImplCopyWith<_$PatientModelImpl> get copyWith =>
+      __$$PatientModelImplCopyWithImpl<_$PatientModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PatientModelImplToJson(this);
   }
 }
 
-/// @nodoc
-abstract mixin class _$PatientModelCopyWith<$Res>
-    implements $PatientModelCopyWith<$Res> {
-  factory _$PatientModelCopyWith(
-          _PatientModel value, $Res Function(_PatientModel) _then) =
-      __$PatientModelCopyWithImpl;
+abstract class _PatientModel implements PatientModel {
+  factory _PatientModel({required final String name}) = _$PatientModelImpl;
+
+  factory _PatientModel.fromJson(Map<String, dynamic> json) =
+      _$PatientModelImpl.fromJson;
+
   @override
-  @useResult
-  $Res call({String name});
-}
-
-/// @nodoc
-class __$PatientModelCopyWithImpl<$Res>
-    implements _$PatientModelCopyWith<$Res> {
-  __$PatientModelCopyWithImpl(this._self, this._then);
-
-  final _PatientModel _self;
-  final $Res Function(_PatientModel) _then;
+  String get name;
 
   /// Create a copy of PatientModel
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? name = null,
-  }) {
-    return _then(_PatientModel(
-      name: null == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PatientModelImplCopyWith<_$PatientModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
-
-// dart format on

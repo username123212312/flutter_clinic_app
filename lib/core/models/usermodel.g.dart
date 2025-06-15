@@ -6,7 +6,8 @@ part of 'usermodel.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_UserModel _$UserModelFromJson(Map<String, dynamic> json) => _UserModel(
+_$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
+    _$UserModelImpl(
       lastName: json['last_name'] as String?,
       age: (json['age'] as num?)?.toInt(),
       gender: json['gender'] as String?,
@@ -21,7 +22,7 @@ _UserModel _$UserModelFromJson(Map<String, dynamic> json) => _UserModel(
       role: $enumDecodeNullable(_$RoleEnumMap, json['role']) ?? Role.patient,
     );
 
-Map<String, dynamic> _$UserModelToJson(_UserModel instance) =>
+Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
     <String, dynamic>{
       'last_name': instance.lastName,
       'age': instance.age,

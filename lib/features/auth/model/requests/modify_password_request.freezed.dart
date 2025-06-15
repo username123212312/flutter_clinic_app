@@ -1,4 +1,3 @@
-// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,118 +9,149 @@ part of 'modify_password_request.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
+
+ModifyPasswordRequest _$ModifyPasswordRequestFromJson(
+  Map<String, dynamic> json,
+) {
+  return _ModifyPasswordRequest.fromJson(json);
+}
 
 /// @nodoc
 mixin _$ModifyPasswordRequest {
-  String get oldPassword;
-  String get newPassword;
+  String get oldPassword => throw _privateConstructorUsedError;
+  String get newPassword => throw _privateConstructorUsedError;
+
+  /// Serializes this ModifyPasswordRequest to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of ModifyPasswordRequest
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $ModifyPasswordRequestCopyWith<ModifyPasswordRequest> get copyWith =>
-      _$ModifyPasswordRequestCopyWithImpl<ModifyPasswordRequest>(
-          this as ModifyPasswordRequest, _$identity);
-
-  /// Serializes this ModifyPasswordRequest to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is ModifyPasswordRequest &&
-            (identical(other.oldPassword, oldPassword) ||
-                other.oldPassword == oldPassword) &&
-            (identical(other.newPassword, newPassword) ||
-                other.newPassword == newPassword));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, oldPassword, newPassword);
-
-  @override
-  String toString() {
-    return 'ModifyPasswordRequest(oldPassword: $oldPassword, newPassword: $newPassword)';
-  }
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $ModifyPasswordRequestCopyWith<$Res> {
-  factory $ModifyPasswordRequestCopyWith(ModifyPasswordRequest value,
-          $Res Function(ModifyPasswordRequest) _then) =
-      _$ModifyPasswordRequestCopyWithImpl;
+abstract class $ModifyPasswordRequestCopyWith<$Res> {
+  factory $ModifyPasswordRequestCopyWith(
+    ModifyPasswordRequest value,
+    $Res Function(ModifyPasswordRequest) then,
+  ) = _$ModifyPasswordRequestCopyWithImpl<$Res, ModifyPasswordRequest>;
   @useResult
   $Res call({String oldPassword, String newPassword});
 }
 
 /// @nodoc
-class _$ModifyPasswordRequestCopyWithImpl<$Res>
+class _$ModifyPasswordRequestCopyWithImpl<
+  $Res,
+  $Val extends ModifyPasswordRequest
+>
     implements $ModifyPasswordRequestCopyWith<$Res> {
-  _$ModifyPasswordRequestCopyWithImpl(this._self, this._then);
+  _$ModifyPasswordRequestCopyWithImpl(this._value, this._then);
 
-  final ModifyPasswordRequest _self;
-  final $Res Function(ModifyPasswordRequest) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of ModifyPasswordRequest
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? oldPassword = null,
-    Object? newPassword = null,
-  }) {
-    return _then(_self.copyWith(
-      oldPassword: null == oldPassword
-          ? _self.oldPassword
-          : oldPassword // ignore: cast_nullable_to_non_nullable
-              as String,
-      newPassword: null == newPassword
-          ? _self.newPassword
-          : newPassword // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? oldPassword = null, Object? newPassword = null}) {
+    return _then(
+      _value.copyWith(
+            oldPassword:
+                null == oldPassword
+                    ? _value.oldPassword
+                    : oldPassword // ignore: cast_nullable_to_non_nullable
+                        as String,
+            newPassword:
+                null == newPassword
+                    ? _value.newPassword
+                    : newPassword // ignore: cast_nullable_to_non_nullable
+                        as String,
+          )
+          as $Val,
+    );
+  }
+}
+
+/// @nodoc
+abstract class _$$ModifyPasswordRequestImplCopyWith<$Res>
+    implements $ModifyPasswordRequestCopyWith<$Res> {
+  factory _$$ModifyPasswordRequestImplCopyWith(
+    _$ModifyPasswordRequestImpl value,
+    $Res Function(_$ModifyPasswordRequestImpl) then,
+  ) = __$$ModifyPasswordRequestImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String oldPassword, String newPassword});
+}
+
+/// @nodoc
+class __$$ModifyPasswordRequestImplCopyWithImpl<$Res>
+    extends
+        _$ModifyPasswordRequestCopyWithImpl<$Res, _$ModifyPasswordRequestImpl>
+    implements _$$ModifyPasswordRequestImplCopyWith<$Res> {
+  __$$ModifyPasswordRequestImplCopyWithImpl(
+    _$ModifyPasswordRequestImpl _value,
+    $Res Function(_$ModifyPasswordRequestImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of ModifyPasswordRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? oldPassword = null, Object? newPassword = null}) {
+    return _then(
+      _$ModifyPasswordRequestImpl(
+        oldPassword:
+            null == oldPassword
+                ? _value.oldPassword
+                : oldPassword // ignore: cast_nullable_to_non_nullable
+                    as String,
+        newPassword:
+            null == newPassword
+                ? _value.newPassword
+                : newPassword // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _ModifyPasswordRequest implements ModifyPasswordRequest {
-  _ModifyPasswordRequest(
-      {required this.oldPassword, required this.newPassword});
-  factory _ModifyPasswordRequest.fromJson(Map<String, dynamic> json) =>
-      _$ModifyPasswordRequestFromJson(json);
+class _$ModifyPasswordRequestImpl implements _ModifyPasswordRequest {
+  _$ModifyPasswordRequestImpl({
+    required this.oldPassword,
+    required this.newPassword,
+  });
+
+  factory _$ModifyPasswordRequestImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ModifyPasswordRequestImplFromJson(json);
 
   @override
   final String oldPassword;
   @override
   final String newPassword;
 
-  /// Create a copy of ModifyPasswordRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$ModifyPasswordRequestCopyWith<_ModifyPasswordRequest> get copyWith =>
-      __$ModifyPasswordRequestCopyWithImpl<_ModifyPasswordRequest>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$ModifyPasswordRequestToJson(
-      this,
-    );
+  String toString() {
+    return 'ModifyPasswordRequest(oldPassword: $oldPassword, newPassword: $newPassword)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ModifyPasswordRequest &&
+            other is _$ModifyPasswordRequestImpl &&
             (identical(other.oldPassword, oldPassword) ||
                 other.oldPassword == oldPassword) &&
             (identical(other.newPassword, newPassword) ||
@@ -132,50 +162,42 @@ class _ModifyPasswordRequest implements ModifyPasswordRequest {
   @override
   int get hashCode => Object.hash(runtimeType, oldPassword, newPassword);
 
+  /// Create a copy of ModifyPasswordRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'ModifyPasswordRequest(oldPassword: $oldPassword, newPassword: $newPassword)';
+  @pragma('vm:prefer-inline')
+  _$$ModifyPasswordRequestImplCopyWith<_$ModifyPasswordRequestImpl>
+  get copyWith =>
+      __$$ModifyPasswordRequestImplCopyWithImpl<_$ModifyPasswordRequestImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ModifyPasswordRequestImplToJson(this);
   }
 }
 
-/// @nodoc
-abstract mixin class _$ModifyPasswordRequestCopyWith<$Res>
-    implements $ModifyPasswordRequestCopyWith<$Res> {
-  factory _$ModifyPasswordRequestCopyWith(_ModifyPasswordRequest value,
-          $Res Function(_ModifyPasswordRequest) _then) =
-      __$ModifyPasswordRequestCopyWithImpl;
+abstract class _ModifyPasswordRequest implements ModifyPasswordRequest {
+  factory _ModifyPasswordRequest({
+    required final String oldPassword,
+    required final String newPassword,
+  }) = _$ModifyPasswordRequestImpl;
+
+  factory _ModifyPasswordRequest.fromJson(Map<String, dynamic> json) =
+      _$ModifyPasswordRequestImpl.fromJson;
+
   @override
-  @useResult
-  $Res call({String oldPassword, String newPassword});
-}
-
-/// @nodoc
-class __$ModifyPasswordRequestCopyWithImpl<$Res>
-    implements _$ModifyPasswordRequestCopyWith<$Res> {
-  __$ModifyPasswordRequestCopyWithImpl(this._self, this._then);
-
-  final _ModifyPasswordRequest _self;
-  final $Res Function(_ModifyPasswordRequest) _then;
+  String get oldPassword;
+  @override
+  String get newPassword;
 
   /// Create a copy of ModifyPasswordRequest
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? oldPassword = null,
-    Object? newPassword = null,
-  }) {
-    return _then(_ModifyPasswordRequest(
-      oldPassword: null == oldPassword
-          ? _self.oldPassword
-          : oldPassword // ignore: cast_nullable_to_non_nullable
-              as String,
-      newPassword: null == newPassword
-          ? _self.newPassword
-          : newPassword // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ModifyPasswordRequestImplCopyWith<_$ModifyPasswordRequestImpl>
+  get copyWith => throw _privateConstructorUsedError;
 }
-
-// dart format on

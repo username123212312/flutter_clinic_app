@@ -6,8 +6,8 @@ part of 'analysis_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_AnalysisModel _$AnalysisModelFromJson(Map<String, dynamic> json) =>
-    _AnalysisModel(
+_$AnalysisModelImpl _$$AnalysisModelImplFromJson(Map<String, dynamic> json) =>
+    _$AnalysisModelImpl(
       id: (json['id'] as num?)?.toInt() ?? 0,
       name: json['name'] as String,
       description: json['description'] as String?,
@@ -20,7 +20,7 @@ _AnalysisModel _$AnalysisModelFromJson(Map<String, dynamic> json) =>
       patientId: (json['patient_id'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$AnalysisModelToJson(_AnalysisModel instance) =>
+Map<String, dynamic> _$$AnalysisModelImplToJson(_$AnalysisModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

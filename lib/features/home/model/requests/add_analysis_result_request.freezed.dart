@@ -1,4 +1,3 @@
-// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,60 +9,47 @@ part of 'add_analysis_result_request.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$AddAnalysisResultRequest {
-  int get id;
-  String? get filePath;
-  String? get photoPath;
+  int get id => throw _privateConstructorUsedError;
+  String? get filePath => throw _privateConstructorUsedError;
+  String? get photoPath => throw _privateConstructorUsedError;
 
   /// Create a copy of AddAnalysisResultRequest
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $AddAnalysisResultRequestCopyWith<AddAnalysisResultRequest> get copyWith =>
-      _$AddAnalysisResultRequestCopyWithImpl<AddAnalysisResultRequest>(
-          this as AddAnalysisResultRequest, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is AddAnalysisResultRequest &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.filePath, filePath) ||
-                other.filePath == filePath) &&
-            (identical(other.photoPath, photoPath) ||
-                other.photoPath == photoPath));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, id, filePath, photoPath);
-
-  @override
-  String toString() {
-    return 'AddAnalysisResultRequest(id: $id, filePath: $filePath, photoPath: $photoPath)';
-  }
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $AddAnalysisResultRequestCopyWith<$Res> {
-  factory $AddAnalysisResultRequestCopyWith(AddAnalysisResultRequest value,
-          $Res Function(AddAnalysisResultRequest) _then) =
-      _$AddAnalysisResultRequestCopyWithImpl;
+abstract class $AddAnalysisResultRequestCopyWith<$Res> {
+  factory $AddAnalysisResultRequestCopyWith(
+    AddAnalysisResultRequest value,
+    $Res Function(AddAnalysisResultRequest) then,
+  ) = _$AddAnalysisResultRequestCopyWithImpl<$Res, AddAnalysisResultRequest>;
   @useResult
   $Res call({int id, String? filePath, String? photoPath});
 }
 
 /// @nodoc
-class _$AddAnalysisResultRequestCopyWithImpl<$Res>
+class _$AddAnalysisResultRequestCopyWithImpl<
+  $Res,
+  $Val extends AddAnalysisResultRequest
+>
     implements $AddAnalysisResultRequestCopyWith<$Res> {
-  _$AddAnalysisResultRequestCopyWithImpl(this._self, this._then);
+  _$AddAnalysisResultRequestCopyWithImpl(this._value, this._then);
 
-  final AddAnalysisResultRequest _self;
-  final $Res Function(AddAnalysisResultRequest) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of AddAnalysisResultRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -74,27 +60,93 @@ class _$AddAnalysisResultRequestCopyWithImpl<$Res>
     Object? filePath = freezed,
     Object? photoPath = freezed,
   }) {
-    return _then(_self.copyWith(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      filePath: freezed == filePath
-          ? _self.filePath
-          : filePath // ignore: cast_nullable_to_non_nullable
-              as String?,
-      photoPath: freezed == photoPath
-          ? _self.photoPath
-          : photoPath // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _value.copyWith(
+            id:
+                null == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as int,
+            filePath:
+                freezed == filePath
+                    ? _value.filePath
+                    : filePath // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            photoPath:
+                freezed == photoPath
+                    ? _value.photoPath
+                    : photoPath // ignore: cast_nullable_to_non_nullable
+                        as String?,
+          )
+          as $Val,
+    );
+  }
+}
+
+/// @nodoc
+abstract class _$$AddAnalysisResultRequestImplCopyWith<$Res>
+    implements $AddAnalysisResultRequestCopyWith<$Res> {
+  factory _$$AddAnalysisResultRequestImplCopyWith(
+    _$AddAnalysisResultRequestImpl value,
+    $Res Function(_$AddAnalysisResultRequestImpl) then,
+  ) = __$$AddAnalysisResultRequestImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int id, String? filePath, String? photoPath});
+}
+
+/// @nodoc
+class __$$AddAnalysisResultRequestImplCopyWithImpl<$Res>
+    extends
+        _$AddAnalysisResultRequestCopyWithImpl<
+          $Res,
+          _$AddAnalysisResultRequestImpl
+        >
+    implements _$$AddAnalysisResultRequestImplCopyWith<$Res> {
+  __$$AddAnalysisResultRequestImplCopyWithImpl(
+    _$AddAnalysisResultRequestImpl _value,
+    $Res Function(_$AddAnalysisResultRequestImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of AddAnalysisResultRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? filePath = freezed,
+    Object? photoPath = freezed,
+  }) {
+    return _then(
+      _$AddAnalysisResultRequestImpl(
+        id:
+            null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as int,
+        filePath:
+            freezed == filePath
+                ? _value.filePath
+                : filePath // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        photoPath:
+            freezed == photoPath
+                ? _value.photoPath
+                : photoPath // ignore: cast_nullable_to_non_nullable
+                    as String?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
-class _AddAnalysisResultRequest implements AddAnalysisResultRequest {
-  _AddAnalysisResultRequest({required this.id, this.filePath, this.photoPath});
+class _$AddAnalysisResultRequestImpl implements _AddAnalysisResultRequest {
+  _$AddAnalysisResultRequestImpl({
+    required this.id,
+    this.filePath,
+    this.photoPath,
+  });
 
   @override
   final int id;
@@ -103,20 +155,16 @@ class _AddAnalysisResultRequest implements AddAnalysisResultRequest {
   @override
   final String? photoPath;
 
-  /// Create a copy of AddAnalysisResultRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$AddAnalysisResultRequestCopyWith<_AddAnalysisResultRequest> get copyWith =>
-      __$AddAnalysisResultRequestCopyWithImpl<_AddAnalysisResultRequest>(
-          this, _$identity);
+  String toString() {
+    return 'AddAnalysisResultRequest(id: $id, filePath: $filePath, photoPath: $photoPath)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AddAnalysisResultRequest &&
+            other is _$AddAnalysisResultRequestImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.filePath, filePath) ||
                 other.filePath == filePath) &&
@@ -127,55 +175,35 @@ class _AddAnalysisResultRequest implements AddAnalysisResultRequest {
   @override
   int get hashCode => Object.hash(runtimeType, id, filePath, photoPath);
 
+  /// Create a copy of AddAnalysisResultRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'AddAnalysisResultRequest(id: $id, filePath: $filePath, photoPath: $photoPath)';
-  }
+  @pragma('vm:prefer-inline')
+  _$$AddAnalysisResultRequestImplCopyWith<_$AddAnalysisResultRequestImpl>
+  get copyWith => __$$AddAnalysisResultRequestImplCopyWithImpl<
+    _$AddAnalysisResultRequestImpl
+  >(this, _$identity);
 }
 
-/// @nodoc
-abstract mixin class _$AddAnalysisResultRequestCopyWith<$Res>
-    implements $AddAnalysisResultRequestCopyWith<$Res> {
-  factory _$AddAnalysisResultRequestCopyWith(_AddAnalysisResultRequest value,
-          $Res Function(_AddAnalysisResultRequest) _then) =
-      __$AddAnalysisResultRequestCopyWithImpl;
+abstract class _AddAnalysisResultRequest implements AddAnalysisResultRequest {
+  factory _AddAnalysisResultRequest({
+    required final int id,
+    final String? filePath,
+    final String? photoPath,
+  }) = _$AddAnalysisResultRequestImpl;
+
   @override
-  @useResult
-  $Res call({int id, String? filePath, String? photoPath});
-}
-
-/// @nodoc
-class __$AddAnalysisResultRequestCopyWithImpl<$Res>
-    implements _$AddAnalysisResultRequestCopyWith<$Res> {
-  __$AddAnalysisResultRequestCopyWithImpl(this._self, this._then);
-
-  final _AddAnalysisResultRequest _self;
-  final $Res Function(_AddAnalysisResultRequest) _then;
+  int get id;
+  @override
+  String? get filePath;
+  @override
+  String? get photoPath;
 
   /// Create a copy of AddAnalysisResultRequest
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? id = null,
-    Object? filePath = freezed,
-    Object? photoPath = freezed,
-  }) {
-    return _then(_AddAnalysisResultRequest(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      filePath: freezed == filePath
-          ? _self.filePath
-          : filePath // ignore: cast_nullable_to_non_nullable
-              as String?,
-      photoPath: freezed == photoPath
-          ? _self.photoPath
-          : photoPath // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AddAnalysisResultRequestImplCopyWith<_$AddAnalysisResultRequestImpl>
+  get copyWith => throw _privateConstructorUsedError;
 }
-
-// dart format on

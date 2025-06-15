@@ -1,4 +1,3 @@
-// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,90 +9,255 @@ part of 'new_appointment_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$NewAppointmentEvent {
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is NewAppointmentEvent);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  String toString() {
-    return 'NewAppointmentEvent()';
-  }
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clinicsFetched,
+    required TResult Function(ClinicModel clinic) clinicDoctorsFetched,
+    required TResult Function() allDoctorsFetched,
+    required TResult Function(DoctorModel doctor) doctorSelected,
+    required TResult Function(DateTime date) dateSelected,
+    required TResult Function(TimeOfDay time) scheduleSelected,
+    required TResult Function() bookedNewAppointment,
+    required TResult Function(String query) doctorSearched,
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clinicsFetched,
+    TResult? Function(ClinicModel clinic)? clinicDoctorsFetched,
+    TResult? Function()? allDoctorsFetched,
+    TResult? Function(DoctorModel doctor)? doctorSelected,
+    TResult? Function(DateTime date)? dateSelected,
+    TResult? Function(TimeOfDay time)? scheduleSelected,
+    TResult? Function()? bookedNewAppointment,
+    TResult? Function(String query)? doctorSearched,
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clinicsFetched,
+    TResult Function(ClinicModel clinic)? clinicDoctorsFetched,
+    TResult Function()? allDoctorsFetched,
+    TResult Function(DoctorModel doctor)? doctorSelected,
+    TResult Function(DateTime date)? dateSelected,
+    TResult Function(TimeOfDay time)? scheduleSelected,
+    TResult Function()? bookedNewAppointment,
+    TResult Function(String query)? doctorSearched,
+    required TResult orElse(),
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ClinicsFetched value) clinicsFetched,
+    required TResult Function(ClinicDoctorsFetched value) clinicDoctorsFetched,
+    required TResult Function(AllDoctorsFetched value) allDoctorsFetched,
+    required TResult Function(DoctorSelected value) doctorSelected,
+    required TResult Function(DateSelected value) dateSelected,
+    required TResult Function(ScheduleSelected value) scheduleSelected,
+    required TResult Function(BookedNewAppointment value) bookedNewAppointment,
+    required TResult Function(DoctorSearched value) doctorSearched,
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ClinicsFetched value)? clinicsFetched,
+    TResult? Function(ClinicDoctorsFetched value)? clinicDoctorsFetched,
+    TResult? Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult? Function(DoctorSelected value)? doctorSelected,
+    TResult? Function(DateSelected value)? dateSelected,
+    TResult? Function(ScheduleSelected value)? scheduleSelected,
+    TResult? Function(BookedNewAppointment value)? bookedNewAppointment,
+    TResult? Function(DoctorSearched value)? doctorSearched,
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ClinicsFetched value)? clinicsFetched,
+    TResult Function(ClinicDoctorsFetched value)? clinicDoctorsFetched,
+    TResult Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult Function(DoctorSelected value)? doctorSelected,
+    TResult Function(DateSelected value)? dateSelected,
+    TResult Function(ScheduleSelected value)? scheduleSelected,
+    TResult Function(BookedNewAppointment value)? bookedNewAppointment,
+    TResult Function(DoctorSearched value)? doctorSearched,
+    required TResult orElse(),
+  }) => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-class $NewAppointmentEventCopyWith<$Res> {
-  $NewAppointmentEventCopyWith(
-      NewAppointmentEvent _, $Res Function(NewAppointmentEvent) __);
+abstract class $NewAppointmentEventCopyWith<$Res> {
+  factory $NewAppointmentEventCopyWith(
+    NewAppointmentEvent value,
+    $Res Function(NewAppointmentEvent) then,
+  ) = _$NewAppointmentEventCopyWithImpl<$Res, NewAppointmentEvent>;
+}
+
+/// @nodoc
+class _$NewAppointmentEventCopyWithImpl<$Res, $Val extends NewAppointmentEvent>
+    implements $NewAppointmentEventCopyWith<$Res> {
+  _$NewAppointmentEventCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of NewAppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+abstract class _$$ClinicsFetchedImplCopyWith<$Res> {
+  factory _$$ClinicsFetchedImplCopyWith(
+    _$ClinicsFetchedImpl value,
+    $Res Function(_$ClinicsFetchedImpl) then,
+  ) = __$$ClinicsFetchedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClinicsFetchedImplCopyWithImpl<$Res>
+    extends _$NewAppointmentEventCopyWithImpl<$Res, _$ClinicsFetchedImpl>
+    implements _$$ClinicsFetchedImplCopyWith<$Res> {
+  __$$ClinicsFetchedImplCopyWithImpl(
+    _$ClinicsFetchedImpl _value,
+    $Res Function(_$ClinicsFetchedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of NewAppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class ClinicsFetched implements NewAppointmentEvent {
-  const ClinicsFetched();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is ClinicsFetched);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
+class _$ClinicsFetchedImpl implements ClinicsFetched {
+  const _$ClinicsFetchedImpl();
 
   @override
   String toString() {
     return 'NewAppointmentEvent.clinicsFetched()';
   }
-}
-
-/// @nodoc
-
-class ClinicDoctorsFetched implements NewAppointmentEvent {
-  const ClinicDoctorsFetched({required this.clinic});
-
-  final ClinicModel clinic;
-
-  /// Create a copy of NewAppointmentEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $ClinicDoctorsFetchedCopyWith<ClinicDoctorsFetched> get copyWith =>
-      _$ClinicDoctorsFetchedCopyWithImpl<ClinicDoctorsFetched>(
-          this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is ClinicDoctorsFetched &&
-            (identical(other.clinic, clinic) || other.clinic == clinic));
+        (other.runtimeType == runtimeType && other is _$ClinicsFetchedImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, clinic);
+  int get hashCode => runtimeType.hashCode;
 
   @override
-  String toString() {
-    return 'NewAppointmentEvent.clinicDoctorsFetched(clinic: $clinic)';
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clinicsFetched,
+    required TResult Function(ClinicModel clinic) clinicDoctorsFetched,
+    required TResult Function() allDoctorsFetched,
+    required TResult Function(DoctorModel doctor) doctorSelected,
+    required TResult Function(DateTime date) dateSelected,
+    required TResult Function(TimeOfDay time) scheduleSelected,
+    required TResult Function() bookedNewAppointment,
+    required TResult Function(String query) doctorSearched,
+  }) {
+    return clinicsFetched();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clinicsFetched,
+    TResult? Function(ClinicModel clinic)? clinicDoctorsFetched,
+    TResult? Function()? allDoctorsFetched,
+    TResult? Function(DoctorModel doctor)? doctorSelected,
+    TResult? Function(DateTime date)? dateSelected,
+    TResult? Function(TimeOfDay time)? scheduleSelected,
+    TResult? Function()? bookedNewAppointment,
+    TResult? Function(String query)? doctorSearched,
+  }) {
+    return clinicsFetched?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clinicsFetched,
+    TResult Function(ClinicModel clinic)? clinicDoctorsFetched,
+    TResult Function()? allDoctorsFetched,
+    TResult Function(DoctorModel doctor)? doctorSelected,
+    TResult Function(DateTime date)? dateSelected,
+    TResult Function(TimeOfDay time)? scheduleSelected,
+    TResult Function()? bookedNewAppointment,
+    TResult Function(String query)? doctorSearched,
+    required TResult orElse(),
+  }) {
+    if (clinicsFetched != null) {
+      return clinicsFetched();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ClinicsFetched value) clinicsFetched,
+    required TResult Function(ClinicDoctorsFetched value) clinicDoctorsFetched,
+    required TResult Function(AllDoctorsFetched value) allDoctorsFetched,
+    required TResult Function(DoctorSelected value) doctorSelected,
+    required TResult Function(DateSelected value) dateSelected,
+    required TResult Function(ScheduleSelected value) scheduleSelected,
+    required TResult Function(BookedNewAppointment value) bookedNewAppointment,
+    required TResult Function(DoctorSearched value) doctorSearched,
+  }) {
+    return clinicsFetched(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ClinicsFetched value)? clinicsFetched,
+    TResult? Function(ClinicDoctorsFetched value)? clinicDoctorsFetched,
+    TResult? Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult? Function(DoctorSelected value)? doctorSelected,
+    TResult? Function(DateSelected value)? dateSelected,
+    TResult? Function(ScheduleSelected value)? scheduleSelected,
+    TResult? Function(BookedNewAppointment value)? bookedNewAppointment,
+    TResult? Function(DoctorSearched value)? doctorSearched,
+  }) {
+    return clinicsFetched?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ClinicsFetched value)? clinicsFetched,
+    TResult Function(ClinicDoctorsFetched value)? clinicDoctorsFetched,
+    TResult Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult Function(DoctorSelected value)? doctorSelected,
+    TResult Function(DateSelected value)? dateSelected,
+    TResult Function(ScheduleSelected value)? scheduleSelected,
+    TResult Function(BookedNewAppointment value)? bookedNewAppointment,
+    TResult Function(DoctorSearched value)? doctorSearched,
+    required TResult orElse(),
+  }) {
+    if (clinicsFetched != null) {
+      return clinicsFetched(this);
+    }
+    return orElse();
   }
 }
 
+abstract class ClinicsFetched implements NewAppointmentEvent {
+  const factory ClinicsFetched() = _$ClinicsFetchedImpl;
+}
+
 /// @nodoc
-abstract mixin class $ClinicDoctorsFetchedCopyWith<$Res>
-    implements $NewAppointmentEventCopyWith<$Res> {
-  factory $ClinicDoctorsFetchedCopyWith(ClinicDoctorsFetched value,
-          $Res Function(ClinicDoctorsFetched) _then) =
-      _$ClinicDoctorsFetchedCopyWithImpl;
+abstract class _$$ClinicDoctorsFetchedImplCopyWith<$Res> {
+  factory _$$ClinicDoctorsFetchedImplCopyWith(
+    _$ClinicDoctorsFetchedImpl value,
+    $Res Function(_$ClinicDoctorsFetchedImpl) then,
+  ) = __$$ClinicDoctorsFetchedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ClinicModel clinic});
 
@@ -101,25 +265,28 @@ abstract mixin class $ClinicDoctorsFetchedCopyWith<$Res>
 }
 
 /// @nodoc
-class _$ClinicDoctorsFetchedCopyWithImpl<$Res>
-    implements $ClinicDoctorsFetchedCopyWith<$Res> {
-  _$ClinicDoctorsFetchedCopyWithImpl(this._self, this._then);
-
-  final ClinicDoctorsFetched _self;
-  final $Res Function(ClinicDoctorsFetched) _then;
+class __$$ClinicDoctorsFetchedImplCopyWithImpl<$Res>
+    extends _$NewAppointmentEventCopyWithImpl<$Res, _$ClinicDoctorsFetchedImpl>
+    implements _$$ClinicDoctorsFetchedImplCopyWith<$Res> {
+  __$$ClinicDoctorsFetchedImplCopyWithImpl(
+    _$ClinicDoctorsFetchedImpl _value,
+    $Res Function(_$ClinicDoctorsFetchedImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of NewAppointmentEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? clinic = null,
-  }) {
-    return _then(ClinicDoctorsFetched(
-      clinic: null == clinic
-          ? _self.clinic
-          : clinic // ignore: cast_nullable_to_non_nullable
-              as ClinicModel,
-    ));
+  @override
+  $Res call({Object? clinic = null}) {
+    return _then(
+      _$ClinicDoctorsFetchedImpl(
+        clinic:
+            null == clinic
+                ? _value.clinic
+                : clinic // ignore: cast_nullable_to_non_nullable
+                    as ClinicModel,
+      ),
+    );
   }
 
   /// Create a copy of NewAppointmentEvent
@@ -127,69 +294,309 @@ class _$ClinicDoctorsFetchedCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $ClinicModelCopyWith<$Res> get clinic {
-    return $ClinicModelCopyWith<$Res>(_self.clinic, (value) {
-      return _then(_self.copyWith(clinic: value));
+    return $ClinicModelCopyWith<$Res>(_value.clinic, (value) {
+      return _then(_value.copyWith(clinic: value));
     });
   }
 }
 
 /// @nodoc
 
-class AllDoctorsFetched implements NewAppointmentEvent {
-  const AllDoctorsFetched();
+class _$ClinicDoctorsFetchedImpl implements ClinicDoctorsFetched {
+  const _$ClinicDoctorsFetchedImpl({required this.clinic});
+
+  @override
+  final ClinicModel clinic;
+
+  @override
+  String toString() {
+    return 'NewAppointmentEvent.clinicDoctorsFetched(clinic: $clinic)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is AllDoctorsFetched);
+        (other.runtimeType == runtimeType &&
+            other is _$ClinicDoctorsFetchedImpl &&
+            (identical(other.clinic, clinic) || other.clinic == clinic));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, clinic);
+
+  /// Create a copy of NewAppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ClinicDoctorsFetchedImplCopyWith<_$ClinicDoctorsFetchedImpl>
+  get copyWith =>
+      __$$ClinicDoctorsFetchedImplCopyWithImpl<_$ClinicDoctorsFetchedImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clinicsFetched,
+    required TResult Function(ClinicModel clinic) clinicDoctorsFetched,
+    required TResult Function() allDoctorsFetched,
+    required TResult Function(DoctorModel doctor) doctorSelected,
+    required TResult Function(DateTime date) dateSelected,
+    required TResult Function(TimeOfDay time) scheduleSelected,
+    required TResult Function() bookedNewAppointment,
+    required TResult Function(String query) doctorSearched,
+  }) {
+    return clinicDoctorsFetched(clinic);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clinicsFetched,
+    TResult? Function(ClinicModel clinic)? clinicDoctorsFetched,
+    TResult? Function()? allDoctorsFetched,
+    TResult? Function(DoctorModel doctor)? doctorSelected,
+    TResult? Function(DateTime date)? dateSelected,
+    TResult? Function(TimeOfDay time)? scheduleSelected,
+    TResult? Function()? bookedNewAppointment,
+    TResult? Function(String query)? doctorSearched,
+  }) {
+    return clinicDoctorsFetched?.call(clinic);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clinicsFetched,
+    TResult Function(ClinicModel clinic)? clinicDoctorsFetched,
+    TResult Function()? allDoctorsFetched,
+    TResult Function(DoctorModel doctor)? doctorSelected,
+    TResult Function(DateTime date)? dateSelected,
+    TResult Function(TimeOfDay time)? scheduleSelected,
+    TResult Function()? bookedNewAppointment,
+    TResult Function(String query)? doctorSearched,
+    required TResult orElse(),
+  }) {
+    if (clinicDoctorsFetched != null) {
+      return clinicDoctorsFetched(clinic);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ClinicsFetched value) clinicsFetched,
+    required TResult Function(ClinicDoctorsFetched value) clinicDoctorsFetched,
+    required TResult Function(AllDoctorsFetched value) allDoctorsFetched,
+    required TResult Function(DoctorSelected value) doctorSelected,
+    required TResult Function(DateSelected value) dateSelected,
+    required TResult Function(ScheduleSelected value) scheduleSelected,
+    required TResult Function(BookedNewAppointment value) bookedNewAppointment,
+    required TResult Function(DoctorSearched value) doctorSearched,
+  }) {
+    return clinicDoctorsFetched(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ClinicsFetched value)? clinicsFetched,
+    TResult? Function(ClinicDoctorsFetched value)? clinicDoctorsFetched,
+    TResult? Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult? Function(DoctorSelected value)? doctorSelected,
+    TResult? Function(DateSelected value)? dateSelected,
+    TResult? Function(ScheduleSelected value)? scheduleSelected,
+    TResult? Function(BookedNewAppointment value)? bookedNewAppointment,
+    TResult? Function(DoctorSearched value)? doctorSearched,
+  }) {
+    return clinicDoctorsFetched?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ClinicsFetched value)? clinicsFetched,
+    TResult Function(ClinicDoctorsFetched value)? clinicDoctorsFetched,
+    TResult Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult Function(DoctorSelected value)? doctorSelected,
+    TResult Function(DateSelected value)? dateSelected,
+    TResult Function(ScheduleSelected value)? scheduleSelected,
+    TResult Function(BookedNewAppointment value)? bookedNewAppointment,
+    TResult Function(DoctorSearched value)? doctorSearched,
+    required TResult orElse(),
+  }) {
+    if (clinicDoctorsFetched != null) {
+      return clinicDoctorsFetched(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ClinicDoctorsFetched implements NewAppointmentEvent {
+  const factory ClinicDoctorsFetched({required final ClinicModel clinic}) =
+      _$ClinicDoctorsFetchedImpl;
+
+  ClinicModel get clinic;
+
+  /// Create a copy of NewAppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ClinicDoctorsFetchedImplCopyWith<_$ClinicDoctorsFetchedImpl>
+  get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AllDoctorsFetchedImplCopyWith<$Res> {
+  factory _$$AllDoctorsFetchedImplCopyWith(
+    _$AllDoctorsFetchedImpl value,
+    $Res Function(_$AllDoctorsFetchedImpl) then,
+  ) = __$$AllDoctorsFetchedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AllDoctorsFetchedImplCopyWithImpl<$Res>
+    extends _$NewAppointmentEventCopyWithImpl<$Res, _$AllDoctorsFetchedImpl>
+    implements _$$AllDoctorsFetchedImplCopyWith<$Res> {
+  __$$AllDoctorsFetchedImplCopyWithImpl(
+    _$AllDoctorsFetchedImpl _value,
+    $Res Function(_$AllDoctorsFetchedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of NewAppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$AllDoctorsFetchedImpl implements AllDoctorsFetched {
+  const _$AllDoctorsFetchedImpl();
+
+  @override
+  String toString() {
+    return 'NewAppointmentEvent.allDoctorsFetched()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$AllDoctorsFetchedImpl);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
 
   @override
-  String toString() {
-    return 'NewAppointmentEvent.allDoctorsFetched()';
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clinicsFetched,
+    required TResult Function(ClinicModel clinic) clinicDoctorsFetched,
+    required TResult Function() allDoctorsFetched,
+    required TResult Function(DoctorModel doctor) doctorSelected,
+    required TResult Function(DateTime date) dateSelected,
+    required TResult Function(TimeOfDay time) scheduleSelected,
+    required TResult Function() bookedNewAppointment,
+    required TResult Function(String query) doctorSearched,
+  }) {
+    return allDoctorsFetched();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clinicsFetched,
+    TResult? Function(ClinicModel clinic)? clinicDoctorsFetched,
+    TResult? Function()? allDoctorsFetched,
+    TResult? Function(DoctorModel doctor)? doctorSelected,
+    TResult? Function(DateTime date)? dateSelected,
+    TResult? Function(TimeOfDay time)? scheduleSelected,
+    TResult? Function()? bookedNewAppointment,
+    TResult? Function(String query)? doctorSearched,
+  }) {
+    return allDoctorsFetched?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clinicsFetched,
+    TResult Function(ClinicModel clinic)? clinicDoctorsFetched,
+    TResult Function()? allDoctorsFetched,
+    TResult Function(DoctorModel doctor)? doctorSelected,
+    TResult Function(DateTime date)? dateSelected,
+    TResult Function(TimeOfDay time)? scheduleSelected,
+    TResult Function()? bookedNewAppointment,
+    TResult Function(String query)? doctorSearched,
+    required TResult orElse(),
+  }) {
+    if (allDoctorsFetched != null) {
+      return allDoctorsFetched();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ClinicsFetched value) clinicsFetched,
+    required TResult Function(ClinicDoctorsFetched value) clinicDoctorsFetched,
+    required TResult Function(AllDoctorsFetched value) allDoctorsFetched,
+    required TResult Function(DoctorSelected value) doctorSelected,
+    required TResult Function(DateSelected value) dateSelected,
+    required TResult Function(ScheduleSelected value) scheduleSelected,
+    required TResult Function(BookedNewAppointment value) bookedNewAppointment,
+    required TResult Function(DoctorSearched value) doctorSearched,
+  }) {
+    return allDoctorsFetched(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ClinicsFetched value)? clinicsFetched,
+    TResult? Function(ClinicDoctorsFetched value)? clinicDoctorsFetched,
+    TResult? Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult? Function(DoctorSelected value)? doctorSelected,
+    TResult? Function(DateSelected value)? dateSelected,
+    TResult? Function(ScheduleSelected value)? scheduleSelected,
+    TResult? Function(BookedNewAppointment value)? bookedNewAppointment,
+    TResult? Function(DoctorSearched value)? doctorSearched,
+  }) {
+    return allDoctorsFetched?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ClinicsFetched value)? clinicsFetched,
+    TResult Function(ClinicDoctorsFetched value)? clinicDoctorsFetched,
+    TResult Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult Function(DoctorSelected value)? doctorSelected,
+    TResult Function(DateSelected value)? dateSelected,
+    TResult Function(ScheduleSelected value)? scheduleSelected,
+    TResult Function(BookedNewAppointment value)? bookedNewAppointment,
+    TResult Function(DoctorSearched value)? doctorSearched,
+    required TResult orElse(),
+  }) {
+    if (allDoctorsFetched != null) {
+      return allDoctorsFetched(this);
+    }
+    return orElse();
   }
 }
 
-/// @nodoc
-
-class DoctorSelected implements NewAppointmentEvent {
-  const DoctorSelected({required this.doctor});
-
-  final DoctorModel doctor;
-
-  /// Create a copy of NewAppointmentEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $DoctorSelectedCopyWith<DoctorSelected> get copyWith =>
-      _$DoctorSelectedCopyWithImpl<DoctorSelected>(this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is DoctorSelected &&
-            (identical(other.doctor, doctor) || other.doctor == doctor));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, doctor);
-
-  @override
-  String toString() {
-    return 'NewAppointmentEvent.doctorSelected(doctor: $doctor)';
-  }
+abstract class AllDoctorsFetched implements NewAppointmentEvent {
+  const factory AllDoctorsFetched() = _$AllDoctorsFetchedImpl;
 }
 
 /// @nodoc
-abstract mixin class $DoctorSelectedCopyWith<$Res>
-    implements $NewAppointmentEventCopyWith<$Res> {
-  factory $DoctorSelectedCopyWith(
-          DoctorSelected value, $Res Function(DoctorSelected) _then) =
-      _$DoctorSelectedCopyWithImpl;
+abstract class _$$DoctorSelectedImplCopyWith<$Res> {
+  factory _$$DoctorSelectedImplCopyWith(
+    _$DoctorSelectedImpl value,
+    $Res Function(_$DoctorSelectedImpl) then,
+  ) = __$$DoctorSelectedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DoctorModel doctor});
 
@@ -197,25 +604,28 @@ abstract mixin class $DoctorSelectedCopyWith<$Res>
 }
 
 /// @nodoc
-class _$DoctorSelectedCopyWithImpl<$Res>
-    implements $DoctorSelectedCopyWith<$Res> {
-  _$DoctorSelectedCopyWithImpl(this._self, this._then);
-
-  final DoctorSelected _self;
-  final $Res Function(DoctorSelected) _then;
+class __$$DoctorSelectedImplCopyWithImpl<$Res>
+    extends _$NewAppointmentEventCopyWithImpl<$Res, _$DoctorSelectedImpl>
+    implements _$$DoctorSelectedImplCopyWith<$Res> {
+  __$$DoctorSelectedImplCopyWithImpl(
+    _$DoctorSelectedImpl _value,
+    $Res Function(_$DoctorSelectedImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of NewAppointmentEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? doctor = null,
-  }) {
-    return _then(DoctorSelected(
-      doctor: null == doctor
-          ? _self.doctor
-          : doctor // ignore: cast_nullable_to_non_nullable
-              as DoctorModel,
-    ));
+  @override
+  $Res call({Object? doctor = null}) {
+    return _then(
+      _$DoctorSelectedImpl(
+        doctor:
+            null == doctor
+                ? _value.doctor
+                : doctor // ignore: cast_nullable_to_non_nullable
+                    as DoctorModel,
+      ),
+    );
   }
 
   /// Create a copy of NewAppointmentEvent
@@ -223,318 +633,906 @@ class _$DoctorSelectedCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $DoctorModelCopyWith<$Res> get doctor {
-    return $DoctorModelCopyWith<$Res>(_self.doctor, (value) {
-      return _then(_self.copyWith(doctor: value));
+    return $DoctorModelCopyWith<$Res>(_value.doctor, (value) {
+      return _then(_value.copyWith(doctor: value));
     });
   }
 }
 
 /// @nodoc
 
-class DateSelected implements NewAppointmentEvent {
-  const DateSelected({required this.date});
+class _$DoctorSelectedImpl implements DoctorSelected {
+  const _$DoctorSelectedImpl({required this.doctor});
 
-  final DateTime date;
+  @override
+  final DoctorModel doctor;
 
-  /// Create a copy of NewAppointmentEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $DateSelectedCopyWith<DateSelected> get copyWith =>
-      _$DateSelectedCopyWithImpl<DateSelected>(this, _$identity);
+  @override
+  String toString() {
+    return 'NewAppointmentEvent.doctorSelected(doctor: $doctor)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is DateSelected &&
+            other is _$DoctorSelectedImpl &&
+            (identical(other.doctor, doctor) || other.doctor == doctor));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, doctor);
+
+  /// Create a copy of NewAppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DoctorSelectedImplCopyWith<_$DoctorSelectedImpl> get copyWith =>
+      __$$DoctorSelectedImplCopyWithImpl<_$DoctorSelectedImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clinicsFetched,
+    required TResult Function(ClinicModel clinic) clinicDoctorsFetched,
+    required TResult Function() allDoctorsFetched,
+    required TResult Function(DoctorModel doctor) doctorSelected,
+    required TResult Function(DateTime date) dateSelected,
+    required TResult Function(TimeOfDay time) scheduleSelected,
+    required TResult Function() bookedNewAppointment,
+    required TResult Function(String query) doctorSearched,
+  }) {
+    return doctorSelected(doctor);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clinicsFetched,
+    TResult? Function(ClinicModel clinic)? clinicDoctorsFetched,
+    TResult? Function()? allDoctorsFetched,
+    TResult? Function(DoctorModel doctor)? doctorSelected,
+    TResult? Function(DateTime date)? dateSelected,
+    TResult? Function(TimeOfDay time)? scheduleSelected,
+    TResult? Function()? bookedNewAppointment,
+    TResult? Function(String query)? doctorSearched,
+  }) {
+    return doctorSelected?.call(doctor);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clinicsFetched,
+    TResult Function(ClinicModel clinic)? clinicDoctorsFetched,
+    TResult Function()? allDoctorsFetched,
+    TResult Function(DoctorModel doctor)? doctorSelected,
+    TResult Function(DateTime date)? dateSelected,
+    TResult Function(TimeOfDay time)? scheduleSelected,
+    TResult Function()? bookedNewAppointment,
+    TResult Function(String query)? doctorSearched,
+    required TResult orElse(),
+  }) {
+    if (doctorSelected != null) {
+      return doctorSelected(doctor);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ClinicsFetched value) clinicsFetched,
+    required TResult Function(ClinicDoctorsFetched value) clinicDoctorsFetched,
+    required TResult Function(AllDoctorsFetched value) allDoctorsFetched,
+    required TResult Function(DoctorSelected value) doctorSelected,
+    required TResult Function(DateSelected value) dateSelected,
+    required TResult Function(ScheduleSelected value) scheduleSelected,
+    required TResult Function(BookedNewAppointment value) bookedNewAppointment,
+    required TResult Function(DoctorSearched value) doctorSearched,
+  }) {
+    return doctorSelected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ClinicsFetched value)? clinicsFetched,
+    TResult? Function(ClinicDoctorsFetched value)? clinicDoctorsFetched,
+    TResult? Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult? Function(DoctorSelected value)? doctorSelected,
+    TResult? Function(DateSelected value)? dateSelected,
+    TResult? Function(ScheduleSelected value)? scheduleSelected,
+    TResult? Function(BookedNewAppointment value)? bookedNewAppointment,
+    TResult? Function(DoctorSearched value)? doctorSearched,
+  }) {
+    return doctorSelected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ClinicsFetched value)? clinicsFetched,
+    TResult Function(ClinicDoctorsFetched value)? clinicDoctorsFetched,
+    TResult Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult Function(DoctorSelected value)? doctorSelected,
+    TResult Function(DateSelected value)? dateSelected,
+    TResult Function(ScheduleSelected value)? scheduleSelected,
+    TResult Function(BookedNewAppointment value)? bookedNewAppointment,
+    TResult Function(DoctorSearched value)? doctorSearched,
+    required TResult orElse(),
+  }) {
+    if (doctorSelected != null) {
+      return doctorSelected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DoctorSelected implements NewAppointmentEvent {
+  const factory DoctorSelected({required final DoctorModel doctor}) =
+      _$DoctorSelectedImpl;
+
+  DoctorModel get doctor;
+
+  /// Create a copy of NewAppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DoctorSelectedImplCopyWith<_$DoctorSelectedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DateSelectedImplCopyWith<$Res> {
+  factory _$$DateSelectedImplCopyWith(
+    _$DateSelectedImpl value,
+    $Res Function(_$DateSelectedImpl) then,
+  ) = __$$DateSelectedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime date});
+}
+
+/// @nodoc
+class __$$DateSelectedImplCopyWithImpl<$Res>
+    extends _$NewAppointmentEventCopyWithImpl<$Res, _$DateSelectedImpl>
+    implements _$$DateSelectedImplCopyWith<$Res> {
+  __$$DateSelectedImplCopyWithImpl(
+    _$DateSelectedImpl _value,
+    $Res Function(_$DateSelectedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of NewAppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? date = null}) {
+    return _then(
+      _$DateSelectedImpl(
+        date:
+            null == date
+                ? _value.date
+                : date // ignore: cast_nullable_to_non_nullable
+                    as DateTime,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$DateSelectedImpl implements DateSelected {
+  const _$DateSelectedImpl({required this.date});
+
+  @override
+  final DateTime date;
+
+  @override
+  String toString() {
+    return 'NewAppointmentEvent.dateSelected(date: $date)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DateSelectedImpl &&
             (identical(other.date, date) || other.date == date));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, date);
 
-  @override
-  String toString() {
-    return 'NewAppointmentEvent.dateSelected(date: $date)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $DateSelectedCopyWith<$Res>
-    implements $NewAppointmentEventCopyWith<$Res> {
-  factory $DateSelectedCopyWith(
-          DateSelected value, $Res Function(DateSelected) _then) =
-      _$DateSelectedCopyWithImpl;
-  @useResult
-  $Res call({DateTime date});
-}
-
-/// @nodoc
-class _$DateSelectedCopyWithImpl<$Res> implements $DateSelectedCopyWith<$Res> {
-  _$DateSelectedCopyWithImpl(this._self, this._then);
-
-  final DateSelected _self;
-  final $Res Function(DateSelected) _then;
-
   /// Create a copy of NewAppointmentEvent
   /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? date = null,
+  _$$DateSelectedImplCopyWith<_$DateSelectedImpl> get copyWith =>
+      __$$DateSelectedImplCopyWithImpl<_$DateSelectedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clinicsFetched,
+    required TResult Function(ClinicModel clinic) clinicDoctorsFetched,
+    required TResult Function() allDoctorsFetched,
+    required TResult Function(DoctorModel doctor) doctorSelected,
+    required TResult Function(DateTime date) dateSelected,
+    required TResult Function(TimeOfDay time) scheduleSelected,
+    required TResult Function() bookedNewAppointment,
+    required TResult Function(String query) doctorSearched,
   }) {
-    return _then(DateSelected(
-      date: null == date
-          ? _self.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ));
+    return dateSelected(date);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clinicsFetched,
+    TResult? Function(ClinicModel clinic)? clinicDoctorsFetched,
+    TResult? Function()? allDoctorsFetched,
+    TResult? Function(DoctorModel doctor)? doctorSelected,
+    TResult? Function(DateTime date)? dateSelected,
+    TResult? Function(TimeOfDay time)? scheduleSelected,
+    TResult? Function()? bookedNewAppointment,
+    TResult? Function(String query)? doctorSearched,
+  }) {
+    return dateSelected?.call(date);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clinicsFetched,
+    TResult Function(ClinicModel clinic)? clinicDoctorsFetched,
+    TResult Function()? allDoctorsFetched,
+    TResult Function(DoctorModel doctor)? doctorSelected,
+    TResult Function(DateTime date)? dateSelected,
+    TResult Function(TimeOfDay time)? scheduleSelected,
+    TResult Function()? bookedNewAppointment,
+    TResult Function(String query)? doctorSearched,
+    required TResult orElse(),
+  }) {
+    if (dateSelected != null) {
+      return dateSelected(date);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ClinicsFetched value) clinicsFetched,
+    required TResult Function(ClinicDoctorsFetched value) clinicDoctorsFetched,
+    required TResult Function(AllDoctorsFetched value) allDoctorsFetched,
+    required TResult Function(DoctorSelected value) doctorSelected,
+    required TResult Function(DateSelected value) dateSelected,
+    required TResult Function(ScheduleSelected value) scheduleSelected,
+    required TResult Function(BookedNewAppointment value) bookedNewAppointment,
+    required TResult Function(DoctorSearched value) doctorSearched,
+  }) {
+    return dateSelected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ClinicsFetched value)? clinicsFetched,
+    TResult? Function(ClinicDoctorsFetched value)? clinicDoctorsFetched,
+    TResult? Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult? Function(DoctorSelected value)? doctorSelected,
+    TResult? Function(DateSelected value)? dateSelected,
+    TResult? Function(ScheduleSelected value)? scheduleSelected,
+    TResult? Function(BookedNewAppointment value)? bookedNewAppointment,
+    TResult? Function(DoctorSearched value)? doctorSearched,
+  }) {
+    return dateSelected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ClinicsFetched value)? clinicsFetched,
+    TResult Function(ClinicDoctorsFetched value)? clinicDoctorsFetched,
+    TResult Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult Function(DoctorSelected value)? doctorSelected,
+    TResult Function(DateSelected value)? dateSelected,
+    TResult Function(ScheduleSelected value)? scheduleSelected,
+    TResult Function(BookedNewAppointment value)? bookedNewAppointment,
+    TResult Function(DoctorSearched value)? doctorSearched,
+    required TResult orElse(),
+  }) {
+    if (dateSelected != null) {
+      return dateSelected(this);
+    }
+    return orElse();
   }
 }
 
-/// @nodoc
+abstract class DateSelected implements NewAppointmentEvent {
+  const factory DateSelected({required final DateTime date}) =
+      _$DateSelectedImpl;
 
-class ScheduleSelected implements NewAppointmentEvent {
-  const ScheduleSelected({required this.time});
-
-  final TimeOfDay time;
+  DateTime get date;
 
   /// Create a copy of NewAppointmentEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DateSelectedImplCopyWith<_$DateSelectedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ScheduleSelectedImplCopyWith<$Res> {
+  factory _$$ScheduleSelectedImplCopyWith(
+    _$ScheduleSelectedImpl value,
+    $Res Function(_$ScheduleSelectedImpl) then,
+  ) = __$$ScheduleSelectedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({TimeOfDay time});
+}
+
+/// @nodoc
+class __$$ScheduleSelectedImplCopyWithImpl<$Res>
+    extends _$NewAppointmentEventCopyWithImpl<$Res, _$ScheduleSelectedImpl>
+    implements _$$ScheduleSelectedImplCopyWith<$Res> {
+  __$$ScheduleSelectedImplCopyWithImpl(
+    _$ScheduleSelectedImpl _value,
+    $Res Function(_$ScheduleSelectedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of NewAppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  $ScheduleSelectedCopyWith<ScheduleSelected> get copyWith =>
-      _$ScheduleSelectedCopyWithImpl<ScheduleSelected>(this, _$identity);
+  @override
+  $Res call({Object? time = null}) {
+    return _then(
+      _$ScheduleSelectedImpl(
+        time:
+            null == time
+                ? _value.time
+                : time // ignore: cast_nullable_to_non_nullable
+                    as TimeOfDay,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$ScheduleSelectedImpl implements ScheduleSelected {
+  const _$ScheduleSelectedImpl({required this.time});
+
+  @override
+  final TimeOfDay time;
+
+  @override
+  String toString() {
+    return 'NewAppointmentEvent.scheduleSelected(time: $time)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is ScheduleSelected &&
+            other is _$ScheduleSelectedImpl &&
             (identical(other.time, time) || other.time == time));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, time);
 
+  /// Create a copy of NewAppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'NewAppointmentEvent.scheduleSelected(time: $time)';
+  @pragma('vm:prefer-inline')
+  _$$ScheduleSelectedImplCopyWith<_$ScheduleSelectedImpl> get copyWith =>
+      __$$ScheduleSelectedImplCopyWithImpl<_$ScheduleSelectedImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clinicsFetched,
+    required TResult Function(ClinicModel clinic) clinicDoctorsFetched,
+    required TResult Function() allDoctorsFetched,
+    required TResult Function(DoctorModel doctor) doctorSelected,
+    required TResult Function(DateTime date) dateSelected,
+    required TResult Function(TimeOfDay time) scheduleSelected,
+    required TResult Function() bookedNewAppointment,
+    required TResult Function(String query) doctorSearched,
+  }) {
+    return scheduleSelected(time);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clinicsFetched,
+    TResult? Function(ClinicModel clinic)? clinicDoctorsFetched,
+    TResult? Function()? allDoctorsFetched,
+    TResult? Function(DoctorModel doctor)? doctorSelected,
+    TResult? Function(DateTime date)? dateSelected,
+    TResult? Function(TimeOfDay time)? scheduleSelected,
+    TResult? Function()? bookedNewAppointment,
+    TResult? Function(String query)? doctorSearched,
+  }) {
+    return scheduleSelected?.call(time);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clinicsFetched,
+    TResult Function(ClinicModel clinic)? clinicDoctorsFetched,
+    TResult Function()? allDoctorsFetched,
+    TResult Function(DoctorModel doctor)? doctorSelected,
+    TResult Function(DateTime date)? dateSelected,
+    TResult Function(TimeOfDay time)? scheduleSelected,
+    TResult Function()? bookedNewAppointment,
+    TResult Function(String query)? doctorSearched,
+    required TResult orElse(),
+  }) {
+    if (scheduleSelected != null) {
+      return scheduleSelected(time);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ClinicsFetched value) clinicsFetched,
+    required TResult Function(ClinicDoctorsFetched value) clinicDoctorsFetched,
+    required TResult Function(AllDoctorsFetched value) allDoctorsFetched,
+    required TResult Function(DoctorSelected value) doctorSelected,
+    required TResult Function(DateSelected value) dateSelected,
+    required TResult Function(ScheduleSelected value) scheduleSelected,
+    required TResult Function(BookedNewAppointment value) bookedNewAppointment,
+    required TResult Function(DoctorSearched value) doctorSearched,
+  }) {
+    return scheduleSelected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ClinicsFetched value)? clinicsFetched,
+    TResult? Function(ClinicDoctorsFetched value)? clinicDoctorsFetched,
+    TResult? Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult? Function(DoctorSelected value)? doctorSelected,
+    TResult? Function(DateSelected value)? dateSelected,
+    TResult? Function(ScheduleSelected value)? scheduleSelected,
+    TResult? Function(BookedNewAppointment value)? bookedNewAppointment,
+    TResult? Function(DoctorSearched value)? doctorSearched,
+  }) {
+    return scheduleSelected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ClinicsFetched value)? clinicsFetched,
+    TResult Function(ClinicDoctorsFetched value)? clinicDoctorsFetched,
+    TResult Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult Function(DoctorSelected value)? doctorSelected,
+    TResult Function(DateSelected value)? dateSelected,
+    TResult Function(ScheduleSelected value)? scheduleSelected,
+    TResult Function(BookedNewAppointment value)? bookedNewAppointment,
+    TResult Function(DoctorSearched value)? doctorSearched,
+    required TResult orElse(),
+  }) {
+    if (scheduleSelected != null) {
+      return scheduleSelected(this);
+    }
+    return orElse();
   }
 }
 
-/// @nodoc
-abstract mixin class $ScheduleSelectedCopyWith<$Res>
-    implements $NewAppointmentEventCopyWith<$Res> {
-  factory $ScheduleSelectedCopyWith(
-          ScheduleSelected value, $Res Function(ScheduleSelected) _then) =
-      _$ScheduleSelectedCopyWithImpl;
-  @useResult
-  $Res call({TimeOfDay time});
-}
+abstract class ScheduleSelected implements NewAppointmentEvent {
+  const factory ScheduleSelected({required final TimeOfDay time}) =
+      _$ScheduleSelectedImpl;
 
-/// @nodoc
-class _$ScheduleSelectedCopyWithImpl<$Res>
-    implements $ScheduleSelectedCopyWith<$Res> {
-  _$ScheduleSelectedCopyWithImpl(this._self, this._then);
-
-  final ScheduleSelected _self;
-  final $Res Function(ScheduleSelected) _then;
+  TimeOfDay get time;
 
   /// Create a copy of NewAppointmentEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? time = null,
-  }) {
-    return _then(ScheduleSelected(
-      time: null == time
-          ? _self.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ScheduleSelectedImplCopyWith<_$ScheduleSelectedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$BookedNewAppointmentImplCopyWith<$Res> {
+  factory _$$BookedNewAppointmentImplCopyWith(
+    _$BookedNewAppointmentImpl value,
+    $Res Function(_$BookedNewAppointmentImpl) then,
+  ) = __$$BookedNewAppointmentImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$BookedNewAppointmentImplCopyWithImpl<$Res>
+    extends _$NewAppointmentEventCopyWithImpl<$Res, _$BookedNewAppointmentImpl>
+    implements _$$BookedNewAppointmentImplCopyWith<$Res> {
+  __$$BookedNewAppointmentImplCopyWithImpl(
+    _$BookedNewAppointmentImpl _value,
+    $Res Function(_$BookedNewAppointmentImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of NewAppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class BookedNewAppointment implements NewAppointmentEvent {
-  const BookedNewAppointment();
+class _$BookedNewAppointmentImpl implements BookedNewAppointment {
+  const _$BookedNewAppointmentImpl();
+
+  @override
+  String toString() {
+    return 'NewAppointmentEvent.bookedNewAppointment()';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is BookedNewAppointment);
+        (other.runtimeType == runtimeType &&
+            other is _$BookedNewAppointmentImpl);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
 
   @override
-  String toString() {
-    return 'NewAppointmentEvent.bookedNewAppointment()';
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clinicsFetched,
+    required TResult Function(ClinicModel clinic) clinicDoctorsFetched,
+    required TResult Function() allDoctorsFetched,
+    required TResult Function(DoctorModel doctor) doctorSelected,
+    required TResult Function(DateTime date) dateSelected,
+    required TResult Function(TimeOfDay time) scheduleSelected,
+    required TResult Function() bookedNewAppointment,
+    required TResult Function(String query) doctorSearched,
+  }) {
+    return bookedNewAppointment();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clinicsFetched,
+    TResult? Function(ClinicModel clinic)? clinicDoctorsFetched,
+    TResult? Function()? allDoctorsFetched,
+    TResult? Function(DoctorModel doctor)? doctorSelected,
+    TResult? Function(DateTime date)? dateSelected,
+    TResult? Function(TimeOfDay time)? scheduleSelected,
+    TResult? Function()? bookedNewAppointment,
+    TResult? Function(String query)? doctorSearched,
+  }) {
+    return bookedNewAppointment?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clinicsFetched,
+    TResult Function(ClinicModel clinic)? clinicDoctorsFetched,
+    TResult Function()? allDoctorsFetched,
+    TResult Function(DoctorModel doctor)? doctorSelected,
+    TResult Function(DateTime date)? dateSelected,
+    TResult Function(TimeOfDay time)? scheduleSelected,
+    TResult Function()? bookedNewAppointment,
+    TResult Function(String query)? doctorSearched,
+    required TResult orElse(),
+  }) {
+    if (bookedNewAppointment != null) {
+      return bookedNewAppointment();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ClinicsFetched value) clinicsFetched,
+    required TResult Function(ClinicDoctorsFetched value) clinicDoctorsFetched,
+    required TResult Function(AllDoctorsFetched value) allDoctorsFetched,
+    required TResult Function(DoctorSelected value) doctorSelected,
+    required TResult Function(DateSelected value) dateSelected,
+    required TResult Function(ScheduleSelected value) scheduleSelected,
+    required TResult Function(BookedNewAppointment value) bookedNewAppointment,
+    required TResult Function(DoctorSearched value) doctorSearched,
+  }) {
+    return bookedNewAppointment(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ClinicsFetched value)? clinicsFetched,
+    TResult? Function(ClinicDoctorsFetched value)? clinicDoctorsFetched,
+    TResult? Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult? Function(DoctorSelected value)? doctorSelected,
+    TResult? Function(DateSelected value)? dateSelected,
+    TResult? Function(ScheduleSelected value)? scheduleSelected,
+    TResult? Function(BookedNewAppointment value)? bookedNewAppointment,
+    TResult? Function(DoctorSearched value)? doctorSearched,
+  }) {
+    return bookedNewAppointment?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ClinicsFetched value)? clinicsFetched,
+    TResult Function(ClinicDoctorsFetched value)? clinicDoctorsFetched,
+    TResult Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult Function(DoctorSelected value)? doctorSelected,
+    TResult Function(DateSelected value)? dateSelected,
+    TResult Function(ScheduleSelected value)? scheduleSelected,
+    TResult Function(BookedNewAppointment value)? bookedNewAppointment,
+    TResult Function(DoctorSearched value)? doctorSearched,
+    required TResult orElse(),
+  }) {
+    if (bookedNewAppointment != null) {
+      return bookedNewAppointment(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class BookedNewAppointment implements NewAppointmentEvent {
+  const factory BookedNewAppointment() = _$BookedNewAppointmentImpl;
+}
+
+/// @nodoc
+abstract class _$$DoctorSearchedImplCopyWith<$Res> {
+  factory _$$DoctorSearchedImplCopyWith(
+    _$DoctorSearchedImpl value,
+    $Res Function(_$DoctorSearchedImpl) then,
+  ) = __$$DoctorSearchedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String query});
+}
+
+/// @nodoc
+class __$$DoctorSearchedImplCopyWithImpl<$Res>
+    extends _$NewAppointmentEventCopyWithImpl<$Res, _$DoctorSearchedImpl>
+    implements _$$DoctorSearchedImplCopyWith<$Res> {
+  __$$DoctorSearchedImplCopyWithImpl(
+    _$DoctorSearchedImpl _value,
+    $Res Function(_$DoctorSearchedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of NewAppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? query = null}) {
+    return _then(
+      _$DoctorSearchedImpl(
+        query:
+            null == query
+                ? _value.query
+                : query // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
-class DoctorSearched implements NewAppointmentEvent {
-  const DoctorSearched({required this.query});
+class _$DoctorSearchedImpl implements DoctorSearched {
+  const _$DoctorSearchedImpl({required this.query});
 
+  @override
   final String query;
 
-  /// Create a copy of NewAppointmentEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $DoctorSearchedCopyWith<DoctorSearched> get copyWith =>
-      _$DoctorSearchedCopyWithImpl<DoctorSearched>(this, _$identity);
+  @override
+  String toString() {
+    return 'NewAppointmentEvent.doctorSearched(query: $query)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is DoctorSearched &&
+            other is _$DoctorSearchedImpl &&
             (identical(other.query, query) || other.query == query));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, query);
 
+  /// Create a copy of NewAppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'NewAppointmentEvent.doctorSearched(query: $query)';
+  @pragma('vm:prefer-inline')
+  _$$DoctorSearchedImplCopyWith<_$DoctorSearchedImpl> get copyWith =>
+      __$$DoctorSearchedImplCopyWithImpl<_$DoctorSearchedImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clinicsFetched,
+    required TResult Function(ClinicModel clinic) clinicDoctorsFetched,
+    required TResult Function() allDoctorsFetched,
+    required TResult Function(DoctorModel doctor) doctorSelected,
+    required TResult Function(DateTime date) dateSelected,
+    required TResult Function(TimeOfDay time) scheduleSelected,
+    required TResult Function() bookedNewAppointment,
+    required TResult Function(String query) doctorSearched,
+  }) {
+    return doctorSearched(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clinicsFetched,
+    TResult? Function(ClinicModel clinic)? clinicDoctorsFetched,
+    TResult? Function()? allDoctorsFetched,
+    TResult? Function(DoctorModel doctor)? doctorSelected,
+    TResult? Function(DateTime date)? dateSelected,
+    TResult? Function(TimeOfDay time)? scheduleSelected,
+    TResult? Function()? bookedNewAppointment,
+    TResult? Function(String query)? doctorSearched,
+  }) {
+    return doctorSearched?.call(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clinicsFetched,
+    TResult Function(ClinicModel clinic)? clinicDoctorsFetched,
+    TResult Function()? allDoctorsFetched,
+    TResult Function(DoctorModel doctor)? doctorSelected,
+    TResult Function(DateTime date)? dateSelected,
+    TResult Function(TimeOfDay time)? scheduleSelected,
+    TResult Function()? bookedNewAppointment,
+    TResult Function(String query)? doctorSearched,
+    required TResult orElse(),
+  }) {
+    if (doctorSearched != null) {
+      return doctorSearched(query);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ClinicsFetched value) clinicsFetched,
+    required TResult Function(ClinicDoctorsFetched value) clinicDoctorsFetched,
+    required TResult Function(AllDoctorsFetched value) allDoctorsFetched,
+    required TResult Function(DoctorSelected value) doctorSelected,
+    required TResult Function(DateSelected value) dateSelected,
+    required TResult Function(ScheduleSelected value) scheduleSelected,
+    required TResult Function(BookedNewAppointment value) bookedNewAppointment,
+    required TResult Function(DoctorSearched value) doctorSearched,
+  }) {
+    return doctorSearched(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ClinicsFetched value)? clinicsFetched,
+    TResult? Function(ClinicDoctorsFetched value)? clinicDoctorsFetched,
+    TResult? Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult? Function(DoctorSelected value)? doctorSelected,
+    TResult? Function(DateSelected value)? dateSelected,
+    TResult? Function(ScheduleSelected value)? scheduleSelected,
+    TResult? Function(BookedNewAppointment value)? bookedNewAppointment,
+    TResult? Function(DoctorSearched value)? doctorSearched,
+  }) {
+    return doctorSearched?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ClinicsFetched value)? clinicsFetched,
+    TResult Function(ClinicDoctorsFetched value)? clinicDoctorsFetched,
+    TResult Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult Function(DoctorSelected value)? doctorSelected,
+    TResult Function(DateSelected value)? dateSelected,
+    TResult Function(ScheduleSelected value)? scheduleSelected,
+    TResult Function(BookedNewAppointment value)? bookedNewAppointment,
+    TResult Function(DoctorSearched value)? doctorSearched,
+    required TResult orElse(),
+  }) {
+    if (doctorSearched != null) {
+      return doctorSearched(this);
+    }
+    return orElse();
   }
 }
 
-/// @nodoc
-abstract mixin class $DoctorSearchedCopyWith<$Res>
-    implements $NewAppointmentEventCopyWith<$Res> {
-  factory $DoctorSearchedCopyWith(
-          DoctorSearched value, $Res Function(DoctorSearched) _then) =
-      _$DoctorSearchedCopyWithImpl;
-  @useResult
-  $Res call({String query});
-}
+abstract class DoctorSearched implements NewAppointmentEvent {
+  const factory DoctorSearched({required final String query}) =
+      _$DoctorSearchedImpl;
 
-/// @nodoc
-class _$DoctorSearchedCopyWithImpl<$Res>
-    implements $DoctorSearchedCopyWith<$Res> {
-  _$DoctorSearchedCopyWithImpl(this._self, this._then);
-
-  final DoctorSearched _self;
-  final $Res Function(DoctorSearched) _then;
+  String get query;
 
   /// Create a copy of NewAppointmentEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? query = null,
-  }) {
-    return _then(DoctorSearched(
-      query: null == query
-          ? _self.query
-          : query // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DoctorSearchedImplCopyWith<_$DoctorSearchedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$NewAppointmentState {
-  ClinicModel? get department;
-  DoctorModel? get doctor;
-  List<DoctorModel>? get searchList;
-  String? get statusMessage;
-  List<DoctorModel>? get doctors;
-  List<ClinicModel>? get clinics;
-  List<DateTime>? get dates;
-  DateTime? get date;
-  List<TimeOfDay>? get availableTimes;
-  TimeOfDay? get time;
-  DataStatus? get status;
+  ClinicModel? get department => throw _privateConstructorUsedError;
+  DoctorModel? get doctor => throw _privateConstructorUsedError;
+  List<DoctorModel>? get searchList => throw _privateConstructorUsedError;
+  String? get statusMessage => throw _privateConstructorUsedError;
+  List<DoctorModel>? get doctors => throw _privateConstructorUsedError;
+  List<ClinicModel>? get clinics => throw _privateConstructorUsedError;
+  List<DateTime>? get dates => throw _privateConstructorUsedError;
+  DateTime? get date => throw _privateConstructorUsedError;
+  List<TimeOfDay>? get availableTimes => throw _privateConstructorUsedError;
+  TimeOfDay? get time => throw _privateConstructorUsedError;
+  DataStatus? get status => throw _privateConstructorUsedError;
+  int? get appointmentID => throw _privateConstructorUsedError;
 
   /// Create a copy of NewAppointmentState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $NewAppointmentStateCopyWith<NewAppointmentState> get copyWith =>
-      _$NewAppointmentStateCopyWithImpl<NewAppointmentState>(
-          this as NewAppointmentState, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is NewAppointmentState &&
-            (identical(other.department, department) ||
-                other.department == department) &&
-            (identical(other.doctor, doctor) || other.doctor == doctor) &&
-            const DeepCollectionEquality()
-                .equals(other.searchList, searchList) &&
-            (identical(other.statusMessage, statusMessage) ||
-                other.statusMessage == statusMessage) &&
-            const DeepCollectionEquality().equals(other.doctors, doctors) &&
-            const DeepCollectionEquality().equals(other.clinics, clinics) &&
-            const DeepCollectionEquality().equals(other.dates, dates) &&
-            (identical(other.date, date) || other.date == date) &&
-            const DeepCollectionEquality()
-                .equals(other.availableTimes, availableTimes) &&
-            (identical(other.time, time) || other.time == time) &&
-            (identical(other.status, status) || other.status == status));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      department,
-      doctor,
-      const DeepCollectionEquality().hash(searchList),
-      statusMessage,
-      const DeepCollectionEquality().hash(doctors),
-      const DeepCollectionEquality().hash(clinics),
-      const DeepCollectionEquality().hash(dates),
-      date,
-      const DeepCollectionEquality().hash(availableTimes),
-      time,
-      status);
-
-  @override
-  String toString() {
-    return 'NewAppointmentState(department: $department, doctor: $doctor, searchList: $searchList, statusMessage: $statusMessage, doctors: $doctors, clinics: $clinics, dates: $dates, date: $date, availableTimes: $availableTimes, time: $time, status: $status)';
-  }
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $NewAppointmentStateCopyWith<$Res> {
+abstract class $NewAppointmentStateCopyWith<$Res> {
   factory $NewAppointmentStateCopyWith(
-          NewAppointmentState value, $Res Function(NewAppointmentState) _then) =
-      _$NewAppointmentStateCopyWithImpl;
+    NewAppointmentState value,
+    $Res Function(NewAppointmentState) then,
+  ) = _$NewAppointmentStateCopyWithImpl<$Res, NewAppointmentState>;
   @useResult
-  $Res call(
-      {ClinicModel? department,
-      DoctorModel? doctor,
-      List<DoctorModel>? searchList,
-      String? statusMessage,
-      List<DoctorModel>? doctors,
-      List<ClinicModel>? clinics,
-      List<DateTime>? dates,
-      DateTime? date,
-      List<TimeOfDay>? availableTimes,
-      TimeOfDay? time,
-      DataStatus? status});
+  $Res call({
+    ClinicModel? department,
+    DoctorModel? doctor,
+    List<DoctorModel>? searchList,
+    String? statusMessage,
+    List<DoctorModel>? doctors,
+    List<ClinicModel>? clinics,
+    List<DateTime>? dates,
+    DateTime? date,
+    List<TimeOfDay>? availableTimes,
+    TimeOfDay? time,
+    DataStatus? status,
+    int? appointmentID,
+  });
 
   $ClinicModelCopyWith<$Res>? get department;
   $DoctorModelCopyWith<$Res>? get doctor;
 }
 
 /// @nodoc
-class _$NewAppointmentStateCopyWithImpl<$Res>
+class _$NewAppointmentStateCopyWithImpl<$Res, $Val extends NewAppointmentState>
     implements $NewAppointmentStateCopyWith<$Res> {
-  _$NewAppointmentStateCopyWithImpl(this._self, this._then);
+  _$NewAppointmentStateCopyWithImpl(this._value, this._then);
 
-  final NewAppointmentState _self;
-  final $Res Function(NewAppointmentState) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of NewAppointmentState
   /// with the given fields replaced by the non-null parameter values.
@@ -552,53 +1550,73 @@ class _$NewAppointmentStateCopyWithImpl<$Res>
     Object? availableTimes = freezed,
     Object? time = freezed,
     Object? status = freezed,
+    Object? appointmentID = freezed,
   }) {
-    return _then(_self.copyWith(
-      department: freezed == department
-          ? _self.department
-          : department // ignore: cast_nullable_to_non_nullable
-              as ClinicModel?,
-      doctor: freezed == doctor
-          ? _self.doctor
-          : doctor // ignore: cast_nullable_to_non_nullable
-              as DoctorModel?,
-      searchList: freezed == searchList
-          ? _self.searchList
-          : searchList // ignore: cast_nullable_to_non_nullable
-              as List<DoctorModel>?,
-      statusMessage: freezed == statusMessage
-          ? _self.statusMessage
-          : statusMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      doctors: freezed == doctors
-          ? _self.doctors
-          : doctors // ignore: cast_nullable_to_non_nullable
-              as List<DoctorModel>?,
-      clinics: freezed == clinics
-          ? _self.clinics
-          : clinics // ignore: cast_nullable_to_non_nullable
-              as List<ClinicModel>?,
-      dates: freezed == dates
-          ? _self.dates
-          : dates // ignore: cast_nullable_to_non_nullable
-              as List<DateTime>?,
-      date: freezed == date
-          ? _self.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      availableTimes: freezed == availableTimes
-          ? _self.availableTimes
-          : availableTimes // ignore: cast_nullable_to_non_nullable
-              as List<TimeOfDay>?,
-      time: freezed == time
-          ? _self.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay?,
-      status: freezed == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as DataStatus?,
-    ));
+    return _then(
+      _value.copyWith(
+            department:
+                freezed == department
+                    ? _value.department
+                    : department // ignore: cast_nullable_to_non_nullable
+                        as ClinicModel?,
+            doctor:
+                freezed == doctor
+                    ? _value.doctor
+                    : doctor // ignore: cast_nullable_to_non_nullable
+                        as DoctorModel?,
+            searchList:
+                freezed == searchList
+                    ? _value.searchList
+                    : searchList // ignore: cast_nullable_to_non_nullable
+                        as List<DoctorModel>?,
+            statusMessage:
+                freezed == statusMessage
+                    ? _value.statusMessage
+                    : statusMessage // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            doctors:
+                freezed == doctors
+                    ? _value.doctors
+                    : doctors // ignore: cast_nullable_to_non_nullable
+                        as List<DoctorModel>?,
+            clinics:
+                freezed == clinics
+                    ? _value.clinics
+                    : clinics // ignore: cast_nullable_to_non_nullable
+                        as List<ClinicModel>?,
+            dates:
+                freezed == dates
+                    ? _value.dates
+                    : dates // ignore: cast_nullable_to_non_nullable
+                        as List<DateTime>?,
+            date:
+                freezed == date
+                    ? _value.date
+                    : date // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
+            availableTimes:
+                freezed == availableTimes
+                    ? _value.availableTimes
+                    : availableTimes // ignore: cast_nullable_to_non_nullable
+                        as List<TimeOfDay>?,
+            time:
+                freezed == time
+                    ? _value.time
+                    : time // ignore: cast_nullable_to_non_nullable
+                        as TimeOfDay?,
+            status:
+                freezed == status
+                    ? _value.status
+                    : status // ignore: cast_nullable_to_non_nullable
+                        as DataStatus?,
+            appointmentID:
+                freezed == appointmentID
+                    ? _value.appointmentID
+                    : appointmentID // ignore: cast_nullable_to_non_nullable
+                        as int?,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of NewAppointmentState
@@ -606,12 +1624,12 @@ class _$NewAppointmentStateCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $ClinicModelCopyWith<$Res>? get department {
-    if (_self.department == null) {
+    if (_value.department == null) {
       return null;
     }
 
-    return $ClinicModelCopyWith<$Res>(_self.department!, (value) {
-      return _then(_self.copyWith(department: value));
+    return $ClinicModelCopyWith<$Res>(_value.department!, (value) {
+      return _then(_value.copyWith(department: value) as $Val);
     });
   }
 
@@ -620,36 +1638,161 @@ class _$NewAppointmentStateCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $DoctorModelCopyWith<$Res>? get doctor {
-    if (_self.doctor == null) {
+    if (_value.doctor == null) {
       return null;
     }
 
-    return $DoctorModelCopyWith<$Res>(_self.doctor!, (value) {
-      return _then(_self.copyWith(doctor: value));
+    return $DoctorModelCopyWith<$Res>(_value.doctor!, (value) {
+      return _then(_value.copyWith(doctor: value) as $Val);
     });
   }
 }
 
 /// @nodoc
+abstract class _$$NewAppointmentStateImplCopyWith<$Res>
+    implements $NewAppointmentStateCopyWith<$Res> {
+  factory _$$NewAppointmentStateImplCopyWith(
+    _$NewAppointmentStateImpl value,
+    $Res Function(_$NewAppointmentStateImpl) then,
+  ) = __$$NewAppointmentStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({
+    ClinicModel? department,
+    DoctorModel? doctor,
+    List<DoctorModel>? searchList,
+    String? statusMessage,
+    List<DoctorModel>? doctors,
+    List<ClinicModel>? clinics,
+    List<DateTime>? dates,
+    DateTime? date,
+    List<TimeOfDay>? availableTimes,
+    TimeOfDay? time,
+    DataStatus? status,
+    int? appointmentID,
+  });
 
-class _NewAppointmentState implements NewAppointmentState {
-  const _NewAppointmentState(
-      {this.department,
-      this.doctor,
-      final List<DoctorModel>? searchList,
-      this.statusMessage,
-      final List<DoctorModel>? doctors,
-      final List<ClinicModel>? clinics,
-      final List<DateTime>? dates,
-      this.date,
-      final List<TimeOfDay>? availableTimes,
-      this.time,
-      this.status})
-      : _searchList = searchList,
-        _doctors = doctors,
-        _clinics = clinics,
-        _dates = dates,
-        _availableTimes = availableTimes;
+  @override
+  $ClinicModelCopyWith<$Res>? get department;
+  @override
+  $DoctorModelCopyWith<$Res>? get doctor;
+}
+
+/// @nodoc
+class __$$NewAppointmentStateImplCopyWithImpl<$Res>
+    extends _$NewAppointmentStateCopyWithImpl<$Res, _$NewAppointmentStateImpl>
+    implements _$$NewAppointmentStateImplCopyWith<$Res> {
+  __$$NewAppointmentStateImplCopyWithImpl(
+    _$NewAppointmentStateImpl _value,
+    $Res Function(_$NewAppointmentStateImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of NewAppointmentState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? department = freezed,
+    Object? doctor = freezed,
+    Object? searchList = freezed,
+    Object? statusMessage = freezed,
+    Object? doctors = freezed,
+    Object? clinics = freezed,
+    Object? dates = freezed,
+    Object? date = freezed,
+    Object? availableTimes = freezed,
+    Object? time = freezed,
+    Object? status = freezed,
+    Object? appointmentID = freezed,
+  }) {
+    return _then(
+      _$NewAppointmentStateImpl(
+        department:
+            freezed == department
+                ? _value.department
+                : department // ignore: cast_nullable_to_non_nullable
+                    as ClinicModel?,
+        doctor:
+            freezed == doctor
+                ? _value.doctor
+                : doctor // ignore: cast_nullable_to_non_nullable
+                    as DoctorModel?,
+        searchList:
+            freezed == searchList
+                ? _value._searchList
+                : searchList // ignore: cast_nullable_to_non_nullable
+                    as List<DoctorModel>?,
+        statusMessage:
+            freezed == statusMessage
+                ? _value.statusMessage
+                : statusMessage // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        doctors:
+            freezed == doctors
+                ? _value._doctors
+                : doctors // ignore: cast_nullable_to_non_nullable
+                    as List<DoctorModel>?,
+        clinics:
+            freezed == clinics
+                ? _value._clinics
+                : clinics // ignore: cast_nullable_to_non_nullable
+                    as List<ClinicModel>?,
+        dates:
+            freezed == dates
+                ? _value._dates
+                : dates // ignore: cast_nullable_to_non_nullable
+                    as List<DateTime>?,
+        date:
+            freezed == date
+                ? _value.date
+                : date // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
+        availableTimes:
+            freezed == availableTimes
+                ? _value._availableTimes
+                : availableTimes // ignore: cast_nullable_to_non_nullable
+                    as List<TimeOfDay>?,
+        time:
+            freezed == time
+                ? _value.time
+                : time // ignore: cast_nullable_to_non_nullable
+                    as TimeOfDay?,
+        status:
+            freezed == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                    as DataStatus?,
+        appointmentID:
+            freezed == appointmentID
+                ? _value.appointmentID
+                : appointmentID // ignore: cast_nullable_to_non_nullable
+                    as int?,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$NewAppointmentStateImpl implements _NewAppointmentState {
+  const _$NewAppointmentStateImpl({
+    this.department,
+    this.doctor,
+    final List<DoctorModel>? searchList,
+    this.statusMessage,
+    final List<DoctorModel>? doctors,
+    final List<ClinicModel>? clinics,
+    final List<DateTime>? dates,
+    this.date,
+    final List<TimeOfDay>? availableTimes,
+    this.time,
+    this.status,
+    this.appointmentID,
+  }) : _searchList = searchList,
+       _doctors = doctors,
+       _clinics = clinics,
+       _dates = dates,
+       _availableTimes = availableTimes;
 
   @override
   final ClinicModel? department;
@@ -713,186 +1856,116 @@ class _NewAppointmentState implements NewAppointmentState {
   final TimeOfDay? time;
   @override
   final DataStatus? status;
-
-  /// Create a copy of NewAppointmentState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$NewAppointmentStateCopyWith<_NewAppointmentState> get copyWith =>
-      __$NewAppointmentStateCopyWithImpl<_NewAppointmentState>(
-          this, _$identity);
+  final int? appointmentID;
+
+  @override
+  String toString() {
+    return 'NewAppointmentState(department: $department, doctor: $doctor, searchList: $searchList, statusMessage: $statusMessage, doctors: $doctors, clinics: $clinics, dates: $dates, date: $date, availableTimes: $availableTimes, time: $time, status: $status, appointmentID: $appointmentID)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _NewAppointmentState &&
+            other is _$NewAppointmentStateImpl &&
             (identical(other.department, department) ||
                 other.department == department) &&
             (identical(other.doctor, doctor) || other.doctor == doctor) &&
-            const DeepCollectionEquality()
-                .equals(other._searchList, _searchList) &&
+            const DeepCollectionEquality().equals(
+              other._searchList,
+              _searchList,
+            ) &&
             (identical(other.statusMessage, statusMessage) ||
                 other.statusMessage == statusMessage) &&
             const DeepCollectionEquality().equals(other._doctors, _doctors) &&
             const DeepCollectionEquality().equals(other._clinics, _clinics) &&
             const DeepCollectionEquality().equals(other._dates, _dates) &&
             (identical(other.date, date) || other.date == date) &&
-            const DeepCollectionEquality()
-                .equals(other._availableTimes, _availableTimes) &&
+            const DeepCollectionEquality().equals(
+              other._availableTimes,
+              _availableTimes,
+            ) &&
             (identical(other.time, time) || other.time == time) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.appointmentID, appointmentID) ||
+                other.appointmentID == appointmentID));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      department,
-      doctor,
-      const DeepCollectionEquality().hash(_searchList),
-      statusMessage,
-      const DeepCollectionEquality().hash(_doctors),
-      const DeepCollectionEquality().hash(_clinics),
-      const DeepCollectionEquality().hash(_dates),
-      date,
-      const DeepCollectionEquality().hash(_availableTimes),
-      time,
-      status);
+    runtimeType,
+    department,
+    doctor,
+    const DeepCollectionEquality().hash(_searchList),
+    statusMessage,
+    const DeepCollectionEquality().hash(_doctors),
+    const DeepCollectionEquality().hash(_clinics),
+    const DeepCollectionEquality().hash(_dates),
+    date,
+    const DeepCollectionEquality().hash(_availableTimes),
+    time,
+    status,
+    appointmentID,
+  );
 
+  /// Create a copy of NewAppointmentState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'NewAppointmentState(department: $department, doctor: $doctor, searchList: $searchList, statusMessage: $statusMessage, doctors: $doctors, clinics: $clinics, dates: $dates, date: $date, availableTimes: $availableTimes, time: $time, status: $status)';
-  }
+  @pragma('vm:prefer-inline')
+  _$$NewAppointmentStateImplCopyWith<_$NewAppointmentStateImpl> get copyWith =>
+      __$$NewAppointmentStateImplCopyWithImpl<_$NewAppointmentStateImpl>(
+        this,
+        _$identity,
+      );
 }
 
-/// @nodoc
-abstract mixin class _$NewAppointmentStateCopyWith<$Res>
-    implements $NewAppointmentStateCopyWith<$Res> {
-  factory _$NewAppointmentStateCopyWith(_NewAppointmentState value,
-          $Res Function(_NewAppointmentState) _then) =
-      __$NewAppointmentStateCopyWithImpl;
-  @override
-  @useResult
-  $Res call(
-      {ClinicModel? department,
-      DoctorModel? doctor,
-      List<DoctorModel>? searchList,
-      String? statusMessage,
-      List<DoctorModel>? doctors,
-      List<ClinicModel>? clinics,
-      List<DateTime>? dates,
-      DateTime? date,
-      List<TimeOfDay>? availableTimes,
-      TimeOfDay? time,
-      DataStatus? status});
+abstract class _NewAppointmentState implements NewAppointmentState {
+  const factory _NewAppointmentState({
+    final ClinicModel? department,
+    final DoctorModel? doctor,
+    final List<DoctorModel>? searchList,
+    final String? statusMessage,
+    final List<DoctorModel>? doctors,
+    final List<ClinicModel>? clinics,
+    final List<DateTime>? dates,
+    final DateTime? date,
+    final List<TimeOfDay>? availableTimes,
+    final TimeOfDay? time,
+    final DataStatus? status,
+    final int? appointmentID,
+  }) = _$NewAppointmentStateImpl;
 
   @override
-  $ClinicModelCopyWith<$Res>? get department;
+  ClinicModel? get department;
   @override
-  $DoctorModelCopyWith<$Res>? get doctor;
-}
-
-/// @nodoc
-class __$NewAppointmentStateCopyWithImpl<$Res>
-    implements _$NewAppointmentStateCopyWith<$Res> {
-  __$NewAppointmentStateCopyWithImpl(this._self, this._then);
-
-  final _NewAppointmentState _self;
-  final $Res Function(_NewAppointmentState) _then;
+  DoctorModel? get doctor;
+  @override
+  List<DoctorModel>? get searchList;
+  @override
+  String? get statusMessage;
+  @override
+  List<DoctorModel>? get doctors;
+  @override
+  List<ClinicModel>? get clinics;
+  @override
+  List<DateTime>? get dates;
+  @override
+  DateTime? get date;
+  @override
+  List<TimeOfDay>? get availableTimes;
+  @override
+  TimeOfDay? get time;
+  @override
+  DataStatus? get status;
+  @override
+  int? get appointmentID;
 
   /// Create a copy of NewAppointmentState
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? department = freezed,
-    Object? doctor = freezed,
-    Object? searchList = freezed,
-    Object? statusMessage = freezed,
-    Object? doctors = freezed,
-    Object? clinics = freezed,
-    Object? dates = freezed,
-    Object? date = freezed,
-    Object? availableTimes = freezed,
-    Object? time = freezed,
-    Object? status = freezed,
-  }) {
-    return _then(_NewAppointmentState(
-      department: freezed == department
-          ? _self.department
-          : department // ignore: cast_nullable_to_non_nullable
-              as ClinicModel?,
-      doctor: freezed == doctor
-          ? _self.doctor
-          : doctor // ignore: cast_nullable_to_non_nullable
-              as DoctorModel?,
-      searchList: freezed == searchList
-          ? _self._searchList
-          : searchList // ignore: cast_nullable_to_non_nullable
-              as List<DoctorModel>?,
-      statusMessage: freezed == statusMessage
-          ? _self.statusMessage
-          : statusMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      doctors: freezed == doctors
-          ? _self._doctors
-          : doctors // ignore: cast_nullable_to_non_nullable
-              as List<DoctorModel>?,
-      clinics: freezed == clinics
-          ? _self._clinics
-          : clinics // ignore: cast_nullable_to_non_nullable
-              as List<ClinicModel>?,
-      dates: freezed == dates
-          ? _self._dates
-          : dates // ignore: cast_nullable_to_non_nullable
-              as List<DateTime>?,
-      date: freezed == date
-          ? _self.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      availableTimes: freezed == availableTimes
-          ? _self._availableTimes
-          : availableTimes // ignore: cast_nullable_to_non_nullable
-              as List<TimeOfDay>?,
-      time: freezed == time
-          ? _self.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay?,
-      status: freezed == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as DataStatus?,
-    ));
-  }
-
-  /// Create a copy of NewAppointmentState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ClinicModelCopyWith<$Res>? get department {
-    if (_self.department == null) {
-      return null;
-    }
-
-    return $ClinicModelCopyWith<$Res>(_self.department!, (value) {
-      return _then(_self.copyWith(department: value));
-    });
-  }
-
-  /// Create a copy of NewAppointmentState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $DoctorModelCopyWith<$Res>? get doctor {
-    if (_self.doctor == null) {
-      return null;
-    }
-
-    return $DoctorModelCopyWith<$Res>(_self.doctor!, (value) {
-      return _then(_self.copyWith(doctor: value));
-    });
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$NewAppointmentStateImplCopyWith<_$NewAppointmentStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
-
-// dart format on

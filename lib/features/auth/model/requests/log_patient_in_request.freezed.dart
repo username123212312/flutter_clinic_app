@@ -1,4 +1,3 @@
-// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,63 +9,51 @@ part of 'log_patient_in_request.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
+
+LogPatientInRequest _$LogPatientInRequestFromJson(Map<String, dynamic> json) {
+  return _LogPatientInRequest.fromJson(json);
+}
 
 /// @nodoc
 mixin _$LogPatientInRequest {
-  String? get email;
-  String? get phone;
-  String get password;
+  String? get email => throw _privateConstructorUsedError;
+  String? get phone => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
+
+  /// Serializes this LogPatientInRequest to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of LogPatientInRequest
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $LogPatientInRequestCopyWith<LogPatientInRequest> get copyWith =>
-      _$LogPatientInRequestCopyWithImpl<LogPatientInRequest>(
-          this as LogPatientInRequest, _$identity);
-
-  /// Serializes this LogPatientInRequest to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is LogPatientInRequest &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.password, password) ||
-                other.password == password));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, email, phone, password);
-
-  @override
-  String toString() {
-    return 'LogPatientInRequest(email: $email, phone: $phone, password: $password)';
-  }
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $LogPatientInRequestCopyWith<$Res> {
+abstract class $LogPatientInRequestCopyWith<$Res> {
   factory $LogPatientInRequestCopyWith(
-          LogPatientInRequest value, $Res Function(LogPatientInRequest) _then) =
-      _$LogPatientInRequestCopyWithImpl;
+    LogPatientInRequest value,
+    $Res Function(LogPatientInRequest) then,
+  ) = _$LogPatientInRequestCopyWithImpl<$Res, LogPatientInRequest>;
   @useResult
   $Res call({String? email, String? phone, String password});
 }
 
 /// @nodoc
-class _$LogPatientInRequestCopyWithImpl<$Res>
+class _$LogPatientInRequestCopyWithImpl<$Res, $Val extends LogPatientInRequest>
     implements $LogPatientInRequestCopyWith<$Res> {
-  _$LogPatientInRequestCopyWithImpl(this._self, this._then);
+  _$LogPatientInRequestCopyWithImpl(this._value, this._then);
 
-  final LogPatientInRequest _self;
-  final $Res Function(LogPatientInRequest) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of LogPatientInRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -77,30 +64,92 @@ class _$LogPatientInRequestCopyWithImpl<$Res>
     Object? phone = freezed,
     Object? password = null,
   }) {
-    return _then(_self.copyWith(
-      email: freezed == email
-          ? _self.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: freezed == phone
-          ? _self.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      password: null == password
-          ? _self.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      _value.copyWith(
+            email:
+                freezed == email
+                    ? _value.email
+                    : email // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            phone:
+                freezed == phone
+                    ? _value.phone
+                    : phone // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            password:
+                null == password
+                    ? _value.password
+                    : password // ignore: cast_nullable_to_non_nullable
+                        as String,
+          )
+          as $Val,
+    );
+  }
+}
+
+/// @nodoc
+abstract class _$$LogPatientInRequestImplCopyWith<$Res>
+    implements $LogPatientInRequestCopyWith<$Res> {
+  factory _$$LogPatientInRequestImplCopyWith(
+    _$LogPatientInRequestImpl value,
+    $Res Function(_$LogPatientInRequestImpl) then,
+  ) = __$$LogPatientInRequestImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? email, String? phone, String password});
+}
+
+/// @nodoc
+class __$$LogPatientInRequestImplCopyWithImpl<$Res>
+    extends _$LogPatientInRequestCopyWithImpl<$Res, _$LogPatientInRequestImpl>
+    implements _$$LogPatientInRequestImplCopyWith<$Res> {
+  __$$LogPatientInRequestImplCopyWithImpl(
+    _$LogPatientInRequestImpl _value,
+    $Res Function(_$LogPatientInRequestImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of LogPatientInRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = freezed,
+    Object? phone = freezed,
+    Object? password = null,
+  }) {
+    return _then(
+      _$LogPatientInRequestImpl(
+        email:
+            freezed == email
+                ? _value.email
+                : email // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        phone:
+            freezed == phone
+                ? _value.phone
+                : phone // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        password:
+            null == password
+                ? _value.password
+                : password // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _LogPatientInRequest implements LogPatientInRequest {
-  _LogPatientInRequest(
-      {required this.email, required this.phone, required this.password});
-  factory _LogPatientInRequest.fromJson(Map<String, dynamic> json) =>
-      _$LogPatientInRequestFromJson(json);
+class _$LogPatientInRequestImpl implements _LogPatientInRequest {
+  _$LogPatientInRequestImpl({
+    required this.email,
+    required this.phone,
+    required this.password,
+  });
+
+  factory _$LogPatientInRequestImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LogPatientInRequestImplFromJson(json);
 
   @override
   final String? email;
@@ -109,27 +158,16 @@ class _LogPatientInRequest implements LogPatientInRequest {
   @override
   final String password;
 
-  /// Create a copy of LogPatientInRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$LogPatientInRequestCopyWith<_LogPatientInRequest> get copyWith =>
-      __$LogPatientInRequestCopyWithImpl<_LogPatientInRequest>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$LogPatientInRequestToJson(
-      this,
-    );
+  String toString() {
+    return 'LogPatientInRequest(email: $email, phone: $phone, password: $password)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _LogPatientInRequest &&
+            other is _$LogPatientInRequestImpl &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.password, password) ||
@@ -140,55 +178,44 @@ class _LogPatientInRequest implements LogPatientInRequest {
   @override
   int get hashCode => Object.hash(runtimeType, email, phone, password);
 
+  /// Create a copy of LogPatientInRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'LogPatientInRequest(email: $email, phone: $phone, password: $password)';
+  @pragma('vm:prefer-inline')
+  _$$LogPatientInRequestImplCopyWith<_$LogPatientInRequestImpl> get copyWith =>
+      __$$LogPatientInRequestImplCopyWithImpl<_$LogPatientInRequestImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LogPatientInRequestImplToJson(this);
   }
 }
 
-/// @nodoc
-abstract mixin class _$LogPatientInRequestCopyWith<$Res>
-    implements $LogPatientInRequestCopyWith<$Res> {
-  factory _$LogPatientInRequestCopyWith(_LogPatientInRequest value,
-          $Res Function(_LogPatientInRequest) _then) =
-      __$LogPatientInRequestCopyWithImpl;
+abstract class _LogPatientInRequest implements LogPatientInRequest {
+  factory _LogPatientInRequest({
+    required final String? email,
+    required final String? phone,
+    required final String password,
+  }) = _$LogPatientInRequestImpl;
+
+  factory _LogPatientInRequest.fromJson(Map<String, dynamic> json) =
+      _$LogPatientInRequestImpl.fromJson;
+
   @override
-  @useResult
-  $Res call({String? email, String? phone, String password});
-}
-
-/// @nodoc
-class __$LogPatientInRequestCopyWithImpl<$Res>
-    implements _$LogPatientInRequestCopyWith<$Res> {
-  __$LogPatientInRequestCopyWithImpl(this._self, this._then);
-
-  final _LogPatientInRequest _self;
-  final $Res Function(_LogPatientInRequest) _then;
+  String? get email;
+  @override
+  String? get phone;
+  @override
+  String get password;
 
   /// Create a copy of LogPatientInRequest
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? email = freezed,
-    Object? phone = freezed,
-    Object? password = null,
-  }) {
-    return _then(_LogPatientInRequest(
-      email: freezed == email
-          ? _self.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: freezed == phone
-          ? _self.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      password: null == password
-          ? _self.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LogPatientInRequestImplCopyWith<_$LogPatientInRequestImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
-
-// dart format on

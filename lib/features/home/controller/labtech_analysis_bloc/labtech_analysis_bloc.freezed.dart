@@ -1,4 +1,3 @@
-// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,72 +9,275 @@ part of 'labtech_analysis_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$LabtechAnalysisEvent {
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is LabtechAnalysisEvent);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  String toString() {
-    return 'LabtechAnalysisEvent()';
-  }
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() analysisFetched,
+    required TResult Function(AnalysisStatus analysisStatus)
+    analysisStatusChanged,
+    required TResult Function(int analysisId) analysisShown,
+    required TResult Function(String query) searched,
+    required TResult Function(AddAnalysisRequest request) addAnalysis,
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? analysisFetched,
+    TResult? Function(AnalysisStatus analysisStatus)? analysisStatusChanged,
+    TResult? Function(int analysisId)? analysisShown,
+    TResult? Function(String query)? searched,
+    TResult? Function(AddAnalysisRequest request)? addAnalysis,
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? analysisFetched,
+    TResult Function(AnalysisStatus analysisStatus)? analysisStatusChanged,
+    TResult Function(int analysisId)? analysisShown,
+    TResult Function(String query)? searched,
+    TResult Function(AddAnalysisRequest request)? addAnalysis,
+    required TResult orElse(),
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AnalysisFetched value) analysisFetched,
+    required TResult Function(AnalysisStatusChanged value)
+    analysisStatusChanged,
+    required TResult Function(AnalysisShown value) analysisShown,
+    required TResult Function(AnalysisSearched value) searched,
+    required TResult Function(AnalysisAdded value) addAnalysis,
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AnalysisFetched value)? analysisFetched,
+    TResult? Function(AnalysisStatusChanged value)? analysisStatusChanged,
+    TResult? Function(AnalysisShown value)? analysisShown,
+    TResult? Function(AnalysisSearched value)? searched,
+    TResult? Function(AnalysisAdded value)? addAnalysis,
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AnalysisFetched value)? analysisFetched,
+    TResult Function(AnalysisStatusChanged value)? analysisStatusChanged,
+    TResult Function(AnalysisShown value)? analysisShown,
+    TResult Function(AnalysisSearched value)? searched,
+    TResult Function(AnalysisAdded value)? addAnalysis,
+    required TResult orElse(),
+  }) => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-class $LabtechAnalysisEventCopyWith<$Res> {
-  $LabtechAnalysisEventCopyWith(
-      LabtechAnalysisEvent _, $Res Function(LabtechAnalysisEvent) __);
+abstract class $LabtechAnalysisEventCopyWith<$Res> {
+  factory $LabtechAnalysisEventCopyWith(
+    LabtechAnalysisEvent value,
+    $Res Function(LabtechAnalysisEvent) then,
+  ) = _$LabtechAnalysisEventCopyWithImpl<$Res, LabtechAnalysisEvent>;
+}
+
+/// @nodoc
+class _$LabtechAnalysisEventCopyWithImpl<
+  $Res,
+  $Val extends LabtechAnalysisEvent
+>
+    implements $LabtechAnalysisEventCopyWith<$Res> {
+  _$LabtechAnalysisEventCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of LabtechAnalysisEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+abstract class _$$AnalysisFetchedImplCopyWith<$Res> {
+  factory _$$AnalysisFetchedImplCopyWith(
+    _$AnalysisFetchedImpl value,
+    $Res Function(_$AnalysisFetchedImpl) then,
+  ) = __$$AnalysisFetchedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AnalysisFetchedImplCopyWithImpl<$Res>
+    extends _$LabtechAnalysisEventCopyWithImpl<$Res, _$AnalysisFetchedImpl>
+    implements _$$AnalysisFetchedImplCopyWith<$Res> {
+  __$$AnalysisFetchedImplCopyWithImpl(
+    _$AnalysisFetchedImpl _value,
+    $Res Function(_$AnalysisFetchedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of LabtechAnalysisEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class AnalysisFetched implements LabtechAnalysisEvent {
-  const AnalysisFetched();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is AnalysisFetched);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
+class _$AnalysisFetchedImpl implements AnalysisFetched {
+  const _$AnalysisFetchedImpl();
 
   @override
   String toString() {
     return 'LabtechAnalysisEvent.analysisFetched()';
   }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$AnalysisFetchedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() analysisFetched,
+    required TResult Function(AnalysisStatus analysisStatus)
+    analysisStatusChanged,
+    required TResult Function(int analysisId) analysisShown,
+    required TResult Function(String query) searched,
+    required TResult Function(AddAnalysisRequest request) addAnalysis,
+  }) {
+    return analysisFetched();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? analysisFetched,
+    TResult? Function(AnalysisStatus analysisStatus)? analysisStatusChanged,
+    TResult? Function(int analysisId)? analysisShown,
+    TResult? Function(String query)? searched,
+    TResult? Function(AddAnalysisRequest request)? addAnalysis,
+  }) {
+    return analysisFetched?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? analysisFetched,
+    TResult Function(AnalysisStatus analysisStatus)? analysisStatusChanged,
+    TResult Function(int analysisId)? analysisShown,
+    TResult Function(String query)? searched,
+    TResult Function(AddAnalysisRequest request)? addAnalysis,
+    required TResult orElse(),
+  }) {
+    if (analysisFetched != null) {
+      return analysisFetched();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AnalysisFetched value) analysisFetched,
+    required TResult Function(AnalysisStatusChanged value)
+    analysisStatusChanged,
+    required TResult Function(AnalysisShown value) analysisShown,
+    required TResult Function(AnalysisSearched value) searched,
+    required TResult Function(AnalysisAdded value) addAnalysis,
+  }) {
+    return analysisFetched(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AnalysisFetched value)? analysisFetched,
+    TResult? Function(AnalysisStatusChanged value)? analysisStatusChanged,
+    TResult? Function(AnalysisShown value)? analysisShown,
+    TResult? Function(AnalysisSearched value)? searched,
+    TResult? Function(AnalysisAdded value)? addAnalysis,
+  }) {
+    return analysisFetched?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AnalysisFetched value)? analysisFetched,
+    TResult Function(AnalysisStatusChanged value)? analysisStatusChanged,
+    TResult Function(AnalysisShown value)? analysisShown,
+    TResult Function(AnalysisSearched value)? searched,
+    TResult Function(AnalysisAdded value)? addAnalysis,
+    required TResult orElse(),
+  }) {
+    if (analysisFetched != null) {
+      return analysisFetched(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AnalysisFetched implements LabtechAnalysisEvent {
+  const factory AnalysisFetched() = _$AnalysisFetchedImpl;
+}
+
+/// @nodoc
+abstract class _$$AnalysisStatusChangedImplCopyWith<$Res> {
+  factory _$$AnalysisStatusChangedImplCopyWith(
+    _$AnalysisStatusChangedImpl value,
+    $Res Function(_$AnalysisStatusChangedImpl) then,
+  ) = __$$AnalysisStatusChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({AnalysisStatus analysisStatus});
+}
+
+/// @nodoc
+class __$$AnalysisStatusChangedImplCopyWithImpl<$Res>
+    extends
+        _$LabtechAnalysisEventCopyWithImpl<$Res, _$AnalysisStatusChangedImpl>
+    implements _$$AnalysisStatusChangedImplCopyWith<$Res> {
+  __$$AnalysisStatusChangedImplCopyWithImpl(
+    _$AnalysisStatusChangedImpl _value,
+    $Res Function(_$AnalysisStatusChangedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of LabtechAnalysisEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? analysisStatus = null}) {
+    return _then(
+      _$AnalysisStatusChangedImpl(
+        analysisStatus:
+            null == analysisStatus
+                ? _value.analysisStatus
+                : analysisStatus // ignore: cast_nullable_to_non_nullable
+                    as AnalysisStatus,
+      ),
+    );
+  }
 }
 
 /// @nodoc
 
-class AnalysisStatusChanged implements LabtechAnalysisEvent {
-  const AnalysisStatusChanged({required this.analysisStatus});
+class _$AnalysisStatusChangedImpl implements AnalysisStatusChanged {
+  const _$AnalysisStatusChangedImpl({required this.analysisStatus});
 
+  @override
   final AnalysisStatus analysisStatus;
 
-  /// Create a copy of LabtechAnalysisEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $AnalysisStatusChangedCopyWith<AnalysisStatusChanged> get copyWith =>
-      _$AnalysisStatusChangedCopyWithImpl<AnalysisStatusChanged>(
-          this, _$identity);
+  @override
+  String toString() {
+    return 'LabtechAnalysisEvent.analysisStatusChanged(analysisStatus: $analysisStatus)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AnalysisStatusChanged &&
+            other is _$AnalysisStatusChangedImpl &&
             (identical(other.analysisStatus, analysisStatus) ||
                 other.analysisStatus == analysisStatus));
   }
@@ -83,64 +285,169 @@ class AnalysisStatusChanged implements LabtechAnalysisEvent {
   @override
   int get hashCode => Object.hash(runtimeType, analysisStatus);
 
-  @override
-  String toString() {
-    return 'LabtechAnalysisEvent.analysisStatusChanged(analysisStatus: $analysisStatus)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $AnalysisStatusChangedCopyWith<$Res>
-    implements $LabtechAnalysisEventCopyWith<$Res> {
-  factory $AnalysisStatusChangedCopyWith(AnalysisStatusChanged value,
-          $Res Function(AnalysisStatusChanged) _then) =
-      _$AnalysisStatusChangedCopyWithImpl;
-  @useResult
-  $Res call({AnalysisStatus analysisStatus});
-}
-
-/// @nodoc
-class _$AnalysisStatusChangedCopyWithImpl<$Res>
-    implements $AnalysisStatusChangedCopyWith<$Res> {
-  _$AnalysisStatusChangedCopyWithImpl(this._self, this._then);
-
-  final AnalysisStatusChanged _self;
-  final $Res Function(AnalysisStatusChanged) _then;
-
   /// Create a copy of LabtechAnalysisEvent
   /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? analysisStatus = null,
+  _$$AnalysisStatusChangedImplCopyWith<_$AnalysisStatusChangedImpl>
+  get copyWith =>
+      __$$AnalysisStatusChangedImplCopyWithImpl<_$AnalysisStatusChangedImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() analysisFetched,
+    required TResult Function(AnalysisStatus analysisStatus)
+    analysisStatusChanged,
+    required TResult Function(int analysisId) analysisShown,
+    required TResult Function(String query) searched,
+    required TResult Function(AddAnalysisRequest request) addAnalysis,
   }) {
-    return _then(AnalysisStatusChanged(
-      analysisStatus: null == analysisStatus
-          ? _self.analysisStatus
-          : analysisStatus // ignore: cast_nullable_to_non_nullable
-              as AnalysisStatus,
-    ));
+    return analysisStatusChanged(analysisStatus);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? analysisFetched,
+    TResult? Function(AnalysisStatus analysisStatus)? analysisStatusChanged,
+    TResult? Function(int analysisId)? analysisShown,
+    TResult? Function(String query)? searched,
+    TResult? Function(AddAnalysisRequest request)? addAnalysis,
+  }) {
+    return analysisStatusChanged?.call(analysisStatus);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? analysisFetched,
+    TResult Function(AnalysisStatus analysisStatus)? analysisStatusChanged,
+    TResult Function(int analysisId)? analysisShown,
+    TResult Function(String query)? searched,
+    TResult Function(AddAnalysisRequest request)? addAnalysis,
+    required TResult orElse(),
+  }) {
+    if (analysisStatusChanged != null) {
+      return analysisStatusChanged(analysisStatus);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AnalysisFetched value) analysisFetched,
+    required TResult Function(AnalysisStatusChanged value)
+    analysisStatusChanged,
+    required TResult Function(AnalysisShown value) analysisShown,
+    required TResult Function(AnalysisSearched value) searched,
+    required TResult Function(AnalysisAdded value) addAnalysis,
+  }) {
+    return analysisStatusChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AnalysisFetched value)? analysisFetched,
+    TResult? Function(AnalysisStatusChanged value)? analysisStatusChanged,
+    TResult? Function(AnalysisShown value)? analysisShown,
+    TResult? Function(AnalysisSearched value)? searched,
+    TResult? Function(AnalysisAdded value)? addAnalysis,
+  }) {
+    return analysisStatusChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AnalysisFetched value)? analysisFetched,
+    TResult Function(AnalysisStatusChanged value)? analysisStatusChanged,
+    TResult Function(AnalysisShown value)? analysisShown,
+    TResult Function(AnalysisSearched value)? searched,
+    TResult Function(AnalysisAdded value)? addAnalysis,
+    required TResult orElse(),
+  }) {
+    if (analysisStatusChanged != null) {
+      return analysisStatusChanged(this);
+    }
+    return orElse();
   }
 }
 
-/// @nodoc
+abstract class AnalysisStatusChanged implements LabtechAnalysisEvent {
+  const factory AnalysisStatusChanged({
+    required final AnalysisStatus analysisStatus,
+  }) = _$AnalysisStatusChangedImpl;
 
-class AnalysisShown implements LabtechAnalysisEvent {
-  const AnalysisShown({required this.analysisId});
-
-  final int analysisId;
+  AnalysisStatus get analysisStatus;
 
   /// Create a copy of LabtechAnalysisEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AnalysisStatusChangedImplCopyWith<_$AnalysisStatusChangedImpl>
+  get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AnalysisShownImplCopyWith<$Res> {
+  factory _$$AnalysisShownImplCopyWith(
+    _$AnalysisShownImpl value,
+    $Res Function(_$AnalysisShownImpl) then,
+  ) = __$$AnalysisShownImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int analysisId});
+}
+
+/// @nodoc
+class __$$AnalysisShownImplCopyWithImpl<$Res>
+    extends _$LabtechAnalysisEventCopyWithImpl<$Res, _$AnalysisShownImpl>
+    implements _$$AnalysisShownImplCopyWith<$Res> {
+  __$$AnalysisShownImplCopyWithImpl(
+    _$AnalysisShownImpl _value,
+    $Res Function(_$AnalysisShownImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of LabtechAnalysisEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  $AnalysisShownCopyWith<AnalysisShown> get copyWith =>
-      _$AnalysisShownCopyWithImpl<AnalysisShown>(this, _$identity);
+  @override
+  $Res call({Object? analysisId = null}) {
+    return _then(
+      _$AnalysisShownImpl(
+        analysisId:
+            null == analysisId
+                ? _value.analysisId
+                : analysisId // ignore: cast_nullable_to_non_nullable
+                    as int,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$AnalysisShownImpl implements AnalysisShown {
+  const _$AnalysisShownImpl({required this.analysisId});
+
+  @override
+  final int analysisId;
+
+  @override
+  String toString() {
+    return 'LabtechAnalysisEvent.analysisShown(analysisId: $analysisId)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AnalysisShown &&
+            other is _$AnalysisShownImpl &&
             (identical(other.analysisId, analysisId) ||
                 other.analysisId == analysisId));
   }
@@ -148,146 +455,283 @@ class AnalysisShown implements LabtechAnalysisEvent {
   @override
   int get hashCode => Object.hash(runtimeType, analysisId);
 
-  @override
-  String toString() {
-    return 'LabtechAnalysisEvent.analysisShown(analysisId: $analysisId)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $AnalysisShownCopyWith<$Res>
-    implements $LabtechAnalysisEventCopyWith<$Res> {
-  factory $AnalysisShownCopyWith(
-          AnalysisShown value, $Res Function(AnalysisShown) _then) =
-      _$AnalysisShownCopyWithImpl;
-  @useResult
-  $Res call({int analysisId});
-}
-
-/// @nodoc
-class _$AnalysisShownCopyWithImpl<$Res>
-    implements $AnalysisShownCopyWith<$Res> {
-  _$AnalysisShownCopyWithImpl(this._self, this._then);
-
-  final AnalysisShown _self;
-  final $Res Function(AnalysisShown) _then;
-
   /// Create a copy of LabtechAnalysisEvent
   /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? analysisId = null,
+  _$$AnalysisShownImplCopyWith<_$AnalysisShownImpl> get copyWith =>
+      __$$AnalysisShownImplCopyWithImpl<_$AnalysisShownImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() analysisFetched,
+    required TResult Function(AnalysisStatus analysisStatus)
+    analysisStatusChanged,
+    required TResult Function(int analysisId) analysisShown,
+    required TResult Function(String query) searched,
+    required TResult Function(AddAnalysisRequest request) addAnalysis,
   }) {
-    return _then(AnalysisShown(
-      analysisId: null == analysisId
-          ? _self.analysisId
-          : analysisId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return analysisShown(analysisId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? analysisFetched,
+    TResult? Function(AnalysisStatus analysisStatus)? analysisStatusChanged,
+    TResult? Function(int analysisId)? analysisShown,
+    TResult? Function(String query)? searched,
+    TResult? Function(AddAnalysisRequest request)? addAnalysis,
+  }) {
+    return analysisShown?.call(analysisId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? analysisFetched,
+    TResult Function(AnalysisStatus analysisStatus)? analysisStatusChanged,
+    TResult Function(int analysisId)? analysisShown,
+    TResult Function(String query)? searched,
+    TResult Function(AddAnalysisRequest request)? addAnalysis,
+    required TResult orElse(),
+  }) {
+    if (analysisShown != null) {
+      return analysisShown(analysisId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AnalysisFetched value) analysisFetched,
+    required TResult Function(AnalysisStatusChanged value)
+    analysisStatusChanged,
+    required TResult Function(AnalysisShown value) analysisShown,
+    required TResult Function(AnalysisSearched value) searched,
+    required TResult Function(AnalysisAdded value) addAnalysis,
+  }) {
+    return analysisShown(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AnalysisFetched value)? analysisFetched,
+    TResult? Function(AnalysisStatusChanged value)? analysisStatusChanged,
+    TResult? Function(AnalysisShown value)? analysisShown,
+    TResult? Function(AnalysisSearched value)? searched,
+    TResult? Function(AnalysisAdded value)? addAnalysis,
+  }) {
+    return analysisShown?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AnalysisFetched value)? analysisFetched,
+    TResult Function(AnalysisStatusChanged value)? analysisStatusChanged,
+    TResult Function(AnalysisShown value)? analysisShown,
+    TResult Function(AnalysisSearched value)? searched,
+    TResult Function(AnalysisAdded value)? addAnalysis,
+    required TResult orElse(),
+  }) {
+    if (analysisShown != null) {
+      return analysisShown(this);
+    }
+    return orElse();
   }
 }
 
-/// @nodoc
+abstract class AnalysisShown implements LabtechAnalysisEvent {
+  const factory AnalysisShown({required final int analysisId}) =
+      _$AnalysisShownImpl;
 
-class AnalysisSearched implements LabtechAnalysisEvent {
-  const AnalysisSearched({required this.query});
-
-  final String query;
+  int get analysisId;
 
   /// Create a copy of LabtechAnalysisEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AnalysisShownImplCopyWith<_$AnalysisShownImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AnalysisSearchedImplCopyWith<$Res> {
+  factory _$$AnalysisSearchedImplCopyWith(
+    _$AnalysisSearchedImpl value,
+    $Res Function(_$AnalysisSearchedImpl) then,
+  ) = __$$AnalysisSearchedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String query});
+}
+
+/// @nodoc
+class __$$AnalysisSearchedImplCopyWithImpl<$Res>
+    extends _$LabtechAnalysisEventCopyWithImpl<$Res, _$AnalysisSearchedImpl>
+    implements _$$AnalysisSearchedImplCopyWith<$Res> {
+  __$$AnalysisSearchedImplCopyWithImpl(
+    _$AnalysisSearchedImpl _value,
+    $Res Function(_$AnalysisSearchedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of LabtechAnalysisEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  $AnalysisSearchedCopyWith<AnalysisSearched> get copyWith =>
-      _$AnalysisSearchedCopyWithImpl<AnalysisSearched>(this, _$identity);
+  @override
+  $Res call({Object? query = null}) {
+    return _then(
+      _$AnalysisSearchedImpl(
+        query:
+            null == query
+                ? _value.query
+                : query // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$AnalysisSearchedImpl implements AnalysisSearched {
+  const _$AnalysisSearchedImpl({required this.query});
+
+  @override
+  final String query;
+
+  @override
+  String toString() {
+    return 'LabtechAnalysisEvent.searched(query: $query)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AnalysisSearched &&
+            other is _$AnalysisSearchedImpl &&
             (identical(other.query, query) || other.query == query));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, query);
 
-  @override
-  String toString() {
-    return 'LabtechAnalysisEvent.searched(query: $query)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $AnalysisSearchedCopyWith<$Res>
-    implements $LabtechAnalysisEventCopyWith<$Res> {
-  factory $AnalysisSearchedCopyWith(
-          AnalysisSearched value, $Res Function(AnalysisSearched) _then) =
-      _$AnalysisSearchedCopyWithImpl;
-  @useResult
-  $Res call({String query});
-}
-
-/// @nodoc
-class _$AnalysisSearchedCopyWithImpl<$Res>
-    implements $AnalysisSearchedCopyWith<$Res> {
-  _$AnalysisSearchedCopyWithImpl(this._self, this._then);
-
-  final AnalysisSearched _self;
-  final $Res Function(AnalysisSearched) _then;
-
   /// Create a copy of LabtechAnalysisEvent
   /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? query = null,
+  _$$AnalysisSearchedImplCopyWith<_$AnalysisSearchedImpl> get copyWith =>
+      __$$AnalysisSearchedImplCopyWithImpl<_$AnalysisSearchedImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() analysisFetched,
+    required TResult Function(AnalysisStatus analysisStatus)
+    analysisStatusChanged,
+    required TResult Function(int analysisId) analysisShown,
+    required TResult Function(String query) searched,
+    required TResult Function(AddAnalysisRequest request) addAnalysis,
   }) {
-    return _then(AnalysisSearched(
-      query: null == query
-          ? _self.query
-          : query // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return searched(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? analysisFetched,
+    TResult? Function(AnalysisStatus analysisStatus)? analysisStatusChanged,
+    TResult? Function(int analysisId)? analysisShown,
+    TResult? Function(String query)? searched,
+    TResult? Function(AddAnalysisRequest request)? addAnalysis,
+  }) {
+    return searched?.call(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? analysisFetched,
+    TResult Function(AnalysisStatus analysisStatus)? analysisStatusChanged,
+    TResult Function(int analysisId)? analysisShown,
+    TResult Function(String query)? searched,
+    TResult Function(AddAnalysisRequest request)? addAnalysis,
+    required TResult orElse(),
+  }) {
+    if (searched != null) {
+      return searched(query);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AnalysisFetched value) analysisFetched,
+    required TResult Function(AnalysisStatusChanged value)
+    analysisStatusChanged,
+    required TResult Function(AnalysisShown value) analysisShown,
+    required TResult Function(AnalysisSearched value) searched,
+    required TResult Function(AnalysisAdded value) addAnalysis,
+  }) {
+    return searched(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AnalysisFetched value)? analysisFetched,
+    TResult? Function(AnalysisStatusChanged value)? analysisStatusChanged,
+    TResult? Function(AnalysisShown value)? analysisShown,
+    TResult? Function(AnalysisSearched value)? searched,
+    TResult? Function(AnalysisAdded value)? addAnalysis,
+  }) {
+    return searched?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AnalysisFetched value)? analysisFetched,
+    TResult Function(AnalysisStatusChanged value)? analysisStatusChanged,
+    TResult Function(AnalysisShown value)? analysisShown,
+    TResult Function(AnalysisSearched value)? searched,
+    TResult Function(AnalysisAdded value)? addAnalysis,
+    required TResult orElse(),
+  }) {
+    if (searched != null) {
+      return searched(this);
+    }
+    return orElse();
   }
 }
 
-/// @nodoc
+abstract class AnalysisSearched implements LabtechAnalysisEvent {
+  const factory AnalysisSearched({required final String query}) =
+      _$AnalysisSearchedImpl;
 
-class AnalysisAdded implements LabtechAnalysisEvent {
-  const AnalysisAdded({required this.request});
-
-  final AddAnalysisRequest request;
+  String get query;
 
   /// Create a copy of LabtechAnalysisEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $AnalysisAddedCopyWith<AnalysisAdded> get copyWith =>
-      _$AnalysisAddedCopyWithImpl<AnalysisAdded>(this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is AnalysisAdded &&
-            (identical(other.request, request) || other.request == request));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, request);
-
-  @override
-  String toString() {
-    return 'LabtechAnalysisEvent.addAnalysis(request: $request)';
-  }
+  _$$AnalysisSearchedImplCopyWith<_$AnalysisSearchedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $AnalysisAddedCopyWith<$Res>
-    implements $LabtechAnalysisEventCopyWith<$Res> {
-  factory $AnalysisAddedCopyWith(
-          AnalysisAdded value, $Res Function(AnalysisAdded) _then) =
-      _$AnalysisAddedCopyWithImpl;
+abstract class _$$AnalysisAddedImplCopyWith<$Res> {
+  factory _$$AnalysisAddedImplCopyWith(
+    _$AnalysisAddedImpl value,
+    $Res Function(_$AnalysisAddedImpl) then,
+  ) = __$$AnalysisAddedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({AddAnalysisRequest request});
 
@@ -295,25 +739,28 @@ abstract mixin class $AnalysisAddedCopyWith<$Res>
 }
 
 /// @nodoc
-class _$AnalysisAddedCopyWithImpl<$Res>
-    implements $AnalysisAddedCopyWith<$Res> {
-  _$AnalysisAddedCopyWithImpl(this._self, this._then);
-
-  final AnalysisAdded _self;
-  final $Res Function(AnalysisAdded) _then;
+class __$$AnalysisAddedImplCopyWithImpl<$Res>
+    extends _$LabtechAnalysisEventCopyWithImpl<$Res, _$AnalysisAddedImpl>
+    implements _$$AnalysisAddedImplCopyWith<$Res> {
+  __$$AnalysisAddedImplCopyWithImpl(
+    _$AnalysisAddedImpl _value,
+    $Res Function(_$AnalysisAddedImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of LabtechAnalysisEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? request = null,
-  }) {
-    return _then(AnalysisAdded(
-      request: null == request
-          ? _self.request
-          : request // ignore: cast_nullable_to_non_nullable
-              as AddAnalysisRequest,
-    ));
+  @override
+  $Res call({Object? request = null}) {
+    return _then(
+      _$AnalysisAddedImpl(
+        request:
+            null == request
+                ? _value.request
+                : request // ignore: cast_nullable_to_non_nullable
+                    as AddAnalysisRequest,
+      ),
+    );
   }
 
   /// Create a copy of LabtechAnalysisEvent
@@ -321,74 +768,181 @@ class _$AnalysisAddedCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $AddAnalysisRequestCopyWith<$Res> get request {
-    return $AddAnalysisRequestCopyWith<$Res>(_self.request, (value) {
-      return _then(_self.copyWith(request: value));
+    return $AddAnalysisRequestCopyWith<$Res>(_value.request, (value) {
+      return _then(_value.copyWith(request: value));
     });
   }
 }
 
 /// @nodoc
-mixin _$LabtechAnalysisState {
-  List<AnalysisModel> get analysisList;
-  AnalysisStatus get analysisStatus;
-  DataStatus get status;
-  String get message;
 
-  /// Create a copy of LabtechAnalysisState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $LabtechAnalysisStateCopyWith<LabtechAnalysisState> get copyWith =>
-      _$LabtechAnalysisStateCopyWithImpl<LabtechAnalysisState>(
-          this as LabtechAnalysisState, _$identity);
+class _$AnalysisAddedImpl implements AnalysisAdded {
+  const _$AnalysisAddedImpl({required this.request});
+
+  @override
+  final AddAnalysisRequest request;
+
+  @override
+  String toString() {
+    return 'LabtechAnalysisEvent.addAnalysis(request: $request)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is LabtechAnalysisState &&
-            const DeepCollectionEquality()
-                .equals(other.analysisList, analysisList) &&
-            (identical(other.analysisStatus, analysisStatus) ||
-                other.analysisStatus == analysisStatus) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message));
+            other is _$AnalysisAddedImpl &&
+            (identical(other.request, request) || other.request == request));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(analysisList),
-      analysisStatus,
-      status,
-      message);
+  int get hashCode => Object.hash(runtimeType, request);
+
+  /// Create a copy of LabtechAnalysisEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AnalysisAddedImplCopyWith<_$AnalysisAddedImpl> get copyWith =>
+      __$$AnalysisAddedImplCopyWithImpl<_$AnalysisAddedImpl>(this, _$identity);
 
   @override
-  String toString() {
-    return 'LabtechAnalysisState(analysisList: $analysisList, analysisStatus: $analysisStatus, status: $status, message: $message)';
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() analysisFetched,
+    required TResult Function(AnalysisStatus analysisStatus)
+    analysisStatusChanged,
+    required TResult Function(int analysisId) analysisShown,
+    required TResult Function(String query) searched,
+    required TResult Function(AddAnalysisRequest request) addAnalysis,
+  }) {
+    return addAnalysis(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? analysisFetched,
+    TResult? Function(AnalysisStatus analysisStatus)? analysisStatusChanged,
+    TResult? Function(int analysisId)? analysisShown,
+    TResult? Function(String query)? searched,
+    TResult? Function(AddAnalysisRequest request)? addAnalysis,
+  }) {
+    return addAnalysis?.call(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? analysisFetched,
+    TResult Function(AnalysisStatus analysisStatus)? analysisStatusChanged,
+    TResult Function(int analysisId)? analysisShown,
+    TResult Function(String query)? searched,
+    TResult Function(AddAnalysisRequest request)? addAnalysis,
+    required TResult orElse(),
+  }) {
+    if (addAnalysis != null) {
+      return addAnalysis(request);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AnalysisFetched value) analysisFetched,
+    required TResult Function(AnalysisStatusChanged value)
+    analysisStatusChanged,
+    required TResult Function(AnalysisShown value) analysisShown,
+    required TResult Function(AnalysisSearched value) searched,
+    required TResult Function(AnalysisAdded value) addAnalysis,
+  }) {
+    return addAnalysis(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AnalysisFetched value)? analysisFetched,
+    TResult? Function(AnalysisStatusChanged value)? analysisStatusChanged,
+    TResult? Function(AnalysisShown value)? analysisShown,
+    TResult? Function(AnalysisSearched value)? searched,
+    TResult? Function(AnalysisAdded value)? addAnalysis,
+  }) {
+    return addAnalysis?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AnalysisFetched value)? analysisFetched,
+    TResult Function(AnalysisStatusChanged value)? analysisStatusChanged,
+    TResult Function(AnalysisShown value)? analysisShown,
+    TResult Function(AnalysisSearched value)? searched,
+    TResult Function(AnalysisAdded value)? addAnalysis,
+    required TResult orElse(),
+  }) {
+    if (addAnalysis != null) {
+      return addAnalysis(this);
+    }
+    return orElse();
   }
 }
 
+abstract class AnalysisAdded implements LabtechAnalysisEvent {
+  const factory AnalysisAdded({required final AddAnalysisRequest request}) =
+      _$AnalysisAddedImpl;
+
+  AddAnalysisRequest get request;
+
+  /// Create a copy of LabtechAnalysisEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AnalysisAddedImplCopyWith<_$AnalysisAddedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 /// @nodoc
-abstract mixin class $LabtechAnalysisStateCopyWith<$Res> {
-  factory $LabtechAnalysisStateCopyWith(LabtechAnalysisState value,
-          $Res Function(LabtechAnalysisState) _then) =
-      _$LabtechAnalysisStateCopyWithImpl;
+mixin _$LabtechAnalysisState {
+  List<AnalysisModel> get analysisList => throw _privateConstructorUsedError;
+  AnalysisStatus get analysisStatus => throw _privateConstructorUsedError;
+  DataStatus get status => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
+
+  /// Create a copy of LabtechAnalysisState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $LabtechAnalysisStateCopyWith<LabtechAnalysisState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LabtechAnalysisStateCopyWith<$Res> {
+  factory $LabtechAnalysisStateCopyWith(
+    LabtechAnalysisState value,
+    $Res Function(LabtechAnalysisState) then,
+  ) = _$LabtechAnalysisStateCopyWithImpl<$Res, LabtechAnalysisState>;
   @useResult
-  $Res call(
-      {List<AnalysisModel> analysisList,
-      AnalysisStatus analysisStatus,
-      DataStatus status,
-      String message});
+  $Res call({
+    List<AnalysisModel> analysisList,
+    AnalysisStatus analysisStatus,
+    DataStatus status,
+    String message,
+  });
 }
 
 /// @nodoc
-class _$LabtechAnalysisStateCopyWithImpl<$Res>
+class _$LabtechAnalysisStateCopyWithImpl<
+  $Res,
+  $Val extends LabtechAnalysisState
+>
     implements $LabtechAnalysisStateCopyWith<$Res> {
-  _$LabtechAnalysisStateCopyWithImpl(this._self, this._then);
+  _$LabtechAnalysisStateCopyWithImpl(this._value, this._then);
 
-  final LabtechAnalysisState _self;
-  final $Res Function(LabtechAnalysisState) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of LabtechAnalysisState
   /// with the given fields replaced by the non-null parameter values.
@@ -400,36 +954,106 @@ class _$LabtechAnalysisStateCopyWithImpl<$Res>
     Object? status = null,
     Object? message = null,
   }) {
-    return _then(_self.copyWith(
-      analysisList: null == analysisList
-          ? _self.analysisList
-          : analysisList // ignore: cast_nullable_to_non_nullable
-              as List<AnalysisModel>,
-      analysisStatus: null == analysisStatus
-          ? _self.analysisStatus
-          : analysisStatus // ignore: cast_nullable_to_non_nullable
-              as AnalysisStatus,
-      status: null == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as DataStatus,
-      message: null == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      _value.copyWith(
+            analysisList:
+                null == analysisList
+                    ? _value.analysisList
+                    : analysisList // ignore: cast_nullable_to_non_nullable
+                        as List<AnalysisModel>,
+            analysisStatus:
+                null == analysisStatus
+                    ? _value.analysisStatus
+                    : analysisStatus // ignore: cast_nullable_to_non_nullable
+                        as AnalysisStatus,
+            status:
+                null == status
+                    ? _value.status
+                    : status // ignore: cast_nullable_to_non_nullable
+                        as DataStatus,
+            message:
+                null == message
+                    ? _value.message
+                    : message // ignore: cast_nullable_to_non_nullable
+                        as String,
+          )
+          as $Val,
+    );
+  }
+}
+
+/// @nodoc
+abstract class _$$LabtechAnalysisStateImplCopyWith<$Res>
+    implements $LabtechAnalysisStateCopyWith<$Res> {
+  factory _$$LabtechAnalysisStateImplCopyWith(
+    _$LabtechAnalysisStateImpl value,
+    $Res Function(_$LabtechAnalysisStateImpl) then,
+  ) = __$$LabtechAnalysisStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({
+    List<AnalysisModel> analysisList,
+    AnalysisStatus analysisStatus,
+    DataStatus status,
+    String message,
+  });
+}
+
+/// @nodoc
+class __$$LabtechAnalysisStateImplCopyWithImpl<$Res>
+    extends _$LabtechAnalysisStateCopyWithImpl<$Res, _$LabtechAnalysisStateImpl>
+    implements _$$LabtechAnalysisStateImplCopyWith<$Res> {
+  __$$LabtechAnalysisStateImplCopyWithImpl(
+    _$LabtechAnalysisStateImpl _value,
+    $Res Function(_$LabtechAnalysisStateImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of LabtechAnalysisState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? analysisList = null,
+    Object? analysisStatus = null,
+    Object? status = null,
+    Object? message = null,
+  }) {
+    return _then(
+      _$LabtechAnalysisStateImpl(
+        analysisList:
+            null == analysisList
+                ? _value._analysisList
+                : analysisList // ignore: cast_nullable_to_non_nullable
+                    as List<AnalysisModel>,
+        analysisStatus:
+            null == analysisStatus
+                ? _value.analysisStatus
+                : analysisStatus // ignore: cast_nullable_to_non_nullable
+                    as AnalysisStatus,
+        status:
+            null == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                    as DataStatus,
+        message:
+            null == message
+                ? _value.message
+                : message // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
-class _LabtechAnalysisState implements LabtechAnalysisState {
-  const _LabtechAnalysisState(
-      {required final List<AnalysisModel> analysisList,
-      required this.analysisStatus,
-      required this.status,
-      required this.message})
-      : _analysisList = analysisList;
+class _$LabtechAnalysisStateImpl implements _LabtechAnalysisState {
+  const _$LabtechAnalysisStateImpl({
+    required final List<AnalysisModel> analysisList,
+    required this.analysisStatus,
+    required this.status,
+    required this.message,
+  }) : _analysisList = analysisList;
 
   final List<AnalysisModel> _analysisList;
   @override
@@ -446,22 +1070,20 @@ class _LabtechAnalysisState implements LabtechAnalysisState {
   @override
   final String message;
 
-  /// Create a copy of LabtechAnalysisState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$LabtechAnalysisStateCopyWith<_LabtechAnalysisState> get copyWith =>
-      __$LabtechAnalysisStateCopyWithImpl<_LabtechAnalysisState>(
-          this, _$identity);
+  String toString() {
+    return 'LabtechAnalysisState(analysisList: $analysisList, analysisStatus: $analysisStatus, status: $status, message: $message)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _LabtechAnalysisState &&
-            const DeepCollectionEquality()
-                .equals(other._analysisList, _analysisList) &&
+            other is _$LabtechAnalysisStateImpl &&
+            const DeepCollectionEquality().equals(
+              other._analysisList,
+              _analysisList,
+            ) &&
             (identical(other.analysisStatus, analysisStatus) ||
                 other.analysisStatus == analysisStatus) &&
             (identical(other.status, status) || other.status == status) &&
@@ -470,70 +1092,47 @@ class _LabtechAnalysisState implements LabtechAnalysisState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_analysisList),
-      analysisStatus,
-      status,
-      message);
+    runtimeType,
+    const DeepCollectionEquality().hash(_analysisList),
+    analysisStatus,
+    status,
+    message,
+  );
 
+  /// Create a copy of LabtechAnalysisState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'LabtechAnalysisState(analysisList: $analysisList, analysisStatus: $analysisStatus, status: $status, message: $message)';
-  }
+  @pragma('vm:prefer-inline')
+  _$$LabtechAnalysisStateImplCopyWith<_$LabtechAnalysisStateImpl>
+  get copyWith =>
+      __$$LabtechAnalysisStateImplCopyWithImpl<_$LabtechAnalysisStateImpl>(
+        this,
+        _$identity,
+      );
 }
 
-/// @nodoc
-abstract mixin class _$LabtechAnalysisStateCopyWith<$Res>
-    implements $LabtechAnalysisStateCopyWith<$Res> {
-  factory _$LabtechAnalysisStateCopyWith(_LabtechAnalysisState value,
-          $Res Function(_LabtechAnalysisState) _then) =
-      __$LabtechAnalysisStateCopyWithImpl;
+abstract class _LabtechAnalysisState implements LabtechAnalysisState {
+  const factory _LabtechAnalysisState({
+    required final List<AnalysisModel> analysisList,
+    required final AnalysisStatus analysisStatus,
+    required final DataStatus status,
+    required final String message,
+  }) = _$LabtechAnalysisStateImpl;
+
   @override
-  @useResult
-  $Res call(
-      {List<AnalysisModel> analysisList,
-      AnalysisStatus analysisStatus,
-      DataStatus status,
-      String message});
-}
-
-/// @nodoc
-class __$LabtechAnalysisStateCopyWithImpl<$Res>
-    implements _$LabtechAnalysisStateCopyWith<$Res> {
-  __$LabtechAnalysisStateCopyWithImpl(this._self, this._then);
-
-  final _LabtechAnalysisState _self;
-  final $Res Function(_LabtechAnalysisState) _then;
+  List<AnalysisModel> get analysisList;
+  @override
+  AnalysisStatus get analysisStatus;
+  @override
+  DataStatus get status;
+  @override
+  String get message;
 
   /// Create a copy of LabtechAnalysisState
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? analysisList = null,
-    Object? analysisStatus = null,
-    Object? status = null,
-    Object? message = null,
-  }) {
-    return _then(_LabtechAnalysisState(
-      analysisList: null == analysisList
-          ? _self._analysisList
-          : analysisList // ignore: cast_nullable_to_non_nullable
-              as List<AnalysisModel>,
-      analysisStatus: null == analysisStatus
-          ? _self.analysisStatus
-          : analysisStatus // ignore: cast_nullable_to_non_nullable
-              as AnalysisStatus,
-      status: null == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as DataStatus,
-      message: null == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LabtechAnalysisStateImplCopyWith<_$LabtechAnalysisStateImpl>
+  get copyWith => throw _privateConstructorUsedError;
 }
-
-// dart format on

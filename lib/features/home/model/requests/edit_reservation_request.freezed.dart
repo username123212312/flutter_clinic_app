@@ -1,4 +1,3 @@
-// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,71 +9,55 @@ part of 'edit_reservation_request.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$EditReservationRequest {
-  int get appointmentId;
-  int get clinicId;
-  int get doctorId;
-  DateTime get newDate;
-  TimeOfDay get newTime;
+  int get appointmentId => throw _privateConstructorUsedError;
+  int get clinicId => throw _privateConstructorUsedError;
+  int get doctorId => throw _privateConstructorUsedError;
+  DateTime get newDate => throw _privateConstructorUsedError;
+  TimeOfDay get newTime => throw _privateConstructorUsedError;
 
   /// Create a copy of EditReservationRequest
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $EditReservationRequestCopyWith<EditReservationRequest> get copyWith =>
-      _$EditReservationRequestCopyWithImpl<EditReservationRequest>(
-          this as EditReservationRequest, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is EditReservationRequest &&
-            (identical(other.appointmentId, appointmentId) ||
-                other.appointmentId == appointmentId) &&
-            (identical(other.clinicId, clinicId) ||
-                other.clinicId == clinicId) &&
-            (identical(other.doctorId, doctorId) ||
-                other.doctorId == doctorId) &&
-            (identical(other.newDate, newDate) || other.newDate == newDate) &&
-            (identical(other.newTime, newTime) || other.newTime == newTime));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, appointmentId, clinicId, doctorId, newDate, newTime);
-
-  @override
-  String toString() {
-    return 'EditReservationRequest(appointmentId: $appointmentId, clinicId: $clinicId, doctorId: $doctorId, newDate: $newDate, newTime: $newTime)';
-  }
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $EditReservationRequestCopyWith<$Res> {
-  factory $EditReservationRequestCopyWith(EditReservationRequest value,
-          $Res Function(EditReservationRequest) _then) =
-      _$EditReservationRequestCopyWithImpl;
+abstract class $EditReservationRequestCopyWith<$Res> {
+  factory $EditReservationRequestCopyWith(
+    EditReservationRequest value,
+    $Res Function(EditReservationRequest) then,
+  ) = _$EditReservationRequestCopyWithImpl<$Res, EditReservationRequest>;
   @useResult
-  $Res call(
-      {int appointmentId,
-      int clinicId,
-      int doctorId,
-      DateTime newDate,
-      TimeOfDay newTime});
+  $Res call({
+    int appointmentId,
+    int clinicId,
+    int doctorId,
+    DateTime newDate,
+    TimeOfDay newTime,
+  });
 }
 
 /// @nodoc
-class _$EditReservationRequestCopyWithImpl<$Res>
+class _$EditReservationRequestCopyWithImpl<
+  $Res,
+  $Val extends EditReservationRequest
+>
     implements $EditReservationRequestCopyWith<$Res> {
-  _$EditReservationRequestCopyWithImpl(this._self, this._then);
+  _$EditReservationRequestCopyWithImpl(this._value, this._then);
 
-  final EditReservationRequest _self;
-  final $Res Function(EditReservationRequest) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of EditReservationRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -87,40 +70,120 @@ class _$EditReservationRequestCopyWithImpl<$Res>
     Object? newDate = null,
     Object? newTime = null,
   }) {
-    return _then(_self.copyWith(
-      appointmentId: null == appointmentId
-          ? _self.appointmentId
-          : appointmentId // ignore: cast_nullable_to_non_nullable
-              as int,
-      clinicId: null == clinicId
-          ? _self.clinicId
-          : clinicId // ignore: cast_nullable_to_non_nullable
-              as int,
-      doctorId: null == doctorId
-          ? _self.doctorId
-          : doctorId // ignore: cast_nullable_to_non_nullable
-              as int,
-      newDate: null == newDate
-          ? _self.newDate
-          : newDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      newTime: null == newTime
-          ? _self.newTime
-          : newTime // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay,
-    ));
+    return _then(
+      _value.copyWith(
+            appointmentId:
+                null == appointmentId
+                    ? _value.appointmentId
+                    : appointmentId // ignore: cast_nullable_to_non_nullable
+                        as int,
+            clinicId:
+                null == clinicId
+                    ? _value.clinicId
+                    : clinicId // ignore: cast_nullable_to_non_nullable
+                        as int,
+            doctorId:
+                null == doctorId
+                    ? _value.doctorId
+                    : doctorId // ignore: cast_nullable_to_non_nullable
+                        as int,
+            newDate:
+                null == newDate
+                    ? _value.newDate
+                    : newDate // ignore: cast_nullable_to_non_nullable
+                        as DateTime,
+            newTime:
+                null == newTime
+                    ? _value.newTime
+                    : newTime // ignore: cast_nullable_to_non_nullable
+                        as TimeOfDay,
+          )
+          as $Val,
+    );
+  }
+}
+
+/// @nodoc
+abstract class _$$EditReservationRequestImplCopyWith<$Res>
+    implements $EditReservationRequestCopyWith<$Res> {
+  factory _$$EditReservationRequestImplCopyWith(
+    _$EditReservationRequestImpl value,
+    $Res Function(_$EditReservationRequestImpl) then,
+  ) = __$$EditReservationRequestImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({
+    int appointmentId,
+    int clinicId,
+    int doctorId,
+    DateTime newDate,
+    TimeOfDay newTime,
+  });
+}
+
+/// @nodoc
+class __$$EditReservationRequestImplCopyWithImpl<$Res>
+    extends
+        _$EditReservationRequestCopyWithImpl<$Res, _$EditReservationRequestImpl>
+    implements _$$EditReservationRequestImplCopyWith<$Res> {
+  __$$EditReservationRequestImplCopyWithImpl(
+    _$EditReservationRequestImpl _value,
+    $Res Function(_$EditReservationRequestImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of EditReservationRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? appointmentId = null,
+    Object? clinicId = null,
+    Object? doctorId = null,
+    Object? newDate = null,
+    Object? newTime = null,
+  }) {
+    return _then(
+      _$EditReservationRequestImpl(
+        appointmentId:
+            null == appointmentId
+                ? _value.appointmentId
+                : appointmentId // ignore: cast_nullable_to_non_nullable
+                    as int,
+        clinicId:
+            null == clinicId
+                ? _value.clinicId
+                : clinicId // ignore: cast_nullable_to_non_nullable
+                    as int,
+        doctorId:
+            null == doctorId
+                ? _value.doctorId
+                : doctorId // ignore: cast_nullable_to_non_nullable
+                    as int,
+        newDate:
+            null == newDate
+                ? _value.newDate
+                : newDate // ignore: cast_nullable_to_non_nullable
+                    as DateTime,
+        newTime:
+            null == newTime
+                ? _value.newTime
+                : newTime // ignore: cast_nullable_to_non_nullable
+                    as TimeOfDay,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
-class _EditReservationRequest implements EditReservationRequest {
-  _EditReservationRequest(
-      {required this.appointmentId,
-      required this.clinicId,
-      required this.doctorId,
-      required this.newDate,
-      required this.newTime});
+class _$EditReservationRequestImpl implements _EditReservationRequest {
+  _$EditReservationRequestImpl({
+    required this.appointmentId,
+    required this.clinicId,
+    required this.doctorId,
+    required this.newDate,
+    required this.newTime,
+  });
 
   @override
   final int appointmentId;
@@ -133,20 +196,16 @@ class _EditReservationRequest implements EditReservationRequest {
   @override
   final TimeOfDay newTime;
 
-  /// Create a copy of EditReservationRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$EditReservationRequestCopyWith<_EditReservationRequest> get copyWith =>
-      __$EditReservationRequestCopyWithImpl<_EditReservationRequest>(
-          this, _$identity);
+  String toString() {
+    return 'EditReservationRequest(appointmentId: $appointmentId, clinicId: $clinicId, doctorId: $doctorId, newDate: $newDate, newTime: $newTime)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _EditReservationRequest &&
+            other is _$EditReservationRequestImpl &&
             (identical(other.appointmentId, appointmentId) ||
                 other.appointmentId == appointmentId) &&
             (identical(other.clinicId, clinicId) ||
@@ -159,72 +218,51 @@ class _EditReservationRequest implements EditReservationRequest {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, appointmentId, clinicId, doctorId, newDate, newTime);
+    runtimeType,
+    appointmentId,
+    clinicId,
+    doctorId,
+    newDate,
+    newTime,
+  );
 
+  /// Create a copy of EditReservationRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'EditReservationRequest(appointmentId: $appointmentId, clinicId: $clinicId, doctorId: $doctorId, newDate: $newDate, newTime: $newTime)';
-  }
+  @pragma('vm:prefer-inline')
+  _$$EditReservationRequestImplCopyWith<_$EditReservationRequestImpl>
+  get copyWith =>
+      __$$EditReservationRequestImplCopyWithImpl<_$EditReservationRequestImpl>(
+        this,
+        _$identity,
+      );
 }
 
-/// @nodoc
-abstract mixin class _$EditReservationRequestCopyWith<$Res>
-    implements $EditReservationRequestCopyWith<$Res> {
-  factory _$EditReservationRequestCopyWith(_EditReservationRequest value,
-          $Res Function(_EditReservationRequest) _then) =
-      __$EditReservationRequestCopyWithImpl;
+abstract class _EditReservationRequest implements EditReservationRequest {
+  factory _EditReservationRequest({
+    required final int appointmentId,
+    required final int clinicId,
+    required final int doctorId,
+    required final DateTime newDate,
+    required final TimeOfDay newTime,
+  }) = _$EditReservationRequestImpl;
+
   @override
-  @useResult
-  $Res call(
-      {int appointmentId,
-      int clinicId,
-      int doctorId,
-      DateTime newDate,
-      TimeOfDay newTime});
-}
-
-/// @nodoc
-class __$EditReservationRequestCopyWithImpl<$Res>
-    implements _$EditReservationRequestCopyWith<$Res> {
-  __$EditReservationRequestCopyWithImpl(this._self, this._then);
-
-  final _EditReservationRequest _self;
-  final $Res Function(_EditReservationRequest) _then;
+  int get appointmentId;
+  @override
+  int get clinicId;
+  @override
+  int get doctorId;
+  @override
+  DateTime get newDate;
+  @override
+  TimeOfDay get newTime;
 
   /// Create a copy of EditReservationRequest
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? appointmentId = null,
-    Object? clinicId = null,
-    Object? doctorId = null,
-    Object? newDate = null,
-    Object? newTime = null,
-  }) {
-    return _then(_EditReservationRequest(
-      appointmentId: null == appointmentId
-          ? _self.appointmentId
-          : appointmentId // ignore: cast_nullable_to_non_nullable
-              as int,
-      clinicId: null == clinicId
-          ? _self.clinicId
-          : clinicId // ignore: cast_nullable_to_non_nullable
-              as int,
-      doctorId: null == doctorId
-          ? _self.doctorId
-          : doctorId // ignore: cast_nullable_to_non_nullable
-              as int,
-      newDate: null == newDate
-          ? _self.newDate
-          : newDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      newTime: null == newTime
-          ? _self.newTime
-          : newTime // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$EditReservationRequestImplCopyWith<_$EditReservationRequestImpl>
+  get copyWith => throw _privateConstructorUsedError;
 }
-
-// dart format on

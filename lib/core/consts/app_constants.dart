@@ -11,8 +11,10 @@ class AppConstants {
     'AB+',
     'AB-',
   ];
-  static const ipAddress = '192.168.173.76'; //10.0.2.2
-  static const serverUrl = 'http://$ipAddress:8000';
+  static const ipAddress = '192.168.1.7'; //10.0.2.2
+  static const localAddress = 'http://$ipAddress:8000';
+  static const ngrokAddress = 'https://deep-pangolin-normally.ngrok-free.app';
+  static const serverUrl = ngrokAddress;
   static const apiPath = 'api';
   static const patientPath = '/$apiPath/patient';
   static const homePath = '/$apiPath/home';
@@ -56,6 +58,10 @@ class AppConstants {
   //*   Reservation
   static const showDoctorWorkDaysPath = '$patientPath/showDoctorWorkDays';
   static const showTimesPath = '$patientPath/showTimes';
+
+  //*   Payment
+  static const createPaymentIntentPath = '$patientPath/createPaymentIntent';
+  static const confirmWalletRechargePath = '$patientPath/confirmWalletRecharge';
 
   //? Doctor
   static const profilePath = '$doctorPath/profile';

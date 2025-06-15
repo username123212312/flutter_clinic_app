@@ -1,4 +1,3 @@
-// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,72 +9,253 @@ part of 'appointments_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$AppointmentsEvent {
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is AppointmentsEvent);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  String toString() {
-    return 'AppointmentsEvent()';
-  }
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() appointmentsFetched,
+    required TResult Function(AppointmentStatus appointmentStatus)
+    appointmentStatusChanged,
+    required TResult Function(int reservationId) appointmentCanceled,
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? appointmentsFetched,
+    TResult? Function(AppointmentStatus appointmentStatus)?
+    appointmentStatusChanged,
+    TResult? Function(int reservationId)? appointmentCanceled,
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? appointmentsFetched,
+    TResult Function(AppointmentStatus appointmentStatus)?
+    appointmentStatusChanged,
+    TResult Function(int reservationId)? appointmentCanceled,
+    required TResult orElse(),
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AppointmentsFetched value) appointmentsFetched,
+    required TResult Function(AppointmentStatusChanged value)
+    appointmentStatusChanged,
+    required TResult Function(AppointmentCanceled value) appointmentCanceled,
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AppointmentsFetched value)? appointmentsFetched,
+    TResult? Function(AppointmentStatusChanged value)? appointmentStatusChanged,
+    TResult? Function(AppointmentCanceled value)? appointmentCanceled,
+  }) => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AppointmentsFetched value)? appointmentsFetched,
+    TResult Function(AppointmentStatusChanged value)? appointmentStatusChanged,
+    TResult Function(AppointmentCanceled value)? appointmentCanceled,
+    required TResult orElse(),
+  }) => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-class $AppointmentsEventCopyWith<$Res> {
-  $AppointmentsEventCopyWith(
-      AppointmentsEvent _, $Res Function(AppointmentsEvent) __);
+abstract class $AppointmentsEventCopyWith<$Res> {
+  factory $AppointmentsEventCopyWith(
+    AppointmentsEvent value,
+    $Res Function(AppointmentsEvent) then,
+  ) = _$AppointmentsEventCopyWithImpl<$Res, AppointmentsEvent>;
+}
+
+/// @nodoc
+class _$AppointmentsEventCopyWithImpl<$Res, $Val extends AppointmentsEvent>
+    implements $AppointmentsEventCopyWith<$Res> {
+  _$AppointmentsEventCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of AppointmentsEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+abstract class _$$AppointmentsFetchedImplCopyWith<$Res> {
+  factory _$$AppointmentsFetchedImplCopyWith(
+    _$AppointmentsFetchedImpl value,
+    $Res Function(_$AppointmentsFetchedImpl) then,
+  ) = __$$AppointmentsFetchedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AppointmentsFetchedImplCopyWithImpl<$Res>
+    extends _$AppointmentsEventCopyWithImpl<$Res, _$AppointmentsFetchedImpl>
+    implements _$$AppointmentsFetchedImplCopyWith<$Res> {
+  __$$AppointmentsFetchedImplCopyWithImpl(
+    _$AppointmentsFetchedImpl _value,
+    $Res Function(_$AppointmentsFetchedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of AppointmentsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class AppointmentsFetched implements AppointmentsEvent {
-  const AppointmentsFetched();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is AppointmentsFetched);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
+class _$AppointmentsFetchedImpl implements AppointmentsFetched {
+  const _$AppointmentsFetchedImpl();
 
   @override
   String toString() {
     return 'AppointmentsEvent.appointmentsFetched()';
   }
-}
-
-/// @nodoc
-
-class AppointmentStatusChanged implements AppointmentsEvent {
-  const AppointmentStatusChanged({required this.appointmentStatus});
-
-  final AppointmentStatus appointmentStatus;
-
-  /// Create a copy of AppointmentsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $AppointmentStatusChangedCopyWith<AppointmentStatusChanged> get copyWith =>
-      _$AppointmentStatusChangedCopyWithImpl<AppointmentStatusChanged>(
-          this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AppointmentStatusChanged &&
+            other is _$AppointmentsFetchedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() appointmentsFetched,
+    required TResult Function(AppointmentStatus appointmentStatus)
+    appointmentStatusChanged,
+    required TResult Function(int reservationId) appointmentCanceled,
+  }) {
+    return appointmentsFetched();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? appointmentsFetched,
+    TResult? Function(AppointmentStatus appointmentStatus)?
+    appointmentStatusChanged,
+    TResult? Function(int reservationId)? appointmentCanceled,
+  }) {
+    return appointmentsFetched?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? appointmentsFetched,
+    TResult Function(AppointmentStatus appointmentStatus)?
+    appointmentStatusChanged,
+    TResult Function(int reservationId)? appointmentCanceled,
+    required TResult orElse(),
+  }) {
+    if (appointmentsFetched != null) {
+      return appointmentsFetched();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AppointmentsFetched value) appointmentsFetched,
+    required TResult Function(AppointmentStatusChanged value)
+    appointmentStatusChanged,
+    required TResult Function(AppointmentCanceled value) appointmentCanceled,
+  }) {
+    return appointmentsFetched(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AppointmentsFetched value)? appointmentsFetched,
+    TResult? Function(AppointmentStatusChanged value)? appointmentStatusChanged,
+    TResult? Function(AppointmentCanceled value)? appointmentCanceled,
+  }) {
+    return appointmentsFetched?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AppointmentsFetched value)? appointmentsFetched,
+    TResult Function(AppointmentStatusChanged value)? appointmentStatusChanged,
+    TResult Function(AppointmentCanceled value)? appointmentCanceled,
+    required TResult orElse(),
+  }) {
+    if (appointmentsFetched != null) {
+      return appointmentsFetched(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AppointmentsFetched implements AppointmentsEvent {
+  const factory AppointmentsFetched() = _$AppointmentsFetchedImpl;
+}
+
+/// @nodoc
+abstract class _$$AppointmentStatusChangedImplCopyWith<$Res> {
+  factory _$$AppointmentStatusChangedImplCopyWith(
+    _$AppointmentStatusChangedImpl value,
+    $Res Function(_$AppointmentStatusChangedImpl) then,
+  ) = __$$AppointmentStatusChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({AppointmentStatus appointmentStatus});
+}
+
+/// @nodoc
+class __$$AppointmentStatusChangedImplCopyWithImpl<$Res>
+    extends
+        _$AppointmentsEventCopyWithImpl<$Res, _$AppointmentStatusChangedImpl>
+    implements _$$AppointmentStatusChangedImplCopyWith<$Res> {
+  __$$AppointmentStatusChangedImplCopyWithImpl(
+    _$AppointmentStatusChangedImpl _value,
+    $Res Function(_$AppointmentStatusChangedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of AppointmentsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? appointmentStatus = null}) {
+    return _then(
+      _$AppointmentStatusChangedImpl(
+        appointmentStatus:
+            null == appointmentStatus
+                ? _value.appointmentStatus
+                : appointmentStatus // ignore: cast_nullable_to_non_nullable
+                    as AppointmentStatus,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$AppointmentStatusChangedImpl implements AppointmentStatusChanged {
+  const _$AppointmentStatusChangedImpl({required this.appointmentStatus});
+
+  @override
+  final AppointmentStatus appointmentStatus;
+
+  @override
+  String toString() {
+    return 'AppointmentsEvent.appointmentStatusChanged(appointmentStatus: $appointmentStatus)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AppointmentStatusChangedImpl &&
             (identical(other.appointmentStatus, appointmentStatus) ||
                 other.appointmentStatus == appointmentStatus));
   }
@@ -83,64 +263,157 @@ class AppointmentStatusChanged implements AppointmentsEvent {
   @override
   int get hashCode => Object.hash(runtimeType, appointmentStatus);
 
-  @override
-  String toString() {
-    return 'AppointmentsEvent.appointmentStatusChanged(appointmentStatus: $appointmentStatus)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $AppointmentStatusChangedCopyWith<$Res>
-    implements $AppointmentsEventCopyWith<$Res> {
-  factory $AppointmentStatusChangedCopyWith(AppointmentStatusChanged value,
-          $Res Function(AppointmentStatusChanged) _then) =
-      _$AppointmentStatusChangedCopyWithImpl;
-  @useResult
-  $Res call({AppointmentStatus appointmentStatus});
-}
-
-/// @nodoc
-class _$AppointmentStatusChangedCopyWithImpl<$Res>
-    implements $AppointmentStatusChangedCopyWith<$Res> {
-  _$AppointmentStatusChangedCopyWithImpl(this._self, this._then);
-
-  final AppointmentStatusChanged _self;
-  final $Res Function(AppointmentStatusChanged) _then;
-
   /// Create a copy of AppointmentsEvent
   /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? appointmentStatus = null,
+  _$$AppointmentStatusChangedImplCopyWith<_$AppointmentStatusChangedImpl>
+  get copyWith => __$$AppointmentStatusChangedImplCopyWithImpl<
+    _$AppointmentStatusChangedImpl
+  >(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() appointmentsFetched,
+    required TResult Function(AppointmentStatus appointmentStatus)
+    appointmentStatusChanged,
+    required TResult Function(int reservationId) appointmentCanceled,
   }) {
-    return _then(AppointmentStatusChanged(
-      appointmentStatus: null == appointmentStatus
-          ? _self.appointmentStatus
-          : appointmentStatus // ignore: cast_nullable_to_non_nullable
-              as AppointmentStatus,
-    ));
+    return appointmentStatusChanged(appointmentStatus);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? appointmentsFetched,
+    TResult? Function(AppointmentStatus appointmentStatus)?
+    appointmentStatusChanged,
+    TResult? Function(int reservationId)? appointmentCanceled,
+  }) {
+    return appointmentStatusChanged?.call(appointmentStatus);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? appointmentsFetched,
+    TResult Function(AppointmentStatus appointmentStatus)?
+    appointmentStatusChanged,
+    TResult Function(int reservationId)? appointmentCanceled,
+    required TResult orElse(),
+  }) {
+    if (appointmentStatusChanged != null) {
+      return appointmentStatusChanged(appointmentStatus);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AppointmentsFetched value) appointmentsFetched,
+    required TResult Function(AppointmentStatusChanged value)
+    appointmentStatusChanged,
+    required TResult Function(AppointmentCanceled value) appointmentCanceled,
+  }) {
+    return appointmentStatusChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AppointmentsFetched value)? appointmentsFetched,
+    TResult? Function(AppointmentStatusChanged value)? appointmentStatusChanged,
+    TResult? Function(AppointmentCanceled value)? appointmentCanceled,
+  }) {
+    return appointmentStatusChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AppointmentsFetched value)? appointmentsFetched,
+    TResult Function(AppointmentStatusChanged value)? appointmentStatusChanged,
+    TResult Function(AppointmentCanceled value)? appointmentCanceled,
+    required TResult orElse(),
+  }) {
+    if (appointmentStatusChanged != null) {
+      return appointmentStatusChanged(this);
+    }
+    return orElse();
   }
 }
 
-/// @nodoc
+abstract class AppointmentStatusChanged implements AppointmentsEvent {
+  const factory AppointmentStatusChanged({
+    required final AppointmentStatus appointmentStatus,
+  }) = _$AppointmentStatusChangedImpl;
 
-class AppointmentCanceled implements AppointmentsEvent {
-  const AppointmentCanceled({required this.reservationId});
-
-  final int reservationId;
+  AppointmentStatus get appointmentStatus;
 
   /// Create a copy of AppointmentsEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AppointmentStatusChangedImplCopyWith<_$AppointmentStatusChangedImpl>
+  get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AppointmentCanceledImplCopyWith<$Res> {
+  factory _$$AppointmentCanceledImplCopyWith(
+    _$AppointmentCanceledImpl value,
+    $Res Function(_$AppointmentCanceledImpl) then,
+  ) = __$$AppointmentCanceledImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int reservationId});
+}
+
+/// @nodoc
+class __$$AppointmentCanceledImplCopyWithImpl<$Res>
+    extends _$AppointmentsEventCopyWithImpl<$Res, _$AppointmentCanceledImpl>
+    implements _$$AppointmentCanceledImplCopyWith<$Res> {
+  __$$AppointmentCanceledImplCopyWithImpl(
+    _$AppointmentCanceledImpl _value,
+    $Res Function(_$AppointmentCanceledImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of AppointmentsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  $AppointmentCanceledCopyWith<AppointmentCanceled> get copyWith =>
-      _$AppointmentCanceledCopyWithImpl<AppointmentCanceled>(this, _$identity);
+  @override
+  $Res call({Object? reservationId = null}) {
+    return _then(
+      _$AppointmentCanceledImpl(
+        reservationId:
+            null == reservationId
+                ? _value.reservationId
+                : reservationId // ignore: cast_nullable_to_non_nullable
+                    as int,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$AppointmentCanceledImpl implements AppointmentCanceled {
+  const _$AppointmentCanceledImpl({required this.reservationId});
+
+  @override
+  final int reservationId;
+
+  @override
+  String toString() {
+    return 'AppointmentsEvent.appointmentCanceled(reservationId: $reservationId)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AppointmentCanceled &&
+            other is _$AppointmentCanceledImpl &&
             (identical(other.reservationId, reservationId) ||
                 other.reservationId == reservationId));
   }
@@ -148,108 +421,143 @@ class AppointmentCanceled implements AppointmentsEvent {
   @override
   int get hashCode => Object.hash(runtimeType, reservationId);
 
+  /// Create a copy of AppointmentsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'AppointmentsEvent.appointmentCanceled(reservationId: $reservationId)';
+  @pragma('vm:prefer-inline')
+  _$$AppointmentCanceledImplCopyWith<_$AppointmentCanceledImpl> get copyWith =>
+      __$$AppointmentCanceledImplCopyWithImpl<_$AppointmentCanceledImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() appointmentsFetched,
+    required TResult Function(AppointmentStatus appointmentStatus)
+    appointmentStatusChanged,
+    required TResult Function(int reservationId) appointmentCanceled,
+  }) {
+    return appointmentCanceled(reservationId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? appointmentsFetched,
+    TResult? Function(AppointmentStatus appointmentStatus)?
+    appointmentStatusChanged,
+    TResult? Function(int reservationId)? appointmentCanceled,
+  }) {
+    return appointmentCanceled?.call(reservationId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? appointmentsFetched,
+    TResult Function(AppointmentStatus appointmentStatus)?
+    appointmentStatusChanged,
+    TResult Function(int reservationId)? appointmentCanceled,
+    required TResult orElse(),
+  }) {
+    if (appointmentCanceled != null) {
+      return appointmentCanceled(reservationId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AppointmentsFetched value) appointmentsFetched,
+    required TResult Function(AppointmentStatusChanged value)
+    appointmentStatusChanged,
+    required TResult Function(AppointmentCanceled value) appointmentCanceled,
+  }) {
+    return appointmentCanceled(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AppointmentsFetched value)? appointmentsFetched,
+    TResult? Function(AppointmentStatusChanged value)? appointmentStatusChanged,
+    TResult? Function(AppointmentCanceled value)? appointmentCanceled,
+  }) {
+    return appointmentCanceled?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AppointmentsFetched value)? appointmentsFetched,
+    TResult Function(AppointmentStatusChanged value)? appointmentStatusChanged,
+    TResult Function(AppointmentCanceled value)? appointmentCanceled,
+    required TResult orElse(),
+  }) {
+    if (appointmentCanceled != null) {
+      return appointmentCanceled(this);
+    }
+    return orElse();
   }
 }
 
-/// @nodoc
-abstract mixin class $AppointmentCanceledCopyWith<$Res>
-    implements $AppointmentsEventCopyWith<$Res> {
-  factory $AppointmentCanceledCopyWith(
-          AppointmentCanceled value, $Res Function(AppointmentCanceled) _then) =
-      _$AppointmentCanceledCopyWithImpl;
-  @useResult
-  $Res call({int reservationId});
-}
+abstract class AppointmentCanceled implements AppointmentsEvent {
+  const factory AppointmentCanceled({required final int reservationId}) =
+      _$AppointmentCanceledImpl;
 
-/// @nodoc
-class _$AppointmentCanceledCopyWithImpl<$Res>
-    implements $AppointmentCanceledCopyWith<$Res> {
-  _$AppointmentCanceledCopyWithImpl(this._self, this._then);
-
-  final AppointmentCanceled _self;
-  final $Res Function(AppointmentCanceled) _then;
+  int get reservationId;
 
   /// Create a copy of AppointmentsEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? reservationId = null,
-  }) {
-    return _then(AppointmentCanceled(
-      reservationId: null == reservationId
-          ? _self.reservationId
-          : reservationId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AppointmentCanceledImplCopyWith<_$AppointmentCanceledImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$AppointmentsState {
-  List<AppointmentModel>? get appointments;
-  AppointmentStatus? get appointmentStatus;
-  DataStatus? get status;
-  String? get statusMessage;
+  List<AppointmentModel>? get appointments =>
+      throw _privateConstructorUsedError;
+  AppointmentStatus? get appointmentStatus =>
+      throw _privateConstructorUsedError;
+  DataStatus? get status => throw _privateConstructorUsedError;
+  String? get statusMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of AppointmentsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $AppointmentsStateCopyWith<AppointmentsState> get copyWith =>
-      _$AppointmentsStateCopyWithImpl<AppointmentsState>(
-          this as AppointmentsState, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is AppointmentsState &&
-            const DeepCollectionEquality()
-                .equals(other.appointments, appointments) &&
-            (identical(other.appointmentStatus, appointmentStatus) ||
-                other.appointmentStatus == appointmentStatus) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.statusMessage, statusMessage) ||
-                other.statusMessage == statusMessage));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(appointments),
-      appointmentStatus,
-      status,
-      statusMessage);
-
-  @override
-  String toString() {
-    return 'AppointmentsState(appointments: $appointments, appointmentStatus: $appointmentStatus, status: $status, statusMessage: $statusMessage)';
-  }
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $AppointmentsStateCopyWith<$Res> {
+abstract class $AppointmentsStateCopyWith<$Res> {
   factory $AppointmentsStateCopyWith(
-          AppointmentsState value, $Res Function(AppointmentsState) _then) =
-      _$AppointmentsStateCopyWithImpl;
+    AppointmentsState value,
+    $Res Function(AppointmentsState) then,
+  ) = _$AppointmentsStateCopyWithImpl<$Res, AppointmentsState>;
   @useResult
-  $Res call(
-      {List<AppointmentModel>? appointments,
-      AppointmentStatus? appointmentStatus,
-      DataStatus? status,
-      String? statusMessage});
+  $Res call({
+    List<AppointmentModel>? appointments,
+    AppointmentStatus? appointmentStatus,
+    DataStatus? status,
+    String? statusMessage,
+  });
 }
 
 /// @nodoc
-class _$AppointmentsStateCopyWithImpl<$Res>
+class _$AppointmentsStateCopyWithImpl<$Res, $Val extends AppointmentsState>
     implements $AppointmentsStateCopyWith<$Res> {
-  _$AppointmentsStateCopyWithImpl(this._self, this._then);
+  _$AppointmentsStateCopyWithImpl(this._value, this._then);
 
-  final AppointmentsState _self;
-  final $Res Function(AppointmentsState) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of AppointmentsState
   /// with the given fields replaced by the non-null parameter values.
@@ -261,36 +569,106 @@ class _$AppointmentsStateCopyWithImpl<$Res>
     Object? status = freezed,
     Object? statusMessage = freezed,
   }) {
-    return _then(_self.copyWith(
-      appointments: freezed == appointments
-          ? _self.appointments
-          : appointments // ignore: cast_nullable_to_non_nullable
-              as List<AppointmentModel>?,
-      appointmentStatus: freezed == appointmentStatus
-          ? _self.appointmentStatus
-          : appointmentStatus // ignore: cast_nullable_to_non_nullable
-              as AppointmentStatus?,
-      status: freezed == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as DataStatus?,
-      statusMessage: freezed == statusMessage
-          ? _self.statusMessage
-          : statusMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _value.copyWith(
+            appointments:
+                freezed == appointments
+                    ? _value.appointments
+                    : appointments // ignore: cast_nullable_to_non_nullable
+                        as List<AppointmentModel>?,
+            appointmentStatus:
+                freezed == appointmentStatus
+                    ? _value.appointmentStatus
+                    : appointmentStatus // ignore: cast_nullable_to_non_nullable
+                        as AppointmentStatus?,
+            status:
+                freezed == status
+                    ? _value.status
+                    : status // ignore: cast_nullable_to_non_nullable
+                        as DataStatus?,
+            statusMessage:
+                freezed == statusMessage
+                    ? _value.statusMessage
+                    : statusMessage // ignore: cast_nullable_to_non_nullable
+                        as String?,
+          )
+          as $Val,
+    );
+  }
+}
+
+/// @nodoc
+abstract class _$$AppointmentsStateImplCopyWith<$Res>
+    implements $AppointmentsStateCopyWith<$Res> {
+  factory _$$AppointmentsStateImplCopyWith(
+    _$AppointmentsStateImpl value,
+    $Res Function(_$AppointmentsStateImpl) then,
+  ) = __$$AppointmentsStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({
+    List<AppointmentModel>? appointments,
+    AppointmentStatus? appointmentStatus,
+    DataStatus? status,
+    String? statusMessage,
+  });
+}
+
+/// @nodoc
+class __$$AppointmentsStateImplCopyWithImpl<$Res>
+    extends _$AppointmentsStateCopyWithImpl<$Res, _$AppointmentsStateImpl>
+    implements _$$AppointmentsStateImplCopyWith<$Res> {
+  __$$AppointmentsStateImplCopyWithImpl(
+    _$AppointmentsStateImpl _value,
+    $Res Function(_$AppointmentsStateImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of AppointmentsState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? appointments = freezed,
+    Object? appointmentStatus = freezed,
+    Object? status = freezed,
+    Object? statusMessage = freezed,
+  }) {
+    return _then(
+      _$AppointmentsStateImpl(
+        appointments:
+            freezed == appointments
+                ? _value._appointments
+                : appointments // ignore: cast_nullable_to_non_nullable
+                    as List<AppointmentModel>?,
+        appointmentStatus:
+            freezed == appointmentStatus
+                ? _value.appointmentStatus
+                : appointmentStatus // ignore: cast_nullable_to_non_nullable
+                    as AppointmentStatus?,
+        status:
+            freezed == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                    as DataStatus?,
+        statusMessage:
+            freezed == statusMessage
+                ? _value.statusMessage
+                : statusMessage // ignore: cast_nullable_to_non_nullable
+                    as String?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
-class _AppointmentsState implements AppointmentsState {
-  const _AppointmentsState(
-      {final List<AppointmentModel>? appointments,
-      this.appointmentStatus,
-      this.status,
-      this.statusMessage})
-      : _appointments = appointments;
+class _$AppointmentsStateImpl implements _AppointmentsState {
+  const _$AppointmentsStateImpl({
+    final List<AppointmentModel>? appointments,
+    this.appointmentStatus,
+    this.status,
+    this.statusMessage,
+  }) : _appointments = appointments;
 
   final List<AppointmentModel>? _appointments;
   @override
@@ -309,21 +687,20 @@ class _AppointmentsState implements AppointmentsState {
   @override
   final String? statusMessage;
 
-  /// Create a copy of AppointmentsState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$AppointmentsStateCopyWith<_AppointmentsState> get copyWith =>
-      __$AppointmentsStateCopyWithImpl<_AppointmentsState>(this, _$identity);
+  String toString() {
+    return 'AppointmentsState(appointments: $appointments, appointmentStatus: $appointmentStatus, status: $status, statusMessage: $statusMessage)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AppointmentsState &&
-            const DeepCollectionEquality()
-                .equals(other._appointments, _appointments) &&
+            other is _$AppointmentsStateImpl &&
+            const DeepCollectionEquality().equals(
+              other._appointments,
+              _appointments,
+            ) &&
             (identical(other.appointmentStatus, appointmentStatus) ||
                 other.appointmentStatus == appointmentStatus) &&
             (identical(other.status, status) || other.status == status) &&
@@ -333,70 +710,46 @@ class _AppointmentsState implements AppointmentsState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_appointments),
-      appointmentStatus,
-      status,
-      statusMessage);
+    runtimeType,
+    const DeepCollectionEquality().hash(_appointments),
+    appointmentStatus,
+    status,
+    statusMessage,
+  );
 
+  /// Create a copy of AppointmentsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'AppointmentsState(appointments: $appointments, appointmentStatus: $appointmentStatus, status: $status, statusMessage: $statusMessage)';
-  }
+  @pragma('vm:prefer-inline')
+  _$$AppointmentsStateImplCopyWith<_$AppointmentsStateImpl> get copyWith =>
+      __$$AppointmentsStateImplCopyWithImpl<_$AppointmentsStateImpl>(
+        this,
+        _$identity,
+      );
 }
 
-/// @nodoc
-abstract mixin class _$AppointmentsStateCopyWith<$Res>
-    implements $AppointmentsStateCopyWith<$Res> {
-  factory _$AppointmentsStateCopyWith(
-          _AppointmentsState value, $Res Function(_AppointmentsState) _then) =
-      __$AppointmentsStateCopyWithImpl;
+abstract class _AppointmentsState implements AppointmentsState {
+  const factory _AppointmentsState({
+    final List<AppointmentModel>? appointments,
+    final AppointmentStatus? appointmentStatus,
+    final DataStatus? status,
+    final String? statusMessage,
+  }) = _$AppointmentsStateImpl;
+
   @override
-  @useResult
-  $Res call(
-      {List<AppointmentModel>? appointments,
-      AppointmentStatus? appointmentStatus,
-      DataStatus? status,
-      String? statusMessage});
-}
-
-/// @nodoc
-class __$AppointmentsStateCopyWithImpl<$Res>
-    implements _$AppointmentsStateCopyWith<$Res> {
-  __$AppointmentsStateCopyWithImpl(this._self, this._then);
-
-  final _AppointmentsState _self;
-  final $Res Function(_AppointmentsState) _then;
+  List<AppointmentModel>? get appointments;
+  @override
+  AppointmentStatus? get appointmentStatus;
+  @override
+  DataStatus? get status;
+  @override
+  String? get statusMessage;
 
   /// Create a copy of AppointmentsState
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? appointments = freezed,
-    Object? appointmentStatus = freezed,
-    Object? status = freezed,
-    Object? statusMessage = freezed,
-  }) {
-    return _then(_AppointmentsState(
-      appointments: freezed == appointments
-          ? _self._appointments
-          : appointments // ignore: cast_nullable_to_non_nullable
-              as List<AppointmentModel>?,
-      appointmentStatus: freezed == appointmentStatus
-          ? _self.appointmentStatus
-          : appointmentStatus // ignore: cast_nullable_to_non_nullable
-              as AppointmentStatus?,
-      status: freezed == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as DataStatus?,
-      statusMessage: freezed == statusMessage
-          ? _self.statusMessage
-          : statusMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AppointmentsStateImplCopyWith<_$AppointmentsStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
-
-// dart format on

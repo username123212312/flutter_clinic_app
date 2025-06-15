@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:intl/intl.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
+import 'package:our_flutter_clinic_app/core/utils/logger.dart';
 
 import '../enums.dart';
 
@@ -123,5 +125,34 @@ Future<File?> pickPhoto() async {
     return File(result.files.single.path!);
   } else {
     return null;
+  }
+}
+
+Future<bool> handlePayment(String clientSecret, [String? paymentName]) async {
+  try {
+    // 1. Initialize the payment sheet
+    await Stripe.instance.initPaymentSheet(
+      paymentSheetParameters: SetupPaymentSheetParameters(
+        paymentIntentClientSecret: clientSecret,
+        merchantDisplayName: paymentName ?? 'Mediverse',
+        // customerId and ephemeralKeySecret only needed for returning customers
+        // style: ThemeMode.dark, // Optional
+        // testEnv: true // Stripe handles this automatically for test keys
+      ),
+    );
+
+    // 2. Present the payment sheet
+    await Stripe.instance.presentPaymentSheet();
+
+    eLog('✅ Payment completed!');
+
+    return true;
+  } on StripeException catch (e) {
+    eLog('❌ Stripe error: ${e.error.localizedMessage}');
+
+    return false;
+  } catch (e) {
+    eLog('❌ General error: $e');
+    return false;
   }
 }

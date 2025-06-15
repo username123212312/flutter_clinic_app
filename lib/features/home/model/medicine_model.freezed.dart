@@ -1,4 +1,3 @@
-// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,84 +9,65 @@ part of 'medicine_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
+
+MedicineModel _$MedicineModelFromJson(Map<String, dynamic> json) {
+  return _MedicineModel.fromJson(json);
+}
 
 /// @nodoc
 mixin _$MedicineModel {
-  int? get id;
-  String? get name;
-  String? get dose;
-  String? get frequency;
-  String? get strength;
-  String? get until;
-  String? get whenToTake;
-  String? get note;
+  int? get id => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get dose => throw _privateConstructorUsedError;
+  String? get frequency => throw _privateConstructorUsedError;
+  String? get strength => throw _privateConstructorUsedError;
+  String? get until => throw _privateConstructorUsedError;
+  String? get whenToTake => throw _privateConstructorUsedError;
+  String? get note => throw _privateConstructorUsedError;
+
+  /// Serializes this MedicineModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of MedicineModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $MedicineModelCopyWith<MedicineModel> get copyWith =>
-      _$MedicineModelCopyWithImpl<MedicineModel>(
-          this as MedicineModel, _$identity);
-
-  /// Serializes this MedicineModel to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is MedicineModel &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.dose, dose) || other.dose == dose) &&
-            (identical(other.frequency, frequency) ||
-                other.frequency == frequency) &&
-            (identical(other.strength, strength) ||
-                other.strength == strength) &&
-            (identical(other.until, until) || other.until == until) &&
-            (identical(other.whenToTake, whenToTake) ||
-                other.whenToTake == whenToTake) &&
-            (identical(other.note, note) || other.note == note));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, id, name, dose, frequency,
-      strength, until, whenToTake, note);
-
-  @override
-  String toString() {
-    return 'MedicineModel(id: $id, name: $name, dose: $dose, frequency: $frequency, strength: $strength, until: $until, whenToTake: $whenToTake, note: $note)';
-  }
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $MedicineModelCopyWith<$Res> {
+abstract class $MedicineModelCopyWith<$Res> {
   factory $MedicineModelCopyWith(
-          MedicineModel value, $Res Function(MedicineModel) _then) =
-      _$MedicineModelCopyWithImpl;
+    MedicineModel value,
+    $Res Function(MedicineModel) then,
+  ) = _$MedicineModelCopyWithImpl<$Res, MedicineModel>;
   @useResult
-  $Res call(
-      {int? id,
-      String? name,
-      String? dose,
-      String? frequency,
-      String? strength,
-      String? until,
-      String? whenToTake,
-      String? note});
+  $Res call({
+    int? id,
+    String? name,
+    String? dose,
+    String? frequency,
+    String? strength,
+    String? until,
+    String? whenToTake,
+    String? note,
+  });
 }
 
 /// @nodoc
-class _$MedicineModelCopyWithImpl<$Res>
+class _$MedicineModelCopyWithImpl<$Res, $Val extends MedicineModel>
     implements $MedicineModelCopyWith<$Res> {
-  _$MedicineModelCopyWithImpl(this._self, this._then);
+  _$MedicineModelCopyWithImpl(this._value, this._then);
 
-  final MedicineModel _self;
-  final $Res Function(MedicineModel) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of MedicineModel
   /// with the given fields replaced by the non-null parameter values.
@@ -103,57 +83,161 @@ class _$MedicineModelCopyWithImpl<$Res>
     Object? whenToTake = freezed,
     Object? note = freezed,
   }) {
-    return _then(_self.copyWith(
-      id: freezed == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      dose: freezed == dose
-          ? _self.dose
-          : dose // ignore: cast_nullable_to_non_nullable
-              as String?,
-      frequency: freezed == frequency
-          ? _self.frequency
-          : frequency // ignore: cast_nullable_to_non_nullable
-              as String?,
-      strength: freezed == strength
-          ? _self.strength
-          : strength // ignore: cast_nullable_to_non_nullable
-              as String?,
-      until: freezed == until
-          ? _self.until
-          : until // ignore: cast_nullable_to_non_nullable
-              as String?,
-      whenToTake: freezed == whenToTake
-          ? _self.whenToTake
-          : whenToTake // ignore: cast_nullable_to_non_nullable
-              as String?,
-      note: freezed == note
-          ? _self.note
-          : note // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _value.copyWith(
+            id:
+                freezed == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as int?,
+            name:
+                freezed == name
+                    ? _value.name
+                    : name // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            dose:
+                freezed == dose
+                    ? _value.dose
+                    : dose // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            frequency:
+                freezed == frequency
+                    ? _value.frequency
+                    : frequency // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            strength:
+                freezed == strength
+                    ? _value.strength
+                    : strength // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            until:
+                freezed == until
+                    ? _value.until
+                    : until // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            whenToTake:
+                freezed == whenToTake
+                    ? _value.whenToTake
+                    : whenToTake // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            note:
+                freezed == note
+                    ? _value.note
+                    : note // ignore: cast_nullable_to_non_nullable
+                        as String?,
+          )
+          as $Val,
+    );
+  }
+}
+
+/// @nodoc
+abstract class _$$MedicineModelImplCopyWith<$Res>
+    implements $MedicineModelCopyWith<$Res> {
+  factory _$$MedicineModelImplCopyWith(
+    _$MedicineModelImpl value,
+    $Res Function(_$MedicineModelImpl) then,
+  ) = __$$MedicineModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({
+    int? id,
+    String? name,
+    String? dose,
+    String? frequency,
+    String? strength,
+    String? until,
+    String? whenToTake,
+    String? note,
+  });
+}
+
+/// @nodoc
+class __$$MedicineModelImplCopyWithImpl<$Res>
+    extends _$MedicineModelCopyWithImpl<$Res, _$MedicineModelImpl>
+    implements _$$MedicineModelImplCopyWith<$Res> {
+  __$$MedicineModelImplCopyWithImpl(
+    _$MedicineModelImpl _value,
+    $Res Function(_$MedicineModelImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of MedicineModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? dose = freezed,
+    Object? frequency = freezed,
+    Object? strength = freezed,
+    Object? until = freezed,
+    Object? whenToTake = freezed,
+    Object? note = freezed,
+  }) {
+    return _then(
+      _$MedicineModelImpl(
+        id:
+            freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as int?,
+        name:
+            freezed == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        dose:
+            freezed == dose
+                ? _value.dose
+                : dose // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        frequency:
+            freezed == frequency
+                ? _value.frequency
+                : frequency // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        strength:
+            freezed == strength
+                ? _value.strength
+                : strength // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        until:
+            freezed == until
+                ? _value.until
+                : until // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        whenToTake:
+            freezed == whenToTake
+                ? _value.whenToTake
+                : whenToTake // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        note:
+            freezed == note
+                ? _value.note
+                : note // ignore: cast_nullable_to_non_nullable
+                    as String?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _MedicineModel implements MedicineModel {
-  _MedicineModel(
-      {this.id,
-      this.name,
-      this.dose,
-      this.frequency,
-      this.strength,
-      this.until,
-      this.whenToTake,
-      this.note});
-  factory _MedicineModel.fromJson(Map<String, dynamic> json) =>
-      _$MedicineModelFromJson(json);
+class _$MedicineModelImpl implements _MedicineModel {
+  _$MedicineModelImpl({
+    this.id,
+    this.name,
+    this.dose,
+    this.frequency,
+    this.strength,
+    this.until,
+    this.whenToTake,
+    this.note,
+  });
+
+  factory _$MedicineModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MedicineModelImplFromJson(json);
 
   @override
   final int? id;
@@ -172,26 +256,16 @@ class _MedicineModel implements MedicineModel {
   @override
   final String? note;
 
-  /// Create a copy of MedicineModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$MedicineModelCopyWith<_MedicineModel> get copyWith =>
-      __$MedicineModelCopyWithImpl<_MedicineModel>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$MedicineModelToJson(
-      this,
-    );
+  String toString() {
+    return 'MedicineModel(id: $id, name: $name, dose: $dose, frequency: $frequency, strength: $strength, until: $until, whenToTake: $whenToTake, note: $note)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _MedicineModel &&
+            other is _$MedicineModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.dose, dose) || other.dose == dose) &&
@@ -207,91 +281,68 @@ class _MedicineModel implements MedicineModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, dose, frequency,
-      strength, until, whenToTake, note);
+  int get hashCode => Object.hash(
+    runtimeType,
+    id,
+    name,
+    dose,
+    frequency,
+    strength,
+    until,
+    whenToTake,
+    note,
+  );
+
+  /// Create a copy of MedicineModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MedicineModelImplCopyWith<_$MedicineModelImpl> get copyWith =>
+      __$$MedicineModelImplCopyWithImpl<_$MedicineModelImpl>(this, _$identity);
 
   @override
-  String toString() {
-    return 'MedicineModel(id: $id, name: $name, dose: $dose, frequency: $frequency, strength: $strength, until: $until, whenToTake: $whenToTake, note: $note)';
+  Map<String, dynamic> toJson() {
+    return _$$MedicineModelImplToJson(this);
   }
 }
 
-/// @nodoc
-abstract mixin class _$MedicineModelCopyWith<$Res>
-    implements $MedicineModelCopyWith<$Res> {
-  factory _$MedicineModelCopyWith(
-          _MedicineModel value, $Res Function(_MedicineModel) _then) =
-      __$MedicineModelCopyWithImpl;
+abstract class _MedicineModel implements MedicineModel {
+  factory _MedicineModel({
+    final int? id,
+    final String? name,
+    final String? dose,
+    final String? frequency,
+    final String? strength,
+    final String? until,
+    final String? whenToTake,
+    final String? note,
+  }) = _$MedicineModelImpl;
+
+  factory _MedicineModel.fromJson(Map<String, dynamic> json) =
+      _$MedicineModelImpl.fromJson;
+
   @override
-  @useResult
-  $Res call(
-      {int? id,
-      String? name,
-      String? dose,
-      String? frequency,
-      String? strength,
-      String? until,
-      String? whenToTake,
-      String? note});
-}
-
-/// @nodoc
-class __$MedicineModelCopyWithImpl<$Res>
-    implements _$MedicineModelCopyWith<$Res> {
-  __$MedicineModelCopyWithImpl(this._self, this._then);
-
-  final _MedicineModel _self;
-  final $Res Function(_MedicineModel) _then;
+  int? get id;
+  @override
+  String? get name;
+  @override
+  String? get dose;
+  @override
+  String? get frequency;
+  @override
+  String? get strength;
+  @override
+  String? get until;
+  @override
+  String? get whenToTake;
+  @override
+  String? get note;
 
   /// Create a copy of MedicineModel
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? dose = freezed,
-    Object? frequency = freezed,
-    Object? strength = freezed,
-    Object? until = freezed,
-    Object? whenToTake = freezed,
-    Object? note = freezed,
-  }) {
-    return _then(_MedicineModel(
-      id: freezed == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      dose: freezed == dose
-          ? _self.dose
-          : dose // ignore: cast_nullable_to_non_nullable
-              as String?,
-      frequency: freezed == frequency
-          ? _self.frequency
-          : frequency // ignore: cast_nullable_to_non_nullable
-              as String?,
-      strength: freezed == strength
-          ? _self.strength
-          : strength // ignore: cast_nullable_to_non_nullable
-              as String?,
-      until: freezed == until
-          ? _self.until
-          : until // ignore: cast_nullable_to_non_nullable
-              as String?,
-      whenToTake: freezed == whenToTake
-          ? _self.whenToTake
-          : whenToTake // ignore: cast_nullable_to_non_nullable
-              as String?,
-      note: freezed == note
-          ? _self.note
-          : note // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$MedicineModelImplCopyWith<_$MedicineModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
-
-// dart format on

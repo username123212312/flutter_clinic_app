@@ -6,22 +6,24 @@ part of 'add_analysis_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_AddAnalysisRequest _$AddAnalysisRequestFromJson(Map<String, dynamic> json) =>
-    _AddAnalysisRequest(
-      name: json['name'] as String,
-      description: json['description'] as String?,
-      patientNumber: (json['patient_number'] as num?)?.toInt(),
-      clinicId: (json['clinicId'] as num?)?.toInt(),
-      resultFilePath: json['resultFilePath'] as String?,
-      resultImagePath: json['resultImagePath'] as String?,
-    );
+_$AddAnalysisRequestImpl _$$AddAnalysisRequestImplFromJson(
+  Map<String, dynamic> json,
+) => _$AddAnalysisRequestImpl(
+  name: json['name'] as String,
+  description: json['description'] as String?,
+  patientNumber: (json['patient_number'] as num?)?.toInt(),
+  clinicId: (json['clinicId'] as num?)?.toInt(),
+  resultFilePath: json['resultFilePath'] as String?,
+  resultImagePath: json['resultImagePath'] as String?,
+);
 
-Map<String, dynamic> _$AddAnalysisRequestToJson(_AddAnalysisRequest instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'description': instance.description,
-      'patient_number': instance.patientNumber,
-      'clinicId': instance.clinicId,
-      'resultFilePath': instance.resultFilePath,
-      'resultImagePath': instance.resultImagePath,
-    };
+Map<String, dynamic> _$$AddAnalysisRequestImplToJson(
+  _$AddAnalysisRequestImpl instance,
+) => <String, dynamic>{
+  'name': instance.name,
+  'description': instance.description,
+  'patient_number': instance.patientNumber,
+  'clinicId': instance.clinicId,
+  'resultFilePath': instance.resultFilePath,
+  'resultImagePath': instance.resultImagePath,
+};

@@ -14,6 +14,7 @@ sealed class NewAppointmentState with _$NewAppointmentState {
     List<TimeOfDay>? availableTimes,
     TimeOfDay? time,
     DataStatus? status,
+    int? appointmentID,
   }) = _NewAppointmentState;
   factory NewAppointmentState.initial() {
     return NewAppointmentState(

@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:our_flutter_clinic_app/core/navigation/app_route_config.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/theme/app_theme.dart';
@@ -68,6 +72,10 @@ class ClinicApp extends StatelessWidget {
 
 Future<void> initMain() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load();
+  Stripe.publishableKey = dotenv.env['STRIPE_PUBLISHABLE_KEY']!;
+
+  await Stripe.instance.applySettings();
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory:
         kIsWeb

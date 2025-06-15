@@ -1,4 +1,3 @@
-// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,87 +9,73 @@ part of 'complete_user_info_request.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
+
+CompleteUserInfoRequest _$CompleteUserInfoRequestFromJson(
+  Map<String, dynamic> json,
+) {
+  return _CompleteUserInfoRequest.fromJson(json);
+}
 
 /// @nodoc
 mixin _$CompleteUserInfoRequest {
   @JsonKey(name: 'first_name')
-  String? get firstName;
+  String? get firstName => throw _privateConstructorUsedError;
   @JsonKey(name: 'last_name')
-  String? get lastName;
-  int? get age;
+  String? get lastName => throw _privateConstructorUsedError;
+  int? get age => throw _privateConstructorUsedError;
   @JsonKey(name: 'blood_type')
-  String? get bloodType;
-  String? get gender;
-  String? get address;
-  String? get email;
-  String? get phone;
+  String? get bloodType => throw _privateConstructorUsedError;
+  String? get gender => throw _privateConstructorUsedError;
+  String? get address => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get phone => throw _privateConstructorUsedError;
+
+  /// Serializes this CompleteUserInfoRequest to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of CompleteUserInfoRequest
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $CompleteUserInfoRequestCopyWith<CompleteUserInfoRequest> get copyWith =>
-      _$CompleteUserInfoRequestCopyWithImpl<CompleteUserInfoRequest>(
-          this as CompleteUserInfoRequest, _$identity);
-
-  /// Serializes this CompleteUserInfoRequest to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is CompleteUserInfoRequest &&
-            (identical(other.firstName, firstName) ||
-                other.firstName == firstName) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
-            (identical(other.age, age) || other.age == age) &&
-            (identical(other.bloodType, bloodType) ||
-                other.bloodType == bloodType) &&
-            (identical(other.gender, gender) || other.gender == gender) &&
-            (identical(other.address, address) || other.address == address) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.phone, phone) || other.phone == phone));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, firstName, lastName, age,
-      bloodType, gender, address, email, phone);
-
-  @override
-  String toString() {
-    return 'CompleteUserInfoRequest(firstName: $firstName, lastName: $lastName, age: $age, bloodType: $bloodType, gender: $gender, address: $address, email: $email, phone: $phone)';
-  }
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $CompleteUserInfoRequestCopyWith<$Res> {
-  factory $CompleteUserInfoRequestCopyWith(CompleteUserInfoRequest value,
-          $Res Function(CompleteUserInfoRequest) _then) =
-      _$CompleteUserInfoRequestCopyWithImpl;
+abstract class $CompleteUserInfoRequestCopyWith<$Res> {
+  factory $CompleteUserInfoRequestCopyWith(
+    CompleteUserInfoRequest value,
+    $Res Function(CompleteUserInfoRequest) then,
+  ) = _$CompleteUserInfoRequestCopyWithImpl<$Res, CompleteUserInfoRequest>;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'first_name') String? firstName,
-      @JsonKey(name: 'last_name') String? lastName,
-      int? age,
-      @JsonKey(name: 'blood_type') String? bloodType,
-      String? gender,
-      String? address,
-      String? email,
-      String? phone});
+  $Res call({
+    @JsonKey(name: 'first_name') String? firstName,
+    @JsonKey(name: 'last_name') String? lastName,
+    int? age,
+    @JsonKey(name: 'blood_type') String? bloodType,
+    String? gender,
+    String? address,
+    String? email,
+    String? phone,
+  });
 }
 
 /// @nodoc
-class _$CompleteUserInfoRequestCopyWithImpl<$Res>
+class _$CompleteUserInfoRequestCopyWithImpl<
+  $Res,
+  $Val extends CompleteUserInfoRequest
+>
     implements $CompleteUserInfoRequestCopyWith<$Res> {
-  _$CompleteUserInfoRequestCopyWithImpl(this._self, this._then);
+  _$CompleteUserInfoRequestCopyWithImpl(this._value, this._then);
 
-  final CompleteUserInfoRequest _self;
-  final $Res Function(CompleteUserInfoRequest) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of CompleteUserInfoRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -106,57 +91,165 @@ class _$CompleteUserInfoRequestCopyWithImpl<$Res>
     Object? email = freezed,
     Object? phone = freezed,
   }) {
-    return _then(_self.copyWith(
-      firstName: freezed == firstName
-          ? _self.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastName: freezed == lastName
-          ? _self.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      age: freezed == age
-          ? _self.age
-          : age // ignore: cast_nullable_to_non_nullable
-              as int?,
-      bloodType: freezed == bloodType
-          ? _self.bloodType
-          : bloodType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      gender: freezed == gender
-          ? _self.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as String?,
-      address: freezed == address
-          ? _self.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
-          ? _self.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: freezed == phone
-          ? _self.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _value.copyWith(
+            firstName:
+                freezed == firstName
+                    ? _value.firstName
+                    : firstName // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            lastName:
+                freezed == lastName
+                    ? _value.lastName
+                    : lastName // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            age:
+                freezed == age
+                    ? _value.age
+                    : age // ignore: cast_nullable_to_non_nullable
+                        as int?,
+            bloodType:
+                freezed == bloodType
+                    ? _value.bloodType
+                    : bloodType // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            gender:
+                freezed == gender
+                    ? _value.gender
+                    : gender // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            address:
+                freezed == address
+                    ? _value.address
+                    : address // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            email:
+                freezed == email
+                    ? _value.email
+                    : email // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            phone:
+                freezed == phone
+                    ? _value.phone
+                    : phone // ignore: cast_nullable_to_non_nullable
+                        as String?,
+          )
+          as $Val,
+    );
+  }
+}
+
+/// @nodoc
+abstract class _$$CompleteUserInfoRequestImplCopyWith<$Res>
+    implements $CompleteUserInfoRequestCopyWith<$Res> {
+  factory _$$CompleteUserInfoRequestImplCopyWith(
+    _$CompleteUserInfoRequestImpl value,
+    $Res Function(_$CompleteUserInfoRequestImpl) then,
+  ) = __$$CompleteUserInfoRequestImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({
+    @JsonKey(name: 'first_name') String? firstName,
+    @JsonKey(name: 'last_name') String? lastName,
+    int? age,
+    @JsonKey(name: 'blood_type') String? bloodType,
+    String? gender,
+    String? address,
+    String? email,
+    String? phone,
+  });
+}
+
+/// @nodoc
+class __$$CompleteUserInfoRequestImplCopyWithImpl<$Res>
+    extends
+        _$CompleteUserInfoRequestCopyWithImpl<
+          $Res,
+          _$CompleteUserInfoRequestImpl
+        >
+    implements _$$CompleteUserInfoRequestImplCopyWith<$Res> {
+  __$$CompleteUserInfoRequestImplCopyWithImpl(
+    _$CompleteUserInfoRequestImpl _value,
+    $Res Function(_$CompleteUserInfoRequestImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of CompleteUserInfoRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? firstName = freezed,
+    Object? lastName = freezed,
+    Object? age = freezed,
+    Object? bloodType = freezed,
+    Object? gender = freezed,
+    Object? address = freezed,
+    Object? email = freezed,
+    Object? phone = freezed,
+  }) {
+    return _then(
+      _$CompleteUserInfoRequestImpl(
+        firstName:
+            freezed == firstName
+                ? _value.firstName
+                : firstName // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        lastName:
+            freezed == lastName
+                ? _value.lastName
+                : lastName // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        age:
+            freezed == age
+                ? _value.age
+                : age // ignore: cast_nullable_to_non_nullable
+                    as int?,
+        bloodType:
+            freezed == bloodType
+                ? _value.bloodType
+                : bloodType // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        gender:
+            freezed == gender
+                ? _value.gender
+                : gender // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        address:
+            freezed == address
+                ? _value.address
+                : address // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        email:
+            freezed == email
+                ? _value.email
+                : email // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        phone:
+            freezed == phone
+                ? _value.phone
+                : phone // ignore: cast_nullable_to_non_nullable
+                    as String?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _CompleteUserInfoRequest implements CompleteUserInfoRequest {
-  _CompleteUserInfoRequest(
-      {@JsonKey(name: 'first_name') this.firstName,
-      @JsonKey(name: 'last_name') this.lastName,
-      this.age,
-      @JsonKey(name: 'blood_type') this.bloodType,
-      this.gender,
-      this.address,
-      this.email,
-      this.phone});
-  factory _CompleteUserInfoRequest.fromJson(Map<String, dynamic> json) =>
-      _$CompleteUserInfoRequestFromJson(json);
+class _$CompleteUserInfoRequestImpl implements _CompleteUserInfoRequest {
+  _$CompleteUserInfoRequestImpl({
+    @JsonKey(name: 'first_name') this.firstName,
+    @JsonKey(name: 'last_name') this.lastName,
+    this.age,
+    @JsonKey(name: 'blood_type') this.bloodType,
+    this.gender,
+    this.address,
+    this.email,
+    this.phone,
+  });
+
+  factory _$CompleteUserInfoRequestImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CompleteUserInfoRequestImplFromJson(json);
 
   @override
   @JsonKey(name: 'first_name')
@@ -178,27 +271,16 @@ class _CompleteUserInfoRequest implements CompleteUserInfoRequest {
   @override
   final String? phone;
 
-  /// Create a copy of CompleteUserInfoRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$CompleteUserInfoRequestCopyWith<_CompleteUserInfoRequest> get copyWith =>
-      __$CompleteUserInfoRequestCopyWithImpl<_CompleteUserInfoRequest>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$CompleteUserInfoRequestToJson(
-      this,
-    );
+  String toString() {
+    return 'CompleteUserInfoRequest(firstName: $firstName, lastName: $lastName, age: $age, bloodType: $bloodType, gender: $gender, address: $address, email: $email, phone: $phone)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _CompleteUserInfoRequest &&
+            other is _$CompleteUserInfoRequestImpl &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -214,91 +296,73 @@ class _CompleteUserInfoRequest implements CompleteUserInfoRequest {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, firstName, lastName, age,
-      bloodType, gender, address, email, phone);
+  int get hashCode => Object.hash(
+    runtimeType,
+    firstName,
+    lastName,
+    age,
+    bloodType,
+    gender,
+    address,
+    email,
+    phone,
+  );
+
+  /// Create a copy of CompleteUserInfoRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CompleteUserInfoRequestImplCopyWith<_$CompleteUserInfoRequestImpl>
+  get copyWith => __$$CompleteUserInfoRequestImplCopyWithImpl<
+    _$CompleteUserInfoRequestImpl
+  >(this, _$identity);
 
   @override
-  String toString() {
-    return 'CompleteUserInfoRequest(firstName: $firstName, lastName: $lastName, age: $age, bloodType: $bloodType, gender: $gender, address: $address, email: $email, phone: $phone)';
+  Map<String, dynamic> toJson() {
+    return _$$CompleteUserInfoRequestImplToJson(this);
   }
 }
 
-/// @nodoc
-abstract mixin class _$CompleteUserInfoRequestCopyWith<$Res>
-    implements $CompleteUserInfoRequestCopyWith<$Res> {
-  factory _$CompleteUserInfoRequestCopyWith(_CompleteUserInfoRequest value,
-          $Res Function(_CompleteUserInfoRequest) _then) =
-      __$CompleteUserInfoRequestCopyWithImpl;
+abstract class _CompleteUserInfoRequest implements CompleteUserInfoRequest {
+  factory _CompleteUserInfoRequest({
+    @JsonKey(name: 'first_name') final String? firstName,
+    @JsonKey(name: 'last_name') final String? lastName,
+    final int? age,
+    @JsonKey(name: 'blood_type') final String? bloodType,
+    final String? gender,
+    final String? address,
+    final String? email,
+    final String? phone,
+  }) = _$CompleteUserInfoRequestImpl;
+
+  factory _CompleteUserInfoRequest.fromJson(Map<String, dynamic> json) =
+      _$CompleteUserInfoRequestImpl.fromJson;
+
   @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'first_name') String? firstName,
-      @JsonKey(name: 'last_name') String? lastName,
-      int? age,
-      @JsonKey(name: 'blood_type') String? bloodType,
-      String? gender,
-      String? address,
-      String? email,
-      String? phone});
-}
-
-/// @nodoc
-class __$CompleteUserInfoRequestCopyWithImpl<$Res>
-    implements _$CompleteUserInfoRequestCopyWith<$Res> {
-  __$CompleteUserInfoRequestCopyWithImpl(this._self, this._then);
-
-  final _CompleteUserInfoRequest _self;
-  final $Res Function(_CompleteUserInfoRequest) _then;
+  @JsonKey(name: 'first_name')
+  String? get firstName;
+  @override
+  @JsonKey(name: 'last_name')
+  String? get lastName;
+  @override
+  int? get age;
+  @override
+  @JsonKey(name: 'blood_type')
+  String? get bloodType;
+  @override
+  String? get gender;
+  @override
+  String? get address;
+  @override
+  String? get email;
+  @override
+  String? get phone;
 
   /// Create a copy of CompleteUserInfoRequest
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? firstName = freezed,
-    Object? lastName = freezed,
-    Object? age = freezed,
-    Object? bloodType = freezed,
-    Object? gender = freezed,
-    Object? address = freezed,
-    Object? email = freezed,
-    Object? phone = freezed,
-  }) {
-    return _then(_CompleteUserInfoRequest(
-      firstName: freezed == firstName
-          ? _self.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastName: freezed == lastName
-          ? _self.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      age: freezed == age
-          ? _self.age
-          : age // ignore: cast_nullable_to_non_nullable
-              as int?,
-      bloodType: freezed == bloodType
-          ? _self.bloodType
-          : bloodType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      gender: freezed == gender
-          ? _self.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as String?,
-      address: freezed == address
-          ? _self.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
-          ? _self.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: freezed == phone
-          ? _self.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CompleteUserInfoRequestImplCopyWith<_$CompleteUserInfoRequestImpl>
+  get copyWith => throw _privateConstructorUsedError;
 }
-
-// dart format on

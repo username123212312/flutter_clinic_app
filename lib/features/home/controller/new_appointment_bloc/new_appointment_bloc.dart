@@ -209,6 +209,7 @@ class NewAppointmentBloc
         Right(value: final r) => state.copyWith(
           statusMessage: r.message,
           status: DataStatus.data,
+          appointmentID: r.data,
         ),
       };
       emit(newState);

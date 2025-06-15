@@ -9,35 +9,31 @@ part of 'app_response.dart';
 AppResponse<T> _$AppResponseFromJson<T>(
   Map<String, dynamic> json,
   T Function(Object? json) fromJsonT,
-) =>
-    AppResponse<T>(
-      success: json['success'] as bool,
-      message: json['message'] as String,
-      statusCode: (json['statusCode'] as num?)?.toInt(),
-      statusMessage: json['statusMessage'] as String?,
-      data: _$nullableGenericFromJson(json['data'], fromJsonT),
-    );
+) => AppResponse<T>(
+  success: json['success'] as bool,
+  message: json['message'] as String,
+  statusCode: (json['statusCode'] as num?)?.toInt(),
+  statusMessage: json['statusMessage'] as String?,
+  data: _$nullableGenericFromJson(json['data'], fromJsonT),
+);
 
 Map<String, dynamic> _$AppResponseToJson<T>(
   AppResponse<T> instance,
   Object? Function(T value) toJsonT,
-) =>
-    <String, dynamic>{
-      'success': instance.success,
-      'message': instance.message,
-      'data': _$nullableGenericToJson(instance.data, toJsonT),
-      'statusCode': instance.statusCode,
-      'statusMessage': instance.statusMessage,
-    };
+) => <String, dynamic>{
+  'success': instance.success,
+  'message': instance.message,
+  'data': _$nullableGenericToJson(instance.data, toJsonT),
+  'statusCode': instance.statusCode,
+  'statusMessage': instance.statusMessage,
+};
 
 T? _$nullableGenericFromJson<T>(
   Object? input,
   T Function(Object? json) fromJson,
-) =>
-    input == null ? null : fromJson(input);
+) => input == null ? null : fromJson(input);
 
 Object? _$nullableGenericToJson<T>(
   T? input,
   Object? Function(T value) toJson,
-) =>
-    input == null ? null : toJson(input);
+) => input == null ? null : toJson(input);
