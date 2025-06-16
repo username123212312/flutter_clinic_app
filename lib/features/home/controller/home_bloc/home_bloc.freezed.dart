@@ -19,28 +19,28 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function() allListsFetched,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult? Function()? allListsFetched,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? allListsFetched,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(AllListsFetched value) allListsFetched,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult? Function(AllListsFetched value)? allListsFetched,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(AllListsFetched value)? allListsFetched,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -66,20 +66,20 @@ class _$HomeEventCopyWithImpl<$Res, $Val extends HomeEvent>
 }
 
 /// @nodoc
-abstract class _$$StartedImplCopyWith<$Res> {
-  factory _$$StartedImplCopyWith(
-    _$StartedImpl value,
-    $Res Function(_$StartedImpl) then,
-  ) = __$$StartedImplCopyWithImpl<$Res>;
+abstract class _$$AllListsFetchedImplCopyWith<$Res> {
+  factory _$$AllListsFetchedImplCopyWith(
+    _$AllListsFetchedImpl value,
+    $Res Function(_$AllListsFetchedImpl) then,
+  ) = __$$AllListsFetchedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$StartedImplCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$StartedImpl>
-    implements _$$StartedImplCopyWith<$Res> {
-  __$$StartedImplCopyWithImpl(
-    _$StartedImpl _value,
-    $Res Function(_$StartedImpl) _then,
+class __$$AllListsFetchedImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$AllListsFetchedImpl>
+    implements _$$AllListsFetchedImplCopyWith<$Res> {
+  __$$AllListsFetchedImplCopyWithImpl(
+    _$AllListsFetchedImpl _value,
+    $Res Function(_$AllListsFetchedImpl) _then,
   ) : super(_value, _then);
 
   /// Create a copy of HomeEvent
@@ -88,24 +88,26 @@ class __$$StartedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$StartedImpl with DiagnosticableTreeMixin implements _Started {
-  const _$StartedImpl();
+class _$AllListsFetchedImpl
+    with DiagnosticableTreeMixin
+    implements AllListsFetched {
+  const _$AllListsFetchedImpl();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'HomeEvent.started()';
+    return 'HomeEvent.allListsFetched()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'HomeEvent.started'));
+    properties..add(DiagnosticsProperty('type', 'HomeEvent.allListsFetched'));
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$StartedImpl);
+        (other.runtimeType == runtimeType && other is _$AllListsFetchedImpl);
   }
 
   @override
@@ -113,24 +115,28 @@ class _$StartedImpl with DiagnosticableTreeMixin implements _Started {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({required TResult Function() started}) {
-    return started();
+  TResult when<TResult extends Object?>({
+    required TResult Function() allListsFetched,
+  }) {
+    return allListsFetched();
   }
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({TResult? Function()? started}) {
-    return started?.call();
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? allListsFetched,
+  }) {
+    return allListsFetched?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? allListsFetched,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started();
+    if (allListsFetched != null) {
+      return allListsFetched();
     }
     return orElse();
   }
@@ -138,43 +144,48 @@ class _$StartedImpl with DiagnosticableTreeMixin implements _Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(AllListsFetched value) allListsFetched,
   }) {
-    return started(this);
+    return allListsFetched(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult? Function(AllListsFetched value)? allListsFetched,
   }) {
-    return started?.call(this);
+    return allListsFetched?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(AllListsFetched value)? allListsFetched,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started(this);
+    if (allListsFetched != null) {
+      return allListsFetched(this);
     }
     return orElse();
   }
 }
 
-abstract class _Started implements HomeEvent {
-  const factory _Started() = _$StartedImpl;
+abstract class AllListsFetched implements HomeEvent {
+  const factory AllListsFetched() = _$AllListsFetchedImpl;
 }
 
 /// @nodoc
 mixin _$HomeState {
-  List<dynamic> get upcomingAppointmentsList =>
+  List<AppointmentModel> get upcomingAppointmentsList =>
+      throw _privateConstructorUsedError;
+  DataStatus get upcomingAppointmentsListStatus =>
       throw _privateConstructorUsedError;
   List<dynamic> get departmentsList => throw _privateConstructorUsedError;
+  DataStatus get departmentsListStatus => throw _privateConstructorUsedError;
   List<dynamic> get doctorsList => throw _privateConstructorUsedError;
+  DataStatus get doctorsListStatus => throw _privateConstructorUsedError;
   List<dynamic> get pharmaciesList => throw _privateConstructorUsedError;
+  DataStatus get pharmaciesListStatus => throw _privateConstructorUsedError;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -189,10 +200,14 @@ abstract class $HomeStateCopyWith<$Res> {
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
   $Res call({
-    List<dynamic> upcomingAppointmentsList,
+    List<AppointmentModel> upcomingAppointmentsList,
+    DataStatus upcomingAppointmentsListStatus,
     List<dynamic> departmentsList,
+    DataStatus departmentsListStatus,
     List<dynamic> doctorsList,
+    DataStatus doctorsListStatus,
     List<dynamic> pharmaciesList,
+    DataStatus pharmaciesListStatus,
   });
 }
 
@@ -212,9 +227,13 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @override
   $Res call({
     Object? upcomingAppointmentsList = null,
+    Object? upcomingAppointmentsListStatus = null,
     Object? departmentsList = null,
+    Object? departmentsListStatus = null,
     Object? doctorsList = null,
+    Object? doctorsListStatus = null,
     Object? pharmaciesList = null,
+    Object? pharmaciesListStatus = null,
   }) {
     return _then(
       _value.copyWith(
@@ -222,22 +241,42 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
                 null == upcomingAppointmentsList
                     ? _value.upcomingAppointmentsList
                     : upcomingAppointmentsList // ignore: cast_nullable_to_non_nullable
-                        as List<dynamic>,
+                        as List<AppointmentModel>,
+            upcomingAppointmentsListStatus:
+                null == upcomingAppointmentsListStatus
+                    ? _value.upcomingAppointmentsListStatus
+                    : upcomingAppointmentsListStatus // ignore: cast_nullable_to_non_nullable
+                        as DataStatus,
             departmentsList:
                 null == departmentsList
                     ? _value.departmentsList
                     : departmentsList // ignore: cast_nullable_to_non_nullable
                         as List<dynamic>,
+            departmentsListStatus:
+                null == departmentsListStatus
+                    ? _value.departmentsListStatus
+                    : departmentsListStatus // ignore: cast_nullable_to_non_nullable
+                        as DataStatus,
             doctorsList:
                 null == doctorsList
                     ? _value.doctorsList
                     : doctorsList // ignore: cast_nullable_to_non_nullable
                         as List<dynamic>,
+            doctorsListStatus:
+                null == doctorsListStatus
+                    ? _value.doctorsListStatus
+                    : doctorsListStatus // ignore: cast_nullable_to_non_nullable
+                        as DataStatus,
             pharmaciesList:
                 null == pharmaciesList
                     ? _value.pharmaciesList
                     : pharmaciesList // ignore: cast_nullable_to_non_nullable
                         as List<dynamic>,
+            pharmaciesListStatus:
+                null == pharmaciesListStatus
+                    ? _value.pharmaciesListStatus
+                    : pharmaciesListStatus // ignore: cast_nullable_to_non_nullable
+                        as DataStatus,
           )
           as $Val,
     );
@@ -254,10 +293,14 @@ abstract class _$$HomeStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    List<dynamic> upcomingAppointmentsList,
+    List<AppointmentModel> upcomingAppointmentsList,
+    DataStatus upcomingAppointmentsListStatus,
     List<dynamic> departmentsList,
+    DataStatus departmentsListStatus,
     List<dynamic> doctorsList,
+    DataStatus doctorsListStatus,
     List<dynamic> pharmaciesList,
+    DataStatus pharmaciesListStatus,
   });
 }
 
@@ -276,9 +319,13 @@ class __$$HomeStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? upcomingAppointmentsList = null,
+    Object? upcomingAppointmentsListStatus = null,
     Object? departmentsList = null,
+    Object? departmentsListStatus = null,
     Object? doctorsList = null,
+    Object? doctorsListStatus = null,
     Object? pharmaciesList = null,
+    Object? pharmaciesListStatus = null,
   }) {
     return _then(
       _$HomeStateImpl(
@@ -286,22 +333,42 @@ class __$$HomeStateImplCopyWithImpl<$Res>
             null == upcomingAppointmentsList
                 ? _value._upcomingAppointmentsList
                 : upcomingAppointmentsList // ignore: cast_nullable_to_non_nullable
-                    as List<dynamic>,
+                    as List<AppointmentModel>,
+        upcomingAppointmentsListStatus:
+            null == upcomingAppointmentsListStatus
+                ? _value.upcomingAppointmentsListStatus
+                : upcomingAppointmentsListStatus // ignore: cast_nullable_to_non_nullable
+                    as DataStatus,
         departmentsList:
             null == departmentsList
                 ? _value._departmentsList
                 : departmentsList // ignore: cast_nullable_to_non_nullable
                     as List<dynamic>,
+        departmentsListStatus:
+            null == departmentsListStatus
+                ? _value.departmentsListStatus
+                : departmentsListStatus // ignore: cast_nullable_to_non_nullable
+                    as DataStatus,
         doctorsList:
             null == doctorsList
                 ? _value._doctorsList
                 : doctorsList // ignore: cast_nullable_to_non_nullable
                     as List<dynamic>,
+        doctorsListStatus:
+            null == doctorsListStatus
+                ? _value.doctorsListStatus
+                : doctorsListStatus // ignore: cast_nullable_to_non_nullable
+                    as DataStatus,
         pharmaciesList:
             null == pharmaciesList
                 ? _value._pharmaciesList
                 : pharmaciesList // ignore: cast_nullable_to_non_nullable
                     as List<dynamic>,
+        pharmaciesListStatus:
+            null == pharmaciesListStatus
+                ? _value.pharmaciesListStatus
+                : pharmaciesListStatus // ignore: cast_nullable_to_non_nullable
+                    as DataStatus,
       ),
     );
   }
@@ -311,24 +378,30 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 
 class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
   const _$HomeStateImpl({
-    required final List<dynamic> upcomingAppointmentsList,
+    required final List<AppointmentModel> upcomingAppointmentsList,
+    required this.upcomingAppointmentsListStatus,
     required final List<dynamic> departmentsList,
+    required this.departmentsListStatus,
     required final List<dynamic> doctorsList,
+    required this.doctorsListStatus,
     required final List<dynamic> pharmaciesList,
+    required this.pharmaciesListStatus,
   }) : _upcomingAppointmentsList = upcomingAppointmentsList,
        _departmentsList = departmentsList,
        _doctorsList = doctorsList,
        _pharmaciesList = pharmaciesList;
 
-  final List<dynamic> _upcomingAppointmentsList;
+  final List<AppointmentModel> _upcomingAppointmentsList;
   @override
-  List<dynamic> get upcomingAppointmentsList {
+  List<AppointmentModel> get upcomingAppointmentsList {
     if (_upcomingAppointmentsList is EqualUnmodifiableListView)
       return _upcomingAppointmentsList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_upcomingAppointmentsList);
   }
 
+  @override
+  final DataStatus upcomingAppointmentsListStatus;
   final List<dynamic> _departmentsList;
   @override
   List<dynamic> get departmentsList {
@@ -337,6 +410,8 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
     return EqualUnmodifiableListView(_departmentsList);
   }
 
+  @override
+  final DataStatus departmentsListStatus;
   final List<dynamic> _doctorsList;
   @override
   List<dynamic> get doctorsList {
@@ -345,6 +420,8 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
     return EqualUnmodifiableListView(_doctorsList);
   }
 
+  @override
+  final DataStatus doctorsListStatus;
   final List<dynamic> _pharmaciesList;
   @override
   List<dynamic> get pharmaciesList {
@@ -354,8 +431,11 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
   }
 
   @override
+  final DataStatus pharmaciesListStatus;
+
+  @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'HomeState(upcomingAppointmentsList: $upcomingAppointmentsList, departmentsList: $departmentsList, doctorsList: $doctorsList, pharmaciesList: $pharmaciesList)';
+    return 'HomeState(upcomingAppointmentsList: $upcomingAppointmentsList, upcomingAppointmentsListStatus: $upcomingAppointmentsListStatus, departmentsList: $departmentsList, departmentsListStatus: $departmentsListStatus, doctorsList: $doctorsList, doctorsListStatus: $doctorsListStatus, pharmaciesList: $pharmaciesList, pharmaciesListStatus: $pharmaciesListStatus)';
   }
 
   @override
@@ -369,9 +449,18 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
           upcomingAppointmentsList,
         ),
       )
+      ..add(
+        DiagnosticsProperty(
+          'upcomingAppointmentsListStatus',
+          upcomingAppointmentsListStatus,
+        ),
+      )
       ..add(DiagnosticsProperty('departmentsList', departmentsList))
+      ..add(DiagnosticsProperty('departmentsListStatus', departmentsListStatus))
       ..add(DiagnosticsProperty('doctorsList', doctorsList))
-      ..add(DiagnosticsProperty('pharmaciesList', pharmaciesList));
+      ..add(DiagnosticsProperty('doctorsListStatus', doctorsListStatus))
+      ..add(DiagnosticsProperty('pharmaciesList', pharmaciesList))
+      ..add(DiagnosticsProperty('pharmaciesListStatus', pharmaciesListStatus));
   }
 
   @override
@@ -383,27 +472,43 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
               other._upcomingAppointmentsList,
               _upcomingAppointmentsList,
             ) &&
+            (identical(
+                  other.upcomingAppointmentsListStatus,
+                  upcomingAppointmentsListStatus,
+                ) ||
+                other.upcomingAppointmentsListStatus ==
+                    upcomingAppointmentsListStatus) &&
             const DeepCollectionEquality().equals(
               other._departmentsList,
               _departmentsList,
             ) &&
+            (identical(other.departmentsListStatus, departmentsListStatus) ||
+                other.departmentsListStatus == departmentsListStatus) &&
             const DeepCollectionEquality().equals(
               other._doctorsList,
               _doctorsList,
             ) &&
+            (identical(other.doctorsListStatus, doctorsListStatus) ||
+                other.doctorsListStatus == doctorsListStatus) &&
             const DeepCollectionEquality().equals(
               other._pharmaciesList,
               _pharmaciesList,
-            ));
+            ) &&
+            (identical(other.pharmaciesListStatus, pharmaciesListStatus) ||
+                other.pharmaciesListStatus == pharmaciesListStatus));
   }
 
   @override
   int get hashCode => Object.hash(
     runtimeType,
     const DeepCollectionEquality().hash(_upcomingAppointmentsList),
+    upcomingAppointmentsListStatus,
     const DeepCollectionEquality().hash(_departmentsList),
+    departmentsListStatus,
     const DeepCollectionEquality().hash(_doctorsList),
+    doctorsListStatus,
     const DeepCollectionEquality().hash(_pharmaciesList),
+    pharmaciesListStatus,
   );
 
   /// Create a copy of HomeState
@@ -417,20 +522,32 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
 
 abstract class _HomeState implements HomeState {
   const factory _HomeState({
-    required final List<dynamic> upcomingAppointmentsList,
+    required final List<AppointmentModel> upcomingAppointmentsList,
+    required final DataStatus upcomingAppointmentsListStatus,
     required final List<dynamic> departmentsList,
+    required final DataStatus departmentsListStatus,
     required final List<dynamic> doctorsList,
+    required final DataStatus doctorsListStatus,
     required final List<dynamic> pharmaciesList,
+    required final DataStatus pharmaciesListStatus,
   }) = _$HomeStateImpl;
 
   @override
-  List<dynamic> get upcomingAppointmentsList;
+  List<AppointmentModel> get upcomingAppointmentsList;
+  @override
+  DataStatus get upcomingAppointmentsListStatus;
   @override
   List<dynamic> get departmentsList;
   @override
+  DataStatus get departmentsListStatus;
+  @override
   List<dynamic> get doctorsList;
   @override
+  DataStatus get doctorsListStatus;
+  @override
   List<dynamic> get pharmaciesList;
+  @override
+  DataStatus get pharmaciesListStatus;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.

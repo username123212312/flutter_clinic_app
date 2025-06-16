@@ -20,6 +20,8 @@ mixin _$ReservationDetailsState {
   AppointmentModel? get appointment => throw _privateConstructorUsedError;
   DataStatus get status => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
+  String? get paymentIntentId => throw _privateConstructorUsedError;
+  String? get clientID => throw _privateConstructorUsedError;
 
   /// Create a copy of ReservationDetailsState
   /// with the given fields replaced by the non-null parameter values.
@@ -35,7 +37,13 @@ abstract class $ReservationDetailsStateCopyWith<$Res> {
     $Res Function(ReservationDetailsState) then,
   ) = _$ReservationDetailsStateCopyWithImpl<$Res, ReservationDetailsState>;
   @useResult
-  $Res call({AppointmentModel? appointment, DataStatus status, String message});
+  $Res call({
+    AppointmentModel? appointment,
+    DataStatus status,
+    String message,
+    String? paymentIntentId,
+    String? clientID,
+  });
 
   $AppointmentModelCopyWith<$Res>? get appointment;
 }
@@ -61,6 +69,8 @@ class _$ReservationDetailsStateCopyWithImpl<
     Object? appointment = freezed,
     Object? status = null,
     Object? message = null,
+    Object? paymentIntentId = freezed,
+    Object? clientID = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -79,6 +89,16 @@ class _$ReservationDetailsStateCopyWithImpl<
                     ? _value.message
                     : message // ignore: cast_nullable_to_non_nullable
                         as String,
+            paymentIntentId:
+                freezed == paymentIntentId
+                    ? _value.paymentIntentId
+                    : paymentIntentId // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            clientID:
+                freezed == clientID
+                    ? _value.clientID
+                    : clientID // ignore: cast_nullable_to_non_nullable
+                        as String?,
           )
           as $Val,
     );
@@ -108,7 +128,13 @@ abstract class _$$ReservationDetailsStateImplCopyWith<$Res>
   ) = __$$ReservationDetailsStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AppointmentModel? appointment, DataStatus status, String message});
+  $Res call({
+    AppointmentModel? appointment,
+    DataStatus status,
+    String message,
+    String? paymentIntentId,
+    String? clientID,
+  });
 
   @override
   $AppointmentModelCopyWith<$Res>? get appointment;
@@ -135,6 +161,8 @@ class __$$ReservationDetailsStateImplCopyWithImpl<$Res>
     Object? appointment = freezed,
     Object? status = null,
     Object? message = null,
+    Object? paymentIntentId = freezed,
+    Object? clientID = freezed,
   }) {
     return _then(
       _$ReservationDetailsStateImpl(
@@ -153,6 +181,16 @@ class __$$ReservationDetailsStateImplCopyWithImpl<$Res>
                 ? _value.message
                 : message // ignore: cast_nullable_to_non_nullable
                     as String,
+        paymentIntentId:
+            freezed == paymentIntentId
+                ? _value.paymentIntentId
+                : paymentIntentId // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        clientID:
+            freezed == clientID
+                ? _value.clientID
+                : clientID // ignore: cast_nullable_to_non_nullable
+                    as String?,
       ),
     );
   }
@@ -165,6 +203,8 @@ class _$ReservationDetailsStateImpl implements _ReservationDetailsState {
     this.appointment,
     required this.status,
     required this.message,
+    this.paymentIntentId,
+    this.clientID,
   });
 
   @override
@@ -173,10 +213,14 @@ class _$ReservationDetailsStateImpl implements _ReservationDetailsState {
   final DataStatus status;
   @override
   final String message;
+  @override
+  final String? paymentIntentId;
+  @override
+  final String? clientID;
 
   @override
   String toString() {
-    return 'ReservationDetailsState(appointment: $appointment, status: $status, message: $message)';
+    return 'ReservationDetailsState(appointment: $appointment, status: $status, message: $message, paymentIntentId: $paymentIntentId, clientID: $clientID)';
   }
 
   @override
@@ -187,11 +231,22 @@ class _$ReservationDetailsStateImpl implements _ReservationDetailsState {
             (identical(other.appointment, appointment) ||
                 other.appointment == appointment) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.paymentIntentId, paymentIntentId) ||
+                other.paymentIntentId == paymentIntentId) &&
+            (identical(other.clientID, clientID) ||
+                other.clientID == clientID));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, appointment, status, message);
+  int get hashCode => Object.hash(
+    runtimeType,
+    appointment,
+    status,
+    message,
+    paymentIntentId,
+    clientID,
+  );
 
   /// Create a copy of ReservationDetailsState
   /// with the given fields replaced by the non-null parameter values.
@@ -209,6 +264,8 @@ abstract class _ReservationDetailsState implements ReservationDetailsState {
     final AppointmentModel? appointment,
     required final DataStatus status,
     required final String message,
+    final String? paymentIntentId,
+    final String? clientID,
   }) = _$ReservationDetailsStateImpl;
 
   @override
@@ -217,6 +274,10 @@ abstract class _ReservationDetailsState implements ReservationDetailsState {
   DataStatus get status;
   @override
   String get message;
+  @override
+  String? get paymentIntentId;
+  @override
+  String? get clientID;
 
   /// Create a copy of ReservationDetailsState
   /// with the given fields replaced by the non-null parameter values.

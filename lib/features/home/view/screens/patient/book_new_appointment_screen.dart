@@ -109,51 +109,6 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
               AppRouteConstants.reservationDetailsRouteName,
               pathParameters: {'appointmetnId': '${state.appointmentID ?? 0}'},
             );
-            // await TransparentDialog.show(
-            //   context: context,
-            //   barrierDismissible: false,
-            //   builder:
-            //       (_) => CustomDialog(
-            //         content: Column(
-            //           children: [
-            //             Align(
-            //               alignment: Alignment(-0.2, 0.0),
-            //               child: Lottie.asset(
-            //                 'assets/lottie/successfully_animation.json',
-            //                 fit: BoxFit.cover,
-            //                 width: screenWidth(context) * 0.2,
-            //                 height: screenHeight(context) * 0.15,
-            //               ),
-            //             ),
-            //             Text(
-            //               textAlign: TextAlign.center,
-            //               state.statusMessage ??
-            //                   'Appointment Added Successfully!',
-            //               style: Theme.of(context).textTheme.labelMedium!
-            //                   .copyWith(color: Colors.black, fontSize: 15),
-            //             ),
-            //             SizedBox(height: 25),
-            //             SizedBox(
-            //               width: screenWidth(context) * 0.5,
-            //               height: screenHeight(context) * 0.05,
-            //               child: CustomElevatedButton(
-            //                 fontSize: 12,
-            //                 title: 'Back to Home',
-            //                 onTap: () {
-            //                   context.read<AppointmentsBloc>().add(
-            //                     AppointmentsFetched(),
-            //                   );
-            //                   context.pop();
-            //                   context.goNamed(AppRouteConstants.homeRouteName);
-            //                 },
-            //                 fillColor: Theme.of(context).colorScheme.primary,
-            //                 textColor: Colors.white,
-            //               ),
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            // );
           }
         },
         child: CustomElevatedButton(

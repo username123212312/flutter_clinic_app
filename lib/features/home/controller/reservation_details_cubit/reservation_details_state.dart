@@ -6,6 +6,8 @@ class ReservationDetailsState with _$ReservationDetailsState {
     AppointmentModel? appointment,
     required DataStatus status,
     required String message,
+    String? paymentIntentId,
+    String? clientID,
   }) = _ReservationDetailsState;
   factory ReservationDetailsState.initial() {
     return ReservationDetailsState(

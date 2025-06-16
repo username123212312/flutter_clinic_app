@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:our_flutter_clinic_app/core/utils/time_range.dart';
 import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
@@ -55,8 +56,10 @@ class AppointmentWidgetItem extends StatelessWidget {
                         image:
                             appointment.doctorPhoto == null
                                 ? AssetImage('assets/images/logo.webp')
-                                : NetworkImage(appointment.doctorPhoto!),
-                        fit: BoxFit.contain,
+                                : NetworkImage(
+                                  '${AppConstants.serverUrl}${appointment.doctorPhoto!}',
+                                ),
+                        fit: BoxFit.cover,
                       ),
                       borderRadius: BorderRadius.circular(20),
                     ),

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -16,6 +17,9 @@ import 'package:path_provider/path_provider.dart' as p;
 import 'core/observers/custom_bloc_observer.dart';
 import 'core/blocs/user_bloc/user_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+
+import 'core/services/fcm/fcm_service.dart';
+import 'core/services/notification/notification_service.dart';
 
 void main() async {
   await initMain();
@@ -72,6 +76,9 @@ class ClinicApp extends StatelessWidget {
 
 Future<void> initMain() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  await NotificationService().init();
+  await FCMService().init();
   await dotenv.load();
   Stripe.publishableKey = dotenv.env['STRIPE_PUBLISHABLE_KEY']!;
 

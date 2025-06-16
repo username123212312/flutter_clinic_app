@@ -40,11 +40,11 @@ class AppointmentDetailsCard extends StatelessWidget {
             width: 32,
             child: CircleAvatar(
               backgroundColor: Pallete.graysGray4,
-              radius: 32,
-              backgroundImage:
+              foregroundImage:
                   imagePath == null
                       ? AssetImage('assets/images/profile.png')
-                      : NetworkImage('${AppConstants.serverUrl}/${imagePath!}'),
+                      : NetworkImage('${AppConstants.serverUrl}${imagePath!}'),
+              radius: 32,
             ),
           ),
           const SizedBox(width: 12),

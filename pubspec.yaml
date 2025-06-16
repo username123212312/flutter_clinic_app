@@ -68,6 +68,10 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   flutter_stripe: ^11.5.0
   flutter_dotenv: ^5.2.1
+  firebase_messaging:
+  firebase_core:
+  shared_preferences:
+  flutter_local_notifications:
 
 dev_dependencies:
   flutter_test:
