@@ -28,8 +28,8 @@ mixin _$PharmacyModel {
   @JsonKey(name: 'finish_time')
   String? get finishTime => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
-  double? get latitude => throw _privateConstructorUsedError;
-  double? get longitude => throw _privateConstructorUsedError;
+  String? get latitude => throw _privateConstructorUsedError;
+  String? get longitude => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
 
   /// Serializes this PharmacyModel to a JSON map.
@@ -55,8 +55,8 @@ abstract class $PharmacyModelCopyWith<$Res> {
     @JsonKey(name: 'start_time') String? startTime,
     @JsonKey(name: 'finish_time') String? finishTime,
     String? phone,
-    double? latitude,
-    double? longitude,
+    String? latitude,
+    String? longitude,
     String? location,
   });
 }
@@ -116,12 +116,12 @@ class _$PharmacyModelCopyWithImpl<$Res, $Val extends PharmacyModel>
                 freezed == latitude
                     ? _value.latitude
                     : latitude // ignore: cast_nullable_to_non_nullable
-                        as double?,
+                        as String?,
             longitude:
                 freezed == longitude
                     ? _value.longitude
                     : longitude // ignore: cast_nullable_to_non_nullable
-                        as double?,
+                        as String?,
             location:
                 freezed == location
                     ? _value.location
@@ -148,8 +148,8 @@ abstract class _$$PharmacyModelImplCopyWith<$Res>
     @JsonKey(name: 'start_time') String? startTime,
     @JsonKey(name: 'finish_time') String? finishTime,
     String? phone,
-    double? latitude,
-    double? longitude,
+    String? latitude,
+    String? longitude,
     String? location,
   });
 }
@@ -208,12 +208,12 @@ class __$$PharmacyModelImplCopyWithImpl<$Res>
             freezed == latitude
                 ? _value.latitude
                 : latitude // ignore: cast_nullable_to_non_nullable
-                    as double?,
+                    as String?,
         longitude:
             freezed == longitude
                 ? _value.longitude
                 : longitude // ignore: cast_nullable_to_non_nullable
-                    as double?,
+                    as String?,
         location:
             freezed == location
                 ? _value.location
@@ -254,9 +254,9 @@ class _$PharmacyModelImpl implements _PharmacyModel {
   @override
   final String? phone;
   @override
-  final double? latitude;
+  final String? latitude;
   @override
-  final double? longitude;
+  final String? longitude;
   @override
   final String? location;
 
@@ -320,8 +320,8 @@ abstract class _PharmacyModel implements PharmacyModel {
     @JsonKey(name: 'start_time') final String? startTime,
     @JsonKey(name: 'finish_time') final String? finishTime,
     final String? phone,
-    final double? latitude,
-    final double? longitude,
+    final String? latitude,
+    final String? longitude,
     final String? location,
   }) = _$PharmacyModelImpl;
 
@@ -341,9 +341,9 @@ abstract class _PharmacyModel implements PharmacyModel {
   @override
   String? get phone;
   @override
-  double? get latitude;
+  String? get latitude;
   @override
-  double? get longitude;
+  String? get longitude;
   @override
   String? get location;
 

@@ -88,7 +88,7 @@ class HomeRepository {
             success: true,
             message: 'Doctors fetched successfully!',
             data:
-                (response.data['items'] as List<dynamic>)
+                (response.data['top rated doctors'] as List<dynamic>)
                     .map((doctor) {
                       return DoctorModel.fromJson(doctor);
                     })
@@ -118,7 +118,7 @@ class HomeRepository {
             success: true,
             message: 'Pharmacies fetched successfully!',
             data:
-                (response.data['items'] as List<dynamic>).map((pharmacy) {
+                (response.data['data'] as List<dynamic>).map((pharmacy) {
                   return PharmacyModel.fromJson(pharmacy);
                 }).toList(),
           ),

@@ -11,8 +11,8 @@ class PharmacyModel with _$PharmacyModel {
     @JsonKey(name: 'start_time') String? startTime,
     @JsonKey(name: 'finish_time') String? finishTime,
     String? phone,
-    double? latitude,
-    double? longitude,
+    String? latitude,
+    String? longitude,
     String? location,
   }) = _PharmacyModel;
 

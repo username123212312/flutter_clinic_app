@@ -5,11 +5,11 @@ sealed class HomeState with _$HomeState {
   const factory HomeState({
     required List<AppointmentModel> upcomingAppointmentsList,
     required DataStatus upcomingAppointmentsListStatus,
-    required List departmentsList,
+    required List<ClinicModel> departmentsList,
     required DataStatus departmentsListStatus,
-    required List doctorsList,
+    required List<DoctorModel> doctorsList,
     required DataStatus doctorsListStatus,
-    required List pharmaciesList,
+    required List<PharmacyModel> pharmaciesList,
     required DataStatus pharmaciesListStatus,
   }) = _HomeState;
   factory HomeState.initial() {

@@ -5,6 +5,7 @@ import 'package:our_flutter_clinic_app/core/blocs/auth_bloc/auth_bloc.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/home/upcoming_%20appointment_cards.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../controller/home_bloc/home_bloc.dart';
@@ -26,25 +27,6 @@ class HomeScreenWidget extends StatefulWidget {
 class _HomeScreenWidgetState extends State<HomeScreenWidget> {
   bool isVisible = false;
 
-  final List<Map<String, dynamic>> appointments = [
-    {
-      'doctorName': 'Melisa Adam',
-      'specialty': 'Dentist',
-      'imagePath': 'assets/images/Jennifer_Miller.png',
-      'appointmentTime': '10:30pm',
-      'appointmentdate': '5 Oct',
-      'rating': 4.8,
-    },
-    {
-      'doctorName': 'Ahmed Sami',
-      'specialty': 'Dentist',
-      'imagePath': 'assets/images/Jennifer_Miller.png',
-      'appointmentTime': '1:00 PM',
-      'appointmentdate': '5 Oct',
-      'rating': 4.5,
-    },
-  ];
-
   final List<Map<String, String>> departmentsData = [
     {'name': 'Heart', 'icon': 'assets/icons/Cadiologist.png'},
     {'name': 'Dental', 'icon': 'assets/icons/Dentists.png'},
@@ -59,6 +41,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
   @override
   void initState() {
     super.initState();
+    context.read<HomeBloc>().add(AllListsFetched());
     Future.delayed(const Duration(milliseconds: 500), () {
       setState(() {
         isVisible = true;
@@ -128,36 +111,74 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
               height: 132,
               child: BlocBuilder<HomeBloc, HomeState>(
                 builder: (context, state) {
-                  return ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: appointments.length,
-                    itemBuilder: (context, index) {
-                      return TweenAnimationBuilder(
-                        tween: Tween<Offset>(
-                          begin: const Offset(1, 0),
-                          end: Offset.zero,
-                        ),
-                        duration: Duration(milliseconds: 300 + (index * 100)),
-                        builder: (context, offset, child) {
-                          return Transform.translate(
-                            offset: offset * 20,
-                            child: child,
+                  if (state.upcomingAppointmentsList.isEmpty) {
+                    return Center(
+                      child: Image.asset(
+                        'assets/images/il_empty_activity.webp',
+                      ),
+                    );
+                  }
+                  return Skeletonizer(
+                    enabled:
+                        state.upcomingAppointmentsListStatus.isLoading ||
+                        state.upcomingAppointmentsList.isEmpty,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 5,
+                      itemBuilder: (context, index) {
+                        if (state.upcomingAppointmentsListStatus.isLoading) {
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 12),
+                            child: UpcomingAppointmentCard(
+                              appointmentTime: 'bllabllabla',
+                              appointmentdate: 'bllabllabla',
+                              doctorName: 'No Doctor',
+                              imagePath: 'assets/images/app_logo.png',
+                              rating: 0.0,
+                              specialty: 'No speciality',
+                              onMenuPressed: () {},
+                            ),
                           );
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 12),
-                          child: UpcomingAppointmentCard(
-                            appointmentTime: '05:15',
-                            appointmentdate: '10/05/2001',
-                            doctorName: 'Abo falah',
-                            imagePath: appointments[index]['imagePath'],
-                            rating: 4.5,
-                            specialty: 'Heart',
-                            onMenuPressed: () {},
+                        }
+                        final appointment =
+                            state.upcomingAppointmentsList[index];
+                        return TweenAnimationBuilder(
+                          tween: Tween<Offset>(
+                            begin: const Offset(1, 0),
+                            end: Offset.zero,
                           ),
-                        ),
-                      );
-                    },
+                          duration: Duration(milliseconds: 300 + (index * 100)),
+                          builder: (context, offset, child) {
+                            return Transform.translate(
+                              offset: offset * 20,
+                              child: child,
+                            );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 12),
+                            child: UpcomingAppointmentCard(
+                              appointmentTime:
+                                  appointment.reservationHour.toString(),
+                              appointmentdate:
+                                  appointment.reservationDate.toString(),
+                              doctorName: appointment.doctorName ?? 'No Doctor',
+                              imagePath:
+                                  appointment.doctorPhoto ??
+                                  'assets/images/logo.webp',
+                              rating:
+                                  double.tryParse(
+                                    appointment.finalRate ?? '0.0',
+                                  ) ??
+                                  0.0,
+                              specialty:
+                                  appointment.doctorSpeciality ??
+                                  'No speciality',
+                              onMenuPressed: () {},
+                            ),
+                          ),
+                        );
+                      },
+                    ),
                   );
                 },
               ),
@@ -169,30 +190,49 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                       context.pushNamed(AppRouteConstants.departmentsRouteName),
             ),
             const SizedBox(height: 10),
-            GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount:
-                  departmentsData.length > 8 ? 8 : departmentsData.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
-                mainAxisSpacing: 15,
-                crossAxisSpacing: 9,
-              ),
-              itemBuilder: (context, index) {
-                final dept = departmentsData[index];
-                return TweenAnimationBuilder(
-                  tween: Tween<double>(begin: 0, end: 1),
-                  duration: Duration(milliseconds: 300 + (index * 100)),
-                  builder: (context, value, child) {
-                    return Opacity(
-                      opacity: value,
-                      child: Transform.scale(scale: value, child: child),
-                    );
-                  },
-                  child: Department(
-                    name: dept['name']!,
-                    iconPath: dept['icon']!,
+            BlocBuilder<HomeBloc, HomeState>(
+              builder: (context, state) {
+                return Skeletonizer(
+                  effect: SoldColorEffect(),
+                  enabled:
+                      state.departmentsListStatus.isLoading ||
+                      state.departmentsList.isEmpty,
+                  child: GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount:
+                        state.departmentsListStatus.isLoading
+                            ? 8
+                            : state.departmentsList.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 4,
+                          mainAxisSpacing: 15,
+                          crossAxisSpacing: 9,
+                        ),
+                    itemBuilder: (context, index) {
+                      if (state.departmentsListStatus.isLoading) {
+                        return Department(
+                          name: 'opengl',
+                          iconPath: 'assets/icons/Cadiologist.png',
+                        );
+                      }
+                      final clinic = state.departmentsList[index];
+                      return TweenAnimationBuilder(
+                        tween: Tween<double>(begin: 0, end: 1),
+                        duration: Duration(milliseconds: 300 + (index * 100)),
+                        builder: (context, value, child) {
+                          return Opacity(
+                            opacity: value,
+                            child: Transform.scale(scale: value, child: child),
+                          );
+                        },
+                        child: Department(
+                          name: clinic.name ?? 'No Clinic',
+                          iconPath: departmentsData[index]['icon'] ?? '',
+                        ),
+                      );
+                    },
                   ),
                 );
               },
@@ -206,37 +246,80 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
             const SizedBox(height: 12),
             SizedBox(
               height: 160,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 2,
-                itemBuilder: (context, index) {
-                  return TweenAnimationBuilder(
-                    tween: Tween<Offset>(
-                      begin: const Offset(1, 0),
-                      end: Offset.zero,
-                    ),
-                    duration: Duration(milliseconds: 300 + (index * 100)),
-                    builder: (context, offset, child) {
-                      return Transform.translate(
-                        offset: offset * 20,
-                        child: child,
-                      );
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 12),
-                      child: SizedBox(
-                        width: screenWidth(context) * 0.8,
-                        child: FindDoctorCard(
-                          buttonOnTap: () {},
-                          title: 'Jennifer Miller',
-                          subtitle: 'Pediatrician',
-                          imagePath: 'assets/icons/pro.avif',
-                          rating: 4.8,
-                          startTime: '10:30am',
-                          endTime: '5:30pm',
-                          onTap: () {},
-                        ),
-                      ),
+              child: BlocBuilder<HomeBloc, HomeState>(
+                builder: (context, state) {
+                  return Skeletonizer(
+                    enabled: state.doctorsListStatus.isLoading,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount:
+                          state.doctorsListStatus.isLoading
+                              ? 3
+                              : state.doctorsList.length,
+                      itemBuilder: (context, index) {
+                        if (state.doctorsList.isEmpty) {
+                          return Center(
+                            child: Image.asset(
+                              'assets/images/il_empty_activity.webp',
+                            ),
+                          );
+                        }
+                        if (state.doctorsListStatus.isLoading) {
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 12),
+                            child: SizedBox(
+                              width: screenWidth(context) * 0.8,
+                              child: FindDoctorCard(
+                                buttonOnTap: () {},
+                                title: 'Jennifer Miller',
+                                subtitle: 'Pediatrician',
+                                imagePath: 'assets/icons/home_icon.png',
+                                rating: 4.8,
+                                startTime: '10:30am',
+                                endTime: '5:30pm',
+                                onTap: () {},
+                              ),
+                            ),
+                          );
+                        }
+                        final doctor = state.doctorsList[index];
+                        return TweenAnimationBuilder(
+                          tween: Tween<Offset>(
+                            begin: const Offset(1, 0),
+                            end: Offset.zero,
+                          ),
+                          duration: Duration(milliseconds: 300 + (index * 100)),
+                          builder: (context, offset, child) {
+                            return Transform.translate(
+                              offset: offset * 20,
+                              child: child,
+                            );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 12),
+                            child: SizedBox(
+                              width: screenWidth(context) * 0.8,
+                              child: FindDoctorCard(
+                                buttonOnTap: () {},
+                                title:
+                                    '${doctor.firstName ?? 'No'} ${doctor.lastName ?? 'Doctor'}',
+                                subtitle: doctor.speciality ?? 'No speciality',
+                                imagePath:
+                                    doctor.photoPath ??
+                                    'assets/images/logo.webp',
+                                rating:
+                                    double.tryParse(
+                                      doctor.finalRate ?? '0.0',
+                                    ) ??
+                                    0.0,
+                                startTime: '10:30am',
+                                endTime: '5:30pm',
+                                onTap: () {},
+                              ),
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   );
                 },
@@ -253,34 +336,80 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
             const SizedBox(height: 12),
             SizedBox(
               height: 195,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 2,
-                itemBuilder: (context, index) {
-                  return TweenAnimationBuilder(
-                    tween: Tween<double>(begin: 0, end: 1),
-                    duration: Duration(milliseconds: 300 + (index * 100)),
-                    builder: (context, value, child) {
-                      return Opacity(
-                        opacity: value,
-                        child: Transform.scale(scale: value, child: child),
-                      );
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 12),
-                      child: SizedBox(
-                        width: 350,
-                        child: const PharmacyCard(
-                          endTime: '09:00Am',
-                          name: 'Pharmacy Name',
-                          startTime: '05:00Pm',
-                          latitude: 33.5138,
-                          longitude: 36.2765,
-                          namelocation: 'Al Amal Street',
-                          phone: 'Tel: +963 998 998 998',
-                          location: 'Location: Al Thawra Street - Tartus',
-                        ),
-                      ),
+              child: BlocBuilder<HomeBloc, HomeState>(
+                builder: (context, state) {
+                  return Skeletonizer(
+                    enabled: state.pharmaciesListStatus.isLoading,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount:
+                          state.pharmaciesListStatus.isLoading
+                              ? 5
+                              : state.pharmaciesList.length,
+                      itemBuilder: (context, index) {
+                        if (state.pharmaciesListStatus.isLoading) {
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 12),
+                            child: SizedBox(
+                              width: 350,
+                              child: const PharmacyCard(
+                                endTime: '09:00Am',
+                                name: 'Pharmacy Name',
+                                startTime: '05:00Pm',
+                                latitude: 33.5138,
+                                longitude: 36.2765,
+                                namelocation: 'Al Amal Street',
+                                phone: 'Tel: +963 998 998 998',
+                                location: 'Location: Al Thawra Street - Tartus',
+                              ),
+                            ),
+                          );
+                        }
+                        final pharmacy = state.pharmaciesList[index];
+                        return TweenAnimationBuilder(
+                          tween: Tween<double>(begin: 0, end: 1),
+                          duration: Duration(milliseconds: 300 + (index * 100)),
+                          builder: (context, value, child) {
+                            return Opacity(
+                              opacity: value,
+                              child: Transform.scale(
+                                scale: value,
+                                child: child,
+                              ),
+                            );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 12),
+                            child: SizedBox(
+                              width: 350,
+                              child: PharmacyCard(
+                                startTime:
+                                    pharmacy.startTime ??
+                                    DateTime.now().toString(),
+                                endTime:
+                                    pharmacy.finishTime ??
+                                    DateTime.now().toString(),
+                                name: pharmacy.name ?? 'No pharmacy',
+                                latitude:
+                                    double.tryParse(
+                                      pharmacy.latitude ?? '0.0',
+                                    ) ??
+                                    34.0,
+                                longitude:
+                                    double.tryParse(
+                                      pharmacy.longitude ?? '0.0',
+                                    ) ??
+                                    33.0,
+                                namelocation:
+                                    pharmacy.location ?? 'Al Amal Street',
+                                phone:
+                                    pharmacy.phone ?? 'Tel: +963 998 998 998',
+                                location: pharmacy.location ?? 'Al Amal Street',
+                              ),
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   );
                 },

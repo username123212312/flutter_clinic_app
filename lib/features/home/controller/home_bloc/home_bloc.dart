@@ -5,9 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
+import 'package:our_flutter_clinic_app/features/home/model/clinic_model.dart';
+import 'package:our_flutter_clinic_app/features/home/model/pharmacy_model.dart';
 import 'package:our_flutter_clinic_app/features/home/repository/home_repository.dart';
 
 import '../../../../core/enums.dart';
+import '../../model/doctor_model.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
@@ -33,10 +36,21 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     AllListsFetched event,
     Emitter<HomeState> emit,
   ) async {
-    await _fetchUpcomingAppointments(emit);
-    await _fetchAllClinics(emit);
-    await _fetchBestDoctors(emit);
-    await _fetchNearByPharmacies(emit);
+    try {
+      await _fetchUpcomingAppointments(emit);
+      await _fetchAllClinics(emit);
+      await _fetchBestDoctors(emit);
+      await _fetchNearByPharmacies(emit);
+    } catch (e) {
+      emit(
+        state.copyWith(
+          departmentsListStatus: DataStatus.error,
+          doctorsListStatus: DataStatus.error,
+          pharmaciesListStatus: DataStatus.error,
+          upcomingAppointmentsListStatus: DataStatus.error,
+        ),
+      );
+    }
   }
 
   Future<void> _fetchUpcomingAppointments(Emitter<HomeState> emit) async {
@@ -63,7 +77,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       final newState = switch (response) {
         Left() => state.copyWith(departmentsListStatus: DataStatus.error),
         Right(value: final r) => state.copyWith(
-          departmentsList: r.data ?? state.upcomingAppointmentsList,
+          departmentsList: r.data ?? state.departmentsList,
           departmentsListStatus: DataStatus.data,
         ),
       };
@@ -85,7 +99,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       };
       emit(newState);
     } catch (e) {
-      emit(state.copyWith(departmentsListStatus: DataStatus.error));
+      emit(state.copyWith(doctorsListStatus: DataStatus.error));
     }
   }
 
@@ -101,7 +115,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       };
       emit(newState);
     } catch (e) {
-      emit(state.copyWith(departmentsListStatus: DataStatus.error));
+      emit(state.copyWith(pharmaciesListStatus: DataStatus.error));
     }
   }
 

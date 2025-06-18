@@ -13,8 +13,8 @@ _$PharmacyModelImpl _$$PharmacyModelImplFromJson(Map<String, dynamic> json) =>
       startTime: json['start_time'] as String?,
       finishTime: json['finish_time'] as String?,
       phone: json['phone'] as String?,
-      latitude: (json['latitude'] as num?)?.toDouble(),
-      longitude: (json['longitude'] as num?)?.toDouble(),
+      latitude: json['latitude'] as String?,
+      longitude: json['longitude'] as String?,
       location: json['location'] as String?,
     );
 

@@ -180,11 +180,11 @@ mixin _$HomeState {
       throw _privateConstructorUsedError;
   DataStatus get upcomingAppointmentsListStatus =>
       throw _privateConstructorUsedError;
-  List<dynamic> get departmentsList => throw _privateConstructorUsedError;
+  List<ClinicModel> get departmentsList => throw _privateConstructorUsedError;
   DataStatus get departmentsListStatus => throw _privateConstructorUsedError;
-  List<dynamic> get doctorsList => throw _privateConstructorUsedError;
+  List<DoctorModel> get doctorsList => throw _privateConstructorUsedError;
   DataStatus get doctorsListStatus => throw _privateConstructorUsedError;
-  List<dynamic> get pharmaciesList => throw _privateConstructorUsedError;
+  List<PharmacyModel> get pharmaciesList => throw _privateConstructorUsedError;
   DataStatus get pharmaciesListStatus => throw _privateConstructorUsedError;
 
   /// Create a copy of HomeState
@@ -202,11 +202,11 @@ abstract class $HomeStateCopyWith<$Res> {
   $Res call({
     List<AppointmentModel> upcomingAppointmentsList,
     DataStatus upcomingAppointmentsListStatus,
-    List<dynamic> departmentsList,
+    List<ClinicModel> departmentsList,
     DataStatus departmentsListStatus,
-    List<dynamic> doctorsList,
+    List<DoctorModel> doctorsList,
     DataStatus doctorsListStatus,
-    List<dynamic> pharmaciesList,
+    List<PharmacyModel> pharmaciesList,
     DataStatus pharmaciesListStatus,
   });
 }
@@ -251,7 +251,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
                 null == departmentsList
                     ? _value.departmentsList
                     : departmentsList // ignore: cast_nullable_to_non_nullable
-                        as List<dynamic>,
+                        as List<ClinicModel>,
             departmentsListStatus:
                 null == departmentsListStatus
                     ? _value.departmentsListStatus
@@ -261,7 +261,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
                 null == doctorsList
                     ? _value.doctorsList
                     : doctorsList // ignore: cast_nullable_to_non_nullable
-                        as List<dynamic>,
+                        as List<DoctorModel>,
             doctorsListStatus:
                 null == doctorsListStatus
                     ? _value.doctorsListStatus
@@ -271,7 +271,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
                 null == pharmaciesList
                     ? _value.pharmaciesList
                     : pharmaciesList // ignore: cast_nullable_to_non_nullable
-                        as List<dynamic>,
+                        as List<PharmacyModel>,
             pharmaciesListStatus:
                 null == pharmaciesListStatus
                     ? _value.pharmaciesListStatus
@@ -295,11 +295,11 @@ abstract class _$$HomeStateImplCopyWith<$Res>
   $Res call({
     List<AppointmentModel> upcomingAppointmentsList,
     DataStatus upcomingAppointmentsListStatus,
-    List<dynamic> departmentsList,
+    List<ClinicModel> departmentsList,
     DataStatus departmentsListStatus,
-    List<dynamic> doctorsList,
+    List<DoctorModel> doctorsList,
     DataStatus doctorsListStatus,
-    List<dynamic> pharmaciesList,
+    List<PharmacyModel> pharmaciesList,
     DataStatus pharmaciesListStatus,
   });
 }
@@ -343,7 +343,7 @@ class __$$HomeStateImplCopyWithImpl<$Res>
             null == departmentsList
                 ? _value._departmentsList
                 : departmentsList // ignore: cast_nullable_to_non_nullable
-                    as List<dynamic>,
+                    as List<ClinicModel>,
         departmentsListStatus:
             null == departmentsListStatus
                 ? _value.departmentsListStatus
@@ -353,7 +353,7 @@ class __$$HomeStateImplCopyWithImpl<$Res>
             null == doctorsList
                 ? _value._doctorsList
                 : doctorsList // ignore: cast_nullable_to_non_nullable
-                    as List<dynamic>,
+                    as List<DoctorModel>,
         doctorsListStatus:
             null == doctorsListStatus
                 ? _value.doctorsListStatus
@@ -363,7 +363,7 @@ class __$$HomeStateImplCopyWithImpl<$Res>
             null == pharmaciesList
                 ? _value._pharmaciesList
                 : pharmaciesList // ignore: cast_nullable_to_non_nullable
-                    as List<dynamic>,
+                    as List<PharmacyModel>,
         pharmaciesListStatus:
             null == pharmaciesListStatus
                 ? _value.pharmaciesListStatus
@@ -380,11 +380,11 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
   const _$HomeStateImpl({
     required final List<AppointmentModel> upcomingAppointmentsList,
     required this.upcomingAppointmentsListStatus,
-    required final List<dynamic> departmentsList,
+    required final List<ClinicModel> departmentsList,
     required this.departmentsListStatus,
-    required final List<dynamic> doctorsList,
+    required final List<DoctorModel> doctorsList,
     required this.doctorsListStatus,
-    required final List<dynamic> pharmaciesList,
+    required final List<PharmacyModel> pharmaciesList,
     required this.pharmaciesListStatus,
   }) : _upcomingAppointmentsList = upcomingAppointmentsList,
        _departmentsList = departmentsList,
@@ -402,9 +402,9 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
 
   @override
   final DataStatus upcomingAppointmentsListStatus;
-  final List<dynamic> _departmentsList;
+  final List<ClinicModel> _departmentsList;
   @override
-  List<dynamic> get departmentsList {
+  List<ClinicModel> get departmentsList {
     if (_departmentsList is EqualUnmodifiableListView) return _departmentsList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_departmentsList);
@@ -412,9 +412,9 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
 
   @override
   final DataStatus departmentsListStatus;
-  final List<dynamic> _doctorsList;
+  final List<DoctorModel> _doctorsList;
   @override
-  List<dynamic> get doctorsList {
+  List<DoctorModel> get doctorsList {
     if (_doctorsList is EqualUnmodifiableListView) return _doctorsList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_doctorsList);
@@ -422,9 +422,9 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
 
   @override
   final DataStatus doctorsListStatus;
-  final List<dynamic> _pharmaciesList;
+  final List<PharmacyModel> _pharmaciesList;
   @override
-  List<dynamic> get pharmaciesList {
+  List<PharmacyModel> get pharmaciesList {
     if (_pharmaciesList is EqualUnmodifiableListView) return _pharmaciesList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_pharmaciesList);
@@ -524,11 +524,11 @@ abstract class _HomeState implements HomeState {
   const factory _HomeState({
     required final List<AppointmentModel> upcomingAppointmentsList,
     required final DataStatus upcomingAppointmentsListStatus,
-    required final List<dynamic> departmentsList,
+    required final List<ClinicModel> departmentsList,
     required final DataStatus departmentsListStatus,
-    required final List<dynamic> doctorsList,
+    required final List<DoctorModel> doctorsList,
     required final DataStatus doctorsListStatus,
-    required final List<dynamic> pharmaciesList,
+    required final List<PharmacyModel> pharmaciesList,
     required final DataStatus pharmaciesListStatus,
   }) = _$HomeStateImpl;
 
@@ -537,15 +537,15 @@ abstract class _HomeState implements HomeState {
   @override
   DataStatus get upcomingAppointmentsListStatus;
   @override
-  List<dynamic> get departmentsList;
+  List<ClinicModel> get departmentsList;
   @override
   DataStatus get departmentsListStatus;
   @override
-  List<dynamic> get doctorsList;
+  List<DoctorModel> get doctorsList;
   @override
   DataStatus get doctorsListStatus;
   @override
-  List<dynamic> get pharmaciesList;
+  List<PharmacyModel> get pharmaciesList;
   @override
   DataStatus get pharmaciesListStatus;
 
