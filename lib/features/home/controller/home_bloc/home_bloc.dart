@@ -35,6 +35,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) async {
     await _fetchUpcomingAppointments(emit);
     await _fetchAllClinics(emit);
+    await _fetchBestDoctors(emit);
+    await _fetchNearByPharmacies(emit);
   }
 
   Future<void> _fetchUpcomingAppointments(Emitter<HomeState> emit) async {
@@ -63,6 +65,38 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         Right(value: final r) => state.copyWith(
           departmentsList: r.data ?? state.upcomingAppointmentsList,
           departmentsListStatus: DataStatus.data,
+        ),
+      };
+      emit(newState);
+    } catch (e) {
+      emit(state.copyWith(departmentsListStatus: DataStatus.error));
+    }
+  }
+
+  Future<void> _fetchBestDoctors(Emitter<HomeState> emit) async {
+    try {
+      final response = await _homeRepository.fetchBestDoctors();
+      final newState = switch (response) {
+        Left() => state.copyWith(departmentsListStatus: DataStatus.error),
+        Right(value: final r) => state.copyWith(
+          doctorsList: r.data ?? state.doctorsList,
+          doctorsListStatus: DataStatus.data,
+        ),
+      };
+      emit(newState);
+    } catch (e) {
+      emit(state.copyWith(departmentsListStatus: DataStatus.error));
+    }
+  }
+
+  Future<void> _fetchNearByPharmacies(Emitter<HomeState> emit) async {
+    try {
+      final response = await _homeRepository.fetchNearByPharmacies();
+      final newState = switch (response) {
+        Left() => state.copyWith(departmentsListStatus: DataStatus.error),
+        Right(value: final r) => state.copyWith(
+          pharmaciesList: r.data ?? state.pharmaciesList,
+          pharmaciesListStatus: DataStatus.data,
         ),
       };
       emit(newState);

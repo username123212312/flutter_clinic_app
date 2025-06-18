@@ -14,7 +14,7 @@ _$DoctorModelImpl _$$DoctorModelImplFromJson(Map<String, dynamic> json) =>
       phone: json['phone'] as String?,
       clinicId: (json['clinic_id'] as num?)?.toInt(),
       photoPath: json['photo_path'] as String?,
-      treated: json['treated'] as bool?,
+      treated: (json['treated'] as num?)?.toInt(),
       speciality: json['speciality'] as String?,
       department: json['department'] as String?,
       finalRate: json['final_rate'] as String?,

@@ -12,7 +12,7 @@ sealed class DoctorModel with _$DoctorModel {
     String? phone,
     @JsonKey(name: 'clinic_id') int? clinicId,
     @JsonKey(name: 'photo_path') String? photoPath,
-    bool? treated,
+    int? treated,
     String? speciality,
     String? department,
     @JsonKey(name: 'final_rate') String? finalRate,

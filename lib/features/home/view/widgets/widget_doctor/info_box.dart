@@ -37,14 +37,15 @@ class InfoBox extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           SizedBox(
-            height: screenHeight(context) * 0.03,
-            width: screenWidth(context),
+            height: screenHeight(context) * 0.023,
+            width: screenWidth(context) * 0.07,
             child: FittedBox(
+              fit: BoxFit.cover,
               child: Text(
                 textAlign: TextAlign.center,
                 subtitle,
                 style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                  fontSize: 14,
+                  fontSize: 13,
                   color: Pallete.graysGray2,
                 ),
               ),

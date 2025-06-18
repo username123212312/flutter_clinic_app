@@ -10,6 +10,7 @@ import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/theme/app_theme.dart';
 import 'package:our_flutter_clinic_app/features/home/controller/analysis_list_bloc/analysis_list_bloc.dart';
 import 'package:our_flutter_clinic_app/features/home/controller/appointments_bloc/appointments_bloc.dart';
+import 'package:our_flutter_clinic_app/features/home/controller/home_bloc/home_bloc.dart';
 import 'package:our_flutter_clinic_app/features/home/controller/labtech_analysis_bloc/labtech_analysis_bloc.dart';
 import 'package:our_flutter_clinic_app/service_locator.dart';
 import 'package:path_provider/path_provider.dart' as p;
@@ -45,6 +46,7 @@ class ClinicApp extends StatelessWidget {
         BlocProvider.value(
           value: ServiceLocator.instance<LabtechAnalysisBloc>(),
         ),
+        BlocProvider.value(value: ServiceLocator.instance<HomeBloc>()),
         BlocProvider.value(
           value: ServiceLocator.instance<ChangePasswordCubit>(),
         ),

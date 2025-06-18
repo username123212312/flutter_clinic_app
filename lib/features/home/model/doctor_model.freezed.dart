@@ -31,7 +31,7 @@ mixin _$DoctorModel {
   int? get clinicId => throw _privateConstructorUsedError;
   @JsonKey(name: 'photo_path')
   String? get photoPath => throw _privateConstructorUsedError;
-  bool? get treated => throw _privateConstructorUsedError;
+  int? get treated => throw _privateConstructorUsedError;
   String? get speciality => throw _privateConstructorUsedError;
   String? get department => throw _privateConstructorUsedError;
   @JsonKey(name: 'final_rate')
@@ -64,7 +64,7 @@ abstract class $DoctorModelCopyWith<$Res> {
     String? phone,
     @JsonKey(name: 'clinic_id') int? clinicId,
     @JsonKey(name: 'photo_path') String? photoPath,
-    bool? treated,
+    int? treated,
     String? speciality,
     String? department,
     @JsonKey(name: 'final_rate') String? finalRate,
@@ -139,7 +139,7 @@ class _$DoctorModelCopyWithImpl<$Res, $Val extends DoctorModel>
                 freezed == treated
                     ? _value.treated
                     : treated // ignore: cast_nullable_to_non_nullable
-                        as bool?,
+                        as int?,
             speciality:
                 freezed == speciality
                     ? _value.speciality
@@ -192,7 +192,7 @@ abstract class _$$DoctorModelImplCopyWith<$Res>
     String? phone,
     @JsonKey(name: 'clinic_id') int? clinicId,
     @JsonKey(name: 'photo_path') String? photoPath,
-    bool? treated,
+    int? treated,
     String? speciality,
     String? department,
     @JsonKey(name: 'final_rate') String? finalRate,
@@ -266,7 +266,7 @@ class __$$DoctorModelImplCopyWithImpl<$Res>
             freezed == treated
                 ? _value.treated
                 : treated // ignore: cast_nullable_to_non_nullable
-                    as bool?,
+                    as int?,
         speciality:
             freezed == speciality
                 ? _value.speciality
@@ -341,7 +341,7 @@ class _$DoctorModelImpl implements _DoctorModel {
   @JsonKey(name: 'photo_path')
   final String? photoPath;
   @override
-  final bool? treated;
+  final int? treated;
   @override
   final String? speciality;
   @override
@@ -431,7 +431,7 @@ abstract class _DoctorModel implements DoctorModel {
     final String? phone,
     @JsonKey(name: 'clinic_id') final int? clinicId,
     @JsonKey(name: 'photo_path') final String? photoPath,
-    final bool? treated,
+    final int? treated,
     final String? speciality,
     final String? department,
     @JsonKey(name: 'final_rate') final String? finalRate,
@@ -460,7 +460,7 @@ abstract class _DoctorModel implements DoctorModel {
   @JsonKey(name: 'photo_path')
   String? get photoPath;
   @override
-  bool? get treated;
+  int? get treated;
   @override
   String? get speciality;
   @override

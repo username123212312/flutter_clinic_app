@@ -7,6 +7,7 @@ import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/home/upcoming_%20appointment_cards.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
+import '../../../controller/home_bloc/home_bloc.dart';
 import 'find_doctor_card.dart';
 import 'department.dart';
 import 'pharmecy_card.dart';
@@ -125,34 +126,38 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
             const SizedBox(height: 16),
             SizedBox(
               height: 132,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: appointments.length,
-                itemBuilder: (context, index) {
-                  return TweenAnimationBuilder(
-                    tween: Tween<Offset>(
-                      begin: const Offset(1, 0),
-                      end: Offset.zero,
-                    ),
-                    duration: Duration(milliseconds: 300 + (index * 100)),
-                    builder: (context, offset, child) {
-                      return Transform.translate(
-                        offset: offset * 20,
-                        child: child,
+              child: BlocBuilder<HomeBloc, HomeState>(
+                builder: (context, state) {
+                  return ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: appointments.length,
+                    itemBuilder: (context, index) {
+                      return TweenAnimationBuilder(
+                        tween: Tween<Offset>(
+                          begin: const Offset(1, 0),
+                          end: Offset.zero,
+                        ),
+                        duration: Duration(milliseconds: 300 + (index * 100)),
+                        builder: (context, offset, child) {
+                          return Transform.translate(
+                            offset: offset * 20,
+                            child: child,
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 12),
+                          child: UpcomingAppointmentCard(
+                            appointmentTime: '05:15',
+                            appointmentdate: '10/05/2001',
+                            doctorName: 'Abo falah',
+                            imagePath: appointments[index]['imagePath'],
+                            rating: 4.5,
+                            specialty: 'Heart',
+                            onMenuPressed: () {},
+                          ),
+                        ),
                       );
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 12),
-                      child: UpcomingAppointmentCard(
-                        appointmentTime: '05:15',
-                        appointmentdate: '10/05/2001',
-                        doctorName: 'Abo falah',
-                        imagePath: appointments[index]['imagePath'],
-                        rating: 4.5,
-                        specialty: 'Heart',
-                        onMenuPressed: () {},
-                      ),
-                    ),
                   );
                 },
               ),

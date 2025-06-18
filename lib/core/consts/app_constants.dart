@@ -34,10 +34,12 @@ class AppConstants {
 
   //! Home
   static const showDoctorsPath = '$homePath/showDoctors';
+  static const showTopRatedDoctorsPath = '$homePath/topRatedDoctors';
   static const showDoctorDetailsPath = '$homePath/showDoctorDetails';
   static const showClinicDoctorsPath = '$homePath/showClinicDoctors';
   static const searchDoctorPath = '$homePath/searchDoctor';
   static const showClinicsPath = '$homePath/showClinics';
+  static const showAllPharmaciesPath = '$homePath/showAllPharmacies';
 
   //? Patient
   static const completeInfoPath = '$patientPath/completeInfo';

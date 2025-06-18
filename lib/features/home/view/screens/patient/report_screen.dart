@@ -42,11 +42,16 @@ class _ReportBottomSheetState extends State<ReportScreen> {
   }
 
   final List<String> reportReasons = [
+    'Technical issue',
+    'Offense',
     'Privacy violation',
-    'Inappropriate Content',
-    'Fake Information',
-    'Technical Issue',
-    'Other',
+    ' Poor cleanliness',
+    'Bad experience',
+    'Billing issue',
+    'Mismanagement',
+    'Misdiagnosis',
+    'Unclear instructions',
+    'other',
   ];
 
   void _submitReport() async {
