@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -6,16 +5,14 @@ import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:our_flutter_clinic_app/core/models/app_response.dart';
 import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
-import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/providers/dio_client/dio_client.dart';
 import 'package:our_flutter_clinic_app/core/services/google_auth_service/google_auth_service.dart';
-import 'package:our_flutter_clinic_app/core/utils/logger.dart';
 import 'package:our_flutter_clinic_app/features/home/model/requests/home_requests.dart';
 import 'package:fpdart/fpdart.dart';
 
-import '../../../core/models/app_failure.dart';
-import '../../../core/utils/utils.dart';
-import '../model/requests/auth_requests.dart';
+import '../models/app_failure.dart';
+import '../utils/utils.dart';
+import '../../features/auth/model/requests/auth_requests.dart';
 
 class UserRepository {
   UserRepository({Dio? dio}) : _dio = dio ?? DioClient().instance;
@@ -51,7 +48,7 @@ class UserRepository {
           ),
         );
       } else {
-        return throw HttpException(response.data['error']);
+        return throw HttpException(parseStringList(response.data['message']));
       }
     } on DioException catch (e) {
       eLog(StackTrace.current);
@@ -150,7 +147,7 @@ class UserRepository {
             ),
           );
         } else {
-          throw HttpException(response.data['message']);
+          throw HttpException('Error happened');
         }
       } else {
         return Left(AppFailure(message: 'No user'));

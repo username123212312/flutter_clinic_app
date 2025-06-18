@@ -132,7 +132,7 @@ class AppointmentCard extends StatelessWidget {
         Pallete.statusColorFinished,
         Pallete.alertSuccessColor,
       ],
-      AppointmentStatus.canceled => [
+      AppointmentStatus.cancelled => [
         Pallete.statusColorCanceled,
         Pallete.alertDangerColor,
       ],

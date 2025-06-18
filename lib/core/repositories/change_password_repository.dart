@@ -5,32 +5,27 @@ import 'package:fpdart/fpdart.dart';
 import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:our_flutter_clinic_app/core/providers/dio_client/dio_client.dart';
 
-import '../../../core/models/app_failure.dart';
-import '../../../core/models/app_response.dart';
-import '../model/appointment_model.dart';
+import '../models/app_failure.dart';
+import '../models/app_response.dart';
 
-class ReservationDetailsRepository {
-  ReservationDetailsRepository({Dio? dio}) : _dio = dio ?? DioClient().instance;
+class ChangePasswordRepository {
+  ChangePasswordRepository({Dio? dio}) : _dio = dio ?? DioClient().instance;
 
-  Future<Either<AppFailure, AppResponse<AppointmentModel>>> fetchAppointment(
-    int appointmentId,
-  ) async {
+  Future<Either<AppFailure, AppResponse>> sendEmailOtp(String email) async {
     try {
-      final response = await _dio.get(
-        AppConstants.showAppointmentInfoPath,
-        queryParameters: {'appointment_id': appointmentId},
+      final response = await _dio.post(
+        AppConstants.sendEmailOtpPath,
+        data: {'email': email},
       );
-
       if (response.data['statusCode'] < 300) {
         return Right(
           AppResponse(
             success: true,
-            message: 'Appointment fetched successfully',
-            data: AppointmentModel.fromJson(response.data),
+            message: 'verification email sent successfully, check OTP code',
           ),
         );
       } else {
-        throw HttpException('Appointment is not fetched');
+        throw HttpException(response.data['message'] ?? 'Some error occurred');
       }
     } on DioException catch (e) {
       return Left(AppFailure(message: e.message ?? 'Error'));
@@ -41,28 +36,25 @@ class ReservationDetailsRepository {
     }
   }
 
-  Future<Either<AppFailure, AppResponse<Map<String, String>>>>
-  createReservationPaymentIntent(int appointmentId) async {
+  Future<Either<AppFailure, AppResponse<String>>> verifyEmailOtp(
+    String email,
+    int otp,
+  ) async {
     try {
       final response = await _dio.post(
-        AppConstants.createReservationPaymentIntentPath,
-        data: {'reservation_id': appointmentId},
+        AppConstants.verifyEmailOtpPath,
+        data: {'email': email, 'otp': otp.toString()},
       );
-
       if (response.data['statusCode'] < 300) {
         return Right(
-          AppResponse(
+          AppResponse<String>(
             success: true,
-            message: 'Appointment intent done successfully',
-            data: (response.data as Map<String, dynamic>).map((key, value) {
-              return MapEntry(key, value.toString());
-            }),
+            message: ' email verified successfully',
+            data: response.data['reset_token'],
           ),
         );
       } else {
-        throw HttpException(
-          response.data['message'] ?? 'Appointment intent is not done',
-        );
+        throw HttpException(response.data['message'] ?? 'Some error occurred');
       }
     } on DioException catch (e) {
       return Left(AppFailure(message: e.message ?? 'Error'));
@@ -73,28 +65,30 @@ class ReservationDetailsRepository {
     }
   }
 
-  Future<Either<AppFailure, AppResponse>> confirmReservationPayment(
-    int appointmentId,
-    String paymentIntentId,
+  Future<Either<AppFailure, AppResponse>> resetPassword(
+    String email,
+    String resetToken,
+    String password,
   ) async {
     try {
       final response = await _dio.post(
-        AppConstants.confirmReservationPaymentPath,
+        AppConstants.resetPasswordPath,
         data: {
-          'reservation_id': appointmentId,
-          'payment_intent_id': paymentIntentId,
+          'email': email,
+          'reset_token': resetToken,
+          'password': password,
+          'password_confirmation': password,
         },
       );
-
       if (response.data['statusCode'] < 300) {
         return Right(
           AppResponse(
             success: true,
-            message: 'Appointment confirmed successfully',
+            message: ' Password changed successfully!',
           ),
         );
       } else {
-        throw HttpException('Appointment is not confirmed');
+        throw HttpException(response.data['message'] ?? 'Some error occurred');
       }
     } on DioException catch (e) {
       return Left(AppFailure(message: e.message ?? 'Error'));

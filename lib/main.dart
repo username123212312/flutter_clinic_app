@@ -14,6 +14,7 @@ import 'package:our_flutter_clinic_app/features/home/controller/labtech_analysis
 import 'package:our_flutter_clinic_app/service_locator.dart';
 import 'package:path_provider/path_provider.dart' as p;
 
+import 'core/cubits/cubit/change_password_cubit.dart';
 import 'core/observers/custom_bloc_observer.dart';
 import 'core/blocs/user_bloc/user_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -43,6 +44,9 @@ class ClinicApp extends StatelessWidget {
         BlocProvider.value(value: ServiceLocator.instance<AppointmentsBloc>()),
         BlocProvider.value(
           value: ServiceLocator.instance<LabtechAnalysisBloc>(),
+        ),
+        BlocProvider.value(
+          value: ServiceLocator.instance<ChangePasswordCubit>(),
         ),
       ],
       // child: MaterialApp(

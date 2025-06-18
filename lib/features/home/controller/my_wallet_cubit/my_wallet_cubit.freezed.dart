@@ -21,6 +21,7 @@ mixin _$MyWalletState {
   String get message => throw _privateConstructorUsedError;
   String? get clientSecret => throw _privateConstructorUsedError;
   String? get paymentIntentId => throw _privateConstructorUsedError;
+  double? get walletRange => throw _privateConstructorUsedError;
 
   /// Create a copy of MyWalletState
   /// with the given fields replaced by the non-null parameter values.
@@ -41,6 +42,7 @@ abstract class $MyWalletStateCopyWith<$Res> {
     String message,
     String? clientSecret,
     String? paymentIntentId,
+    double? walletRange,
   });
 }
 
@@ -63,6 +65,7 @@ class _$MyWalletStateCopyWithImpl<$Res, $Val extends MyWalletState>
     Object? message = null,
     Object? clientSecret = freezed,
     Object? paymentIntentId = freezed,
+    Object? walletRange = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -86,6 +89,11 @@ class _$MyWalletStateCopyWithImpl<$Res, $Val extends MyWalletState>
                     ? _value.paymentIntentId
                     : paymentIntentId // ignore: cast_nullable_to_non_nullable
                         as String?,
+            walletRange:
+                freezed == walletRange
+                    ? _value.walletRange
+                    : walletRange // ignore: cast_nullable_to_non_nullable
+                        as double?,
           )
           as $Val,
     );
@@ -106,6 +114,7 @@ abstract class _$$MyWalletStateImplCopyWith<$Res>
     String message,
     String? clientSecret,
     String? paymentIntentId,
+    double? walletRange,
   });
 }
 
@@ -127,6 +136,7 @@ class __$$MyWalletStateImplCopyWithImpl<$Res>
     Object? message = null,
     Object? clientSecret = freezed,
     Object? paymentIntentId = freezed,
+    Object? walletRange = freezed,
   }) {
     return _then(
       _$MyWalletStateImpl(
@@ -150,6 +160,11 @@ class __$$MyWalletStateImplCopyWithImpl<$Res>
                 ? _value.paymentIntentId
                 : paymentIntentId // ignore: cast_nullable_to_non_nullable
                     as String?,
+        walletRange:
+            freezed == walletRange
+                ? _value.walletRange
+                : walletRange // ignore: cast_nullable_to_non_nullable
+                    as double?,
       ),
     );
   }
@@ -163,6 +178,7 @@ class _$MyWalletStateImpl implements _MyWalletState {
     required this.message,
     this.clientSecret,
     this.paymentIntentId,
+    this.walletRange,
   });
 
   @override
@@ -173,10 +189,12 @@ class _$MyWalletStateImpl implements _MyWalletState {
   final String? clientSecret;
   @override
   final String? paymentIntentId;
+  @override
+  final double? walletRange;
 
   @override
   String toString() {
-    return 'MyWalletState(status: $status, message: $message, clientSecret: $clientSecret, paymentIntentId: $paymentIntentId)';
+    return 'MyWalletState(status: $status, message: $message, clientSecret: $clientSecret, paymentIntentId: $paymentIntentId, walletRange: $walletRange)';
   }
 
   @override
@@ -189,12 +207,20 @@ class _$MyWalletStateImpl implements _MyWalletState {
             (identical(other.clientSecret, clientSecret) ||
                 other.clientSecret == clientSecret) &&
             (identical(other.paymentIntentId, paymentIntentId) ||
-                other.paymentIntentId == paymentIntentId));
+                other.paymentIntentId == paymentIntentId) &&
+            (identical(other.walletRange, walletRange) ||
+                other.walletRange == walletRange));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, status, message, clientSecret, paymentIntentId);
+  int get hashCode => Object.hash(
+    runtimeType,
+    status,
+    message,
+    clientSecret,
+    paymentIntentId,
+    walletRange,
+  );
 
   /// Create a copy of MyWalletState
   /// with the given fields replaced by the non-null parameter values.
@@ -211,6 +237,7 @@ abstract class _MyWalletState implements MyWalletState {
     required final String message,
     final String? clientSecret,
     final String? paymentIntentId,
+    final double? walletRange,
   }) = _$MyWalletStateImpl;
 
   @override
@@ -221,6 +248,8 @@ abstract class _MyWalletState implements MyWalletState {
   String? get clientSecret;
   @override
   String? get paymentIntentId;
+  @override
+  double? get walletRange;
 
   /// Create a copy of MyWalletState
   /// with the given fields replaced by the non-null parameter values.

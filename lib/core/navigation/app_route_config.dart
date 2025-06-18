@@ -1,3 +1,4 @@
+import 'package:our_flutter_clinic_app/features/auth/view/screens/change_password_screen.dart';
 import 'package:our_flutter_clinic_app/features/home/model/analysis_model.dart';
 import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
 import 'package:our_flutter_clinic_app/features/home/model/doctor_model.dart';
@@ -47,13 +48,11 @@ class AppRouteConfig {
       ),
       GoRoute(
         name: AppRouteConstants.verificationCodeRouteName,
-        path: '/verification_code',
+        path: '/verification_code/:email',
         pageBuilder:
             (context, state) => TransitionPage(
               child: VerificationCodeScreen(
-                email:
-                    context.read<AuthBloc>().state.authUser?.user?.email ??
-                    'johndoe@gmail.com',
+                email: (state.pathParameters['email'] as String),
               ),
             ),
       ),
@@ -157,6 +156,12 @@ class AppRouteConfig {
         path: '/modify_password',
         pageBuilder:
             (_, state) => TransitionPage(child: ModifyPasswordScreen()),
+      ),
+      GoRoute(
+        name: AppRouteConstants.changePasswordRouteName,
+        path: '/change_password',
+        pageBuilder:
+            (_, state) => TransitionPage(child: ChangePasswordScreen()),
       ),
       GoRoute(
         name: AppRouteConstants.paymentMethodRouteName,

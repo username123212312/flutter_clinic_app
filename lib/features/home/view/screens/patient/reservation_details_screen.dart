@@ -34,6 +34,8 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
       if (mounted) {
         setState(() {
           themeData = Theme.of(context);
+          screenHeight = MediaQuery.of(context).size.height;
+          screenWidth = MediaQuery.of(context).size.width;
         });
       }
     });
@@ -45,17 +47,9 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) {
-        setState(() {
-          screenHeight = MediaQuery.of(context).size.height;
-          screenWidth = MediaQuery.of(context).size.width;
-        });
-      }
-    });
+  void dispose() {
+    _reminderController.dispose();
+    super.dispose();
   }
 
   @override
@@ -134,6 +128,40 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                   ),
                 ),
                 const SizedBox(height: 10),
+                Text(
+                  "Reminder",
+                  style: themeData!.textTheme.titleMedium!.copyWith(
+                    fontSize: 18,
+                    color: Pallete.black1,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: (screenWidth ?? 0) * 0.15,
+                      height: (screenHeight ?? 0) * 0.07,
+                      child: TextFormField(
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.black, fontSize: 17),
+                        onTap: () => _showReminderSheet(context),
+                        controller: _reminderController,
+                        readOnly: true,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(top: 15, bottom: 20),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Text(
+                      'Hour/s before your appointment',
+                      style: Theme.of(
+                        context,
+                      ).textTheme.labelMedium!.copyWith(fontSize: 13),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 30),
 
                 Center(
                   child: BlocListener<
@@ -146,6 +174,7 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                         LoadingOverlay().show(context);
                       } else {
                         LoadingOverlay().hideAll();
+                        clearAndShowSnackBar(context, state.message);
                         if (state.status.isDone) {
                           await TransparentDialog.show(
                             context: context,
@@ -229,8 +258,132 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
     );
   }
 
+  void _showReminderSheet(BuildContext context) async {
+    final reminder = await showModalBottomSheet<int>(
+      builder:
+          (context) => Padding(
+            padding: EdgeInsets.only(
+              bottom:
+                  MediaQuery.of(context).viewInsets.bottom, // Keyboard space
+            ),
+            child: _ReminderBottomSheet(),
+          ),
+      context: context,
+      isScrollControlled: true, // Allows full height
+      shape: RoundedRectangleBorder(
+        // Rounded top corners
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+    );
+    if (reminder != null) {
+      setState(() {
+        _reminderController.text = reminder.toString();
+      });
+    }
+  }
+
+  final _reminderController = TextEditingController()..text = '12';
   late final ReservationDetailsCubit _reservationDetailsCubit;
   late final double? screenHeight;
   late final double? screenWidth;
   late final ThemeData? themeData;
+}
+
+class _ReminderBottomSheet extends StatefulWidget {
+  @override
+  __ReminderBottomSheetState createState() => __ReminderBottomSheetState();
+}
+
+class __ReminderBottomSheetState extends State<_ReminderBottomSheet> {
+  double _hours = 1.0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(20),
+      child: Column(
+        mainAxisSize: MainAxisSize.min, // Fits content height
+        children: [
+          // Drag handle
+          Container(
+            width: 40,
+            height: 4,
+            margin: EdgeInsets.only(bottom: 16),
+            decoration: BoxDecoration(
+              color: Colors.grey.shade300,
+              borderRadius: BorderRadius.circular(2),
+            ),
+          ),
+
+          // Title
+          Text('Set Reminder'),
+          SizedBox(height: 20),
+
+          ...[
+            SizedBox(height: 20),
+            // Hours Slider
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Remind me in:'),
+                Slider(
+                  min: 1,
+                  max: 24,
+                  divisions: 23,
+                  value: _hours,
+                  label: '${_hours.toInt()}h',
+                  onChanged: (value) => setState(() => _hours = value),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [Text('1 hour'), Text('24 hours')],
+                ),
+              ],
+            ),
+
+            // Time Preview
+            SizedBox(height: 10),
+            Text(
+              'Will remind at: ${_getReminderTime()}',
+              style: TextStyle(color: Colors.grey.shade600),
+            ),
+            SizedBox(height: 20),
+          ],
+
+          // Action Buttons
+          Row(
+            children: [
+              Expanded(
+                child: OutlinedButton(
+                  child: Text('Cancel'),
+                  onPressed: () => Navigator.pop(context),
+                ),
+              ),
+              SizedBox(width: 10),
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {
+                    log('Reminder set for ${_hours.toInt()} hours');
+                    context.pop<int>(_hours.toInt());
+                  },
+                  child: Text(
+                    'Set Reminder',
+                    style: Theme.of(
+                      context,
+                    ).textTheme.labelMedium!.copyWith(color: Colors.white),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  String _getReminderTime() {
+    final now = DateTime.now();
+    final reminderTime = now.add(Duration(hours: _hours.toInt()));
+    return '${reminderTime.hour}:${reminderTime.minute.toString().padLeft(2, '0')}';
+  }
 }

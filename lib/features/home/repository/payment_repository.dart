@@ -11,6 +11,30 @@ import '../../../core/models/app_response.dart';
 class PaymentRepository {
   PaymentRepository({Dio? dio}) : _dio = dio ?? DioClient().instance;
 
+  Future<Either<AppFailure, AppResponse<double>>> showWalletRange() async {
+    try {
+      final response = await _dio.get(AppConstants.showWalletRangePath);
+
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse<double>(
+            success: true,
+            message: 'Walled fetched successfully',
+            data: double.tryParse(response.data['wallet']),
+          ),
+        );
+      } else {
+        throw HttpException('Some error occurred');
+      }
+    } on DioException catch (e) {
+      return Left(AppFailure(message: e.message ?? 'Error'));
+    } on HttpException catch (e) {
+      return Left(AppFailure(message: e.message));
+    } catch (e) {
+      return Left(AppFailure(message: e.toString()));
+    }
+  }
+
   Future<Either<AppFailure, AppResponse<Map<String, String>>>>
   createPaymentIntent(double amount) async {
     try {

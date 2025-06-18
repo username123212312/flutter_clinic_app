@@ -11,15 +11,15 @@ class AppConstants {
     'AB+',
     'AB-',
   ];
-  static const ipAddress = '192.168.227.76'; //10.0.2.2
+  static const ipAddress = '192.168.1.4'; //10.0.2.2
   static const localAddress = 'http://$ipAddress:8000';
   static const ngrokAddress = 'https://deep-pangolin-normally.ngrok-free.app';
-  static const serverUrl = localAddress;
+  static const serverUrl = ngrokAddress;
   static const apiPath = 'api';
   static const patientPath = '/$apiPath/patient';
   static const homePath = '/$apiPath/home';
   static const doctorPath = '/$apiPath/doctor';
-  static const labTechPath = '/labTech';
+  static const labTechPath = '/$apiPath/labTech';
 
   //! Auth
   static const registerPath = '/$apiPath/register';
@@ -27,6 +27,10 @@ class AppConstants {
   static const authWithTokenPath = '/$apiPath/user';
   static const loginWithGooglePath = '/$apiPath/auth/google';
   static const logoutPath = '/$apiPath/logout';
+  static const sendEmailOtpPath = '/$apiPath/send-email-otp';
+  static const verifyEmailOtpPath = '/$apiPath/verify-email-otp';
+  static const resetPasswordPath = '/$apiPath/resetPassword';
+  static const sendFCMTokenPath = '/$apiPath/saveFcmToken';
 
   //! Home
   static const showDoctorsPath = '$homePath/showDoctors';
@@ -44,6 +48,7 @@ class AppConstants {
   static const deleteAnalysisPath = '$patientPath/deleteAnalysis';
   static const showAnalysisPath = '$patientPath/showAnalysis';
   static const filteringAnalysisPath = '$patientPath/filteringAnalysis';
+  static const reportPath = '$patientPath/makeReport';
 
   //*   Appointment
   static const showAppointmentPath = '$patientPath/showAppointment';
@@ -62,6 +67,7 @@ class AppConstants {
   //*   Payment
   static const createPaymentIntentPath = '$patientPath/createPaymentIntent';
   static const confirmWalletRechargePath = '$patientPath/confirmWalletRecharge';
+  static const showWalletRangePath = '$patientPath/showWalletRange';
   static const createReservationPaymentIntentPath =
       '$patientPath/createReservationPaymentIntent';
   static const confirmReservationPaymentPath =

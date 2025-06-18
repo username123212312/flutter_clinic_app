@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:our_flutter_clinic_app/core/cubits/cubit/change_password_cubit.dart';
 import 'package:our_flutter_clinic_app/core/navigation/app_route_constants.dart';
 import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:go_router/go_router.dart';
+import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import '../widgets/auth_widgets.dart';
 
 class VerificationCodeScreen extends StatefulWidget {
@@ -40,17 +43,41 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                 SizedBox(height: 20),
                 SizedBox(
                   width: screenWidth(context) * 0.77,
-                  child: CustomElevatedButton(
-                    title: 'Verify',
-                    onTap: () {
-                      if (submit()) {
-                        context.goNamed(AppRouteConstants.yourProfileRouteName);
+                  child: BlocListener<ChangePasswordCubit, ChangePasswordState>(
+                    listener: (context, state) {
+                      if (state.status.isLoading) {
+                        LoadingOverlay().show(context);
+                      } else {
+                        LoadingOverlay().hideAll();
+                        if (mounted) {
+                          clearAndShowSnackBar(context, state.message);
+                        }
+
+                        if (state.status.isData) {
+                          if (mounted) {
+                            context.goNamed(
+                              AppRouteConstants.changePasswordRouteName,
+                            );
+                          }
+                        }
                       }
                     },
-                    fillColor: Colors.transparent,
-                    textColor: Pallete.primaryColor,
-                    elevation: 0,
-                    borderColor: Pallete.primaryColor,
+                    child: CustomElevatedButton(
+                      title: 'Verify',
+                      onTap: () async {
+                        if (submit()) {
+                          await context
+                              .read<ChangePasswordCubit>()
+                              .verifyEmailOtp(
+                                int.tryParse('$f1$f2$f3$f4') ?? 0000,
+                              );
+                        }
+                      },
+                      fillColor: Colors.transparent,
+                      textColor: Pallete.primaryColor,
+                      elevation: 0,
+                      borderColor: Pallete.primaryColor,
+                    ),
                   ),
                 ),
               ],
@@ -146,6 +173,9 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
   }
 
   bool submit() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+    }
     return _formKey.currentState!.validate();
   }
 }

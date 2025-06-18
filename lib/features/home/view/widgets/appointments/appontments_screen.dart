@@ -268,7 +268,7 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
         _currentStatus = AppointmentStatus.visited;
         break;
       case 2:
-        _currentStatus = AppointmentStatus.canceled;
+        _currentStatus = AppointmentStatus.cancelled;
         break;
     }
     setState(() {});

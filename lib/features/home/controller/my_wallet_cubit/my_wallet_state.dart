@@ -7,9 +7,10 @@ class MyWalletState with _$MyWalletState {
     required String message,
     String? clientSecret,
     String? paymentIntentId,
+    double? walletRange,
   }) = _MyWalletState;
 
   factory MyWalletState.initial() {
-    return MyWalletState(status: DataStatus.noData, message: 'No data');
+    return MyWalletState(status: DataStatus.loading, message: 'No data');
   }
 }

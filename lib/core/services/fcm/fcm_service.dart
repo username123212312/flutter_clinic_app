@@ -18,6 +18,7 @@ class FCMService {
 
     // Handle foreground messages
     FirebaseMessaging.onMessage.listen((message) {
+      log(message.messageType ?? 'ni');
       final notification = message.notification;
       if (notification != null) {
         NotificationService().show(

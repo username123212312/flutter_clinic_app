@@ -1,13 +1,15 @@
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
-import 'package:our_flutter_clinic_app/features/auth/repository/user_repository.dart';
+import 'package:our_flutter_clinic_app/core/repositories/user_repository.dart';
 import 'package:our_flutter_clinic_app/features/home/controller/appointments_bloc/appointments_bloc.dart';
 import 'package:our_flutter_clinic_app/features/home/repository/analysis_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:our_flutter_clinic_app/features/home/repository/appointments_repository.dart';
 import 'package:our_flutter_clinic_app/features/home/repository/home_repository.dart';
 
+import 'core/cubits/cubit/change_password_cubit.dart';
 import 'core/repositories/auth_repository.dart';
+import 'core/repositories/change_password_repository.dart';
 import 'features/home/controller/analysis_list_bloc/analysis_list_bloc.dart';
 import 'features/home/controller/home_bloc/home_bloc.dart';
 import 'features/home/controller/labtech_analysis_bloc/labtech_analysis_bloc.dart';
@@ -60,6 +62,14 @@ class ServiceLocator {
     _instance.registerLazySingleton<HomeRepository>(() => HomeRepository());
     _instance.registerLazySingleton<HomeBloc>(
       () => HomeBloc(homeRepository: _instance<HomeRepository>()),
+    );
+    _instance.registerLazySingleton<ChangePasswordRepository>(
+      () => ChangePasswordRepository(),
+    );
+    _instance.registerLazySingleton<ChangePasswordCubit>(
+      () => ChangePasswordCubit(
+        changePasswordRepository: _instance<ChangePasswordRepository>(),
+      ),
     );
   }
 }

@@ -12,7 +12,30 @@ part 'my_wallet_cubit.freezed.dart';
 class MyWalletCubit extends Cubit<MyWalletState> {
   MyWalletCubit({required PaymentRepository paymentRepo})
     : _paymentRepository = paymentRepo,
-      super(MyWalletState.initial());
+      super(MyWalletState.initial()) {
+    fetchWalletRange();
+  }
+
+  Future<void> fetchWalletRange() async {
+    emit(state.copyWith(status: DataStatus.loading, message: 'Loading'));
+    try {
+      final response = await _paymentRepository.showWalletRange();
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          status: DataStatus.error,
+          message: l.message,
+        ),
+        Right(value: final r) => state.copyWith(
+          status: DataStatus.data,
+          message: r.message,
+          walletRange: r.data,
+        ),
+      };
+      emit(newState);
+    } catch (e) {
+      emit(state.copyWith(status: DataStatus.error, message: e.toString()));
+    }
+  }
 
   Future<void> createPaymentIntent(double amount) async {
     emit(

@@ -15,24 +15,28 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
   AuthBloc({required AuthRepository authRepository})
     : _authRepository = authRepository,
       super(AuthState.initial()) {
-    on<UserAuthenticated>((event, emit) {
+    on<UserAuthenticated>((event, emit) async {
       emit(
-        AuthState(
+        state.copyWith(
           authUser: AuthUser(token: event.token, user: event.user),
-          isAuth: true,
+          isAuth: false,
           token: event.token,
         ),
       );
+      final response = await _authRepository.sendFCMToken();
+      if (response.isRight()) {
+        emit(state.copyWith(isAuth: true));
+      }
     });
     on<UserReset>(
       (event, emit) =>
           emit(AuthState(authUser: null, token: '', isAuth: false)),
     );
-    on<UserModified>(
-      (event, emit) => emit(
+    on<UserModified>((event, emit) async {
+      emit(
         state.copyWith(authUser: state.authUser?.copyWith(user: event.user)),
-      ),
-    );
+      );
+    });
     on<CheckUserAuthState>(_checkAuthState);
   }
   _checkAuthState(CheckUserAuthState event, Emitter emit) async {

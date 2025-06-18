@@ -12,8 +12,8 @@ class OTPWidgetField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: screenWidth(context) * 0.2,
-      height: screenHeight(context) * 0.13,
+      width: screenWidth(context) * 0.15,
+      height: screenHeight(context) * 0.07,
       child: TextFormField(
         validator: (value) {
           if (value != null) {
@@ -36,7 +36,8 @@ class OTPWidgetField extends StatelessWidget {
             FocusScope.of(context).nextFocus();
           }
         },
-        style: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 20),
+
+        style: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 18),
         keyboardType: TextInputType.number,
         inputFormatters: [
           LengthLimitingTextInputFormatter(1),
@@ -45,10 +46,11 @@ class OTPWidgetField extends StatelessWidget {
         textAlign: TextAlign.center,
 
         decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
           hintText: '0',
           hintStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
             color: Pallete.grayScaleColor500,
-            fontSize: 20,
+            fontSize: 18,
           ),
         ),
       ),

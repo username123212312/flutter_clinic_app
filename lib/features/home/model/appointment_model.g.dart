@@ -52,5 +52,5 @@ Map<String, dynamic> _$$AppointmentModelImplToJson(
 const _$AppointmentStatusEnumMap = {
   AppointmentStatus.pending: 'pending',
   AppointmentStatus.visited: 'visited',
-  AppointmentStatus.canceled: 'canceled',
+  AppointmentStatus.cancelled: 'cancelled',
 };

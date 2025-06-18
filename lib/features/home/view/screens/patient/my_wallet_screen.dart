@@ -21,6 +21,9 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
   void initState() {
     super.initState();
     _myWalletCubit = MyWalletCubit(paymentRepo: PaymentRepository());
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => LoadingOverlay().show(context),
+    );
   }
 
   @override
@@ -34,6 +37,22 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
     final user = context.read<AuthBloc>().state.authUser?.user;
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          BlocBuilder<MyWalletCubit, MyWalletState>(
+            bloc: _myWalletCubit,
+            builder: (context, state) {
+              return IconButton(
+                onPressed:
+                    state.status.isLoading
+                        ? null
+                        : () {
+                          _myWalletCubit.fetchWalletRange();
+                        },
+                icon: Icon(Icons.refresh, size: 25),
+              );
+            },
+          ),
+        ],
         forceMaterialTransparency: true,
         toolbarHeight: screenHeight(context) * 0.13,
         title: Text('My Wallet'),
@@ -80,6 +99,9 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
                   LoadingOverlay().hideAll();
 
                   clearAndShowSnackBar(context, state.message);
+                  if (state.status.isDone) {
+                    _myWalletCubit.fetchWalletRange();
+                  }
                 }
               },
               child: ElevatedButton(
@@ -156,11 +178,16 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
           Positioned(
             top: 70,
             left: 30,
-            child: Text(
-              '\$10000000.00',
-              style: Theme.of(
-                context,
-              ).textTheme.labelMedium!.copyWith(fontSize: 32),
+            child: BlocBuilder<MyWalletCubit, MyWalletState>(
+              bloc: _myWalletCubit,
+              builder: (context, state) {
+                return Text(
+                  '\$${state.walletRange ?? '0.00'}',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelMedium!.copyWith(fontSize: 32),
+                );
+              },
             ),
           ),
           Positioned(

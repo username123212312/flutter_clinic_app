@@ -5,7 +5,7 @@ import 'package:our_flutter_clinic_app/core/blocs/auth_bloc/auth_bloc.dart';
 import 'package:our_flutter_clinic_app/core/providers/file_manager/file_manager.dart';
 import 'package:our_flutter_clinic_app/features/auth/model/requests/auth_requests.dart';
 import 'package:our_flutter_clinic_app/features/auth/model/requests/modify_password_request.dart';
-import 'package:our_flutter_clinic_app/features/auth/repository/user_repository.dart';
+import 'package:our_flutter_clinic_app/core/repositories/user_repository.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';

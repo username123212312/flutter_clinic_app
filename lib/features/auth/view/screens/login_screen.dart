@@ -267,8 +267,9 @@ class _LoginScreenState extends State<LoginScreen> {
           Align(
             alignment: Alignment(0.9, 0.0),
             child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
               onTap: () {
-                //TODO navigate to forgot password
+                context.pushNamed(AppRouteConstants.forgotPasswordRouteName);
               },
               child: Text(
                 'Forgot your password?',
