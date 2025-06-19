@@ -174,18 +174,13 @@ class UserRepository {
     try {
       final response = await _dio.post(AppConstants.logoutPath);
       eLog(response.data);
-      return Right(
-        AppResponse(
-          success: response.data['statusCode'] < 300,
-          message:
-              response.data['statusCode'] < 300
-                  ? response.data['message']
-                  : response.data['error'],
-          data: null,
-          statusCode: response.data['statusCode'],
-          statusMessage: response.data['statusMessage'],
-        ),
-      );
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse(success: true, message: 'User successfully logged out'),
+        );
+      } else {
+        throw HttpException(response.data['message'] ?? 'Error');
+      }
     } catch (e) {
       return Left(
         AppFailure(message: e.toString(), stacktracte: StackTrace.current),

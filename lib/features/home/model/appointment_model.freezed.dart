@@ -45,6 +45,10 @@ mixin _$AppointmentModel {
   @TimeOfDayConverter()
   TimeOfDay? get reservationHour => throw _privateConstructorUsedError;
   AppointmentStatus? get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'reminder_offset')
+  int? get reminderOffset => throw _privateConstructorUsedError;
+  @JsonKey(name: 'payment_status')
+  PaymentStatus? get paymentStatus => throw _privateConstructorUsedError;
 
   /// Serializes this AppointmentModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -79,6 +83,8 @@ abstract class $AppointmentModelCopyWith<$Res> {
     @TimeOfDayConverter()
     TimeOfDay? reservationHour,
     AppointmentStatus? status,
+    @JsonKey(name: 'reminder_offset') int? reminderOffset,
+    @JsonKey(name: 'payment_status') PaymentStatus? paymentStatus,
   });
 }
 
@@ -110,6 +116,8 @@ class _$AppointmentModelCopyWithImpl<$Res, $Val extends AppointmentModel>
     Object? reservationDate = freezed,
     Object? reservationHour = freezed,
     Object? status = freezed,
+    Object? reminderOffset = freezed,
+    Object? paymentStatus = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -178,6 +186,16 @@ class _$AppointmentModelCopyWithImpl<$Res, $Val extends AppointmentModel>
                     ? _value.status
                     : status // ignore: cast_nullable_to_non_nullable
                         as AppointmentStatus?,
+            reminderOffset:
+                freezed == reminderOffset
+                    ? _value.reminderOffset
+                    : reminderOffset // ignore: cast_nullable_to_non_nullable
+                        as int?,
+            paymentStatus:
+                freezed == paymentStatus
+                    ? _value.paymentStatus
+                    : paymentStatus // ignore: cast_nullable_to_non_nullable
+                        as PaymentStatus?,
           )
           as $Val,
     );
@@ -209,6 +227,8 @@ abstract class _$$AppointmentModelImplCopyWith<$Res>
     @TimeOfDayConverter()
     TimeOfDay? reservationHour,
     AppointmentStatus? status,
+    @JsonKey(name: 'reminder_offset') int? reminderOffset,
+    @JsonKey(name: 'payment_status') PaymentStatus? paymentStatus,
   });
 }
 
@@ -239,6 +259,8 @@ class __$$AppointmentModelImplCopyWithImpl<$Res>
     Object? reservationDate = freezed,
     Object? reservationHour = freezed,
     Object? status = freezed,
+    Object? reminderOffset = freezed,
+    Object? paymentStatus = freezed,
   }) {
     return _then(
       _$AppointmentModelImpl(
@@ -307,6 +329,16 @@ class __$$AppointmentModelImplCopyWithImpl<$Res>
                 ? _value.status
                 : status // ignore: cast_nullable_to_non_nullable
                     as AppointmentStatus?,
+        reminderOffset:
+            freezed == reminderOffset
+                ? _value.reminderOffset
+                : reminderOffset // ignore: cast_nullable_to_non_nullable
+                    as int?,
+        paymentStatus:
+            freezed == paymentStatus
+                ? _value.paymentStatus
+                : paymentStatus // ignore: cast_nullable_to_non_nullable
+                    as PaymentStatus?,
       ),
     );
   }
@@ -331,6 +363,8 @@ class _$AppointmentModelImpl implements _AppointmentModel {
     @TimeOfDayConverter()
     this.reservationHour,
     this.status,
+    @JsonKey(name: 'reminder_offset') this.reminderOffset,
+    @JsonKey(name: 'payment_status') this.paymentStatus,
   });
 
   factory _$AppointmentModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -373,10 +407,16 @@ class _$AppointmentModelImpl implements _AppointmentModel {
   final TimeOfDay? reservationHour;
   @override
   final AppointmentStatus? status;
+  @override
+  @JsonKey(name: 'reminder_offset')
+  final int? reminderOffset;
+  @override
+  @JsonKey(name: 'payment_status')
+  final PaymentStatus? paymentStatus;
 
   @override
   String toString() {
-    return 'AppointmentModel(id: $id, type: $type, finalRate: $finalRate, clinicId: $clinicId, clinicName: $clinicName, doctorId: $doctorId, doctorPhoto: $doctorPhoto, doctorName: $doctorName, visitFee: $visitFee, doctorSpeciality: $doctorSpeciality, reservationDate: $reservationDate, reservationHour: $reservationHour, status: $status)';
+    return 'AppointmentModel(id: $id, type: $type, finalRate: $finalRate, clinicId: $clinicId, clinicName: $clinicName, doctorId: $doctorId, doctorPhoto: $doctorPhoto, doctorName: $doctorName, visitFee: $visitFee, doctorSpeciality: $doctorSpeciality, reservationDate: $reservationDate, reservationHour: $reservationHour, status: $status, reminderOffset: $reminderOffset, paymentStatus: $paymentStatus)';
   }
 
   @override
@@ -406,7 +446,11 @@ class _$AppointmentModelImpl implements _AppointmentModel {
                 other.reservationDate == reservationDate) &&
             (identical(other.reservationHour, reservationHour) ||
                 other.reservationHour == reservationHour) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.reminderOffset, reminderOffset) ||
+                other.reminderOffset == reminderOffset) &&
+            (identical(other.paymentStatus, paymentStatus) ||
+                other.paymentStatus == paymentStatus));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -426,6 +470,8 @@ class _$AppointmentModelImpl implements _AppointmentModel {
     reservationDate,
     reservationHour,
     status,
+    reminderOffset,
+    paymentStatus,
   );
 
   /// Create a copy of AppointmentModel
@@ -462,6 +508,8 @@ abstract class _AppointmentModel implements AppointmentModel {
     @TimeOfDayConverter()
     final TimeOfDay? reservationHour,
     final AppointmentStatus? status,
+    @JsonKey(name: 'reminder_offset') final int? reminderOffset,
+    @JsonKey(name: 'payment_status') final PaymentStatus? paymentStatus,
   }) = _$AppointmentModelImpl;
 
   factory _AppointmentModel.fromJson(Map<String, dynamic> json) =
@@ -504,6 +552,12 @@ abstract class _AppointmentModel implements AppointmentModel {
   TimeOfDay? get reservationHour;
   @override
   AppointmentStatus? get status;
+  @override
+  @JsonKey(name: 'reminder_offset')
+  int? get reminderOffset;
+  @override
+  @JsonKey(name: 'payment_status')
+  PaymentStatus? get paymentStatus;
 
   /// Create a copy of AppointmentModel
   /// with the given fields replaced by the non-null parameter values.

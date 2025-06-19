@@ -27,7 +27,7 @@ class UpcomingAppointmentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: screenWidth(context) * 0.57,
-      padding: const EdgeInsets.all(14),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primary,
         borderRadius: BorderRadius.circular(12),
@@ -110,13 +110,13 @@ class UpcomingAppointmentCard extends StatelessWidget {
                   color: Pallete.grayScaleColor0,
                 ),
               ),
-              const SizedBox(width: 50),
+              const SizedBox(width: 40),
               Icon(Icons.access_time, size: 14, color: Pallete.shadowtext),
               const SizedBox(width: 4),
               Text(
                 appointmentTime,
                 style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                  fontSize: 12,
+                  fontSize: 10,
                   color: Pallete.grayScaleColor0,
                 ),
               ),

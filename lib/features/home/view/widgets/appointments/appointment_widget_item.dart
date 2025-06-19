@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
+import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:our_flutter_clinic_app/core/utils/time_range.dart';
 import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
@@ -178,34 +179,31 @@ class AppointmentWidgetItem extends StatelessWidget {
                 ],
               ),
             ),
-            Positioned(
-              right: 0,
-              child: Transform(
-                alignment: Alignment(0.1, 2.1),
-                transform:
-                    Matrix4.identity()
-                      ..rotateZ(pi / 4)
-                      ..translate(0.0, -0.5),
-                child: PaymentStatusWidget(size: Size(170, 55)),
-              ),
-            ),
-            Positioned(
-              right: 0,
-              child: Transform(
-                alignment: Alignment(-3.0, -1.7),
-                transform:
-                    Matrix4.identity()
-                      ..rotateZ(pi / 4)
-                      ..translate(0.0, -0.2),
-                child: Text(
-                  'Paid',
-                  style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                    fontSize: 15,
-                    color: Colors.white,
+            if (appointment.status?.isPending ?? false)
+              Positioned(
+                right: 20,
+                top: 20,
+                child: Container(
+                  width: 60,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    color:
+                        (appointment.paymentStatus?.isPaid ?? false)
+                            ? Colors.green
+                            : Colors.red,
+                    borderRadius: BorderRadius.circular(18),
+                  ),
+                  padding: EdgeInsets.all(7),
+                  child: FittedBox(
+                    child: Text(
+                      appointment.paymentStatus?.name ?? 'Unpaid',
+                      style: Theme.of(
+                        context,
+                      ).textTheme.labelMedium!.copyWith(color: Colors.white),
+                    ),
                   ),
                 ),
               ),
-            ),
           ],
         ),
       ),

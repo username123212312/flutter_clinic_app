@@ -1,7 +1,11 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:developer';
 
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
+
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/home/controller/appointments_bloc/appointments_bloc.dart';
@@ -12,6 +16,7 @@ import '../../../../../core/widgets/transparent_content_dialog.dart';
 import '../../../../../core/widgets/widgets.dart';
 import '../../../../auth/view/widgets/auth_widgets.dart';
 import '../../../../auth/view/widgets/custom_button.dart';
+import '../../../controller/reminder_cubit/reminder_cubit.dart';
 import '../../../controller/reservation_details_cubit/reservation_details_cubit.dart';
 import '../../../repository/reservation_details_repository.dart';
 import '../../widgets/widget_doctor/appointment_details_card.dart';
@@ -105,13 +110,19 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.all(16),
                   child: Row(
                     children: [
                       Expanded(
                         child: InfoBox(
-                          title: "8 October, Sun",
+                          title:
+                              DateFormat('d MMMM, EEE')
+                                  .format(
+                                    state.appointment?.reservationDate ??
+                                        DateTime.now(),
+                                  )
+                                  .toString(),
                           subtitle: "Date",
                           backgroundColor: Pallete.graysGray5,
                         ),
@@ -119,7 +130,10 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                       SizedBox(width: 16),
                       Expanded(
                         child: InfoBox(
-                          title: "2:30am - 3:30pm",
+                          title: formatTime(
+                            state.appointment?.reservationHour ??
+                                TimeOfDay.now(),
+                          ),
                           subtitle: "Time",
                           backgroundColor: Pallete.graysGray5,
                         ),
@@ -266,7 +280,7 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
               bottom:
                   MediaQuery.of(context).viewInsets.bottom, // Keyboard space
             ),
-            child: _ReminderBottomSheet(),
+            child: _ReminderBottomSheet(id: widget.appointmentId),
           ),
       context: context,
       isScrollControlled: true, // Allows full height
@@ -290,12 +304,23 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
 }
 
 class _ReminderBottomSheet extends StatefulWidget {
+  final int id;
+
+  const _ReminderBottomSheet({required this.id});
   @override
   __ReminderBottomSheetState createState() => __ReminderBottomSheetState();
 }
 
 class __ReminderBottomSheetState extends State<_ReminderBottomSheet> {
   double _hours = 1.0;
+
+  @override
+  void initState() {
+    super.initState();
+    _reminderCubit = ReminderCubit(
+      reservationDetailsRepository: ReservationDetailsRepository(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -341,12 +366,6 @@ class __ReminderBottomSheetState extends State<_ReminderBottomSheet> {
               ],
             ),
 
-            // Time Preview
-            SizedBox(height: 10),
-            Text(
-              'Will remind at: ${_getReminderTime()}',
-              style: TextStyle(color: Colors.grey.shade600),
-            ),
             SizedBox(height: 20),
           ],
 
@@ -361,17 +380,34 @@ class __ReminderBottomSheetState extends State<_ReminderBottomSheet> {
               ),
               SizedBox(width: 10),
               Expanded(
-                child: ElevatedButton(
-                  onPressed: () {
-                    log('Reminder set for ${_hours.toInt()} hours');
-                    context.pop<int>(_hours.toInt());
+                child: BlocConsumer<ReminderCubit, ReminderState>(
+                  bloc: _reminderCubit,
+                  listener: (context, state) {
+                    if (state.status.isDone) {
+                      Fluttertoast.showToast(msg: state.message);
+                      context.pop<int>(_hours.toInt());
+                    }
                   },
-                  child: Text(
-                    'Set Reminder',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.labelMedium!.copyWith(color: Colors.white),
-                  ),
+                  builder: (context, state) {
+                    return ElevatedButton(
+                      onPressed:
+                          state.status.isLoading
+                              ? null
+                              : () {
+                                log('Reminder set for ${_hours.toInt()} hours');
+                                _reminderCubit.setReminder(
+                                  widget.id,
+                                  _hours.toInt(),
+                                );
+                              },
+                      child: Text(
+                        'Set Reminder',
+                        style: Theme.of(
+                          context,
+                        ).textTheme.labelMedium!.copyWith(color: Colors.white),
+                      ),
+                    );
+                  },
                 ),
               ),
             ],
@@ -386,4 +422,6 @@ class __ReminderBottomSheetState extends State<_ReminderBottomSheet> {
     final reminderTime = now.add(Duration(hours: _hours.toInt()));
     return '${reminderTime.hour}:${reminderTime.minute.toString().padLeft(2, '0')}';
   }
+
+  late final ReminderCubit _reminderCubit;
 }

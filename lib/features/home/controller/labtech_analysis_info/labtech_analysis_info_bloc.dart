@@ -26,9 +26,11 @@ class LabtechAnalysisInfoBloc
     on<LabtechAnalysisEvent>((event, emit) {
       emit(state.copyWith(status: DataStatus.loading, message: 'Loading'));
     });
+    on<FetchAnalysis>(_fetchAnalysis);
     on<AnalysisResultAdded>(_addAnalysisResult);
     on<DownloadFile>(_downloadFile);
     on<DownloadPhoto>(_downloadPhoto);
+    on<AddBill>(_addBill);
   }
 
   Future<void> _addAnalysisResult(
@@ -113,6 +115,56 @@ class LabtechAnalysisInfoBloc
     } catch (e) {
       log(e.toString());
       return null;
+    }
+  }
+
+  Future<void> _addBill(
+    AddBill event,
+    Emitter<LabtechAnalysisInfoState> emit,
+  ) async {
+    //addAnalysisBill
+    try {
+      final response = await _labtechAnalysisRepository.addAnalysisBill(
+        event.analysisId,
+        event.price,
+      );
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          message: l.message,
+          status: DataStatus.error,
+        ),
+        Right(value: final r) => state.copyWith(
+          message: r.message,
+          status: DataStatus.data,
+        ),
+      };
+      emit(newState);
+    } catch (e) {
+      emit(state.copyWith(status: DataStatus.error, message: e.toString()));
+    }
+  }
+
+  Future<void> _fetchAnalysis(
+    FetchAnalysis event,
+    Emitter<LabtechAnalysisInfoState> emit,
+  ) async {
+    try {
+      final response = await _labtechAnalysisRepository.showAnalysis(
+        state.analysis.id ?? 0,
+      );
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          status: DataStatus.error,
+          message: l.message,
+        ),
+        Right(value: final r) => state.copyWith(
+          status: DataStatus.data,
+          message: r.message,
+        ),
+      };
+      emit(newState);
+    } catch (e) {
+      emit(state.copyWith(status: DataStatus.error, message: e.toString()));
     }
   }
 

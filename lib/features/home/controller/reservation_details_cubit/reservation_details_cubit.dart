@@ -60,7 +60,7 @@ class ReservationDetailsCubit extends Cubit<ReservationDetailsState> {
         ),
       };
       emit(newState);
-      if (state.clientID != null) {
+      if (state.clientID != null && !state.status.isError) {
         final completed = await handlePayment(state.clientID!);
         if (completed) {
           await confirmReservationPayment(

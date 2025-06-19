@@ -157,6 +157,7 @@ class _LabtechHomeScreenState extends State<LabtechHomeScreen> {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 15.0),
                 child: AnalysisItemWidget(
+                  isLab: true,
                   onTap: () {
                     context.pushNamed(
                       AppRouteConstants.analysisInfoRouteName,

@@ -27,6 +27,8 @@ sealed class AppointmentModel with _$AppointmentModel {
     @TimeOfDayConverter()
     TimeOfDay? reservationHour,
     AppointmentStatus? status,
+    @JsonKey(name: 'reminder_offset') int? reminderOffset,
+    @JsonKey(name: 'payment_status') PaymentStatus? paymentStatus,
   }) = _AppointmentModel;
 
   factory AppointmentModel.fromJson(Map<String, dynamic> json) =>

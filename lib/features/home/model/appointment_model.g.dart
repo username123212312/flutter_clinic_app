@@ -27,6 +27,11 @@ _$AppointmentModelImpl _$$AppointmentModelImplFromJson(
     json['reservation_hour'] as String?,
   ),
   status: $enumDecodeNullable(_$AppointmentStatusEnumMap, json['status']),
+  reminderOffset: (json['reminder_offset'] as num?)?.toInt(),
+  paymentStatus: $enumDecodeNullable(
+    _$PaymentStatusEnumMap,
+    json['payment_status'],
+  ),
 );
 
 Map<String, dynamic> _$$AppointmentModelImplToJson(
@@ -47,10 +52,18 @@ Map<String, dynamic> _$$AppointmentModelImplToJson(
     instance.reservationHour,
   ),
   'status': _$AppointmentStatusEnumMap[instance.status],
+  'reminder_offset': instance.reminderOffset,
+  'payment_status': _$PaymentStatusEnumMap[instance.paymentStatus],
 };
 
 const _$AppointmentStatusEnumMap = {
   AppointmentStatus.pending: 'pending',
   AppointmentStatus.visited: 'visited',
   AppointmentStatus.cancelled: 'cancelled',
+};
+
+const _$PaymentStatusEnumMap = {
+  PaymentStatus.paid: 'paid',
+  PaymentStatus.pending: 'pending',
+  PaymentStatus.unpaid: 'unpaid',
 };

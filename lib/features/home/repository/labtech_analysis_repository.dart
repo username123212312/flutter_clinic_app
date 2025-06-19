@@ -54,9 +54,9 @@ class LabtechAnalysisRepository {
     int analysisId,
   ) async {
     try {
-      final response = await _dio.post(
+      final response = await _dio.get(
         AppConstants.labTechShowAnalysePath,
-        data: {'id': analysisId},
+        queryParameters: {'id': analysisId},
       );
 
       eLog(response.data.toString());
@@ -143,6 +143,7 @@ class LabtechAnalysisRepository {
           'description': request.description,
           'patient_number': request.patientNumber,
           'clinic_id': request.clinicId,
+          'price': request.price,
         },
       );
 
@@ -157,7 +158,38 @@ class LabtechAnalysisRepository {
           ),
         );
       } else {
-        throw HttpException(response.data['message']);
+        throw HttpException(parseStringList(response.data['message']));
+      }
+    } on DioException catch (e) {
+      return Left(AppFailure(message: e.message ?? 'Error'));
+    } on HttpException catch (e) {
+      return Left(AppFailure(message: e.message));
+    } catch (e) {
+      return Left(AppFailure(message: e.toString()));
+    }
+  }
+
+  Future<Either<AppFailure, AppResponse>> addAnalysisBill(
+    int analysisId,
+    double price,
+  ) async {
+    try {
+      final response = await _dio.post(
+        AppConstants.labTechAddAnalyseBillPath,
+        data: {'analyse_id': analysisId, 'price': price},
+      );
+
+      eLog(response.data.toString());
+
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse(
+            success: true,
+            message: 'Analysis Bill added successfully!',
+          ),
+        );
+      } else {
+        throw HttpException(parseStringList(response.data['message']));
       }
     } on DioException catch (e) {
       return Left(AppFailure(message: e.message ?? 'Error'));

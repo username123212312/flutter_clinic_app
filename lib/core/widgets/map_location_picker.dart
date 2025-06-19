@@ -31,6 +31,7 @@ class MapLocationPickerState extends State<MapLocationPicker> {
     if (pos != null) {
       setState(() {
         _initialPosition = LatLng(pos.latitude, pos.longitude);
+        _selectedLocation = LatLng(pos.latitude, pos.longitude);
       });
     }
   }

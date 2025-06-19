@@ -19,7 +19,7 @@ class AppConstants {
   static const patientPath = '/$apiPath/patient';
   static const homePath = '/$apiPath/home';
   static const doctorPath = '/$apiPath/doctor';
-  static const labTechPath = '/$apiPath/labTech';
+  static const labTechPath = '/$apiPath/labtech';
 
   //! Auth
   static const registerPath = '/$apiPath/register';
@@ -59,7 +59,8 @@ class AppConstants {
   static const showAppointmentInfoPath = '$patientPath/showAppointmentInfo';
   static const addReservationPath = '$patientPath/addReservation';
   static const editReservationPath = '$patientPath/editReservation';
-  static const cancelReservationPath = '$patientPath/cancelReservation';
+  static const cancelReservationPath =
+      '$patientPath/cancelReservationAndRefund';
   static const downloadPerscriptionPath = '$patientPath/downloadPrescription';
 
   //*   Reservation
@@ -74,6 +75,7 @@ class AppConstants {
       '$patientPath/createReservationPaymentIntent';
   static const confirmReservationPaymentPath =
       '$patientPath/confirmReservationPayment';
+  static const setReminderPath = '$patientPath/setReminder';
 
   //? Doctor
   static const profilePath = '$doctorPath/profile';
@@ -83,6 +85,7 @@ class AppConstants {
 
   //? Labtech
   static const labTechAddAnalysePath = '$labTechPath/addAnalyse';
+  static const labTechAddAnalyseBillPath = '$labTechPath/addBill';
   static const labTechAddAnalyseResultPath = '$labTechPath/addAnalyseResult';
   static const labTechShowAllAnalysisPath = '$labTechPath/showAllAnalysis';
   static const labTechShowAnalysePath = '$labTechPath/showAnalyse';

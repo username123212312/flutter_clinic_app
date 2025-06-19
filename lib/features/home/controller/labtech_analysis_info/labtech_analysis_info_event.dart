@@ -7,4 +7,9 @@ sealed class LabtechAnalysisEvent with _$LabtechAnalysisEvent {
   }) = AnalysisResultAdded;
   const factory LabtechAnalysisEvent.downloadFile() = DownloadFile;
   const factory LabtechAnalysisEvent.downloadPhoto() = DownloadPhoto;
+  const factory LabtechAnalysisEvent.addBill({
+    required int analysisId,
+    required double price,
+  }) = AddBill;
+  const factory LabtechAnalysisEvent.fetchAnalysis() = FetchAnalysis;
 }

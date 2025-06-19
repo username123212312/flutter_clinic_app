@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
+import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/core/widgets/transparent_content_dialog.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
@@ -9,6 +10,7 @@ import 'package:our_flutter_clinic_app/features/home/model/clinic_model.dart';
 import 'package:our_flutter_clinic_app/features/home/model/requests/add_analysis_request.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/custom_drop_down_widget.dart';
 
+import '../../../../../core/utils/decimal_input_formatter.dart';
 import '../../../../../core/utils/utils.dart';
 import '../../../../../core/widgets/widgets.dart';
 import '../../../controller/labtect_new_analysis_cubit/labtech_new_analysis_cubit.dart';
@@ -26,6 +28,7 @@ class _AddNewAnalysisScreenState extends State<AddNewAnalysisScreen> {
     _analysisNameController.dispose();
     _analysisDescriptionController.dispose();
     _patientNumberController.dispose();
+    _analysisPriceController.dispose();
     LoadingOverlay().hideAll();
 
     super.dispose();
@@ -41,6 +44,22 @@ class _AddNewAnalysisScreenState extends State<AddNewAnalysisScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          BlocBuilder<LabtechNewAnalysisCubit, LabtechNewAnalysisState>(
+            bloc: _labtechNewAnalysisCubit,
+            builder: (context, state) {
+              return IconButton(
+                onPressed:
+                    state.status.isLoading
+                        ? null
+                        : () {
+                          _labtechNewAnalysisCubit.fetchAllClinics();
+                        },
+                icon: Icon(Icons.refresh, size: 25),
+              );
+            },
+          ),
+        ],
         forceMaterialTransparency: true,
         toolbarHeight: screenHeight(context) * 0.11,
         title: Text('Add Analysis'),
@@ -171,8 +190,49 @@ class _AddNewAnalysisScreenState extends State<AddNewAnalysisScreen> {
                   ),
                 ],
               ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 10,
+                children: [
+                  Text(
+                    'Analysis price',
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleSmall!.copyWith(fontSize: 18),
+                  ),
+                  TextFormField(
+                    style: TextStyle(fontSize: 15, color: Colors.black),
+                    controller: _analysisPriceController,
+                    textInputAction: TextInputAction.done,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.singleLineFormatter,
+                      DecimalInputFormatter(),
+                    ],
+                    validator: (value) {
+                      if (ValidatorUtil.isEmpty(value)) {
+                        return 'Enter a valid price';
+                      } else {
+                        return null;
+                      }
+                    },
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.symmetric(
+                        vertical: 20,
+                        horizontal: 20,
+                      ),
+                      hintText: 'Analysis price',
+                      hintStyle: TextStyle(
+                        fontSize: 15,
+                        color: Pallete.grayBorderColor,
+                      ),
+                    ),
 
-              SizedBox(height: screenHeight(context) * 0.13),
+                    keyboardType: TextInputType.number,
+                  ),
+                ],
+              ),
+
+              SizedBox(height: screenHeight(context) * 0.05),
               SizedBox(
                 width: screenWidth(context),
                 child: BlocListener<LabtechAnalysisBloc, LabtechAnalysisState>(
@@ -206,6 +266,9 @@ class _AddNewAnalysisScreenState extends State<AddNewAnalysisScreen> {
                               description: _analysisDescriptionController.text,
                               patientNumber: int.tryParse(
                                 _patientNumberController.text,
+                              ),
+                              price: double.parse(
+                                _analysisPriceController.text,
                               ),
                             ),
                           ),
@@ -278,6 +341,7 @@ class _AddNewAnalysisScreenState extends State<AddNewAnalysisScreen> {
 
   final _analysisNameController = TextEditingController();
   final _analysisDescriptionController = TextEditingController();
+  final _analysisPriceController = TextEditingController();
   final _patientNumberController = TextEditingController();
   final LabtechNewAnalysisCubit _labtechNewAnalysisCubit =
       LabtechNewAnalysisCubit();

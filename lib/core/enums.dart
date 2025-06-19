@@ -20,6 +20,16 @@ enum AppointmentStatus {
   bool get isCancelled => this == AppointmentStatus.cancelled;
 }
 
+enum PaymentStatus {
+  paid,
+  pending,
+  unpaid;
+
+  bool get isPaid => this == PaymentStatus.paid;
+  bool get isUnpaid => this == PaymentStatus.unpaid;
+  bool get isPending => this == PaymentStatus.pending;
+}
+
 enum AnalysisStatus {
   all,
   pending,

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lottie/lottie.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/providers/file_manager/file_manager.dart';
@@ -13,6 +14,7 @@ import 'package:our_flutter_clinic_app/features/home/model/analysis_model.dart';
 import 'package:our_flutter_clinic_app/features/home/model/requests/add_analysis_result_request.dart';
 import 'package:our_flutter_clinic_app/features/home/repository/labtech_analysis_repository.dart';
 
+import '../../../../../core/utils/decimal_input_formatter.dart';
 import '../../../../../core/utils/utils.dart';
 import '../../../../../core/widgets/transparent_content_dialog.dart';
 import '../../../../../core/widgets/widgets.dart';
@@ -29,11 +31,14 @@ class _AnalysisInfoScreenState extends State<AnalysisInfoScreen> {
   @override
   void initState() {
     super.initState();
-    _isPending = widget.analysis.status?.isPending ?? false;
+
     _labtechAnalysisInfoBloc = LabtechAnalysisInfoBloc(
       analysis: widget.analysis,
       labtechAnalysisRepository: LabtechAnalysisRepository(),
     );
+    _isPending = widget.analysis.status?.isPending ?? false;
+    _isPaid =
+        _labtechAnalysisInfoBloc.state.analysis.paymentStatus?.isPaid ?? false;
   }
 
   @override
@@ -47,8 +52,12 @@ class _AnalysisInfoScreenState extends State<AnalysisInfoScreen> {
           context,
         ).textTheme.titleMedium!.copyWith(fontSize: 25),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.only(
+          left: 15.0,
+          right: 15,
+          bottom: MediaQuery.of(context).viewInsets.bottom * 0.3,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -80,60 +89,114 @@ class _AnalysisInfoScreenState extends State<AnalysisInfoScreen> {
                         widget.analysis.description ?? 'Analysis description',
                       ),
                     ),
-
-                    if (_isPending)
-                      Column(
-                        children: [
-                          SizedBox(height: screenHeight(context) * 0.2),
-                          SizedBox(
-                            width: screenWidth(context),
-                            child: BlocListener<
-                              LabtechAnalysisInfoBloc,
-                              LabtechAnalysisInfoState
-                            >(
-                              bloc: _labtechAnalysisInfoBloc,
-                              listener: (context, state) async {
-                                if (state.status.isLoading) {
-                                  LoadingOverlay().show(context);
-                                } else {
-                                  LoadingOverlay().hideAll();
-                                  if (state.status.isDone) {
-                                    await TransparentDialog.show(
-                                      context: context,
-                                      barrierDismissible: false,
-                                      builder: (_) => _buildDialog(context),
-                                    );
-                                  }
-                                }
-                              },
-                              child: CustomElevatedButton(
-                                isEnabled:
-                                    !(_chosenFile == null &&
-                                        _chosenPhoto == null),
-                                title: 'Add result',
-                                onTap: () {
-                                  _labtechAnalysisInfoBloc.add(
-                                    AnalysisResultAdded(
-                                      request: AddAnalysisResultRequest(
-                                        id: widget.analysis.id ?? 0,
-                                        filePath: _chosenFile?.path,
-                                        photoPath: _chosenPhoto?.path,
-                                      ),
-                                    ),
-                                  );
-                                },
-                                fillColor:
-                                    Theme.of(context).colorScheme.primary,
-                                textColor: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
                   ],
                 ),
               ),
             ),
+
+            if (!_isPaid)
+              BlocBuilder<LabtechAnalysisInfoBloc, LabtechAnalysisInfoState>(
+                bloc: _labtechAnalysisInfoBloc,
+                builder: (context, state) {
+                  return (state.analysis.paymentStatus?.isPaid ?? false)
+                      ? SizedBox.shrink()
+                      : Column(
+                        children: [
+                          SizedBox(height: screenHeight(context) * 0.2),
+                          SizedBox(
+                            width: screenWidth(context),
+                            child: BlocConsumer<
+                              LabtechAnalysisInfoBloc,
+                              LabtechAnalysisInfoState
+                            >(
+                              listenWhen:
+                                  (previous, current) =>
+                                      current.message ==
+                                          'Analysis Bill added successfully!' ||
+                                      current.status.isError,
+                              listener: (context, state) {
+                                if (state.status.isData) {
+                                  Fluttertoast.showToast(msg: state.message);
+                                  _labtechAnalysisInfoBloc.add(FetchAnalysis());
+                                  Navigator.of(context).pop();
+                                }
+                              },
+                              bloc: _labtechAnalysisInfoBloc,
+                              builder:
+                                  (context, state) => CustomElevatedButton(
+                                    title: 'Add Bill',
+                                    onTap: () async {
+                                      await showModalBottomSheet(
+                                        context: context,
+                                        builder:
+                                            (_) => AddBillBottomSheet(
+                                              isLoading: state.status.isLoading,
+                                              onAdd: (price) {
+                                                _labtechAnalysisInfoBloc.add(
+                                                  AddBill(
+                                                    analysisId:
+                                                        widget.analysis.id ?? 0,
+                                                    price: price,
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                      );
+                                    },
+                                    fillColor:
+                                        Theme.of(context).colorScheme.primary,
+                                    textColor: Colors.white,
+                                  ),
+                            ),
+                          ),
+                        ],
+                      );
+                },
+              ),
+
+            if (_isPending) ...[
+              SizedBox(height: screenHeight(context) * (_isPaid ? 0.2 : 0.02)),
+              SizedBox(
+                width: screenWidth(context),
+                child: BlocListener<
+                  LabtechAnalysisInfoBloc,
+                  LabtechAnalysisInfoState
+                >(
+                  bloc: _labtechAnalysisInfoBloc,
+                  listener: (context, state) async {
+                    if (state.status.isLoading) {
+                      LoadingOverlay().show(context);
+                    } else {
+                      LoadingOverlay().hideAll();
+                      if (state.status.isDone) {
+                        await TransparentDialog.show(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (_) => _buildDialog(context),
+                        );
+                      }
+                    }
+                  },
+                  child: CustomElevatedButton(
+                    isEnabled: !(_chosenFile == null && _chosenPhoto == null),
+                    title: 'Add result',
+                    onTap: () {
+                      _labtechAnalysisInfoBloc.add(
+                        AnalysisResultAdded(
+                          request: AddAnalysisResultRequest(
+                            id: widget.analysis.id ?? 0,
+                            filePath: _chosenFile?.path,
+                            photoPath: _chosenPhoto?.path,
+                          ),
+                        ),
+                      );
+                    },
+                    fillColor: Theme.of(context).colorScheme.primary,
+                    textColor: Colors.white,
+                  ),
+                ),
+              ),
+            ],
           ],
         ),
       ),
@@ -363,10 +426,169 @@ class _AnalysisInfoScreenState extends State<AnalysisInfoScreen> {
     );
   }
 
-  void _downloadOrOpenFile(String path) {}
-
   bool _isPending = true;
+  bool _isPaid = false;
   File? _chosenFile;
   File? _chosenPhoto;
   late final LabtechAnalysisInfoBloc _labtechAnalysisInfoBloc;
+}
+
+class AddBillBottomSheet extends StatefulWidget {
+  const AddBillBottomSheet({
+    super.key,
+    required this.onAdd,
+    this.isLoading = false,
+  });
+  final void Function(double price) onAdd;
+  final bool isLoading;
+
+  @override
+  State<AddBillBottomSheet> createState() => _AddBillBottomSheetState();
+}
+
+class _AddBillBottomSheetState extends State<AddBillBottomSheet> {
+  final _priceController = TextEditingController();
+  double _sheetHeight = 0.25; // Initial height (30% of screen)
+  bool _keyboardVisible = false;
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    _priceController.addListener(_onTextChanged);
+  }
+
+  @override
+  void dispose() {
+    _priceController.dispose();
+    super.dispose();
+  }
+
+  void _onTextChanged() {
+    // This will be handled by the keyboard visibility check
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Check keyboard visibility
+    final newKeyboardVisible = MediaQuery.of(context).viewInsets.bottom > 0;
+    if (newKeyboardVisible != _keyboardVisible) {
+      _keyboardVisible = newKeyboardVisible;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        setState(() {
+          _sheetHeight = _keyboardVisible ? 0.8 : 0.2;
+        });
+      });
+    }
+
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 300),
+      curve: Curves.easeOut,
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height * _sheetHeight,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(18),
+          topRight: Radius.circular(18),
+        ),
+      ),
+      padding: EdgeInsets.only(
+        left: 20,
+        right: 20,
+        bottom:
+            _keyboardVisible
+                ? MediaQuery.of(context).viewInsets.bottom *
+                    0.4 // Extra space for keyboard
+                : 10,
+      ),
+      child: Column(
+        children: [
+          // Drag handle
+          GestureDetector(
+            onVerticalDragUpdate: (details) {
+              final newHeight =
+                  _sheetHeight -
+                  (details.delta.dy / MediaQuery.of(context).size.height);
+              setState(() => _sheetHeight = newHeight.clamp(0.2, 0.8));
+            },
+            child: Container(
+              width: 60,
+              height: 5,
+              margin: EdgeInsets.symmetric(vertical: 10),
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+          ),
+          Text(
+            'Add Analysis price',
+            style: Theme.of(context).textTheme.labelMedium!.copyWith(
+              fontSize: 14,
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(height: 30),
+          Row(
+            children: [
+              Expanded(
+                child: Form(
+                  key: _formKey,
+                  child: TextFormField(
+                    validator: (value) {
+                      if (ValidatorUtil.isEmpty(value)) {
+                        return 'Enter a valid price';
+                      } else {
+                        return null;
+                      }
+                    },
+                    style: TextStyle(color: Colors.black),
+                    controller: _priceController,
+                    inputFormatters: [DecimalInputFormatter()],
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.attach_money,
+                        color: Pallete.gray1,
+                      ),
+                      contentPadding: EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 10,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width: 10),
+              SizedBox(
+                width: 180,
+                child:
+                    widget.isLoading
+                        ? CircularProgressIndicator()
+                        : ElevatedButton(
+                          onPressed: () {
+                            FocusScope.of(context).unfocus();
+                            if (_formKey.currentState!.validate()) {
+                              widget.onAdd(double.parse(_priceController.text));
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: Size(100, 45),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
+                          child: Text(
+                            'Add',
+                            style: Theme.of(context).textTheme.labelMedium!
+                                .copyWith(color: Colors.white),
+                          ),
+                        ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 }

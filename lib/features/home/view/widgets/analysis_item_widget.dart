@@ -14,9 +14,16 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/theme/app_pallete.dart';
 
 class AnalysisItemWidget extends StatefulWidget {
-  const AnalysisItemWidget({super.key, required this.analysis, this.onTap});
+  const AnalysisItemWidget({
+    super.key,
+    required this.analysis,
+    this.onTap,
+    this.isLab = false,
+  });
   final AnalysisModel analysis;
   final void Function()? onTap;
+
+  final bool isLab;
 
   @override
   State<AnalysisItemWidget> createState() => _AnalysisItemWidgetState();
@@ -99,33 +106,35 @@ class _AnalysisItemWidgetState extends State<AnalysisItemWidget> {
                 ),
               ],
             ),
-            if (widget.onTap == null) Spacer(),
-            if (!(widget.analysis.resultFile == null &&
-                widget.analysis.resultPhoto == null))
-              BlocBuilder<AnalysisItemCubit, AnalysisItemState>(
-                bloc: _analysisItemCubit,
-                builder: (context, state) {
-                  if (state.downloadedAnalysis == null) {
-                    return Icon(Icons.download);
-                  }
-                  if (state.status.isDownloading) {
-                    return SizedBox(
-                      height: 30,
-                      width: 30,
-                      child: CircularProgressIndicator(
-                        value: state.downloadProgress,
-                      ),
-                    );
-                  }
-                  if (state.status.isError) {
-                    return Icon(Icons.refresh);
-                  } else {
-                    return state.downloadedAnalysis == null
-                        ? Icon(Icons.download)
-                        : Icon(Icons.folder_open_outlined);
-                  }
-                },
-              ),
+            if (!widget.isLab) ...[
+              if (widget.onTap == null) Spacer(),
+              if (!(widget.analysis.resultFile == null &&
+                  widget.analysis.resultPhoto == null))
+                BlocBuilder<AnalysisItemCubit, AnalysisItemState>(
+                  bloc: _analysisItemCubit,
+                  builder: (context, state) {
+                    if (state.downloadedAnalysis == null) {
+                      return Icon(Icons.download);
+                    }
+                    if (state.status.isDownloading) {
+                      return SizedBox(
+                        height: 30,
+                        width: 30,
+                        child: CircularProgressIndicator(
+                          value: state.downloadProgress,
+                        ),
+                      );
+                    }
+                    if (state.status.isError) {
+                      return Icon(Icons.refresh);
+                    } else {
+                      return state.downloadedAnalysis == null
+                          ? Icon(Icons.download)
+                          : Icon(Icons.folder_open_outlined);
+                    }
+                  },
+                ),
+            ],
           ],
         ),
       ),

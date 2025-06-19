@@ -105,5 +105,34 @@ class ReservationDetailsRepository {
     }
   }
 
+  Future<Either<AppFailure, AppResponse>> setReminder(
+    int appointmentId,
+    int reminderOffset,
+  ) async {
+    try {
+      final response = await _dio.post(
+        AppConstants.setReminderPath,
+        data: {
+          'appointment_id': appointmentId,
+          'reminder_offset': reminderOffset,
+        },
+      );
+
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse(success: true, message: 'Reminder set successfully'),
+        );
+      } else {
+        throw HttpException('Reminder is not set');
+      }
+    } on DioException catch (e) {
+      return Left(AppFailure(message: e.message ?? 'Error'));
+    } on HttpException catch (e) {
+      return Left(AppFailure(message: e.message));
+    } catch (e) {
+      return Left(AppFailure(message: e.toString()));
+    }
+  }
+
   final Dio _dio;
 }

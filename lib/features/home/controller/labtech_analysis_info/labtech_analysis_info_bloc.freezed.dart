@@ -23,18 +23,24 @@ mixin _$LabtechAnalysisEvent {
     analysisResultAdded,
     required TResult Function() downloadFile,
     required TResult Function() downloadPhoto,
+    required TResult Function(int analysisId, double price) addBill,
+    required TResult Function() fetchAnalysis,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AddAnalysisResultRequest request)? analysisResultAdded,
     TResult? Function()? downloadFile,
     TResult? Function()? downloadPhoto,
+    TResult? Function(int analysisId, double price)? addBill,
+    TResult? Function()? fetchAnalysis,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AddAnalysisResultRequest request)? analysisResultAdded,
     TResult Function()? downloadFile,
     TResult Function()? downloadPhoto,
+    TResult Function(int analysisId, double price)? addBill,
+    TResult Function()? fetchAnalysis,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,18 +48,24 @@ mixin _$LabtechAnalysisEvent {
     required TResult Function(AnalysisResultAdded value) analysisResultAdded,
     required TResult Function(DownloadFile value) downloadFile,
     required TResult Function(DownloadPhoto value) downloadPhoto,
+    required TResult Function(AddBill value) addBill,
+    required TResult Function(FetchAnalysis value) fetchAnalysis,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AnalysisResultAdded value)? analysisResultAdded,
     TResult? Function(DownloadFile value)? downloadFile,
     TResult? Function(DownloadPhoto value)? downloadPhoto,
+    TResult? Function(AddBill value)? addBill,
+    TResult? Function(FetchAnalysis value)? fetchAnalysis,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AnalysisResultAdded value)? analysisResultAdded,
     TResult Function(DownloadFile value)? downloadFile,
     TResult Function(DownloadPhoto value)? downloadPhoto,
+    TResult Function(AddBill value)? addBill,
+    TResult Function(FetchAnalysis value)? fetchAnalysis,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -173,6 +185,8 @@ class _$AnalysisResultAddedImpl implements AnalysisResultAdded {
     analysisResultAdded,
     required TResult Function() downloadFile,
     required TResult Function() downloadPhoto,
+    required TResult Function(int analysisId, double price) addBill,
+    required TResult Function() fetchAnalysis,
   }) {
     return analysisResultAdded(request);
   }
@@ -183,6 +197,8 @@ class _$AnalysisResultAddedImpl implements AnalysisResultAdded {
     TResult? Function(AddAnalysisResultRequest request)? analysisResultAdded,
     TResult? Function()? downloadFile,
     TResult? Function()? downloadPhoto,
+    TResult? Function(int analysisId, double price)? addBill,
+    TResult? Function()? fetchAnalysis,
   }) {
     return analysisResultAdded?.call(request);
   }
@@ -193,6 +209,8 @@ class _$AnalysisResultAddedImpl implements AnalysisResultAdded {
     TResult Function(AddAnalysisResultRequest request)? analysisResultAdded,
     TResult Function()? downloadFile,
     TResult Function()? downloadPhoto,
+    TResult Function(int analysisId, double price)? addBill,
+    TResult Function()? fetchAnalysis,
     required TResult orElse(),
   }) {
     if (analysisResultAdded != null) {
@@ -207,6 +225,8 @@ class _$AnalysisResultAddedImpl implements AnalysisResultAdded {
     required TResult Function(AnalysisResultAdded value) analysisResultAdded,
     required TResult Function(DownloadFile value) downloadFile,
     required TResult Function(DownloadPhoto value) downloadPhoto,
+    required TResult Function(AddBill value) addBill,
+    required TResult Function(FetchAnalysis value) fetchAnalysis,
   }) {
     return analysisResultAdded(this);
   }
@@ -217,6 +237,8 @@ class _$AnalysisResultAddedImpl implements AnalysisResultAdded {
     TResult? Function(AnalysisResultAdded value)? analysisResultAdded,
     TResult? Function(DownloadFile value)? downloadFile,
     TResult? Function(DownloadPhoto value)? downloadPhoto,
+    TResult? Function(AddBill value)? addBill,
+    TResult? Function(FetchAnalysis value)? fetchAnalysis,
   }) {
     return analysisResultAdded?.call(this);
   }
@@ -227,6 +249,8 @@ class _$AnalysisResultAddedImpl implements AnalysisResultAdded {
     TResult Function(AnalysisResultAdded value)? analysisResultAdded,
     TResult Function(DownloadFile value)? downloadFile,
     TResult Function(DownloadPhoto value)? downloadPhoto,
+    TResult Function(AddBill value)? addBill,
+    TResult Function(FetchAnalysis value)? fetchAnalysis,
     required TResult orElse(),
   }) {
     if (analysisResultAdded != null) {
@@ -297,6 +321,8 @@ class _$DownloadFileImpl implements DownloadFile {
     analysisResultAdded,
     required TResult Function() downloadFile,
     required TResult Function() downloadPhoto,
+    required TResult Function(int analysisId, double price) addBill,
+    required TResult Function() fetchAnalysis,
   }) {
     return downloadFile();
   }
@@ -307,6 +333,8 @@ class _$DownloadFileImpl implements DownloadFile {
     TResult? Function(AddAnalysisResultRequest request)? analysisResultAdded,
     TResult? Function()? downloadFile,
     TResult? Function()? downloadPhoto,
+    TResult? Function(int analysisId, double price)? addBill,
+    TResult? Function()? fetchAnalysis,
   }) {
     return downloadFile?.call();
   }
@@ -317,6 +345,8 @@ class _$DownloadFileImpl implements DownloadFile {
     TResult Function(AddAnalysisResultRequest request)? analysisResultAdded,
     TResult Function()? downloadFile,
     TResult Function()? downloadPhoto,
+    TResult Function(int analysisId, double price)? addBill,
+    TResult Function()? fetchAnalysis,
     required TResult orElse(),
   }) {
     if (downloadFile != null) {
@@ -331,6 +361,8 @@ class _$DownloadFileImpl implements DownloadFile {
     required TResult Function(AnalysisResultAdded value) analysisResultAdded,
     required TResult Function(DownloadFile value) downloadFile,
     required TResult Function(DownloadPhoto value) downloadPhoto,
+    required TResult Function(AddBill value) addBill,
+    required TResult Function(FetchAnalysis value) fetchAnalysis,
   }) {
     return downloadFile(this);
   }
@@ -341,6 +373,8 @@ class _$DownloadFileImpl implements DownloadFile {
     TResult? Function(AnalysisResultAdded value)? analysisResultAdded,
     TResult? Function(DownloadFile value)? downloadFile,
     TResult? Function(DownloadPhoto value)? downloadPhoto,
+    TResult? Function(AddBill value)? addBill,
+    TResult? Function(FetchAnalysis value)? fetchAnalysis,
   }) {
     return downloadFile?.call(this);
   }
@@ -351,6 +385,8 @@ class _$DownloadFileImpl implements DownloadFile {
     TResult Function(AnalysisResultAdded value)? analysisResultAdded,
     TResult Function(DownloadFile value)? downloadFile,
     TResult Function(DownloadPhoto value)? downloadPhoto,
+    TResult Function(AddBill value)? addBill,
+    TResult Function(FetchAnalysis value)? fetchAnalysis,
     required TResult orElse(),
   }) {
     if (downloadFile != null) {
@@ -411,6 +447,8 @@ class _$DownloadPhotoImpl implements DownloadPhoto {
     analysisResultAdded,
     required TResult Function() downloadFile,
     required TResult Function() downloadPhoto,
+    required TResult Function(int analysisId, double price) addBill,
+    required TResult Function() fetchAnalysis,
   }) {
     return downloadPhoto();
   }
@@ -421,6 +459,8 @@ class _$DownloadPhotoImpl implements DownloadPhoto {
     TResult? Function(AddAnalysisResultRequest request)? analysisResultAdded,
     TResult? Function()? downloadFile,
     TResult? Function()? downloadPhoto,
+    TResult? Function(int analysisId, double price)? addBill,
+    TResult? Function()? fetchAnalysis,
   }) {
     return downloadPhoto?.call();
   }
@@ -431,6 +471,8 @@ class _$DownloadPhotoImpl implements DownloadPhoto {
     TResult Function(AddAnalysisResultRequest request)? analysisResultAdded,
     TResult Function()? downloadFile,
     TResult Function()? downloadPhoto,
+    TResult Function(int analysisId, double price)? addBill,
+    TResult Function()? fetchAnalysis,
     required TResult orElse(),
   }) {
     if (downloadPhoto != null) {
@@ -445,6 +487,8 @@ class _$DownloadPhotoImpl implements DownloadPhoto {
     required TResult Function(AnalysisResultAdded value) analysisResultAdded,
     required TResult Function(DownloadFile value) downloadFile,
     required TResult Function(DownloadPhoto value) downloadPhoto,
+    required TResult Function(AddBill value) addBill,
+    required TResult Function(FetchAnalysis value) fetchAnalysis,
   }) {
     return downloadPhoto(this);
   }
@@ -455,6 +499,8 @@ class _$DownloadPhotoImpl implements DownloadPhoto {
     TResult? Function(AnalysisResultAdded value)? analysisResultAdded,
     TResult? Function(DownloadFile value)? downloadFile,
     TResult? Function(DownloadPhoto value)? downloadPhoto,
+    TResult? Function(AddBill value)? addBill,
+    TResult? Function(FetchAnalysis value)? fetchAnalysis,
   }) {
     return downloadPhoto?.call(this);
   }
@@ -465,6 +511,8 @@ class _$DownloadPhotoImpl implements DownloadPhoto {
     TResult Function(AnalysisResultAdded value)? analysisResultAdded,
     TResult Function(DownloadFile value)? downloadFile,
     TResult Function(DownloadPhoto value)? downloadPhoto,
+    TResult Function(AddBill value)? addBill,
+    TResult Function(FetchAnalysis value)? fetchAnalysis,
     required TResult orElse(),
   }) {
     if (downloadPhoto != null) {
@@ -476,6 +524,307 @@ class _$DownloadPhotoImpl implements DownloadPhoto {
 
 abstract class DownloadPhoto implements LabtechAnalysisEvent {
   const factory DownloadPhoto() = _$DownloadPhotoImpl;
+}
+
+/// @nodoc
+abstract class _$$AddBillImplCopyWith<$Res> {
+  factory _$$AddBillImplCopyWith(
+    _$AddBillImpl value,
+    $Res Function(_$AddBillImpl) then,
+  ) = __$$AddBillImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int analysisId, double price});
+}
+
+/// @nodoc
+class __$$AddBillImplCopyWithImpl<$Res>
+    extends _$LabtechAnalysisEventCopyWithImpl<$Res, _$AddBillImpl>
+    implements _$$AddBillImplCopyWith<$Res> {
+  __$$AddBillImplCopyWithImpl(
+    _$AddBillImpl _value,
+    $Res Function(_$AddBillImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of LabtechAnalysisEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? analysisId = null, Object? price = null}) {
+    return _then(
+      _$AddBillImpl(
+        analysisId:
+            null == analysisId
+                ? _value.analysisId
+                : analysisId // ignore: cast_nullable_to_non_nullable
+                    as int,
+        price:
+            null == price
+                ? _value.price
+                : price // ignore: cast_nullable_to_non_nullable
+                    as double,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$AddBillImpl implements AddBill {
+  const _$AddBillImpl({required this.analysisId, required this.price});
+
+  @override
+  final int analysisId;
+  @override
+  final double price;
+
+  @override
+  String toString() {
+    return 'LabtechAnalysisEvent.addBill(analysisId: $analysisId, price: $price)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddBillImpl &&
+            (identical(other.analysisId, analysisId) ||
+                other.analysisId == analysisId) &&
+            (identical(other.price, price) || other.price == price));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, analysisId, price);
+
+  /// Create a copy of LabtechAnalysisEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddBillImplCopyWith<_$AddBillImpl> get copyWith =>
+      __$$AddBillImplCopyWithImpl<_$AddBillImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(AddAnalysisResultRequest request)
+    analysisResultAdded,
+    required TResult Function() downloadFile,
+    required TResult Function() downloadPhoto,
+    required TResult Function(int analysisId, double price) addBill,
+    required TResult Function() fetchAnalysis,
+  }) {
+    return addBill(analysisId, price);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(AddAnalysisResultRequest request)? analysisResultAdded,
+    TResult? Function()? downloadFile,
+    TResult? Function()? downloadPhoto,
+    TResult? Function(int analysisId, double price)? addBill,
+    TResult? Function()? fetchAnalysis,
+  }) {
+    return addBill?.call(analysisId, price);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(AddAnalysisResultRequest request)? analysisResultAdded,
+    TResult Function()? downloadFile,
+    TResult Function()? downloadPhoto,
+    TResult Function(int analysisId, double price)? addBill,
+    TResult Function()? fetchAnalysis,
+    required TResult orElse(),
+  }) {
+    if (addBill != null) {
+      return addBill(analysisId, price);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AnalysisResultAdded value) analysisResultAdded,
+    required TResult Function(DownloadFile value) downloadFile,
+    required TResult Function(DownloadPhoto value) downloadPhoto,
+    required TResult Function(AddBill value) addBill,
+    required TResult Function(FetchAnalysis value) fetchAnalysis,
+  }) {
+    return addBill(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AnalysisResultAdded value)? analysisResultAdded,
+    TResult? Function(DownloadFile value)? downloadFile,
+    TResult? Function(DownloadPhoto value)? downloadPhoto,
+    TResult? Function(AddBill value)? addBill,
+    TResult? Function(FetchAnalysis value)? fetchAnalysis,
+  }) {
+    return addBill?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AnalysisResultAdded value)? analysisResultAdded,
+    TResult Function(DownloadFile value)? downloadFile,
+    TResult Function(DownloadPhoto value)? downloadPhoto,
+    TResult Function(AddBill value)? addBill,
+    TResult Function(FetchAnalysis value)? fetchAnalysis,
+    required TResult orElse(),
+  }) {
+    if (addBill != null) {
+      return addBill(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AddBill implements LabtechAnalysisEvent {
+  const factory AddBill({
+    required final int analysisId,
+    required final double price,
+  }) = _$AddBillImpl;
+
+  int get analysisId;
+  double get price;
+
+  /// Create a copy of LabtechAnalysisEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AddBillImplCopyWith<_$AddBillImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FetchAnalysisImplCopyWith<$Res> {
+  factory _$$FetchAnalysisImplCopyWith(
+    _$FetchAnalysisImpl value,
+    $Res Function(_$FetchAnalysisImpl) then,
+  ) = __$$FetchAnalysisImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$FetchAnalysisImplCopyWithImpl<$Res>
+    extends _$LabtechAnalysisEventCopyWithImpl<$Res, _$FetchAnalysisImpl>
+    implements _$$FetchAnalysisImplCopyWith<$Res> {
+  __$$FetchAnalysisImplCopyWithImpl(
+    _$FetchAnalysisImpl _value,
+    $Res Function(_$FetchAnalysisImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of LabtechAnalysisEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$FetchAnalysisImpl implements FetchAnalysis {
+  const _$FetchAnalysisImpl();
+
+  @override
+  String toString() {
+    return 'LabtechAnalysisEvent.fetchAnalysis()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$FetchAnalysisImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(AddAnalysisResultRequest request)
+    analysisResultAdded,
+    required TResult Function() downloadFile,
+    required TResult Function() downloadPhoto,
+    required TResult Function(int analysisId, double price) addBill,
+    required TResult Function() fetchAnalysis,
+  }) {
+    return fetchAnalysis();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(AddAnalysisResultRequest request)? analysisResultAdded,
+    TResult? Function()? downloadFile,
+    TResult? Function()? downloadPhoto,
+    TResult? Function(int analysisId, double price)? addBill,
+    TResult? Function()? fetchAnalysis,
+  }) {
+    return fetchAnalysis?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(AddAnalysisResultRequest request)? analysisResultAdded,
+    TResult Function()? downloadFile,
+    TResult Function()? downloadPhoto,
+    TResult Function(int analysisId, double price)? addBill,
+    TResult Function()? fetchAnalysis,
+    required TResult orElse(),
+  }) {
+    if (fetchAnalysis != null) {
+      return fetchAnalysis();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AnalysisResultAdded value) analysisResultAdded,
+    required TResult Function(DownloadFile value) downloadFile,
+    required TResult Function(DownloadPhoto value) downloadPhoto,
+    required TResult Function(AddBill value) addBill,
+    required TResult Function(FetchAnalysis value) fetchAnalysis,
+  }) {
+    return fetchAnalysis(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AnalysisResultAdded value)? analysisResultAdded,
+    TResult? Function(DownloadFile value)? downloadFile,
+    TResult? Function(DownloadPhoto value)? downloadPhoto,
+    TResult? Function(AddBill value)? addBill,
+    TResult? Function(FetchAnalysis value)? fetchAnalysis,
+  }) {
+    return fetchAnalysis?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AnalysisResultAdded value)? analysisResultAdded,
+    TResult Function(DownloadFile value)? downloadFile,
+    TResult Function(DownloadPhoto value)? downloadPhoto,
+    TResult Function(AddBill value)? addBill,
+    TResult Function(FetchAnalysis value)? fetchAnalysis,
+    required TResult orElse(),
+  }) {
+    if (fetchAnalysis != null) {
+      return fetchAnalysis(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FetchAnalysis implements LabtechAnalysisEvent {
+  const factory FetchAnalysis() = _$FetchAnalysisImpl;
 }
 
 /// @nodoc

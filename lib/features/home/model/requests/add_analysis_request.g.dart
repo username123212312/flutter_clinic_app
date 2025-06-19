@@ -15,6 +15,7 @@ _$AddAnalysisRequestImpl _$$AddAnalysisRequestImplFromJson(
   clinicId: (json['clinicId'] as num?)?.toInt(),
   resultFilePath: json['resultFilePath'] as String?,
   resultImagePath: json['resultImagePath'] as String?,
+  price: (json['price'] as num?)?.toDouble(),
 );
 
 Map<String, dynamic> _$$AddAnalysisRequestImplToJson(
@@ -26,4 +27,5 @@ Map<String, dynamic> _$$AddAnalysisRequestImplToJson(
   'clinicId': instance.clinicId,
   'resultFilePath': instance.resultFilePath,
   'resultImagePath': instance.resultImagePath,
+  'price': instance.price,
 };

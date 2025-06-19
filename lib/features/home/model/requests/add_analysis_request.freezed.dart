@@ -28,6 +28,7 @@ mixin _$AddAnalysisRequest {
   int? get clinicId => throw _privateConstructorUsedError;
   String? get resultFilePath => throw _privateConstructorUsedError;
   String? get resultImagePath => throw _privateConstructorUsedError;
+  double? get price => throw _privateConstructorUsedError;
 
   /// Serializes this AddAnalysisRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -53,6 +54,7 @@ abstract class $AddAnalysisRequestCopyWith<$Res> {
     int? clinicId,
     String? resultFilePath,
     String? resultImagePath,
+    double? price,
   });
 }
 
@@ -77,6 +79,7 @@ class _$AddAnalysisRequestCopyWithImpl<$Res, $Val extends AddAnalysisRequest>
     Object? clinicId = freezed,
     Object? resultFilePath = freezed,
     Object? resultImagePath = freezed,
+    Object? price = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -110,6 +113,11 @@ class _$AddAnalysisRequestCopyWithImpl<$Res, $Val extends AddAnalysisRequest>
                     ? _value.resultImagePath
                     : resultImagePath // ignore: cast_nullable_to_non_nullable
                         as String?,
+            price:
+                freezed == price
+                    ? _value.price
+                    : price // ignore: cast_nullable_to_non_nullable
+                        as double?,
           )
           as $Val,
     );
@@ -132,6 +140,7 @@ abstract class _$$AddAnalysisRequestImplCopyWith<$Res>
     int? clinicId,
     String? resultFilePath,
     String? resultImagePath,
+    double? price,
   });
 }
 
@@ -155,6 +164,7 @@ class __$$AddAnalysisRequestImplCopyWithImpl<$Res>
     Object? clinicId = freezed,
     Object? resultFilePath = freezed,
     Object? resultImagePath = freezed,
+    Object? price = freezed,
   }) {
     return _then(
       _$AddAnalysisRequestImpl(
@@ -188,6 +198,11 @@ class __$$AddAnalysisRequestImplCopyWithImpl<$Res>
                 ? _value.resultImagePath
                 : resultImagePath // ignore: cast_nullable_to_non_nullable
                     as String?,
+        price:
+            freezed == price
+                ? _value.price
+                : price // ignore: cast_nullable_to_non_nullable
+                    as double?,
       ),
     );
   }
@@ -203,6 +218,7 @@ class _$AddAnalysisRequestImpl implements _AddAnalysisRequest {
     this.clinicId,
     this.resultFilePath,
     this.resultImagePath,
+    this.price,
   });
 
   factory _$AddAnalysisRequestImpl.fromJson(Map<String, dynamic> json) =>
@@ -221,10 +237,12 @@ class _$AddAnalysisRequestImpl implements _AddAnalysisRequest {
   final String? resultFilePath;
   @override
   final String? resultImagePath;
+  @override
+  final double? price;
 
   @override
   String toString() {
-    return 'AddAnalysisRequest(name: $name, description: $description, patientNumber: $patientNumber, clinicId: $clinicId, resultFilePath: $resultFilePath, resultImagePath: $resultImagePath)';
+    return 'AddAnalysisRequest(name: $name, description: $description, patientNumber: $patientNumber, clinicId: $clinicId, resultFilePath: $resultFilePath, resultImagePath: $resultImagePath, price: $price)';
   }
 
   @override
@@ -242,7 +260,8 @@ class _$AddAnalysisRequestImpl implements _AddAnalysisRequest {
             (identical(other.resultFilePath, resultFilePath) ||
                 other.resultFilePath == resultFilePath) &&
             (identical(other.resultImagePath, resultImagePath) ||
-                other.resultImagePath == resultImagePath));
+                other.resultImagePath == resultImagePath) &&
+            (identical(other.price, price) || other.price == price));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -255,6 +274,7 @@ class _$AddAnalysisRequestImpl implements _AddAnalysisRequest {
     clinicId,
     resultFilePath,
     resultImagePath,
+    price,
   );
 
   /// Create a copy of AddAnalysisRequest
@@ -282,6 +302,7 @@ abstract class _AddAnalysisRequest implements AddAnalysisRequest {
     final int? clinicId,
     final String? resultFilePath,
     final String? resultImagePath,
+    final double? price,
   }) = _$AddAnalysisRequestImpl;
 
   factory _AddAnalysisRequest.fromJson(Map<String, dynamic> json) =
@@ -300,6 +321,8 @@ abstract class _AddAnalysisRequest implements AddAnalysisRequest {
   String? get resultFilePath;
   @override
   String? get resultImagePath;
+  @override
+  double? get price;
 
   /// Create a copy of AddAnalysisRequest
   /// with the given fields replaced by the non-null parameter values.

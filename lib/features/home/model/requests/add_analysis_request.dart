@@ -12,6 +12,7 @@ sealed class AddAnalysisRequest with _$AddAnalysisRequest {
     int? clinicId,
     String? resultFilePath,
     String? resultImagePath,
+    double? price,
   }) = _AddAnalysisRequest;
 
   factory AddAnalysisRequest.fromJson(Map<String, dynamic> json) =>
