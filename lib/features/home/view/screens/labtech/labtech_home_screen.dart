@@ -1,3 +1,5 @@
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:our_flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
 import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
@@ -34,7 +36,6 @@ class _LabtechHomeScreenState extends State<LabtechHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    _labtechAnalysisBloc = context.read<LabtechAnalysisBloc>();
     final currentUser = context.read<AuthBloc>().state.authUser?.user;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
@@ -82,53 +83,93 @@ class _LabtechHomeScreenState extends State<LabtechHomeScreen> {
             SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: TextFormField(
-                onFieldSubmitted: (value) {
-                  if (value.isNotEmpty) {
-                    _labtechAnalysisBloc.add(AnalysisSearched(query: value));
-                  }
-                },
-                onChanged:
-                    (value) => _labtechAnalysisBloc.add(
-                      AnalysisSearched(query: value),
-                    ),
-                controller: _searchController,
-                style: Theme.of(
-                  context,
-                ).textTheme.labelMedium!.copyWith(fontSize: 15),
-                textInputAction: TextInputAction.search,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-
-                    borderSide: BorderSide(
-                      color: Pallete.grayBorderColor,
-
-                      width: 1,
-                    ),
-                  ),
-                  contentPadding: EdgeInsets.symmetric(
-                    vertical: 13,
-                    horizontal: 15,
-                  ),
-                  suffixIcon: IconButton(
-                    icon: Icon(Icons.clear),
-                    color: Pallete.grayScaleColor500,
-                    iconSize: 20,
-                    onPressed: () {
-                      if (_searchController.text.isNotEmpty) {
-                        _searchController.clear();
-                        _labtechAnalysisBloc.add(AnalysisFetched());
+              child: BlocBuilder<LabtechAnalysisBloc, LabtechAnalysisState>(
+                builder: (context, state) {
+                  return TextFormField(
+                    onFieldSubmitted: (value) {
+                      if (value.trim().isNotEmpty) {
+                        _labtechAnalysisBloc.add(
+                          AnalysisSearched(query: value),
+                        );
                       }
                     },
-                  ),
-                  hintText: 'Search analysis',
-                  hintStyle: Theme.of(context).textTheme.labelMedium!.copyWith(
-                    fontSize: 15,
-                    color: Pallete.grayScaleColor500,
-                  ),
-                ),
-                keyboardType: TextInputType.text,
+                    onChanged:
+                        (value) => _labtechAnalysisBloc.add(
+                          AnalysisSearched(query: value),
+                        ),
+                    controller: _searchController,
+                    style: Theme.of(
+                      context,
+                    ).textTheme.labelMedium!.copyWith(fontSize: 15),
+                    textInputAction: TextInputAction.search,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+
+                        borderSide: BorderSide(
+                          color: Pallete.grayBorderColor,
+
+                          width: 1,
+                        ),
+                      ),
+                      contentPadding: EdgeInsets.symmetric(
+                        vertical: 13,
+                        horizontal: 15,
+                      ),
+                      suffixIcon: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.filter_list_rounded),
+                            color: Pallete.grayScaleColor500,
+                            iconSize: 20,
+                            onPressed: () async {
+                              final isName = await showModalBottomSheet<bool>(
+                                context: context,
+                                builder:
+                                    (_) => _AnalysisSearchFilterSheet(
+                                      isName: state.searchByName,
+                                    ),
+                              );
+                              if (isName != null) {
+                                _labtechAnalysisBloc.add(
+                                  ChangeFilter(isName: isName),
+                                );
+                              }
+                            },
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.clear),
+                            color: Pallete.grayScaleColor500,
+                            iconSize: 20,
+                            onPressed: () {
+                              if (_searchController.text.isNotEmpty) {
+                                _searchController.clear();
+                                _labtechAnalysisBloc.add(AnalysisFetched());
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                      hintText: 'Search analysis',
+                      hintStyle: Theme.of(
+                        context,
+                      ).textTheme.labelMedium!.copyWith(
+                        fontSize: 15,
+                        color: Pallete.grayScaleColor500,
+                      ),
+                    ),
+                    inputFormatters:
+                        state.searchByName
+                            ? null
+                            : [FilteringTextInputFormatter.digitsOnly],
+                    keyboardType:
+                        state.searchByName
+                            ? TextInputType.text
+                            : TextInputType.number,
+                  );
+                },
               ),
             ),
           ],
@@ -284,12 +325,12 @@ class _LabtechHomeScreenState extends State<LabtechHomeScreen> {
                 },
               ),
               BlocListener<UserBloc, UserState>(
-                listener: (_, state) {
+                listener: (_, state) async {
                   if (state.status.isLoading) {
                     LoadingOverlay().show(context);
                   } else {
                     LoadingOverlay().hideAll();
-                    clearAndShowSnackBar(context, state.statusMessage);
+                    await Fluttertoast.showToast(msg: state.statusMessage);
                   }
                 },
               ),
@@ -312,4 +353,116 @@ class _LabtechHomeScreenState extends State<LabtechHomeScreen> {
   late LabtechAnalysisBloc _labtechAnalysisBloc;
   final _searchController = TextEditingController();
   int _currentStatusindex = 0;
+}
+
+class _AnalysisSearchFilterSheet extends StatefulWidget {
+  const _AnalysisSearchFilterSheet({this.isName = true});
+  final bool isName;
+
+  @override
+  State<_AnalysisSearchFilterSheet> createState() =>
+      _AnalysisSearchFilterSheetState();
+}
+
+class _AnalysisSearchFilterSheetState
+    extends State<_AnalysisSearchFilterSheet> {
+  @override
+  void initState() {
+    super.initState();
+    _isName = widget.isName;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(16),
+          topRight: Radius.circular(16),
+        ),
+        color: Colors.white,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        spacing: 10,
+        children: [
+          SizedBox.shrink(),
+          Align(
+            alignment: Alignment.center,
+            child: Container(
+              width: 50,
+              height: 5,
+              decoration: BoxDecoration(color: Colors.blueGrey),
+            ),
+          ),
+
+          Text(
+            'Search By',
+            textAlign: TextAlign.center,
+            style: Theme.of(
+              context,
+            ).textTheme.labelMedium!.copyWith(fontSize: 18),
+          ),
+          RadioListTile<bool>(
+            tileColor: Pallete.primaryColor,
+            fillColor: WidgetStatePropertyAll(Pallete.primaryColor),
+
+            title: Text(
+              'Name',
+              style: Theme.of(
+                context,
+              ).textTheme.labelMedium!.copyWith(fontSize: 12),
+            ),
+            value: true,
+            groupValue: _isName,
+            onChanged:
+                (value) => setState(() {
+                  _isName = value!;
+                }),
+          ),
+          RadioListTile<bool>(
+            tileColor: Pallete.grayBorderColor,
+            fillColor: WidgetStatePropertyAll(Pallete.primaryColor),
+
+            title: Text(
+              'Number',
+              style: Theme.of(
+                context,
+              ).textTheme.labelMedium!.copyWith(fontSize: 12),
+            ),
+            value: false,
+            groupValue: _isName,
+            onChanged:
+                (value) => setState(() {
+                  _isName = value!;
+                }),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5),
+              ),
+              fixedSize: Size(
+                screenWidth(context) * 0.3,
+                screenHeight(context) * 0.06,
+              ),
+            ),
+            onPressed: () {
+              context.pop<bool>(_isName);
+            },
+            child: Text(
+              'Ok',
+              style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                fontSize: 13,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          SizedBox.shrink(),
+        ],
+      ),
+    );
+  }
+
+  bool _isName = true;
 }

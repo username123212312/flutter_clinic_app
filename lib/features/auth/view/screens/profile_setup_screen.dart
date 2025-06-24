@@ -11,6 +11,7 @@ import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 import 'package:our_flutter_clinic_app/core/widgets/background_container.dart';
 import 'package:our_flutter_clinic_app/core/widgets/blood_types_widget.dart';
+import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/basic_info_widget.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/custom_elevated_button.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/select_your_gender_widet.dart';
@@ -48,6 +49,7 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
     firstNameController.dispose();
     lastNameController.dispose();
     _completeAddressController.dispose();
+    LoadingOverlay().hideAll();
     super.dispose();
   }
 
@@ -87,11 +89,15 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
                     _buildStepper(),
                     BlocListener<UserBloc, UserState>(
                       listener: (context, state) {
-                        clearAndShowSnackBar(context, state.statusMessage);
-
-                        if (state.user?.firstName != null) {
+                        if (state.status.isLoading) {
+                          LoadingOverlay().show(context);
+                        } else {
                           clearAndShowSnackBar(context, state.statusMessage);
-                          context.goNamed(AppRouteConstants.homeRouteName);
+
+                          if (state.user?.firstName != null) {
+                            clearAndShowSnackBar(context, state.statusMessage);
+                            context.goNamed(AppRouteConstants.homeRouteName);
+                          }
                         }
                       },
                       child: SizedBox(height: 15),
@@ -251,10 +257,13 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
                   return null;
                 }
               },
-              onTap: () async {
-                await _pickLocation();
-              },
-              readOnly: true,
+              suffixIcon: IconButton(
+                onPressed: () async {
+                  await _pickLocation();
+                },
+                icon: Icon(Icons.location_on, color: Pallete.gray1),
+              ),
+              textInputAction: TextInputAction.done,
               maxLength: 100,
               controller: _completeAddressController,
               title: 'Complete Address',

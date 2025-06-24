@@ -31,6 +31,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
   @override
   void dispose() async {
     _emailController.dispose();
+    _phoneController.dispose();
     super.dispose();
   }
 
@@ -61,9 +62,25 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
                 ),
                 SizedBox(height: screenHeight(context) * 0.02),
                 _buildHeader(),
-                SizedBox(height: screenHeight(context) * 0.25),
+                SizedBox(height: screenHeight(context) * 0.05),
+                SizedBox(
+                  width: screenWidth(context) * 0.7,
+                  height: screenHeight(context) * 0.08,
+                  child: FittedBox(
+                    child: TwoSelectableWidget(
+                      inBetweenPadding: 100,
+                      twoTitles: ['Email', 'Phone'],
+                      onToggleIndex: (index) {
+                        FocusScope.of(context).unfocus();
+                        toggleIndex(index);
+                      },
+                      currentIndex: _selectedIndex,
+                    ),
+                  ),
+                ),
+                SizedBox(height: screenHeight(context) * 0.04),
                 _buildFormField(),
-                SizedBox(height: screenHeight(context) * 0.02),
+                SizedBox(height: screenHeight(context) * 0.08),
                 _buildNextButton(),
               ],
             ),
@@ -95,7 +112,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
                       clearAndShowSnackBar(context, state.message);
                       context.pushNamed(
                         AppRouteConstants.verificationCodeRouteName,
-                        pathParameters: {'email': _emailController.text},
+                        pathParameters: {
+                          'email':
+                              _emailController.text.trim().isEmpty
+                                  ? _phoneController.text
+                                  : _emailController.text,
+                        },
                       );
                     }
                   }
@@ -105,9 +127,15 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
                 title: 'Next',
                 onTap: () async {
                   if (submit()) {
-                    await context.read<ChangePasswordCubit>().sendEmailOtp(
-                      _emailController.text,
-                    );
+                    if (_emailController.text.trim().isEmpty) {
+                      await context.read<ChangePasswordCubit>().sendSMSOtp(
+                        _phoneController.text,
+                      );
+                    } else {
+                      await context.read<ChangePasswordCubit>().sendEmailOtp(
+                        _emailController.text,
+                      );
+                    }
                   }
                 },
                 fillColor: Theme.of(context).colorScheme.primary,
@@ -122,21 +150,46 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
 
   Widget _buildFormField() {
     return Container(
-      padding: EdgeInsets.only(left: 30, right: 20),
+      padding: EdgeInsets.only(left: 30, right: 30),
       child: Form(
         key: _formKey,
-        child: CustomTextField(
+        child: TextFormField(
+          style: TextStyle(color: Colors.black),
+          focusNode: _selectedIndex == 0 ? _emailFocusNode : _phoneFocusNode,
           textInputAction: TextInputAction.done,
-          controller: _emailController,
-          validator: (value) {
-            if (!ValidatorUtil.validateEmail(value)) {
-              return 'Enter a valid Email';
-            } else {
-              return null;
-            }
-          },
-          hintText: 'Email',
-          keyboardType: TextInputType.text,
+          controller: _selectedIndex == 0 ? _emailController : _phoneController,
+          validator:
+              _selectedIndex == 0
+                  ? (value) {
+                    if (!ValidatorUtil.validateEmail(value)) {
+                      return 'Enter a valid Email';
+                    } else {
+                      return null;
+                    }
+                  }
+                  : (value) {
+                    if (!ValidatorUtil.validatePhone(value)) {
+                      return 'Enter a valid Phone';
+                    } else {
+                      return null;
+                    }
+                  },
+          decoration: InputDecoration(
+            contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+            hintText: _selectedIndex == 0 ? 'Email' : 'Phone',
+            hintStyle: TextStyle(color: Pallete.gray1),
+            prefixIconConstraints: BoxConstraints(maxHeight: 25, maxWidth: 50),
+            prefixIcon:
+                _selectedIndex == 0
+                    ? null
+                    : Text(
+                      textAlign: TextAlign.center,
+                      '  +963',
+                      style: TextStyle(color: Colors.black),
+                    ),
+          ),
+          keyboardType:
+              _selectedIndex == 0 ? TextInputType.text : TextInputType.phone,
         ),
       ),
     );
@@ -172,6 +225,19 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
     return _formKey.currentState!.validate();
   }
 
+  void toggleIndex(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    _emailController.clear();
+    _phoneController.clear();
+    FocusScope.of(context).nextFocus();
+  }
+
   final _emailController = TextEditingController();
+  final _phoneController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  final _emailFocusNode = FocusNode();
+  final _phoneFocusNode = FocusNode();
+  int _selectedIndex = 0;
 }

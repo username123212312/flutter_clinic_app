@@ -26,6 +26,30 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
         ),
         Right(value: final r) => state.copyWith(
           email: email,
+          phone: null,
+          status: DataStatus.data,
+          message: r.message,
+        ),
+      };
+      emit(newState);
+    } catch (e) {
+      emit(state.copyWith(status: DataStatus.error, message: e.toString()));
+    }
+  }
+
+  Future<void> sendSMSOtp(String phone) async {
+    emitLoading();
+    try {
+      final response = await _changePasswordRepository.sendSMSOtp(phone);
+
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          status: DataStatus.error,
+          message: l.message,
+        ),
+        Right(value: final r) => state.copyWith(
+          phone: phone,
+          email: null,
           status: DataStatus.data,
           message: r.message,
         ),
@@ -61,11 +85,61 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
     }
   }
 
-  Future<void> resetPassword(String password) async {
+  Future<void> verifySMSOtp(int otp) async {
     emitLoading();
     try {
-      final response = await _changePasswordRepository.resetPassword(
+      final response = await _changePasswordRepository.verifySMSOtp(
+        state.phone ?? '',
+        otp,
+      );
+
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          status: DataStatus.error,
+          message: l.message,
+        ),
+        Right(value: final r) => state.copyWith(
+          resetToken: r.data,
+          status: DataStatus.data,
+          message: r.message,
+        ),
+      };
+      emit(newState);
+    } catch (e) {
+      emit(state.copyWith(status: DataStatus.error, message: e.toString()));
+    }
+  }
+
+  Future<void> emailResetPassword(String password) async {
+    emitLoading();
+    try {
+      final response = await _changePasswordRepository.emailResetPassword(
         state.email ?? '',
+        state.resetToken ?? '',
+        password,
+      );
+
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          status: DataStatus.error,
+          message: l.message,
+        ),
+        Right(value: final r) => state.copyWith(
+          status: DataStatus.done,
+          message: r.message,
+        ),
+      };
+      emit(newState);
+    } catch (e) {
+      emit(state.copyWith(status: DataStatus.error, message: e.toString()));
+    }
+  }
+
+  Future<void> phoneResetPassword(String password) async {
+    emitLoading();
+    try {
+      final response = await _changePasswordRepository.phoneResetPassword(
+        state.phone ?? '',
         state.resetToken ?? '',
         password,
       );

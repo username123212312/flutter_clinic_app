@@ -13,7 +13,7 @@ sealed class NewAppointmentState with _$NewAppointmentState {
     DateTime? date,
     List<TimeOfDay>? availableTimes,
     TimeOfDay? time,
-    DataStatus? status,
+    required DataStatus status,
     int? appointmentID,
   }) = _NewAppointmentState;
   factory NewAppointmentState.initial() {

@@ -25,6 +25,7 @@ mixin _$LabtechAnalysisEvent {
     required TResult Function(int analysisId) analysisShown,
     required TResult Function(String query) searched,
     required TResult Function(AddAnalysisRequest request) addAnalysis,
+    required TResult Function(bool isName) changeFilter,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
@@ -33,6 +34,7 @@ mixin _$LabtechAnalysisEvent {
     TResult? Function(int analysisId)? analysisShown,
     TResult? Function(String query)? searched,
     TResult? Function(AddAnalysisRequest request)? addAnalysis,
+    TResult? Function(bool isName)? changeFilter,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
@@ -41,6 +43,7 @@ mixin _$LabtechAnalysisEvent {
     TResult Function(int analysisId)? analysisShown,
     TResult Function(String query)? searched,
     TResult Function(AddAnalysisRequest request)? addAnalysis,
+    TResult Function(bool isName)? changeFilter,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,6 +54,7 @@ mixin _$LabtechAnalysisEvent {
     required TResult Function(AnalysisShown value) analysisShown,
     required TResult Function(AnalysisSearched value) searched,
     required TResult Function(AnalysisAdded value) addAnalysis,
+    required TResult Function(ChangeFilter value) changeFilter,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
@@ -59,6 +63,7 @@ mixin _$LabtechAnalysisEvent {
     TResult? Function(AnalysisShown value)? analysisShown,
     TResult? Function(AnalysisSearched value)? searched,
     TResult? Function(AnalysisAdded value)? addAnalysis,
+    TResult? Function(ChangeFilter value)? changeFilter,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
@@ -67,6 +72,7 @@ mixin _$LabtechAnalysisEvent {
     TResult Function(AnalysisShown value)? analysisShown,
     TResult Function(AnalysisSearched value)? searched,
     TResult Function(AnalysisAdded value)? addAnalysis,
+    TResult Function(ChangeFilter value)? changeFilter,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -145,6 +151,7 @@ class _$AnalysisFetchedImpl implements AnalysisFetched {
     required TResult Function(int analysisId) analysisShown,
     required TResult Function(String query) searched,
     required TResult Function(AddAnalysisRequest request) addAnalysis,
+    required TResult Function(bool isName) changeFilter,
   }) {
     return analysisFetched();
   }
@@ -157,6 +164,7 @@ class _$AnalysisFetchedImpl implements AnalysisFetched {
     TResult? Function(int analysisId)? analysisShown,
     TResult? Function(String query)? searched,
     TResult? Function(AddAnalysisRequest request)? addAnalysis,
+    TResult? Function(bool isName)? changeFilter,
   }) {
     return analysisFetched?.call();
   }
@@ -169,6 +177,7 @@ class _$AnalysisFetchedImpl implements AnalysisFetched {
     TResult Function(int analysisId)? analysisShown,
     TResult Function(String query)? searched,
     TResult Function(AddAnalysisRequest request)? addAnalysis,
+    TResult Function(bool isName)? changeFilter,
     required TResult orElse(),
   }) {
     if (analysisFetched != null) {
@@ -186,6 +195,7 @@ class _$AnalysisFetchedImpl implements AnalysisFetched {
     required TResult Function(AnalysisShown value) analysisShown,
     required TResult Function(AnalysisSearched value) searched,
     required TResult Function(AnalysisAdded value) addAnalysis,
+    required TResult Function(ChangeFilter value) changeFilter,
   }) {
     return analysisFetched(this);
   }
@@ -198,6 +208,7 @@ class _$AnalysisFetchedImpl implements AnalysisFetched {
     TResult? Function(AnalysisShown value)? analysisShown,
     TResult? Function(AnalysisSearched value)? searched,
     TResult? Function(AnalysisAdded value)? addAnalysis,
+    TResult? Function(ChangeFilter value)? changeFilter,
   }) {
     return analysisFetched?.call(this);
   }
@@ -210,6 +221,7 @@ class _$AnalysisFetchedImpl implements AnalysisFetched {
     TResult Function(AnalysisShown value)? analysisShown,
     TResult Function(AnalysisSearched value)? searched,
     TResult Function(AnalysisAdded value)? addAnalysis,
+    TResult Function(ChangeFilter value)? changeFilter,
     required TResult orElse(),
   }) {
     if (analysisFetched != null) {
@@ -306,6 +318,7 @@ class _$AnalysisStatusChangedImpl implements AnalysisStatusChanged {
     required TResult Function(int analysisId) analysisShown,
     required TResult Function(String query) searched,
     required TResult Function(AddAnalysisRequest request) addAnalysis,
+    required TResult Function(bool isName) changeFilter,
   }) {
     return analysisStatusChanged(analysisStatus);
   }
@@ -318,6 +331,7 @@ class _$AnalysisStatusChangedImpl implements AnalysisStatusChanged {
     TResult? Function(int analysisId)? analysisShown,
     TResult? Function(String query)? searched,
     TResult? Function(AddAnalysisRequest request)? addAnalysis,
+    TResult? Function(bool isName)? changeFilter,
   }) {
     return analysisStatusChanged?.call(analysisStatus);
   }
@@ -330,6 +344,7 @@ class _$AnalysisStatusChangedImpl implements AnalysisStatusChanged {
     TResult Function(int analysisId)? analysisShown,
     TResult Function(String query)? searched,
     TResult Function(AddAnalysisRequest request)? addAnalysis,
+    TResult Function(bool isName)? changeFilter,
     required TResult orElse(),
   }) {
     if (analysisStatusChanged != null) {
@@ -347,6 +362,7 @@ class _$AnalysisStatusChangedImpl implements AnalysisStatusChanged {
     required TResult Function(AnalysisShown value) analysisShown,
     required TResult Function(AnalysisSearched value) searched,
     required TResult Function(AnalysisAdded value) addAnalysis,
+    required TResult Function(ChangeFilter value) changeFilter,
   }) {
     return analysisStatusChanged(this);
   }
@@ -359,6 +375,7 @@ class _$AnalysisStatusChangedImpl implements AnalysisStatusChanged {
     TResult? Function(AnalysisShown value)? analysisShown,
     TResult? Function(AnalysisSearched value)? searched,
     TResult? Function(AnalysisAdded value)? addAnalysis,
+    TResult? Function(ChangeFilter value)? changeFilter,
   }) {
     return analysisStatusChanged?.call(this);
   }
@@ -371,6 +388,7 @@ class _$AnalysisStatusChangedImpl implements AnalysisStatusChanged {
     TResult Function(AnalysisShown value)? analysisShown,
     TResult Function(AnalysisSearched value)? searched,
     TResult Function(AnalysisAdded value)? addAnalysis,
+    TResult Function(ChangeFilter value)? changeFilter,
     required TResult orElse(),
   }) {
     if (analysisStatusChanged != null) {
@@ -472,6 +490,7 @@ class _$AnalysisShownImpl implements AnalysisShown {
     required TResult Function(int analysisId) analysisShown,
     required TResult Function(String query) searched,
     required TResult Function(AddAnalysisRequest request) addAnalysis,
+    required TResult Function(bool isName) changeFilter,
   }) {
     return analysisShown(analysisId);
   }
@@ -484,6 +503,7 @@ class _$AnalysisShownImpl implements AnalysisShown {
     TResult? Function(int analysisId)? analysisShown,
     TResult? Function(String query)? searched,
     TResult? Function(AddAnalysisRequest request)? addAnalysis,
+    TResult? Function(bool isName)? changeFilter,
   }) {
     return analysisShown?.call(analysisId);
   }
@@ -496,6 +516,7 @@ class _$AnalysisShownImpl implements AnalysisShown {
     TResult Function(int analysisId)? analysisShown,
     TResult Function(String query)? searched,
     TResult Function(AddAnalysisRequest request)? addAnalysis,
+    TResult Function(bool isName)? changeFilter,
     required TResult orElse(),
   }) {
     if (analysisShown != null) {
@@ -513,6 +534,7 @@ class _$AnalysisShownImpl implements AnalysisShown {
     required TResult Function(AnalysisShown value) analysisShown,
     required TResult Function(AnalysisSearched value) searched,
     required TResult Function(AnalysisAdded value) addAnalysis,
+    required TResult Function(ChangeFilter value) changeFilter,
   }) {
     return analysisShown(this);
   }
@@ -525,6 +547,7 @@ class _$AnalysisShownImpl implements AnalysisShown {
     TResult? Function(AnalysisShown value)? analysisShown,
     TResult? Function(AnalysisSearched value)? searched,
     TResult? Function(AnalysisAdded value)? addAnalysis,
+    TResult? Function(ChangeFilter value)? changeFilter,
   }) {
     return analysisShown?.call(this);
   }
@@ -537,6 +560,7 @@ class _$AnalysisShownImpl implements AnalysisShown {
     TResult Function(AnalysisShown value)? analysisShown,
     TResult Function(AnalysisSearched value)? searched,
     TResult Function(AnalysisAdded value)? addAnalysis,
+    TResult Function(ChangeFilter value)? changeFilter,
     required TResult orElse(),
   }) {
     if (analysisShown != null) {
@@ -639,6 +663,7 @@ class _$AnalysisSearchedImpl implements AnalysisSearched {
     required TResult Function(int analysisId) analysisShown,
     required TResult Function(String query) searched,
     required TResult Function(AddAnalysisRequest request) addAnalysis,
+    required TResult Function(bool isName) changeFilter,
   }) {
     return searched(query);
   }
@@ -651,6 +676,7 @@ class _$AnalysisSearchedImpl implements AnalysisSearched {
     TResult? Function(int analysisId)? analysisShown,
     TResult? Function(String query)? searched,
     TResult? Function(AddAnalysisRequest request)? addAnalysis,
+    TResult? Function(bool isName)? changeFilter,
   }) {
     return searched?.call(query);
   }
@@ -663,6 +689,7 @@ class _$AnalysisSearchedImpl implements AnalysisSearched {
     TResult Function(int analysisId)? analysisShown,
     TResult Function(String query)? searched,
     TResult Function(AddAnalysisRequest request)? addAnalysis,
+    TResult Function(bool isName)? changeFilter,
     required TResult orElse(),
   }) {
     if (searched != null) {
@@ -680,6 +707,7 @@ class _$AnalysisSearchedImpl implements AnalysisSearched {
     required TResult Function(AnalysisShown value) analysisShown,
     required TResult Function(AnalysisSearched value) searched,
     required TResult Function(AnalysisAdded value) addAnalysis,
+    required TResult Function(ChangeFilter value) changeFilter,
   }) {
     return searched(this);
   }
@@ -692,6 +720,7 @@ class _$AnalysisSearchedImpl implements AnalysisSearched {
     TResult? Function(AnalysisShown value)? analysisShown,
     TResult? Function(AnalysisSearched value)? searched,
     TResult? Function(AnalysisAdded value)? addAnalysis,
+    TResult? Function(ChangeFilter value)? changeFilter,
   }) {
     return searched?.call(this);
   }
@@ -704,6 +733,7 @@ class _$AnalysisSearchedImpl implements AnalysisSearched {
     TResult Function(AnalysisShown value)? analysisShown,
     TResult Function(AnalysisSearched value)? searched,
     TResult Function(AnalysisAdded value)? addAnalysis,
+    TResult Function(ChangeFilter value)? changeFilter,
     required TResult orElse(),
   }) {
     if (searched != null) {
@@ -815,6 +845,7 @@ class _$AnalysisAddedImpl implements AnalysisAdded {
     required TResult Function(int analysisId) analysisShown,
     required TResult Function(String query) searched,
     required TResult Function(AddAnalysisRequest request) addAnalysis,
+    required TResult Function(bool isName) changeFilter,
   }) {
     return addAnalysis(request);
   }
@@ -827,6 +858,7 @@ class _$AnalysisAddedImpl implements AnalysisAdded {
     TResult? Function(int analysisId)? analysisShown,
     TResult? Function(String query)? searched,
     TResult? Function(AddAnalysisRequest request)? addAnalysis,
+    TResult? Function(bool isName)? changeFilter,
   }) {
     return addAnalysis?.call(request);
   }
@@ -839,6 +871,7 @@ class _$AnalysisAddedImpl implements AnalysisAdded {
     TResult Function(int analysisId)? analysisShown,
     TResult Function(String query)? searched,
     TResult Function(AddAnalysisRequest request)? addAnalysis,
+    TResult Function(bool isName)? changeFilter,
     required TResult orElse(),
   }) {
     if (addAnalysis != null) {
@@ -856,6 +889,7 @@ class _$AnalysisAddedImpl implements AnalysisAdded {
     required TResult Function(AnalysisShown value) analysisShown,
     required TResult Function(AnalysisSearched value) searched,
     required TResult Function(AnalysisAdded value) addAnalysis,
+    required TResult Function(ChangeFilter value) changeFilter,
   }) {
     return addAnalysis(this);
   }
@@ -868,6 +902,7 @@ class _$AnalysisAddedImpl implements AnalysisAdded {
     TResult? Function(AnalysisShown value)? analysisShown,
     TResult? Function(AnalysisSearched value)? searched,
     TResult? Function(AnalysisAdded value)? addAnalysis,
+    TResult? Function(ChangeFilter value)? changeFilter,
   }) {
     return addAnalysis?.call(this);
   }
@@ -880,6 +915,7 @@ class _$AnalysisAddedImpl implements AnalysisAdded {
     TResult Function(AnalysisShown value)? analysisShown,
     TResult Function(AnalysisSearched value)? searched,
     TResult Function(AnalysisAdded value)? addAnalysis,
+    TResult Function(ChangeFilter value)? changeFilter,
     required TResult orElse(),
   }) {
     if (addAnalysis != null) {
@@ -903,9 +939,179 @@ abstract class AnalysisAdded implements LabtechAnalysisEvent {
 }
 
 /// @nodoc
+abstract class _$$ChangeFilterImplCopyWith<$Res> {
+  factory _$$ChangeFilterImplCopyWith(
+    _$ChangeFilterImpl value,
+    $Res Function(_$ChangeFilterImpl) then,
+  ) = __$$ChangeFilterImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isName});
+}
+
+/// @nodoc
+class __$$ChangeFilterImplCopyWithImpl<$Res>
+    extends _$LabtechAnalysisEventCopyWithImpl<$Res, _$ChangeFilterImpl>
+    implements _$$ChangeFilterImplCopyWith<$Res> {
+  __$$ChangeFilterImplCopyWithImpl(
+    _$ChangeFilterImpl _value,
+    $Res Function(_$ChangeFilterImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of LabtechAnalysisEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? isName = null}) {
+    return _then(
+      _$ChangeFilterImpl(
+        isName:
+            null == isName
+                ? _value.isName
+                : isName // ignore: cast_nullable_to_non_nullable
+                    as bool,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$ChangeFilterImpl implements ChangeFilter {
+  const _$ChangeFilterImpl({required this.isName});
+
+  @override
+  final bool isName;
+
+  @override
+  String toString() {
+    return 'LabtechAnalysisEvent.changeFilter(isName: $isName)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeFilterImpl &&
+            (identical(other.isName, isName) || other.isName == isName));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isName);
+
+  /// Create a copy of LabtechAnalysisEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeFilterImplCopyWith<_$ChangeFilterImpl> get copyWith =>
+      __$$ChangeFilterImplCopyWithImpl<_$ChangeFilterImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() analysisFetched,
+    required TResult Function(AnalysisStatus analysisStatus)
+    analysisStatusChanged,
+    required TResult Function(int analysisId) analysisShown,
+    required TResult Function(String query) searched,
+    required TResult Function(AddAnalysisRequest request) addAnalysis,
+    required TResult Function(bool isName) changeFilter,
+  }) {
+    return changeFilter(isName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? analysisFetched,
+    TResult? Function(AnalysisStatus analysisStatus)? analysisStatusChanged,
+    TResult? Function(int analysisId)? analysisShown,
+    TResult? Function(String query)? searched,
+    TResult? Function(AddAnalysisRequest request)? addAnalysis,
+    TResult? Function(bool isName)? changeFilter,
+  }) {
+    return changeFilter?.call(isName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? analysisFetched,
+    TResult Function(AnalysisStatus analysisStatus)? analysisStatusChanged,
+    TResult Function(int analysisId)? analysisShown,
+    TResult Function(String query)? searched,
+    TResult Function(AddAnalysisRequest request)? addAnalysis,
+    TResult Function(bool isName)? changeFilter,
+    required TResult orElse(),
+  }) {
+    if (changeFilter != null) {
+      return changeFilter(isName);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AnalysisFetched value) analysisFetched,
+    required TResult Function(AnalysisStatusChanged value)
+    analysisStatusChanged,
+    required TResult Function(AnalysisShown value) analysisShown,
+    required TResult Function(AnalysisSearched value) searched,
+    required TResult Function(AnalysisAdded value) addAnalysis,
+    required TResult Function(ChangeFilter value) changeFilter,
+  }) {
+    return changeFilter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AnalysisFetched value)? analysisFetched,
+    TResult? Function(AnalysisStatusChanged value)? analysisStatusChanged,
+    TResult? Function(AnalysisShown value)? analysisShown,
+    TResult? Function(AnalysisSearched value)? searched,
+    TResult? Function(AnalysisAdded value)? addAnalysis,
+    TResult? Function(ChangeFilter value)? changeFilter,
+  }) {
+    return changeFilter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AnalysisFetched value)? analysisFetched,
+    TResult Function(AnalysisStatusChanged value)? analysisStatusChanged,
+    TResult Function(AnalysisShown value)? analysisShown,
+    TResult Function(AnalysisSearched value)? searched,
+    TResult Function(AnalysisAdded value)? addAnalysis,
+    TResult Function(ChangeFilter value)? changeFilter,
+    required TResult orElse(),
+  }) {
+    if (changeFilter != null) {
+      return changeFilter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ChangeFilter implements LabtechAnalysisEvent {
+  const factory ChangeFilter({required final bool isName}) = _$ChangeFilterImpl;
+
+  bool get isName;
+
+  /// Create a copy of LabtechAnalysisEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ChangeFilterImplCopyWith<_$ChangeFilterImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$LabtechAnalysisState {
   List<AnalysisModel> get analysisList => throw _privateConstructorUsedError;
   AnalysisStatus get analysisStatus => throw _privateConstructorUsedError;
+  bool get searchByName => throw _privateConstructorUsedError;
   DataStatus get status => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
 
@@ -926,6 +1132,7 @@ abstract class $LabtechAnalysisStateCopyWith<$Res> {
   $Res call({
     List<AnalysisModel> analysisList,
     AnalysisStatus analysisStatus,
+    bool searchByName,
     DataStatus status,
     String message,
   });
@@ -951,6 +1158,7 @@ class _$LabtechAnalysisStateCopyWithImpl<
   $Res call({
     Object? analysisList = null,
     Object? analysisStatus = null,
+    Object? searchByName = null,
     Object? status = null,
     Object? message = null,
   }) {
@@ -966,6 +1174,11 @@ class _$LabtechAnalysisStateCopyWithImpl<
                     ? _value.analysisStatus
                     : analysisStatus // ignore: cast_nullable_to_non_nullable
                         as AnalysisStatus,
+            searchByName:
+                null == searchByName
+                    ? _value.searchByName
+                    : searchByName // ignore: cast_nullable_to_non_nullable
+                        as bool,
             status:
                 null == status
                     ? _value.status
@@ -994,6 +1207,7 @@ abstract class _$$LabtechAnalysisStateImplCopyWith<$Res>
   $Res call({
     List<AnalysisModel> analysisList,
     AnalysisStatus analysisStatus,
+    bool searchByName,
     DataStatus status,
     String message,
   });
@@ -1015,6 +1229,7 @@ class __$$LabtechAnalysisStateImplCopyWithImpl<$Res>
   $Res call({
     Object? analysisList = null,
     Object? analysisStatus = null,
+    Object? searchByName = null,
     Object? status = null,
     Object? message = null,
   }) {
@@ -1030,6 +1245,11 @@ class __$$LabtechAnalysisStateImplCopyWithImpl<$Res>
                 ? _value.analysisStatus
                 : analysisStatus // ignore: cast_nullable_to_non_nullable
                     as AnalysisStatus,
+        searchByName:
+            null == searchByName
+                ? _value.searchByName
+                : searchByName // ignore: cast_nullable_to_non_nullable
+                    as bool,
         status:
             null == status
                 ? _value.status
@@ -1051,6 +1271,7 @@ class _$LabtechAnalysisStateImpl implements _LabtechAnalysisState {
   const _$LabtechAnalysisStateImpl({
     required final List<AnalysisModel> analysisList,
     required this.analysisStatus,
+    required this.searchByName,
     required this.status,
     required this.message,
   }) : _analysisList = analysisList;
@@ -1066,13 +1287,15 @@ class _$LabtechAnalysisStateImpl implements _LabtechAnalysisState {
   @override
   final AnalysisStatus analysisStatus;
   @override
+  final bool searchByName;
+  @override
   final DataStatus status;
   @override
   final String message;
 
   @override
   String toString() {
-    return 'LabtechAnalysisState(analysisList: $analysisList, analysisStatus: $analysisStatus, status: $status, message: $message)';
+    return 'LabtechAnalysisState(analysisList: $analysisList, analysisStatus: $analysisStatus, searchByName: $searchByName, status: $status, message: $message)';
   }
 
   @override
@@ -1086,6 +1309,8 @@ class _$LabtechAnalysisStateImpl implements _LabtechAnalysisState {
             ) &&
             (identical(other.analysisStatus, analysisStatus) ||
                 other.analysisStatus == analysisStatus) &&
+            (identical(other.searchByName, searchByName) ||
+                other.searchByName == searchByName) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message));
   }
@@ -1095,6 +1320,7 @@ class _$LabtechAnalysisStateImpl implements _LabtechAnalysisState {
     runtimeType,
     const DeepCollectionEquality().hash(_analysisList),
     analysisStatus,
+    searchByName,
     status,
     message,
   );
@@ -1116,6 +1342,7 @@ abstract class _LabtechAnalysisState implements LabtechAnalysisState {
   const factory _LabtechAnalysisState({
     required final List<AnalysisModel> analysisList,
     required final AnalysisStatus analysisStatus,
+    required final bool searchByName,
     required final DataStatus status,
     required final String message,
   }) = _$LabtechAnalysisStateImpl;
@@ -1124,6 +1351,8 @@ abstract class _LabtechAnalysisState implements LabtechAnalysisState {
   List<AnalysisModel> get analysisList;
   @override
   AnalysisStatus get analysisStatus;
+  @override
+  bool get searchByName;
   @override
   DataStatus get status;
   @override

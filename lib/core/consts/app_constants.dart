@@ -28,6 +28,8 @@ class AppConstants {
   static const loginWithGooglePath = '/$apiPath/auth/google';
   static const logoutPath = '/$apiPath/logout';
   static const sendEmailOtpPath = '/$apiPath/send-email-otp';
+  static const sendSMSOtpPath = '/$apiPath/send-sms-otp';
+  static const verifySMSOtpPath = '/$apiPath/verify-sms-otp';
   static const verifyEmailOtpPath = '/$apiPath/verify-email-otp';
   static const resetPasswordPath = '/$apiPath/resetPassword';
   static const sendFCMTokenPath = '/$apiPath/saveFcmToken';
@@ -89,6 +91,9 @@ class AppConstants {
   static const labTechAddAnalyseResultPath = '$labTechPath/addAnalyseResult';
   static const labTechShowAllAnalysisPath = '$labTechPath/showAllAnalysis';
   static const labTechShowAnalysePath = '$labTechPath/showAnalyse';
-  static const labTechSearchAnalysePath = '$labTechPath/searchAnalyse';
+  static const labTechSearchAnalysisByNamePath =
+      '$labTechPath/searchAnalyseByName';
+  static const labTechSearchAnalyseByPatientNumPath =
+      '$labTechPath/searchAnalyseByPatientNum';
   static const labTechShowClinicsPath = '$labTechPath/showClinics';
 }

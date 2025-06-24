@@ -44,6 +44,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
+      listenWhen: (previous, current) {
+        return previous.isAuth != current.isAuth;
+      },
       listener: (context, state) {
         eLog('New AuthState: $state');
         if (state.isAuth != null) {

@@ -36,6 +36,60 @@ class ChangePasswordRepository {
     }
   }
 
+  Future<Either<AppFailure, AppResponse>> sendSMSOtp(String phone) async {
+    try {
+      final response = await _dio.post(
+        AppConstants.sendSMSOtpPath,
+        data: {'phone': phone},
+      );
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse(
+            success: true,
+            message: 'verification phone sent successfully, check OTP code',
+          ),
+        );
+      } else {
+        throw HttpException(response.data['message'] ?? 'Some error occurred');
+      }
+    } on DioException catch (e) {
+      return Left(AppFailure(message: e.message ?? 'Error'));
+    } on HttpException catch (e) {
+      return Left(AppFailure(message: e.message));
+    } catch (e) {
+      return Left(AppFailure(message: e.toString()));
+    }
+  }
+
+  Future<Either<AppFailure, AppResponse<String>>> verifySMSOtp(
+    String phone,
+    int otp,
+  ) async {
+    try {
+      final response = await _dio.post(
+        AppConstants.verifySMSOtpPath,
+        data: {'phone': phone, 'otp': otp.toString()},
+      );
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse<String>(
+            success: true,
+            message: ' phone verified successfully',
+            data: response.data['reset_token'],
+          ),
+        );
+      } else {
+        throw HttpException(response.data['message'] ?? 'Some error occurred');
+      }
+    } on DioException catch (e) {
+      return Left(AppFailure(message: e.message ?? 'Error'));
+    } on HttpException catch (e) {
+      return Left(AppFailure(message: e.message));
+    } catch (e) {
+      return Left(AppFailure(message: e.toString()));
+    }
+  }
+
   Future<Either<AppFailure, AppResponse<String>>> verifyEmailOtp(
     String email,
     int otp,
@@ -65,7 +119,7 @@ class ChangePasswordRepository {
     }
   }
 
-  Future<Either<AppFailure, AppResponse>> resetPassword(
+  Future<Either<AppFailure, AppResponse>> emailResetPassword(
     String email,
     String resetToken,
     String password,
@@ -75,6 +129,40 @@ class ChangePasswordRepository {
         AppConstants.resetPasswordPath,
         data: {
           'email': email,
+          'reset_token': resetToken,
+          'password': password,
+          'password_confirmation': password,
+        },
+      );
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse(
+            success: true,
+            message: ' Password changed successfully!',
+          ),
+        );
+      } else {
+        throw HttpException(response.data['message'] ?? 'Some error occurred');
+      }
+    } on DioException catch (e) {
+      return Left(AppFailure(message: e.message ?? 'Error'));
+    } on HttpException catch (e) {
+      return Left(AppFailure(message: e.message));
+    } catch (e) {
+      return Left(AppFailure(message: e.toString()));
+    }
+  }
+
+  Future<Either<AppFailure, AppResponse>> phoneResetPassword(
+    String phone,
+    String resetToken,
+    String password,
+  ) async {
+    try {
+      final response = await _dio.post(
+        AppConstants.resetPasswordPath,
+        data: {
+          'phone': phone,
           'reset_token': resetToken,
           'password': password,
           'password_confirmation': password,

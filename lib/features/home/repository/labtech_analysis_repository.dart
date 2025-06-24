@@ -200,14 +200,56 @@ class LabtechAnalysisRepository {
     }
   }
 
-  Future<Either<AppFailure, AppResponse<List<AnalysisModel>>>> searchAnalysis(
-    String query,
-    AnalysisStatus analysisStatus,
-  ) async {
+  Future<Either<AppFailure, AppResponse<List<AnalysisModel>>>>
+  searchAnalyseByName(String query, AnalysisStatus analysisStatus) async {
     try {
       final response = await _dio.post(
-        AppConstants.labTechSearchAnalysePath,
+        AppConstants.labTechSearchAnalysisByNamePath,
         data: {'name': query, 'status': analysisStatus.name.toLowerCase()},
+      );
+
+      eLog(response.data.toString());
+
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse<List<AnalysisModel>>(
+            data:
+                (response.data['items'] as List<dynamic>).map((analysis) {
+                  return AnalysisModel.fromJson(analysis);
+                }).toList(),
+            success: true,
+            message: 'Analysis searched successfully!',
+          ),
+        );
+      } else if (response.data['statusCode'] == 404) {
+        return Right(
+          AppResponse<List<AnalysisModel>>(
+            data: [],
+            success: true,
+            message: 'Analysis searched successfully!',
+          ),
+        );
+      } else {
+        throw HttpException(response.data['message']);
+      }
+    } on DioException catch (e) {
+      return Left(AppFailure(message: e.message ?? 'Error'));
+    } on HttpException catch (e) {
+      return Left(AppFailure(message: e.message));
+    } catch (e) {
+      return Left(AppFailure(message: e.toString()));
+    }
+  }
+
+  Future<Either<AppFailure, AppResponse<List<AnalysisModel>>>>
+  searchAnalyseByPatientNum(String query, AnalysisStatus analysisStatus) async {
+    try {
+      final response = await _dio.post(
+        AppConstants.labTechSearchAnalyseByPatientNumPath,
+        data: {
+          'patient_id': query,
+          'status': analysisStatus.name.toLowerCase(),
+        },
       );
 
       eLog(response.data.toString());

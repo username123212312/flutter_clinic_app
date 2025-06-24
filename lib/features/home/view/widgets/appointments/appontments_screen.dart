@@ -106,8 +106,12 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
 
       initialItemCount: (state.appointments ?? []).length,
       itemBuilder:
-          (_, index, animation) =>
-              _buildItem(state, state.appointments![index], animation, index),
+          (_, index, animation) => _buildItem(
+            state,
+            state.appointments![index].copyWith(status: _currentStatus),
+            animation,
+            index,
+          ),
     );
   }
 

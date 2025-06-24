@@ -312,9 +312,16 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
 
   void submit() {
     if (_formKey.currentState!.validate()) {
-      context.read<ChangePasswordCubit>().resetPassword(
-        _passwordController.text,
-      );
+      final isEmail = context.read<ChangePasswordCubit>().state.email != null;
+      if (isEmail) {
+        context.read<ChangePasswordCubit>().emailResetPassword(
+          _passwordController.text,
+        );
+      } else {
+        context.read<ChangePasswordCubit>().phoneResetPassword(
+          _passwordController.text,
+        );
+      }
     }
   }
 

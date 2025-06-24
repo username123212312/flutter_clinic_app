@@ -13,4 +13,6 @@ sealed class LabtechAnalysisEvent with _$LabtechAnalysisEvent {
   const factory LabtechAnalysisEvent.addAnalysis({
     required AddAnalysisRequest request,
   }) = AnalysisAdded;
+  const factory LabtechAnalysisEvent.changeFilter({required bool isName}) =
+      ChangeFilter;
 }

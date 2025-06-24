@@ -63,6 +63,7 @@ class ReservationDetailsCubit extends Cubit<ReservationDetailsState> {
       if (state.clientID != null && !state.status.isError) {
         final completed = await handlePayment(state.clientID!);
         if (completed) {
+          emit(state.copyWith(isPaid: true));
           await confirmReservationPayment(
             appointmentId,
             state.paymentIntentId!,

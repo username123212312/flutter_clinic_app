@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ChangePasswordState {
   String? get email => throw _privateConstructorUsedError;
+  String? get phone => throw _privateConstructorUsedError;
   String? get resetToken => throw _privateConstructorUsedError;
   DataStatus get status => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
@@ -38,6 +39,7 @@ abstract class $ChangePasswordStateCopyWith<$Res> {
   @useResult
   $Res call({
     String? email,
+    String? phone,
     String? resetToken,
     DataStatus status,
     String message,
@@ -60,6 +62,7 @@ class _$ChangePasswordStateCopyWithImpl<$Res, $Val extends ChangePasswordState>
   @override
   $Res call({
     Object? email = freezed,
+    Object? phone = freezed,
     Object? resetToken = freezed,
     Object? status = null,
     Object? message = null,
@@ -70,6 +73,11 @@ class _$ChangePasswordStateCopyWithImpl<$Res, $Val extends ChangePasswordState>
                 freezed == email
                     ? _value.email
                     : email // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            phone:
+                freezed == phone
+                    ? _value.phone
+                    : phone // ignore: cast_nullable_to_non_nullable
                         as String?,
             resetToken:
                 freezed == resetToken
@@ -103,6 +111,7 @@ abstract class _$$ChangePasswordStateImplCopyWith<$Res>
   @useResult
   $Res call({
     String? email,
+    String? phone,
     String? resetToken,
     DataStatus status,
     String message,
@@ -124,6 +133,7 @@ class __$$ChangePasswordStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? email = freezed,
+    Object? phone = freezed,
     Object? resetToken = freezed,
     Object? status = null,
     Object? message = null,
@@ -134,6 +144,11 @@ class __$$ChangePasswordStateImplCopyWithImpl<$Res>
             freezed == email
                 ? _value.email
                 : email // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        phone:
+            freezed == phone
+                ? _value.phone
+                : phone // ignore: cast_nullable_to_non_nullable
                     as String?,
         resetToken:
             freezed == resetToken
@@ -160,6 +175,7 @@ class __$$ChangePasswordStateImplCopyWithImpl<$Res>
 class _$ChangePasswordStateImpl implements _ChangePasswordState {
   const _$ChangePasswordStateImpl({
     this.email,
+    this.phone,
     this.resetToken,
     required this.status,
     required this.message,
@@ -167,6 +183,8 @@ class _$ChangePasswordStateImpl implements _ChangePasswordState {
 
   @override
   final String? email;
+  @override
+  final String? phone;
   @override
   final String? resetToken;
   @override
@@ -176,7 +194,7 @@ class _$ChangePasswordStateImpl implements _ChangePasswordState {
 
   @override
   String toString() {
-    return 'ChangePasswordState(email: $email, resetToken: $resetToken, status: $status, message: $message)';
+    return 'ChangePasswordState(email: $email, phone: $phone, resetToken: $resetToken, status: $status, message: $message)';
   }
 
   @override
@@ -185,6 +203,7 @@ class _$ChangePasswordStateImpl implements _ChangePasswordState {
         (other.runtimeType == runtimeType &&
             other is _$ChangePasswordStateImpl &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.resetToken, resetToken) ||
                 other.resetToken == resetToken) &&
             (identical(other.status, status) || other.status == status) &&
@@ -193,7 +212,7 @@ class _$ChangePasswordStateImpl implements _ChangePasswordState {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, email, resetToken, status, message);
+      Object.hash(runtimeType, email, phone, resetToken, status, message);
 
   /// Create a copy of ChangePasswordState
   /// with the given fields replaced by the non-null parameter values.
@@ -210,6 +229,7 @@ class _$ChangePasswordStateImpl implements _ChangePasswordState {
 abstract class _ChangePasswordState implements ChangePasswordState {
   const factory _ChangePasswordState({
     final String? email,
+    final String? phone,
     final String? resetToken,
     required final DataStatus status,
     required final String message,
@@ -217,6 +237,8 @@ abstract class _ChangePasswordState implements ChangePasswordState {
 
   @override
   String? get email;
+  @override
+  String? get phone;
   @override
   String? get resetToken;
   @override

@@ -71,6 +71,12 @@ String formatTime(TimeOfDay time, [bool isPeriodic = true]) {
   return '${hour < 10 ? '0$hour' : hour}:$minute ${isPeriodic ? period : ''}';
 }
 
+String formatTime24(TimeOfDay time) {
+  final hours = time.hour < 10 ? '0${time.hour}' : '${time.hour}';
+  final minutes = time.minute < 10 ? '0${time.minute}' : '${time.minute}';
+  return '$hours:$minutes'.trim();
+}
+
 String parseStringList(dynamic strings) {
   if (strings is List) {
     var finishedString = '';

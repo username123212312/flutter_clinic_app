@@ -1,6 +1,7 @@
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/validator_util.dart';
 import '../../../../core/blocs/user_bloc/user_bloc.dart';
+import '../../../../core/widgets/loading_overlay.dart';
 import '../widgets/auth_widgets.dart';
 
 import '../../../../core/utils/general_utils.dart';
@@ -16,6 +17,12 @@ class CreatePasswordScreen extends StatefulWidget {
 class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    LoadingOverlay().hideAll();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,18 +87,26 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                     child: MultiBlocListener(
                       listeners: [
                         BlocListener<UserBloc, UserState>(
-                          listener:
-                              (context, state) => clearAndShowSnackBar(
-                                context,
-                                state.statusMessage,
-                              ),
+                          listener: (context, state) {
+                            if (state.status.isLoading) {
+                              LoadingOverlay().show(context);
+                            } else {
+                              LoadingOverlay().hideAll();
+                            }
+                            clearAndShowSnackBar(context, state.statusMessage);
+                          },
                         ),
                         BlocListener<AuthBloc, AuthState>(
                           listener: (context, state) {
-                            if (state.isAuth != null && state.isAuth!) {
-                              context.goNamed(
-                                AppRouteConstants.yourProfileRouteName,
-                              );
+                            if (state.status.isLoading) {
+                              LoadingOverlay().show(context);
+                            } else {
+                              LoadingOverlay().hideAll();
+                              if (state.isAuth != null && state.isAuth!) {
+                                context.goNamed(
+                                  AppRouteConstants.yourProfileRouteName,
+                                );
+                              }
                             }
                           },
                         ),

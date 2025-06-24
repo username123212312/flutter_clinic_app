@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -197,7 +198,7 @@ class NewAppointmentRepository {
       eLog(response.data);
       if (response.data['statusCode'] < 300) {
         return Right(
-          AppResponse(
+          AppResponse<List<TimeOfDay>>(
             success: true,
             message: 'Doctor work times fetched successfully',
             statusCode: response.data['statusCode'],
@@ -233,7 +234,7 @@ class NewAppointmentRepository {
     AddNewAppointmentRequest request,
   ) async {
     try {
-      final time = formatTime(request.time, false).trim();
+      final time = formatTime24(request.time);
       final response = await _dio.post(
         AppConstants.addReservationPath,
         data: {
@@ -253,7 +254,7 @@ class NewAppointmentRepository {
           ),
         );
       } else {
-        throw HttpException(response.data['message'] ?? 'Error');
+        throw HttpException(parseStringList(response.data['message']));
       }
     } on HttpException catch (e) {
       return Left(

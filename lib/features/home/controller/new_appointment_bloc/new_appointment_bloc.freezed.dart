@@ -1488,7 +1488,7 @@ mixin _$NewAppointmentState {
   DateTime? get date => throw _privateConstructorUsedError;
   List<TimeOfDay>? get availableTimes => throw _privateConstructorUsedError;
   TimeOfDay? get time => throw _privateConstructorUsedError;
-  DataStatus? get status => throw _privateConstructorUsedError;
+  DataStatus get status => throw _privateConstructorUsedError;
   int? get appointmentID => throw _privateConstructorUsedError;
 
   /// Create a copy of NewAppointmentState
@@ -1516,7 +1516,7 @@ abstract class $NewAppointmentStateCopyWith<$Res> {
     DateTime? date,
     List<TimeOfDay>? availableTimes,
     TimeOfDay? time,
-    DataStatus? status,
+    DataStatus status,
     int? appointmentID,
   });
 
@@ -1549,7 +1549,7 @@ class _$NewAppointmentStateCopyWithImpl<$Res, $Val extends NewAppointmentState>
     Object? date = freezed,
     Object? availableTimes = freezed,
     Object? time = freezed,
-    Object? status = freezed,
+    Object? status = null,
     Object? appointmentID = freezed,
   }) {
     return _then(
@@ -1605,10 +1605,10 @@ class _$NewAppointmentStateCopyWithImpl<$Res, $Val extends NewAppointmentState>
                     : time // ignore: cast_nullable_to_non_nullable
                         as TimeOfDay?,
             status:
-                freezed == status
+                null == status
                     ? _value.status
                     : status // ignore: cast_nullable_to_non_nullable
-                        as DataStatus?,
+                        as DataStatus,
             appointmentID:
                 freezed == appointmentID
                     ? _value.appointmentID
@@ -1668,7 +1668,7 @@ abstract class _$$NewAppointmentStateImplCopyWith<$Res>
     DateTime? date,
     List<TimeOfDay>? availableTimes,
     TimeOfDay? time,
-    DataStatus? status,
+    DataStatus status,
     int? appointmentID,
   });
 
@@ -1702,7 +1702,7 @@ class __$$NewAppointmentStateImplCopyWithImpl<$Res>
     Object? date = freezed,
     Object? availableTimes = freezed,
     Object? time = freezed,
-    Object? status = freezed,
+    Object? status = null,
     Object? appointmentID = freezed,
   }) {
     return _then(
@@ -1758,10 +1758,10 @@ class __$$NewAppointmentStateImplCopyWithImpl<$Res>
                 : time // ignore: cast_nullable_to_non_nullable
                     as TimeOfDay?,
         status:
-            freezed == status
+            null == status
                 ? _value.status
                 : status // ignore: cast_nullable_to_non_nullable
-                    as DataStatus?,
+                    as DataStatus,
         appointmentID:
             freezed == appointmentID
                 ? _value.appointmentID
@@ -1786,7 +1786,7 @@ class _$NewAppointmentStateImpl implements _NewAppointmentState {
     this.date,
     final List<TimeOfDay>? availableTimes,
     this.time,
-    this.status,
+    required this.status,
     this.appointmentID,
   }) : _searchList = searchList,
        _doctors = doctors,
@@ -1855,7 +1855,7 @@ class _$NewAppointmentStateImpl implements _NewAppointmentState {
   @override
   final TimeOfDay? time;
   @override
-  final DataStatus? status;
+  final DataStatus status;
   @override
   final int? appointmentID;
 
@@ -1933,7 +1933,7 @@ abstract class _NewAppointmentState implements NewAppointmentState {
     final DateTime? date,
     final List<TimeOfDay>? availableTimes,
     final TimeOfDay? time,
-    final DataStatus? status,
+    required final DataStatus status,
     final int? appointmentID,
   }) = _$NewAppointmentStateImpl;
 
@@ -1958,7 +1958,7 @@ abstract class _NewAppointmentState implements NewAppointmentState {
   @override
   TimeOfDay? get time;
   @override
-  DataStatus? get status;
+  DataStatus get status;
   @override
   int? get appointmentID;
 

@@ -52,6 +52,24 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          BlocBuilder<NewAppointmentBloc, NewAppointmentState>(
+            bloc: _newAppointmentBloc,
+            builder: (context, state) {
+              return IconButton(
+                onPressed:
+                    state.status.isLoading
+                        ? null
+                        : () {
+                          _newAppointmentBloc.add(
+                            NewAppointmentEvent.clinicsFetched(),
+                          );
+                        },
+                icon: Icon(Icons.refresh, size: 23),
+              );
+            },
+          ),
+        ],
         centerTitle: false,
         forceMaterialTransparency: true,
         title: Text(
@@ -142,6 +160,27 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
         BlocBuilder<NewAppointmentBloc, NewAppointmentState>(
           bloc: _newAppointmentBloc,
           builder: (context, state) {
+            if (state.availableTimes?.isEmpty ?? true) {
+              return GridView(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.5,
+                  crossAxisSpacing: 10,
+                  mainAxisExtent: screenHeight(context) * 0.06,
+                  mainAxisSpacing: 10,
+                ),
+                shrinkWrap: true,
+                children: List.generate(6, (index) {
+                  final time = TimeOfDay(hour: 09 + index, minute: 00);
+                  return SchedulesItemWidget<TimeOfDay>(
+                    isSelected: false,
+                    onSelected: null,
+                    value: formatTime(time),
+                    data: time,
+                  );
+                }),
+              );
+            }
             return GridView(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
@@ -151,8 +190,11 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
                 mainAxisSpacing: 10,
               ),
               shrinkWrap: true,
-              children: List.generate(6, (index) {
+              children: List.generate(state.availableTimes?.length ?? 0, (
+                index,
+              ) {
                 final time = TimeOfDay(hour: 09 + index, minute: 00);
+                final stateTime = state.availableTimes?[index];
                 return SchedulesItemWidget<TimeOfDay>(
                   isSelected:
                       _currentSchedule == null
@@ -160,10 +202,7 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
                           : _currentSchedule == index,
                   onSelected:
                       (state.availableTimes == null ||
-                              state.availableTimes!.isEmpty ||
-                              !state.availableTimes!.any(
-                                (listTime) => listTime == time,
-                              ))
+                              state.availableTimes!.isEmpty)
                           ? null
                           : (newValue) {
                             setState(() {
@@ -175,8 +214,8 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
                               ),
                             );
                           },
-                  value: formatTime(time),
-                  data: time,
+                  value: formatTime(stateTime ?? time),
+                  data: stateTime ?? time,
                 );
               }),
             );

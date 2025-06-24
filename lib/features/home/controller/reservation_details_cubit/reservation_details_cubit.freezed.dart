@@ -22,6 +22,7 @@ mixin _$ReservationDetailsState {
   String get message => throw _privateConstructorUsedError;
   String? get paymentIntentId => throw _privateConstructorUsedError;
   String? get clientID => throw _privateConstructorUsedError;
+  bool get isPaid => throw _privateConstructorUsedError;
 
   /// Create a copy of ReservationDetailsState
   /// with the given fields replaced by the non-null parameter values.
@@ -43,6 +44,7 @@ abstract class $ReservationDetailsStateCopyWith<$Res> {
     String message,
     String? paymentIntentId,
     String? clientID,
+    bool isPaid,
   });
 
   $AppointmentModelCopyWith<$Res>? get appointment;
@@ -71,6 +73,7 @@ class _$ReservationDetailsStateCopyWithImpl<
     Object? message = null,
     Object? paymentIntentId = freezed,
     Object? clientID = freezed,
+    Object? isPaid = null,
   }) {
     return _then(
       _value.copyWith(
@@ -99,6 +102,11 @@ class _$ReservationDetailsStateCopyWithImpl<
                     ? _value.clientID
                     : clientID // ignore: cast_nullable_to_non_nullable
                         as String?,
+            isPaid:
+                null == isPaid
+                    ? _value.isPaid
+                    : isPaid // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -134,6 +142,7 @@ abstract class _$$ReservationDetailsStateImplCopyWith<$Res>
     String message,
     String? paymentIntentId,
     String? clientID,
+    bool isPaid,
   });
 
   @override
@@ -163,6 +172,7 @@ class __$$ReservationDetailsStateImplCopyWithImpl<$Res>
     Object? message = null,
     Object? paymentIntentId = freezed,
     Object? clientID = freezed,
+    Object? isPaid = null,
   }) {
     return _then(
       _$ReservationDetailsStateImpl(
@@ -191,6 +201,11 @@ class __$$ReservationDetailsStateImplCopyWithImpl<$Res>
                 ? _value.clientID
                 : clientID // ignore: cast_nullable_to_non_nullable
                     as String?,
+        isPaid:
+            null == isPaid
+                ? _value.isPaid
+                : isPaid // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -205,6 +220,7 @@ class _$ReservationDetailsStateImpl implements _ReservationDetailsState {
     required this.message,
     this.paymentIntentId,
     this.clientID,
+    required this.isPaid,
   });
 
   @override
@@ -217,10 +233,12 @@ class _$ReservationDetailsStateImpl implements _ReservationDetailsState {
   final String? paymentIntentId;
   @override
   final String? clientID;
+  @override
+  final bool isPaid;
 
   @override
   String toString() {
-    return 'ReservationDetailsState(appointment: $appointment, status: $status, message: $message, paymentIntentId: $paymentIntentId, clientID: $clientID)';
+    return 'ReservationDetailsState(appointment: $appointment, status: $status, message: $message, paymentIntentId: $paymentIntentId, clientID: $clientID, isPaid: $isPaid)';
   }
 
   @override
@@ -235,7 +253,8 @@ class _$ReservationDetailsStateImpl implements _ReservationDetailsState {
             (identical(other.paymentIntentId, paymentIntentId) ||
                 other.paymentIntentId == paymentIntentId) &&
             (identical(other.clientID, clientID) ||
-                other.clientID == clientID));
+                other.clientID == clientID) &&
+            (identical(other.isPaid, isPaid) || other.isPaid == isPaid));
   }
 
   @override
@@ -246,6 +265,7 @@ class _$ReservationDetailsStateImpl implements _ReservationDetailsState {
     message,
     paymentIntentId,
     clientID,
+    isPaid,
   );
 
   /// Create a copy of ReservationDetailsState
@@ -266,6 +286,7 @@ abstract class _ReservationDetailsState implements ReservationDetailsState {
     required final String message,
     final String? paymentIntentId,
     final String? clientID,
+    required final bool isPaid,
   }) = _$ReservationDetailsStateImpl;
 
   @override
@@ -278,6 +299,8 @@ abstract class _ReservationDetailsState implements ReservationDetailsState {
   String? get paymentIntentId;
   @override
   String? get clientID;
+  @override
+  bool get isPaid;
 
   /// Create a copy of ReservationDetailsState
   /// with the given fields replaced by the non-null parameter values.

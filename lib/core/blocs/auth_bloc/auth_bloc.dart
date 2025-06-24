@@ -1,3 +1,4 @@
+import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:our_flutter_clinic_app/core/models/authuser.dart';
 import 'package:our_flutter_clinic_app/core/repositories/auth_repository.dart';
 import 'package:our_flutter_clinic_app/core/utils/utils.dart';
@@ -15,9 +16,18 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
   AuthBloc({required AuthRepository authRepository})
     : _authRepository = authRepository,
       super(AuthState.initial()) {
+    on<AuthEvent>((event, emit) {
+      if (state is! UserAuthenticated) {
+        emit(
+          state.copyWith(status: DataStatus.loading, statusMessage: 'Loading'),
+        );
+      }
+    });
     on<UserAuthenticated>((event, emit) async {
       emit(
         state.copyWith(
+          status: DataStatus.data,
+          statusMessage: 'user',
           authUser: AuthUser(token: event.token, user: event.user),
           isAuth: false,
           token: event.token,
@@ -29,12 +39,23 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
       }
     });
     on<UserReset>(
-      (event, emit) =>
-          emit(AuthState(authUser: null, token: '', isAuth: false)),
+      (event, emit) => emit(
+        AuthState(
+          status: DataStatus.noData,
+          statusMessage: 'No user',
+          authUser: null,
+          token: '',
+          isAuth: false,
+        ),
+      ),
     );
     on<UserModified>((event, emit) async {
       emit(
-        state.copyWith(authUser: state.authUser?.copyWith(user: event.user)),
+        state.copyWith(
+          status: DataStatus.data,
+          statusMessage: 'user',
+          authUser: state.authUser?.copyWith(user: event.user),
+        ),
       );
     });
     on<CheckUserAuthState>(_checkAuthState);
@@ -43,11 +64,15 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
     final response = await _authRepository.checkAuthState();
     final newState = switch (response) {
       Left() => AuthState(
+        status: DataStatus.error,
+        statusMessage: 'No user',
         token: null,
         isAuth: false,
         authUser: AuthUser(user: null, token: null),
       ),
       Right(value: final r) => AuthState(
+        status: DataStatus.data,
+        statusMessage: 'user',
         token: state.token,
         isAuth: true,
         authUser: AuthUser(
@@ -66,6 +91,10 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
         authUser: AuthUser.fromJson(json['authUser'] ?? {}),
         isAuth: json['isAuth'],
         token: json['token'],
+        status: DataStatus.values.firstWhere(
+          (status) => status.name == json['status'],
+        ),
+        statusMessage: json['statusMessage'],
       );
     } catch (e) {
       eLog('AuthBloc error $e');
@@ -81,6 +110,8 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
         'authUser': state.authUser?.toJson(),
         'isAuth': state.isAuth,
         'token': state.token,
+        'status': state.status.name,
+        'statusMessage': state.statusMessage,
       };
     } catch (e) {
       eLog('AuthBloc error $e');

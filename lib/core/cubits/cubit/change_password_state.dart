@@ -4,6 +4,7 @@ part of 'change_password_cubit.dart';
 class ChangePasswordState with _$ChangePasswordState {
   const factory ChangePasswordState({
     String? email,
+    String? phone,
     String? resetToken,
     required DataStatus status,
     required String message,

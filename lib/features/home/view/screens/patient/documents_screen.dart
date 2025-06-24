@@ -42,7 +42,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
     return Scaffold(
       appBar: AppBar(
         forceMaterialTransparency: true,
-        toolbarHeight: screenHeight(context) * 0.13,
+        toolbarHeight: screenHeight(context) * 0.12,
         title: Text('Documents'),
         titleTextStyle: Theme.of(
           context,
@@ -58,19 +58,10 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
         child:
             _isUpload
                 ? Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: _currentIndex == 1 ? 50 : 20),
-
-                        if (_currentIndex == 0) _buildUploadedDocuments(),
-                        if (_currentIndex == 1) _buildUploadNewDocument(),
-                        SizedBox(height: 80),
-                        _buildMovingButton(),
-                      ],
-                    ),
+                    if (_currentIndex == 0) _buildUploadedDocuments(),
+                    if (_currentIndex == 1) _buildUploadNewDocument(),
+                    _buildMovingButton(),
                   ],
                 )
                 : _buildUploaded(),
@@ -307,6 +298,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
             ),
           ),
         ),
+        SizedBox(height: 60),
       ],
     );
   }
@@ -336,7 +328,6 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 20),
         Row(
           children: [
             Text(
@@ -390,7 +381,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
               child: ListView(
                 children: [
                   Center(
-                    heightFactor: 2,
+                    heightFactor: 2.5,
                     child: Column(
                       children: [
                         Image.asset(

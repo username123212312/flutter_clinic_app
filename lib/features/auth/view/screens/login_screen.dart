@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/gestures.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/services/google_auth_service/google_auth_service.dart';
 import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
@@ -143,13 +144,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 if (state.status.isLoading) {
                   LoadingOverlay().show(context);
                 } else {
-                  LoadingOverlay().hideAll();
+                  if (state.status.isError) {
+                    LoadingOverlay().hideAll();
+                  }
+                  Fluttertoast.showToast(msg: state.statusMessage);
                 }
-                clearAndShowSnackBar(context, state.statusMessage);
               },
             ),
             BlocListener<AuthBloc, AuthState>(
               listener: (context, state) {
+                if (state.status.isLoading) {
+                  LoadingOverlay().show(context);
+                } else {
+                  LoadingOverlay().hideAll();
+                }
                 if (state.isAuth!) {
                   navigateByRole(
                     context,

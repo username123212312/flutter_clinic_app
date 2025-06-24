@@ -21,7 +21,8 @@ class LabtechAnalysisBloc
   }) : _labtechAnalysisRepository = labtechAnalysisRepository,
        super(LabtechAnalysisState.initial()) {
     on<LabtechAnalysisEvent>((event, emit) {
-      if (state.runtimeType is! AnalysisStatusChanged) {
+      if (event is! AnalysisStatusChanged &&
+          event.runtimeType is! ChangeFilter) {
         emit(state.copyWith(status: DataStatus.loading, message: 'Loading'));
       }
     });
@@ -30,6 +31,11 @@ class LabtechAnalysisBloc
       emit(state.copyWith(analysisStatus: event.analysisStatus));
       add(AnalysisFetched());
     });
+    on<ChangeFilter>(
+      (event, emit) => emit(
+        state.copyWith(searchByName: event.isName, status: DataStatus.data),
+      ),
+    );
     on<AnalysisSearched>(_searchAnalysis, transformer: restartable());
     on<AnalysisAdded>(_addAnalysis);
   }
@@ -65,10 +71,16 @@ class LabtechAnalysisBloc
     Emitter<LabtechAnalysisState> emit,
   ) async {
     try {
-      final response = await _labtechAnalysisRepository.searchAnalysis(
-        event.query,
-        state.analysisStatus,
-      );
+      final response =
+          state.searchByName
+              ? await _labtechAnalysisRepository.searchAnalyseByName(
+                event.query,
+                state.analysisStatus,
+              )
+              : await _labtechAnalysisRepository.searchAnalyseByPatientNum(
+                event.query,
+                state.analysisStatus,
+              );
       final newState = switch (response) {
         Left(value: final l) => state.copyWith(
           status: DataStatus.error,

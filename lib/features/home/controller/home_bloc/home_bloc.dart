@@ -91,7 +91,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     try {
       final response = await _homeRepository.fetchBestDoctors();
       final newState = switch (response) {
-        Left() => state.copyWith(departmentsListStatus: DataStatus.error),
+        Left() => state.copyWith(doctorsListStatus: DataStatus.error),
         Right(value: final r) => state.copyWith(
           doctorsList: r.data ?? state.doctorsList,
           doctorsListStatus: DataStatus.data,

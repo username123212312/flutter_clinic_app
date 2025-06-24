@@ -179,8 +179,19 @@ class UserRepository {
           AppResponse(success: true, message: 'User successfully logged out'),
         );
       } else {
-        throw HttpException(response.data['message'] ?? 'Error');
+        throw HttpException('Logging out is not done');
       }
+    } on DioException catch (e) {
+      return Left(
+        AppFailure(
+          message: e.message ?? 'Error',
+          stacktracte: StackTrace.current,
+        ),
+      );
+    } on HttpException catch (e) {
+      return Left(
+        AppFailure(message: e.message, stacktracte: StackTrace.current),
+      );
     } catch (e) {
       return Left(
         AppFailure(message: e.toString(), stacktracte: StackTrace.current),

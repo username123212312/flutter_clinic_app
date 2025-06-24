@@ -676,6 +676,8 @@ mixin _$AuthState {
   AuthUser? get authUser => throw _privateConstructorUsedError;
   String? get token => throw _privateConstructorUsedError;
   bool? get isAuth => throw _privateConstructorUsedError;
+  DataStatus get status => throw _privateConstructorUsedError;
+  String get statusMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -689,7 +691,13 @@ abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
-  $Res call({AuthUser? authUser, String? token, bool? isAuth});
+  $Res call({
+    AuthUser? authUser,
+    String? token,
+    bool? isAuth,
+    DataStatus status,
+    String statusMessage,
+  });
 
   $AuthUserCopyWith<$Res>? get authUser;
 }
@@ -712,6 +720,8 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
     Object? authUser = freezed,
     Object? token = freezed,
     Object? isAuth = freezed,
+    Object? status = null,
+    Object? statusMessage = null,
   }) {
     return _then(
       _value.copyWith(
@@ -730,6 +740,16 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
                     ? _value.isAuth
                     : isAuth // ignore: cast_nullable_to_non_nullable
                         as bool?,
+            status:
+                null == status
+                    ? _value.status
+                    : status // ignore: cast_nullable_to_non_nullable
+                        as DataStatus,
+            statusMessage:
+                null == statusMessage
+                    ? _value.statusMessage
+                    : statusMessage // ignore: cast_nullable_to_non_nullable
+                        as String,
           )
           as $Val,
     );
@@ -759,7 +779,13 @@ abstract class _$$AuthStateImplCopyWith<$Res>
   ) = __$$AuthStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AuthUser? authUser, String? token, bool? isAuth});
+  $Res call({
+    AuthUser? authUser,
+    String? token,
+    bool? isAuth,
+    DataStatus status,
+    String statusMessage,
+  });
 
   @override
   $AuthUserCopyWith<$Res>? get authUser;
@@ -782,6 +808,8 @@ class __$$AuthStateImplCopyWithImpl<$Res>
     Object? authUser = freezed,
     Object? token = freezed,
     Object? isAuth = freezed,
+    Object? status = null,
+    Object? statusMessage = null,
   }) {
     return _then(
       _$AuthStateImpl(
@@ -800,6 +828,16 @@ class __$$AuthStateImplCopyWithImpl<$Res>
                 ? _value.isAuth
                 : isAuth // ignore: cast_nullable_to_non_nullable
                     as bool?,
+        status:
+            null == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                    as DataStatus,
+        statusMessage:
+            null == statusMessage
+                ? _value.statusMessage
+                : statusMessage // ignore: cast_nullable_to_non_nullable
+                    as String,
       ),
     );
   }
@@ -808,7 +846,13 @@ class __$$AuthStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AuthStateImpl implements _AuthState {
-  const _$AuthStateImpl({this.authUser, this.token, this.isAuth = false});
+  const _$AuthStateImpl({
+    this.authUser,
+    this.token,
+    this.isAuth = false,
+    required this.status,
+    required this.statusMessage,
+  });
 
   @override
   final AuthUser? authUser;
@@ -817,10 +861,14 @@ class _$AuthStateImpl implements _AuthState {
   @override
   @JsonKey()
   final bool? isAuth;
+  @override
+  final DataStatus status;
+  @override
+  final String statusMessage;
 
   @override
   String toString() {
-    return 'AuthState(authUser: $authUser, token: $token, isAuth: $isAuth)';
+    return 'AuthState(authUser: $authUser, token: $token, isAuth: $isAuth, status: $status, statusMessage: $statusMessage)';
   }
 
   @override
@@ -831,11 +879,15 @@ class _$AuthStateImpl implements _AuthState {
             (identical(other.authUser, authUser) ||
                 other.authUser == authUser) &&
             (identical(other.token, token) || other.token == token) &&
-            (identical(other.isAuth, isAuth) || other.isAuth == isAuth));
+            (identical(other.isAuth, isAuth) || other.isAuth == isAuth) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.statusMessage, statusMessage) ||
+                other.statusMessage == statusMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, authUser, token, isAuth);
+  int get hashCode =>
+      Object.hash(runtimeType, authUser, token, isAuth, status, statusMessage);
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -851,6 +903,8 @@ abstract class _AuthState implements AuthState {
     final AuthUser? authUser,
     final String? token,
     final bool? isAuth,
+    required final DataStatus status,
+    required final String statusMessage,
   }) = _$AuthStateImpl;
 
   @override
@@ -859,6 +913,10 @@ abstract class _AuthState implements AuthState {
   String? get token;
   @override
   bool? get isAuth;
+  @override
+  DataStatus get status;
+  @override
+  String get statusMessage;
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.

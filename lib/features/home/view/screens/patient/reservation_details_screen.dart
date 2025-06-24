@@ -62,6 +62,43 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
     return Scaffold(
       backgroundColor: Pallete.backgroundColor,
       appBar: AppBar(
+        actions: [
+          BlocConsumer<ReservationDetailsCubit, ReservationDetailsState>(
+            bloc: _reservationDetailsCubit,
+            listenWhen: (previous, current) => current.isPaid,
+
+            listener: (context, state) {
+              if (state.status.isError) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    duration: Duration(seconds: 5),
+                    action: SnackBarAction(
+                      label: 'Reconfirm',
+                      onPressed: () {
+                        _reservationDetailsCubit.confirmReservationPayment(
+                          state.appointment?.id ?? 0,
+                          state.paymentIntentId ?? '0',
+                        );
+                      },
+                    ),
+                    content: Text(state.message),
+                  ),
+                );
+              }
+            },
+            builder: (context, state) {
+              return IconButton(
+                onPressed:
+                    state.status.isLoading
+                        ? null
+                        : () {
+                          _reservationDetailsCubit.fetchAppointment();
+                        },
+                icon: Icon(Icons.refresh, size: 24),
+              );
+            },
+          ),
+        ],
         title: Text(
           'Appointment Details',
           style: themeData!.textTheme.titleMedium!.copyWith(

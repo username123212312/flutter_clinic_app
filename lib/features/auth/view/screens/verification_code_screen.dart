@@ -66,11 +66,22 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                       title: 'Verify',
                       onTap: () async {
                         if (submit()) {
-                          await context
-                              .read<ChangePasswordCubit>()
-                              .verifyEmailOtp(
-                                int.tryParse('$f1$f2$f3$f4') ?? 0000,
-                              );
+                          final isEmail =
+                              context.read<ChangePasswordCubit>().state.email !=
+                              null;
+                          if (isEmail) {
+                            await context
+                                .read<ChangePasswordCubit>()
+                                .verifyEmailOtp(
+                                  int.tryParse('$f1$f2$f3$f4') ?? 0000,
+                                );
+                          } else {
+                            await context
+                                .read<ChangePasswordCubit>()
+                                .verifySMSOtp(
+                                  int.tryParse('$f1$f2$f3$f4') ?? 0000,
+                                );
+                          }
                         }
                       },
                       fillColor: Colors.transparent,
