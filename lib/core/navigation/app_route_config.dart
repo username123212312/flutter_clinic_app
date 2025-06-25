@@ -6,6 +6,7 @@ import 'package:our_flutter_clinic_app/features/home/view/screens/labtech/analys
 import 'package:our_flutter_clinic_app/features/home/view/screens/patient/reschedule_screen.dart';
 
 import '../../features/home/view/screens/patient/my_wallet_screen.dart';
+import '../../features/home/view/screens/patient/notifications_screen.dart';
 import '../../features/home/view/screens/patient/reservation_details_screen.dart';
 import '../../features/home/view/widgets/widget_doctor/doctor_rating_widget.dart';
 import '../../features/home/view/screens/labtech/add_new_analysis_screen.dart';
@@ -156,6 +157,11 @@ class AppRouteConfig {
         path: '/modify_password',
         pageBuilder:
             (_, state) => TransitionPage(child: ModifyPasswordScreen()),
+      ),
+      GoRoute(
+        name: AppRouteConstants.notificationsRouteName,
+        path: '/notifications',
+        pageBuilder: (_, state) => TransitionPage(child: NotificationScreen()),
       ),
       GoRoute(
         name: AppRouteConstants.changePasswordRouteName,

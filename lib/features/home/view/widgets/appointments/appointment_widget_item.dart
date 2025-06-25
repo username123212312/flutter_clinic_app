@@ -184,22 +184,35 @@ class AppointmentWidgetItem extends StatelessWidget {
                 right: 20,
                 top: 20,
                 child: Container(
-                  width: 60,
+                  width: 70,
                   height: 30,
                   decoration: BoxDecoration(
-                    color:
-                        (appointment.paymentStatus?.isPaid ?? false)
-                            ? Colors.green
-                            : Colors.red,
+                    color: Pallete.grayScaleColor300,
+
                     borderRadius: BorderRadius.circular(18),
                   ),
                   padding: EdgeInsets.all(7),
                   child: FittedBox(
-                    child: Text(
-                      appointment.paymentStatus?.name ?? 'Unpaid',
-                      style: Theme.of(
-                        context,
-                      ).textTheme.labelMedium!.copyWith(color: Colors.white),
+                    child: Row(
+                      spacing: 5,
+                      children: [
+                        Container(
+                          width: 8,
+                          height: 8,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color:
+                                (appointment.paymentStatus?.isPaid ?? false)
+                                    ? Colors.green
+                                    : Colors.red,
+                          ),
+                        ),
+                        Text(
+                          appointment.paymentStatus?.name ?? 'Unpaid',
+                          style: Theme.of(context).textTheme.labelMedium!
+                              .copyWith(color: Colors.black87),
+                        ),
+                      ],
                     ),
                   ),
                 ),

@@ -15,6 +15,31 @@ import '../model/pharmacy_model.dart';
 class HomeRepository {
   HomeRepository({Dio? dio}) : _dio = dio ?? DioClient().instance;
 
+  Future<Either<AppFailure, AppResponse<int>>> fetchNotificationsCount() async {
+    try {
+      final response = await _dio.get(
+        AppConstants.getUnreadNotificationsCountPath,
+      );
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse<int>(
+            success: true,
+            message: 'Notification count is fetched successfully!',
+            data: response.data['unread_count'],
+          ),
+        );
+      } else {
+        throw HttpException('Notification count is not fetched');
+      }
+    } on DioException catch (e) {
+      return Left(AppFailure(message: e.message ?? 'Error'));
+    } on HttpException catch (e) {
+      return Left(AppFailure(message: e.message));
+    } catch (e) {
+      return Left(AppFailure(message: e.toString()));
+    }
+  }
+
   Future<Either<AppFailure, AppResponse<List<AppointmentModel>>>>
   fetchUpcomingAppointments() async {
     try {

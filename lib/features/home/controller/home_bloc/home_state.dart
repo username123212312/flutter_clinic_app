@@ -3,6 +3,8 @@ part of 'home_bloc.dart';
 @freezed
 sealed class HomeState with _$HomeState {
   const factory HomeState({
+    required DataStatus status,
+    required String message,
     required List<AppointmentModel> upcomingAppointmentsList,
     required DataStatus upcomingAppointmentsListStatus,
     required List<ClinicModel> departmentsList,
@@ -11,9 +13,12 @@ sealed class HomeState with _$HomeState {
     required DataStatus doctorsListStatus,
     required List<PharmacyModel> pharmaciesList,
     required DataStatus pharmaciesListStatus,
+    required int notificationCount,
   }) = _HomeState;
   factory HomeState.initial() {
     return HomeState(
+      message: 'No data',
+      status: DataStatus.noData,
       upcomingAppointmentsList: [],
       upcomingAppointmentsListStatus: DataStatus.noData,
       departmentsList: [],
@@ -22,6 +27,7 @@ sealed class HomeState with _$HomeState {
       doctorsListStatus: DataStatus.noData,
       pharmaciesList: [],
       pharmaciesListStatus: DataStatus.noData,
+      notificationCount: 0,
     );
   }
 }

@@ -42,60 +42,26 @@ class ReservationDetailsCubit extends Cubit<ReservationDetailsState> {
     }
   }
 
-  Future<void> createReservationPaymentIntent() async {
-    emit(state.copyWith(status: DataStatus.loading, message: 'Loading'));
-    try {
-      final response = await _reservationDetailsRepository
-          .createReservationPaymentIntent(appointmentId);
-      final newState = switch (response) {
-        Left(value: final l) => state.copyWith(
-          status: DataStatus.error,
-          message: l.message,
-        ),
-        Right(value: final r) => state.copyWith(
-          status: DataStatus.data,
-          message: r.message,
-          paymentIntentId: r.data?['paymentIntentId'],
-          clientID: r.data?['clientSecret'],
-        ),
-      };
-      emit(newState);
-      if (state.clientID != null && !state.status.isError) {
-        final completed = await handlePayment(state.clientID!);
-        if (completed) {
-          emit(state.copyWith(isPaid: true));
-          await confirmReservationPayment(
-            appointmentId,
-            state.paymentIntentId!,
-          );
-        }
+  Future<void> confirmReservationPayment() async {
+    if (state.appointment?.id != null) {
+      emit(state.copyWith(status: DataStatus.loading, message: 'Loading'));
+      try {
+        final response = await _reservationDetailsRepository
+            .confirmReservationPayment(state.appointment?.id ?? 0);
+        final newState = switch (response) {
+          Left(value: final l) => state.copyWith(
+            status: DataStatus.error,
+            message: l.message,
+          ),
+          Right(value: final r) => state.copyWith(
+            status: DataStatus.done,
+            message: r.message,
+          ),
+        };
+        emit(newState);
+      } catch (e) {
+        emit(state.copyWith(status: DataStatus.error, message: e.toString()));
       }
-    } catch (e) {
-      emit(state.copyWith(status: DataStatus.error, message: e.toString()));
-    }
-  }
-
-  Future<void> confirmReservationPayment(
-    int appointmentId,
-    String paymentIntentId,
-  ) async {
-    emit(state.copyWith(status: DataStatus.loading, message: 'Loading'));
-    try {
-      final response = await _reservationDetailsRepository
-          .confirmReservationPayment(appointmentId, paymentIntentId);
-      final newState = switch (response) {
-        Left(value: final l) => state.copyWith(
-          status: DataStatus.error,
-          message: l.message,
-        ),
-        Right(value: final r) => state.copyWith(
-          status: DataStatus.done,
-          message: r.message,
-        ),
-      };
-      emit(newState);
-    } catch (e) {
-      emit(state.copyWith(status: DataStatus.error, message: e.toString()));
     }
   }
 

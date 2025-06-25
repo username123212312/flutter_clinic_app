@@ -42,6 +42,9 @@ class AppConstants {
   static const searchDoctorPath = '$homePath/searchDoctor';
   static const showClinicsPath = '$homePath/showClinics';
   static const showAllPharmaciesPath = '$homePath/showAllPharmacies';
+  static const getUnreadNotificationsCountPath =
+      '/$apiPath/getUnreadNotificationsCount';
+  static const getAllNotificationsPath = '/$apiPath/getAllNotifications';
 
   //? Patient
   static const completeInfoPath = '$patientPath/completeInfo';
@@ -75,8 +78,7 @@ class AppConstants {
   static const showWalletRangePath = '$patientPath/showWalletRange';
   static const createReservationPaymentIntentPath =
       '$patientPath/createReservationPaymentIntent';
-  static const confirmReservationPaymentPath =
-      '$patientPath/confirmReservationPayment';
+  static const reservationPaymentPath = '$patientPath/ReservationPayment';
   static const setReminderPath = '$patientPath/setReminder';
 
   //? Doctor

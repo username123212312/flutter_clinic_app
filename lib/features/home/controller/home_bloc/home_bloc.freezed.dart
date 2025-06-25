@@ -20,27 +20,34 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() allListsFetched,
+    required TResult Function() notificationsCountetched,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? allListsFetched,
+    TResult? Function()? notificationsCountetched,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? allListsFetched,
+    TResult Function()? notificationsCountetched,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(AllListsFetched value) allListsFetched,
+    required TResult Function(NotificationCountFetched value)
+    notificationsCountetched,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AllListsFetched value)? allListsFetched,
+    TResult? Function(NotificationCountFetched value)? notificationsCountetched,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AllListsFetched value)? allListsFetched,
+    TResult Function(NotificationCountFetched value)? notificationsCountetched,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -117,6 +124,7 @@ class _$AllListsFetchedImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() allListsFetched,
+    required TResult Function() notificationsCountetched,
   }) {
     return allListsFetched();
   }
@@ -125,6 +133,7 @@ class _$AllListsFetchedImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? allListsFetched,
+    TResult? Function()? notificationsCountetched,
   }) {
     return allListsFetched?.call();
   }
@@ -133,6 +142,7 @@ class _$AllListsFetchedImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? allListsFetched,
+    TResult Function()? notificationsCountetched,
     required TResult orElse(),
   }) {
     if (allListsFetched != null) {
@@ -145,6 +155,8 @@ class _$AllListsFetchedImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(AllListsFetched value) allListsFetched,
+    required TResult Function(NotificationCountFetched value)
+    notificationsCountetched,
   }) {
     return allListsFetched(this);
   }
@@ -153,6 +165,7 @@ class _$AllListsFetchedImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AllListsFetched value)? allListsFetched,
+    TResult? Function(NotificationCountFetched value)? notificationsCountetched,
   }) {
     return allListsFetched?.call(this);
   }
@@ -161,6 +174,7 @@ class _$AllListsFetchedImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AllListsFetched value)? allListsFetched,
+    TResult Function(NotificationCountFetched value)? notificationsCountetched,
     required TResult orElse(),
   }) {
     if (allListsFetched != null) {
@@ -175,7 +189,127 @@ abstract class AllListsFetched implements HomeEvent {
 }
 
 /// @nodoc
+abstract class _$$NotificationCountFetchedImplCopyWith<$Res> {
+  factory _$$NotificationCountFetchedImplCopyWith(
+    _$NotificationCountFetchedImpl value,
+    $Res Function(_$NotificationCountFetchedImpl) then,
+  ) = __$$NotificationCountFetchedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$NotificationCountFetchedImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$NotificationCountFetchedImpl>
+    implements _$$NotificationCountFetchedImplCopyWith<$Res> {
+  __$$NotificationCountFetchedImplCopyWithImpl(
+    _$NotificationCountFetchedImpl _value,
+    $Res Function(_$NotificationCountFetchedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$NotificationCountFetchedImpl
+    with DiagnosticableTreeMixin
+    implements NotificationCountFetched {
+  const _$NotificationCountFetchedImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'HomeEvent.notificationsCountetched()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'HomeEvent.notificationsCountetched'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$NotificationCountFetchedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() allListsFetched,
+    required TResult Function() notificationsCountetched,
+  }) {
+    return notificationsCountetched();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? allListsFetched,
+    TResult? Function()? notificationsCountetched,
+  }) {
+    return notificationsCountetched?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? allListsFetched,
+    TResult Function()? notificationsCountetched,
+    required TResult orElse(),
+  }) {
+    if (notificationsCountetched != null) {
+      return notificationsCountetched();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AllListsFetched value) allListsFetched,
+    required TResult Function(NotificationCountFetched value)
+    notificationsCountetched,
+  }) {
+    return notificationsCountetched(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AllListsFetched value)? allListsFetched,
+    TResult? Function(NotificationCountFetched value)? notificationsCountetched,
+  }) {
+    return notificationsCountetched?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AllListsFetched value)? allListsFetched,
+    TResult Function(NotificationCountFetched value)? notificationsCountetched,
+    required TResult orElse(),
+  }) {
+    if (notificationsCountetched != null) {
+      return notificationsCountetched(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NotificationCountFetched implements HomeEvent {
+  const factory NotificationCountFetched() = _$NotificationCountFetchedImpl;
+}
+
+/// @nodoc
 mixin _$HomeState {
+  DataStatus get status => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
   List<AppointmentModel> get upcomingAppointmentsList =>
       throw _privateConstructorUsedError;
   DataStatus get upcomingAppointmentsListStatus =>
@@ -186,6 +320,7 @@ mixin _$HomeState {
   DataStatus get doctorsListStatus => throw _privateConstructorUsedError;
   List<PharmacyModel> get pharmaciesList => throw _privateConstructorUsedError;
   DataStatus get pharmaciesListStatus => throw _privateConstructorUsedError;
+  int get notificationCount => throw _privateConstructorUsedError;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -200,6 +335,8 @@ abstract class $HomeStateCopyWith<$Res> {
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
   $Res call({
+    DataStatus status,
+    String message,
     List<AppointmentModel> upcomingAppointmentsList,
     DataStatus upcomingAppointmentsListStatus,
     List<ClinicModel> departmentsList,
@@ -208,6 +345,7 @@ abstract class $HomeStateCopyWith<$Res> {
     DataStatus doctorsListStatus,
     List<PharmacyModel> pharmaciesList,
     DataStatus pharmaciesListStatus,
+    int notificationCount,
   });
 }
 
@@ -226,6 +364,8 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? status = null,
+    Object? message = null,
     Object? upcomingAppointmentsList = null,
     Object? upcomingAppointmentsListStatus = null,
     Object? departmentsList = null,
@@ -234,9 +374,20 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? doctorsListStatus = null,
     Object? pharmaciesList = null,
     Object? pharmaciesListStatus = null,
+    Object? notificationCount = null,
   }) {
     return _then(
       _value.copyWith(
+            status:
+                null == status
+                    ? _value.status
+                    : status // ignore: cast_nullable_to_non_nullable
+                        as DataStatus,
+            message:
+                null == message
+                    ? _value.message
+                    : message // ignore: cast_nullable_to_non_nullable
+                        as String,
             upcomingAppointmentsList:
                 null == upcomingAppointmentsList
                     ? _value.upcomingAppointmentsList
@@ -277,6 +428,11 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
                     ? _value.pharmaciesListStatus
                     : pharmaciesListStatus // ignore: cast_nullable_to_non_nullable
                         as DataStatus,
+            notificationCount:
+                null == notificationCount
+                    ? _value.notificationCount
+                    : notificationCount // ignore: cast_nullable_to_non_nullable
+                        as int,
           )
           as $Val,
     );
@@ -293,6 +449,8 @@ abstract class _$$HomeStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
+    DataStatus status,
+    String message,
     List<AppointmentModel> upcomingAppointmentsList,
     DataStatus upcomingAppointmentsListStatus,
     List<ClinicModel> departmentsList,
@@ -301,6 +459,7 @@ abstract class _$$HomeStateImplCopyWith<$Res>
     DataStatus doctorsListStatus,
     List<PharmacyModel> pharmaciesList,
     DataStatus pharmaciesListStatus,
+    int notificationCount,
   });
 }
 
@@ -318,6 +477,8 @@ class __$$HomeStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? status = null,
+    Object? message = null,
     Object? upcomingAppointmentsList = null,
     Object? upcomingAppointmentsListStatus = null,
     Object? departmentsList = null,
@@ -326,9 +487,20 @@ class __$$HomeStateImplCopyWithImpl<$Res>
     Object? doctorsListStatus = null,
     Object? pharmaciesList = null,
     Object? pharmaciesListStatus = null,
+    Object? notificationCount = null,
   }) {
     return _then(
       _$HomeStateImpl(
+        status:
+            null == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                    as DataStatus,
+        message:
+            null == message
+                ? _value.message
+                : message // ignore: cast_nullable_to_non_nullable
+                    as String,
         upcomingAppointmentsList:
             null == upcomingAppointmentsList
                 ? _value._upcomingAppointmentsList
@@ -369,6 +541,11 @@ class __$$HomeStateImplCopyWithImpl<$Res>
                 ? _value.pharmaciesListStatus
                 : pharmaciesListStatus // ignore: cast_nullable_to_non_nullable
                     as DataStatus,
+        notificationCount:
+            null == notificationCount
+                ? _value.notificationCount
+                : notificationCount // ignore: cast_nullable_to_non_nullable
+                    as int,
       ),
     );
   }
@@ -378,6 +555,8 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 
 class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
   const _$HomeStateImpl({
+    required this.status,
+    required this.message,
     required final List<AppointmentModel> upcomingAppointmentsList,
     required this.upcomingAppointmentsListStatus,
     required final List<ClinicModel> departmentsList,
@@ -386,11 +565,16 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
     required this.doctorsListStatus,
     required final List<PharmacyModel> pharmaciesList,
     required this.pharmaciesListStatus,
+    required this.notificationCount,
   }) : _upcomingAppointmentsList = upcomingAppointmentsList,
        _departmentsList = departmentsList,
        _doctorsList = doctorsList,
        _pharmaciesList = pharmaciesList;
 
+  @override
+  final DataStatus status;
+  @override
+  final String message;
   final List<AppointmentModel> _upcomingAppointmentsList;
   @override
   List<AppointmentModel> get upcomingAppointmentsList {
@@ -432,10 +616,12 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
 
   @override
   final DataStatus pharmaciesListStatus;
+  @override
+  final int notificationCount;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'HomeState(upcomingAppointmentsList: $upcomingAppointmentsList, upcomingAppointmentsListStatus: $upcomingAppointmentsListStatus, departmentsList: $departmentsList, departmentsListStatus: $departmentsListStatus, doctorsList: $doctorsList, doctorsListStatus: $doctorsListStatus, pharmaciesList: $pharmaciesList, pharmaciesListStatus: $pharmaciesListStatus)';
+    return 'HomeState(status: $status, message: $message, upcomingAppointmentsList: $upcomingAppointmentsList, upcomingAppointmentsListStatus: $upcomingAppointmentsListStatus, departmentsList: $departmentsList, departmentsListStatus: $departmentsListStatus, doctorsList: $doctorsList, doctorsListStatus: $doctorsListStatus, pharmaciesList: $pharmaciesList, pharmaciesListStatus: $pharmaciesListStatus, notificationCount: $notificationCount)';
   }
 
   @override
@@ -443,6 +629,8 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'HomeState'))
+      ..add(DiagnosticsProperty('status', status))
+      ..add(DiagnosticsProperty('message', message))
       ..add(
         DiagnosticsProperty(
           'upcomingAppointmentsList',
@@ -460,7 +648,8 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
       ..add(DiagnosticsProperty('doctorsList', doctorsList))
       ..add(DiagnosticsProperty('doctorsListStatus', doctorsListStatus))
       ..add(DiagnosticsProperty('pharmaciesList', pharmaciesList))
-      ..add(DiagnosticsProperty('pharmaciesListStatus', pharmaciesListStatus));
+      ..add(DiagnosticsProperty('pharmaciesListStatus', pharmaciesListStatus))
+      ..add(DiagnosticsProperty('notificationCount', notificationCount));
   }
 
   @override
@@ -468,6 +657,8 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$HomeStateImpl &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.message, message) || other.message == message) &&
             const DeepCollectionEquality().equals(
               other._upcomingAppointmentsList,
               _upcomingAppointmentsList,
@@ -495,12 +686,16 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
               _pharmaciesList,
             ) &&
             (identical(other.pharmaciesListStatus, pharmaciesListStatus) ||
-                other.pharmaciesListStatus == pharmaciesListStatus));
+                other.pharmaciesListStatus == pharmaciesListStatus) &&
+            (identical(other.notificationCount, notificationCount) ||
+                other.notificationCount == notificationCount));
   }
 
   @override
   int get hashCode => Object.hash(
     runtimeType,
+    status,
+    message,
     const DeepCollectionEquality().hash(_upcomingAppointmentsList),
     upcomingAppointmentsListStatus,
     const DeepCollectionEquality().hash(_departmentsList),
@@ -509,6 +704,7 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
     doctorsListStatus,
     const DeepCollectionEquality().hash(_pharmaciesList),
     pharmaciesListStatus,
+    notificationCount,
   );
 
   /// Create a copy of HomeState
@@ -522,6 +718,8 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
 
 abstract class _HomeState implements HomeState {
   const factory _HomeState({
+    required final DataStatus status,
+    required final String message,
     required final List<AppointmentModel> upcomingAppointmentsList,
     required final DataStatus upcomingAppointmentsListStatus,
     required final List<ClinicModel> departmentsList,
@@ -530,8 +728,13 @@ abstract class _HomeState implements HomeState {
     required final DataStatus doctorsListStatus,
     required final List<PharmacyModel> pharmaciesList,
     required final DataStatus pharmaciesListStatus,
+    required final int notificationCount,
   }) = _$HomeStateImpl;
 
+  @override
+  DataStatus get status;
+  @override
+  String get message;
   @override
   List<AppointmentModel> get upcomingAppointmentsList;
   @override
@@ -548,6 +751,8 @@ abstract class _HomeState implements HomeState {
   List<PharmacyModel> get pharmaciesList;
   @override
   DataStatus get pharmaciesListStatus;
+  @override
+  int get notificationCount;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.

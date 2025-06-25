@@ -31,11 +31,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       );
     });
     on<AllListsFetched>(_fetchAllLists);
+    on<NotificationCountFetched>(_fetchNotoficationCount);
   }
   Future<void> _fetchAllLists(
     AllListsFetched event,
     Emitter<HomeState> emit,
   ) async {
+    add(NotificationCountFetched());
     try {
       await _fetchUpcomingAppointments(emit);
       await _fetchAllClinics(emit);
@@ -111,11 +113,36 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         Right(value: final r) => state.copyWith(
           pharmaciesList: r.data ?? state.pharmaciesList,
           pharmaciesListStatus: DataStatus.data,
+          status: DataStatus.data,
+          message: 'All Lists fetched',
         ),
       };
       emit(newState);
     } catch (e) {
       emit(state.copyWith(pharmaciesListStatus: DataStatus.error));
+    }
+  }
+
+  Future<void> _fetchNotoficationCount(
+    NotificationCountFetched event,
+    Emitter<HomeState> emit,
+  ) async {
+    try {
+      final response = await _homeRepository.fetchNotificationsCount();
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          status: DataStatus.error,
+          message: l.message,
+        ),
+        Right(value: final r) => state.copyWith(
+          status: DataStatus.data,
+          message: r.message,
+          notificationCount: r.data ?? state.notificationCount,
+        ),
+      };
+      emit(newState);
+    } catch (e) {
+      emit(state.copyWith(status: DataStatus.error, message: e.toString()));
     }
   }
 

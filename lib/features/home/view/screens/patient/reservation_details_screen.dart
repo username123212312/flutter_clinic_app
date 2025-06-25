@@ -75,10 +75,7 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                     action: SnackBarAction(
                       label: 'Reconfirm',
                       onPressed: () {
-                        _reservationDetailsCubit.confirmReservationPayment(
-                          state.appointment?.id ?? 0,
-                          state.paymentIntentId ?? '0',
-                        );
+                        _reservationDetailsCubit.confirmReservationPayment();
                       },
                     ),
                     content: Text(state.message),
@@ -289,7 +286,7 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                       text: "Checkout",
                       onPressed: () async {
                         await _reservationDetailsCubit
-                            .createReservationPaymentIntent();
+                            .confirmReservationPayment();
                       },
                       color: Pallete.primaryColor,
                       width: (screenWidth ?? 0) * 0.75,
@@ -349,7 +346,7 @@ class _ReminderBottomSheet extends StatefulWidget {
 }
 
 class __ReminderBottomSheetState extends State<_ReminderBottomSheet> {
-  double _hours = 1.0;
+  double _hours = 8.0;
 
   @override
   void initState() {
@@ -389,16 +386,16 @@ class __ReminderBottomSheetState extends State<_ReminderBottomSheet> {
               children: [
                 Text('Remind me in:'),
                 Slider(
-                  min: 1,
+                  min: 8,
                   max: 24,
-                  divisions: 23,
+                  divisions: 16,
                   value: _hours,
                   label: '${_hours.toInt()}h',
                   onChanged: (value) => setState(() => _hours = value),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [Text('1 hour'), Text('24 hours')],
+                  children: [Text('8 hours'), Text('24 hours')],
                 ),
               ],
             ),

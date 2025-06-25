@@ -93,14 +93,43 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                   Row(
                     children: [
                       IconButton(
-                        icon: const Icon(
-                          Icons.notifications_none,
-                          color: Pallete.black1,
+                        icon: Stack(
+                          children: [
+                            const Icon(
+                              Icons.notifications_none,
+                              color: Pallete.black1,
+                              size: 25,
+                            ),
+                            BlocBuilder<HomeBloc, HomeState>(
+                              builder: (context, state) {
+                                return Visibility(
+                                  visible: state.notificationCount > 0,
+                                  child: Container(
+                                    height: 10,
+                                    width: 10,
+                                    decoration: BoxDecoration(
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
+                                      shape: BoxShape.circle,
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          context.pushNamed(
+                            AppRouteConstants.notificationsRouteName,
+                          );
+                        },
                       ),
                       IconButton(
-                        icon: const Icon(Icons.search, color: Pallete.black1),
+                        icon: const Icon(
+                          Icons.search,
+                          color: Pallete.black1,
+                          size: 25,
+                        ),
                         onPressed: () {
                           showSearchOverlay(context);
                         },
