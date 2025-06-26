@@ -8,8 +8,9 @@ class DoctorInfoState with _$DoctorInfoState {
     required DoctorModel doctor,
     required List<DateTime> avaiableDates,
     DateTime? selectedDate,
-    required List<TimeOfDay> availablTimes,
+    required List<TimeOfDay> availableTimes,
     TimeOfDay? selectedTime,
+    int? appointmentId,
   }) = _DoctorInfoState;
   factory DoctorInfoState.initial(DoctorModel doctor) {
     return DoctorInfoState(
@@ -17,7 +18,7 @@ class DoctorInfoState with _$DoctorInfoState {
       status: DataStatus.noData,
       message: 'No data',
       avaiableDates: [],
-      availablTimes: [],
+      availableTimes: [],
     );
   }
 }

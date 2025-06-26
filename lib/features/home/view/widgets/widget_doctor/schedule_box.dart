@@ -3,22 +3,24 @@ import 'package:flutter/material.dart';
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/utils.dart';
 
-class ScheduleWidget extends StatelessWidget {
+class ScheduleWidget<T> extends StatelessWidget {
   final String time;
+  final T timeValue;
   final bool isSelected;
-  final VoidCallback onTap;
+  final void Function(T newTime)? onTap;
 
   const ScheduleWidget({
     super.key,
     required this.time,
     required this.isSelected,
-    required this.onTap,
+    this.onTap,
+    required this.timeValue,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTap == null ? null : () => onTap!(timeValue),
       child: AnimatedContainer(
         height: screenHeight(context) * 0.05,
         width: screenWidth(context) * 0.02,

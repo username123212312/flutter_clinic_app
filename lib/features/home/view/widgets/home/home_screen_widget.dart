@@ -334,7 +334,6 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                                   rating: 4.8,
                                   startTime: '10:30am',
                                   endTime: '5:30pm',
-                                  onTap: () {},
                                 ),
                               ),
                             );
@@ -359,7 +358,12 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                               child: SizedBox(
                                 width: screenWidth(context) * 0.8,
                                 child: FindDoctorCard(
-                                  buttonOnTap: () {},
+                                  buttonOnTap: () {
+                                    context.pushNamed(
+                                      AppRouteConstants.doctorInfoRouteName,
+                                      extra: doctor,
+                                    );
+                                  },
                                   title:
                                       '${doctor.firstName ?? 'No'} ${doctor.lastName ?? 'Doctor'}',
                                   subtitle:
@@ -496,15 +500,31 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
     );
   }
 
-  void showSearchOverlay(BuildContext context) {
-    showGeneralDialog(
+  void showSearchOverlay(BuildContext context) async {
+    if (context.mounted) {
+      context.read<HomeBloc>().add(AllDoctorsFetched());
+    }
+    await showGeneralDialog(
       context: context,
       barrierDismissible: true,
       barrierColor: Pallete.black1.withValues(alpha: 0.1),
       barrierLabel: 'Search',
       transitionDuration: const Duration(milliseconds: 300),
       pageBuilder: (context, animation, secondaryAnimation) {
-        return const SearchOverlay();
+        return BlocBuilder<HomeBloc, HomeState>(
+          builder: (context, state) {
+            return SearchOverlay(
+              onChanged: (value) {
+                if (value.trim().isEmpty) {
+                  context.read<HomeBloc>().add(AllDoctorsFetched());
+                } else {
+                  context.read<HomeBloc>().add(DoctorSearched(value));
+                }
+              },
+              doctorsSearchList: state.doctorsSearchList,
+            );
+          },
+        );
       },
       transitionBuilder: (context, animation, secondaryAnimation, child) {
         return SlideTransition(
@@ -516,6 +536,9 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
         );
       },
     );
+    if (context.mounted) {
+      context.read<HomeBloc>().add(AllDoctorsFetched());
+    }
   }
 }
 

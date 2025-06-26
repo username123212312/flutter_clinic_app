@@ -1,8 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:our_flutter_clinic_app/core/navigation/app_route_constants.dart';
+import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/home/model/doctor_model.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../../../core/theme/app_pallete.dart';
 import '../../../../../../../core/utils/utils.dart';
@@ -23,7 +29,7 @@ class DoctorInfoScreen extends StatefulWidget {
 }
 
 class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
-  String selectedTime = '';
+  TimeOfDay? selectedTime;
   DateTime? selectedDate;
   final TextEditingController _dateController = TextEditingController();
 
@@ -38,11 +44,20 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
 
   @override
   void initState() {
+    super.initState();
     _doctorInfoCubit = DoctorInfoCubit(
       doctorInfoRepository: DoctorInfoRepository(),
       doctor: widget.doctor,
-    )..fetchDoctorDetails();
-    super.initState();
+    );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _doctorInfoCubit.fetchDoctorDetails();
+    });
+  }
+
+  @override
+  void dispose() {
+    LoadingOverlay().hideAll();
+    super.dispose();
   }
 
   @override
@@ -58,6 +73,18 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
             color: Pallete.grayScaleColor0,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              _doctorInfoCubit.fetchDoctorDetails();
+            },
+            icon: Icon(
+              FontAwesomeIcons.arrowsRotate,
+              color: Pallete.grayScaleColor0,
+              size: 18,
+            ),
+          ),
+        ],
         leading: IconButton(
           onPressed: () {
             context.pop();
@@ -146,10 +173,31 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
                                 title: widget.doctor.treated?.toString() ?? '0',
                                 subtitle: 'Treated',
                               ),
-                              InfoBox(
-                                backgroundColor: Pallete.grayScaleColor0,
-                                title: '\$0.0',
-                                subtitle: 'Hourly Rate',
+                              BlocConsumer<DoctorInfoCubit, DoctorInfoState>(
+                                key: ValueKey(1),
+                                bloc: _doctorInfoCubit,
+                                builder: (context, state) {
+                                  return InfoBox(
+                                    backgroundColor: Pallete.grayScaleColor0,
+                                    title: '\$${state.doctor.visitFee ?? 0.0}',
+                                    subtitle: 'Hourly Rate',
+                                  );
+                                },
+                                listener: (
+                                  BuildContext context,
+                                  DoctorInfoState state,
+                                ) {
+                                  if (state.status.isLoading) {
+                                    LoadingOverlay().show(context);
+                                  } else {
+                                    LoadingOverlay().hideAll();
+                                    if (state.status.isError) {
+                                      Fluttertoast.showToast(
+                                        msg: state.message,
+                                      );
+                                    }
+                                  }
+                                },
                               ),
                             ],
                           ),
@@ -162,32 +210,49 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
                           const SizedBox(height: 5),
                           SizedBox(
                             height: screenHeight(context) * 0.085,
-                            child: CustomTextField(
-                              hintText: 'Select Date',
-                              keyboardType: TextInputType.text,
-                              controller: _dateController,
-                              readOnly: true,
-                              onTap: () async {
-                                final selected = await showDatePicker(
-                                  context: context,
-                                  firstDate: DateTime.now(),
-                                  lastDate: DateTime(2025, 7),
+                            child: BlocBuilder<
+                              DoctorInfoCubit,
+                              DoctorInfoState
+                            >(
+                              bloc: _doctorInfoCubit,
+                              builder: (context, state) {
+                                return CustomTextField(
+                                  hintText: 'Select Date',
+                                  keyboardType: TextInputType.text,
+                                  controller: _dateController,
+                                  readOnly: true,
+                                  onTap:
+                                      state.avaiableDates.isEmpty
+                                          ? null
+                                          : () async {
+                                            final selected =
+                                                await showRestrictedDatePicker(
+                                                  context: context,
+                                                  availableDates:
+                                                      state.avaiableDates,
+                                                );
+                                            if (selected != null) {
+                                              setState(() {
+                                                selectedDate = selected;
+                                                _dateController.text =
+                                                    "${selected.day}/${selected.month}/${selected.year}";
+                                              });
+                                              _doctorInfoCubit.selectDate(
+                                                selected,
+                                              );
+                                              if (mounted) {
+                                                FocusScope.of(
+                                                  context,
+                                                ).unfocus();
+                                              }
+                                            }
+                                          },
+                                  suffixIcon: const Icon(
+                                    Icons.calendar_month,
+                                    color: Pallete.grayScaleColor500,
+                                  ),
                                 );
-                                if (selected != null) {
-                                  setState(() {
-                                    selectedDate = selected;
-                                    _dateController.text =
-                                        "${selected.day}/${selected.month}/${selected.year}";
-                                  });
-                                  if (mounted) {
-                                    FocusScope.of(context).unfocus();
-                                  }
-                                }
                               },
-                              suffixIcon: const Icon(
-                                Icons.calendar_month,
-                                color: Pallete.grayScaleColor500,
-                              ),
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -197,45 +262,90 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
                                 .copyWith(fontSize: 18, color: Pallete.black1),
                           ),
                           const SizedBox(height: 12),
-                          GridView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: schedules.length,
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  mainAxisSpacing: 10,
-                                  crossAxisSpacing: 10,
-                                  childAspectRatio: 3.5,
+                          BlocBuilder<DoctorInfoCubit, DoctorInfoState>(
+                            bloc: _doctorInfoCubit,
+                            builder: (context, state) {
+                              return Skeletonizer(
+                                enabled: state.status.isLoading,
+                                child: GridView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount:
+                                      (state.status.isLoading ||
+                                              state.availableTimes.isEmpty)
+                                          ? 6
+                                          : state.availableTimes.length,
+                                  gridDelegate:
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                        mainAxisSpacing: 10,
+                                        crossAxisSpacing: 10,
+                                        childAspectRatio: 3.5,
+                                      ),
+                                  itemBuilder: (context, index) {
+                                    if (state.status.isLoading ||
+                                        state.availableTimes.isEmpty) {
+                                      return ScheduleWidget(
+                                        timeValue: '',
+                                        time: '09:00 AM',
+                                        isSelected: false,
+                                        onTap: (s) {},
+                                      );
+                                    }
+                                    final time = state.availableTimes[index];
+                                    return ScheduleWidget<TimeOfDay>(
+                                      timeValue: time,
+                                      time: formatTime(time),
+                                      isSelected:
+                                          state.selectedTime ==
+                                          state.availableTimes[index],
+                                      onTap: (newTime) {
+                                        _doctorInfoCubit.selectTime(newTime);
+                                      },
+                                    );
+                                  },
                                 ),
-                            itemBuilder: (context, index) {
-                              return ScheduleWidget(
-                                time: schedules[index],
-                                isSelected: selectedTime == schedules[index],
-                                onTap: () {
-                                  setState(() {
-                                    selectedTime = schedules[index];
-                                  });
-                                },
                               );
                             },
                           ),
                           const SizedBox(height: 24),
-                          CustomButton(
-                            text: "Book Appointment",
-                            onPressed: () {
-                              context.pushNamed(
-                                AppRouteConstants.reservationDetailsRouteName,
+                          BlocConsumer<DoctorInfoCubit, DoctorInfoState>(
+                            key: ValueKey(2),
+                            bloc: _doctorInfoCubit,
+                            listener: (context, state) {
+                              if (state.status.isDone &&
+                                  state.appointmentId != null) {
+                                Fluttertoast.showToast(msg: state.message);
+                                context.goNamed(
+                                  AppRouteConstants.reservationDetailsRouteName,
+                                  pathParameters: {
+                                    'appointmetnId':
+                                        '${state.appointmentId ?? -1}',
+                                  },
+                                );
+                              }
+                            },
+                            builder: (context, state) {
+                              return CustomButton(
+                                text: "Book Appointment",
+                                onPressed:
+                                    state.selectedTime == null
+                                        ? null
+                                        : () {
+                                          _doctorInfoCubit.bookNewAppointment();
+                                        },
+                                color: Pallete.primaryColor,
+
+                                width: double.infinity,
+                                height: screenHeight(context) * 0.058,
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 12,
+                                ),
+                                borderRadius: 32,
+                                textColor: Pallete.grayScaleColor0,
+                                fontSize: 16,
                               );
                             },
-                            color: Pallete.primaryColor,
-
-                            width: double.infinity,
-                            height: screenHeight(context) * 0.058,
-                            padding: const EdgeInsets.symmetric(vertical: 12),
-                            borderRadius: 32,
-                            textColor: Pallete.grayScaleColor0,
-                            fontSize: 16,
                           ),
                         ],
                       ),

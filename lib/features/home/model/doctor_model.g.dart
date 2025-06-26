@@ -19,7 +19,7 @@ _$DoctorModelImpl _$$DoctorModelImplFromJson(Map<String, dynamic> json) =>
       speciality: json['speciality'] as String?,
       department: json['department'] as String?,
       finalRate: json['final_rate'] as String?,
-      visitFee: (json['visitFee'] as num?)?.toDouble(),
+      visitFee: (json['visit_fee'] as num?)?.toDouble(),
       excperience: json['excperience'] as String?,
       status: json['status'] as String?,
     );
@@ -37,7 +37,7 @@ Map<String, dynamic> _$$DoctorModelImplToJson(_$DoctorModelImpl instance) =>
       'speciality': instance.speciality,
       'department': instance.department,
       'final_rate': instance.finalRate,
-      'visitFee': instance.visitFee,
+      'visit_fee': instance.visitFee,
       'excperience': instance.excperience,
       'status': instance.status,
     };

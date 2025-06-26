@@ -22,8 +22,9 @@ mixin _$DoctorInfoState {
   DoctorModel get doctor => throw _privateConstructorUsedError;
   List<DateTime> get avaiableDates => throw _privateConstructorUsedError;
   DateTime? get selectedDate => throw _privateConstructorUsedError;
-  List<TimeOfDay> get availablTimes => throw _privateConstructorUsedError;
+  List<TimeOfDay> get availableTimes => throw _privateConstructorUsedError;
   TimeOfDay? get selectedTime => throw _privateConstructorUsedError;
+  int? get appointmentId => throw _privateConstructorUsedError;
 
   /// Create a copy of DoctorInfoState
   /// with the given fields replaced by the non-null parameter values.
@@ -45,8 +46,9 @@ abstract class $DoctorInfoStateCopyWith<$Res> {
     DoctorModel doctor,
     List<DateTime> avaiableDates,
     DateTime? selectedDate,
-    List<TimeOfDay> availablTimes,
+    List<TimeOfDay> availableTimes,
     TimeOfDay? selectedTime,
+    int? appointmentId,
   });
 
   $DoctorModelCopyWith<$Res> get doctor;
@@ -72,8 +74,9 @@ class _$DoctorInfoStateCopyWithImpl<$Res, $Val extends DoctorInfoState>
     Object? doctor = null,
     Object? avaiableDates = null,
     Object? selectedDate = freezed,
-    Object? availablTimes = null,
+    Object? availableTimes = null,
     Object? selectedTime = freezed,
+    Object? appointmentId = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -102,16 +105,21 @@ class _$DoctorInfoStateCopyWithImpl<$Res, $Val extends DoctorInfoState>
                     ? _value.selectedDate
                     : selectedDate // ignore: cast_nullable_to_non_nullable
                         as DateTime?,
-            availablTimes:
-                null == availablTimes
-                    ? _value.availablTimes
-                    : availablTimes // ignore: cast_nullable_to_non_nullable
+            availableTimes:
+                null == availableTimes
+                    ? _value.availableTimes
+                    : availableTimes // ignore: cast_nullable_to_non_nullable
                         as List<TimeOfDay>,
             selectedTime:
                 freezed == selectedTime
                     ? _value.selectedTime
                     : selectedTime // ignore: cast_nullable_to_non_nullable
                         as TimeOfDay?,
+            appointmentId:
+                freezed == appointmentId
+                    ? _value.appointmentId
+                    : appointmentId // ignore: cast_nullable_to_non_nullable
+                        as int?,
           )
           as $Val,
     );
@@ -143,8 +151,9 @@ abstract class _$$DoctorInfoStateImplCopyWith<$Res>
     DoctorModel doctor,
     List<DateTime> avaiableDates,
     DateTime? selectedDate,
-    List<TimeOfDay> availablTimes,
+    List<TimeOfDay> availableTimes,
     TimeOfDay? selectedTime,
+    int? appointmentId,
   });
 
   @override
@@ -170,8 +179,9 @@ class __$$DoctorInfoStateImplCopyWithImpl<$Res>
     Object? doctor = null,
     Object? avaiableDates = null,
     Object? selectedDate = freezed,
-    Object? availablTimes = null,
+    Object? availableTimes = null,
     Object? selectedTime = freezed,
+    Object? appointmentId = freezed,
   }) {
     return _then(
       _$DoctorInfoStateImpl(
@@ -200,16 +210,21 @@ class __$$DoctorInfoStateImplCopyWithImpl<$Res>
                 ? _value.selectedDate
                 : selectedDate // ignore: cast_nullable_to_non_nullable
                     as DateTime?,
-        availablTimes:
-            null == availablTimes
-                ? _value._availablTimes
-                : availablTimes // ignore: cast_nullable_to_non_nullable
+        availableTimes:
+            null == availableTimes
+                ? _value._availableTimes
+                : availableTimes // ignore: cast_nullable_to_non_nullable
                     as List<TimeOfDay>,
         selectedTime:
             freezed == selectedTime
                 ? _value.selectedTime
                 : selectedTime // ignore: cast_nullable_to_non_nullable
                     as TimeOfDay?,
+        appointmentId:
+            freezed == appointmentId
+                ? _value.appointmentId
+                : appointmentId // ignore: cast_nullable_to_non_nullable
+                    as int?,
       ),
     );
   }
@@ -224,10 +239,11 @@ class _$DoctorInfoStateImpl implements _DoctorInfoState {
     required this.doctor,
     required final List<DateTime> avaiableDates,
     this.selectedDate,
-    required final List<TimeOfDay> availablTimes,
+    required final List<TimeOfDay> availableTimes,
     this.selectedTime,
+    this.appointmentId,
   }) : _avaiableDates = avaiableDates,
-       _availablTimes = availablTimes;
+       _availableTimes = availableTimes;
 
   @override
   final DataStatus status;
@@ -245,20 +261,22 @@ class _$DoctorInfoStateImpl implements _DoctorInfoState {
 
   @override
   final DateTime? selectedDate;
-  final List<TimeOfDay> _availablTimes;
+  final List<TimeOfDay> _availableTimes;
   @override
-  List<TimeOfDay> get availablTimes {
-    if (_availablTimes is EqualUnmodifiableListView) return _availablTimes;
+  List<TimeOfDay> get availableTimes {
+    if (_availableTimes is EqualUnmodifiableListView) return _availableTimes;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_availablTimes);
+    return EqualUnmodifiableListView(_availableTimes);
   }
 
   @override
   final TimeOfDay? selectedTime;
+  @override
+  final int? appointmentId;
 
   @override
   String toString() {
-    return 'DoctorInfoState(status: $status, message: $message, doctor: $doctor, avaiableDates: $avaiableDates, selectedDate: $selectedDate, availablTimes: $availablTimes, selectedTime: $selectedTime)';
+    return 'DoctorInfoState(status: $status, message: $message, doctor: $doctor, avaiableDates: $avaiableDates, selectedDate: $selectedDate, availableTimes: $availableTimes, selectedTime: $selectedTime, appointmentId: $appointmentId)';
   }
 
   @override
@@ -276,11 +294,13 @@ class _$DoctorInfoStateImpl implements _DoctorInfoState {
             (identical(other.selectedDate, selectedDate) ||
                 other.selectedDate == selectedDate) &&
             const DeepCollectionEquality().equals(
-              other._availablTimes,
-              _availablTimes,
+              other._availableTimes,
+              _availableTimes,
             ) &&
             (identical(other.selectedTime, selectedTime) ||
-                other.selectedTime == selectedTime));
+                other.selectedTime == selectedTime) &&
+            (identical(other.appointmentId, appointmentId) ||
+                other.appointmentId == appointmentId));
   }
 
   @override
@@ -291,8 +311,9 @@ class _$DoctorInfoStateImpl implements _DoctorInfoState {
     doctor,
     const DeepCollectionEquality().hash(_avaiableDates),
     selectedDate,
-    const DeepCollectionEquality().hash(_availablTimes),
+    const DeepCollectionEquality().hash(_availableTimes),
     selectedTime,
+    appointmentId,
   );
 
   /// Create a copy of DoctorInfoState
@@ -314,8 +335,9 @@ abstract class _DoctorInfoState implements DoctorInfoState {
     required final DoctorModel doctor,
     required final List<DateTime> avaiableDates,
     final DateTime? selectedDate,
-    required final List<TimeOfDay> availablTimes,
+    required final List<TimeOfDay> availableTimes,
     final TimeOfDay? selectedTime,
+    final int? appointmentId,
   }) = _$DoctorInfoStateImpl;
 
   @override
@@ -329,9 +351,11 @@ abstract class _DoctorInfoState implements DoctorInfoState {
   @override
   DateTime? get selectedDate;
   @override
-  List<TimeOfDay> get availablTimes;
+  List<TimeOfDay> get availableTimes;
   @override
   TimeOfDay? get selectedTime;
+  @override
+  int? get appointmentId;
 
   /// Create a copy of DoctorInfoState
   /// with the given fields replaced by the non-null parameter values.

@@ -20,34 +20,74 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() allListsFetched,
-    required TResult Function() notificationsCountetched,
+    required TResult Function() notificationsCountFetched,
+    required TResult Function() upcomingAppointmentsFetched,
+    required TResult Function() departmentsFetched,
+    required TResult Function() doctorsFetched,
+    required TResult Function() allDoctorsFetched,
+    required TResult Function(String query) doctorSearched,
+    required TResult Function() pharmaciesFetched,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? allListsFetched,
-    TResult? Function()? notificationsCountetched,
+    TResult? Function()? notificationsCountFetched,
+    TResult? Function()? upcomingAppointmentsFetched,
+    TResult? Function()? departmentsFetched,
+    TResult? Function()? doctorsFetched,
+    TResult? Function()? allDoctorsFetched,
+    TResult? Function(String query)? doctorSearched,
+    TResult? Function()? pharmaciesFetched,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? allListsFetched,
-    TResult Function()? notificationsCountetched,
+    TResult Function()? notificationsCountFetched,
+    TResult Function()? upcomingAppointmentsFetched,
+    TResult Function()? departmentsFetched,
+    TResult Function()? doctorsFetched,
+    TResult Function()? allDoctorsFetched,
+    TResult Function(String query)? doctorSearched,
+    TResult Function()? pharmaciesFetched,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(AllListsFetched value) allListsFetched,
     required TResult Function(NotificationCountFetched value)
-    notificationsCountetched,
+    notificationsCountFetched,
+    required TResult Function(UpcomingAppointmentsFetched value)
+    upcomingAppointmentsFetched,
+    required TResult Function(DepartmentsFetched value) departmentsFetched,
+    required TResult Function(DoctorsFetched value) doctorsFetched,
+    required TResult Function(AllDoctorsFetched value) allDoctorsFetched,
+    required TResult Function(DoctorSearched value) doctorSearched,
+    required TResult Function(PharmaciesFetched value) pharmaciesFetched,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AllListsFetched value)? allListsFetched,
-    TResult? Function(NotificationCountFetched value)? notificationsCountetched,
+    TResult? Function(NotificationCountFetched value)?
+    notificationsCountFetched,
+    TResult? Function(UpcomingAppointmentsFetched value)?
+    upcomingAppointmentsFetched,
+    TResult? Function(DepartmentsFetched value)? departmentsFetched,
+    TResult? Function(DoctorsFetched value)? doctorsFetched,
+    TResult? Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult? Function(DoctorSearched value)? doctorSearched,
+    TResult? Function(PharmaciesFetched value)? pharmaciesFetched,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AllListsFetched value)? allListsFetched,
-    TResult Function(NotificationCountFetched value)? notificationsCountetched,
+    TResult Function(NotificationCountFetched value)? notificationsCountFetched,
+    TResult Function(UpcomingAppointmentsFetched value)?
+    upcomingAppointmentsFetched,
+    TResult Function(DepartmentsFetched value)? departmentsFetched,
+    TResult Function(DoctorsFetched value)? doctorsFetched,
+    TResult Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult Function(DoctorSearched value)? doctorSearched,
+    TResult Function(PharmaciesFetched value)? pharmaciesFetched,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -124,7 +164,13 @@ class _$AllListsFetchedImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() allListsFetched,
-    required TResult Function() notificationsCountetched,
+    required TResult Function() notificationsCountFetched,
+    required TResult Function() upcomingAppointmentsFetched,
+    required TResult Function() departmentsFetched,
+    required TResult Function() doctorsFetched,
+    required TResult Function() allDoctorsFetched,
+    required TResult Function(String query) doctorSearched,
+    required TResult Function() pharmaciesFetched,
   }) {
     return allListsFetched();
   }
@@ -133,7 +179,13 @@ class _$AllListsFetchedImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? allListsFetched,
-    TResult? Function()? notificationsCountetched,
+    TResult? Function()? notificationsCountFetched,
+    TResult? Function()? upcomingAppointmentsFetched,
+    TResult? Function()? departmentsFetched,
+    TResult? Function()? doctorsFetched,
+    TResult? Function()? allDoctorsFetched,
+    TResult? Function(String query)? doctorSearched,
+    TResult? Function()? pharmaciesFetched,
   }) {
     return allListsFetched?.call();
   }
@@ -142,7 +194,13 @@ class _$AllListsFetchedImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? allListsFetched,
-    TResult Function()? notificationsCountetched,
+    TResult Function()? notificationsCountFetched,
+    TResult Function()? upcomingAppointmentsFetched,
+    TResult Function()? departmentsFetched,
+    TResult Function()? doctorsFetched,
+    TResult Function()? allDoctorsFetched,
+    TResult Function(String query)? doctorSearched,
+    TResult Function()? pharmaciesFetched,
     required TResult orElse(),
   }) {
     if (allListsFetched != null) {
@@ -156,7 +214,14 @@ class _$AllListsFetchedImpl
   TResult map<TResult extends Object?>({
     required TResult Function(AllListsFetched value) allListsFetched,
     required TResult Function(NotificationCountFetched value)
-    notificationsCountetched,
+    notificationsCountFetched,
+    required TResult Function(UpcomingAppointmentsFetched value)
+    upcomingAppointmentsFetched,
+    required TResult Function(DepartmentsFetched value) departmentsFetched,
+    required TResult Function(DoctorsFetched value) doctorsFetched,
+    required TResult Function(AllDoctorsFetched value) allDoctorsFetched,
+    required TResult Function(DoctorSearched value) doctorSearched,
+    required TResult Function(PharmaciesFetched value) pharmaciesFetched,
   }) {
     return allListsFetched(this);
   }
@@ -165,7 +230,15 @@ class _$AllListsFetchedImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AllListsFetched value)? allListsFetched,
-    TResult? Function(NotificationCountFetched value)? notificationsCountetched,
+    TResult? Function(NotificationCountFetched value)?
+    notificationsCountFetched,
+    TResult? Function(UpcomingAppointmentsFetched value)?
+    upcomingAppointmentsFetched,
+    TResult? Function(DepartmentsFetched value)? departmentsFetched,
+    TResult? Function(DoctorsFetched value)? doctorsFetched,
+    TResult? Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult? Function(DoctorSearched value)? doctorSearched,
+    TResult? Function(PharmaciesFetched value)? pharmaciesFetched,
   }) {
     return allListsFetched?.call(this);
   }
@@ -174,7 +247,14 @@ class _$AllListsFetchedImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AllListsFetched value)? allListsFetched,
-    TResult Function(NotificationCountFetched value)? notificationsCountetched,
+    TResult Function(NotificationCountFetched value)? notificationsCountFetched,
+    TResult Function(UpcomingAppointmentsFetched value)?
+    upcomingAppointmentsFetched,
+    TResult Function(DepartmentsFetched value)? departmentsFetched,
+    TResult Function(DoctorsFetched value)? doctorsFetched,
+    TResult Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult Function(DoctorSearched value)? doctorSearched,
+    TResult Function(PharmaciesFetched value)? pharmaciesFetched,
     required TResult orElse(),
   }) {
     if (allListsFetched != null) {
@@ -218,14 +298,14 @@ class _$NotificationCountFetchedImpl
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'HomeEvent.notificationsCountetched()';
+    return 'HomeEvent.notificationsCountFetched()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'HomeEvent.notificationsCountetched'));
+      ..add(DiagnosticsProperty('type', 'HomeEvent.notificationsCountFetched'));
   }
 
   @override
@@ -242,29 +322,47 @@ class _$NotificationCountFetchedImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() allListsFetched,
-    required TResult Function() notificationsCountetched,
+    required TResult Function() notificationsCountFetched,
+    required TResult Function() upcomingAppointmentsFetched,
+    required TResult Function() departmentsFetched,
+    required TResult Function() doctorsFetched,
+    required TResult Function() allDoctorsFetched,
+    required TResult Function(String query) doctorSearched,
+    required TResult Function() pharmaciesFetched,
   }) {
-    return notificationsCountetched();
+    return notificationsCountFetched();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? allListsFetched,
-    TResult? Function()? notificationsCountetched,
+    TResult? Function()? notificationsCountFetched,
+    TResult? Function()? upcomingAppointmentsFetched,
+    TResult? Function()? departmentsFetched,
+    TResult? Function()? doctorsFetched,
+    TResult? Function()? allDoctorsFetched,
+    TResult? Function(String query)? doctorSearched,
+    TResult? Function()? pharmaciesFetched,
   }) {
-    return notificationsCountetched?.call();
+    return notificationsCountFetched?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? allListsFetched,
-    TResult Function()? notificationsCountetched,
+    TResult Function()? notificationsCountFetched,
+    TResult Function()? upcomingAppointmentsFetched,
+    TResult Function()? departmentsFetched,
+    TResult Function()? doctorsFetched,
+    TResult Function()? allDoctorsFetched,
+    TResult Function(String query)? doctorSearched,
+    TResult Function()? pharmaciesFetched,
     required TResult orElse(),
   }) {
-    if (notificationsCountetched != null) {
-      return notificationsCountetched();
+    if (notificationsCountFetched != null) {
+      return notificationsCountFetched();
     }
     return orElse();
   }
@@ -274,29 +372,51 @@ class _$NotificationCountFetchedImpl
   TResult map<TResult extends Object?>({
     required TResult Function(AllListsFetched value) allListsFetched,
     required TResult Function(NotificationCountFetched value)
-    notificationsCountetched,
+    notificationsCountFetched,
+    required TResult Function(UpcomingAppointmentsFetched value)
+    upcomingAppointmentsFetched,
+    required TResult Function(DepartmentsFetched value) departmentsFetched,
+    required TResult Function(DoctorsFetched value) doctorsFetched,
+    required TResult Function(AllDoctorsFetched value) allDoctorsFetched,
+    required TResult Function(DoctorSearched value) doctorSearched,
+    required TResult Function(PharmaciesFetched value) pharmaciesFetched,
   }) {
-    return notificationsCountetched(this);
+    return notificationsCountFetched(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AllListsFetched value)? allListsFetched,
-    TResult? Function(NotificationCountFetched value)? notificationsCountetched,
+    TResult? Function(NotificationCountFetched value)?
+    notificationsCountFetched,
+    TResult? Function(UpcomingAppointmentsFetched value)?
+    upcomingAppointmentsFetched,
+    TResult? Function(DepartmentsFetched value)? departmentsFetched,
+    TResult? Function(DoctorsFetched value)? doctorsFetched,
+    TResult? Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult? Function(DoctorSearched value)? doctorSearched,
+    TResult? Function(PharmaciesFetched value)? pharmaciesFetched,
   }) {
-    return notificationsCountetched?.call(this);
+    return notificationsCountFetched?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AllListsFetched value)? allListsFetched,
-    TResult Function(NotificationCountFetched value)? notificationsCountetched,
+    TResult Function(NotificationCountFetched value)? notificationsCountFetched,
+    TResult Function(UpcomingAppointmentsFetched value)?
+    upcomingAppointmentsFetched,
+    TResult Function(DepartmentsFetched value)? departmentsFetched,
+    TResult Function(DoctorsFetched value)? doctorsFetched,
+    TResult Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult Function(DoctorSearched value)? doctorSearched,
+    TResult Function(PharmaciesFetched value)? pharmaciesFetched,
     required TResult orElse(),
   }) {
-    if (notificationsCountetched != null) {
-      return notificationsCountetched(this);
+    if (notificationsCountFetched != null) {
+      return notificationsCountFetched(this);
     }
     return orElse();
   }
@@ -304,6 +424,987 @@ class _$NotificationCountFetchedImpl
 
 abstract class NotificationCountFetched implements HomeEvent {
   const factory NotificationCountFetched() = _$NotificationCountFetchedImpl;
+}
+
+/// @nodoc
+abstract class _$$UpcomingAppointmentsFetchedImplCopyWith<$Res> {
+  factory _$$UpcomingAppointmentsFetchedImplCopyWith(
+    _$UpcomingAppointmentsFetchedImpl value,
+    $Res Function(_$UpcomingAppointmentsFetchedImpl) then,
+  ) = __$$UpcomingAppointmentsFetchedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UpcomingAppointmentsFetchedImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$UpcomingAppointmentsFetchedImpl>
+    implements _$$UpcomingAppointmentsFetchedImplCopyWith<$Res> {
+  __$$UpcomingAppointmentsFetchedImplCopyWithImpl(
+    _$UpcomingAppointmentsFetchedImpl _value,
+    $Res Function(_$UpcomingAppointmentsFetchedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$UpcomingAppointmentsFetchedImpl
+    with DiagnosticableTreeMixin
+    implements UpcomingAppointmentsFetched {
+  const _$UpcomingAppointmentsFetchedImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'HomeEvent.upcomingAppointmentsFetched()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(
+      DiagnosticsProperty('type', 'HomeEvent.upcomingAppointmentsFetched'),
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpcomingAppointmentsFetchedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() allListsFetched,
+    required TResult Function() notificationsCountFetched,
+    required TResult Function() upcomingAppointmentsFetched,
+    required TResult Function() departmentsFetched,
+    required TResult Function() doctorsFetched,
+    required TResult Function() allDoctorsFetched,
+    required TResult Function(String query) doctorSearched,
+    required TResult Function() pharmaciesFetched,
+  }) {
+    return upcomingAppointmentsFetched();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? allListsFetched,
+    TResult? Function()? notificationsCountFetched,
+    TResult? Function()? upcomingAppointmentsFetched,
+    TResult? Function()? departmentsFetched,
+    TResult? Function()? doctorsFetched,
+    TResult? Function()? allDoctorsFetched,
+    TResult? Function(String query)? doctorSearched,
+    TResult? Function()? pharmaciesFetched,
+  }) {
+    return upcomingAppointmentsFetched?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? allListsFetched,
+    TResult Function()? notificationsCountFetched,
+    TResult Function()? upcomingAppointmentsFetched,
+    TResult Function()? departmentsFetched,
+    TResult Function()? doctorsFetched,
+    TResult Function()? allDoctorsFetched,
+    TResult Function(String query)? doctorSearched,
+    TResult Function()? pharmaciesFetched,
+    required TResult orElse(),
+  }) {
+    if (upcomingAppointmentsFetched != null) {
+      return upcomingAppointmentsFetched();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AllListsFetched value) allListsFetched,
+    required TResult Function(NotificationCountFetched value)
+    notificationsCountFetched,
+    required TResult Function(UpcomingAppointmentsFetched value)
+    upcomingAppointmentsFetched,
+    required TResult Function(DepartmentsFetched value) departmentsFetched,
+    required TResult Function(DoctorsFetched value) doctorsFetched,
+    required TResult Function(AllDoctorsFetched value) allDoctorsFetched,
+    required TResult Function(DoctorSearched value) doctorSearched,
+    required TResult Function(PharmaciesFetched value) pharmaciesFetched,
+  }) {
+    return upcomingAppointmentsFetched(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AllListsFetched value)? allListsFetched,
+    TResult? Function(NotificationCountFetched value)?
+    notificationsCountFetched,
+    TResult? Function(UpcomingAppointmentsFetched value)?
+    upcomingAppointmentsFetched,
+    TResult? Function(DepartmentsFetched value)? departmentsFetched,
+    TResult? Function(DoctorsFetched value)? doctorsFetched,
+    TResult? Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult? Function(DoctorSearched value)? doctorSearched,
+    TResult? Function(PharmaciesFetched value)? pharmaciesFetched,
+  }) {
+    return upcomingAppointmentsFetched?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AllListsFetched value)? allListsFetched,
+    TResult Function(NotificationCountFetched value)? notificationsCountFetched,
+    TResult Function(UpcomingAppointmentsFetched value)?
+    upcomingAppointmentsFetched,
+    TResult Function(DepartmentsFetched value)? departmentsFetched,
+    TResult Function(DoctorsFetched value)? doctorsFetched,
+    TResult Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult Function(DoctorSearched value)? doctorSearched,
+    TResult Function(PharmaciesFetched value)? pharmaciesFetched,
+    required TResult orElse(),
+  }) {
+    if (upcomingAppointmentsFetched != null) {
+      return upcomingAppointmentsFetched(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpcomingAppointmentsFetched implements HomeEvent {
+  const factory UpcomingAppointmentsFetched() =
+      _$UpcomingAppointmentsFetchedImpl;
+}
+
+/// @nodoc
+abstract class _$$DepartmentsFetchedImplCopyWith<$Res> {
+  factory _$$DepartmentsFetchedImplCopyWith(
+    _$DepartmentsFetchedImpl value,
+    $Res Function(_$DepartmentsFetchedImpl) then,
+  ) = __$$DepartmentsFetchedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$DepartmentsFetchedImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$DepartmentsFetchedImpl>
+    implements _$$DepartmentsFetchedImplCopyWith<$Res> {
+  __$$DepartmentsFetchedImplCopyWithImpl(
+    _$DepartmentsFetchedImpl _value,
+    $Res Function(_$DepartmentsFetchedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$DepartmentsFetchedImpl
+    with DiagnosticableTreeMixin
+    implements DepartmentsFetched {
+  const _$DepartmentsFetchedImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'HomeEvent.departmentsFetched()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'HomeEvent.departmentsFetched'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$DepartmentsFetchedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() allListsFetched,
+    required TResult Function() notificationsCountFetched,
+    required TResult Function() upcomingAppointmentsFetched,
+    required TResult Function() departmentsFetched,
+    required TResult Function() doctorsFetched,
+    required TResult Function() allDoctorsFetched,
+    required TResult Function(String query) doctorSearched,
+    required TResult Function() pharmaciesFetched,
+  }) {
+    return departmentsFetched();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? allListsFetched,
+    TResult? Function()? notificationsCountFetched,
+    TResult? Function()? upcomingAppointmentsFetched,
+    TResult? Function()? departmentsFetched,
+    TResult? Function()? doctorsFetched,
+    TResult? Function()? allDoctorsFetched,
+    TResult? Function(String query)? doctorSearched,
+    TResult? Function()? pharmaciesFetched,
+  }) {
+    return departmentsFetched?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? allListsFetched,
+    TResult Function()? notificationsCountFetched,
+    TResult Function()? upcomingAppointmentsFetched,
+    TResult Function()? departmentsFetched,
+    TResult Function()? doctorsFetched,
+    TResult Function()? allDoctorsFetched,
+    TResult Function(String query)? doctorSearched,
+    TResult Function()? pharmaciesFetched,
+    required TResult orElse(),
+  }) {
+    if (departmentsFetched != null) {
+      return departmentsFetched();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AllListsFetched value) allListsFetched,
+    required TResult Function(NotificationCountFetched value)
+    notificationsCountFetched,
+    required TResult Function(UpcomingAppointmentsFetched value)
+    upcomingAppointmentsFetched,
+    required TResult Function(DepartmentsFetched value) departmentsFetched,
+    required TResult Function(DoctorsFetched value) doctorsFetched,
+    required TResult Function(AllDoctorsFetched value) allDoctorsFetched,
+    required TResult Function(DoctorSearched value) doctorSearched,
+    required TResult Function(PharmaciesFetched value) pharmaciesFetched,
+  }) {
+    return departmentsFetched(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AllListsFetched value)? allListsFetched,
+    TResult? Function(NotificationCountFetched value)?
+    notificationsCountFetched,
+    TResult? Function(UpcomingAppointmentsFetched value)?
+    upcomingAppointmentsFetched,
+    TResult? Function(DepartmentsFetched value)? departmentsFetched,
+    TResult? Function(DoctorsFetched value)? doctorsFetched,
+    TResult? Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult? Function(DoctorSearched value)? doctorSearched,
+    TResult? Function(PharmaciesFetched value)? pharmaciesFetched,
+  }) {
+    return departmentsFetched?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AllListsFetched value)? allListsFetched,
+    TResult Function(NotificationCountFetched value)? notificationsCountFetched,
+    TResult Function(UpcomingAppointmentsFetched value)?
+    upcomingAppointmentsFetched,
+    TResult Function(DepartmentsFetched value)? departmentsFetched,
+    TResult Function(DoctorsFetched value)? doctorsFetched,
+    TResult Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult Function(DoctorSearched value)? doctorSearched,
+    TResult Function(PharmaciesFetched value)? pharmaciesFetched,
+    required TResult orElse(),
+  }) {
+    if (departmentsFetched != null) {
+      return departmentsFetched(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DepartmentsFetched implements HomeEvent {
+  const factory DepartmentsFetched() = _$DepartmentsFetchedImpl;
+}
+
+/// @nodoc
+abstract class _$$DoctorsFetchedImplCopyWith<$Res> {
+  factory _$$DoctorsFetchedImplCopyWith(
+    _$DoctorsFetchedImpl value,
+    $Res Function(_$DoctorsFetchedImpl) then,
+  ) = __$$DoctorsFetchedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$DoctorsFetchedImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$DoctorsFetchedImpl>
+    implements _$$DoctorsFetchedImplCopyWith<$Res> {
+  __$$DoctorsFetchedImplCopyWithImpl(
+    _$DoctorsFetchedImpl _value,
+    $Res Function(_$DoctorsFetchedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$DoctorsFetchedImpl
+    with DiagnosticableTreeMixin
+    implements DoctorsFetched {
+  const _$DoctorsFetchedImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'HomeEvent.doctorsFetched()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'HomeEvent.doctorsFetched'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$DoctorsFetchedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() allListsFetched,
+    required TResult Function() notificationsCountFetched,
+    required TResult Function() upcomingAppointmentsFetched,
+    required TResult Function() departmentsFetched,
+    required TResult Function() doctorsFetched,
+    required TResult Function() allDoctorsFetched,
+    required TResult Function(String query) doctorSearched,
+    required TResult Function() pharmaciesFetched,
+  }) {
+    return doctorsFetched();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? allListsFetched,
+    TResult? Function()? notificationsCountFetched,
+    TResult? Function()? upcomingAppointmentsFetched,
+    TResult? Function()? departmentsFetched,
+    TResult? Function()? doctorsFetched,
+    TResult? Function()? allDoctorsFetched,
+    TResult? Function(String query)? doctorSearched,
+    TResult? Function()? pharmaciesFetched,
+  }) {
+    return doctorsFetched?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? allListsFetched,
+    TResult Function()? notificationsCountFetched,
+    TResult Function()? upcomingAppointmentsFetched,
+    TResult Function()? departmentsFetched,
+    TResult Function()? doctorsFetched,
+    TResult Function()? allDoctorsFetched,
+    TResult Function(String query)? doctorSearched,
+    TResult Function()? pharmaciesFetched,
+    required TResult orElse(),
+  }) {
+    if (doctorsFetched != null) {
+      return doctorsFetched();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AllListsFetched value) allListsFetched,
+    required TResult Function(NotificationCountFetched value)
+    notificationsCountFetched,
+    required TResult Function(UpcomingAppointmentsFetched value)
+    upcomingAppointmentsFetched,
+    required TResult Function(DepartmentsFetched value) departmentsFetched,
+    required TResult Function(DoctorsFetched value) doctorsFetched,
+    required TResult Function(AllDoctorsFetched value) allDoctorsFetched,
+    required TResult Function(DoctorSearched value) doctorSearched,
+    required TResult Function(PharmaciesFetched value) pharmaciesFetched,
+  }) {
+    return doctorsFetched(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AllListsFetched value)? allListsFetched,
+    TResult? Function(NotificationCountFetched value)?
+    notificationsCountFetched,
+    TResult? Function(UpcomingAppointmentsFetched value)?
+    upcomingAppointmentsFetched,
+    TResult? Function(DepartmentsFetched value)? departmentsFetched,
+    TResult? Function(DoctorsFetched value)? doctorsFetched,
+    TResult? Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult? Function(DoctorSearched value)? doctorSearched,
+    TResult? Function(PharmaciesFetched value)? pharmaciesFetched,
+  }) {
+    return doctorsFetched?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AllListsFetched value)? allListsFetched,
+    TResult Function(NotificationCountFetched value)? notificationsCountFetched,
+    TResult Function(UpcomingAppointmentsFetched value)?
+    upcomingAppointmentsFetched,
+    TResult Function(DepartmentsFetched value)? departmentsFetched,
+    TResult Function(DoctorsFetched value)? doctorsFetched,
+    TResult Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult Function(DoctorSearched value)? doctorSearched,
+    TResult Function(PharmaciesFetched value)? pharmaciesFetched,
+    required TResult orElse(),
+  }) {
+    if (doctorsFetched != null) {
+      return doctorsFetched(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DoctorsFetched implements HomeEvent {
+  const factory DoctorsFetched() = _$DoctorsFetchedImpl;
+}
+
+/// @nodoc
+abstract class _$$AllDoctorsFetchedImplCopyWith<$Res> {
+  factory _$$AllDoctorsFetchedImplCopyWith(
+    _$AllDoctorsFetchedImpl value,
+    $Res Function(_$AllDoctorsFetchedImpl) then,
+  ) = __$$AllDoctorsFetchedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AllDoctorsFetchedImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$AllDoctorsFetchedImpl>
+    implements _$$AllDoctorsFetchedImplCopyWith<$Res> {
+  __$$AllDoctorsFetchedImplCopyWithImpl(
+    _$AllDoctorsFetchedImpl _value,
+    $Res Function(_$AllDoctorsFetchedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$AllDoctorsFetchedImpl
+    with DiagnosticableTreeMixin
+    implements AllDoctorsFetched {
+  const _$AllDoctorsFetchedImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'HomeEvent.allDoctorsFetched()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'HomeEvent.allDoctorsFetched'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$AllDoctorsFetchedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() allListsFetched,
+    required TResult Function() notificationsCountFetched,
+    required TResult Function() upcomingAppointmentsFetched,
+    required TResult Function() departmentsFetched,
+    required TResult Function() doctorsFetched,
+    required TResult Function() allDoctorsFetched,
+    required TResult Function(String query) doctorSearched,
+    required TResult Function() pharmaciesFetched,
+  }) {
+    return allDoctorsFetched();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? allListsFetched,
+    TResult? Function()? notificationsCountFetched,
+    TResult? Function()? upcomingAppointmentsFetched,
+    TResult? Function()? departmentsFetched,
+    TResult? Function()? doctorsFetched,
+    TResult? Function()? allDoctorsFetched,
+    TResult? Function(String query)? doctorSearched,
+    TResult? Function()? pharmaciesFetched,
+  }) {
+    return allDoctorsFetched?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? allListsFetched,
+    TResult Function()? notificationsCountFetched,
+    TResult Function()? upcomingAppointmentsFetched,
+    TResult Function()? departmentsFetched,
+    TResult Function()? doctorsFetched,
+    TResult Function()? allDoctorsFetched,
+    TResult Function(String query)? doctorSearched,
+    TResult Function()? pharmaciesFetched,
+    required TResult orElse(),
+  }) {
+    if (allDoctorsFetched != null) {
+      return allDoctorsFetched();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AllListsFetched value) allListsFetched,
+    required TResult Function(NotificationCountFetched value)
+    notificationsCountFetched,
+    required TResult Function(UpcomingAppointmentsFetched value)
+    upcomingAppointmentsFetched,
+    required TResult Function(DepartmentsFetched value) departmentsFetched,
+    required TResult Function(DoctorsFetched value) doctorsFetched,
+    required TResult Function(AllDoctorsFetched value) allDoctorsFetched,
+    required TResult Function(DoctorSearched value) doctorSearched,
+    required TResult Function(PharmaciesFetched value) pharmaciesFetched,
+  }) {
+    return allDoctorsFetched(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AllListsFetched value)? allListsFetched,
+    TResult? Function(NotificationCountFetched value)?
+    notificationsCountFetched,
+    TResult? Function(UpcomingAppointmentsFetched value)?
+    upcomingAppointmentsFetched,
+    TResult? Function(DepartmentsFetched value)? departmentsFetched,
+    TResult? Function(DoctorsFetched value)? doctorsFetched,
+    TResult? Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult? Function(DoctorSearched value)? doctorSearched,
+    TResult? Function(PharmaciesFetched value)? pharmaciesFetched,
+  }) {
+    return allDoctorsFetched?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AllListsFetched value)? allListsFetched,
+    TResult Function(NotificationCountFetched value)? notificationsCountFetched,
+    TResult Function(UpcomingAppointmentsFetched value)?
+    upcomingAppointmentsFetched,
+    TResult Function(DepartmentsFetched value)? departmentsFetched,
+    TResult Function(DoctorsFetched value)? doctorsFetched,
+    TResult Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult Function(DoctorSearched value)? doctorSearched,
+    TResult Function(PharmaciesFetched value)? pharmaciesFetched,
+    required TResult orElse(),
+  }) {
+    if (allDoctorsFetched != null) {
+      return allDoctorsFetched(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AllDoctorsFetched implements HomeEvent {
+  const factory AllDoctorsFetched() = _$AllDoctorsFetchedImpl;
+}
+
+/// @nodoc
+abstract class _$$DoctorSearchedImplCopyWith<$Res> {
+  factory _$$DoctorSearchedImplCopyWith(
+    _$DoctorSearchedImpl value,
+    $Res Function(_$DoctorSearchedImpl) then,
+  ) = __$$DoctorSearchedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String query});
+}
+
+/// @nodoc
+class __$$DoctorSearchedImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$DoctorSearchedImpl>
+    implements _$$DoctorSearchedImplCopyWith<$Res> {
+  __$$DoctorSearchedImplCopyWithImpl(
+    _$DoctorSearchedImpl _value,
+    $Res Function(_$DoctorSearchedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? query = null}) {
+    return _then(
+      _$DoctorSearchedImpl(
+        null == query
+            ? _value.query
+            : query // ignore: cast_nullable_to_non_nullable
+                as String,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$DoctorSearchedImpl
+    with DiagnosticableTreeMixin
+    implements DoctorSearched {
+  const _$DoctorSearchedImpl(this.query);
+
+  @override
+  final String query;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'HomeEvent.doctorSearched(query: $query)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'HomeEvent.doctorSearched'))
+      ..add(DiagnosticsProperty('query', query));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DoctorSearchedImpl &&
+            (identical(other.query, query) || other.query == query));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, query);
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DoctorSearchedImplCopyWith<_$DoctorSearchedImpl> get copyWith =>
+      __$$DoctorSearchedImplCopyWithImpl<_$DoctorSearchedImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() allListsFetched,
+    required TResult Function() notificationsCountFetched,
+    required TResult Function() upcomingAppointmentsFetched,
+    required TResult Function() departmentsFetched,
+    required TResult Function() doctorsFetched,
+    required TResult Function() allDoctorsFetched,
+    required TResult Function(String query) doctorSearched,
+    required TResult Function() pharmaciesFetched,
+  }) {
+    return doctorSearched(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? allListsFetched,
+    TResult? Function()? notificationsCountFetched,
+    TResult? Function()? upcomingAppointmentsFetched,
+    TResult? Function()? departmentsFetched,
+    TResult? Function()? doctorsFetched,
+    TResult? Function()? allDoctorsFetched,
+    TResult? Function(String query)? doctorSearched,
+    TResult? Function()? pharmaciesFetched,
+  }) {
+    return doctorSearched?.call(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? allListsFetched,
+    TResult Function()? notificationsCountFetched,
+    TResult Function()? upcomingAppointmentsFetched,
+    TResult Function()? departmentsFetched,
+    TResult Function()? doctorsFetched,
+    TResult Function()? allDoctorsFetched,
+    TResult Function(String query)? doctorSearched,
+    TResult Function()? pharmaciesFetched,
+    required TResult orElse(),
+  }) {
+    if (doctorSearched != null) {
+      return doctorSearched(query);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AllListsFetched value) allListsFetched,
+    required TResult Function(NotificationCountFetched value)
+    notificationsCountFetched,
+    required TResult Function(UpcomingAppointmentsFetched value)
+    upcomingAppointmentsFetched,
+    required TResult Function(DepartmentsFetched value) departmentsFetched,
+    required TResult Function(DoctorsFetched value) doctorsFetched,
+    required TResult Function(AllDoctorsFetched value) allDoctorsFetched,
+    required TResult Function(DoctorSearched value) doctorSearched,
+    required TResult Function(PharmaciesFetched value) pharmaciesFetched,
+  }) {
+    return doctorSearched(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AllListsFetched value)? allListsFetched,
+    TResult? Function(NotificationCountFetched value)?
+    notificationsCountFetched,
+    TResult? Function(UpcomingAppointmentsFetched value)?
+    upcomingAppointmentsFetched,
+    TResult? Function(DepartmentsFetched value)? departmentsFetched,
+    TResult? Function(DoctorsFetched value)? doctorsFetched,
+    TResult? Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult? Function(DoctorSearched value)? doctorSearched,
+    TResult? Function(PharmaciesFetched value)? pharmaciesFetched,
+  }) {
+    return doctorSearched?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AllListsFetched value)? allListsFetched,
+    TResult Function(NotificationCountFetched value)? notificationsCountFetched,
+    TResult Function(UpcomingAppointmentsFetched value)?
+    upcomingAppointmentsFetched,
+    TResult Function(DepartmentsFetched value)? departmentsFetched,
+    TResult Function(DoctorsFetched value)? doctorsFetched,
+    TResult Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult Function(DoctorSearched value)? doctorSearched,
+    TResult Function(PharmaciesFetched value)? pharmaciesFetched,
+    required TResult orElse(),
+  }) {
+    if (doctorSearched != null) {
+      return doctorSearched(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DoctorSearched implements HomeEvent {
+  const factory DoctorSearched(final String query) = _$DoctorSearchedImpl;
+
+  String get query;
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DoctorSearchedImplCopyWith<_$DoctorSearchedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PharmaciesFetchedImplCopyWith<$Res> {
+  factory _$$PharmaciesFetchedImplCopyWith(
+    _$PharmaciesFetchedImpl value,
+    $Res Function(_$PharmaciesFetchedImpl) then,
+  ) = __$$PharmaciesFetchedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$PharmaciesFetchedImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$PharmaciesFetchedImpl>
+    implements _$$PharmaciesFetchedImplCopyWith<$Res> {
+  __$$PharmaciesFetchedImplCopyWithImpl(
+    _$PharmaciesFetchedImpl _value,
+    $Res Function(_$PharmaciesFetchedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$PharmaciesFetchedImpl
+    with DiagnosticableTreeMixin
+    implements PharmaciesFetched {
+  const _$PharmaciesFetchedImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'HomeEvent.pharmaciesFetched()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'HomeEvent.pharmaciesFetched'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$PharmaciesFetchedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() allListsFetched,
+    required TResult Function() notificationsCountFetched,
+    required TResult Function() upcomingAppointmentsFetched,
+    required TResult Function() departmentsFetched,
+    required TResult Function() doctorsFetched,
+    required TResult Function() allDoctorsFetched,
+    required TResult Function(String query) doctorSearched,
+    required TResult Function() pharmaciesFetched,
+  }) {
+    return pharmaciesFetched();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? allListsFetched,
+    TResult? Function()? notificationsCountFetched,
+    TResult? Function()? upcomingAppointmentsFetched,
+    TResult? Function()? departmentsFetched,
+    TResult? Function()? doctorsFetched,
+    TResult? Function()? allDoctorsFetched,
+    TResult? Function(String query)? doctorSearched,
+    TResult? Function()? pharmaciesFetched,
+  }) {
+    return pharmaciesFetched?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? allListsFetched,
+    TResult Function()? notificationsCountFetched,
+    TResult Function()? upcomingAppointmentsFetched,
+    TResult Function()? departmentsFetched,
+    TResult Function()? doctorsFetched,
+    TResult Function()? allDoctorsFetched,
+    TResult Function(String query)? doctorSearched,
+    TResult Function()? pharmaciesFetched,
+    required TResult orElse(),
+  }) {
+    if (pharmaciesFetched != null) {
+      return pharmaciesFetched();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AllListsFetched value) allListsFetched,
+    required TResult Function(NotificationCountFetched value)
+    notificationsCountFetched,
+    required TResult Function(UpcomingAppointmentsFetched value)
+    upcomingAppointmentsFetched,
+    required TResult Function(DepartmentsFetched value) departmentsFetched,
+    required TResult Function(DoctorsFetched value) doctorsFetched,
+    required TResult Function(AllDoctorsFetched value) allDoctorsFetched,
+    required TResult Function(DoctorSearched value) doctorSearched,
+    required TResult Function(PharmaciesFetched value) pharmaciesFetched,
+  }) {
+    return pharmaciesFetched(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AllListsFetched value)? allListsFetched,
+    TResult? Function(NotificationCountFetched value)?
+    notificationsCountFetched,
+    TResult? Function(UpcomingAppointmentsFetched value)?
+    upcomingAppointmentsFetched,
+    TResult? Function(DepartmentsFetched value)? departmentsFetched,
+    TResult? Function(DoctorsFetched value)? doctorsFetched,
+    TResult? Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult? Function(DoctorSearched value)? doctorSearched,
+    TResult? Function(PharmaciesFetched value)? pharmaciesFetched,
+  }) {
+    return pharmaciesFetched?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AllListsFetched value)? allListsFetched,
+    TResult Function(NotificationCountFetched value)? notificationsCountFetched,
+    TResult Function(UpcomingAppointmentsFetched value)?
+    upcomingAppointmentsFetched,
+    TResult Function(DepartmentsFetched value)? departmentsFetched,
+    TResult Function(DoctorsFetched value)? doctorsFetched,
+    TResult Function(AllDoctorsFetched value)? allDoctorsFetched,
+    TResult Function(DoctorSearched value)? doctorSearched,
+    TResult Function(PharmaciesFetched value)? pharmaciesFetched,
+    required TResult orElse(),
+  }) {
+    if (pharmaciesFetched != null) {
+      return pharmaciesFetched(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PharmaciesFetched implements HomeEvent {
+  const factory PharmaciesFetched() = _$PharmaciesFetchedImpl;
 }
 
 /// @nodoc
@@ -317,6 +1418,8 @@ mixin _$HomeState {
   List<ClinicModel> get departmentsList => throw _privateConstructorUsedError;
   DataStatus get departmentsListStatus => throw _privateConstructorUsedError;
   List<DoctorModel> get doctorsList => throw _privateConstructorUsedError;
+  List<DoctorModel> get doctorsSearchList => throw _privateConstructorUsedError;
+  DataStatus get doctorsearchListStatus => throw _privateConstructorUsedError;
   DataStatus get doctorsListStatus => throw _privateConstructorUsedError;
   List<PharmacyModel> get pharmaciesList => throw _privateConstructorUsedError;
   DataStatus get pharmaciesListStatus => throw _privateConstructorUsedError;
@@ -342,6 +1445,8 @@ abstract class $HomeStateCopyWith<$Res> {
     List<ClinicModel> departmentsList,
     DataStatus departmentsListStatus,
     List<DoctorModel> doctorsList,
+    List<DoctorModel> doctorsSearchList,
+    DataStatus doctorsearchListStatus,
     DataStatus doctorsListStatus,
     List<PharmacyModel> pharmaciesList,
     DataStatus pharmaciesListStatus,
@@ -371,6 +1476,8 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? departmentsList = null,
     Object? departmentsListStatus = null,
     Object? doctorsList = null,
+    Object? doctorsSearchList = null,
+    Object? doctorsearchListStatus = null,
     Object? doctorsListStatus = null,
     Object? pharmaciesList = null,
     Object? pharmaciesListStatus = null,
@@ -413,6 +1520,16 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
                     ? _value.doctorsList
                     : doctorsList // ignore: cast_nullable_to_non_nullable
                         as List<DoctorModel>,
+            doctorsSearchList:
+                null == doctorsSearchList
+                    ? _value.doctorsSearchList
+                    : doctorsSearchList // ignore: cast_nullable_to_non_nullable
+                        as List<DoctorModel>,
+            doctorsearchListStatus:
+                null == doctorsearchListStatus
+                    ? _value.doctorsearchListStatus
+                    : doctorsearchListStatus // ignore: cast_nullable_to_non_nullable
+                        as DataStatus,
             doctorsListStatus:
                 null == doctorsListStatus
                     ? _value.doctorsListStatus
@@ -456,6 +1573,8 @@ abstract class _$$HomeStateImplCopyWith<$Res>
     List<ClinicModel> departmentsList,
     DataStatus departmentsListStatus,
     List<DoctorModel> doctorsList,
+    List<DoctorModel> doctorsSearchList,
+    DataStatus doctorsearchListStatus,
     DataStatus doctorsListStatus,
     List<PharmacyModel> pharmaciesList,
     DataStatus pharmaciesListStatus,
@@ -484,6 +1603,8 @@ class __$$HomeStateImplCopyWithImpl<$Res>
     Object? departmentsList = null,
     Object? departmentsListStatus = null,
     Object? doctorsList = null,
+    Object? doctorsSearchList = null,
+    Object? doctorsearchListStatus = null,
     Object? doctorsListStatus = null,
     Object? pharmaciesList = null,
     Object? pharmaciesListStatus = null,
@@ -526,6 +1647,16 @@ class __$$HomeStateImplCopyWithImpl<$Res>
                 ? _value._doctorsList
                 : doctorsList // ignore: cast_nullable_to_non_nullable
                     as List<DoctorModel>,
+        doctorsSearchList:
+            null == doctorsSearchList
+                ? _value._doctorsSearchList
+                : doctorsSearchList // ignore: cast_nullable_to_non_nullable
+                    as List<DoctorModel>,
+        doctorsearchListStatus:
+            null == doctorsearchListStatus
+                ? _value.doctorsearchListStatus
+                : doctorsearchListStatus // ignore: cast_nullable_to_non_nullable
+                    as DataStatus,
         doctorsListStatus:
             null == doctorsListStatus
                 ? _value.doctorsListStatus
@@ -562,6 +1693,8 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
     required final List<ClinicModel> departmentsList,
     required this.departmentsListStatus,
     required final List<DoctorModel> doctorsList,
+    required final List<DoctorModel> doctorsSearchList,
+    required this.doctorsearchListStatus,
     required this.doctorsListStatus,
     required final List<PharmacyModel> pharmaciesList,
     required this.pharmaciesListStatus,
@@ -569,6 +1702,7 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
   }) : _upcomingAppointmentsList = upcomingAppointmentsList,
        _departmentsList = departmentsList,
        _doctorsList = doctorsList,
+       _doctorsSearchList = doctorsSearchList,
        _pharmaciesList = pharmaciesList;
 
   @override
@@ -604,6 +1738,17 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
     return EqualUnmodifiableListView(_doctorsList);
   }
 
+  final List<DoctorModel> _doctorsSearchList;
+  @override
+  List<DoctorModel> get doctorsSearchList {
+    if (_doctorsSearchList is EqualUnmodifiableListView)
+      return _doctorsSearchList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_doctorsSearchList);
+  }
+
+  @override
+  final DataStatus doctorsearchListStatus;
   @override
   final DataStatus doctorsListStatus;
   final List<PharmacyModel> _pharmaciesList;
@@ -621,7 +1766,7 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'HomeState(status: $status, message: $message, upcomingAppointmentsList: $upcomingAppointmentsList, upcomingAppointmentsListStatus: $upcomingAppointmentsListStatus, departmentsList: $departmentsList, departmentsListStatus: $departmentsListStatus, doctorsList: $doctorsList, doctorsListStatus: $doctorsListStatus, pharmaciesList: $pharmaciesList, pharmaciesListStatus: $pharmaciesListStatus, notificationCount: $notificationCount)';
+    return 'HomeState(status: $status, message: $message, upcomingAppointmentsList: $upcomingAppointmentsList, upcomingAppointmentsListStatus: $upcomingAppointmentsListStatus, departmentsList: $departmentsList, departmentsListStatus: $departmentsListStatus, doctorsList: $doctorsList, doctorsSearchList: $doctorsSearchList, doctorsearchListStatus: $doctorsearchListStatus, doctorsListStatus: $doctorsListStatus, pharmaciesList: $pharmaciesList, pharmaciesListStatus: $pharmaciesListStatus, notificationCount: $notificationCount)';
   }
 
   @override
@@ -646,6 +1791,10 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
       ..add(DiagnosticsProperty('departmentsList', departmentsList))
       ..add(DiagnosticsProperty('departmentsListStatus', departmentsListStatus))
       ..add(DiagnosticsProperty('doctorsList', doctorsList))
+      ..add(DiagnosticsProperty('doctorsSearchList', doctorsSearchList))
+      ..add(
+        DiagnosticsProperty('doctorsearchListStatus', doctorsearchListStatus),
+      )
       ..add(DiagnosticsProperty('doctorsListStatus', doctorsListStatus))
       ..add(DiagnosticsProperty('pharmaciesList', pharmaciesList))
       ..add(DiagnosticsProperty('pharmaciesListStatus', pharmaciesListStatus))
@@ -679,6 +1828,12 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
               other._doctorsList,
               _doctorsList,
             ) &&
+            const DeepCollectionEquality().equals(
+              other._doctorsSearchList,
+              _doctorsSearchList,
+            ) &&
+            (identical(other.doctorsearchListStatus, doctorsearchListStatus) ||
+                other.doctorsearchListStatus == doctorsearchListStatus) &&
             (identical(other.doctorsListStatus, doctorsListStatus) ||
                 other.doctorsListStatus == doctorsListStatus) &&
             const DeepCollectionEquality().equals(
@@ -701,6 +1856,8 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
     const DeepCollectionEquality().hash(_departmentsList),
     departmentsListStatus,
     const DeepCollectionEquality().hash(_doctorsList),
+    const DeepCollectionEquality().hash(_doctorsSearchList),
+    doctorsearchListStatus,
     doctorsListStatus,
     const DeepCollectionEquality().hash(_pharmaciesList),
     pharmaciesListStatus,
@@ -725,6 +1882,8 @@ abstract class _HomeState implements HomeState {
     required final List<ClinicModel> departmentsList,
     required final DataStatus departmentsListStatus,
     required final List<DoctorModel> doctorsList,
+    required final List<DoctorModel> doctorsSearchList,
+    required final DataStatus doctorsearchListStatus,
     required final DataStatus doctorsListStatus,
     required final List<PharmacyModel> pharmaciesList,
     required final DataStatus pharmaciesListStatus,
@@ -745,6 +1904,10 @@ abstract class _HomeState implements HomeState {
   DataStatus get departmentsListStatus;
   @override
   List<DoctorModel> get doctorsList;
+  @override
+  List<DoctorModel> get doctorsSearchList;
+  @override
+  DataStatus get doctorsearchListStatus;
   @override
   DataStatus get doctorsListStatus;
   @override

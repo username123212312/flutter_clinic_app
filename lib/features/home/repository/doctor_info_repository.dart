@@ -9,7 +9,6 @@ import 'package:our_flutter_clinic_app/core/providers/dio_client/dio_client.dart
 
 import '../../../core/models/app_failure.dart';
 import '../../../core/models/app_response.dart';
-import '../../../core/utils/general_utils.dart';
 import '../../../core/utils/utils.dart';
 import '../model/doctor_model.dart';
 import '../model/requests/add_new_appointment_request.dart';

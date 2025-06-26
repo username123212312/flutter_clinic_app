@@ -94,7 +94,7 @@ class DoctorInfoCubit extends Cubit<DoctorInfoState> {
           Right(value: final r) => state.copyWith(
             status: DataStatus.data,
             message: r.message,
-            availablTimes: r.data ?? state.availablTimes,
+            availableTimes: r.data ?? state.availableTimes,
           ),
         };
         emit(newState);
@@ -104,29 +104,36 @@ class DoctorInfoCubit extends Cubit<DoctorInfoState> {
     }
   }
 
+  void selectTime(TimeOfDay time) {
+    emit(state.copyWith(selectedTime: time));
+  }
+
   Future<void> bookNewAppointment() async {
-    _emitLoading();
-    try {
-      final response = await _doctorInfoRepository.addNewAppointment(
-        AddNewAppointmentRequest(
-          doctorId: state.doctor.id ?? 0,
-          date: state.selectedDate ?? DateTime.now(),
-          time: state.selectedTime ?? TimeOfDay.now(),
-        ),
-      );
-      final newState = switch (response) {
-        Left(value: final l) => state.copyWith(
-          status: DataStatus.error,
-          message: l.message,
-        ),
-        Right(value: final r) => state.copyWith(
-          status: DataStatus.data,
-          message: r.message,
-        ),
-      };
-      emit(newState);
-    } catch (e) {
-      emit(state.copyWith(status: DataStatus.error, message: e.toString()));
+    if (state.selectedTime != null) {
+      _emitLoading();
+      try {
+        final response = await _doctorInfoRepository.addNewAppointment(
+          AddNewAppointmentRequest(
+            doctorId: state.doctor.id ?? 0,
+            date: state.selectedDate ?? DateTime.now(),
+            time: state.selectedTime ?? TimeOfDay.now(),
+          ),
+        );
+        final newState = switch (response) {
+          Left(value: final l) => state.copyWith(
+            status: DataStatus.error,
+            message: l.message,
+          ),
+          Right(value: final r) => state.copyWith(
+            status: DataStatus.done,
+            message: r.message,
+            appointmentId: r.data,
+          ),
+        };
+        emit(newState);
+      } catch (e) {
+        emit(state.copyWith(status: DataStatus.error, message: e.toString()));
+      }
     }
   }
 

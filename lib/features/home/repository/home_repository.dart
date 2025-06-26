@@ -133,6 +133,36 @@ class HomeRepository {
     }
   }
 
+  Future<Either<AppFailure, AppResponse<List<DoctorModel>>>>
+  fetchAllDoctors() async {
+    try {
+      final response = await _dio.get(AppConstants.showDoctorsPath);
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse<List<DoctorModel>>(
+            success: true,
+            message: 'Doctors fetched successfully!',
+            data:
+                (response.data['top rated doctors'] as List<dynamic>)
+                    .map((doctor) {
+                      return DoctorModel.fromJson(doctor);
+                    })
+                    .take(5)
+                    .toList(),
+          ),
+        );
+      } else {
+        throw HttpException('Doctors are not fetched');
+      }
+    } on DioException catch (e) {
+      return Left(AppFailure(message: e.message ?? 'Error'));
+    } on HttpException catch (e) {
+      return Left(AppFailure(message: e.message));
+    } catch (e) {
+      return Left(AppFailure(message: e.toString()));
+    }
+  }
+
   Future<Either<AppFailure, AppResponse<List<PharmacyModel>>>>
   fetchNearByPharmacies() async {
     try {
@@ -150,6 +180,37 @@ class HomeRepository {
         );
       } else {
         throw HttpException('Pharmacies are not fetched');
+      }
+    } on DioException catch (e) {
+      return Left(AppFailure(message: e.message ?? 'Error'));
+    } on HttpException catch (e) {
+      return Left(AppFailure(message: e.message));
+    } catch (e) {
+      return Left(AppFailure(message: e.toString()));
+    }
+  }
+
+  Future<Either<AppFailure, AppResponse<List<DoctorModel>>>> searchDoctor(
+    String query,
+  ) async {
+    try {
+      final response = await _dio.post(
+        AppConstants.searchDoctorPath,
+        data: {'name': query},
+      );
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse<List<DoctorModel>>(
+            success: true,
+            message: 'Clinic doctors are fetched successfully',
+            data:
+                (response.data['items'] as List<dynamic>).map((doctor) {
+                  return DoctorModel.fromJson(doctor);
+                }).toList(),
+          ),
+        );
+      } else {
+        throw HttpException('Clinic doctors are not fetched');
       }
     } on DioException catch (e) {
       return Left(AppFailure(message: e.message ?? 'Error'));

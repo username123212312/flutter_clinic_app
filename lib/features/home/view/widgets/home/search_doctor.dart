@@ -1,11 +1,20 @@
-import 'package:flutter/material.dart';
+import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/utils.dart';
+import '../../../model/doctor_model.dart';
 import 'find_doctor_card.dart';
 
 class SearchOverlay extends StatefulWidget {
-  const SearchOverlay({super.key});
+  const SearchOverlay({
+    super.key,
+    required this.doctorsSearchList,
+    this.onChanged,
+  });
+
+  final List<DoctorModel> doctorsSearchList;
+
+  final void Function(String value)? onChanged;
 
   @override
   State<SearchOverlay> createState() => _SearchOverlayState();
@@ -13,33 +22,6 @@ class SearchOverlay extends StatefulWidget {
 
 class _SearchOverlayState extends State<SearchOverlay> {
   final TextEditingController searchController = TextEditingController();
-
-  final List<Map<String, dynamic>> doctors = [
-    {
-      'name': 'Jennifer Miller',
-      'specialty': 'Pediatrician',
-      'image': 'assets/icons/pro.avif',
-      'rating': 4.8,
-      'start': '10:30am',
-      'end': '5:30pm',
-    },
-    {
-      'name': 'Ahmed Sami',
-      'specialty': 'Dentist',
-      'image': 'assets/icons/pro.avif',
-      'rating': 4.5,
-      'start': '1:00pm',
-      'end': '6:00pm',
-    },
-    {
-      'name': 'Ahmed Sami',
-      'specialty': 'Dentist',
-      'image': 'assets/icons/pro.avif',
-      'rating': 4.5,
-      'start': '1:00pm',
-      'end': '6:00pm',
-    },
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +40,10 @@ class _SearchOverlayState extends State<SearchOverlay> {
             child: Column(
               children: [
                 TextField(
+                  textInputAction: TextInputAction.search,
                   controller: searchController,
-                  onChanged: (_) => setState(() {}),
+                  onChanged: widget.onChanged,
+                  onSubmitted: widget.onChanged,
                   style: Theme.of(context).textTheme.labelMedium!.copyWith(
                     fontSize: 14,
                     color: Pallete.black1,
@@ -99,14 +83,7 @@ class _SearchOverlayState extends State<SearchOverlay> {
                 const SizedBox(height: 16),
                 Expanded(
                   child:
-                      doctors
-                              .where(
-                                (doctor) =>
-                                    doctor['name'].toLowerCase().startsWith(
-                                      searchController.text.toLowerCase(),
-                                    ),
-                              )
-                              .isEmpty
+                      widget.doctorsSearchList.isEmpty
                           ? Center(
                             child: Column(
                               children: [
@@ -130,14 +107,7 @@ class _SearchOverlayState extends State<SearchOverlay> {
                           )
                           : ListView(
                             children:
-                                doctors
-                                    .where(
-                                      (doctor) => doctor['name']
-                                          .toLowerCase()
-                                          .startsWith(
-                                            searchController.text.toLowerCase(),
-                                          ),
-                                    )
+                                widget.doctorsSearchList
                                     .map(
                                       (doctor) => Padding(
                                         padding: const EdgeInsets.only(
@@ -145,13 +115,28 @@ class _SearchOverlayState extends State<SearchOverlay> {
                                         ),
                                         child: FindDoctorCard(
                                           padding: 25,
-                                          title: doctor['name'],
-                                          subtitle: doctor['specialty'],
-                                          imagePath: doctor['image'],
-                                          rating: doctor['rating'],
-                                          startTime: doctor['start'],
-                                          endTime: doctor['end'],
-                                          onTap: () {},
+                                          title:
+                                              '${doctor.firstName ?? 'No'} ${doctor.lastName ?? 'Doctor'}',
+                                          subtitle:
+                                              doctor.speciality ??
+                                              'No specality',
+                                          imagePath:
+                                              doctor.photoPath ??
+                                              'assets/images/logo.webp',
+                                          rating:
+                                              double.tryParse(
+                                                doctor.finalRate ?? '0.0',
+                                              ) ??
+                                              0.0,
+                                          startTime: '',
+                                          endTime: '',
+                                          onTap: () {
+                                            context.pushNamed(
+                                              AppRouteConstants
+                                                  .doctorInfoRouteName,
+                                              extra: doctor,
+                                            );
+                                          },
                                         ),
                                       ),
                                     )

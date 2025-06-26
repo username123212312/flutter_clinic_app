@@ -17,7 +17,7 @@ sealed class DoctorModel with _$DoctorModel {
     String? speciality,
     String? department,
     @JsonKey(name: 'final_rate') String? finalRate,
-    double? visitFee,
+    @JsonKey(name: 'visit_fee') double? visitFee,
     String? excperience,
     String? status,
   }) = _DoctorModel;

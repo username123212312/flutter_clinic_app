@@ -92,13 +92,6 @@ class _AllDepartmentsScreenState extends State<AllDepartmentsScreen> {
             color: Pallete.grayScaleColor700,
           ),
         ),
-        actions: [
-          IconButton(
-            iconSize: 24,
-            icon: const Icon(Icons.search, color: Pallete.grayScaleColor700),
-            onPressed: _showSearchDialog,
-          ),
-        ],
       ),
       body:
           filteredDepartments.isEmpty

@@ -37,6 +37,7 @@ mixin _$DoctorModel {
   String? get department => throw _privateConstructorUsedError;
   @JsonKey(name: 'final_rate')
   String? get finalRate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'visit_fee')
   double? get visitFee => throw _privateConstructorUsedError;
   String? get excperience => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
@@ -70,7 +71,7 @@ abstract class $DoctorModelCopyWith<$Res> {
     String? speciality,
     String? department,
     @JsonKey(name: 'final_rate') String? finalRate,
-    double? visitFee,
+    @JsonKey(name: 'visit_fee') double? visitFee,
     String? excperience,
     String? status,
   });
@@ -205,7 +206,7 @@ abstract class _$$DoctorModelImplCopyWith<$Res>
     String? speciality,
     String? department,
     @JsonKey(name: 'final_rate') String? finalRate,
-    double? visitFee,
+    @JsonKey(name: 'visit_fee') double? visitFee,
     String? excperience,
     String? status,
   });
@@ -332,7 +333,7 @@ class _$DoctorModelImpl implements _DoctorModel {
     this.speciality,
     this.department,
     @JsonKey(name: 'final_rate') this.finalRate,
-    this.visitFee,
+    @JsonKey(name: 'visit_fee') this.visitFee,
     this.excperience,
     this.status,
   });
@@ -368,6 +369,7 @@ class _$DoctorModelImpl implements _DoctorModel {
   @JsonKey(name: 'final_rate')
   final String? finalRate;
   @override
+  @JsonKey(name: 'visit_fee')
   final double? visitFee;
   @override
   final String? excperience;
@@ -456,7 +458,7 @@ abstract class _DoctorModel implements DoctorModel {
     final String? speciality,
     final String? department,
     @JsonKey(name: 'final_rate') final String? finalRate,
-    final double? visitFee,
+    @JsonKey(name: 'visit_fee') final double? visitFee,
     final String? excperience,
     final String? status,
   }) = _$DoctorModelImpl;
@@ -492,6 +494,7 @@ abstract class _DoctorModel implements DoctorModel {
   @JsonKey(name: 'final_rate')
   String? get finalRate;
   @override
+  @JsonKey(name: 'visit_fee')
   double? get visitFee;
   @override
   String? get excperience;

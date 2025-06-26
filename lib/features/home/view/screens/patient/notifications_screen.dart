@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -9,19 +8,6 @@ import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/utils.dart';
 import '../../../controller/notifications_cubit/notifications_cubit.dart';
 import '../../widgets/notification_card.dart';
-
-final notofications = [
-  {
-    'image': 'icon/notification.png',
-    'title': 'Appointment Reminder',
-    'subtitle': 'You have an appointment tomorrow at 10 AM',
-  },
-  {
-    'image': 'icon/notification.png',
-    'title': 'New Message',
-    'subtitle': 'You received a new message from Dr. Smith',
-  },
-];
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
@@ -135,7 +121,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
         children: [
           SizedBox(height: screenHeight(context) * 0.25),
           Image.asset(
-            'assets/images/il_empty_activity.webp',
+            'assets/images/empty_notifications.png',
             width: screenWidth(context) * 0.5,
             height: screenHeight(context) * 0.2,
           ),
