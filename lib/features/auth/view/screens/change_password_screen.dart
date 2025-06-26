@@ -2,7 +2,7 @@ import 'package:lottie/lottie.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/validator_util.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
-import '../../../../core/cubits/cubit/change_password_cubit.dart';
+import '../../../../core/cubits/change_password_cubit/change_password_cubit.dart';
 import '../../../../core/widgets/transparent_content_dialog.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../widgets/auth_widgets.dart';

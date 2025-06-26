@@ -8,12 +8,15 @@ import '../../../../../../../core/theme/app_pallete.dart';
 import '../../../../../../../core/utils/utils.dart';
 import '../../../../auth/view/widgets/auth_widgets.dart';
 import '../../../../auth/view/widgets/custom_button.dart';
+import '../../../controller/doctor_info_cubit/doctor_info_cubit.dart';
+import '../../../repository/doctor_info_repository.dart';
 import '../../widgets/widget_doctor/Schedule_Box.dart';
 import '../../widgets/widget_doctor/doctor_Info_card.dart';
 import '../../widgets/widget_doctor/info_box.dart';
 
 class DoctorInfoScreen extends StatefulWidget {
-  const DoctorInfoScreen({super.key});
+  const DoctorInfoScreen({super.key, required this.doctor});
+  final DoctorModel doctor;
 
   @override
   State<DoctorInfoScreen> createState() => _DoctorInfoScreenState();
@@ -32,6 +35,15 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
     '3:30am - 4:30pm',
     '4:30am - 5:30pm',
   ];
+
+  @override
+  void initState() {
+    _doctorInfoCubit = DoctorInfoCubit(
+      doctorInfoRepository: DoctorInfoRepository(),
+      doctor: widget.doctor,
+    )..fetchDoctorDetails();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +77,7 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
           SizedBox(height: screenHeight(context) * 0.001),
           SizedBox(
             child: Image.asset(
-              "assets/images/Jennifer_Miller.png",
+              widget.doctor.photoPath ?? "assets/images/Jennifer_Miller.png",
               width: screenWidth(context) * 0.4,
               height: screenHeight(context) * 0.3,
               fit: BoxFit.cover,
@@ -100,25 +112,28 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
                             ),
                             padding: const EdgeInsets.only(bottom: 8),
                             child: DoctorInfCard(
-                              doctorName: 'David H. Brown',
-                              specialty: 'Psychologists | Professional Title',
-                              rating: 4.8,
+                              doctorName:
+                                  '${widget.doctor.firstName ?? 'No'} ${widget.doctor.lastName ?? 'Doctor'}',
+                              specialty:
+                                  widget.doctor.speciality ?? 'No speciality',
+                              rating:
+                                  double.tryParse(
+                                    widget.doctor.finalRate ?? '0.0',
+                                  ) ??
+                                  0.0,
                               backgroundColor: Pallete.grayScaleColor0,
-                              startTime: '10:30am',
-                              endTime: '5:30pm',
+                              startTime: '',
+                              endTime: '',
                               onRatePressed: () {
                                 context.pushNamed(
                                   AppRouteConstants.doctorRatingRouteName,
-                                  extra: DoctorModel(
-                                    firstName: 'David H.',
-                                    lastName: ' Brown',
-                                  ),
+                                  extra: widget.doctor,
                                 );
                               },
                             ),
                           ),
                           const SizedBox(height: 16),
-                          const Row(
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               InfoBox(
@@ -128,12 +143,12 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
                               ),
                               InfoBox(
                                 backgroundColor: Pallete.grayScaleColor0,
-                                title: '50+',
+                                title: widget.doctor.treated?.toString() ?? '0',
                                 subtitle: 'Treated',
                               ),
                               InfoBox(
                                 backgroundColor: Pallete.grayScaleColor0,
-                                title: '\$25.00',
+                                title: '\$0.0',
                                 subtitle: 'Hourly Rate',
                               ),
                             ],
@@ -234,4 +249,6 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
       ),
     );
   }
+
+  late final DoctorInfoCubit _doctorInfoCubit;
 }

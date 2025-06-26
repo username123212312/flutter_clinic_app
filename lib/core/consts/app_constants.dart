@@ -42,6 +42,7 @@ class AppConstants {
   static const searchDoctorPath = '$homePath/searchDoctor';
   static const showClinicsPath = '$homePath/showClinics';
   static const showAllPharmaciesPath = '$homePath/showAllPharmacies';
+  static const searchPharmacyByNamePath = '$homePath/searchPharmacy';
   static const getUnreadNotificationsCountPath =
       '/$apiPath/getUnreadNotificationsCount';
   static const getAllNotificationsPath = '/$apiPath/getAllNotifications';

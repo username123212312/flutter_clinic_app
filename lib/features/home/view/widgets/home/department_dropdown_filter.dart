@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:our_flutter_clinic_app/features/home/model/clinic_model.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 
-class DepartmentDropdownFilter extends StatelessWidget {
+class DepartmentDropdownFilter<T> extends StatelessWidget {
   final String selectedDepartment;
+  final T? selectedDepartmentValue;
   final List<String> allDepartments;
-  final ValueChanged<String> onChanged;
+  final List<T> allDepartmentsValue;
+  final ValueChanged<T> onChanged;
 
   const DepartmentDropdownFilter({
     super.key,
     required this.selectedDepartment,
     required this.allDepartments,
     required this.onChanged,
+    required this.selectedDepartmentValue,
+    required this.allDepartmentsValue,
   });
 
   @override
@@ -19,15 +24,6 @@ class DepartmentDropdownFilter extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Choose Department:',
-          style: Theme.of(context).textTheme.labelMedium!.copyWith(
-            color: Pallete.black1,
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        const SizedBox(height: 10),
         Container(
           decoration: BoxDecoration(
             color: Pallete.buttonBG,
@@ -42,9 +38,9 @@ class DepartmentDropdownFilter extends StatelessWidget {
           ),
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: DropdownButtonHideUnderline(
-            child: DropdownButton<String>(
+            child: DropdownButton<T>(
               isExpanded: true,
-              value: selectedDepartment,
+              value: selectedDepartmentValue ?? (ClinicModel() as T),
               icon: const Icon(
                 Icons.keyboard_arrow_down_rounded,
                 color: Pallete.grayScaleColor500,
@@ -56,21 +52,8 @@ class DepartmentDropdownFilter extends StatelessWidget {
               ),
               dropdownColor: Colors.white,
               borderRadius: BorderRadius.circular(20),
-              items:
-                  allDepartments.map((dept) {
-                    final isAll = dept == 'All';
-                    return DropdownMenuItem<String>(
-                      value: dept,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8),
-                        child: Text(
-                          isAll ? 'All Departments' : dept,
-                          style: const TextStyle(fontSize: 14),
-                        ),
-                      ),
-                    );
-                  }).toList(),
-              onChanged: (String? value) {
+              items: getItems(),
+              onChanged: (T? value) {
                 if (value != null) {
                   onChanged(value);
                 }
@@ -80,5 +63,37 @@ class DepartmentDropdownFilter extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  List<DropdownMenuItem<T>> getItems() {
+    if (allDepartments.isEmpty) {
+      return [
+        DropdownMenuItem<T>(
+          value: ClinicModel() as T,
+          child: Text('Select Department'),
+        ),
+      ];
+    }
+    final List<DropdownMenuItem<T>> temp = [
+      DropdownMenuItem<T>(
+        value: ClinicModel() as T,
+        child: Text('Select Department'),
+      ),
+    ];
+    for (var i = 0; i < allDepartments.length; i++) {
+      temp.add(
+        DropdownMenuItem<T>(
+          value: allDepartmentsValue[i],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: Text(
+              allDepartments[i],
+              style: const TextStyle(fontSize: 14),
+            ),
+          ),
+        ),
+      );
+    }
+    return temp;
   }
 }

@@ -67,50 +67,64 @@ class _NotificationScreenState extends State<NotificationScreen> {
           ),
         ],
       ),
-      body: BlocConsumer<NotificationsCubit, NotificationsState>(
-        bloc: _notificationsCubit,
-        listener: (context, state) {
-          if (state.status.isLoading) {
-            LoadingOverlay().show(context);
-          } else {
-            LoadingOverlay().hideAll();
-            Fluttertoast.showToast(msg: state.message);
-          }
+      body: RefreshIndicator(
+        triggerMode: RefreshIndicatorTriggerMode.anywhere,
+        onRefresh: () async {
+          _notificationsCubit.fetchAllNotifications();
         },
-        builder: (context, state) {
-          if (state.notifications.isEmpty) {
-            return _buildEmptyNotifications(context);
-          }
-          return Skeletonizer(
-            enabled: state.status.isLoading,
-            child: ListView.builder(
-              padding: const EdgeInsets.all(16),
-              itemCount:
-                  state.status.isLoading ? 10 : state.notifications.length,
-              itemBuilder: (context, index) {
-                if (state.status.isLoading) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: NotificationCard(
-                      title: 'Opengl',
-                      subtitle: 'Vulkan',
-                      onDelete: () {},
-                    ),
-                  );
-                }
-                final notification = state.notifications[index];
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: NotificationCard(
-                    title: notification.data?['title'],
-                    subtitle: notification.data?['body'],
-                    onDelete: () {},
+        child: SingleChildScrollView(
+          physics: AlwaysScrollableScrollPhysics(),
+          child: BlocConsumer<NotificationsCubit, NotificationsState>(
+            bloc: _notificationsCubit,
+            listener: (context, state) {
+              if (state.status.isLoading) {
+                LoadingOverlay().show(context);
+              } else {
+                LoadingOverlay().hideAll();
+                Fluttertoast.showToast(msg: state.message);
+              }
+            },
+            builder: (context, state) {
+              if (state.notifications.isEmpty) {
+                return _buildEmptyNotifications(context);
+              }
+              return Skeletonizer(
+                enabled: state.status.isLoading,
+                child: SizedBox(
+                  height: screenHeight(context) * 0.8,
+                  child: ListView.builder(
+                    padding: const EdgeInsets.all(16),
+                    itemCount:
+                        state.status.isLoading
+                            ? 10
+                            : state.notifications.length,
+                    itemBuilder: (context, index) {
+                      if (state.status.isLoading) {
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: NotificationCard(
+                            title: 'Opengl',
+                            subtitle: 'Vulkan',
+                            onDelete: () {},
+                          ),
+                        );
+                      }
+                      final notification = state.notifications[index];
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: NotificationCard(
+                          title: notification.data?['title'],
+                          subtitle: notification.data?['body'],
+                          onDelete: () {},
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
-          );
-        },
+                ),
+              );
+            },
+          ),
+        ),
       ),
     );
   }

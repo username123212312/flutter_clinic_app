@@ -16,37 +16,34 @@ class FCMService {
 
     log('🔑 FCM Token: $token');
 
-    if (isListening) {
-      // Handle foreground messages
-      FirebaseMessaging.onMessage.listen((message) {
-        final notification = message.notification;
-        if (notification != null) {
-          NotificationService().show(
-            title: notification.title ?? 'No Title',
-            body: notification.body ?? 'No Body',
-          );
-        }
-      });
-
-      // Handle background tap
-      FirebaseMessaging.onMessageOpenedApp.listen((message) {
-        log('📲 App opened from notification');
-        // Navigate or take action
-      });
-
-      // Handle app launched from terminated state
-      final initial = await _messaging.getInitialMessage();
-      if (initial != null) {
-        log('🚀 App launched from terminated via notification');
+    // Handle foreground messages
+    FirebaseMessaging.onMessage.listen((message) {
+      final notification = message.notification;
+      if (notification != null) {
+        NotificationService().show(
+          title: notification.title ?? 'No Title',
+          body: notification.body ?? 'No Body',
+        );
       }
+    });
 
-      // Set up background handler
-      FirebaseMessaging.onBackgroundMessage(_backgroundHandler);
+    // Handle background tap
+    FirebaseMessaging.onMessageOpenedApp.listen((message) {
+      log('📲 App opened from notification');
+      // Navigate or take action
+    });
+
+    // Handle app launched from terminated state
+    final initial = await _messaging.getInitialMessage();
+    if (initial != null) {
+      log('🚀 App launched from terminated via notification');
     }
+
+    // Set up background handler
+    FirebaseMessaging.onBackgroundMessage(_backgroundHandler);
   }
 }
 
-// Top-level function
 Future<void> _backgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
   log('💤 Background message: ${message.notification?.title}');

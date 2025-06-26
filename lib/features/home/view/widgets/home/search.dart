@@ -4,6 +4,7 @@ import '../../../../../core/theme/app_pallete.dart';
 
 class SearchDialog extends StatelessWidget {
   final ValueChanged<String> onChanged;
+  final void Function(String)? onSubmitted;
   final String hint;
   final TextEditingController controller;
 
@@ -12,6 +13,7 @@ class SearchDialog extends StatelessWidget {
     required this.onChanged,
     required this.hint,
     required this.controller,
+    this.onSubmitted,
   });
 
   @override
@@ -30,6 +32,7 @@ class SearchDialog extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {},
                 child: TextField(
+                  onSubmitted: onSubmitted,
                   textInputAction: TextInputAction.search,
                   controller: controller,
                   autofocus: true,

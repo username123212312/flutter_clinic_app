@@ -7,7 +7,7 @@ import 'package:get_it/get_it.dart';
 import 'package:our_flutter_clinic_app/features/home/repository/appointments_repository.dart';
 import 'package:our_flutter_clinic_app/features/home/repository/home_repository.dart';
 
-import 'core/cubits/cubit/change_password_cubit.dart';
+import 'core/cubits/change_password_cubit/change_password_cubit.dart';
 import 'core/repositories/auth_repository.dart';
 import 'core/repositories/change_password_repository.dart';
 import 'features/home/controller/analysis_list_bloc/analysis_list_bloc.dart';

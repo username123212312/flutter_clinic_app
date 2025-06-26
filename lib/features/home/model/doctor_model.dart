@@ -11,6 +11,7 @@ sealed class DoctorModel with _$DoctorModel {
     @JsonKey(name: 'last_name') String? lastName,
     String? phone,
     @JsonKey(name: 'clinic_id') int? clinicId,
+    String? clinic,
     @JsonKey(name: 'photo_path') String? photoPath,
     int? treated,
     String? speciality,

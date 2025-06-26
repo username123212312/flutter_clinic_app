@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
-import 'package:our_flutter_clinic_app/core/blocs/auth_bloc/auth_bloc.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/home/upcoming_%20appointment_cards.dart';
@@ -13,9 +9,6 @@ import '../../../controller/home_bloc/home_bloc.dart';
 import 'find_doctor_card.dart';
 import 'department.dart';
 import 'pharmecy_card.dart';
-import '../../screens/patient/department_screen.dart';
-import '../../screens/patient/doctor_list.dart';
-import '../../screens/patient/pharmecy_screen.dart';
 import 'search_doctor.dart';
 
 class HomeScreenWidget extends StatefulWidget {
@@ -302,6 +295,16 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                 height: 160,
                 child: BlocBuilder<HomeBloc, HomeState>(
                   builder: (context, state) {
+                    if (state.doctorsList.isEmpty) {
+                      return Center(
+                        child: Image.asset(
+                          'assets/images/il_empty_activity.webp',
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.cover,
+                        ),
+                      );
+                    }
                     return Skeletonizer(
                       enabled: state.doctorsListStatus.isLoading,
                       child: ListView.builder(

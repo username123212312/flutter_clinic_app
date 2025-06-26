@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:our_flutter_clinic_app/features/home/controller/pharmacies_cubit/pharmacies_cubit.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/utils.dart';
+import '../../../../../core/widgets/loading_overlay.dart';
+import '../../../repository/pharmacies_repository.dart';
 import '../../widgets/home/pharmecy_card.dart';
 import '../../widgets/home/search.dart';
 
@@ -17,77 +23,10 @@ class _PharmacyListScreenState extends State<PharmacyListScreen> {
   String query = '';
   final TextEditingController _searchController = TextEditingController();
 
-  final List<Map<String, dynamic>> allPharmacies = [
-    {
-      'name': 'Al Zahra Pharmacy',
-      'location': 'Location: Al Thawra Street - Tartus',
-      'phone': 'Tel: +963 998 998 998',
-      'startTime': '09:00 AM',
-      'endTime': '05:00 PM',
-      'latitude': 35.0,
-      'longitude': 36.0,
-      'namelocation': 'Al Thawra Street - Tartus',
-    },
-    {
-      'name': 'Al Shifa Pharmacy',
-      'location': 'Location: Al Hamra Street - Tartus',
-      'phone': 'Tel: +963 944 444 444',
-      'startTime': '08:00 AM',
-      'endTime': '04:00 PM',
-      'latitude': 35.1,
-      'longitude': 36.1,
-      'namelocation': 'Al Hamra Street - Tartus',
-    },
-    {
-      'name': 'Al Shifa Pharmacy',
-      'location': 'Location: Al Hamra Street - Tartus',
-      'phone': 'Tel: +963 944 444 444',
-      'startTime': '08:00 AM',
-      'endTime': '04:00 PM',
-      'latitude': 35.1,
-      'longitude': 36.1,
-      'namelocation': 'Al Hamra Street - Tartus',
-    },
-    {
-      'name': 'Al Shifa Pharmacy',
-      'location': 'Location: Al Hamra Street - Tartus',
-      'phone': 'Tel: +963 944 444 444',
-      'startTime': '08:00 AM',
-      'endTime': '04:00 PM',
-      'latitude': 35.1,
-      'longitude': 36.1,
-      'namelocation': 'Al Hamra Street - Tartus',
-    },
-    {
-      'name': 'Al Shifa Pharmacy',
-      'location': 'Location: Al Hamra Street - Tartus',
-      'phone': 'Tel: +963 944 444 444',
-      'startTime': '08:00 AM',
-      'endTime': '04:00 PM',
-      'latitude': 35.1,
-      'longitude': 36.1,
-      'namelocation': 'Al Hamra Street - Tartus',
-    },
-    {
-      'name': 'Al Shifa Pharmacy',
-      'location': 'Location: Al Hamra Street - Tartus',
-      'phone': 'Tel: +963 944 444 444',
-      'startTime': '08:00 AM',
-      'endTime': '04:00 PM',
-      'latitude': 35.1,
-      'longitude': 36.1,
-      'namelocation': 'Al Hamra Street - Tartus',
-    },
-  ];
-
-  List<Map<String, dynamic>> get filteredPharmacies {
-    if (query.isEmpty) return allPharmacies;
-    return allPharmacies
-        .where(
-          (pharmacy) =>
-              pharmacy['name'].toLowerCase().startsWith(query.toLowerCase()),
-        )
-        .toList();
+  @override
+  void initState() {
+    super.initState();
+    _pharmaciesCubit.fetchAllPharmacies();
   }
 
   void _showSearchDialog() {
@@ -103,9 +42,20 @@ class _PharmacyListScreenState extends State<PharmacyListScreen> {
           child: Align(
             alignment: Alignment.topCenter,
             child: SearchDialog(
+              onSubmitted: (p0) {
+                if (p0.trim().isNotEmpty) {
+                  _pharmaciesCubit.searchPharmacyByName(p0);
+                }
+              },
               controller: _searchController,
               hint: 'Search for the name of the pharmacies',
-              onChanged: (value) => setState(() => query = value),
+              onChanged: (value) {
+                if (value.trim().isEmpty) {
+                  _pharmaciesCubit.fetchAllPharmacies();
+                  return;
+                }
+                _pharmaciesCubit.searchPharmacyByName(value);
+              },
             ),
           ),
         );
@@ -129,15 +79,8 @@ class _PharmacyListScreenState extends State<PharmacyListScreen> {
       appBar: AppBar(
         backgroundColor: Pallete.grayScaleColor0,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(
-            FontAwesomeIcons.arrowLeft,
-            color: Pallete.grayScaleColor700,
-            size: 18,
-          ),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
         centerTitle: true,
+        iconTheme: IconThemeData(size: 25),
         title: Text(
           'Nearby Pharmacies',
           style: Theme.of(context).textTheme.labelSmall!.copyWith(
@@ -156,10 +99,18 @@ class _PharmacyListScreenState extends State<PharmacyListScreen> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child:
-            filteredPharmacies.isEmpty
-                ? Center(
+      body: RefreshIndicator(
+        triggerMode: RefreshIndicatorTriggerMode.anywhere,
+        onRefresh: () async {
+          _pharmaciesCubit.fetchAllPharmacies();
+        },
+        child: SingleChildScrollView(
+          physics: AlwaysScrollableScrollPhysics(),
+          child: BlocConsumer<PharmaciesCubit, PharmaciesState>(
+            bloc: _pharmaciesCubit,
+            builder: (_, state) {
+              if (state.pharmacies.isEmpty) {
+                return Center(
                   child: Column(
                     children: [
                       Column(
@@ -181,30 +132,68 @@ class _PharmacyListScreenState extends State<PharmacyListScreen> {
                       ),
                     ],
                   ),
-                )
-                : SizedBox(
-                  height: screenHeight(context) * 0.9,
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.all(16),
-                    itemCount: filteredPharmacies.length,
-                    separatorBuilder: (_, __) => const SizedBox(height: 12),
-                    itemBuilder: (context, index) {
-                      final pharmacy = filteredPharmacies[index];
-                      return PharmacyCard(
-                        name: pharmacy['name'],
-                        location: pharmacy['location'],
-                        phone: pharmacy['phone'],
-                        startTime: pharmacy['startTime'],
-                        endTime: pharmacy['endTime'],
-                        latitude: pharmacy['latitude'],
-                        longitude: pharmacy['longitude'],
-                        namelocation: pharmacy['namelocation'],
-                      );
+                );
+              }
+              return SizedBox(
+                height: screenHeight(context) * 0.9,
+                child: Skeletonizer(
+                  enabled: state.status.isLoading,
+                  child: RefreshIndicator(
+                    onRefresh: () async {
+                      _pharmaciesCubit.fetchAllPharmacies();
                     },
+                    child: ListView.separated(
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.all(16),
+                      itemCount:
+                          state.status.isLoading ? 5 : state.pharmacies.length,
+                      separatorBuilder: (_, __) => const SizedBox(height: 12),
+                      itemBuilder: (context, index) {
+                        if (state.status.isLoading) {
+                          return PharmacyCard(
+                            name: 'OpenGl',
+                            location: 'dynamic',
+                            phone: '093091203',
+                            startTime: '2133',
+                            endTime: '1232',
+                            latitude: 23,
+                            longitude: 23,
+                            namelocation: 'ksaodkaos',
+                          );
+                        }
+                        final pharmacy = state.pharmacies[index];
+                        return PharmacyCard(
+                          name: pharmacy.name ?? 'No pharmacy',
+                          location: pharmacy.location ?? 'No location',
+                          phone: pharmacy.phone ?? 'No phone',
+                          startTime: pharmacy.startTime ?? 'No time',
+                          endTime: pharmacy.finishTime ?? 'No time',
+                          latitude:
+                              double.tryParse(pharmacy.latitude ?? '12.0') ??
+                              12.0,
+                          longitude:
+                              double.tryParse(pharmacy.longitude ?? '12.0') ??
+                              12.0,
+                          namelocation: pharmacy.location ?? 'No location',
+                        );
+                      },
+                    ),
                   ),
                 ),
+              );
+            },
+            listener: (_, state) {
+              if (state.status.isError) {
+                Fluttertoast.showToast(msg: state.message);
+              }
+            },
+          ),
+        ),
       ),
     );
   }
+
+  final PharmaciesCubit _pharmaciesCubit = PharmaciesCubit(
+    pharmaciesRepository: PharmaciesRepository(),
+  );
 }

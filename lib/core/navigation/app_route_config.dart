@@ -119,7 +119,10 @@ class AppRouteConfig {
       GoRoute(
         name: AppRouteConstants.doctorInfoRouteName,
         path: '/doctor_info',
-        pageBuilder: (_, state) => TransitionPage(child: DoctorInfoScreen()),
+        pageBuilder: (_, state) {
+          final doctor = state.extra as DoctorModel;
+          return TransitionPage(child: DoctorInfoScreen(doctor: doctor));
+        },
       ),
       GoRoute(
         name: AppRouteConstants.reservationDetailsRouteName,
