@@ -23,7 +23,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   void initState() {
     super.initState();
     _ageController.text =
-        context.read<AuthBloc>().state.authUser?.user?.age?.toString() ?? '';
+        context.read<UserBloc>().state.user?.age?.toString() ?? '';
   }
 
   @override
@@ -63,7 +63,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            BlocBuilder<AuthBloc, AuthState>(
+            BlocBuilder<UserBloc, UserState>(
               builder: (context, state) {
                 return _buildFormFields(state);
               },
@@ -169,7 +169,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     );
   }
 
-  Column _buildFormFields(AuthState state) {
+  Column _buildFormFields(UserState state) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -181,7 +181,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         SizedBox(height: 10),
         CustomTextField(
           controller: _firstNameController,
-          hintText: state.authUser?.user?.firstName ?? 'No',
+          hintText: state.user?.firstName ?? 'No',
           keyboardType: TextInputType.text,
         ),
         SizedBox(height: 20),
@@ -192,40 +192,45 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         SizedBox(height: 10),
         CustomTextField(
           controller: _lastNameController,
-          hintText: state.authUser?.user?.lastName ?? 'User',
+          hintText: state.user?.lastName ?? 'User',
           keyboardType: TextInputType.text,
         ),
         SizedBox(height: 20),
+        if (state.currentChildId == null) ...[
+          Text(
+            'Email',
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall!.copyWith(fontSize: 12),
+          ),
+          SizedBox(height: 10),
+          CustomTextField(
+            controller: _emailController,
+            hintText:
+                (state.user?.email == null)
+                    ? '+963X-XXXX-XXXX'
+                    : state.user?.email ?? 'No Email',
+            keyboardType: TextInputType.emailAddress,
+          ),
+          SizedBox(height: 20),
 
-        Text(
-          'Email',
-          style: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12),
-        ),
-        SizedBox(height: 10),
-        CustomTextField(
-          controller: _emailController,
-          hintText:
-              (state.authUser?.user?.email == null)
-                  ? '+963X-XXXX-XXXX'
-                  : state.authUser?.user?.email ?? 'No Email',
-          keyboardType: TextInputType.emailAddress,
-        ),
-        SizedBox(height: 20),
-
-        Text(
-          'Phone Number',
-          style: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12),
-        ),
-        SizedBox(height: 10),
-        CustomTextField(
-          controller: _phoneController,
-          hintText:
-              (state.authUser?.user?.phone == null)
-                  ? '+963X-XXXX-XXXX'
-                  : state.authUser?.user?.phone ?? 'No phone',
-          keyboardType: TextInputType.phone,
-        ),
-        SizedBox(height: 20),
+          Text(
+            'Phone Number',
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall!.copyWith(fontSize: 12),
+          ),
+          SizedBox(height: 10),
+          CustomTextField(
+            controller: _phoneController,
+            hintText:
+                (state.user?.phone == null)
+                    ? '+963X-XXXX-XXXX'
+                    : state.user?.phone ?? 'No phone',
+            keyboardType: TextInputType.phone,
+          ),
+          SizedBox(height: 20),
+        ],
         Text(
           'Gender',
           style: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12),
@@ -233,13 +238,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         SizedBox(height: 10),
 
         CustomTextField(
-          controller:
-              _genderController..text = (state.authUser?.user?.gender ?? ''),
+          controller: _genderController..text = (state.user?.gender ?? ''),
           readOnly: true,
           suffixIcon: DropdownButton<int>(
             value:
-                (state.authUser?.user?.gender == null)
-                    ? (state.authUser?.user?.gender ?? 'Male') == 'Male'
+                (state.user?.gender == null)
+                    ? (state.user?.gender ?? 'Male') == 'Male'
                         ? 0
                         : 1
                     : 0,
@@ -273,8 +277,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             final date = await showDatePicker(
               context: context,
               firstDate: DateTime(1920),
-              lastDate: DateTime(2016),
-              initialDate: DateTime(2015),
+              lastDate:
+                  state.currentChildId == null
+                      ? DateTime(2016)
+                      : DateTime.now(),
+              initialDate:
+                  state.currentChildId == null
+                      ? DateTime(2015)
+                      : DateTime.now(),
             );
             if (date != null) {
               setState(() {
@@ -311,8 +321,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           },
           maxLength: 100,
           controller:
-              _completeAddressController
-                ..text = state.authUser?.user?.address ?? '',
+              _completeAddressController..text = state.user?.address ?? '',
           hintText: 'Address',
           keyboardType: TextInputType.name,
           textInputAction: TextInputAction.done,

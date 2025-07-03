@@ -35,6 +35,7 @@ mixin _$UserEvent {
     required TResult Function() allChildrenFetched,
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
+    required TResult Function(int? childId) accountSwitched,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
@@ -52,6 +53,7 @@ mixin _$UserEvent {
     TResult? Function()? allChildrenFetched,
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
+    TResult? Function(int? childId)? accountSwitched,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
@@ -69,6 +71,7 @@ mixin _$UserEvent {
     TResult Function()? allChildrenFetched,
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
+    TResult Function(int? childId)? accountSwitched,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -93,6 +96,7 @@ mixin _$UserEvent {
     required TResult Function(AllChildrenFetched value) allChildrenFetched,
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
+    required TResult Function(AccountSwitched value) accountSwitched,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
@@ -109,6 +113,7 @@ mixin _$UserEvent {
     TResult? Function(AllChildrenFetched value)? allChildrenFetched,
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
+    TResult? Function(AccountSwitched value)? accountSwitched,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
@@ -125,6 +130,7 @@ mixin _$UserEvent {
     TResult Function(AllChildrenFetched value)? allChildrenFetched,
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
+    TResult Function(AccountSwitched value)? accountSwitched,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -252,6 +258,7 @@ class _$UserLoggedInWithEmailImpl implements UserLoggedInWithEmail {
     required TResult Function() allChildrenFetched,
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
+    required TResult Function(int? childId) accountSwitched,
   }) {
     return userLoggedInWithEmail(email, password);
   }
@@ -273,6 +280,7 @@ class _$UserLoggedInWithEmailImpl implements UserLoggedInWithEmail {
     TResult? Function()? allChildrenFetched,
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
+    TResult? Function(int? childId)? accountSwitched,
   }) {
     return userLoggedInWithEmail?.call(email, password);
   }
@@ -294,6 +302,7 @@ class _$UserLoggedInWithEmailImpl implements UserLoggedInWithEmail {
     TResult Function()? allChildrenFetched,
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
+    TResult Function(int? childId)? accountSwitched,
     required TResult orElse(),
   }) {
     if (userLoggedInWithEmail != null) {
@@ -325,6 +334,7 @@ class _$UserLoggedInWithEmailImpl implements UserLoggedInWithEmail {
     required TResult Function(AllChildrenFetched value) allChildrenFetched,
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
+    required TResult Function(AccountSwitched value) accountSwitched,
   }) {
     return userLoggedInWithEmail(this);
   }
@@ -345,6 +355,7 @@ class _$UserLoggedInWithEmailImpl implements UserLoggedInWithEmail {
     TResult? Function(AllChildrenFetched value)? allChildrenFetched,
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
+    TResult? Function(AccountSwitched value)? accountSwitched,
   }) {
     return userLoggedInWithEmail?.call(this);
   }
@@ -365,6 +376,7 @@ class _$UserLoggedInWithEmailImpl implements UserLoggedInWithEmail {
     TResult Function(AllChildrenFetched value)? allChildrenFetched,
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
+    TResult Function(AccountSwitched value)? accountSwitched,
     required TResult orElse(),
   }) {
     if (userLoggedInWithEmail != null) {
@@ -493,6 +505,7 @@ class _$UserLoggedInWithPhoneImpl implements UserLoggedInWithPhone {
     required TResult Function() allChildrenFetched,
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
+    required TResult Function(int? childId) accountSwitched,
   }) {
     return userLoggedInWithPhone(phone, password);
   }
@@ -514,6 +527,7 @@ class _$UserLoggedInWithPhoneImpl implements UserLoggedInWithPhone {
     TResult? Function()? allChildrenFetched,
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
+    TResult? Function(int? childId)? accountSwitched,
   }) {
     return userLoggedInWithPhone?.call(phone, password);
   }
@@ -535,6 +549,7 @@ class _$UserLoggedInWithPhoneImpl implements UserLoggedInWithPhone {
     TResult Function()? allChildrenFetched,
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
+    TResult Function(int? childId)? accountSwitched,
     required TResult orElse(),
   }) {
     if (userLoggedInWithPhone != null) {
@@ -566,6 +581,7 @@ class _$UserLoggedInWithPhoneImpl implements UserLoggedInWithPhone {
     required TResult Function(AllChildrenFetched value) allChildrenFetched,
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
+    required TResult Function(AccountSwitched value) accountSwitched,
   }) {
     return userLoggedInWithPhone(this);
   }
@@ -586,6 +602,7 @@ class _$UserLoggedInWithPhoneImpl implements UserLoggedInWithPhone {
     TResult? Function(AllChildrenFetched value)? allChildrenFetched,
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
+    TResult? Function(AccountSwitched value)? accountSwitched,
   }) {
     return userLoggedInWithPhone?.call(this);
   }
@@ -606,6 +623,7 @@ class _$UserLoggedInWithPhoneImpl implements UserLoggedInWithPhone {
     TResult Function(AllChildrenFetched value)? allChildrenFetched,
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
+    TResult Function(AccountSwitched value)? accountSwitched,
     required TResult orElse(),
   }) {
     if (userLoggedInWithPhone != null) {
@@ -691,6 +709,7 @@ class _$UserLoggedInWithGoogleImpl implements UserLoggedInWithGoogle {
     required TResult Function() allChildrenFetched,
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
+    required TResult Function(int? childId) accountSwitched,
   }) {
     return userLoggedInWithGoogle();
   }
@@ -712,6 +731,7 @@ class _$UserLoggedInWithGoogleImpl implements UserLoggedInWithGoogle {
     TResult? Function()? allChildrenFetched,
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
+    TResult? Function(int? childId)? accountSwitched,
   }) {
     return userLoggedInWithGoogle?.call();
   }
@@ -733,6 +753,7 @@ class _$UserLoggedInWithGoogleImpl implements UserLoggedInWithGoogle {
     TResult Function()? allChildrenFetched,
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
+    TResult Function(int? childId)? accountSwitched,
     required TResult orElse(),
   }) {
     if (userLoggedInWithGoogle != null) {
@@ -764,6 +785,7 @@ class _$UserLoggedInWithGoogleImpl implements UserLoggedInWithGoogle {
     required TResult Function(AllChildrenFetched value) allChildrenFetched,
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
+    required TResult Function(AccountSwitched value) accountSwitched,
   }) {
     return userLoggedInWithGoogle(this);
   }
@@ -784,6 +806,7 @@ class _$UserLoggedInWithGoogleImpl implements UserLoggedInWithGoogle {
     TResult? Function(AllChildrenFetched value)? allChildrenFetched,
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
+    TResult? Function(AccountSwitched value)? accountSwitched,
   }) {
     return userLoggedInWithGoogle?.call(this);
   }
@@ -804,6 +827,7 @@ class _$UserLoggedInWithGoogleImpl implements UserLoggedInWithGoogle {
     TResult Function(AllChildrenFetched value)? allChildrenFetched,
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
+    TResult Function(AccountSwitched value)? accountSwitched,
     required TResult orElse(),
   }) {
     if (userLoggedInWithGoogle != null) {
@@ -907,6 +931,7 @@ class _$UserRegisteredWithEmailImpl implements UserRegisteredWithEmail {
     required TResult Function() allChildrenFetched,
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
+    required TResult Function(int? childId) accountSwitched,
   }) {
     return userRegisteredWithEmail(password);
   }
@@ -928,6 +953,7 @@ class _$UserRegisteredWithEmailImpl implements UserRegisteredWithEmail {
     TResult? Function()? allChildrenFetched,
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
+    TResult? Function(int? childId)? accountSwitched,
   }) {
     return userRegisteredWithEmail?.call(password);
   }
@@ -949,6 +975,7 @@ class _$UserRegisteredWithEmailImpl implements UserRegisteredWithEmail {
     TResult Function()? allChildrenFetched,
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
+    TResult Function(int? childId)? accountSwitched,
     required TResult orElse(),
   }) {
     if (userRegisteredWithEmail != null) {
@@ -980,6 +1007,7 @@ class _$UserRegisteredWithEmailImpl implements UserRegisteredWithEmail {
     required TResult Function(AllChildrenFetched value) allChildrenFetched,
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
+    required TResult Function(AccountSwitched value) accountSwitched,
   }) {
     return userRegisteredWithEmail(this);
   }
@@ -1000,6 +1028,7 @@ class _$UserRegisteredWithEmailImpl implements UserRegisteredWithEmail {
     TResult? Function(AllChildrenFetched value)? allChildrenFetched,
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
+    TResult? Function(AccountSwitched value)? accountSwitched,
   }) {
     return userRegisteredWithEmail?.call(this);
   }
@@ -1020,6 +1049,7 @@ class _$UserRegisteredWithEmailImpl implements UserRegisteredWithEmail {
     TResult Function(AllChildrenFetched value)? allChildrenFetched,
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
+    TResult Function(AccountSwitched value)? accountSwitched,
     required TResult orElse(),
   }) {
     if (userRegisteredWithEmail != null) {
@@ -1132,6 +1162,7 @@ class _$UserRegisteredWithPhoneImpl implements UserRegisteredWithPhone {
     required TResult Function() allChildrenFetched,
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
+    required TResult Function(int? childId) accountSwitched,
   }) {
     return userRegisteredWithPhone(password);
   }
@@ -1153,6 +1184,7 @@ class _$UserRegisteredWithPhoneImpl implements UserRegisteredWithPhone {
     TResult? Function()? allChildrenFetched,
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
+    TResult? Function(int? childId)? accountSwitched,
   }) {
     return userRegisteredWithPhone?.call(password);
   }
@@ -1174,6 +1206,7 @@ class _$UserRegisteredWithPhoneImpl implements UserRegisteredWithPhone {
     TResult Function()? allChildrenFetched,
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
+    TResult Function(int? childId)? accountSwitched,
     required TResult orElse(),
   }) {
     if (userRegisteredWithPhone != null) {
@@ -1205,6 +1238,7 @@ class _$UserRegisteredWithPhoneImpl implements UserRegisteredWithPhone {
     required TResult Function(AllChildrenFetched value) allChildrenFetched,
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
+    required TResult Function(AccountSwitched value) accountSwitched,
   }) {
     return userRegisteredWithPhone(this);
   }
@@ -1225,6 +1259,7 @@ class _$UserRegisteredWithPhoneImpl implements UserRegisteredWithPhone {
     TResult? Function(AllChildrenFetched value)? allChildrenFetched,
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
+    TResult? Function(AccountSwitched value)? accountSwitched,
   }) {
     return userRegisteredWithPhone?.call(this);
   }
@@ -1245,6 +1280,7 @@ class _$UserRegisteredWithPhoneImpl implements UserRegisteredWithPhone {
     TResult Function(AllChildrenFetched value)? allChildrenFetched,
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
+    TResult Function(AccountSwitched value)? accountSwitched,
     required TResult orElse(),
   }) {
     if (userRegisteredWithPhone != null) {
@@ -1370,6 +1406,7 @@ class _$UserModifiedImpl implements UserModified {
     required TResult Function() allChildrenFetched,
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
+    required TResult Function(int? childId) accountSwitched,
   }) {
     return userModified(user);
   }
@@ -1391,6 +1428,7 @@ class _$UserModifiedImpl implements UserModified {
     TResult? Function()? allChildrenFetched,
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
+    TResult? Function(int? childId)? accountSwitched,
   }) {
     return userModified?.call(user);
   }
@@ -1412,6 +1450,7 @@ class _$UserModifiedImpl implements UserModified {
     TResult Function()? allChildrenFetched,
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
+    TResult Function(int? childId)? accountSwitched,
     required TResult orElse(),
   }) {
     if (userModified != null) {
@@ -1443,6 +1482,7 @@ class _$UserModifiedImpl implements UserModified {
     required TResult Function(AllChildrenFetched value) allChildrenFetched,
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
+    required TResult Function(AccountSwitched value) accountSwitched,
   }) {
     return userModified(this);
   }
@@ -1463,6 +1503,7 @@ class _$UserModifiedImpl implements UserModified {
     TResult? Function(AllChildrenFetched value)? allChildrenFetched,
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
+    TResult? Function(AccountSwitched value)? accountSwitched,
   }) {
     return userModified?.call(this);
   }
@@ -1483,6 +1524,7 @@ class _$UserModifiedImpl implements UserModified {
     TResult Function(AllChildrenFetched value)? allChildrenFetched,
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
+    TResult Function(AccountSwitched value)? accountSwitched,
     required TResult orElse(),
   }) {
     if (userModified != null) {
@@ -1564,6 +1606,7 @@ class _$UserLoggedOutImpl implements UserLoggedOut {
     required TResult Function() allChildrenFetched,
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
+    required TResult Function(int? childId) accountSwitched,
   }) {
     return userLoggedOut();
   }
@@ -1585,6 +1628,7 @@ class _$UserLoggedOutImpl implements UserLoggedOut {
     TResult? Function()? allChildrenFetched,
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
+    TResult? Function(int? childId)? accountSwitched,
   }) {
     return userLoggedOut?.call();
   }
@@ -1606,6 +1650,7 @@ class _$UserLoggedOutImpl implements UserLoggedOut {
     TResult Function()? allChildrenFetched,
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
+    TResult Function(int? childId)? accountSwitched,
     required TResult orElse(),
   }) {
     if (userLoggedOut != null) {
@@ -1637,6 +1682,7 @@ class _$UserLoggedOutImpl implements UserLoggedOut {
     required TResult Function(AllChildrenFetched value) allChildrenFetched,
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
+    required TResult Function(AccountSwitched value) accountSwitched,
   }) {
     return userLoggedOut(this);
   }
@@ -1657,6 +1703,7 @@ class _$UserLoggedOutImpl implements UserLoggedOut {
     TResult? Function(AllChildrenFetched value)? allChildrenFetched,
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
+    TResult? Function(AccountSwitched value)? accountSwitched,
   }) {
     return userLoggedOut?.call(this);
   }
@@ -1677,6 +1724,7 @@ class _$UserLoggedOutImpl implements UserLoggedOut {
     TResult Function(AllChildrenFetched value)? allChildrenFetched,
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
+    TResult Function(AccountSwitched value)? accountSwitched,
     required TResult orElse(),
   }) {
     if (userLoggedOut != null) {
@@ -1791,6 +1839,7 @@ class _$UserCompletedProfileDataImpl implements UserCompletedProfileData {
     required TResult Function() allChildrenFetched,
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
+    required TResult Function(int? childId) accountSwitched,
   }) {
     return userCompletedProfileData(user);
   }
@@ -1812,6 +1861,7 @@ class _$UserCompletedProfileDataImpl implements UserCompletedProfileData {
     TResult? Function()? allChildrenFetched,
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
+    TResult? Function(int? childId)? accountSwitched,
   }) {
     return userCompletedProfileData?.call(user);
   }
@@ -1833,6 +1883,7 @@ class _$UserCompletedProfileDataImpl implements UserCompletedProfileData {
     TResult Function()? allChildrenFetched,
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
+    TResult Function(int? childId)? accountSwitched,
     required TResult orElse(),
   }) {
     if (userCompletedProfileData != null) {
@@ -1864,6 +1915,7 @@ class _$UserCompletedProfileDataImpl implements UserCompletedProfileData {
     required TResult Function(AllChildrenFetched value) allChildrenFetched,
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
+    required TResult Function(AccountSwitched value) accountSwitched,
   }) {
     return userCompletedProfileData(this);
   }
@@ -1884,6 +1936,7 @@ class _$UserCompletedProfileDataImpl implements UserCompletedProfileData {
     TResult? Function(AllChildrenFetched value)? allChildrenFetched,
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
+    TResult? Function(AccountSwitched value)? accountSwitched,
   }) {
     return userCompletedProfileData?.call(this);
   }
@@ -1904,6 +1957,7 @@ class _$UserCompletedProfileDataImpl implements UserCompletedProfileData {
     TResult Function(AllChildrenFetched value)? allChildrenFetched,
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
+    TResult Function(AccountSwitched value)? accountSwitched,
     required TResult orElse(),
   }) {
     if (userCompletedProfileData != null) {
@@ -2027,6 +2081,7 @@ class _$UserModifiedProfileDataImpl implements UserModifiedProfileData {
     required TResult Function() allChildrenFetched,
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
+    required TResult Function(int? childId) accountSwitched,
   }) {
     return userModifiedProfileData(user);
   }
@@ -2048,6 +2103,7 @@ class _$UserModifiedProfileDataImpl implements UserModifiedProfileData {
     TResult? Function()? allChildrenFetched,
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
+    TResult? Function(int? childId)? accountSwitched,
   }) {
     return userModifiedProfileData?.call(user);
   }
@@ -2069,6 +2125,7 @@ class _$UserModifiedProfileDataImpl implements UserModifiedProfileData {
     TResult Function()? allChildrenFetched,
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
+    TResult Function(int? childId)? accountSwitched,
     required TResult orElse(),
   }) {
     if (userModifiedProfileData != null) {
@@ -2100,6 +2157,7 @@ class _$UserModifiedProfileDataImpl implements UserModifiedProfileData {
     required TResult Function(AllChildrenFetched value) allChildrenFetched,
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
+    required TResult Function(AccountSwitched value) accountSwitched,
   }) {
     return userModifiedProfileData(this);
   }
@@ -2120,6 +2178,7 @@ class _$UserModifiedProfileDataImpl implements UserModifiedProfileData {
     TResult? Function(AllChildrenFetched value)? allChildrenFetched,
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
+    TResult? Function(AccountSwitched value)? accountSwitched,
   }) {
     return userModifiedProfileData?.call(this);
   }
@@ -2140,6 +2199,7 @@ class _$UserModifiedProfileDataImpl implements UserModifiedProfileData {
     TResult Function(AllChildrenFetched value)? allChildrenFetched,
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
+    TResult Function(AccountSwitched value)? accountSwitched,
     required TResult orElse(),
   }) {
     if (userModifiedProfileData != null) {
@@ -2266,6 +2326,7 @@ class _$UserModifiedPasswordImpl implements UserModifiedPassword {
     required TResult Function() allChildrenFetched,
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
+    required TResult Function(int? childId) accountSwitched,
   }) {
     return userModifiedPassword(newPassword, oldPassword);
   }
@@ -2287,6 +2348,7 @@ class _$UserModifiedPasswordImpl implements UserModifiedPassword {
     TResult? Function()? allChildrenFetched,
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
+    TResult? Function(int? childId)? accountSwitched,
   }) {
     return userModifiedPassword?.call(newPassword, oldPassword);
   }
@@ -2308,6 +2370,7 @@ class _$UserModifiedPasswordImpl implements UserModifiedPassword {
     TResult Function()? allChildrenFetched,
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
+    TResult Function(int? childId)? accountSwitched,
     required TResult orElse(),
   }) {
     if (userModifiedPassword != null) {
@@ -2339,6 +2402,7 @@ class _$UserModifiedPasswordImpl implements UserModifiedPassword {
     required TResult Function(AllChildrenFetched value) allChildrenFetched,
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
+    required TResult Function(AccountSwitched value) accountSwitched,
   }) {
     return userModifiedPassword(this);
   }
@@ -2359,6 +2423,7 @@ class _$UserModifiedPasswordImpl implements UserModifiedPassword {
     TResult? Function(AllChildrenFetched value)? allChildrenFetched,
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
+    TResult? Function(AccountSwitched value)? accountSwitched,
   }) {
     return userModifiedPassword?.call(this);
   }
@@ -2379,6 +2444,7 @@ class _$UserModifiedPasswordImpl implements UserModifiedPassword {
     TResult Function(AllChildrenFetched value)? allChildrenFetched,
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
+    TResult Function(AccountSwitched value)? accountSwitched,
     required TResult orElse(),
   }) {
     if (userModifiedPassword != null) {
@@ -2463,6 +2529,7 @@ class _$AllChildrenFetchedImpl implements AllChildrenFetched {
     required TResult Function() allChildrenFetched,
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
+    required TResult Function(int? childId) accountSwitched,
   }) {
     return allChildrenFetched();
   }
@@ -2484,6 +2551,7 @@ class _$AllChildrenFetchedImpl implements AllChildrenFetched {
     TResult? Function()? allChildrenFetched,
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
+    TResult? Function(int? childId)? accountSwitched,
   }) {
     return allChildrenFetched?.call();
   }
@@ -2505,6 +2573,7 @@ class _$AllChildrenFetchedImpl implements AllChildrenFetched {
     TResult Function()? allChildrenFetched,
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
+    TResult Function(int? childId)? accountSwitched,
     required TResult orElse(),
   }) {
     if (allChildrenFetched != null) {
@@ -2536,6 +2605,7 @@ class _$AllChildrenFetchedImpl implements AllChildrenFetched {
     required TResult Function(AllChildrenFetched value) allChildrenFetched,
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
+    required TResult Function(AccountSwitched value) accountSwitched,
   }) {
     return allChildrenFetched(this);
   }
@@ -2556,6 +2626,7 @@ class _$AllChildrenFetchedImpl implements AllChildrenFetched {
     TResult? Function(AllChildrenFetched value)? allChildrenFetched,
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
+    TResult? Function(AccountSwitched value)? accountSwitched,
   }) {
     return allChildrenFetched?.call(this);
   }
@@ -2576,6 +2647,7 @@ class _$AllChildrenFetchedImpl implements AllChildrenFetched {
     TResult Function(AllChildrenFetched value)? allChildrenFetched,
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
+    TResult Function(AccountSwitched value)? accountSwitched,
     required TResult orElse(),
   }) {
     if (allChildrenFetched != null) {
@@ -2688,6 +2760,7 @@ class _$ChildAddedImpl implements ChildAdded {
     required TResult Function() allChildrenFetched,
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
+    required TResult Function(int? childId) accountSwitched,
   }) {
     return childAdded(request);
   }
@@ -2709,6 +2782,7 @@ class _$ChildAddedImpl implements ChildAdded {
     TResult? Function()? allChildrenFetched,
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
+    TResult? Function(int? childId)? accountSwitched,
   }) {
     return childAdded?.call(request);
   }
@@ -2730,6 +2804,7 @@ class _$ChildAddedImpl implements ChildAdded {
     TResult Function()? allChildrenFetched,
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
+    TResult Function(int? childId)? accountSwitched,
     required TResult orElse(),
   }) {
     if (childAdded != null) {
@@ -2761,6 +2836,7 @@ class _$ChildAddedImpl implements ChildAdded {
     required TResult Function(AllChildrenFetched value) allChildrenFetched,
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
+    required TResult Function(AccountSwitched value) accountSwitched,
   }) {
     return childAdded(this);
   }
@@ -2781,6 +2857,7 @@ class _$ChildAddedImpl implements ChildAdded {
     TResult? Function(AllChildrenFetched value)? allChildrenFetched,
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
+    TResult? Function(AccountSwitched value)? accountSwitched,
   }) {
     return childAdded?.call(this);
   }
@@ -2801,6 +2878,7 @@ class _$ChildAddedImpl implements ChildAdded {
     TResult Function(AllChildrenFetched value)? allChildrenFetched,
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
+    TResult Function(AccountSwitched value)? accountSwitched,
     required TResult orElse(),
   }) {
     if (childAdded != null) {
@@ -2910,6 +2988,7 @@ class _$ChildRemovedImpl implements ChildRemoved {
     required TResult Function() allChildrenFetched,
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
+    required TResult Function(int? childId) accountSwitched,
   }) {
     return childRemoved(childId);
   }
@@ -2931,6 +3010,7 @@ class _$ChildRemovedImpl implements ChildRemoved {
     TResult? Function()? allChildrenFetched,
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
+    TResult? Function(int? childId)? accountSwitched,
   }) {
     return childRemoved?.call(childId);
   }
@@ -2952,6 +3032,7 @@ class _$ChildRemovedImpl implements ChildRemoved {
     TResult Function()? allChildrenFetched,
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
+    TResult Function(int? childId)? accountSwitched,
     required TResult orElse(),
   }) {
     if (childRemoved != null) {
@@ -2983,6 +3064,7 @@ class _$ChildRemovedImpl implements ChildRemoved {
     required TResult Function(AllChildrenFetched value) allChildrenFetched,
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
+    required TResult Function(AccountSwitched value) accountSwitched,
   }) {
     return childRemoved(this);
   }
@@ -3003,6 +3085,7 @@ class _$ChildRemovedImpl implements ChildRemoved {
     TResult? Function(AllChildrenFetched value)? allChildrenFetched,
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
+    TResult? Function(AccountSwitched value)? accountSwitched,
   }) {
     return childRemoved?.call(this);
   }
@@ -3023,6 +3106,7 @@ class _$ChildRemovedImpl implements ChildRemoved {
     TResult Function(AllChildrenFetched value)? allChildrenFetched,
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
+    TResult Function(AccountSwitched value)? accountSwitched,
     required TResult orElse(),
   }) {
     if (childRemoved != null) {
@@ -3041,6 +3125,236 @@ abstract class ChildRemoved implements UserEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChildRemovedImplCopyWith<_$ChildRemovedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AccountSwitchedImplCopyWith<$Res> {
+  factory _$$AccountSwitchedImplCopyWith(
+    _$AccountSwitchedImpl value,
+    $Res Function(_$AccountSwitchedImpl) then,
+  ) = __$$AccountSwitchedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? childId});
+}
+
+/// @nodoc
+class __$$AccountSwitchedImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$AccountSwitchedImpl>
+    implements _$$AccountSwitchedImplCopyWith<$Res> {
+  __$$AccountSwitchedImplCopyWithImpl(
+    _$AccountSwitchedImpl _value,
+    $Res Function(_$AccountSwitchedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? childId = freezed}) {
+    return _then(
+      _$AccountSwitchedImpl(
+        childId:
+            freezed == childId
+                ? _value.childId
+                : childId // ignore: cast_nullable_to_non_nullable
+                    as int?,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$AccountSwitchedImpl implements AccountSwitched {
+  const _$AccountSwitchedImpl({this.childId});
+
+  @override
+  final int? childId;
+
+  @override
+  String toString() {
+    return 'UserEvent.accountSwitched(childId: $childId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AccountSwitchedImpl &&
+            (identical(other.childId, childId) || other.childId == childId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, childId);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AccountSwitchedImplCopyWith<_$AccountSwitchedImpl> get copyWith =>
+      __$$AccountSwitchedImplCopyWithImpl<_$AccountSwitchedImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password)
+    userLoggedInWithEmail,
+    required TResult Function(String phone, String password)
+    userLoggedInWithPhone,
+    required TResult Function() userLoggedInWithGoogle,
+    required TResult Function(String password) userRegisteredWithEmail,
+    required TResult Function(String password) userRegisteredWithPhone,
+    required TResult Function(UserModel? user) userModified,
+    required TResult Function() userLoggedOut,
+    required TResult Function(UserModel user) userCompletedProfileData,
+    required TResult Function(UserModel user) userModifiedProfileData,
+    required TResult Function(String newPassword, String oldPassword)
+    userModifiedPassword,
+    required TResult Function() allChildrenFetched,
+    required TResult Function(CompleteUserInfoRequest request) childAdded,
+    required TResult Function(int childId) childRemoved,
+    required TResult Function(int? childId) accountSwitched,
+  }) {
+    return accountSwitched(childId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? userLoggedInWithEmail,
+    TResult? Function(String phone, String password)? userLoggedInWithPhone,
+    TResult? Function()? userLoggedInWithGoogle,
+    TResult? Function(String password)? userRegisteredWithEmail,
+    TResult? Function(String password)? userRegisteredWithPhone,
+    TResult? Function(UserModel? user)? userModified,
+    TResult? Function()? userLoggedOut,
+    TResult? Function(UserModel user)? userCompletedProfileData,
+    TResult? Function(UserModel user)? userModifiedProfileData,
+    TResult? Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    TResult? Function()? allChildrenFetched,
+    TResult? Function(CompleteUserInfoRequest request)? childAdded,
+    TResult? Function(int childId)? childRemoved,
+    TResult? Function(int? childId)? accountSwitched,
+  }) {
+    return accountSwitched?.call(childId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? userLoggedInWithEmail,
+    TResult Function(String phone, String password)? userLoggedInWithPhone,
+    TResult Function()? userLoggedInWithGoogle,
+    TResult Function(String password)? userRegisteredWithEmail,
+    TResult Function(String password)? userRegisteredWithPhone,
+    TResult Function(UserModel? user)? userModified,
+    TResult Function()? userLoggedOut,
+    TResult Function(UserModel user)? userCompletedProfileData,
+    TResult Function(UserModel user)? userModifiedProfileData,
+    TResult Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    TResult Function()? allChildrenFetched,
+    TResult Function(CompleteUserInfoRequest request)? childAdded,
+    TResult Function(int childId)? childRemoved,
+    TResult Function(int? childId)? accountSwitched,
+    required TResult orElse(),
+  }) {
+    if (accountSwitched != null) {
+      return accountSwitched(childId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserLoggedInWithEmail value)
+    userLoggedInWithEmail,
+    required TResult Function(UserLoggedInWithPhone value)
+    userLoggedInWithPhone,
+    required TResult Function(UserLoggedInWithGoogle value)
+    userLoggedInWithGoogle,
+    required TResult Function(UserRegisteredWithEmail value)
+    userRegisteredWithEmail,
+    required TResult Function(UserRegisteredWithPhone value)
+    userRegisteredWithPhone,
+    required TResult Function(UserModified value) userModified,
+    required TResult Function(UserLoggedOut value) userLoggedOut,
+    required TResult Function(UserCompletedProfileData value)
+    userCompletedProfileData,
+    required TResult Function(UserModifiedProfileData value)
+    userModifiedProfileData,
+    required TResult Function(UserModifiedPassword value) userModifiedPassword,
+    required TResult Function(AllChildrenFetched value) allChildrenFetched,
+    required TResult Function(ChildAdded value) childAdded,
+    required TResult Function(ChildRemoved value) childRemoved,
+    required TResult Function(AccountSwitched value) accountSwitched,
+  }) {
+    return accountSwitched(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult? Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult? Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult? Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult? Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult? Function(UserModified value)? userModified,
+    TResult? Function(UserLoggedOut value)? userLoggedOut,
+    TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult? Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult? Function(ChildAdded value)? childAdded,
+    TResult? Function(ChildRemoved value)? childRemoved,
+    TResult? Function(AccountSwitched value)? accountSwitched,
+  }) {
+    return accountSwitched?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult Function(UserModified value)? userModified,
+    TResult Function(UserLoggedOut value)? userLoggedOut,
+    TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult Function(ChildAdded value)? childAdded,
+    TResult Function(ChildRemoved value)? childRemoved,
+    TResult Function(AccountSwitched value)? accountSwitched,
+    required TResult orElse(),
+  }) {
+    if (accountSwitched != null) {
+      return accountSwitched(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AccountSwitched implements UserEvent {
+  const factory AccountSwitched({final int? childId}) = _$AccountSwitchedImpl;
+
+  int? get childId;
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AccountSwitchedImplCopyWith<_$AccountSwitchedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

@@ -31,4 +31,6 @@ sealed class UserEvent with _$UserEvent {
     required CompleteUserInfoRequest request,
   }) = ChildAdded;
   const factory UserEvent.childRemoved({required int childId}) = ChildRemoved;
+
+  const factory UserEvent.accountSwitched({int? childId}) = AccountSwitched;
 }

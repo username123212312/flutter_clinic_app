@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/utils.dart';
@@ -44,7 +45,9 @@ class UpcomingAppointmentCard extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 16,
-                  foregroundImage: AssetImage(imagePath),
+                  foregroundImage: NetworkImage(
+                    '${AppConstants.serverUrl}$imagePath',
+                  ),
                   backgroundColor: Pallete.graysGray4,
                 ),
                 const SizedBox(width: 10),

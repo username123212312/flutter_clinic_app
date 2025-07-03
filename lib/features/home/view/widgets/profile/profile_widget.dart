@@ -37,39 +37,6 @@ class ProifileWidget extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
-            child: Row(
-              children: [
-                Container(
-                  width: screenWidth(context) * 0.13,
-                  height: screenHeight(context) * 0.06,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Pallete.grayScaleColor200,
-                  ),
-                  child: Icon(
-                    Icons.notifications_active_outlined,
-                    size: 25,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
-                SizedBox(width: 10),
-                Text(
-                  'Notifications',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleSmall!.copyWith(fontSize: 17),
-                ),
-                Spacer(),
-                CustomSwitch(onToggle: (newValue) {}),
-              ],
-            ),
-          ),
-          SizedBox(
-            width: screenWidth(context),
-            child: Divider(color: Pallete.grayScaleColor400),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: () {
@@ -326,26 +293,30 @@ class ProifileWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          BlocBuilder<AuthBloc, AuthState>(
+          BlocBuilder<UserBloc, UserState>(
             builder: (context, state) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '${state.authUser!.user!.firstName ?? 'No'} ${state.authUser!.user!.lastName ?? 'User'}',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleMedium!.copyWith(fontSize: 20),
-                  ),
-                  Text(
-                    state.authUser?.user?.email == null
-                        ? (state.authUser?.user?.phone ?? 'no phone')
-                        : state.authUser!.user!.email!,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleSmall!.copyWith(fontSize: 12),
-                  ),
-                ],
+              return BlocBuilder<AuthBloc, AuthState>(
+                builder: (context, authState) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '${state.user!.firstName ?? 'No'} ${state.user!.lastName ?? 'User'}',
+                        style: Theme.of(
+                          context,
+                        ).textTheme.titleMedium!.copyWith(fontSize: 20),
+                      ),
+                      Text(
+                        authState.authUser?.user?.email == null
+                            ? (authState.authUser?.user?.phone ?? 'no phone')
+                            : authState.authUser!.user!.email!,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.titleSmall!.copyWith(fontSize: 12),
+                      ),
+                    ],
+                  );
+                },
               );
             },
           ),

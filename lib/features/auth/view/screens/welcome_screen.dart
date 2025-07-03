@@ -20,13 +20,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   void initState() {
     super.initState();
+    context.read<AuthBloc>().add(CheckUserAuthState());
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) => _initialize());
   }
 
   void _initialize() async {
     if (!_isInit) {
       if (mounted) {
-        final authBloc = context.read<AuthBloc>()..add(CheckUserAuthState());
+        // final authBloc = context.read<AuthBloc>()..add(CheckUserAuthState());
 
         // eLog(authBloc.state);
         // final redirectScreen =
@@ -45,7 +46,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listenWhen: (previous, current) {
-        return (previous.isAuth != current.isAuth) || current.isAuth == true;
+        return previous.isAuth == false && current.isAuth == true;
       },
       listener: (context, state) {
         eLog('New AuthState: $state');

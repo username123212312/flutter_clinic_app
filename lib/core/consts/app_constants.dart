@@ -61,7 +61,7 @@ class AppConstants {
   //* children
   static const addChildPath = '$patientPath/addChild';
   static const deleteChildPath = '$patientPath/deleteChild';
-  static const showAllChildrenPath = '$patientPath/addChild';
+  static const showAllChildrenPath = '$patientPath/showAllChildren';
 
   //*   Appointment
   static const showAppointmentPath = '$patientPath/showAppointment';

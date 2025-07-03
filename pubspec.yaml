@@ -136,6 +136,11 @@ flutter:
       fonts:
         - asset: assets/fonts/OpenSans/static/OpenSans-Bold.ttf
           weight: 700
+
+    - family: DancingScript
+      fonts:
+        - asset: assets/fonts/DancingScript/DancingScript-Regular.ttf
+          weight: 400
           
         # - asset: fonts/Schyler-Italic.ttf
         #   style: italic

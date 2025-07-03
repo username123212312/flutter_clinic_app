@@ -5,6 +5,7 @@ import 'package:our_flutter_clinic_app/features/home/model/clinic_model.dart';
 import 'package:our_flutter_clinic_app/features/home/model/doctor_model.dart';
 import 'package:our_flutter_clinic_app/features/home/view/screens/labtech/analysis_info_screen.dart';
 import 'package:our_flutter_clinic_app/features/home/view/screens/patient/reschedule_screen.dart';
+import 'package:our_flutter_clinic_app/features/home/view/screens/patient/switch_account_screen.dart';
 
 import '../../features/home/view/screens/patient/clinic_doctors_screen.dart';
 import '../../features/home/view/screens/patient/my_wallet_screen.dart';
@@ -38,6 +39,11 @@ class AppRouteConfig {
         name: AppRouteConstants.onBoardingRouteName,
         path: '/on_boarding',
         pageBuilder: (_, __) => TransitionPage(child: OnBoardingScreen()),
+      ),
+      GoRoute(
+        name: AppRouteConstants.switchAccountRouteName,
+        path: '/switch_account',
+        pageBuilder: (_, __) => TransitionPage(child: SwitchAccountScreen()),
       ),
       GoRoute(
         name: AppRouteConstants.loginAsRouteName,

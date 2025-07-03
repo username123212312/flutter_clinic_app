@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
@@ -97,8 +98,10 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
                   LoadingOverlay().show(context);
                 } else {
                   LoadingOverlay().hideAll();
+                  if (state.status.isError) {
+                    Fluttertoast.showToast(msg: state.message);
+                  }
 
-                  clearAndShowSnackBar(context, state.message);
                   if (state.status.isDone) {
                     _myWalletCubit.fetchWalletRange();
                   }

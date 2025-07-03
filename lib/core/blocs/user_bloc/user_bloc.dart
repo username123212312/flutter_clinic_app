@@ -43,6 +43,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<AllChildrenFetched>(_fetchAllChildren);
     on<ChildAdded>(_addChild);
     on<ChildRemoved>(_removeChild);
+    on<AccountSwitched>(_switchAccount);
   }
   Future<void> _registerUser(UserEvent event, Emitter<UserState> emit) async {
     (state as _UserState).user;
@@ -160,11 +161,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         status: UserStatus.error,
         statusMessage: l.message,
       ),
-      Right(value: final r) => state.copyWith(
-        status: UserStatus.noUser,
-        user: null,
-        statusMessage: r.message,
-      ),
+      Right() => UserState.initial(),
     };
     emit(newState);
     if (!newState.status.isError) {
@@ -264,7 +261,10 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     };
     emit(newState);
     if (!newState.status.isError) {
-      _authBloc.add(AuthEvent.userModified(user: state.user!));
+      add(AllChildrenFetched());
+      if (state.currentChildId == null) {
+        _authBloc.add(AuthEvent.userModified(user: state.user!));
+      }
     }
   }
 
@@ -320,17 +320,20 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     AllChildrenFetched event,
     Emitter<UserState> emit,
   ) async {
+    emit(state.copyWith(childrenListStatus: DataStatus.loading));
     try {
       final response = await _userRepository.fetchAllUserChildren();
       final newState = switch (response) {
         Left(value: final l) => state.copyWith(
           childrenListStatus: DataStatus.error,
           statusMessage: l.message,
+          status: UserStatus.error,
         ),
         Right(value: final r) => state.copyWith(
           childrenListStatus: DataStatus.data,
           children: r.data ?? state.children,
           statusMessage: r.message,
+          status: UserStatus.modified,
         ),
       };
       emit(newState);
@@ -339,6 +342,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         state.copyWith(
           childrenListStatus: DataStatus.error,
           statusMessage: e.toString(),
+          status: UserStatus.modified,
         ),
       );
     }
@@ -351,10 +355,12 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         Left(value: final l) => state.copyWith(
           childrenListStatus: DataStatus.error,
           statusMessage: l.message,
+          status: UserStatus.error,
         ),
         Right(value: final r) => state.copyWith(
           childrenListStatus: DataStatus.done,
           statusMessage: r.message,
+          status: UserStatus.modified,
         ),
       };
       emit(newState);
@@ -363,6 +369,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         state.copyWith(
           childrenListStatus: DataStatus.error,
           statusMessage: e.toString(),
+          status: UserStatus.error,
         ),
       );
     }
@@ -375,10 +382,12 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         Left(value: final l) => state.copyWith(
           childrenListStatus: DataStatus.error,
           statusMessage: l.message,
+          status: UserStatus.error,
         ),
         Right(value: final r) => state.copyWith(
           childrenListStatus: DataStatus.done,
           statusMessage: r.message,
+          status: UserStatus.modified,
         ),
       };
       emit(newState);
@@ -387,6 +396,39 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         state.copyWith(
           childrenListStatus: DataStatus.error,
           statusMessage: e.toString(),
+          status: UserStatus.error,
+        ),
+      );
+    }
+  }
+
+  Future<void> _switchAccount(
+    AccountSwitched event,
+    Emitter<UserState> emit,
+  ) async {
+    final int? previousChildId = state.currentChildId;
+    try {
+      emit(state.copyWith(currentChildId: event.childId));
+      final response = await _userRepository.showProfile();
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          status: UserStatus.error,
+          statusMessage: l.message,
+          currentChildId: previousChildId,
+        ),
+        Right(value: final r) => state.copyWith(
+          status: UserStatus.modified,
+          statusMessage: r.message,
+          user: r.data,
+        ),
+      };
+      emit(newState);
+    } catch (e) {
+      emit(
+        state.copyWith(
+          status: UserStatus.error,
+          statusMessage: e.toString(),
+          currentChildId: previousChildId,
         ),
       );
     }

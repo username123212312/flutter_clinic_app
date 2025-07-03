@@ -467,27 +467,26 @@ class UserRepository {
     }
   }
 
-  Future<Either<AppFailure, AppResponse<UserModel>>> showChildProfile(
-    int childId,
-  ) async {
+  Future<Either<AppFailure, AppResponse<UserModel>>> showProfile() async {
     try {
       final response = await _dio.get(
         AppConstants.showProfilePath,
-        queryParameters: {'child_id': childId},
+        queryParameters:
+            (getChildId() == null) ? null : {'child_id': getChildId()},
       );
       wLog(response.data);
       if (response.data['statusCode'] < 300) {
         return Right(
           AppResponse<UserModel>(
-            data: response.data,
+            data: UserModel.fromJson(response.data['data']),
             success: true,
-            message: 'child removed successfully',
+            message: 'account fetched successfully',
             statusCode: response.data['statusCode'],
             statusMessage: response.data['statusMessage'],
           ),
         );
       } else {
-        throw HttpException('child\'s not removed');
+        throw HttpException('account\'s not fetched');
       }
     } on DioException catch (e) {
       return Left(

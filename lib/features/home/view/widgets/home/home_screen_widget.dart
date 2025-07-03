@@ -7,6 +7,7 @@ import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/home/upcoming_%20appointment_cards.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
+import '../../../../../core/blocs/user_bloc/user_bloc.dart';
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../controller/home_bloc/home_bloc.dart';
 import 'find_doctor_card.dart';
@@ -78,7 +79,8 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                         ),
                       ),
                       Text(
-                        '${userBloc.state.authUser?.user?.firstName ?? 'No'} ${userBloc.state.authUser?.user?.lastName ?? 'User'}',
+                        '${context.read<UserBloc>().state.user?.firstName ?? 'No'}'
+                        ' ${context.read<UserBloc>().state.user?.lastName ?? 'User'}',
                         style: Theme.of(context).textTheme.titleSmall!.copyWith(
                           fontSize: 16,
                           color: Pallete.black1,
@@ -255,7 +257,8 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount:
-                          state.departmentsListStatus.isLoading
+                          (state.departmentsListStatus.isLoading ||
+                                  state.departmentsList.isEmpty)
                               ? 8
                               : state.departmentsList.length,
                       gridDelegate:
@@ -265,7 +268,8 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                             crossAxisSpacing: 9,
                           ),
                       itemBuilder: (context, index) {
-                        if (state.departmentsListStatus.isLoading) {
+                        if (state.departmentsListStatus.isLoading ||
+                            state.departmentsList.isEmpty) {
                           return Department(
                             name: 'opengl',
                             iconPath: 'assets/icons/Cadiologist.png',

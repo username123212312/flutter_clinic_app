@@ -45,6 +45,8 @@ class _LoginScreenState extends State<LoginScreen> {
     _emailController.dispose();
     _phoneController.dispose();
     _passwordController.dispose();
+    LoadingOverlay().hideAll();
+
     super.dispose();
   }
 

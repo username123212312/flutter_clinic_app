@@ -50,6 +50,12 @@ class AppTheme {
       TextStyle().copyWith(fontFamily: 'Poppins', color: Colors.black);
   static TextStyle _opanSanstextStyle() =>
       TextStyle().copyWith(fontFamily: 'OpanSans', color: Colors.black);
+  static TextStyle _dancingScripttextStyle() => TextStyle().copyWith(
+    letterSpacing: 1,
+
+    fontFamily: 'DancingScript',
+    color: Colors.black,
+  );
 
   static TextTheme _textTheme() {
     return TextTheme().copyWith(
@@ -57,6 +63,9 @@ class AppTheme {
       labelSmall: _poppinstextStyle().copyWith(fontWeight: FontWeight.w500),
       titleSmall: _poppinstextStyle().copyWith(fontWeight: FontWeight.w400),
       titleMedium: _opanSanstextStyle().copyWith(fontWeight: FontWeight.w700),
+      displaySmall: _dancingScripttextStyle().copyWith(
+        fontWeight: FontWeight.w400,
+      ),
     );
   }
 

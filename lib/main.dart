@@ -22,6 +22,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 import 'core/services/fcm/fcm_service.dart';
 import 'core/services/notification/notification_service.dart';
+import 'features/home/view/screens/patient/switch_account_screen.dart';
 
 void main() async {
   await initMain();
@@ -57,24 +58,15 @@ class ClinicApp extends StatelessWidget {
       //   themeMode: ThemeMode.system,
       //   theme: AppTheme.lightThemeMode,
       //   darkTheme: AppTheme.darkThemeMode,
-      //   home: RescheduleScreen(
-      //     appointment: AppointmentModel(id: 55, clinicId: 1, doctorId: 5),
-      //   ),
+      //   home: SwitchAccountScreen(),
       // ),
-      child: BlocBuilder<AuthBloc, AuthState>(
-        buildWhen: (previous, current) {
-          return previous.isAuth != current.isAuth;
-        },
-        builder: (context, state) {
-          return MaterialApp.router(
-            debugShowCheckedModeBanner: false,
-            routerConfig: AppRouteConfig.router,
-            title: 'Clinic App',
-            themeMode: ThemeMode.system,
-            theme: AppTheme.lightThemeMode,
-            darkTheme: AppTheme.darkThemeMode,
-          );
-        },
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        routerConfig: AppRouteConfig.router,
+        title: 'Clinic App',
+        themeMode: ThemeMode.system,
+        theme: AppTheme.lightThemeMode,
+        darkTheme: AppTheme.darkThemeMode,
       ),
     );
   }
