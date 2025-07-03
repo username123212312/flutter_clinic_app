@@ -36,4 +36,5 @@ class AppRouteConstants {
   static const myWalletRouteName = 'my_wallet';
   static const errorRouteName = 'error';
   static const notificationsRouteName = 'notifications';
+  static const clinicDoctorsRouteName = 'clinic_doctors';
 }

@@ -32,6 +32,9 @@ mixin _$UserEvent {
     required TResult Function(UserModel user) userModifiedProfileData,
     required TResult Function(String newPassword, String oldPassword)
     userModifiedPassword,
+    required TResult Function() allChildrenFetched,
+    required TResult Function(CompleteUserInfoRequest request) childAdded,
+    required TResult Function(int childId) childRemoved,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
@@ -46,6 +49,9 @@ mixin _$UserEvent {
     TResult? Function(UserModel user)? userModifiedProfileData,
     TResult? Function(String newPassword, String oldPassword)?
     userModifiedPassword,
+    TResult? Function()? allChildrenFetched,
+    TResult? Function(CompleteUserInfoRequest request)? childAdded,
+    TResult? Function(int childId)? childRemoved,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
@@ -60,6 +66,9 @@ mixin _$UserEvent {
     TResult Function(UserModel user)? userModifiedProfileData,
     TResult Function(String newPassword, String oldPassword)?
     userModifiedPassword,
+    TResult Function()? allChildrenFetched,
+    TResult Function(CompleteUserInfoRequest request)? childAdded,
+    TResult Function(int childId)? childRemoved,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -81,6 +90,9 @@ mixin _$UserEvent {
     required TResult Function(UserModifiedProfileData value)
     userModifiedProfileData,
     required TResult Function(UserModifiedPassword value) userModifiedPassword,
+    required TResult Function(AllChildrenFetched value) allChildrenFetched,
+    required TResult Function(ChildAdded value) childAdded,
+    required TResult Function(ChildRemoved value) childRemoved,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
@@ -94,6 +106,9 @@ mixin _$UserEvent {
     TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
     TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
     TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult? Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult? Function(ChildAdded value)? childAdded,
+    TResult? Function(ChildRemoved value)? childRemoved,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
@@ -107,6 +122,9 @@ mixin _$UserEvent {
     TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
     TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
     TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult Function(ChildAdded value)? childAdded,
+    TResult Function(ChildRemoved value)? childRemoved,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -231,6 +249,9 @@ class _$UserLoggedInWithEmailImpl implements UserLoggedInWithEmail {
     required TResult Function(UserModel user) userModifiedProfileData,
     required TResult Function(String newPassword, String oldPassword)
     userModifiedPassword,
+    required TResult Function() allChildrenFetched,
+    required TResult Function(CompleteUserInfoRequest request) childAdded,
+    required TResult Function(int childId) childRemoved,
   }) {
     return userLoggedInWithEmail(email, password);
   }
@@ -249,6 +270,9 @@ class _$UserLoggedInWithEmailImpl implements UserLoggedInWithEmail {
     TResult? Function(UserModel user)? userModifiedProfileData,
     TResult? Function(String newPassword, String oldPassword)?
     userModifiedPassword,
+    TResult? Function()? allChildrenFetched,
+    TResult? Function(CompleteUserInfoRequest request)? childAdded,
+    TResult? Function(int childId)? childRemoved,
   }) {
     return userLoggedInWithEmail?.call(email, password);
   }
@@ -267,6 +291,9 @@ class _$UserLoggedInWithEmailImpl implements UserLoggedInWithEmail {
     TResult Function(UserModel user)? userModifiedProfileData,
     TResult Function(String newPassword, String oldPassword)?
     userModifiedPassword,
+    TResult Function()? allChildrenFetched,
+    TResult Function(CompleteUserInfoRequest request)? childAdded,
+    TResult Function(int childId)? childRemoved,
     required TResult orElse(),
   }) {
     if (userLoggedInWithEmail != null) {
@@ -295,6 +322,9 @@ class _$UserLoggedInWithEmailImpl implements UserLoggedInWithEmail {
     required TResult Function(UserModifiedProfileData value)
     userModifiedProfileData,
     required TResult Function(UserModifiedPassword value) userModifiedPassword,
+    required TResult Function(AllChildrenFetched value) allChildrenFetched,
+    required TResult Function(ChildAdded value) childAdded,
+    required TResult Function(ChildRemoved value) childRemoved,
   }) {
     return userLoggedInWithEmail(this);
   }
@@ -312,6 +342,9 @@ class _$UserLoggedInWithEmailImpl implements UserLoggedInWithEmail {
     TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
     TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
     TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult? Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult? Function(ChildAdded value)? childAdded,
+    TResult? Function(ChildRemoved value)? childRemoved,
   }) {
     return userLoggedInWithEmail?.call(this);
   }
@@ -329,6 +362,9 @@ class _$UserLoggedInWithEmailImpl implements UserLoggedInWithEmail {
     TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
     TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
     TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult Function(ChildAdded value)? childAdded,
+    TResult Function(ChildRemoved value)? childRemoved,
     required TResult orElse(),
   }) {
     if (userLoggedInWithEmail != null) {
@@ -454,6 +490,9 @@ class _$UserLoggedInWithPhoneImpl implements UserLoggedInWithPhone {
     required TResult Function(UserModel user) userModifiedProfileData,
     required TResult Function(String newPassword, String oldPassword)
     userModifiedPassword,
+    required TResult Function() allChildrenFetched,
+    required TResult Function(CompleteUserInfoRequest request) childAdded,
+    required TResult Function(int childId) childRemoved,
   }) {
     return userLoggedInWithPhone(phone, password);
   }
@@ -472,6 +511,9 @@ class _$UserLoggedInWithPhoneImpl implements UserLoggedInWithPhone {
     TResult? Function(UserModel user)? userModifiedProfileData,
     TResult? Function(String newPassword, String oldPassword)?
     userModifiedPassword,
+    TResult? Function()? allChildrenFetched,
+    TResult? Function(CompleteUserInfoRequest request)? childAdded,
+    TResult? Function(int childId)? childRemoved,
   }) {
     return userLoggedInWithPhone?.call(phone, password);
   }
@@ -490,6 +532,9 @@ class _$UserLoggedInWithPhoneImpl implements UserLoggedInWithPhone {
     TResult Function(UserModel user)? userModifiedProfileData,
     TResult Function(String newPassword, String oldPassword)?
     userModifiedPassword,
+    TResult Function()? allChildrenFetched,
+    TResult Function(CompleteUserInfoRequest request)? childAdded,
+    TResult Function(int childId)? childRemoved,
     required TResult orElse(),
   }) {
     if (userLoggedInWithPhone != null) {
@@ -518,6 +563,9 @@ class _$UserLoggedInWithPhoneImpl implements UserLoggedInWithPhone {
     required TResult Function(UserModifiedProfileData value)
     userModifiedProfileData,
     required TResult Function(UserModifiedPassword value) userModifiedPassword,
+    required TResult Function(AllChildrenFetched value) allChildrenFetched,
+    required TResult Function(ChildAdded value) childAdded,
+    required TResult Function(ChildRemoved value) childRemoved,
   }) {
     return userLoggedInWithPhone(this);
   }
@@ -535,6 +583,9 @@ class _$UserLoggedInWithPhoneImpl implements UserLoggedInWithPhone {
     TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
     TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
     TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult? Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult? Function(ChildAdded value)? childAdded,
+    TResult? Function(ChildRemoved value)? childRemoved,
   }) {
     return userLoggedInWithPhone?.call(this);
   }
@@ -552,6 +603,9 @@ class _$UserLoggedInWithPhoneImpl implements UserLoggedInWithPhone {
     TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
     TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
     TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult Function(ChildAdded value)? childAdded,
+    TResult Function(ChildRemoved value)? childRemoved,
     required TResult orElse(),
   }) {
     if (userLoggedInWithPhone != null) {
@@ -634,6 +688,9 @@ class _$UserLoggedInWithGoogleImpl implements UserLoggedInWithGoogle {
     required TResult Function(UserModel user) userModifiedProfileData,
     required TResult Function(String newPassword, String oldPassword)
     userModifiedPassword,
+    required TResult Function() allChildrenFetched,
+    required TResult Function(CompleteUserInfoRequest request) childAdded,
+    required TResult Function(int childId) childRemoved,
   }) {
     return userLoggedInWithGoogle();
   }
@@ -652,6 +709,9 @@ class _$UserLoggedInWithGoogleImpl implements UserLoggedInWithGoogle {
     TResult? Function(UserModel user)? userModifiedProfileData,
     TResult? Function(String newPassword, String oldPassword)?
     userModifiedPassword,
+    TResult? Function()? allChildrenFetched,
+    TResult? Function(CompleteUserInfoRequest request)? childAdded,
+    TResult? Function(int childId)? childRemoved,
   }) {
     return userLoggedInWithGoogle?.call();
   }
@@ -670,6 +730,9 @@ class _$UserLoggedInWithGoogleImpl implements UserLoggedInWithGoogle {
     TResult Function(UserModel user)? userModifiedProfileData,
     TResult Function(String newPassword, String oldPassword)?
     userModifiedPassword,
+    TResult Function()? allChildrenFetched,
+    TResult Function(CompleteUserInfoRequest request)? childAdded,
+    TResult Function(int childId)? childRemoved,
     required TResult orElse(),
   }) {
     if (userLoggedInWithGoogle != null) {
@@ -698,6 +761,9 @@ class _$UserLoggedInWithGoogleImpl implements UserLoggedInWithGoogle {
     required TResult Function(UserModifiedProfileData value)
     userModifiedProfileData,
     required TResult Function(UserModifiedPassword value) userModifiedPassword,
+    required TResult Function(AllChildrenFetched value) allChildrenFetched,
+    required TResult Function(ChildAdded value) childAdded,
+    required TResult Function(ChildRemoved value) childRemoved,
   }) {
     return userLoggedInWithGoogle(this);
   }
@@ -715,6 +781,9 @@ class _$UserLoggedInWithGoogleImpl implements UserLoggedInWithGoogle {
     TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
     TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
     TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult? Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult? Function(ChildAdded value)? childAdded,
+    TResult? Function(ChildRemoved value)? childRemoved,
   }) {
     return userLoggedInWithGoogle?.call(this);
   }
@@ -732,6 +801,9 @@ class _$UserLoggedInWithGoogleImpl implements UserLoggedInWithGoogle {
     TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
     TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
     TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult Function(ChildAdded value)? childAdded,
+    TResult Function(ChildRemoved value)? childRemoved,
     required TResult orElse(),
   }) {
     if (userLoggedInWithGoogle != null) {
@@ -832,6 +904,9 @@ class _$UserRegisteredWithEmailImpl implements UserRegisteredWithEmail {
     required TResult Function(UserModel user) userModifiedProfileData,
     required TResult Function(String newPassword, String oldPassword)
     userModifiedPassword,
+    required TResult Function() allChildrenFetched,
+    required TResult Function(CompleteUserInfoRequest request) childAdded,
+    required TResult Function(int childId) childRemoved,
   }) {
     return userRegisteredWithEmail(password);
   }
@@ -850,6 +925,9 @@ class _$UserRegisteredWithEmailImpl implements UserRegisteredWithEmail {
     TResult? Function(UserModel user)? userModifiedProfileData,
     TResult? Function(String newPassword, String oldPassword)?
     userModifiedPassword,
+    TResult? Function()? allChildrenFetched,
+    TResult? Function(CompleteUserInfoRequest request)? childAdded,
+    TResult? Function(int childId)? childRemoved,
   }) {
     return userRegisteredWithEmail?.call(password);
   }
@@ -868,6 +946,9 @@ class _$UserRegisteredWithEmailImpl implements UserRegisteredWithEmail {
     TResult Function(UserModel user)? userModifiedProfileData,
     TResult Function(String newPassword, String oldPassword)?
     userModifiedPassword,
+    TResult Function()? allChildrenFetched,
+    TResult Function(CompleteUserInfoRequest request)? childAdded,
+    TResult Function(int childId)? childRemoved,
     required TResult orElse(),
   }) {
     if (userRegisteredWithEmail != null) {
@@ -896,6 +977,9 @@ class _$UserRegisteredWithEmailImpl implements UserRegisteredWithEmail {
     required TResult Function(UserModifiedProfileData value)
     userModifiedProfileData,
     required TResult Function(UserModifiedPassword value) userModifiedPassword,
+    required TResult Function(AllChildrenFetched value) allChildrenFetched,
+    required TResult Function(ChildAdded value) childAdded,
+    required TResult Function(ChildRemoved value) childRemoved,
   }) {
     return userRegisteredWithEmail(this);
   }
@@ -913,6 +997,9 @@ class _$UserRegisteredWithEmailImpl implements UserRegisteredWithEmail {
     TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
     TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
     TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult? Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult? Function(ChildAdded value)? childAdded,
+    TResult? Function(ChildRemoved value)? childRemoved,
   }) {
     return userRegisteredWithEmail?.call(this);
   }
@@ -930,6 +1017,9 @@ class _$UserRegisteredWithEmailImpl implements UserRegisteredWithEmail {
     TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
     TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
     TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult Function(ChildAdded value)? childAdded,
+    TResult Function(ChildRemoved value)? childRemoved,
     required TResult orElse(),
   }) {
     if (userRegisteredWithEmail != null) {
@@ -1039,6 +1129,9 @@ class _$UserRegisteredWithPhoneImpl implements UserRegisteredWithPhone {
     required TResult Function(UserModel user) userModifiedProfileData,
     required TResult Function(String newPassword, String oldPassword)
     userModifiedPassword,
+    required TResult Function() allChildrenFetched,
+    required TResult Function(CompleteUserInfoRequest request) childAdded,
+    required TResult Function(int childId) childRemoved,
   }) {
     return userRegisteredWithPhone(password);
   }
@@ -1057,6 +1150,9 @@ class _$UserRegisteredWithPhoneImpl implements UserRegisteredWithPhone {
     TResult? Function(UserModel user)? userModifiedProfileData,
     TResult? Function(String newPassword, String oldPassword)?
     userModifiedPassword,
+    TResult? Function()? allChildrenFetched,
+    TResult? Function(CompleteUserInfoRequest request)? childAdded,
+    TResult? Function(int childId)? childRemoved,
   }) {
     return userRegisteredWithPhone?.call(password);
   }
@@ -1075,6 +1171,9 @@ class _$UserRegisteredWithPhoneImpl implements UserRegisteredWithPhone {
     TResult Function(UserModel user)? userModifiedProfileData,
     TResult Function(String newPassword, String oldPassword)?
     userModifiedPassword,
+    TResult Function()? allChildrenFetched,
+    TResult Function(CompleteUserInfoRequest request)? childAdded,
+    TResult Function(int childId)? childRemoved,
     required TResult orElse(),
   }) {
     if (userRegisteredWithPhone != null) {
@@ -1103,6 +1202,9 @@ class _$UserRegisteredWithPhoneImpl implements UserRegisteredWithPhone {
     required TResult Function(UserModifiedProfileData value)
     userModifiedProfileData,
     required TResult Function(UserModifiedPassword value) userModifiedPassword,
+    required TResult Function(AllChildrenFetched value) allChildrenFetched,
+    required TResult Function(ChildAdded value) childAdded,
+    required TResult Function(ChildRemoved value) childRemoved,
   }) {
     return userRegisteredWithPhone(this);
   }
@@ -1120,6 +1222,9 @@ class _$UserRegisteredWithPhoneImpl implements UserRegisteredWithPhone {
     TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
     TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
     TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult? Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult? Function(ChildAdded value)? childAdded,
+    TResult? Function(ChildRemoved value)? childRemoved,
   }) {
     return userRegisteredWithPhone?.call(this);
   }
@@ -1137,6 +1242,9 @@ class _$UserRegisteredWithPhoneImpl implements UserRegisteredWithPhone {
     TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
     TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
     TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult Function(ChildAdded value)? childAdded,
+    TResult Function(ChildRemoved value)? childRemoved,
     required TResult orElse(),
   }) {
     if (userRegisteredWithPhone != null) {
@@ -1259,6 +1367,9 @@ class _$UserModifiedImpl implements UserModified {
     required TResult Function(UserModel user) userModifiedProfileData,
     required TResult Function(String newPassword, String oldPassword)
     userModifiedPassword,
+    required TResult Function() allChildrenFetched,
+    required TResult Function(CompleteUserInfoRequest request) childAdded,
+    required TResult Function(int childId) childRemoved,
   }) {
     return userModified(user);
   }
@@ -1277,6 +1388,9 @@ class _$UserModifiedImpl implements UserModified {
     TResult? Function(UserModel user)? userModifiedProfileData,
     TResult? Function(String newPassword, String oldPassword)?
     userModifiedPassword,
+    TResult? Function()? allChildrenFetched,
+    TResult? Function(CompleteUserInfoRequest request)? childAdded,
+    TResult? Function(int childId)? childRemoved,
   }) {
     return userModified?.call(user);
   }
@@ -1295,6 +1409,9 @@ class _$UserModifiedImpl implements UserModified {
     TResult Function(UserModel user)? userModifiedProfileData,
     TResult Function(String newPassword, String oldPassword)?
     userModifiedPassword,
+    TResult Function()? allChildrenFetched,
+    TResult Function(CompleteUserInfoRequest request)? childAdded,
+    TResult Function(int childId)? childRemoved,
     required TResult orElse(),
   }) {
     if (userModified != null) {
@@ -1323,6 +1440,9 @@ class _$UserModifiedImpl implements UserModified {
     required TResult Function(UserModifiedProfileData value)
     userModifiedProfileData,
     required TResult Function(UserModifiedPassword value) userModifiedPassword,
+    required TResult Function(AllChildrenFetched value) allChildrenFetched,
+    required TResult Function(ChildAdded value) childAdded,
+    required TResult Function(ChildRemoved value) childRemoved,
   }) {
     return userModified(this);
   }
@@ -1340,6 +1460,9 @@ class _$UserModifiedImpl implements UserModified {
     TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
     TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
     TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult? Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult? Function(ChildAdded value)? childAdded,
+    TResult? Function(ChildRemoved value)? childRemoved,
   }) {
     return userModified?.call(this);
   }
@@ -1357,6 +1480,9 @@ class _$UserModifiedImpl implements UserModified {
     TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
     TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
     TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult Function(ChildAdded value)? childAdded,
+    TResult Function(ChildRemoved value)? childRemoved,
     required TResult orElse(),
   }) {
     if (userModified != null) {
@@ -1435,6 +1561,9 @@ class _$UserLoggedOutImpl implements UserLoggedOut {
     required TResult Function(UserModel user) userModifiedProfileData,
     required TResult Function(String newPassword, String oldPassword)
     userModifiedPassword,
+    required TResult Function() allChildrenFetched,
+    required TResult Function(CompleteUserInfoRequest request) childAdded,
+    required TResult Function(int childId) childRemoved,
   }) {
     return userLoggedOut();
   }
@@ -1453,6 +1582,9 @@ class _$UserLoggedOutImpl implements UserLoggedOut {
     TResult? Function(UserModel user)? userModifiedProfileData,
     TResult? Function(String newPassword, String oldPassword)?
     userModifiedPassword,
+    TResult? Function()? allChildrenFetched,
+    TResult? Function(CompleteUserInfoRequest request)? childAdded,
+    TResult? Function(int childId)? childRemoved,
   }) {
     return userLoggedOut?.call();
   }
@@ -1471,6 +1603,9 @@ class _$UserLoggedOutImpl implements UserLoggedOut {
     TResult Function(UserModel user)? userModifiedProfileData,
     TResult Function(String newPassword, String oldPassword)?
     userModifiedPassword,
+    TResult Function()? allChildrenFetched,
+    TResult Function(CompleteUserInfoRequest request)? childAdded,
+    TResult Function(int childId)? childRemoved,
     required TResult orElse(),
   }) {
     if (userLoggedOut != null) {
@@ -1499,6 +1634,9 @@ class _$UserLoggedOutImpl implements UserLoggedOut {
     required TResult Function(UserModifiedProfileData value)
     userModifiedProfileData,
     required TResult Function(UserModifiedPassword value) userModifiedPassword,
+    required TResult Function(AllChildrenFetched value) allChildrenFetched,
+    required TResult Function(ChildAdded value) childAdded,
+    required TResult Function(ChildRemoved value) childRemoved,
   }) {
     return userLoggedOut(this);
   }
@@ -1516,6 +1654,9 @@ class _$UserLoggedOutImpl implements UserLoggedOut {
     TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
     TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
     TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult? Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult? Function(ChildAdded value)? childAdded,
+    TResult? Function(ChildRemoved value)? childRemoved,
   }) {
     return userLoggedOut?.call(this);
   }
@@ -1533,6 +1674,9 @@ class _$UserLoggedOutImpl implements UserLoggedOut {
     TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
     TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
     TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult Function(ChildAdded value)? childAdded,
+    TResult Function(ChildRemoved value)? childRemoved,
     required TResult orElse(),
   }) {
     if (userLoggedOut != null) {
@@ -1644,6 +1788,9 @@ class _$UserCompletedProfileDataImpl implements UserCompletedProfileData {
     required TResult Function(UserModel user) userModifiedProfileData,
     required TResult Function(String newPassword, String oldPassword)
     userModifiedPassword,
+    required TResult Function() allChildrenFetched,
+    required TResult Function(CompleteUserInfoRequest request) childAdded,
+    required TResult Function(int childId) childRemoved,
   }) {
     return userCompletedProfileData(user);
   }
@@ -1662,6 +1809,9 @@ class _$UserCompletedProfileDataImpl implements UserCompletedProfileData {
     TResult? Function(UserModel user)? userModifiedProfileData,
     TResult? Function(String newPassword, String oldPassword)?
     userModifiedPassword,
+    TResult? Function()? allChildrenFetched,
+    TResult? Function(CompleteUserInfoRequest request)? childAdded,
+    TResult? Function(int childId)? childRemoved,
   }) {
     return userCompletedProfileData?.call(user);
   }
@@ -1680,6 +1830,9 @@ class _$UserCompletedProfileDataImpl implements UserCompletedProfileData {
     TResult Function(UserModel user)? userModifiedProfileData,
     TResult Function(String newPassword, String oldPassword)?
     userModifiedPassword,
+    TResult Function()? allChildrenFetched,
+    TResult Function(CompleteUserInfoRequest request)? childAdded,
+    TResult Function(int childId)? childRemoved,
     required TResult orElse(),
   }) {
     if (userCompletedProfileData != null) {
@@ -1708,6 +1861,9 @@ class _$UserCompletedProfileDataImpl implements UserCompletedProfileData {
     required TResult Function(UserModifiedProfileData value)
     userModifiedProfileData,
     required TResult Function(UserModifiedPassword value) userModifiedPassword,
+    required TResult Function(AllChildrenFetched value) allChildrenFetched,
+    required TResult Function(ChildAdded value) childAdded,
+    required TResult Function(ChildRemoved value) childRemoved,
   }) {
     return userCompletedProfileData(this);
   }
@@ -1725,6 +1881,9 @@ class _$UserCompletedProfileDataImpl implements UserCompletedProfileData {
     TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
     TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
     TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult? Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult? Function(ChildAdded value)? childAdded,
+    TResult? Function(ChildRemoved value)? childRemoved,
   }) {
     return userCompletedProfileData?.call(this);
   }
@@ -1742,6 +1901,9 @@ class _$UserCompletedProfileDataImpl implements UserCompletedProfileData {
     TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
     TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
     TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult Function(ChildAdded value)? childAdded,
+    TResult Function(ChildRemoved value)? childRemoved,
     required TResult orElse(),
   }) {
     if (userCompletedProfileData != null) {
@@ -1862,6 +2024,9 @@ class _$UserModifiedProfileDataImpl implements UserModifiedProfileData {
     required TResult Function(UserModel user) userModifiedProfileData,
     required TResult Function(String newPassword, String oldPassword)
     userModifiedPassword,
+    required TResult Function() allChildrenFetched,
+    required TResult Function(CompleteUserInfoRequest request) childAdded,
+    required TResult Function(int childId) childRemoved,
   }) {
     return userModifiedProfileData(user);
   }
@@ -1880,6 +2045,9 @@ class _$UserModifiedProfileDataImpl implements UserModifiedProfileData {
     TResult? Function(UserModel user)? userModifiedProfileData,
     TResult? Function(String newPassword, String oldPassword)?
     userModifiedPassword,
+    TResult? Function()? allChildrenFetched,
+    TResult? Function(CompleteUserInfoRequest request)? childAdded,
+    TResult? Function(int childId)? childRemoved,
   }) {
     return userModifiedProfileData?.call(user);
   }
@@ -1898,6 +2066,9 @@ class _$UserModifiedProfileDataImpl implements UserModifiedProfileData {
     TResult Function(UserModel user)? userModifiedProfileData,
     TResult Function(String newPassword, String oldPassword)?
     userModifiedPassword,
+    TResult Function()? allChildrenFetched,
+    TResult Function(CompleteUserInfoRequest request)? childAdded,
+    TResult Function(int childId)? childRemoved,
     required TResult orElse(),
   }) {
     if (userModifiedProfileData != null) {
@@ -1926,6 +2097,9 @@ class _$UserModifiedProfileDataImpl implements UserModifiedProfileData {
     required TResult Function(UserModifiedProfileData value)
     userModifiedProfileData,
     required TResult Function(UserModifiedPassword value) userModifiedPassword,
+    required TResult Function(AllChildrenFetched value) allChildrenFetched,
+    required TResult Function(ChildAdded value) childAdded,
+    required TResult Function(ChildRemoved value) childRemoved,
   }) {
     return userModifiedProfileData(this);
   }
@@ -1943,6 +2117,9 @@ class _$UserModifiedProfileDataImpl implements UserModifiedProfileData {
     TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
     TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
     TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult? Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult? Function(ChildAdded value)? childAdded,
+    TResult? Function(ChildRemoved value)? childRemoved,
   }) {
     return userModifiedProfileData?.call(this);
   }
@@ -1960,6 +2137,9 @@ class _$UserModifiedProfileDataImpl implements UserModifiedProfileData {
     TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
     TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
     TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult Function(ChildAdded value)? childAdded,
+    TResult Function(ChildRemoved value)? childRemoved,
     required TResult orElse(),
   }) {
     if (userModifiedProfileData != null) {
@@ -2083,6 +2263,9 @@ class _$UserModifiedPasswordImpl implements UserModifiedPassword {
     required TResult Function(UserModel user) userModifiedProfileData,
     required TResult Function(String newPassword, String oldPassword)
     userModifiedPassword,
+    required TResult Function() allChildrenFetched,
+    required TResult Function(CompleteUserInfoRequest request) childAdded,
+    required TResult Function(int childId) childRemoved,
   }) {
     return userModifiedPassword(newPassword, oldPassword);
   }
@@ -2101,6 +2284,9 @@ class _$UserModifiedPasswordImpl implements UserModifiedPassword {
     TResult? Function(UserModel user)? userModifiedProfileData,
     TResult? Function(String newPassword, String oldPassword)?
     userModifiedPassword,
+    TResult? Function()? allChildrenFetched,
+    TResult? Function(CompleteUserInfoRequest request)? childAdded,
+    TResult? Function(int childId)? childRemoved,
   }) {
     return userModifiedPassword?.call(newPassword, oldPassword);
   }
@@ -2119,6 +2305,9 @@ class _$UserModifiedPasswordImpl implements UserModifiedPassword {
     TResult Function(UserModel user)? userModifiedProfileData,
     TResult Function(String newPassword, String oldPassword)?
     userModifiedPassword,
+    TResult Function()? allChildrenFetched,
+    TResult Function(CompleteUserInfoRequest request)? childAdded,
+    TResult Function(int childId)? childRemoved,
     required TResult orElse(),
   }) {
     if (userModifiedPassword != null) {
@@ -2147,6 +2336,9 @@ class _$UserModifiedPasswordImpl implements UserModifiedPassword {
     required TResult Function(UserModifiedProfileData value)
     userModifiedProfileData,
     required TResult Function(UserModifiedPassword value) userModifiedPassword,
+    required TResult Function(AllChildrenFetched value) allChildrenFetched,
+    required TResult Function(ChildAdded value) childAdded,
+    required TResult Function(ChildRemoved value) childRemoved,
   }) {
     return userModifiedPassword(this);
   }
@@ -2164,6 +2356,9 @@ class _$UserModifiedPasswordImpl implements UserModifiedPassword {
     TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
     TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
     TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult? Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult? Function(ChildAdded value)? childAdded,
+    TResult? Function(ChildRemoved value)? childRemoved,
   }) {
     return userModifiedPassword?.call(this);
   }
@@ -2181,6 +2376,9 @@ class _$UserModifiedPasswordImpl implements UserModifiedPassword {
     TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
     TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
     TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult Function(ChildAdded value)? childAdded,
+    TResult Function(ChildRemoved value)? childRemoved,
     required TResult orElse(),
   }) {
     if (userModifiedPassword != null) {
@@ -2207,9 +2405,652 @@ abstract class UserModifiedPassword implements UserEvent {
 }
 
 /// @nodoc
+abstract class _$$AllChildrenFetchedImplCopyWith<$Res> {
+  factory _$$AllChildrenFetchedImplCopyWith(
+    _$AllChildrenFetchedImpl value,
+    $Res Function(_$AllChildrenFetchedImpl) then,
+  ) = __$$AllChildrenFetchedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AllChildrenFetchedImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$AllChildrenFetchedImpl>
+    implements _$$AllChildrenFetchedImplCopyWith<$Res> {
+  __$$AllChildrenFetchedImplCopyWithImpl(
+    _$AllChildrenFetchedImpl _value,
+    $Res Function(_$AllChildrenFetchedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$AllChildrenFetchedImpl implements AllChildrenFetched {
+  const _$AllChildrenFetchedImpl();
+
+  @override
+  String toString() {
+    return 'UserEvent.allChildrenFetched()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$AllChildrenFetchedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password)
+    userLoggedInWithEmail,
+    required TResult Function(String phone, String password)
+    userLoggedInWithPhone,
+    required TResult Function() userLoggedInWithGoogle,
+    required TResult Function(String password) userRegisteredWithEmail,
+    required TResult Function(String password) userRegisteredWithPhone,
+    required TResult Function(UserModel? user) userModified,
+    required TResult Function() userLoggedOut,
+    required TResult Function(UserModel user) userCompletedProfileData,
+    required TResult Function(UserModel user) userModifiedProfileData,
+    required TResult Function(String newPassword, String oldPassword)
+    userModifiedPassword,
+    required TResult Function() allChildrenFetched,
+    required TResult Function(CompleteUserInfoRequest request) childAdded,
+    required TResult Function(int childId) childRemoved,
+  }) {
+    return allChildrenFetched();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? userLoggedInWithEmail,
+    TResult? Function(String phone, String password)? userLoggedInWithPhone,
+    TResult? Function()? userLoggedInWithGoogle,
+    TResult? Function(String password)? userRegisteredWithEmail,
+    TResult? Function(String password)? userRegisteredWithPhone,
+    TResult? Function(UserModel? user)? userModified,
+    TResult? Function()? userLoggedOut,
+    TResult? Function(UserModel user)? userCompletedProfileData,
+    TResult? Function(UserModel user)? userModifiedProfileData,
+    TResult? Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    TResult? Function()? allChildrenFetched,
+    TResult? Function(CompleteUserInfoRequest request)? childAdded,
+    TResult? Function(int childId)? childRemoved,
+  }) {
+    return allChildrenFetched?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? userLoggedInWithEmail,
+    TResult Function(String phone, String password)? userLoggedInWithPhone,
+    TResult Function()? userLoggedInWithGoogle,
+    TResult Function(String password)? userRegisteredWithEmail,
+    TResult Function(String password)? userRegisteredWithPhone,
+    TResult Function(UserModel? user)? userModified,
+    TResult Function()? userLoggedOut,
+    TResult Function(UserModel user)? userCompletedProfileData,
+    TResult Function(UserModel user)? userModifiedProfileData,
+    TResult Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    TResult Function()? allChildrenFetched,
+    TResult Function(CompleteUserInfoRequest request)? childAdded,
+    TResult Function(int childId)? childRemoved,
+    required TResult orElse(),
+  }) {
+    if (allChildrenFetched != null) {
+      return allChildrenFetched();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserLoggedInWithEmail value)
+    userLoggedInWithEmail,
+    required TResult Function(UserLoggedInWithPhone value)
+    userLoggedInWithPhone,
+    required TResult Function(UserLoggedInWithGoogle value)
+    userLoggedInWithGoogle,
+    required TResult Function(UserRegisteredWithEmail value)
+    userRegisteredWithEmail,
+    required TResult Function(UserRegisteredWithPhone value)
+    userRegisteredWithPhone,
+    required TResult Function(UserModified value) userModified,
+    required TResult Function(UserLoggedOut value) userLoggedOut,
+    required TResult Function(UserCompletedProfileData value)
+    userCompletedProfileData,
+    required TResult Function(UserModifiedProfileData value)
+    userModifiedProfileData,
+    required TResult Function(UserModifiedPassword value) userModifiedPassword,
+    required TResult Function(AllChildrenFetched value) allChildrenFetched,
+    required TResult Function(ChildAdded value) childAdded,
+    required TResult Function(ChildRemoved value) childRemoved,
+  }) {
+    return allChildrenFetched(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult? Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult? Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult? Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult? Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult? Function(UserModified value)? userModified,
+    TResult? Function(UserLoggedOut value)? userLoggedOut,
+    TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult? Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult? Function(ChildAdded value)? childAdded,
+    TResult? Function(ChildRemoved value)? childRemoved,
+  }) {
+    return allChildrenFetched?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult Function(UserModified value)? userModified,
+    TResult Function(UserLoggedOut value)? userLoggedOut,
+    TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult Function(ChildAdded value)? childAdded,
+    TResult Function(ChildRemoved value)? childRemoved,
+    required TResult orElse(),
+  }) {
+    if (allChildrenFetched != null) {
+      return allChildrenFetched(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AllChildrenFetched implements UserEvent {
+  const factory AllChildrenFetched() = _$AllChildrenFetchedImpl;
+}
+
+/// @nodoc
+abstract class _$$ChildAddedImplCopyWith<$Res> {
+  factory _$$ChildAddedImplCopyWith(
+    _$ChildAddedImpl value,
+    $Res Function(_$ChildAddedImpl) then,
+  ) = __$$ChildAddedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({CompleteUserInfoRequest request});
+
+  $CompleteUserInfoRequestCopyWith<$Res> get request;
+}
+
+/// @nodoc
+class __$$ChildAddedImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$ChildAddedImpl>
+    implements _$$ChildAddedImplCopyWith<$Res> {
+  __$$ChildAddedImplCopyWithImpl(
+    _$ChildAddedImpl _value,
+    $Res Function(_$ChildAddedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? request = null}) {
+    return _then(
+      _$ChildAddedImpl(
+        request:
+            null == request
+                ? _value.request
+                : request // ignore: cast_nullable_to_non_nullable
+                    as CompleteUserInfoRequest,
+      ),
+    );
+  }
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CompleteUserInfoRequestCopyWith<$Res> get request {
+    return $CompleteUserInfoRequestCopyWith<$Res>(_value.request, (value) {
+      return _then(_value.copyWith(request: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$ChildAddedImpl implements ChildAdded {
+  const _$ChildAddedImpl({required this.request});
+
+  @override
+  final CompleteUserInfoRequest request;
+
+  @override
+  String toString() {
+    return 'UserEvent.childAdded(request: $request)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChildAddedImpl &&
+            (identical(other.request, request) || other.request == request));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, request);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChildAddedImplCopyWith<_$ChildAddedImpl> get copyWith =>
+      __$$ChildAddedImplCopyWithImpl<_$ChildAddedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password)
+    userLoggedInWithEmail,
+    required TResult Function(String phone, String password)
+    userLoggedInWithPhone,
+    required TResult Function() userLoggedInWithGoogle,
+    required TResult Function(String password) userRegisteredWithEmail,
+    required TResult Function(String password) userRegisteredWithPhone,
+    required TResult Function(UserModel? user) userModified,
+    required TResult Function() userLoggedOut,
+    required TResult Function(UserModel user) userCompletedProfileData,
+    required TResult Function(UserModel user) userModifiedProfileData,
+    required TResult Function(String newPassword, String oldPassword)
+    userModifiedPassword,
+    required TResult Function() allChildrenFetched,
+    required TResult Function(CompleteUserInfoRequest request) childAdded,
+    required TResult Function(int childId) childRemoved,
+  }) {
+    return childAdded(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? userLoggedInWithEmail,
+    TResult? Function(String phone, String password)? userLoggedInWithPhone,
+    TResult? Function()? userLoggedInWithGoogle,
+    TResult? Function(String password)? userRegisteredWithEmail,
+    TResult? Function(String password)? userRegisteredWithPhone,
+    TResult? Function(UserModel? user)? userModified,
+    TResult? Function()? userLoggedOut,
+    TResult? Function(UserModel user)? userCompletedProfileData,
+    TResult? Function(UserModel user)? userModifiedProfileData,
+    TResult? Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    TResult? Function()? allChildrenFetched,
+    TResult? Function(CompleteUserInfoRequest request)? childAdded,
+    TResult? Function(int childId)? childRemoved,
+  }) {
+    return childAdded?.call(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? userLoggedInWithEmail,
+    TResult Function(String phone, String password)? userLoggedInWithPhone,
+    TResult Function()? userLoggedInWithGoogle,
+    TResult Function(String password)? userRegisteredWithEmail,
+    TResult Function(String password)? userRegisteredWithPhone,
+    TResult Function(UserModel? user)? userModified,
+    TResult Function()? userLoggedOut,
+    TResult Function(UserModel user)? userCompletedProfileData,
+    TResult Function(UserModel user)? userModifiedProfileData,
+    TResult Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    TResult Function()? allChildrenFetched,
+    TResult Function(CompleteUserInfoRequest request)? childAdded,
+    TResult Function(int childId)? childRemoved,
+    required TResult orElse(),
+  }) {
+    if (childAdded != null) {
+      return childAdded(request);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserLoggedInWithEmail value)
+    userLoggedInWithEmail,
+    required TResult Function(UserLoggedInWithPhone value)
+    userLoggedInWithPhone,
+    required TResult Function(UserLoggedInWithGoogle value)
+    userLoggedInWithGoogle,
+    required TResult Function(UserRegisteredWithEmail value)
+    userRegisteredWithEmail,
+    required TResult Function(UserRegisteredWithPhone value)
+    userRegisteredWithPhone,
+    required TResult Function(UserModified value) userModified,
+    required TResult Function(UserLoggedOut value) userLoggedOut,
+    required TResult Function(UserCompletedProfileData value)
+    userCompletedProfileData,
+    required TResult Function(UserModifiedProfileData value)
+    userModifiedProfileData,
+    required TResult Function(UserModifiedPassword value) userModifiedPassword,
+    required TResult Function(AllChildrenFetched value) allChildrenFetched,
+    required TResult Function(ChildAdded value) childAdded,
+    required TResult Function(ChildRemoved value) childRemoved,
+  }) {
+    return childAdded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult? Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult? Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult? Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult? Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult? Function(UserModified value)? userModified,
+    TResult? Function(UserLoggedOut value)? userLoggedOut,
+    TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult? Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult? Function(ChildAdded value)? childAdded,
+    TResult? Function(ChildRemoved value)? childRemoved,
+  }) {
+    return childAdded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult Function(UserModified value)? userModified,
+    TResult Function(UserLoggedOut value)? userLoggedOut,
+    TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult Function(ChildAdded value)? childAdded,
+    TResult Function(ChildRemoved value)? childRemoved,
+    required TResult orElse(),
+  }) {
+    if (childAdded != null) {
+      return childAdded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ChildAdded implements UserEvent {
+  const factory ChildAdded({required final CompleteUserInfoRequest request}) =
+      _$ChildAddedImpl;
+
+  CompleteUserInfoRequest get request;
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ChildAddedImplCopyWith<_$ChildAddedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChildRemovedImplCopyWith<$Res> {
+  factory _$$ChildRemovedImplCopyWith(
+    _$ChildRemovedImpl value,
+    $Res Function(_$ChildRemovedImpl) then,
+  ) = __$$ChildRemovedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int childId});
+}
+
+/// @nodoc
+class __$$ChildRemovedImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$ChildRemovedImpl>
+    implements _$$ChildRemovedImplCopyWith<$Res> {
+  __$$ChildRemovedImplCopyWithImpl(
+    _$ChildRemovedImpl _value,
+    $Res Function(_$ChildRemovedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? childId = null}) {
+    return _then(
+      _$ChildRemovedImpl(
+        childId:
+            null == childId
+                ? _value.childId
+                : childId // ignore: cast_nullable_to_non_nullable
+                    as int,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$ChildRemovedImpl implements ChildRemoved {
+  const _$ChildRemovedImpl({required this.childId});
+
+  @override
+  final int childId;
+
+  @override
+  String toString() {
+    return 'UserEvent.childRemoved(childId: $childId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChildRemovedImpl &&
+            (identical(other.childId, childId) || other.childId == childId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, childId);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChildRemovedImplCopyWith<_$ChildRemovedImpl> get copyWith =>
+      __$$ChildRemovedImplCopyWithImpl<_$ChildRemovedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password)
+    userLoggedInWithEmail,
+    required TResult Function(String phone, String password)
+    userLoggedInWithPhone,
+    required TResult Function() userLoggedInWithGoogle,
+    required TResult Function(String password) userRegisteredWithEmail,
+    required TResult Function(String password) userRegisteredWithPhone,
+    required TResult Function(UserModel? user) userModified,
+    required TResult Function() userLoggedOut,
+    required TResult Function(UserModel user) userCompletedProfileData,
+    required TResult Function(UserModel user) userModifiedProfileData,
+    required TResult Function(String newPassword, String oldPassword)
+    userModifiedPassword,
+    required TResult Function() allChildrenFetched,
+    required TResult Function(CompleteUserInfoRequest request) childAdded,
+    required TResult Function(int childId) childRemoved,
+  }) {
+    return childRemoved(childId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? userLoggedInWithEmail,
+    TResult? Function(String phone, String password)? userLoggedInWithPhone,
+    TResult? Function()? userLoggedInWithGoogle,
+    TResult? Function(String password)? userRegisteredWithEmail,
+    TResult? Function(String password)? userRegisteredWithPhone,
+    TResult? Function(UserModel? user)? userModified,
+    TResult? Function()? userLoggedOut,
+    TResult? Function(UserModel user)? userCompletedProfileData,
+    TResult? Function(UserModel user)? userModifiedProfileData,
+    TResult? Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    TResult? Function()? allChildrenFetched,
+    TResult? Function(CompleteUserInfoRequest request)? childAdded,
+    TResult? Function(int childId)? childRemoved,
+  }) {
+    return childRemoved?.call(childId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? userLoggedInWithEmail,
+    TResult Function(String phone, String password)? userLoggedInWithPhone,
+    TResult Function()? userLoggedInWithGoogle,
+    TResult Function(String password)? userRegisteredWithEmail,
+    TResult Function(String password)? userRegisteredWithPhone,
+    TResult Function(UserModel? user)? userModified,
+    TResult Function()? userLoggedOut,
+    TResult Function(UserModel user)? userCompletedProfileData,
+    TResult Function(UserModel user)? userModifiedProfileData,
+    TResult Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    TResult Function()? allChildrenFetched,
+    TResult Function(CompleteUserInfoRequest request)? childAdded,
+    TResult Function(int childId)? childRemoved,
+    required TResult orElse(),
+  }) {
+    if (childRemoved != null) {
+      return childRemoved(childId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserLoggedInWithEmail value)
+    userLoggedInWithEmail,
+    required TResult Function(UserLoggedInWithPhone value)
+    userLoggedInWithPhone,
+    required TResult Function(UserLoggedInWithGoogle value)
+    userLoggedInWithGoogle,
+    required TResult Function(UserRegisteredWithEmail value)
+    userRegisteredWithEmail,
+    required TResult Function(UserRegisteredWithPhone value)
+    userRegisteredWithPhone,
+    required TResult Function(UserModified value) userModified,
+    required TResult Function(UserLoggedOut value) userLoggedOut,
+    required TResult Function(UserCompletedProfileData value)
+    userCompletedProfileData,
+    required TResult Function(UserModifiedProfileData value)
+    userModifiedProfileData,
+    required TResult Function(UserModifiedPassword value) userModifiedPassword,
+    required TResult Function(AllChildrenFetched value) allChildrenFetched,
+    required TResult Function(ChildAdded value) childAdded,
+    required TResult Function(ChildRemoved value) childRemoved,
+  }) {
+    return childRemoved(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult? Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult? Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult? Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult? Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult? Function(UserModified value)? userModified,
+    TResult? Function(UserLoggedOut value)? userLoggedOut,
+    TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult? Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult? Function(ChildAdded value)? childAdded,
+    TResult? Function(ChildRemoved value)? childRemoved,
+  }) {
+    return childRemoved?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult Function(UserModified value)? userModified,
+    TResult Function(UserLoggedOut value)? userLoggedOut,
+    TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult Function(ChildAdded value)? childAdded,
+    TResult Function(ChildRemoved value)? childRemoved,
+    required TResult orElse(),
+  }) {
+    if (childRemoved != null) {
+      return childRemoved(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ChildRemoved implements UserEvent {
+  const factory ChildRemoved({required final int childId}) = _$ChildRemovedImpl;
+
+  int get childId;
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ChildRemovedImplCopyWith<_$ChildRemovedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$UserState {
   UserModel? get user => throw _privateConstructorUsedError;
   UserStatus get status => throw _privateConstructorUsedError;
+  List<UserModel> get children => throw _privateConstructorUsedError;
+  DataStatus get childrenListStatus => throw _privateConstructorUsedError;
+  int? get currentChildId => throw _privateConstructorUsedError;
   String get statusMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of UserState
@@ -2224,7 +3065,14 @@ abstract class $UserStateCopyWith<$Res> {
   factory $UserStateCopyWith(UserState value, $Res Function(UserState) then) =
       _$UserStateCopyWithImpl<$Res, UserState>;
   @useResult
-  $Res call({UserModel? user, UserStatus status, String statusMessage});
+  $Res call({
+    UserModel? user,
+    UserStatus status,
+    List<UserModel> children,
+    DataStatus childrenListStatus,
+    int? currentChildId,
+    String statusMessage,
+  });
 
   $UserModelCopyWith<$Res>? get user;
 }
@@ -2246,6 +3094,9 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
   $Res call({
     Object? user = freezed,
     Object? status = null,
+    Object? children = null,
+    Object? childrenListStatus = null,
+    Object? currentChildId = freezed,
     Object? statusMessage = null,
   }) {
     return _then(
@@ -2260,6 +3111,21 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
                     ? _value.status
                     : status // ignore: cast_nullable_to_non_nullable
                         as UserStatus,
+            children:
+                null == children
+                    ? _value.children
+                    : children // ignore: cast_nullable_to_non_nullable
+                        as List<UserModel>,
+            childrenListStatus:
+                null == childrenListStatus
+                    ? _value.childrenListStatus
+                    : childrenListStatus // ignore: cast_nullable_to_non_nullable
+                        as DataStatus,
+            currentChildId:
+                freezed == currentChildId
+                    ? _value.currentChildId
+                    : currentChildId // ignore: cast_nullable_to_non_nullable
+                        as int?,
             statusMessage:
                 null == statusMessage
                     ? _value.statusMessage
@@ -2294,7 +3160,14 @@ abstract class _$$UserStateImplCopyWith<$Res>
   ) = __$$UserStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({UserModel? user, UserStatus status, String statusMessage});
+  $Res call({
+    UserModel? user,
+    UserStatus status,
+    List<UserModel> children,
+    DataStatus childrenListStatus,
+    int? currentChildId,
+    String statusMessage,
+  });
 
   @override
   $UserModelCopyWith<$Res>? get user;
@@ -2316,6 +3189,9 @@ class __$$UserStateImplCopyWithImpl<$Res>
   $Res call({
     Object? user = freezed,
     Object? status = null,
+    Object? children = null,
+    Object? childrenListStatus = null,
+    Object? currentChildId = freezed,
     Object? statusMessage = null,
   }) {
     return _then(
@@ -2330,6 +3206,21 @@ class __$$UserStateImplCopyWithImpl<$Res>
                 ? _value.status
                 : status // ignore: cast_nullable_to_non_nullable
                     as UserStatus,
+        children:
+            null == children
+                ? _value._children
+                : children // ignore: cast_nullable_to_non_nullable
+                    as List<UserModel>,
+        childrenListStatus:
+            null == childrenListStatus
+                ? _value.childrenListStatus
+                : childrenListStatus // ignore: cast_nullable_to_non_nullable
+                    as DataStatus,
+        currentChildId:
+            freezed == currentChildId
+                ? _value.currentChildId
+                : currentChildId // ignore: cast_nullable_to_non_nullable
+                    as int?,
         statusMessage:
             null == statusMessage
                 ? _value.statusMessage
@@ -2346,20 +3237,35 @@ class _$UserStateImpl implements _UserState {
   const _$UserStateImpl({
     required this.user,
     required this.status,
+    required final List<UserModel> children,
+    required this.childrenListStatus,
+    this.currentChildId,
     this.statusMessage = 'Some error occurred',
-  });
+  }) : _children = children;
 
   @override
   final UserModel? user;
   @override
   final UserStatus status;
+  final List<UserModel> _children;
+  @override
+  List<UserModel> get children {
+    if (_children is EqualUnmodifiableListView) return _children;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_children);
+  }
+
+  @override
+  final DataStatus childrenListStatus;
+  @override
+  final int? currentChildId;
   @override
   @JsonKey()
   final String statusMessage;
 
   @override
   String toString() {
-    return 'UserState(user: $user, status: $status, statusMessage: $statusMessage)';
+    return 'UserState(user: $user, status: $status, children: $children, childrenListStatus: $childrenListStatus, currentChildId: $currentChildId, statusMessage: $statusMessage)';
   }
 
   @override
@@ -2369,12 +3275,25 @@ class _$UserStateImpl implements _UserState {
             other is _$UserStateImpl &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.status, status) || other.status == status) &&
+            const DeepCollectionEquality().equals(other._children, _children) &&
+            (identical(other.childrenListStatus, childrenListStatus) ||
+                other.childrenListStatus == childrenListStatus) &&
+            (identical(other.currentChildId, currentChildId) ||
+                other.currentChildId == currentChildId) &&
             (identical(other.statusMessage, statusMessage) ||
                 other.statusMessage == statusMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user, status, statusMessage);
+  int get hashCode => Object.hash(
+    runtimeType,
+    user,
+    status,
+    const DeepCollectionEquality().hash(_children),
+    childrenListStatus,
+    currentChildId,
+    statusMessage,
+  );
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
@@ -2389,6 +3308,9 @@ abstract class _UserState implements UserState {
   const factory _UserState({
     required final UserModel? user,
     required final UserStatus status,
+    required final List<UserModel> children,
+    required final DataStatus childrenListStatus,
+    final int? currentChildId,
     final String statusMessage,
   }) = _$UserStateImpl;
 
@@ -2396,6 +3318,12 @@ abstract class _UserState implements UserState {
   UserModel? get user;
   @override
   UserStatus get status;
+  @override
+  List<UserModel> get children;
+  @override
+  DataStatus get childrenListStatus;
+  @override
+  int? get currentChildId;
   @override
   String get statusMessage;
 

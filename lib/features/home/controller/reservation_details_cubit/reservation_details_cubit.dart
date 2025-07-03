@@ -15,9 +15,7 @@ class ReservationDetailsCubit extends Cubit<ReservationDetailsState> {
     required this.appointmentId,
     required ReservationDetailsRepository reservationDetailsRepository,
   }) : _reservationDetailsRepository = reservationDetailsRepository,
-       super(ReservationDetailsState.initial()) {
-    fetchAppointment();
-  }
+       super(ReservationDetailsState.initial());
 
   Future<void> fetchAppointment() async {
     emit(state.copyWith(status: DataStatus.loading, message: 'Loading'));

@@ -17,31 +17,35 @@ class Department extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: screenWidth(context) * 0.2,
-      height: screenHeight(context) * 0.2,
-      decoration: BoxDecoration(
-        color: Pallete.buttonBG0,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            iconPath,
-            width: screenWidth(context) * 0.05,
-            height: screenHeight(context) * 0.03,
-          ),
-          const SizedBox(height: 8),
-          Text(
-            name,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.labelMedium!.copyWith(
-              fontSize: 12,
-              color: Pallete.gray1,
+    return GestureDetector(
+      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      child: Container(
+        width: screenWidth(context) * 0.2,
+        height: screenHeight(context) * 0.2,
+        decoration: BoxDecoration(
+          color: Pallete.buttonBG0,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              iconPath,
+              width: screenWidth(context) * 0.05,
+              height: screenHeight(context) * 0.03,
             ),
-          ),
-        ],
+            const SizedBox(height: 8),
+            Text(
+              name,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                fontSize: 12,
+                color: Pallete.gray1,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

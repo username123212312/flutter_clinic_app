@@ -241,6 +241,7 @@ class NewAppointmentRepository {
           'doctor_id': request.doctorId,
           'date': DateFormat('dd/MM/yy').format(request.date),
           'time': time,
+          if (getChildId() != null) 'child_id': getChildId(),
         },
       );
       if (response.data['statusCode'] < 300) {

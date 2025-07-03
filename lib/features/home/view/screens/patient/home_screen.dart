@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:our_flutter_clinic_app/core/blocs/auth_bloc/auth_bloc.dart';
+import 'package:our_flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
 import 'package:our_flutter_clinic_app/core/navigation/app_route_constants.dart';
 import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
@@ -22,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   void initState() {
     super.initState();
+
     _animationController = AnimationController(
       vsync: this,
       duration: Duration(seconds: 1),
@@ -31,6 +33,9 @@ class _HomeScreenState extends State<HomeScreen>
       end: 1.0,
     ).animate(_animationController);
     _animationController.forward();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<UserBloc>().add(AllChildrenFetched());
+    });
   }
 
   @override

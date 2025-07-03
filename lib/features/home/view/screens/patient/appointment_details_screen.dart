@@ -1,8 +1,10 @@
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/providers/file_manager/file_manager.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
 import 'package:our_flutter_clinic_app/features/home/controller/appointment_details/appointment_details_bloc.dart';
+import 'package:our_flutter_clinic_app/features/home/controller/home_bloc/home_bloc.dart';
 import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
 import 'package:our_flutter_clinic_app/features/home/repository/appointment_details_repository.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/result_card.dart';
@@ -49,20 +51,30 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(size: 28),
         title: Text(
           'Appointment Details',
           style: Theme.of(context).textTheme.labelSmall!.copyWith(
-            fontSize: 20,
+            fontSize: 17,
             color: Pallete.grayScaleColor700,
           ),
         ),
         toolbarHeight: screenHeight(context) * 0.1,
+        actions: [
+          IconButton(
+            onPressed: () {
+              _appointmentDetailsBloc.add(AppointmentFetched());
+            },
+            icon: Icon(FontAwesomeIcons.arrowsRotate, size: 18),
+          ),
+        ],
       ),
       body: PopScope(
         canPop: true,
         onPopInvokedWithResult: (didPop, result) {
           if (didPop) {
             context.read<AppointmentsBloc>().add(AppointmentsFetched());
+            context.read<HomeBloc>().add(AllListsFetched());
           }
         },
         child: Column(

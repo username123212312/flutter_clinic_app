@@ -158,7 +158,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     try {
       final response = await _homeRepository.fetchNearByPharmacies();
       final newState = switch (response) {
-        Left() => state.copyWith(departmentsListStatus: DataStatus.error),
+        Left() => state.copyWith(pharmaciesListStatus: DataStatus.error),
         Right(value: final r) => state.copyWith(
           pharmaciesList: r.data ?? state.pharmaciesList,
           pharmaciesListStatus: DataStatus.data,

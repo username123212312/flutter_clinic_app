@@ -12,6 +12,7 @@ import '../../../core/models/app_response.dart';
 import '../../../core/utils/utils.dart';
 import '../model/doctor_model.dart';
 import '../model/requests/add_new_appointment_request.dart';
+import '../model/requests/rate_doctor_request.dart';
 
 class DoctorInfoRepository {
   DoctorInfoRepository({Dio? dio}) : _dio = dio ?? DioClient().instance;
@@ -135,6 +136,7 @@ class DoctorInfoRepository {
           'doctor_id': request.doctorId,
           'date': DateFormat('dd/MM/yy').format(request.date),
           'time': time,
+          if (getChildId() != null) 'child_id': getChildId(),
         },
       );
       if (response.data['statusCode'] < 300) {
@@ -143,6 +145,43 @@ class DoctorInfoRepository {
             data: response.data['id'],
             success: true,
             message: 'Appointment added successfully',
+            statusCode: response.data['statusCode'],
+            statusMessage: response.data['statusMessage'],
+          ),
+        );
+      } else if (400 == response.data['statusCode']) {
+        throw HttpException(parseStringList(response.data['message']));
+      } else {
+        throw HttpException(parseStringList(response.data['message']));
+      }
+    } on HttpException catch (e) {
+      return Left(
+        AppFailure(message: e.message, stacktracte: StackTrace.current),
+      );
+    } catch (e) {
+      return Left(
+        AppFailure(message: e.toString(), stacktracte: StackTrace.current),
+      );
+    }
+  }
+
+  Future<Either<AppFailure, AppResponse>> rateDoctor(
+    RateDoctorRequest request,
+  ) async {
+    try {
+      final response = await _dio.post(
+        AppConstants.doctorRatePath,
+        data: {
+          'doctor_id': request.doctorId,
+          'comment': request.comment,
+          'rate': request.rate.toInt(),
+        },
+      );
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse(
+            success: true,
+            message: 'Doctor Rated successfully',
             statusCode: response.data['statusCode'],
             statusMessage: response.data['statusMessage'],
           ),

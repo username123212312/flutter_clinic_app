@@ -262,6 +262,7 @@ class UserRepository {
           if (request.age != null) 'age': request.age,
           if (request.address != null) 'address': request.address,
           if (request.bloodType != null) 'blood_type': request.bloodType,
+          if (getChildId() != null) 'child_id': getChildId(),
         },
       );
       wLog(response.data);
@@ -325,6 +326,168 @@ class UserRepository {
         );
       } else {
         throw HttpException(parseStringList(response.data['message']));
+      }
+    } on DioException catch (e) {
+      return Left(
+        AppFailure(
+          message: e.message ?? 'Error',
+          stacktracte: StackTrace.current,
+        ),
+      );
+    } on HttpException catch (e) {
+      return Left(
+        AppFailure(message: e.message, stacktracte: StackTrace.current),
+      );
+    } catch (e) {
+      return Left(
+        AppFailure(message: e.toString(), stacktracte: StackTrace.current),
+      );
+    }
+  }
+
+  Future<Either<AppFailure, AppResponse<List<UserModel>>>>
+  fetchAllUserChildren() async {
+    try {
+      final response = await _dio.get(AppConstants.showAllChildrenPath);
+      wLog(response.data);
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse<List<UserModel>>(
+            success: true,
+            message: 'children fetched successfully',
+            data:
+                (response.data['items'] as List<dynamic>)
+                    .map((child) => UserModel.fromJson(child))
+                    .toList(),
+            statusCode: response.data['statusCode'],
+            statusMessage: response.data['statusMessage'],
+          ),
+        );
+      } else {
+        throw HttpException('children are not fetched');
+      }
+    } on DioException catch (e) {
+      return Left(
+        AppFailure(
+          message: e.message ?? 'Error',
+          stacktracte: StackTrace.current,
+        ),
+      );
+    } on HttpException catch (e) {
+      return Left(
+        AppFailure(message: e.message, stacktracte: StackTrace.current),
+      );
+    } catch (e) {
+      return Left(
+        AppFailure(message: e.toString(), stacktracte: StackTrace.current),
+      );
+    }
+  }
+
+  Future<Either<AppFailure, AppResponse>> addChild(
+    CompleteUserInfoRequest request,
+  ) async {
+    try {
+      final response = await _dio.post(
+        AppConstants.addChildPath,
+        data: {
+          'first_name': request.firstName,
+          'last_name': request.lastName,
+          'age': request.age,
+          'gender': request.gender,
+          'blood_type': request.bloodType,
+          'address': request.address,
+        },
+      );
+      wLog(response.data);
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse(
+            success: true,
+            message: 'child added successfully',
+            statusCode: response.data['statusCode'],
+            statusMessage: response.data['statusMessage'],
+          ),
+        );
+      } else {
+        throw HttpException('child\'s not added');
+      }
+    } on DioException catch (e) {
+      return Left(
+        AppFailure(
+          message: e.message ?? 'Error',
+          stacktracte: StackTrace.current,
+        ),
+      );
+    } on HttpException catch (e) {
+      return Left(
+        AppFailure(message: e.message, stacktracte: StackTrace.current),
+      );
+    } catch (e) {
+      return Left(
+        AppFailure(message: e.toString(), stacktracte: StackTrace.current),
+      );
+    }
+  }
+
+  Future<Either<AppFailure, AppResponse>> deleteChild(int childId) async {
+    try {
+      final response = await _dio.delete(
+        AppConstants.deleteChildPath,
+        queryParameters: {'child_id': childId},
+      );
+      wLog(response.data);
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse(
+            success: true,
+            message: 'child removed successfully',
+            statusCode: response.data['statusCode'],
+            statusMessage: response.data['statusMessage'],
+          ),
+        );
+      } else {
+        throw HttpException('child\'s not removed');
+      }
+    } on DioException catch (e) {
+      return Left(
+        AppFailure(
+          message: e.message ?? 'Error',
+          stacktracte: StackTrace.current,
+        ),
+      );
+    } on HttpException catch (e) {
+      return Left(
+        AppFailure(message: e.message, stacktracte: StackTrace.current),
+      );
+    } catch (e) {
+      return Left(
+        AppFailure(message: e.toString(), stacktracte: StackTrace.current),
+      );
+    }
+  }
+
+  Future<Either<AppFailure, AppResponse<UserModel>>> showChildProfile(
+    int childId,
+  ) async {
+    try {
+      final response = await _dio.get(
+        AppConstants.showProfilePath,
+        queryParameters: {'child_id': childId},
+      );
+      wLog(response.data);
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse<UserModel>(
+            data: response.data,
+            success: true,
+            message: 'child removed successfully',
+            statusCode: response.data['statusCode'],
+            statusMessage: response.data['statusMessage'],
+          ),
+        );
+      } else {
+        throw HttpException('child\'s not removed');
       }
     } on DioException catch (e) {
       return Left(

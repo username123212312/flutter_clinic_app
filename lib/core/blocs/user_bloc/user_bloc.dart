@@ -10,6 +10,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
+import '../../enums.dart';
 import '../../models/usermodel.dart';
 
 part 'user_event.dart';
@@ -23,11 +24,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       super(UserState.initial()) {
     on<UserEvent>((event, emit) async {
       emit(
-        UserState(
-          user: state.user,
-          status: UserStatus.loading,
-          statusMessage: 'loading',
-        ),
+        state.copyWith(status: UserStatus.loading, statusMessage: 'loading'),
       );
     });
     on<UserModified>(
@@ -43,6 +40,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserModifiedProfileData>(_modifyUserProfileData);
     on<UserModifiedPassword>(_modifyUserPassword);
     on<UserLoggedInWithGoogle>(_logUserInWithGoogle);
+    on<AllChildrenFetched>(_fetchAllChildren);
+    on<ChildAdded>(_addChild);
+    on<ChildRemoved>(_removeChild);
   }
   Future<void> _registerUser(UserEvent event, Emitter<UserState> emit) async {
     (state as _UserState).user;
@@ -64,12 +64,12 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     }
     final response = await _userRepository.registerPatient(request);
     final newState = switch (response) {
-      Right(value: final r) => UserState(
+      Right(value: final r) => state.copyWith(
         user: r.data ?? state.user,
         status: UserStatus.modified,
         statusMessage: r.message,
       ),
-      Left(value: final l) => UserState(
+      Left(value: final l) => state.copyWith(
         user: state.user,
         status: UserStatus.error,
         statusMessage: l.message,
@@ -101,12 +101,12 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     final response = await _userRepository.logUserIn(request);
     log(response.toString());
     final newState = switch (response) {
-      Left(value: final l) => UserState(
+      Left(value: final l) => state.copyWith(
         user: state.user,
         status: UserStatus.error,
         statusMessage: l.message,
       ),
-      Right(value: final r) => UserState(
+      Right(value: final r) => state.copyWith(
         user: r.data,
         status: UserStatus.modified,
         statusMessage: r.message,
@@ -130,12 +130,12 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     final response = await _userRepository.logUserInWithGoogle();
     log(response.toString());
     final newState = switch (response) {
-      Left(value: final l) => UserState(
+      Left(value: final l) => state.copyWith(
         user: state.user,
         status: UserStatus.error,
         statusMessage: l.message,
       ),
-      Right(value: final r) => UserState(
+      Right(value: final r) => state.copyWith(
         user: r.data,
         status: UserStatus.modified,
         statusMessage: r.message,
@@ -155,12 +155,12 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   Future<void> _logUserOut(UserEvent event, Emitter<UserState> emit) async {
     final response = await _userRepository.logUserOut();
     final newState = switch (response) {
-      Left(value: final l) => UserState(
+      Left(value: final l) => state.copyWith(
         user: state.user,
         status: UserStatus.error,
         statusMessage: l.message,
       ),
-      Right(value: final r) => UserState(
+      Right(value: final r) => state.copyWith(
         status: UserStatus.noUser,
         user: null,
         statusMessage: r.message,
@@ -188,12 +188,12 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     );
     final response = await _userRepository.completeUserInfo(request);
     final newState = switch (response) {
-      Left(value: final l) => UserState(
+      Left(value: final l) => state.copyWith(
         user: state.user,
         status: UserStatus.error,
         statusMessage: l.message,
       ),
-      Right(value: final r) => UserState(
+      Right(value: final r) => state.copyWith(
         user: state.user!.copyWith(
           firstName: r.data?.firstName,
           lastName: r.data?.lastName,
@@ -231,12 +231,12 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     );
     final response = await _userRepository.modifyUserInfo(request);
     final newState = switch (response) {
-      Left(value: final l) => UserState(
+      Left(value: final l) => state.copyWith(
         user: state.user,
         status: UserStatus.error,
         statusMessage: l.message,
       ),
-      Right(value: final r) => UserState(
+      Right(value: final r) => state.copyWith(
         user:
             state.user?.copyWith(
               firstName: r.data?.firstName,
@@ -279,12 +279,12 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     );
     final response = await _userRepository.modifyUserPassword(request);
     final newState = switch (response) {
-      Left(value: final l) => UserState(
+      Left(value: final l) => state.copyWith(
         user: state.user,
         status: UserStatus.error,
         statusMessage: l.message,
       ),
-      Right(value: final r) => UserState(
+      Right(value: final r) => state.copyWith(
         user:
             state.user?.copyWith(
               firstName: r.data?.firstName,
@@ -313,6 +313,82 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     emit(newState);
     if (!newState.status.isError) {
       _authBloc.add(AuthEvent.userModified(user: state.user!));
+    }
+  }
+
+  Future<void> _fetchAllChildren(
+    AllChildrenFetched event,
+    Emitter<UserState> emit,
+  ) async {
+    try {
+      final response = await _userRepository.fetchAllUserChildren();
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          childrenListStatus: DataStatus.error,
+          statusMessage: l.message,
+        ),
+        Right(value: final r) => state.copyWith(
+          childrenListStatus: DataStatus.data,
+          children: r.data ?? state.children,
+          statusMessage: r.message,
+        ),
+      };
+      emit(newState);
+    } catch (e) {
+      emit(
+        state.copyWith(
+          childrenListStatus: DataStatus.error,
+          statusMessage: e.toString(),
+        ),
+      );
+    }
+  }
+
+  Future<void> _addChild(ChildAdded event, Emitter<UserState> emit) async {
+    try {
+      final response = await _userRepository.addChild(event.request);
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          childrenListStatus: DataStatus.error,
+          statusMessage: l.message,
+        ),
+        Right(value: final r) => state.copyWith(
+          childrenListStatus: DataStatus.done,
+          statusMessage: r.message,
+        ),
+      };
+      emit(newState);
+    } catch (e) {
+      emit(
+        state.copyWith(
+          childrenListStatus: DataStatus.error,
+          statusMessage: e.toString(),
+        ),
+      );
+    }
+  }
+
+  Future<void> _removeChild(ChildRemoved event, Emitter<UserState> emit) async {
+    try {
+      final response = await _userRepository.deleteChild(event.childId);
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          childrenListStatus: DataStatus.error,
+          statusMessage: l.message,
+        ),
+        Right(value: final r) => state.copyWith(
+          childrenListStatus: DataStatus.done,
+          statusMessage: r.message,
+        ),
+      };
+      emit(newState);
+    } catch (e) {
+      emit(
+        state.copyWith(
+          childrenListStatus: DataStatus.error,
+          statusMessage: e.toString(),
+        ),
+      );
     }
   }
 

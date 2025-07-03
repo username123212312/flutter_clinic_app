@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:go_router/go_router.dart';
+import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
+import 'package:our_flutter_clinic_app/features/home/model/doctor_model.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/utils.dart';
 import '../../../../auth/view/widgets/custom_button.dart';
+import '../../../controller/doctor_rate_cubit/doctor_rate_cubit.dart';
+import '../../../model/requests/rate_doctor_request.dart';
+import '../../../repository/doctor_info_repository.dart';
 
 class RatingScreen extends StatefulWidget {
-  final String doctorName;
-  const RatingScreen({super.key, required this.doctorName});
+  final DoctorModel doctor;
+  const RatingScreen({super.key, required this.doctor});
 
   @override
   State<RatingScreen> createState() => _RatingScreenState();
@@ -21,86 +28,131 @@ class _RatingScreenState extends State<RatingScreen>
   final TextEditingController _commentController = TextEditingController();
   final List<Map<String, dynamic>> _reviews = [];
 
-  void _submitReview() {
-    if (_rating > 0 && _commentController.text.isNotEmpty) {
-      setState(() {
-        _reviews.insert(0, {
-          'name': widget.doctorName,
-          'rating': _rating,
-          'comment': _commentController.text,
-        });
-        _rating = 0;
-        _commentController.clear();
+  @override
+  void initState() {
+    super.initState();
+    _doctorRateCubit = DoctorRateCubit(
+      doctorInfoRepository: DoctorInfoRepository(),
+      doctor: widget.doctor,
+    );
+  }
+
+  void _submitReview() async {
+    if (_rating > 0 &&
+        _commentController.text.isNotEmpty &&
+        widget.doctor.id != null) {
+      _doctorRateCubit.rateDoctor(
+        RateDoctorRequest(
+          doctorId: widget.doctor.id!,
+          comment: _commentController.text.trim(),
+          rate: _rating,
+        ),
+      );
+    }
+  }
+
+  void onDone() {
+    setState(() {
+      _reviews.insert(0, {
+        'name': widget.doctor.firstName ?? 'No Doctor',
+        'rating': _rating,
+        'comment': _commentController.text,
       });
+      _rating = 0;
+      _commentController.clear();
+    });
+    _showMyDialog();
+  }
 
-      showDialog(
-        context: context,
-        barrierDismissible: true,
-        barrierColor: Colors.black.withValues(alpha: 0.1),
-        builder: (context) {
-          return Dialog(
-            backgroundColor: Pallete.grayScaleColor0,
-            insetPadding: const EdgeInsets.symmetric(
-              horizontal: 30,
-              vertical: 40,
-            ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-              side: BorderSide(color: Pallete.primaryColor, width: 1),
-            ),
-            child: Container(
-              width: screenWidth(context) * 0.1,
-              height: screenHeight(context) * 0.36,
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: IconButton(
-                      icon: Icon(Icons.close, color: Pallete.black1, size: 22),
-                      onPressed: () => Navigator.pop(context),
-                    ),
+  Future<dynamic> _showMyDialog() {
+    return showDialog(
+      context: context,
+      barrierDismissible: true,
+      barrierColor: Colors.black.withValues(alpha: 0.1),
+      builder: (context) {
+        return Dialog(
+          backgroundColor: Pallete.grayScaleColor0,
+          insetPadding: const EdgeInsets.symmetric(
+            horizontal: 30,
+            vertical: 40,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+            side: BorderSide(color: Pallete.primaryColor, width: 1),
+          ),
+          child: Container(
+            width: screenWidth(context) * 0.1,
+            height: screenHeight(context) * 0.43,
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: IconButton(
+                    icon: Icon(Icons.close, color: Pallete.black1, size: 22),
+                    onPressed: () {
+                      context.pop();
+                      context.pop();
+                    },
                   ),
+                ),
 
-                  Center(
-                    child: SizedBox(
-                      width: double.infinity,
-                      height: screenHeight(context) * 0.17,
-                      child: Image.asset(
-                        "assets/images/Doctors-pana.png",
-                        fit: BoxFit.cover,
-                      ),
+                Center(
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: screenHeight(context) * 0.17,
+                    child: Image.asset(
+                      "assets/images/Doctors-pana.png",
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  const SizedBox(height: 12),
-                  Center(
-                    child: Text(
-                      "Thank you",
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        color: Pallete.black1,
-                        fontSize: 18,
-                      ),
+                ),
+                const SizedBox(height: 12),
+                Center(
+                  child: Text(
+                    "Thank you",
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                      color: Pallete.black1,
+                      fontSize: 18,
                     ),
                   ),
-                  const SizedBox(height: 4),
-                  Center(
+                ),
+                const SizedBox(height: 4),
+                Center(
+                  child: Text(
+                    "for your feedback",
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                      color: Pallete.sliverSand,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      context.pop();
+                      context.pop();
+                    },
                     child: Text(
-                      "for your feedback",
+                      "back to doctor",
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                        color: Pallete.sliverSand,
+                        color: Colors.white,
                         fontSize: 16,
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          );
-        },
-      );
-    }
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -146,9 +198,9 @@ class _RatingScreenState extends State<RatingScreen>
             const SizedBox(height: 10),
             RatingBar.builder(
               initialRating: _rating,
-              minRating: 0.5,
+              minRating: 1,
               direction: Axis.horizontal,
-              allowHalfRating: true,
+              allowHalfRating: false,
               itemCount: 5,
               itemSize: 40,
               unratedColor: Pallete.graysGray4,
@@ -174,6 +226,7 @@ class _RatingScreenState extends State<RatingScreen>
                   fontSize: 16,
                   color: Pallete.black1,
                 ),
+                textInputAction: TextInputAction.done,
                 controller: _commentController,
                 decoration: InputDecoration(
                   hintText: "Leave a comment",
@@ -191,16 +244,35 @@ class _RatingScreenState extends State<RatingScreen>
               ),
             ),
             const SizedBox(height: 20),
-            CustomButton(
-              text: 'Publish Feedback',
-              onPressed: _submitReview,
-              color: Pallete.primaryColor,
-              width: screenWidth(context) * 0.4,
-              height: screenHeight(context) * 0.05,
-              padding: const EdgeInsets.symmetric(vertical: 6),
-              borderRadius: 32,
-              fontSize: 14,
-              textColor: Pallete.grayScaleColor0,
+            BlocListener<DoctorRateCubit, DoctorRateState>(
+              bloc: _doctorRateCubit,
+              listener: (context, state) {
+                if (state.status.isLoading) {
+                  LoadingOverlay().show(context);
+                } else {
+                  LoadingOverlay().hideAll();
+                  if (state.status.isDone) {
+                    onDone();
+                  }
+                  if (state.status.isError) {
+                    Fluttertoast.showToast(
+                      msg: state.message,
+                      gravity: ToastGravity.BOTTOM,
+                    );
+                  }
+                }
+              },
+              child: CustomButton(
+                text: 'Publish Feedback',
+                onPressed: _submitReview,
+                color: Pallete.primaryColor,
+                width: screenWidth(context) * 0.4,
+                height: screenHeight(context) * 0.05,
+                padding: const EdgeInsets.symmetric(vertical: 6),
+                borderRadius: 32,
+                fontSize: 14,
+                textColor: Pallete.grayScaleColor0,
+              ),
             ),
             const SizedBox(height: 24),
             Align(
@@ -277,4 +349,6 @@ class _RatingScreenState extends State<RatingScreen>
       ),
     );
   }
+
+  late final DoctorRateCubit _doctorRateCubit;
 }

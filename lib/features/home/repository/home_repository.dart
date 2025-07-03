@@ -10,6 +10,7 @@ import 'package:our_flutter_clinic_app/features/home/model/doctor_model.dart';
 
 import '../../../core/models/app_failure.dart';
 import '../../../core/models/app_response.dart';
+import '../../../core/utils/general_utils.dart';
 import '../model/pharmacy_model.dart';
 
 class HomeRepository {
@@ -45,7 +46,10 @@ class HomeRepository {
     try {
       final response = await _dio.post(
         AppConstants.showAppointmentPath,
-        data: {'status': 'pending'},
+        data: {
+          'status': 'pending',
+          if (getChildId() != null) 'child_id': getChildId(),
+        },
       );
       if (response.data['statusCode'] < 300) {
         return Right(

@@ -1,14 +1,16 @@
 import 'package:our_flutter_clinic_app/features/auth/view/screens/change_password_screen.dart';
 import 'package:our_flutter_clinic_app/features/home/model/analysis_model.dart';
 import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
+import 'package:our_flutter_clinic_app/features/home/model/clinic_model.dart';
 import 'package:our_flutter_clinic_app/features/home/model/doctor_model.dart';
 import 'package:our_flutter_clinic_app/features/home/view/screens/labtech/analysis_info_screen.dart';
 import 'package:our_flutter_clinic_app/features/home/view/screens/patient/reschedule_screen.dart';
 
+import '../../features/home/view/screens/patient/clinic_doctors_screen.dart';
 import '../../features/home/view/screens/patient/my_wallet_screen.dart';
 import '../../features/home/view/screens/patient/notifications_screen.dart';
 import '../../features/home/view/screens/patient/reservation_details_screen.dart';
-import '../../features/home/view/widgets/widget_doctor/doctor_rating_widget.dart';
+import '../../features/home/view/screens/patient/doctor_rating_screen.dart';
 import '../../features/home/view/screens/labtech/add_new_analysis_screen.dart';
 import '../../features/home/view/screens/labtech/add_result_screen.dart';
 import '../../features/home/view/screens/labtech/labtech_home_screen.dart';
@@ -112,6 +114,14 @@ class AppRouteConfig {
             (_, state) => TransitionPage(child: AllDepartmentsScreen()),
       ),
       GoRoute(
+        name: AppRouteConstants.clinicDoctorsRouteName,
+        path: '/clinic_doctors',
+        pageBuilder: (_, state) {
+          final clinic = state.extra as ClinicModel;
+          return TransitionPage(child: ClinicDoctorsScreen(clinic: clinic));
+        },
+      ),
+      GoRoute(
         name: AppRouteConstants.doctorListRouteName,
         path: '/doctor_list',
         pageBuilder: (_, state) => TransitionPage(child: DoctorList()),
@@ -141,14 +151,10 @@ class AppRouteConfig {
       GoRoute(
         name: AppRouteConstants.doctorRatingRouteName,
         path: '/doctor_rating',
-        pageBuilder:
-            (_, state) => TransitionPage(
-              child: RatingScreen(
-                doctorName:
-                    '${(state.extra as DoctorModel).firstName ?? 'No'}'
-                    ' ${(state.extra as DoctorModel).lastName ?? 'Doctor'}',
-              ),
-            ),
+        pageBuilder: (_, state) {
+          final doctor = state.extra as DoctorModel;
+          return TransitionPage(child: RatingScreen(doctor: doctor));
+        },
       ),
       GoRoute(
         name: AppRouteConstants.findPharmaciesRouteName,

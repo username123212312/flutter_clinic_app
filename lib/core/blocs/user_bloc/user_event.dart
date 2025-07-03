@@ -26,4 +26,9 @@ sealed class UserEvent with _$UserEvent {
     required String newPassword,
     required String oldPassword,
   }) = UserModifiedPassword;
+  const factory UserEvent.allChildrenFetched() = AllChildrenFetched;
+  const factory UserEvent.childAdded({
+    required CompleteUserInfoRequest request,
+  }) = ChildAdded;
+  const factory UserEvent.childRemoved({required int childId}) = ChildRemoved;
 }

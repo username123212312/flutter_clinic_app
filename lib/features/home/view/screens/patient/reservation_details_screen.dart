@@ -35,7 +35,12 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
   @override
   void initState() {
     super.initState();
+    _reservationDetailsCubit = ReservationDetailsCubit(
+      appointmentId: widget.appointmentId,
+      reservationDetailsRepository: ReservationDetailsRepository(),
+    );
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      _reservationDetailsCubit.fetchAppointment();
       if (mounted) {
         setState(() {
           themeData = Theme.of(context);
@@ -44,11 +49,6 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
         });
       }
     });
-
-    _reservationDetailsCubit = ReservationDetailsCubit(
-      appointmentId: widget.appointmentId,
-      reservationDetailsRepository: ReservationDetailsRepository(),
-    );
   }
 
   @override

@@ -213,17 +213,17 @@ class FileManager {
     try {
       final dir = await getApplicationDocumentsDirectory();
       // final exDir = await getExternalStorageDirectory();
-      final exDir = downloadsDir;
+      // final exDir = downloadsDir;
 
       await HydratedBloc.storage.clear();
 
-      final files = exDir.listSync();
-      for (var fileEntity in files) {
-        if (fileEntity is File) {
-          await fileEntity.delete();
-          eLog('Deleted file: ${fileEntity.path}');
-        }
-      }
+      // final files = exDir.listSync();
+      // for (var fileEntity in files) {
+      //   if (fileEntity is File) {
+      //     await fileEntity.delete();
+      //     eLog('Deleted file: ${fileEntity.path}');
+      //   }
+      // }
       final dfiles = dir.listSync();
       for (var fileEntity in dfiles) {
         if (fileEntity is File) {

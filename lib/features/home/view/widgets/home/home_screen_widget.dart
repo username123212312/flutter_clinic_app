@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:intl/intl.dart';
+import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/home/upcoming_%20appointment_cards.dart';
@@ -167,7 +170,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                                 imagePath: 'assets/images/app_logo.png',
                                 rating: 0.0,
                                 specialty: 'No speciality',
-                                onMenuPressed: () {},
+                                onTap: () {},
                               ),
                             );
                           }
@@ -215,7 +218,15 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                                 specialty:
                                     appointment.doctorSpeciality ??
                                     'No speciality',
-                                onMenuPressed: () {},
+                                onTap: () {
+                                  context.pushNamed(
+                                    AppRouteConstants
+                                        .appointmentDetailsRouteName,
+                                    extra: appointment.copyWith(
+                                      status: AppointmentStatus.pending,
+                                    ),
+                                  );
+                                },
                               ),
                             ),
                           );
@@ -276,6 +287,12 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                           child: Department(
                             name: clinic.name ?? 'No Clinic',
                             iconPath: departmentsData[index]['icon'] ?? '',
+                            onTap: () {
+                              context.pushNamed(
+                                AppRouteConstants.clinicDoctorsRouteName,
+                                extra: clinic,
+                              );
+                            },
                           ),
                         );
                       },

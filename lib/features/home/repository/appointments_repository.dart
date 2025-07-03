@@ -5,9 +5,12 @@ import 'package:fpdart/fpdart.dart';
 import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:our_flutter_clinic_app/core/providers/dio_client/dio_client.dart';
+import 'package:our_flutter_clinic_app/service_locator.dart';
 
+import '../../../core/blocs/user_bloc/user_bloc.dart';
 import '../../../core/models/app_failure.dart';
 import '../../../core/models/app_response.dart';
+import '../../../core/utils/general_utils.dart';
 import '../model/appointment_model.dart';
 
 class AppointmentsRepository {
@@ -18,7 +21,10 @@ class AppointmentsRepository {
     try {
       final response = await _dio.post(
         AppConstants.showAppointmentPath,
-        data: {'status': appointmentStatus.name},
+        data: {
+          'status': appointmentStatus.name,
+          if (getChildId() != null) 'child_id': getChildId(),
+        },
       );
       if (response.data['statusCode'] < 300) {
         return Right(

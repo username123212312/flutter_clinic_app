@@ -80,7 +80,11 @@ class AnalysisRepository {
   Future<Either<AppFailure, AppResponse<List<AnalysisModel>>>>
   fetchAllAnalysis() async {
     try {
-      final response = await _dio.get(AppConstants.showAnalysisPath);
+      final response = await _dio.get(
+        AppConstants.showAnalysisPath,
+        queryParameters:
+            getChildId() == null ? null : {'child_id': getChildId()},
+      );
       eLog(response.data);
       if (response.data['statusCode'] < 300) {
         final List<AnalysisModel> newList = [
@@ -118,7 +122,10 @@ class AnalysisRepository {
     try {
       final response = await _dio.post(
         AppConstants.filteringAnalysisPath,
-        data: {'status': status.name},
+        data: {
+          'status': status.name,
+          if (getChildId() != null) 'child_id': getChildId(),
+        },
       );
       eLog(response.data);
       if (response.data['statusCode'] < 300) {

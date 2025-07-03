@@ -17,10 +17,18 @@ sealed class UserState with _$UserState {
   const factory UserState({
     required UserModel? user,
     required UserStatus status,
+    required List<UserModel> children,
+    required DataStatus childrenListStatus,
+    int? currentChildId,
     @Default('Some error occurred') String statusMessage,
   }) = _UserState;
 
   factory UserState.initial() {
-    return UserState(user: null, status: UserStatus.noUser);
+    return UserState(
+      user: null,
+      status: UserStatus.noUser,
+      children: [],
+      childrenListStatus: DataStatus.noData,
+    );
   }
 }

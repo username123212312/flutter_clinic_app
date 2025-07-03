@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:our_flutter_clinic_app/core/models/app_failure.dart';
 import 'package:our_flutter_clinic_app/core/providers/dio_client/dio_client.dart';
+import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 import 'package:our_flutter_clinic_app/features/home/model/medical_info_model.dart';
 
 import '../../../core/consts/app_constants.dart';
@@ -19,7 +20,10 @@ class AppointmentDetailsRepository {
     try {
       final response = await _dio.get(
         AppConstants.showAppointmentInfoPath,
-        queryParameters: {'appointment_id': appointmentId},
+        queryParameters: {
+          'appointment_id': appointmentId,
+          if (getChildId() != null) 'child_id': getChildId(),
+        },
       );
       if (response.data['statusCode'] < 300) {
         return Right(
@@ -57,7 +61,10 @@ class AppointmentDetailsRepository {
     try {
       final response = await _dio.get(
         AppConstants.showAppointmentResultsPath,
-        queryParameters: {'appointment_id': appointmentId},
+        queryParameters: {
+          'appointment_id': appointmentId,
+          if (getChildId() != null) 'child_id': getChildId(),
+        },
       );
       if (response.data['statusCode'] < 300) {
         return Right(
@@ -97,7 +104,10 @@ class AppointmentDetailsRepository {
     try {
       final response = await _dio.post(
         AppConstants.downloadPerscriptionPath,
-        data: {'prescription_id': prescriptionId},
+        data: {
+          'prescription_id': prescriptionId,
+          if (getChildId() != null) 'child_id': getChildId(),
+        },
       );
       if (response.data['statusCode'] < 300) {
         final prescriptionFile = await FileManager.convertLargeBase64ToPdf(

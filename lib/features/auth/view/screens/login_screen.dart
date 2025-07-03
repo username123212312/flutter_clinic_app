@@ -141,16 +141,17 @@ class _LoginScreenState extends State<LoginScreen> {
           listeners: [
             BlocListener<UserBloc, UserState>(
               listener: (context, state) {
-                if (state.status.isError) {
+                if (state.status.isLoading) {
+                  LoadingOverlay().show(context);
+                } else if (state.status.isError) {
+                  LoadingOverlay().hide();
                   Fluttertoast.showToast(msg: state.statusMessage);
                 }
               },
             ),
             BlocListener<AuthBloc, AuthState>(
               listener: (context, state) {
-                if (state.status.isLoading) {
-                  LoadingOverlay().show(context);
-                } else {
+                if (!state.status.isLoading) {
                   LoadingOverlay().hideAll();
                 }
                 if (state.isAuth!) {

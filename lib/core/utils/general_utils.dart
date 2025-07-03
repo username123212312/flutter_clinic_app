@@ -6,6 +6,8 @@ import 'package:intl/intl.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/logger.dart';
 
+import '../../service_locator.dart';
+import '../blocs/user_bloc/user_bloc.dart';
 import '../enums.dart';
 
 double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
@@ -161,4 +163,8 @@ Future<bool> handlePayment(String clientSecret, [String? paymentName]) async {
     eLog('❌ General error: $e');
     return false;
   }
+}
+
+int? getChildId() {
+  return ServiceLocator.instance<UserBloc>().state.currentChildId;
 }

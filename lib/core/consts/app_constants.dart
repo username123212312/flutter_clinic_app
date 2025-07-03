@@ -58,6 +58,11 @@ class AppConstants {
   static const filteringAnalysisPath = '$patientPath/filteringAnalysis';
   static const reportPath = '$patientPath/makeReport';
 
+  //* children
+  static const addChildPath = '$patientPath/addChild';
+  static const deleteChildPath = '$patientPath/deleteChild';
+  static const showAllChildrenPath = '$patientPath/addChild';
+
   //*   Appointment
   static const showAppointmentPath = '$patientPath/showAppointment';
   static const showAppointmentResultsPath =
@@ -81,6 +86,7 @@ class AppConstants {
       '$patientPath/createReservationPaymentIntent';
   static const reservationPaymentPath = '$patientPath/ReservationPayment';
   static const setReminderPath = '$patientPath/setReminder';
+  static const doctorRatePath = '$patientPath/rate';
 
   //? Doctor
   static const profilePath = '$doctorPath/profile';

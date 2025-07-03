@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
+import 'package:our_flutter_clinic_app/core/navigation/app_route_constants.dart';
+import 'package:skeletonizer/skeletonizer.dart';
+import '../../../../../core/widgets/loading_overlay.dart';
+import '../../../controller/clinics_cubit/clinics_cubit.dart';
+import '../../../repository/clinics_doctors_repository.dart';
 import '../../widgets/home/department.dart';
 import '../../widgets/home/search.dart';
 import '../../../../../core/theme/app_pallete.dart';
@@ -35,6 +43,17 @@ class _AllDepartmentsScreenState extends State<AllDepartmentsScreen> {
     return allDepartments
         .where((d) => d.name.toLowerCase().contains(query.toLowerCase()))
         .toList();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _clinicsCubit = ClinicsCubit(
+      clinicsDoctorsRepository: ClinicsDoctorsRepository(),
+    );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _clinicsCubit.fetchAllClinics();
+    });
   }
 
   void _showSearchDialog() {
@@ -74,16 +93,10 @@ class _AllDepartmentsScreenState extends State<AllDepartmentsScreen> {
     return Scaffold(
       backgroundColor: Pallete.backgroundColor,
       appBar: AppBar(
+        toolbarHeight: screenHeight(context) * 0.12,
         backgroundColor: Pallete.grayScaleColor0,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(
-            FontAwesomeIcons.arrowLeft,
-            color: Pallete.grayScaleColor700,
-            size: 18,
-          ),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
+        iconTheme: IconThemeData(size: 24),
         centerTitle: true,
         title: Text(
           'All Departments',
@@ -92,45 +105,79 @@ class _AllDepartmentsScreenState extends State<AllDepartmentsScreen> {
             color: Pallete.grayScaleColor700,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              _clinicsCubit.fetchAllClinics();
+            },
+            icon: Icon(FontAwesomeIcons.arrowsRotate, size: 18),
+          ),
+        ],
       ),
-      body:
-          filteredDepartments.isEmpty
-              ? Center(
-                child: Column(
-                  children: [
-                    Image.asset(
-                      'assets/images/search.png',
-                      width: screenWidth(context) * 0.8,
-                      height: screenHeight(context) * 0.4,
-                    ),
-                    Text(
-                      "No Departments found",
-                      style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                        color: Pallete.black1,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-              )
-              : Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 25,
-                  vertical: 10,
-                ),
-                child: GridView.builder(
-                  itemCount: filteredDepartments.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    mainAxisSpacing: 20,
-                    crossAxisSpacing: 12,
-                    childAspectRatio: 1,
+      body: BlocConsumer<ClinicsCubit, ClinicsState>(
+        bloc: _clinicsCubit,
+        builder: (_, state) {
+          if (state.clinics.isEmpty) {
+            return Center(
+              child: Column(
+                children: [
+                  Image.asset(
+                    'assets/images/search.png',
+                    width: screenWidth(context) * 0.6,
+                    height: screenHeight(context) * 0.3,
                   ),
-                  itemBuilder: (context, index) {
-                    return filteredDepartments[index];
-                  },
-                ),
+                  Text(
+                    "No Departments found",
+                    style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                      color: Pallete.black1,
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
               ),
+            );
+          }
+          return Skeletonizer(
+            enabled: state.status.isLoading,
+            child: GridView.builder(
+              padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+              itemCount: state.status.isLoading ? 8 : state.clinics.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                mainAxisSpacing: 20,
+                crossAxisSpacing: 12,
+                childAspectRatio: 1,
+              ),
+              itemBuilder: (context, index) {
+                if (state.status.isLoading) {
+                  return Department(
+                    name: 'name',
+                    iconPath: 'assets/images/logo.webp',
+                  );
+                }
+                final clinic = state.clinics[index];
+                return Department(
+                  name: clinic.name ?? 'No clinic',
+                  iconPath: 'assets/images/logo.webp',
+                  onTap: () {
+                    context.pushNamed(
+                      AppRouteConstants.clinicDoctorsRouteName,
+                      extra: clinic,
+                    );
+                  },
+                );
+              },
+            ),
+          );
+        },
+        listener: (_, state) {
+          if (state.status.isError) {
+            Fluttertoast.showToast(msg: state.message);
+          }
+        },
+      ),
     );
   }
+
+  late final ClinicsCubit _clinicsCubit;
 }

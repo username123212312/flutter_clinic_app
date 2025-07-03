@@ -22,7 +22,10 @@ class RescheduleAppointmentRepository {
     try {
       final response = await _dio.get(
         AppConstants.showAppointmentInfoPath,
-        queryParameters: {'appointment_id': appointmentId},
+        queryParameters: {
+          'appointment_id': appointmentId,
+          if (getChildId() != null) 'child_id': getChildId(),
+        },
       );
       if (response.data['statusCode'] < 300) {
         return Right(
