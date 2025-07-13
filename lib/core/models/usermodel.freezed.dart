@@ -29,6 +29,8 @@ mixin _$UserModel {
   String? get bloodType => throw _privateConstructorUsedError;
   @JsonKey(name: 'first_name')
   String? get firstName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'complete_profile')
+  bool get isCompleteProfile => throw _privateConstructorUsedError;
   int? get id => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
@@ -58,6 +60,7 @@ abstract class $UserModelCopyWith<$Res> {
     String? gender,
     @JsonKey(name: 'blood_type') String? bloodType,
     @JsonKey(name: 'first_name') String? firstName,
+    @JsonKey(name: 'complete_profile') bool isCompleteProfile,
     int? id,
     String? address,
     String? email,
@@ -88,6 +91,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? gender = freezed,
     Object? bloodType = freezed,
     Object? firstName = freezed,
+    Object? isCompleteProfile = null,
     Object? id = freezed,
     Object? address = freezed,
     Object? email = freezed,
@@ -123,6 +127,11 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.firstName
                     : firstName // ignore: cast_nullable_to_non_nullable
                         as String?,
+            isCompleteProfile:
+                null == isCompleteProfile
+                    ? _value.isCompleteProfile
+                    : isCompleteProfile // ignore: cast_nullable_to_non_nullable
+                        as bool,
             id:
                 freezed == id
                     ? _value.id
@@ -179,6 +188,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
     String? gender,
     @JsonKey(name: 'blood_type') String? bloodType,
     @JsonKey(name: 'first_name') String? firstName,
+    @JsonKey(name: 'complete_profile') bool isCompleteProfile,
     int? id,
     String? address,
     String? email,
@@ -208,6 +218,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? gender = freezed,
     Object? bloodType = freezed,
     Object? firstName = freezed,
+    Object? isCompleteProfile = null,
     Object? id = freezed,
     Object? address = freezed,
     Object? email = freezed,
@@ -243,6 +254,11 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value.firstName
                 : firstName // ignore: cast_nullable_to_non_nullable
                     as String?,
+        isCompleteProfile:
+            null == isCompleteProfile
+                ? _value.isCompleteProfile
+                : isCompleteProfile // ignore: cast_nullable_to_non_nullable
+                    as bool,
         id:
             freezed == id
                 ? _value.id
@@ -292,6 +308,7 @@ class _$UserModelImpl implements _UserModel {
     this.gender,
     @JsonKey(name: 'blood_type') this.bloodType,
     @JsonKey(name: 'first_name') this.firstName,
+    @JsonKey(name: 'complete_profile') this.isCompleteProfile = false,
     this.id,
     this.address,
     this.email,
@@ -318,6 +335,9 @@ class _$UserModelImpl implements _UserModel {
   @JsonKey(name: 'first_name')
   final String? firstName;
   @override
+  @JsonKey(name: 'complete_profile')
+  final bool isCompleteProfile;
+  @override
   final int? id;
   @override
   final String? address;
@@ -335,7 +355,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(lastName: $lastName, age: $age, gender: $gender, bloodType: $bloodType, firstName: $firstName, id: $id, address: $address, email: $email, phone: $phone, password: $password, token: $token, role: $role)';
+    return 'UserModel(lastName: $lastName, age: $age, gender: $gender, bloodType: $bloodType, firstName: $firstName, isCompleteProfile: $isCompleteProfile, id: $id, address: $address, email: $email, phone: $phone, password: $password, token: $token, role: $role)';
   }
 
   @override
@@ -351,6 +371,8 @@ class _$UserModelImpl implements _UserModel {
                 other.bloodType == bloodType) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
+            (identical(other.isCompleteProfile, isCompleteProfile) ||
+                other.isCompleteProfile == isCompleteProfile) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.email, email) || other.email == email) &&
@@ -370,6 +392,7 @@ class _$UserModelImpl implements _UserModel {
     gender,
     bloodType,
     firstName,
+    isCompleteProfile,
     id,
     address,
     email,
@@ -400,6 +423,7 @@ abstract class _UserModel implements UserModel {
     final String? gender,
     @JsonKey(name: 'blood_type') final String? bloodType,
     @JsonKey(name: 'first_name') final String? firstName,
+    @JsonKey(name: 'complete_profile') final bool isCompleteProfile,
     final int? id,
     final String? address,
     final String? email,
@@ -425,6 +449,9 @@ abstract class _UserModel implements UserModel {
   @override
   @JsonKey(name: 'first_name')
   String? get firstName;
+  @override
+  @JsonKey(name: 'complete_profile')
+  bool get isCompleteProfile;
   @override
   int? get id;
   @override

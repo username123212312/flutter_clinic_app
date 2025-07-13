@@ -95,25 +95,25 @@ class LabtechAnalysisInfoBloc
   }
 
   @override
-  LabtechAnalysisInfoState? fromJson(Map<String, dynamic> json) {
+  LabtechAnalysisInfoState? fromJson(Map<String, dynamic>? json) {
     try {
       return LabtechAnalysisInfoState(
-        analysis: AnalysisModel.fromJson(json['analysis']),
-        message: json['message'],
+        analysis: AnalysisModel.fromJson(json?['analysis']),
+        message: json?['message'],
         status: DataStatus.values.firstWhere(
-          (status) => status.name == json['status'],
+          (status) => status.name == json?['status'],
         ),
         downloadedFile:
-            json['downloadedFile'] == null
+            json?['downloadedFile'] == null
                 ? null
-                : DownloadedFile.fromJson(json['downloadedFile']),
+                : DownloadedFile.fromJson(json?['downloadedFile']),
         downloadedPhoto:
-            json['downloadedPhoto'] == null
+            json?['downloadedPhoto'] == null
                 ? null
-                : DownloadedFile.fromJson(json['downloadedPhoto']),
+                : DownloadedFile.fromJson(json?['downloadedPhoto']),
       );
     } catch (e) {
-      log(e.toString());
+      log('LabtectAnalysisBloc ${e.toString()}');
       return null;
     }
   }

@@ -95,13 +95,21 @@ String parseStringList(dynamic strings) {
   }
 }
 
-void navigateByRole(BuildContext context, {required Role role}) {
+void navigateByRole(
+  BuildContext context, {
+  required Role role,
+  bool isCompleteProfile = false,
+}) {
   switch (role) {
     case Role.patient:
       context.goNamed(AppRouteConstants.homeRouteName);
       return;
     case Role.doctor:
-      context.goNamed(AppRouteConstants.homeRouteName);
+      context.goNamed(
+        isCompleteProfile
+            ? AppRouteConstants.doctorScheduleRouteName
+            : AppRouteConstants.doctorHomeRouteName,
+      );
       return;
     case Role.labtech:
       context.goNamed(AppRouteConstants.labtechHomeRouteName);

@@ -213,10 +213,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                                     appointment.doctorPhoto ??
                                     'assets/images/logo.webp',
                                 rating:
-                                    double.tryParse(
-                                      appointment.finalRate ?? '0.0',
-                                    ) ??
-                                    0.0,
+                                    appointment.finalRate?.toDouble() ?? 0.0,
                                 specialty:
                                     appointment.doctorSpeciality ??
                                     'No speciality',

@@ -24,7 +24,7 @@ mixin _$AppointmentModel {
   @JsonKey(name: 'appointment_id')
   int? get id => throw _privateConstructorUsedError;
   String? get type => throw _privateConstructorUsedError;
-  String? get finalRate => throw _privateConstructorUsedError;
+  int? get finalRate => throw _privateConstructorUsedError;
   @JsonKey(name: 'clinic_id')
   int? get clinicId => throw _privateConstructorUsedError;
   @JsonKey(name: 'clinic_name')
@@ -70,7 +70,7 @@ abstract class $AppointmentModelCopyWith<$Res> {
   $Res call({
     @JsonKey(name: 'appointment_id') int? id,
     String? type,
-    String? finalRate,
+    int? finalRate,
     @JsonKey(name: 'clinic_id') int? clinicId,
     @JsonKey(name: 'clinic_name') String? clinicName,
     @JsonKey(name: 'doctor_id') int? doctorId,
@@ -135,7 +135,7 @@ class _$AppointmentModelCopyWithImpl<$Res, $Val extends AppointmentModel>
                 freezed == finalRate
                     ? _value.finalRate
                     : finalRate // ignore: cast_nullable_to_non_nullable
-                        as String?,
+                        as int?,
             clinicId:
                 freezed == clinicId
                     ? _value.clinicId
@@ -214,7 +214,7 @@ abstract class _$$AppointmentModelImplCopyWith<$Res>
   $Res call({
     @JsonKey(name: 'appointment_id') int? id,
     String? type,
-    String? finalRate,
+    int? finalRate,
     @JsonKey(name: 'clinic_id') int? clinicId,
     @JsonKey(name: 'clinic_name') String? clinicName,
     @JsonKey(name: 'doctor_id') int? doctorId,
@@ -278,7 +278,7 @@ class __$$AppointmentModelImplCopyWithImpl<$Res>
             freezed == finalRate
                 ? _value.finalRate
                 : finalRate // ignore: cast_nullable_to_non_nullable
-                    as String?,
+                    as int?,
         clinicId:
             freezed == clinicId
                 ? _value.clinicId
@@ -376,7 +376,7 @@ class _$AppointmentModelImpl implements _AppointmentModel {
   @override
   final String? type;
   @override
-  final String? finalRate;
+  final int? finalRate;
   @override
   @JsonKey(name: 'clinic_id')
   final int? clinicId;
@@ -495,7 +495,7 @@ abstract class _AppointmentModel implements AppointmentModel {
   factory _AppointmentModel({
     @JsonKey(name: 'appointment_id') final int? id,
     final String? type,
-    final String? finalRate,
+    final int? finalRate,
     @JsonKey(name: 'clinic_id') final int? clinicId,
     @JsonKey(name: 'clinic_name') final String? clinicName,
     @JsonKey(name: 'doctor_id') final int? doctorId,
@@ -521,7 +521,7 @@ abstract class _AppointmentModel implements AppointmentModel {
   @override
   String? get type;
   @override
-  String? get finalRate;
+  int? get finalRate;
   @override
   @JsonKey(name: 'clinic_id')
   int? get clinicId;

@@ -22,6 +22,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 import 'core/services/fcm/fcm_service.dart';
 import 'core/services/notification/notification_service.dart';
+import 'features/home/view/screens/doctor/doctor_home_screen.dart';
 import 'features/home/view/screens/patient/switch_account_screen.dart';
 
 void main() async {
@@ -58,7 +59,7 @@ class ClinicApp extends StatelessWidget {
       //   themeMode: ThemeMode.system,
       //   theme: AppTheme.lightThemeMode,
       //   darkTheme: AppTheme.darkThemeMode,
-      //   home: SwitchAccountScreen(),
+      //   home: DoctorHomeScreen(),
       // ),
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

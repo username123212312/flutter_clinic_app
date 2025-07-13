@@ -29,6 +29,7 @@ sealed class UserState with _$UserState {
       status: UserStatus.noUser,
       children: [],
       childrenListStatus: DataStatus.noData,
+      statusMessage: 'No data',
     );
   }
 }

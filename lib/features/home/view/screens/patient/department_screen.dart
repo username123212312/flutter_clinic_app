@@ -101,7 +101,7 @@ class _AllDepartmentsScreenState extends State<AllDepartmentsScreen> {
         title: Text(
           'All Departments',
           style: Theme.of(context).textTheme.labelSmall!.copyWith(
-            fontSize: 20,
+            fontSize: 18,
             color: Pallete.grayScaleColor700,
           ),
         ),

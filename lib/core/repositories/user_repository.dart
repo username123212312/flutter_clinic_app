@@ -94,9 +94,10 @@ class UserRepository {
             success: response.data['statusCode'] < 300,
             data:
                 response.data['statusCode'] < 300
-                    ? UserModel.fromJson(
-                      response.data['user'],
-                    ).copyWith(token: response.data['token'])
+                    ? UserModel.fromJson(response.data['user']).copyWith(
+                      token: response.data['token'],
+                      isCompleteProfile: response.data['complete_profile'],
+                    )
                     : null,
             statusCode: response.data['statusCode'],
             statusMessage: response.data['statusMessage'],

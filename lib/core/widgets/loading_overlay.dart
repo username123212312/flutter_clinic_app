@@ -24,7 +24,7 @@ class LoadingOverlay {
     _overlayEntry = OverlayEntry(
       builder:
           (context) => Material(
-            color: Colors.black.withValues(alpha: 0.15),
+            color: Colors.black.withValues(alpha: 0.1),
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: dismissOnTap ? _dismissOverlay : null,

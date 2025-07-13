@@ -3,8 +3,13 @@ import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/custom_bottom_app_bar_item.dart';
 
 class CustomBottomAppBar extends StatefulWidget {
-  const CustomBottomAppBar({super.key, required this.onChange});
+  const CustomBottomAppBar({
+    super.key,
+    required this.onChange,
+    required this.titles,
+  });
   final void Function(int index) onChange;
+  final List<Map<String, String>> titles;
 
   @override
   State<CustomBottomAppBar> createState() => _CustomBottomAppBarState();
@@ -52,20 +57,20 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
             CustomBottomAppBarItem(
               activeColor: Theme.of(context).colorScheme.primary,
               isSelected: _currentIndex == 0,
-              iconImagePath: 'assets/icons/home_icon.png',
-              title: 'Home',
+              iconImagePath: widget.titles[0].values.first,
+              title: widget.titles[0].keys.first,
             ),
             CustomBottomAppBarItem(
               activeColor: Theme.of(context).colorScheme.primary,
               isSelected: _currentIndex == 1,
-              iconImagePath: 'assets/icons/appointments_icon.png',
-              title: 'Appointments',
+              iconImagePath: widget.titles[1].values.first,
+              title: widget.titles[1].keys.first,
             ),
             CustomBottomAppBarItem(
               activeColor: Theme.of(context).colorScheme.primary,
               isSelected: _currentIndex == 2,
-              iconImagePath: 'assets/icons/profile_icon.png',
-              title: 'Profile',
+              iconImagePath: widget.titles[2].values.first,
+              title: widget.titles[2].keys.first,
             ),
           ],
         ),

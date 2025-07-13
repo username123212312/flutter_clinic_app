@@ -125,6 +125,11 @@ class _HomeScreenState extends State<HomeScreen>
               left: 0,
               right: 0,
               child: CustomBottomAppBar(
+                titles: [
+                  {'Home': 'assets/icons/home_icon.png'},
+                  {'Appointments': 'assets/icons/appointments_icon.png'},
+                  {'Profile': 'assets/icons/profile_icon.png'},
+                ],
                 onChange: (index) {
                   setState(() {
                     _currentIndex = index;
@@ -185,7 +190,9 @@ class SwitchProfilesSheetWidget extends StatelessWidget {
               Spacer(),
               IconButton(
                 tooltip: 'Add child',
-                onPressed: () {},
+                onPressed: () {
+                  context.pushNamed(AppRouteConstants.addChildRouteName);
+                },
                 icon: Icon(FontAwesomeIcons.plus, size: 16),
               ),
               IconButton(
@@ -202,7 +209,7 @@ class SwitchProfilesSheetWidget extends StatelessWidget {
             width: screenWidth(context),
             height: screenHeight(context) * 0.075,
             decoration: BoxDecoration(
-              color: Pallete.grayScaleColor400,
+              color: Pallete.grayScaleColor200,
               borderRadius: BorderRadius.circular(13),
             ),
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -252,7 +259,7 @@ class SwitchProfilesSheetWidget extends StatelessWidget {
           SizedBox(height: 10),
           SizedBox(
             width: screenWidth(context),
-            child: Divider(color: Pallete.grayScaleColor400),
+            child: Divider(color: Pallete.grayScaleColor300),
           ),
           if (userBloc.state.children.isNotEmpty) ...[
             SizedBox(height: 10),
@@ -279,7 +286,7 @@ class SwitchProfilesSheetWidget extends StatelessWidget {
                             width: screenWidth(context),
                             height: screenHeight(context) * 0.075,
                             decoration: BoxDecoration(
-                              color: Pallete.grayScaleColor400,
+                              color: Pallete.grayScaleColor200,
                               borderRadius: BorderRadius.circular(13),
                             ),
                             padding: EdgeInsets.symmetric(

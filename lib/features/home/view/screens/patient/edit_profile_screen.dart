@@ -43,7 +43,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: screenHeight(context) * 0.13,
+        toolbarHeight: screenHeight(context) * 0.09,
         centerTitle: false,
         forceMaterialTransparency: true,
         title: Text(
@@ -306,26 +306,30 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           ),
         ),
         SizedBox(height: 20),
-        Text(
-          'Complete Address',
-          style: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12),
-        ),
-        SizedBox(height: 10),
-        CustomTextField(
-          validator: (value) {
-            if (value!.trim().isEmpty) {
-              return 'Address should not be empty';
-            } else {
-              return null;
-            }
-          },
-          maxLength: 100,
-          controller:
-              _completeAddressController..text = state.user?.address ?? '',
-          hintText: 'Address',
-          keyboardType: TextInputType.name,
-          textInputAction: TextInputAction.done,
-        ),
+        if (state.currentChildId == null) ...[
+          Text(
+            'Complete Address',
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall!.copyWith(fontSize: 12),
+          ),
+          SizedBox(height: 10),
+          CustomTextField(
+            validator: (value) {
+              if (value!.trim().isEmpty) {
+                return 'Address should not be empty';
+              } else {
+                return null;
+              }
+            },
+            maxLength: 100,
+            controller:
+                _completeAddressController..text = state.user?.address ?? '',
+            hintText: 'Address',
+            keyboardType: TextInputType.name,
+            textInputAction: TextInputAction.done,
+          ),
+        ],
       ],
     );
   }

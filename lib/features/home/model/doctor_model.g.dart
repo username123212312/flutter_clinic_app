@@ -15,6 +15,8 @@ _$DoctorModelImpl _$$DoctorModelImplFromJson(Map<String, dynamic> json) =>
       clinicId: (json['clinic_id'] as num?)?.toInt(),
       clinic: json['clinic'] as String?,
       photoPath: json['photo_path'] as String?,
+      professionalTitle: json['professional_title'] as String?,
+      averageVisitDuration: json['average_visit_duration'] as String?,
       treated: (json['treated'] as num?)?.toInt(),
       speciality: json['speciality'] as String?,
       department: json['department'] as String?,
@@ -22,6 +24,11 @@ _$DoctorModelImpl _$$DoctorModelImplFromJson(Map<String, dynamic> json) =>
       visitFee: (json['visit_fee'] as num?)?.toDouble(),
       excperience: json['excperience'] as String?,
       status: json['status'] as String?,
+      sign: json['sign'] as String?,
+      schedule:
+          (json['schedule'] as List<dynamic>?)
+              ?.map((e) => Schedule.fromJson(e as Map<String, dynamic>))
+              .toList(),
     );
 
 Map<String, dynamic> _$$DoctorModelImplToJson(_$DoctorModelImpl instance) =>
@@ -33,6 +40,8 @@ Map<String, dynamic> _$$DoctorModelImplToJson(_$DoctorModelImpl instance) =>
       'clinic_id': instance.clinicId,
       'clinic': instance.clinic,
       'photo_path': instance.photoPath,
+      'professional_title': instance.professionalTitle,
+      'average_visit_duration': instance.averageVisitDuration,
       'treated': instance.treated,
       'speciality': instance.speciality,
       'department': instance.department,
@@ -40,4 +49,6 @@ Map<String, dynamic> _$$DoctorModelImplToJson(_$DoctorModelImpl instance) =>
       'visit_fee': instance.visitFee,
       'excperience': instance.excperience,
       'status': instance.status,
+      'sign': instance.sign,
+      'schedule': instance.schedule,
     };

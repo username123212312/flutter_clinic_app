@@ -10,6 +10,7 @@ class AppRouteConstants {
   static const forgotPasswordRouteName = 'forgot_password';
   static const changePasswordRouteName = 'change_password';
   static const switchAccountRouteName = 'switch_account';
+  static const addChildRouteName = 'add_child';
 
   //?Labtech
   static const labtechHomeRouteName = 'lab_tech_home';
@@ -38,4 +39,10 @@ class AppRouteConstants {
   static const errorRouteName = 'error';
   static const notificationsRouteName = 'notifications';
   static const clinicDoctorsRouteName = 'clinic_doctors';
+
+  //? Doctor
+  static const doctorHomeRouteName = 'doctor_home';
+  static const doctorEditProfileRouteName = 'doctor_edit_profile';
+  static const doctorProfileRouteName = 'doctor_profile';
+  static const doctorScheduleRouteName = 'doctor_schedule';
 }

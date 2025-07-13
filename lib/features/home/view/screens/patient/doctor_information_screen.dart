@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:our_flutter_clinic_app/core/navigation/app_route_constants.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/home/model/doctor_model.dart';
@@ -103,12 +104,21 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
         children: [
           SizedBox(height: screenHeight(context) * 0.001),
           SizedBox(
-            child: Image.asset(
-              widget.doctor.photoPath ?? "assets/images/Jennifer_Miller.png",
-              width: screenWidth(context) * 0.4,
-              height: screenHeight(context) * 0.3,
-              fit: BoxFit.cover,
-            ),
+            child:
+                widget.doctor.photoPath == null
+                    ? Image.asset(
+                      widget.doctor.photoPath ??
+                          "assets/images/Jennifer_Miller.png",
+                      width: screenWidth(context) * 0.4,
+                      height: screenHeight(context) * 0.3,
+                      fit: BoxFit.cover,
+                    )
+                    : Image.network(
+                      '${AppConstants.serverUrl}${widget.doctor.photoPath!}',
+                      width: screenWidth(context) * 0.4,
+                      height: screenHeight(context) * 0.3,
+                      fit: BoxFit.cover,
+                    ),
           ),
           Expanded(
             child: Container(

@@ -11,7 +11,7 @@ _$AppointmentModelImpl _$$AppointmentModelImplFromJson(
 ) => _$AppointmentModelImpl(
   id: (json['appointment_id'] as num?)?.toInt(),
   type: json['type'] as String?,
-  finalRate: json['finalRate'] as String?,
+  finalRate: (json['finalRate'] as num?)?.toInt(),
   clinicId: (json['clinic_id'] as num?)?.toInt(),
   clinicName: json['clinic_name'] as String?,
   doctorId: (json['doctor_id'] as num?)?.toInt(),

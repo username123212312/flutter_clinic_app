@@ -7,6 +7,11 @@ import 'package:our_flutter_clinic_app/features/home/view/screens/labtech/analys
 import 'package:our_flutter_clinic_app/features/home/view/screens/patient/reschedule_screen.dart';
 import 'package:our_flutter_clinic_app/features/home/view/screens/patient/switch_account_screen.dart';
 
+import '../../features/home/view/screens/doctor/doctor_home_screen.dart';
+import '../../features/home/view/screens/doctor/doctor_profile.dart';
+import '../../features/home/view/screens/doctor/doctor_schedule_screen.dart';
+import '../../features/home/view/screens/doctor/edit_profile.dart';
+import '../../features/home/view/screens/patient/add_child_screen.dart';
 import '../../features/home/view/screens/patient/clinic_doctors_screen.dart';
 import '../../features/home/view/screens/patient/my_wallet_screen.dart';
 import '../../features/home/view/screens/patient/notifications_screen.dart';
@@ -44,6 +49,11 @@ class AppRouteConfig {
         name: AppRouteConstants.switchAccountRouteName,
         path: '/switch_account',
         pageBuilder: (_, __) => TransitionPage(child: SwitchAccountScreen()),
+      ),
+      GoRoute(
+        name: AppRouteConstants.addChildRouteName,
+        path: '/add_child',
+        pageBuilder: (_, __) => TransitionPage(child: AddChildScreen()),
       ),
       GoRoute(
         name: AppRouteConstants.loginAsRouteName,
@@ -91,6 +101,27 @@ class AppRouteConfig {
         name: AppRouteConstants.homeRouteName,
         path: '/home',
         pageBuilder: (_, state) => TransitionPage(child: HomeScreen()),
+      ),
+      GoRoute(
+        name: AppRouteConstants.doctorHomeRouteName,
+        path: '/doctor_home',
+        pageBuilder: (_, state) => TransitionPage(child: DoctorHomeScreen()),
+      ),
+      GoRoute(
+        name: AppRouteConstants.doctorEditProfileRouteName,
+        path: '/doctor_edit_profile',
+        pageBuilder: (_, state) => TransitionPage(child: DoctorEditProfile()),
+      ),
+      GoRoute(
+        name: AppRouteConstants.doctorProfileRouteName,
+        path: '/doctor_profile',
+        pageBuilder: (_, state) => TransitionPage(child: DoctorProfile()),
+      ),
+      GoRoute(
+        name: AppRouteConstants.doctorScheduleRouteName,
+        path: '/doctor_schedule',
+        pageBuilder:
+            (_, state) => TransitionPage(child: DoctorScheduleScreen()),
       ),
       GoRoute(
         name: AppRouteConstants.editProfileRouteName,

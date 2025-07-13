@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -12,12 +14,14 @@ sealed class UserModel with _$UserModel {
     String? gender,
     @JsonKey(name: 'blood_type') String? bloodType,
     @JsonKey(name: 'first_name') String? firstName,
+    @Default(false) @JsonKey(name: 'complete_profile') bool isCompleteProfile,
     int? id,
     String? address,
     String? email,
     String? phone,
     String? password,
     String? token,
+
     @Default(Role.patient) Role? role,
   }) = _UserModel;
 

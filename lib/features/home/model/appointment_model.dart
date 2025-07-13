@@ -14,7 +14,7 @@ sealed class AppointmentModel with _$AppointmentModel {
   factory AppointmentModel({
     @JsonKey(name: 'appointment_id') int? id,
     String? type,
-    String? finalRate,
+    int? finalRate,
     @JsonKey(name: 'clinic_id') int? clinicId,
     @JsonKey(name: 'clinic_name') String? clinicName,
     @JsonKey(name: 'doctor_id') int? doctorId,

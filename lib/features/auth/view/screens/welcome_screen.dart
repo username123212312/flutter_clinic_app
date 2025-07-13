@@ -55,6 +55,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             navigateByRole(
               context,
               role: state.authUser?.user?.role ?? Role.patient,
+              isCompleteProfile:
+                  state.authUser?.user?.isCompleteProfile ?? false,
             );
           }
         }

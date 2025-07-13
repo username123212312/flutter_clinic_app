@@ -84,16 +84,16 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
   }
 
   @override
-  AuthState? fromJson(Map<String, dynamic> json) {
+  AuthState? fromJson(Map<String, dynamic>? json) {
     try {
       return AuthState(
-        authUser: AuthUser.fromJson(json['authUser'] ?? {}),
-        isAuth: json['isAuth'],
-        token: json['token'],
+        authUser: AuthUser.fromJson(json?['authUser'] ?? {}),
+        isAuth: json?['isAuth'],
+        token: json?['token'],
         status: DataStatus.values.firstWhere(
-          (status) => status.name == json['status'],
+          (status) => status.name == json?['status'],
         ),
-        statusMessage: json['statusMessage'],
+        statusMessage: json?['statusMessage'],
       );
     } catch (e) {
       eLog('AuthBloc error $e');

@@ -11,7 +11,7 @@ class AppConstants {
     'AB+',
     'AB-',
   ];
-  static const ipAddress = '192.168.1.4'; //10.0.2.2
+  static const ipAddress = '192.168.86.76'; //10.0.2.2
   static const localAddress = 'http://$ipAddress:8000';
   static const ngrokAddress = 'https://deep-pangolin-normally.ngrok-free.app';
   static const serverUrl = ngrokAddress;

@@ -73,6 +73,7 @@ dependencies:
   shared_preferences:
   flutter_local_notifications:
   fluttertoast: ^8.2.12
+  image_picker: ^1.1.2
 
 dev_dependencies:
   flutter_test:

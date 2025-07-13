@@ -34,17 +34,17 @@ class AnalysisListBloc
   }
 
   @override
-  AnalysisListState? fromJson(Map<String, dynamic> json) {
+  AnalysisListState? fromJson(Map<String, dynamic>? json) {
     try {
       return AnalysisListState(
         analysisList:
-            (json['analysisList'] as List).map((analysis) {
+            (json?['analysisList'] as List).map((analysis) {
               return AnalysisModel.fromJson(analysis);
             }).toList(),
-        status: DataStatus.values.byName(json['status']),
+        status: DataStatus.values.byName(json?['status']),
       );
     } catch (e) {
-      eLog(e.toString());
+      eLog('AnalysisBlocError: ${e.toString()}');
       return null;
     }
   }

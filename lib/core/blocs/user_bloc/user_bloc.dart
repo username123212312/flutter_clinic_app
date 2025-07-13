@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:our_flutter_clinic_app/core/blocs/auth_bloc/auth_bloc.dart';
@@ -17,7 +18,7 @@ part 'user_event.dart';
 part 'user_state.dart';
 part 'user_bloc.freezed.dart';
 
-class UserBloc extends Bloc<UserEvent, UserState> {
+class UserBloc extends HydratedBloc<UserEvent, UserState> {
   UserBloc({required AuthBloc authBloc, required UserRepository userRepository})
     : _authBloc = authBloc,
       _userRepository = userRepository,
@@ -431,6 +432,51 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           currentChildId: previousChildId,
         ),
       );
+    }
+  }
+
+  @override
+  UserState? fromJson(Map<String, dynamic> json) {
+    try {
+      return UserState(
+        user: UserModel.fromJson(json['user']),
+        children:
+            (jsonDecode(json['children']) as List<dynamic>).map((child) {
+              return UserModel.fromJson(child);
+            }).toList(),
+        childrenListStatus: DataStatus.values.firstWhere((status) {
+          return status.name == json['childrenListStatus'];
+        }),
+        status: UserStatus.values.firstWhere((status) {
+          return status.name == json['status'];
+        }),
+        currentChildId: json['currentChildId'],
+        statusMessage: json['statusMessage'],
+      );
+    } catch (e) {
+      log(e.toString());
+      return null;
+    }
+  }
+
+  @override
+  Map<String, dynamic>? toJson(UserState state) {
+    try {
+      return {
+        'user': state.user?.toJson(),
+        'status': state.status.name,
+        'children': jsonEncode(
+          state.children.map((child) {
+            return child.toJson();
+          }).toList(),
+        ),
+        'childrenListStatus': state.childrenListStatus.name,
+        'currentChildId': state.currentChildId,
+        'statusMessage': state.statusMessage,
+      };
+    } catch (e) {
+      log('UserBlocError: ${e.toString()}');
+      return null;
     }
   }
 

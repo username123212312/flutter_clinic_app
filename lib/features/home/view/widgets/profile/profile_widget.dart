@@ -301,7 +301,7 @@ class ProifileWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '${state.user!.firstName ?? 'No'} ${state.user!.lastName ?? 'User'}',
+                        '${state.user?.firstName ?? 'No'} ${state.user?.lastName ?? 'User'}',
                         style: Theme.of(
                           context,
                         ).textTheme.titleMedium!.copyWith(fontSize: 20),
