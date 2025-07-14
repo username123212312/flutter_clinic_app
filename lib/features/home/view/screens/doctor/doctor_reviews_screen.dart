@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
+import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
+import 'package:our_flutter_clinic_app/features/home/model/review_model.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/general_utils.dart';
+import '../../../controller/doctor_reviews_cubit/doctor_reviews_cubit.dart';
 
-class DoctorReviewsScreen extends StatelessWidget {
+class DoctorReviewsScreen extends StatefulWidget {
   const DoctorReviewsScreen({super.key});
 
-  final List<Map<String, dynamic>> reviews = const [
-    {
-      'name': 'Ali Ahmad',
-      'rating': 4.5,
-      'comment': 'Very good doctor, explained everything clearly.',
-    },
-    {
-      'name': 'Sara Khaled',
-      'rating': 5.0,
-      'comment': 'Professional and friendly. Highly recommended!',
-    },
-    {
-      'name': 'Mohamed Noor',
-      'rating': 3.0,
-      'comment': 'It was okay, waiting time was a bit long.',
-    },
-  ];
+  @override
+  State<DoctorReviewsScreen> createState() => _DoctorReviewsScreenState();
+}
+
+class _DoctorReviewsScreenState extends State<DoctorReviewsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _doctorReviewsCubit.fetchAllReviews();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,64 +51,143 @@ class DoctorReviewsScreen extends StatelessWidget {
         ),
       ),
 
-      body: Stack(
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("im/background-new.webp"),
-                fit: BoxFit.fill,
-              ),
-            ),
-          ),
-          ListView.builder(
-            padding: const EdgeInsets.all(16),
-            itemCount: reviews.length,
-            itemBuilder: (context, index) {
-              final review = reviews[index];
-              return GestureDetector(
-                onTap: () => _showReviewDialog(context, review),
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    side: BorderSide(color: Pallete.grayScaleColor200),
-                  ),
-                  color: Pallete.grayScaleColor0,
-                  margin: const EdgeInsets.only(bottom: 12),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: BackgroundContainer(
+        child: BlocConsumer<DoctorReviewsCubit, DoctorReviewsState>(
+          bloc: _doctorReviewsCubit,
+          listener: (context, state) {
+            if (state.status.isError) {
+              Fluttertoast.showToast(msg: state.message);
+            }
+          },
+          builder: (context, state) {
+            if (state.reviews.isEmpty) {
+              return RefreshIndicator(
+                onRefresh: () async {
+                  _doctorReviewsCubit.fetchAllReviews();
+                },
+                child: SingleChildScrollView(
+                  physics: AlwaysScrollableScrollPhysics(),
+                  child: Center(
+                    heightFactor: 2,
+                    child: Column(
                       children: [
-                        Text(
-                          review['name'],
-                          style: Theme.of(context).textTheme.titleLarge!
-                              .copyWith(color: Pallete.black1, fontSize: 14),
+                        Image.asset(
+                          fit: BoxFit.cover,
+                          'assets/images/star_rate.png',
+                          height: screenHeight(context) * 0.3,
+                          width: screenWidth(context) * 0.5,
                         ),
-                        RatingBarIndicator(
-                          rating: review['rating'].roundToDouble(),
-                          itemBuilder:
-                              (context, _) => Icon(
-                                FontAwesomeIcons.solidStar,
-                                color: Pallete.star,
-                              ),
-                          itemCount: 5,
-                          itemSize: 15,
-                          unratedColor: Pallete.graysGray4,
+                        Text(
+                          'No reviews yet',
+                          style: Theme.of(
+                            context,
+                          ).textTheme.labelMedium!.copyWith(fontSize: 15),
                         ),
                       ],
                     ),
                   ),
                 ),
               );
-            },
-          ),
-        ],
+            }
+            return RefreshIndicator(
+              onRefresh: () async {
+                _doctorReviewsCubit.fetchAllReviews();
+              },
+              child: Skeletonizer(
+                enabled: state.status.isLoading,
+                child: ListView.builder(
+                  padding: const EdgeInsets.all(16),
+                  itemCount: state.status.isLoading ? 20 : state.reviews.length,
+                  itemBuilder: (context, index) {
+                    if (state.status.isLoading) {
+                      return Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          side: BorderSide(color: Pallete.grayScaleColor200),
+                        ),
+                        color: Pallete.grayScaleColor0,
+                        margin: const EdgeInsets.only(bottom: 12),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'My Custom user',
+                                style: Theme.of(
+                                  context,
+                                ).textTheme.titleLarge!.copyWith(
+                                  color: Pallete.black1,
+                                  fontSize: 14,
+                                ),
+                              ),
+                              RatingBarIndicator(
+                                rating: 0.roundToDouble(),
+                                itemBuilder:
+                                    (context, _) => Icon(
+                                      FontAwesomeIcons.solidStar,
+                                      color: Pallete.star,
+                                    ),
+                                itemCount: 5,
+                                itemSize: 15,
+                                unratedColor: Pallete.graysGray4,
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }
+                    final review = state.reviews[index];
+                    return GestureDetector(
+                      onTap: () => _showReviewDialog(context, review),
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          side: BorderSide(color: Pallete.grayScaleColor200),
+                        ),
+                        color: Pallete.grayScaleColor0,
+                        margin: const EdgeInsets.only(bottom: 12),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                '${review.patientFirstName ?? 'No'} ${review.patientLastName ?? 'Patient'}',
+                                style: Theme.of(
+                                  context,
+                                ).textTheme.titleLarge!.copyWith(
+                                  color: Pallete.black1,
+                                  fontSize: 14,
+                                ),
+                              ),
+                              RatingBarIndicator(
+                                rating: (review.rate ?? 0).roundToDouble(),
+                                itemBuilder:
+                                    (context, _) => Icon(
+                                      FontAwesomeIcons.solidStar,
+                                      color: Pallete.star,
+                                    ),
+                                itemCount: 5,
+                                itemSize: 15,
+                                unratedColor: Pallete.graysGray4,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
 
-  void _showReviewDialog(BuildContext context, Map<String, dynamic> review) {
+  void _showReviewDialog(BuildContext context, ReviewModel review) {
     showDialog(
       context: context,
       builder:
@@ -138,13 +217,13 @@ class DoctorReviewsScreen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            review['name'],
+                            '${review.patientFirstName ?? 'No'} ${review.patientLastName ?? 'Patient'}',
                             style: Theme.of(context).textTheme.titleLarge!
                                 .copyWith(color: Pallete.black1, fontSize: 15),
                           ),
                         ),
                         RatingBarIndicator(
-                          rating: review['rating'].roundToDouble(),
+                          rating: (review.rate ?? 0).roundToDouble(),
                           itemBuilder:
                               (context, _) => Icon(
                                 FontAwesomeIcons.solidStar,
@@ -159,7 +238,7 @@ class DoctorReviewsScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      review['comment'],
+                      review.comment ?? '',
                       style: Theme.of(context).textTheme.titleSmall!.copyWith(
                         color: Pallete.sliverSand,
                         fontSize: 12,
@@ -181,4 +260,6 @@ class DoctorReviewsScreen extends StatelessWidget {
           ),
     );
   }
+
+  final DoctorReviewsCubit _doctorReviewsCubit = DoctorReviewsCubit();
 }

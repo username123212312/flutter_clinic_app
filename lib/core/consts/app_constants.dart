@@ -94,6 +94,7 @@ class AppConstants {
   static const schedulePath = '$doctorPath/schedule';
   static const doctorEditProfilePath = '$doctorPath/editProfile';
   static const deleteFromSchedulePath = '$doctorPath/deleteFromSchedule';
+  static const showDoctorReviewsPath = '$doctorPath/showDoctorReviews';
 
   //* Doctor appointments
   static const doctorshowAppointmantResultsPath =
