@@ -1,8 +1,10 @@
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/validator_util.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import '../../../../../core/blocs/user_bloc/user_bloc.dart';
 
+import '../../../../../core/enums.dart';
 import '../../../../../core/utils/general_utils.dart';
 import '../../../../auth/view/widgets/auth_widgets.dart';
 
@@ -22,6 +24,8 @@ class _ModifyPasswordScreenState extends State<ModifyPasswordScreen> {
     _oldPasswordController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
+    LoadingOverlay().hideAll();
+
     super.dispose();
   }
 
@@ -69,17 +73,25 @@ class _ModifyPasswordScreenState extends State<ModifyPasswordScreen> {
                               LoadingOverlay().show(context);
                             } else {
                               LoadingOverlay().hideAll();
-                              clearAndShowSnackBar(
-                                context,
-                                state.statusMessage,
-                              );
+                              Fluttertoast.showToast(msg: state.statusMessage);
+                              if (state.status.isModified) {
+                                context.goNamed(
+                                  (state.user?.role?.isPatient ?? true)
+                                      ? AppRouteConstants.homeRouteName
+                                      : AppRouteConstants.doctorHomeRouteName,
+                                );
+                              }
                             }
                           },
                         ),
                         BlocListener<AuthBloc, AuthState>(
                           listener: (context, state) {
                             if (state.isAuth != null && state.isAuth!) {
-                              context.goNamed(AppRouteConstants.homeRouteName);
+                              context.goNamed(
+                                (state.authUser?.user?.role?.isPatient ?? true)
+                                    ? AppRouteConstants.homeRouteName
+                                    : AppRouteConstants.doctorHomeRouteName,
+                              );
                             }
                           },
                         ),
@@ -114,7 +126,7 @@ class _ModifyPasswordScreenState extends State<ModifyPasswordScreen> {
       child: Column(
         children: [
           BasicInfoWidget(
-            textInputAction: TextInputAction.done,
+            textInputAction: TextInputAction.next,
             controller: _oldPasswordController,
             maxLines: 1,
             obsecureText: true,
@@ -160,6 +172,7 @@ class _ModifyPasswordScreenState extends State<ModifyPasswordScreen> {
                 ),
               ),
               BasicInfoWidget(
+                textInputAction: TextInputAction.next,
                 controller: _passwordController,
                 maxLines: 1,
                 obsecureText: true,

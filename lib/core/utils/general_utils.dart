@@ -105,11 +105,9 @@ void navigateByRole(
       context.goNamed(AppRouteConstants.homeRouteName);
       return;
     case Role.doctor:
-      context.goNamed(
-        isCompleteProfile
-            ? AppRouteConstants.doctorScheduleRouteName
-            : AppRouteConstants.doctorHomeRouteName,
-      );
+      isCompleteProfile
+          ? context.pushNamed(AppRouteConstants.doctorScheduleRouteName)
+          : context.goNamed(AppRouteConstants.doctorHomeRouteName);
       return;
     case Role.labtech:
       context.goNamed(AppRouteConstants.labtechHomeRouteName);

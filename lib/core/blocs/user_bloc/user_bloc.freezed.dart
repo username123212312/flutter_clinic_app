@@ -36,6 +36,10 @@ mixin _$UserEvent {
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
     required TResult Function(int? childId) accountSwitched,
+    required TResult Function() profileFetched,
+    required TResult Function(ModifyDoctorInfoRequest request)
+    doctorProfileModified,
+    required TResult Function(int scheduleId) deleteFromSchedule,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
@@ -54,6 +58,9 @@ mixin _$UserEvent {
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
     TResult? Function(int? childId)? accountSwitched,
+    TResult? Function()? profileFetched,
+    TResult? Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult? Function(int scheduleId)? deleteFromSchedule,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
@@ -72,6 +79,9 @@ mixin _$UserEvent {
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
     TResult Function(int? childId)? accountSwitched,
+    TResult Function()? profileFetched,
+    TResult Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult Function(int scheduleId)? deleteFromSchedule,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -97,6 +107,10 @@ mixin _$UserEvent {
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
     required TResult Function(AccountSwitched value) accountSwitched,
+    required TResult Function(ProfileFetched value) profileFetched,
+    required TResult Function(DoctorProfileModified value)
+    doctorProfileModified,
+    required TResult Function(DeleteFromSchedule value) deleteFromSchedule,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
@@ -114,6 +128,9 @@ mixin _$UserEvent {
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
     TResult? Function(AccountSwitched value)? accountSwitched,
+    TResult? Function(ProfileFetched value)? profileFetched,
+    TResult? Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult? Function(DeleteFromSchedule value)? deleteFromSchedule,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
@@ -131,6 +148,9 @@ mixin _$UserEvent {
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
     TResult Function(AccountSwitched value)? accountSwitched,
+    TResult Function(ProfileFetched value)? profileFetched,
+    TResult Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult Function(DeleteFromSchedule value)? deleteFromSchedule,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -259,6 +279,10 @@ class _$UserLoggedInWithEmailImpl implements UserLoggedInWithEmail {
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
     required TResult Function(int? childId) accountSwitched,
+    required TResult Function() profileFetched,
+    required TResult Function(ModifyDoctorInfoRequest request)
+    doctorProfileModified,
+    required TResult Function(int scheduleId) deleteFromSchedule,
   }) {
     return userLoggedInWithEmail(email, password);
   }
@@ -281,6 +305,9 @@ class _$UserLoggedInWithEmailImpl implements UserLoggedInWithEmail {
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
     TResult? Function(int? childId)? accountSwitched,
+    TResult? Function()? profileFetched,
+    TResult? Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult? Function(int scheduleId)? deleteFromSchedule,
   }) {
     return userLoggedInWithEmail?.call(email, password);
   }
@@ -303,6 +330,9 @@ class _$UserLoggedInWithEmailImpl implements UserLoggedInWithEmail {
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
     TResult Function(int? childId)? accountSwitched,
+    TResult Function()? profileFetched,
+    TResult Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult Function(int scheduleId)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (userLoggedInWithEmail != null) {
@@ -335,6 +365,10 @@ class _$UserLoggedInWithEmailImpl implements UserLoggedInWithEmail {
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
     required TResult Function(AccountSwitched value) accountSwitched,
+    required TResult Function(ProfileFetched value) profileFetched,
+    required TResult Function(DoctorProfileModified value)
+    doctorProfileModified,
+    required TResult Function(DeleteFromSchedule value) deleteFromSchedule,
   }) {
     return userLoggedInWithEmail(this);
   }
@@ -356,6 +390,9 @@ class _$UserLoggedInWithEmailImpl implements UserLoggedInWithEmail {
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
     TResult? Function(AccountSwitched value)? accountSwitched,
+    TResult? Function(ProfileFetched value)? profileFetched,
+    TResult? Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult? Function(DeleteFromSchedule value)? deleteFromSchedule,
   }) {
     return userLoggedInWithEmail?.call(this);
   }
@@ -377,6 +414,9 @@ class _$UserLoggedInWithEmailImpl implements UserLoggedInWithEmail {
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
     TResult Function(AccountSwitched value)? accountSwitched,
+    TResult Function(ProfileFetched value)? profileFetched,
+    TResult Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult Function(DeleteFromSchedule value)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (userLoggedInWithEmail != null) {
@@ -506,6 +546,10 @@ class _$UserLoggedInWithPhoneImpl implements UserLoggedInWithPhone {
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
     required TResult Function(int? childId) accountSwitched,
+    required TResult Function() profileFetched,
+    required TResult Function(ModifyDoctorInfoRequest request)
+    doctorProfileModified,
+    required TResult Function(int scheduleId) deleteFromSchedule,
   }) {
     return userLoggedInWithPhone(phone, password);
   }
@@ -528,6 +572,9 @@ class _$UserLoggedInWithPhoneImpl implements UserLoggedInWithPhone {
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
     TResult? Function(int? childId)? accountSwitched,
+    TResult? Function()? profileFetched,
+    TResult? Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult? Function(int scheduleId)? deleteFromSchedule,
   }) {
     return userLoggedInWithPhone?.call(phone, password);
   }
@@ -550,6 +597,9 @@ class _$UserLoggedInWithPhoneImpl implements UserLoggedInWithPhone {
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
     TResult Function(int? childId)? accountSwitched,
+    TResult Function()? profileFetched,
+    TResult Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult Function(int scheduleId)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (userLoggedInWithPhone != null) {
@@ -582,6 +632,10 @@ class _$UserLoggedInWithPhoneImpl implements UserLoggedInWithPhone {
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
     required TResult Function(AccountSwitched value) accountSwitched,
+    required TResult Function(ProfileFetched value) profileFetched,
+    required TResult Function(DoctorProfileModified value)
+    doctorProfileModified,
+    required TResult Function(DeleteFromSchedule value) deleteFromSchedule,
   }) {
     return userLoggedInWithPhone(this);
   }
@@ -603,6 +657,9 @@ class _$UserLoggedInWithPhoneImpl implements UserLoggedInWithPhone {
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
     TResult? Function(AccountSwitched value)? accountSwitched,
+    TResult? Function(ProfileFetched value)? profileFetched,
+    TResult? Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult? Function(DeleteFromSchedule value)? deleteFromSchedule,
   }) {
     return userLoggedInWithPhone?.call(this);
   }
@@ -624,6 +681,9 @@ class _$UserLoggedInWithPhoneImpl implements UserLoggedInWithPhone {
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
     TResult Function(AccountSwitched value)? accountSwitched,
+    TResult Function(ProfileFetched value)? profileFetched,
+    TResult Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult Function(DeleteFromSchedule value)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (userLoggedInWithPhone != null) {
@@ -710,6 +770,10 @@ class _$UserLoggedInWithGoogleImpl implements UserLoggedInWithGoogle {
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
     required TResult Function(int? childId) accountSwitched,
+    required TResult Function() profileFetched,
+    required TResult Function(ModifyDoctorInfoRequest request)
+    doctorProfileModified,
+    required TResult Function(int scheduleId) deleteFromSchedule,
   }) {
     return userLoggedInWithGoogle();
   }
@@ -732,6 +796,9 @@ class _$UserLoggedInWithGoogleImpl implements UserLoggedInWithGoogle {
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
     TResult? Function(int? childId)? accountSwitched,
+    TResult? Function()? profileFetched,
+    TResult? Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult? Function(int scheduleId)? deleteFromSchedule,
   }) {
     return userLoggedInWithGoogle?.call();
   }
@@ -754,6 +821,9 @@ class _$UserLoggedInWithGoogleImpl implements UserLoggedInWithGoogle {
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
     TResult Function(int? childId)? accountSwitched,
+    TResult Function()? profileFetched,
+    TResult Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult Function(int scheduleId)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (userLoggedInWithGoogle != null) {
@@ -786,6 +856,10 @@ class _$UserLoggedInWithGoogleImpl implements UserLoggedInWithGoogle {
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
     required TResult Function(AccountSwitched value) accountSwitched,
+    required TResult Function(ProfileFetched value) profileFetched,
+    required TResult Function(DoctorProfileModified value)
+    doctorProfileModified,
+    required TResult Function(DeleteFromSchedule value) deleteFromSchedule,
   }) {
     return userLoggedInWithGoogle(this);
   }
@@ -807,6 +881,9 @@ class _$UserLoggedInWithGoogleImpl implements UserLoggedInWithGoogle {
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
     TResult? Function(AccountSwitched value)? accountSwitched,
+    TResult? Function(ProfileFetched value)? profileFetched,
+    TResult? Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult? Function(DeleteFromSchedule value)? deleteFromSchedule,
   }) {
     return userLoggedInWithGoogle?.call(this);
   }
@@ -828,6 +905,9 @@ class _$UserLoggedInWithGoogleImpl implements UserLoggedInWithGoogle {
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
     TResult Function(AccountSwitched value)? accountSwitched,
+    TResult Function(ProfileFetched value)? profileFetched,
+    TResult Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult Function(DeleteFromSchedule value)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (userLoggedInWithGoogle != null) {
@@ -932,6 +1012,10 @@ class _$UserRegisteredWithEmailImpl implements UserRegisteredWithEmail {
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
     required TResult Function(int? childId) accountSwitched,
+    required TResult Function() profileFetched,
+    required TResult Function(ModifyDoctorInfoRequest request)
+    doctorProfileModified,
+    required TResult Function(int scheduleId) deleteFromSchedule,
   }) {
     return userRegisteredWithEmail(password);
   }
@@ -954,6 +1038,9 @@ class _$UserRegisteredWithEmailImpl implements UserRegisteredWithEmail {
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
     TResult? Function(int? childId)? accountSwitched,
+    TResult? Function()? profileFetched,
+    TResult? Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult? Function(int scheduleId)? deleteFromSchedule,
   }) {
     return userRegisteredWithEmail?.call(password);
   }
@@ -976,6 +1063,9 @@ class _$UserRegisteredWithEmailImpl implements UserRegisteredWithEmail {
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
     TResult Function(int? childId)? accountSwitched,
+    TResult Function()? profileFetched,
+    TResult Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult Function(int scheduleId)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (userRegisteredWithEmail != null) {
@@ -1008,6 +1098,10 @@ class _$UserRegisteredWithEmailImpl implements UserRegisteredWithEmail {
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
     required TResult Function(AccountSwitched value) accountSwitched,
+    required TResult Function(ProfileFetched value) profileFetched,
+    required TResult Function(DoctorProfileModified value)
+    doctorProfileModified,
+    required TResult Function(DeleteFromSchedule value) deleteFromSchedule,
   }) {
     return userRegisteredWithEmail(this);
   }
@@ -1029,6 +1123,9 @@ class _$UserRegisteredWithEmailImpl implements UserRegisteredWithEmail {
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
     TResult? Function(AccountSwitched value)? accountSwitched,
+    TResult? Function(ProfileFetched value)? profileFetched,
+    TResult? Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult? Function(DeleteFromSchedule value)? deleteFromSchedule,
   }) {
     return userRegisteredWithEmail?.call(this);
   }
@@ -1050,6 +1147,9 @@ class _$UserRegisteredWithEmailImpl implements UserRegisteredWithEmail {
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
     TResult Function(AccountSwitched value)? accountSwitched,
+    TResult Function(ProfileFetched value)? profileFetched,
+    TResult Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult Function(DeleteFromSchedule value)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (userRegisteredWithEmail != null) {
@@ -1163,6 +1263,10 @@ class _$UserRegisteredWithPhoneImpl implements UserRegisteredWithPhone {
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
     required TResult Function(int? childId) accountSwitched,
+    required TResult Function() profileFetched,
+    required TResult Function(ModifyDoctorInfoRequest request)
+    doctorProfileModified,
+    required TResult Function(int scheduleId) deleteFromSchedule,
   }) {
     return userRegisteredWithPhone(password);
   }
@@ -1185,6 +1289,9 @@ class _$UserRegisteredWithPhoneImpl implements UserRegisteredWithPhone {
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
     TResult? Function(int? childId)? accountSwitched,
+    TResult? Function()? profileFetched,
+    TResult? Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult? Function(int scheduleId)? deleteFromSchedule,
   }) {
     return userRegisteredWithPhone?.call(password);
   }
@@ -1207,6 +1314,9 @@ class _$UserRegisteredWithPhoneImpl implements UserRegisteredWithPhone {
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
     TResult Function(int? childId)? accountSwitched,
+    TResult Function()? profileFetched,
+    TResult Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult Function(int scheduleId)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (userRegisteredWithPhone != null) {
@@ -1239,6 +1349,10 @@ class _$UserRegisteredWithPhoneImpl implements UserRegisteredWithPhone {
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
     required TResult Function(AccountSwitched value) accountSwitched,
+    required TResult Function(ProfileFetched value) profileFetched,
+    required TResult Function(DoctorProfileModified value)
+    doctorProfileModified,
+    required TResult Function(DeleteFromSchedule value) deleteFromSchedule,
   }) {
     return userRegisteredWithPhone(this);
   }
@@ -1260,6 +1374,9 @@ class _$UserRegisteredWithPhoneImpl implements UserRegisteredWithPhone {
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
     TResult? Function(AccountSwitched value)? accountSwitched,
+    TResult? Function(ProfileFetched value)? profileFetched,
+    TResult? Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult? Function(DeleteFromSchedule value)? deleteFromSchedule,
   }) {
     return userRegisteredWithPhone?.call(this);
   }
@@ -1281,6 +1398,9 @@ class _$UserRegisteredWithPhoneImpl implements UserRegisteredWithPhone {
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
     TResult Function(AccountSwitched value)? accountSwitched,
+    TResult Function(ProfileFetched value)? profileFetched,
+    TResult Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult Function(DeleteFromSchedule value)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (userRegisteredWithPhone != null) {
@@ -1407,6 +1527,10 @@ class _$UserModifiedImpl implements UserModified {
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
     required TResult Function(int? childId) accountSwitched,
+    required TResult Function() profileFetched,
+    required TResult Function(ModifyDoctorInfoRequest request)
+    doctorProfileModified,
+    required TResult Function(int scheduleId) deleteFromSchedule,
   }) {
     return userModified(user);
   }
@@ -1429,6 +1553,9 @@ class _$UserModifiedImpl implements UserModified {
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
     TResult? Function(int? childId)? accountSwitched,
+    TResult? Function()? profileFetched,
+    TResult? Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult? Function(int scheduleId)? deleteFromSchedule,
   }) {
     return userModified?.call(user);
   }
@@ -1451,6 +1578,9 @@ class _$UserModifiedImpl implements UserModified {
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
     TResult Function(int? childId)? accountSwitched,
+    TResult Function()? profileFetched,
+    TResult Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult Function(int scheduleId)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (userModified != null) {
@@ -1483,6 +1613,10 @@ class _$UserModifiedImpl implements UserModified {
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
     required TResult Function(AccountSwitched value) accountSwitched,
+    required TResult Function(ProfileFetched value) profileFetched,
+    required TResult Function(DoctorProfileModified value)
+    doctorProfileModified,
+    required TResult Function(DeleteFromSchedule value) deleteFromSchedule,
   }) {
     return userModified(this);
   }
@@ -1504,6 +1638,9 @@ class _$UserModifiedImpl implements UserModified {
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
     TResult? Function(AccountSwitched value)? accountSwitched,
+    TResult? Function(ProfileFetched value)? profileFetched,
+    TResult? Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult? Function(DeleteFromSchedule value)? deleteFromSchedule,
   }) {
     return userModified?.call(this);
   }
@@ -1525,6 +1662,9 @@ class _$UserModifiedImpl implements UserModified {
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
     TResult Function(AccountSwitched value)? accountSwitched,
+    TResult Function(ProfileFetched value)? profileFetched,
+    TResult Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult Function(DeleteFromSchedule value)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (userModified != null) {
@@ -1607,6 +1747,10 @@ class _$UserLoggedOutImpl implements UserLoggedOut {
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
     required TResult Function(int? childId) accountSwitched,
+    required TResult Function() profileFetched,
+    required TResult Function(ModifyDoctorInfoRequest request)
+    doctorProfileModified,
+    required TResult Function(int scheduleId) deleteFromSchedule,
   }) {
     return userLoggedOut();
   }
@@ -1629,6 +1773,9 @@ class _$UserLoggedOutImpl implements UserLoggedOut {
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
     TResult? Function(int? childId)? accountSwitched,
+    TResult? Function()? profileFetched,
+    TResult? Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult? Function(int scheduleId)? deleteFromSchedule,
   }) {
     return userLoggedOut?.call();
   }
@@ -1651,6 +1798,9 @@ class _$UserLoggedOutImpl implements UserLoggedOut {
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
     TResult Function(int? childId)? accountSwitched,
+    TResult Function()? profileFetched,
+    TResult Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult Function(int scheduleId)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (userLoggedOut != null) {
@@ -1683,6 +1833,10 @@ class _$UserLoggedOutImpl implements UserLoggedOut {
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
     required TResult Function(AccountSwitched value) accountSwitched,
+    required TResult Function(ProfileFetched value) profileFetched,
+    required TResult Function(DoctorProfileModified value)
+    doctorProfileModified,
+    required TResult Function(DeleteFromSchedule value) deleteFromSchedule,
   }) {
     return userLoggedOut(this);
   }
@@ -1704,6 +1858,9 @@ class _$UserLoggedOutImpl implements UserLoggedOut {
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
     TResult? Function(AccountSwitched value)? accountSwitched,
+    TResult? Function(ProfileFetched value)? profileFetched,
+    TResult? Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult? Function(DeleteFromSchedule value)? deleteFromSchedule,
   }) {
     return userLoggedOut?.call(this);
   }
@@ -1725,6 +1882,9 @@ class _$UserLoggedOutImpl implements UserLoggedOut {
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
     TResult Function(AccountSwitched value)? accountSwitched,
+    TResult Function(ProfileFetched value)? profileFetched,
+    TResult Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult Function(DeleteFromSchedule value)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (userLoggedOut != null) {
@@ -1840,6 +2000,10 @@ class _$UserCompletedProfileDataImpl implements UserCompletedProfileData {
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
     required TResult Function(int? childId) accountSwitched,
+    required TResult Function() profileFetched,
+    required TResult Function(ModifyDoctorInfoRequest request)
+    doctorProfileModified,
+    required TResult Function(int scheduleId) deleteFromSchedule,
   }) {
     return userCompletedProfileData(user);
   }
@@ -1862,6 +2026,9 @@ class _$UserCompletedProfileDataImpl implements UserCompletedProfileData {
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
     TResult? Function(int? childId)? accountSwitched,
+    TResult? Function()? profileFetched,
+    TResult? Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult? Function(int scheduleId)? deleteFromSchedule,
   }) {
     return userCompletedProfileData?.call(user);
   }
@@ -1884,6 +2051,9 @@ class _$UserCompletedProfileDataImpl implements UserCompletedProfileData {
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
     TResult Function(int? childId)? accountSwitched,
+    TResult Function()? profileFetched,
+    TResult Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult Function(int scheduleId)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (userCompletedProfileData != null) {
@@ -1916,6 +2086,10 @@ class _$UserCompletedProfileDataImpl implements UserCompletedProfileData {
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
     required TResult Function(AccountSwitched value) accountSwitched,
+    required TResult Function(ProfileFetched value) profileFetched,
+    required TResult Function(DoctorProfileModified value)
+    doctorProfileModified,
+    required TResult Function(DeleteFromSchedule value) deleteFromSchedule,
   }) {
     return userCompletedProfileData(this);
   }
@@ -1937,6 +2111,9 @@ class _$UserCompletedProfileDataImpl implements UserCompletedProfileData {
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
     TResult? Function(AccountSwitched value)? accountSwitched,
+    TResult? Function(ProfileFetched value)? profileFetched,
+    TResult? Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult? Function(DeleteFromSchedule value)? deleteFromSchedule,
   }) {
     return userCompletedProfileData?.call(this);
   }
@@ -1958,6 +2135,9 @@ class _$UserCompletedProfileDataImpl implements UserCompletedProfileData {
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
     TResult Function(AccountSwitched value)? accountSwitched,
+    TResult Function(ProfileFetched value)? profileFetched,
+    TResult Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult Function(DeleteFromSchedule value)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (userCompletedProfileData != null) {
@@ -2082,6 +2262,10 @@ class _$UserModifiedProfileDataImpl implements UserModifiedProfileData {
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
     required TResult Function(int? childId) accountSwitched,
+    required TResult Function() profileFetched,
+    required TResult Function(ModifyDoctorInfoRequest request)
+    doctorProfileModified,
+    required TResult Function(int scheduleId) deleteFromSchedule,
   }) {
     return userModifiedProfileData(user);
   }
@@ -2104,6 +2288,9 @@ class _$UserModifiedProfileDataImpl implements UserModifiedProfileData {
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
     TResult? Function(int? childId)? accountSwitched,
+    TResult? Function()? profileFetched,
+    TResult? Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult? Function(int scheduleId)? deleteFromSchedule,
   }) {
     return userModifiedProfileData?.call(user);
   }
@@ -2126,6 +2313,9 @@ class _$UserModifiedProfileDataImpl implements UserModifiedProfileData {
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
     TResult Function(int? childId)? accountSwitched,
+    TResult Function()? profileFetched,
+    TResult Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult Function(int scheduleId)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (userModifiedProfileData != null) {
@@ -2158,6 +2348,10 @@ class _$UserModifiedProfileDataImpl implements UserModifiedProfileData {
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
     required TResult Function(AccountSwitched value) accountSwitched,
+    required TResult Function(ProfileFetched value) profileFetched,
+    required TResult Function(DoctorProfileModified value)
+    doctorProfileModified,
+    required TResult Function(DeleteFromSchedule value) deleteFromSchedule,
   }) {
     return userModifiedProfileData(this);
   }
@@ -2179,6 +2373,9 @@ class _$UserModifiedProfileDataImpl implements UserModifiedProfileData {
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
     TResult? Function(AccountSwitched value)? accountSwitched,
+    TResult? Function(ProfileFetched value)? profileFetched,
+    TResult? Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult? Function(DeleteFromSchedule value)? deleteFromSchedule,
   }) {
     return userModifiedProfileData?.call(this);
   }
@@ -2200,6 +2397,9 @@ class _$UserModifiedProfileDataImpl implements UserModifiedProfileData {
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
     TResult Function(AccountSwitched value)? accountSwitched,
+    TResult Function(ProfileFetched value)? profileFetched,
+    TResult Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult Function(DeleteFromSchedule value)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (userModifiedProfileData != null) {
@@ -2327,6 +2527,10 @@ class _$UserModifiedPasswordImpl implements UserModifiedPassword {
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
     required TResult Function(int? childId) accountSwitched,
+    required TResult Function() profileFetched,
+    required TResult Function(ModifyDoctorInfoRequest request)
+    doctorProfileModified,
+    required TResult Function(int scheduleId) deleteFromSchedule,
   }) {
     return userModifiedPassword(newPassword, oldPassword);
   }
@@ -2349,6 +2553,9 @@ class _$UserModifiedPasswordImpl implements UserModifiedPassword {
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
     TResult? Function(int? childId)? accountSwitched,
+    TResult? Function()? profileFetched,
+    TResult? Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult? Function(int scheduleId)? deleteFromSchedule,
   }) {
     return userModifiedPassword?.call(newPassword, oldPassword);
   }
@@ -2371,6 +2578,9 @@ class _$UserModifiedPasswordImpl implements UserModifiedPassword {
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
     TResult Function(int? childId)? accountSwitched,
+    TResult Function()? profileFetched,
+    TResult Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult Function(int scheduleId)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (userModifiedPassword != null) {
@@ -2403,6 +2613,10 @@ class _$UserModifiedPasswordImpl implements UserModifiedPassword {
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
     required TResult Function(AccountSwitched value) accountSwitched,
+    required TResult Function(ProfileFetched value) profileFetched,
+    required TResult Function(DoctorProfileModified value)
+    doctorProfileModified,
+    required TResult Function(DeleteFromSchedule value) deleteFromSchedule,
   }) {
     return userModifiedPassword(this);
   }
@@ -2424,6 +2638,9 @@ class _$UserModifiedPasswordImpl implements UserModifiedPassword {
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
     TResult? Function(AccountSwitched value)? accountSwitched,
+    TResult? Function(ProfileFetched value)? profileFetched,
+    TResult? Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult? Function(DeleteFromSchedule value)? deleteFromSchedule,
   }) {
     return userModifiedPassword?.call(this);
   }
@@ -2445,6 +2662,9 @@ class _$UserModifiedPasswordImpl implements UserModifiedPassword {
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
     TResult Function(AccountSwitched value)? accountSwitched,
+    TResult Function(ProfileFetched value)? profileFetched,
+    TResult Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult Function(DeleteFromSchedule value)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (userModifiedPassword != null) {
@@ -2530,6 +2750,10 @@ class _$AllChildrenFetchedImpl implements AllChildrenFetched {
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
     required TResult Function(int? childId) accountSwitched,
+    required TResult Function() profileFetched,
+    required TResult Function(ModifyDoctorInfoRequest request)
+    doctorProfileModified,
+    required TResult Function(int scheduleId) deleteFromSchedule,
   }) {
     return allChildrenFetched();
   }
@@ -2552,6 +2776,9 @@ class _$AllChildrenFetchedImpl implements AllChildrenFetched {
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
     TResult? Function(int? childId)? accountSwitched,
+    TResult? Function()? profileFetched,
+    TResult? Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult? Function(int scheduleId)? deleteFromSchedule,
   }) {
     return allChildrenFetched?.call();
   }
@@ -2574,6 +2801,9 @@ class _$AllChildrenFetchedImpl implements AllChildrenFetched {
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
     TResult Function(int? childId)? accountSwitched,
+    TResult Function()? profileFetched,
+    TResult Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult Function(int scheduleId)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (allChildrenFetched != null) {
@@ -2606,6 +2836,10 @@ class _$AllChildrenFetchedImpl implements AllChildrenFetched {
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
     required TResult Function(AccountSwitched value) accountSwitched,
+    required TResult Function(ProfileFetched value) profileFetched,
+    required TResult Function(DoctorProfileModified value)
+    doctorProfileModified,
+    required TResult Function(DeleteFromSchedule value) deleteFromSchedule,
   }) {
     return allChildrenFetched(this);
   }
@@ -2627,6 +2861,9 @@ class _$AllChildrenFetchedImpl implements AllChildrenFetched {
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
     TResult? Function(AccountSwitched value)? accountSwitched,
+    TResult? Function(ProfileFetched value)? profileFetched,
+    TResult? Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult? Function(DeleteFromSchedule value)? deleteFromSchedule,
   }) {
     return allChildrenFetched?.call(this);
   }
@@ -2648,6 +2885,9 @@ class _$AllChildrenFetchedImpl implements AllChildrenFetched {
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
     TResult Function(AccountSwitched value)? accountSwitched,
+    TResult Function(ProfileFetched value)? profileFetched,
+    TResult Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult Function(DeleteFromSchedule value)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (allChildrenFetched != null) {
@@ -2761,6 +3001,10 @@ class _$ChildAddedImpl implements ChildAdded {
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
     required TResult Function(int? childId) accountSwitched,
+    required TResult Function() profileFetched,
+    required TResult Function(ModifyDoctorInfoRequest request)
+    doctorProfileModified,
+    required TResult Function(int scheduleId) deleteFromSchedule,
   }) {
     return childAdded(request);
   }
@@ -2783,6 +3027,9 @@ class _$ChildAddedImpl implements ChildAdded {
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
     TResult? Function(int? childId)? accountSwitched,
+    TResult? Function()? profileFetched,
+    TResult? Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult? Function(int scheduleId)? deleteFromSchedule,
   }) {
     return childAdded?.call(request);
   }
@@ -2805,6 +3052,9 @@ class _$ChildAddedImpl implements ChildAdded {
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
     TResult Function(int? childId)? accountSwitched,
+    TResult Function()? profileFetched,
+    TResult Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult Function(int scheduleId)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (childAdded != null) {
@@ -2837,6 +3087,10 @@ class _$ChildAddedImpl implements ChildAdded {
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
     required TResult Function(AccountSwitched value) accountSwitched,
+    required TResult Function(ProfileFetched value) profileFetched,
+    required TResult Function(DoctorProfileModified value)
+    doctorProfileModified,
+    required TResult Function(DeleteFromSchedule value) deleteFromSchedule,
   }) {
     return childAdded(this);
   }
@@ -2858,6 +3112,9 @@ class _$ChildAddedImpl implements ChildAdded {
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
     TResult? Function(AccountSwitched value)? accountSwitched,
+    TResult? Function(ProfileFetched value)? profileFetched,
+    TResult? Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult? Function(DeleteFromSchedule value)? deleteFromSchedule,
   }) {
     return childAdded?.call(this);
   }
@@ -2879,6 +3136,9 @@ class _$ChildAddedImpl implements ChildAdded {
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
     TResult Function(AccountSwitched value)? accountSwitched,
+    TResult Function(ProfileFetched value)? profileFetched,
+    TResult Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult Function(DeleteFromSchedule value)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (childAdded != null) {
@@ -2989,6 +3249,10 @@ class _$ChildRemovedImpl implements ChildRemoved {
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
     required TResult Function(int? childId) accountSwitched,
+    required TResult Function() profileFetched,
+    required TResult Function(ModifyDoctorInfoRequest request)
+    doctorProfileModified,
+    required TResult Function(int scheduleId) deleteFromSchedule,
   }) {
     return childRemoved(childId);
   }
@@ -3011,6 +3275,9 @@ class _$ChildRemovedImpl implements ChildRemoved {
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
     TResult? Function(int? childId)? accountSwitched,
+    TResult? Function()? profileFetched,
+    TResult? Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult? Function(int scheduleId)? deleteFromSchedule,
   }) {
     return childRemoved?.call(childId);
   }
@@ -3033,6 +3300,9 @@ class _$ChildRemovedImpl implements ChildRemoved {
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
     TResult Function(int? childId)? accountSwitched,
+    TResult Function()? profileFetched,
+    TResult Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult Function(int scheduleId)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (childRemoved != null) {
@@ -3065,6 +3335,10 @@ class _$ChildRemovedImpl implements ChildRemoved {
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
     required TResult Function(AccountSwitched value) accountSwitched,
+    required TResult Function(ProfileFetched value) profileFetched,
+    required TResult Function(DoctorProfileModified value)
+    doctorProfileModified,
+    required TResult Function(DeleteFromSchedule value) deleteFromSchedule,
   }) {
     return childRemoved(this);
   }
@@ -3086,6 +3360,9 @@ class _$ChildRemovedImpl implements ChildRemoved {
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
     TResult? Function(AccountSwitched value)? accountSwitched,
+    TResult? Function(ProfileFetched value)? profileFetched,
+    TResult? Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult? Function(DeleteFromSchedule value)? deleteFromSchedule,
   }) {
     return childRemoved?.call(this);
   }
@@ -3107,6 +3384,9 @@ class _$ChildRemovedImpl implements ChildRemoved {
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
     TResult Function(AccountSwitched value)? accountSwitched,
+    TResult Function(ProfileFetched value)? profileFetched,
+    TResult Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult Function(DeleteFromSchedule value)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (childRemoved != null) {
@@ -3219,6 +3499,10 @@ class _$AccountSwitchedImpl implements AccountSwitched {
     required TResult Function(CompleteUserInfoRequest request) childAdded,
     required TResult Function(int childId) childRemoved,
     required TResult Function(int? childId) accountSwitched,
+    required TResult Function() profileFetched,
+    required TResult Function(ModifyDoctorInfoRequest request)
+    doctorProfileModified,
+    required TResult Function(int scheduleId) deleteFromSchedule,
   }) {
     return accountSwitched(childId);
   }
@@ -3241,6 +3525,9 @@ class _$AccountSwitchedImpl implements AccountSwitched {
     TResult? Function(CompleteUserInfoRequest request)? childAdded,
     TResult? Function(int childId)? childRemoved,
     TResult? Function(int? childId)? accountSwitched,
+    TResult? Function()? profileFetched,
+    TResult? Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult? Function(int scheduleId)? deleteFromSchedule,
   }) {
     return accountSwitched?.call(childId);
   }
@@ -3263,6 +3550,9 @@ class _$AccountSwitchedImpl implements AccountSwitched {
     TResult Function(CompleteUserInfoRequest request)? childAdded,
     TResult Function(int childId)? childRemoved,
     TResult Function(int? childId)? accountSwitched,
+    TResult Function()? profileFetched,
+    TResult Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult Function(int scheduleId)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (accountSwitched != null) {
@@ -3295,6 +3585,10 @@ class _$AccountSwitchedImpl implements AccountSwitched {
     required TResult Function(ChildAdded value) childAdded,
     required TResult Function(ChildRemoved value) childRemoved,
     required TResult Function(AccountSwitched value) accountSwitched,
+    required TResult Function(ProfileFetched value) profileFetched,
+    required TResult Function(DoctorProfileModified value)
+    doctorProfileModified,
+    required TResult Function(DeleteFromSchedule value) deleteFromSchedule,
   }) {
     return accountSwitched(this);
   }
@@ -3316,6 +3610,9 @@ class _$AccountSwitchedImpl implements AccountSwitched {
     TResult? Function(ChildAdded value)? childAdded,
     TResult? Function(ChildRemoved value)? childRemoved,
     TResult? Function(AccountSwitched value)? accountSwitched,
+    TResult? Function(ProfileFetched value)? profileFetched,
+    TResult? Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult? Function(DeleteFromSchedule value)? deleteFromSchedule,
   }) {
     return accountSwitched?.call(this);
   }
@@ -3337,6 +3634,9 @@ class _$AccountSwitchedImpl implements AccountSwitched {
     TResult Function(ChildAdded value)? childAdded,
     TResult Function(ChildRemoved value)? childRemoved,
     TResult Function(AccountSwitched value)? accountSwitched,
+    TResult Function(ProfileFetched value)? profileFetched,
+    TResult Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult Function(DeleteFromSchedule value)? deleteFromSchedule,
     required TResult orElse(),
   }) {
     if (accountSwitched != null) {
@@ -3355,6 +3655,734 @@ abstract class AccountSwitched implements UserEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AccountSwitchedImplCopyWith<_$AccountSwitchedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ProfileFetchedImplCopyWith<$Res> {
+  factory _$$ProfileFetchedImplCopyWith(
+    _$ProfileFetchedImpl value,
+    $Res Function(_$ProfileFetchedImpl) then,
+  ) = __$$ProfileFetchedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ProfileFetchedImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$ProfileFetchedImpl>
+    implements _$$ProfileFetchedImplCopyWith<$Res> {
+  __$$ProfileFetchedImplCopyWithImpl(
+    _$ProfileFetchedImpl _value,
+    $Res Function(_$ProfileFetchedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ProfileFetchedImpl implements ProfileFetched {
+  const _$ProfileFetchedImpl();
+
+  @override
+  String toString() {
+    return 'UserEvent.profileFetched()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ProfileFetchedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password)
+    userLoggedInWithEmail,
+    required TResult Function(String phone, String password)
+    userLoggedInWithPhone,
+    required TResult Function() userLoggedInWithGoogle,
+    required TResult Function(String password) userRegisteredWithEmail,
+    required TResult Function(String password) userRegisteredWithPhone,
+    required TResult Function(UserModel? user) userModified,
+    required TResult Function() userLoggedOut,
+    required TResult Function(UserModel user) userCompletedProfileData,
+    required TResult Function(UserModel user) userModifiedProfileData,
+    required TResult Function(String newPassword, String oldPassword)
+    userModifiedPassword,
+    required TResult Function() allChildrenFetched,
+    required TResult Function(CompleteUserInfoRequest request) childAdded,
+    required TResult Function(int childId) childRemoved,
+    required TResult Function(int? childId) accountSwitched,
+    required TResult Function() profileFetched,
+    required TResult Function(ModifyDoctorInfoRequest request)
+    doctorProfileModified,
+    required TResult Function(int scheduleId) deleteFromSchedule,
+  }) {
+    return profileFetched();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? userLoggedInWithEmail,
+    TResult? Function(String phone, String password)? userLoggedInWithPhone,
+    TResult? Function()? userLoggedInWithGoogle,
+    TResult? Function(String password)? userRegisteredWithEmail,
+    TResult? Function(String password)? userRegisteredWithPhone,
+    TResult? Function(UserModel? user)? userModified,
+    TResult? Function()? userLoggedOut,
+    TResult? Function(UserModel user)? userCompletedProfileData,
+    TResult? Function(UserModel user)? userModifiedProfileData,
+    TResult? Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    TResult? Function()? allChildrenFetched,
+    TResult? Function(CompleteUserInfoRequest request)? childAdded,
+    TResult? Function(int childId)? childRemoved,
+    TResult? Function(int? childId)? accountSwitched,
+    TResult? Function()? profileFetched,
+    TResult? Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult? Function(int scheduleId)? deleteFromSchedule,
+  }) {
+    return profileFetched?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? userLoggedInWithEmail,
+    TResult Function(String phone, String password)? userLoggedInWithPhone,
+    TResult Function()? userLoggedInWithGoogle,
+    TResult Function(String password)? userRegisteredWithEmail,
+    TResult Function(String password)? userRegisteredWithPhone,
+    TResult Function(UserModel? user)? userModified,
+    TResult Function()? userLoggedOut,
+    TResult Function(UserModel user)? userCompletedProfileData,
+    TResult Function(UserModel user)? userModifiedProfileData,
+    TResult Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    TResult Function()? allChildrenFetched,
+    TResult Function(CompleteUserInfoRequest request)? childAdded,
+    TResult Function(int childId)? childRemoved,
+    TResult Function(int? childId)? accountSwitched,
+    TResult Function()? profileFetched,
+    TResult Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult Function(int scheduleId)? deleteFromSchedule,
+    required TResult orElse(),
+  }) {
+    if (profileFetched != null) {
+      return profileFetched();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserLoggedInWithEmail value)
+    userLoggedInWithEmail,
+    required TResult Function(UserLoggedInWithPhone value)
+    userLoggedInWithPhone,
+    required TResult Function(UserLoggedInWithGoogle value)
+    userLoggedInWithGoogle,
+    required TResult Function(UserRegisteredWithEmail value)
+    userRegisteredWithEmail,
+    required TResult Function(UserRegisteredWithPhone value)
+    userRegisteredWithPhone,
+    required TResult Function(UserModified value) userModified,
+    required TResult Function(UserLoggedOut value) userLoggedOut,
+    required TResult Function(UserCompletedProfileData value)
+    userCompletedProfileData,
+    required TResult Function(UserModifiedProfileData value)
+    userModifiedProfileData,
+    required TResult Function(UserModifiedPassword value) userModifiedPassword,
+    required TResult Function(AllChildrenFetched value) allChildrenFetched,
+    required TResult Function(ChildAdded value) childAdded,
+    required TResult Function(ChildRemoved value) childRemoved,
+    required TResult Function(AccountSwitched value) accountSwitched,
+    required TResult Function(ProfileFetched value) profileFetched,
+    required TResult Function(DoctorProfileModified value)
+    doctorProfileModified,
+    required TResult Function(DeleteFromSchedule value) deleteFromSchedule,
+  }) {
+    return profileFetched(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult? Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult? Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult? Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult? Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult? Function(UserModified value)? userModified,
+    TResult? Function(UserLoggedOut value)? userLoggedOut,
+    TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult? Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult? Function(ChildAdded value)? childAdded,
+    TResult? Function(ChildRemoved value)? childRemoved,
+    TResult? Function(AccountSwitched value)? accountSwitched,
+    TResult? Function(ProfileFetched value)? profileFetched,
+    TResult? Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult? Function(DeleteFromSchedule value)? deleteFromSchedule,
+  }) {
+    return profileFetched?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult Function(UserModified value)? userModified,
+    TResult Function(UserLoggedOut value)? userLoggedOut,
+    TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult Function(ChildAdded value)? childAdded,
+    TResult Function(ChildRemoved value)? childRemoved,
+    TResult Function(AccountSwitched value)? accountSwitched,
+    TResult Function(ProfileFetched value)? profileFetched,
+    TResult Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult Function(DeleteFromSchedule value)? deleteFromSchedule,
+    required TResult orElse(),
+  }) {
+    if (profileFetched != null) {
+      return profileFetched(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ProfileFetched implements UserEvent {
+  const factory ProfileFetched() = _$ProfileFetchedImpl;
+}
+
+/// @nodoc
+abstract class _$$DoctorProfileModifiedImplCopyWith<$Res> {
+  factory _$$DoctorProfileModifiedImplCopyWith(
+    _$DoctorProfileModifiedImpl value,
+    $Res Function(_$DoctorProfileModifiedImpl) then,
+  ) = __$$DoctorProfileModifiedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ModifyDoctorInfoRequest request});
+
+  $ModifyDoctorInfoRequestCopyWith<$Res> get request;
+}
+
+/// @nodoc
+class __$$DoctorProfileModifiedImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$DoctorProfileModifiedImpl>
+    implements _$$DoctorProfileModifiedImplCopyWith<$Res> {
+  __$$DoctorProfileModifiedImplCopyWithImpl(
+    _$DoctorProfileModifiedImpl _value,
+    $Res Function(_$DoctorProfileModifiedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? request = null}) {
+    return _then(
+      _$DoctorProfileModifiedImpl(
+        request:
+            null == request
+                ? _value.request
+                : request // ignore: cast_nullable_to_non_nullable
+                    as ModifyDoctorInfoRequest,
+      ),
+    );
+  }
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ModifyDoctorInfoRequestCopyWith<$Res> get request {
+    return $ModifyDoctorInfoRequestCopyWith<$Res>(_value.request, (value) {
+      return _then(_value.copyWith(request: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$DoctorProfileModifiedImpl implements DoctorProfileModified {
+  const _$DoctorProfileModifiedImpl({required this.request});
+
+  @override
+  final ModifyDoctorInfoRequest request;
+
+  @override
+  String toString() {
+    return 'UserEvent.doctorProfileModified(request: $request)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DoctorProfileModifiedImpl &&
+            (identical(other.request, request) || other.request == request));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, request);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DoctorProfileModifiedImplCopyWith<_$DoctorProfileModifiedImpl>
+  get copyWith =>
+      __$$DoctorProfileModifiedImplCopyWithImpl<_$DoctorProfileModifiedImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password)
+    userLoggedInWithEmail,
+    required TResult Function(String phone, String password)
+    userLoggedInWithPhone,
+    required TResult Function() userLoggedInWithGoogle,
+    required TResult Function(String password) userRegisteredWithEmail,
+    required TResult Function(String password) userRegisteredWithPhone,
+    required TResult Function(UserModel? user) userModified,
+    required TResult Function() userLoggedOut,
+    required TResult Function(UserModel user) userCompletedProfileData,
+    required TResult Function(UserModel user) userModifiedProfileData,
+    required TResult Function(String newPassword, String oldPassword)
+    userModifiedPassword,
+    required TResult Function() allChildrenFetched,
+    required TResult Function(CompleteUserInfoRequest request) childAdded,
+    required TResult Function(int childId) childRemoved,
+    required TResult Function(int? childId) accountSwitched,
+    required TResult Function() profileFetched,
+    required TResult Function(ModifyDoctorInfoRequest request)
+    doctorProfileModified,
+    required TResult Function(int scheduleId) deleteFromSchedule,
+  }) {
+    return doctorProfileModified(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? userLoggedInWithEmail,
+    TResult? Function(String phone, String password)? userLoggedInWithPhone,
+    TResult? Function()? userLoggedInWithGoogle,
+    TResult? Function(String password)? userRegisteredWithEmail,
+    TResult? Function(String password)? userRegisteredWithPhone,
+    TResult? Function(UserModel? user)? userModified,
+    TResult? Function()? userLoggedOut,
+    TResult? Function(UserModel user)? userCompletedProfileData,
+    TResult? Function(UserModel user)? userModifiedProfileData,
+    TResult? Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    TResult? Function()? allChildrenFetched,
+    TResult? Function(CompleteUserInfoRequest request)? childAdded,
+    TResult? Function(int childId)? childRemoved,
+    TResult? Function(int? childId)? accountSwitched,
+    TResult? Function()? profileFetched,
+    TResult? Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult? Function(int scheduleId)? deleteFromSchedule,
+  }) {
+    return doctorProfileModified?.call(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? userLoggedInWithEmail,
+    TResult Function(String phone, String password)? userLoggedInWithPhone,
+    TResult Function()? userLoggedInWithGoogle,
+    TResult Function(String password)? userRegisteredWithEmail,
+    TResult Function(String password)? userRegisteredWithPhone,
+    TResult Function(UserModel? user)? userModified,
+    TResult Function()? userLoggedOut,
+    TResult Function(UserModel user)? userCompletedProfileData,
+    TResult Function(UserModel user)? userModifiedProfileData,
+    TResult Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    TResult Function()? allChildrenFetched,
+    TResult Function(CompleteUserInfoRequest request)? childAdded,
+    TResult Function(int childId)? childRemoved,
+    TResult Function(int? childId)? accountSwitched,
+    TResult Function()? profileFetched,
+    TResult Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult Function(int scheduleId)? deleteFromSchedule,
+    required TResult orElse(),
+  }) {
+    if (doctorProfileModified != null) {
+      return doctorProfileModified(request);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserLoggedInWithEmail value)
+    userLoggedInWithEmail,
+    required TResult Function(UserLoggedInWithPhone value)
+    userLoggedInWithPhone,
+    required TResult Function(UserLoggedInWithGoogle value)
+    userLoggedInWithGoogle,
+    required TResult Function(UserRegisteredWithEmail value)
+    userRegisteredWithEmail,
+    required TResult Function(UserRegisteredWithPhone value)
+    userRegisteredWithPhone,
+    required TResult Function(UserModified value) userModified,
+    required TResult Function(UserLoggedOut value) userLoggedOut,
+    required TResult Function(UserCompletedProfileData value)
+    userCompletedProfileData,
+    required TResult Function(UserModifiedProfileData value)
+    userModifiedProfileData,
+    required TResult Function(UserModifiedPassword value) userModifiedPassword,
+    required TResult Function(AllChildrenFetched value) allChildrenFetched,
+    required TResult Function(ChildAdded value) childAdded,
+    required TResult Function(ChildRemoved value) childRemoved,
+    required TResult Function(AccountSwitched value) accountSwitched,
+    required TResult Function(ProfileFetched value) profileFetched,
+    required TResult Function(DoctorProfileModified value)
+    doctorProfileModified,
+    required TResult Function(DeleteFromSchedule value) deleteFromSchedule,
+  }) {
+    return doctorProfileModified(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult? Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult? Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult? Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult? Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult? Function(UserModified value)? userModified,
+    TResult? Function(UserLoggedOut value)? userLoggedOut,
+    TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult? Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult? Function(ChildAdded value)? childAdded,
+    TResult? Function(ChildRemoved value)? childRemoved,
+    TResult? Function(AccountSwitched value)? accountSwitched,
+    TResult? Function(ProfileFetched value)? profileFetched,
+    TResult? Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult? Function(DeleteFromSchedule value)? deleteFromSchedule,
+  }) {
+    return doctorProfileModified?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult Function(UserModified value)? userModified,
+    TResult Function(UserLoggedOut value)? userLoggedOut,
+    TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult Function(ChildAdded value)? childAdded,
+    TResult Function(ChildRemoved value)? childRemoved,
+    TResult Function(AccountSwitched value)? accountSwitched,
+    TResult Function(ProfileFetched value)? profileFetched,
+    TResult Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult Function(DeleteFromSchedule value)? deleteFromSchedule,
+    required TResult orElse(),
+  }) {
+    if (doctorProfileModified != null) {
+      return doctorProfileModified(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DoctorProfileModified implements UserEvent {
+  const factory DoctorProfileModified({
+    required final ModifyDoctorInfoRequest request,
+  }) = _$DoctorProfileModifiedImpl;
+
+  ModifyDoctorInfoRequest get request;
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DoctorProfileModifiedImplCopyWith<_$DoctorProfileModifiedImpl>
+  get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteFromScheduleImplCopyWith<$Res> {
+  factory _$$DeleteFromScheduleImplCopyWith(
+    _$DeleteFromScheduleImpl value,
+    $Res Function(_$DeleteFromScheduleImpl) then,
+  ) = __$$DeleteFromScheduleImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int scheduleId});
+}
+
+/// @nodoc
+class __$$DeleteFromScheduleImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$DeleteFromScheduleImpl>
+    implements _$$DeleteFromScheduleImplCopyWith<$Res> {
+  __$$DeleteFromScheduleImplCopyWithImpl(
+    _$DeleteFromScheduleImpl _value,
+    $Res Function(_$DeleteFromScheduleImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? scheduleId = null}) {
+    return _then(
+      _$DeleteFromScheduleImpl(
+        scheduleId:
+            null == scheduleId
+                ? _value.scheduleId
+                : scheduleId // ignore: cast_nullable_to_non_nullable
+                    as int,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$DeleteFromScheduleImpl implements DeleteFromSchedule {
+  const _$DeleteFromScheduleImpl({required this.scheduleId});
+
+  @override
+  final int scheduleId;
+
+  @override
+  String toString() {
+    return 'UserEvent.deleteFromSchedule(scheduleId: $scheduleId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteFromScheduleImpl &&
+            (identical(other.scheduleId, scheduleId) ||
+                other.scheduleId == scheduleId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, scheduleId);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteFromScheduleImplCopyWith<_$DeleteFromScheduleImpl> get copyWith =>
+      __$$DeleteFromScheduleImplCopyWithImpl<_$DeleteFromScheduleImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password)
+    userLoggedInWithEmail,
+    required TResult Function(String phone, String password)
+    userLoggedInWithPhone,
+    required TResult Function() userLoggedInWithGoogle,
+    required TResult Function(String password) userRegisteredWithEmail,
+    required TResult Function(String password) userRegisteredWithPhone,
+    required TResult Function(UserModel? user) userModified,
+    required TResult Function() userLoggedOut,
+    required TResult Function(UserModel user) userCompletedProfileData,
+    required TResult Function(UserModel user) userModifiedProfileData,
+    required TResult Function(String newPassword, String oldPassword)
+    userModifiedPassword,
+    required TResult Function() allChildrenFetched,
+    required TResult Function(CompleteUserInfoRequest request) childAdded,
+    required TResult Function(int childId) childRemoved,
+    required TResult Function(int? childId) accountSwitched,
+    required TResult Function() profileFetched,
+    required TResult Function(ModifyDoctorInfoRequest request)
+    doctorProfileModified,
+    required TResult Function(int scheduleId) deleteFromSchedule,
+  }) {
+    return deleteFromSchedule(scheduleId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? userLoggedInWithEmail,
+    TResult? Function(String phone, String password)? userLoggedInWithPhone,
+    TResult? Function()? userLoggedInWithGoogle,
+    TResult? Function(String password)? userRegisteredWithEmail,
+    TResult? Function(String password)? userRegisteredWithPhone,
+    TResult? Function(UserModel? user)? userModified,
+    TResult? Function()? userLoggedOut,
+    TResult? Function(UserModel user)? userCompletedProfileData,
+    TResult? Function(UserModel user)? userModifiedProfileData,
+    TResult? Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    TResult? Function()? allChildrenFetched,
+    TResult? Function(CompleteUserInfoRequest request)? childAdded,
+    TResult? Function(int childId)? childRemoved,
+    TResult? Function(int? childId)? accountSwitched,
+    TResult? Function()? profileFetched,
+    TResult? Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult? Function(int scheduleId)? deleteFromSchedule,
+  }) {
+    return deleteFromSchedule?.call(scheduleId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? userLoggedInWithEmail,
+    TResult Function(String phone, String password)? userLoggedInWithPhone,
+    TResult Function()? userLoggedInWithGoogle,
+    TResult Function(String password)? userRegisteredWithEmail,
+    TResult Function(String password)? userRegisteredWithPhone,
+    TResult Function(UserModel? user)? userModified,
+    TResult Function()? userLoggedOut,
+    TResult Function(UserModel user)? userCompletedProfileData,
+    TResult Function(UserModel user)? userModifiedProfileData,
+    TResult Function(String newPassword, String oldPassword)?
+    userModifiedPassword,
+    TResult Function()? allChildrenFetched,
+    TResult Function(CompleteUserInfoRequest request)? childAdded,
+    TResult Function(int childId)? childRemoved,
+    TResult Function(int? childId)? accountSwitched,
+    TResult Function()? profileFetched,
+    TResult Function(ModifyDoctorInfoRequest request)? doctorProfileModified,
+    TResult Function(int scheduleId)? deleteFromSchedule,
+    required TResult orElse(),
+  }) {
+    if (deleteFromSchedule != null) {
+      return deleteFromSchedule(scheduleId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserLoggedInWithEmail value)
+    userLoggedInWithEmail,
+    required TResult Function(UserLoggedInWithPhone value)
+    userLoggedInWithPhone,
+    required TResult Function(UserLoggedInWithGoogle value)
+    userLoggedInWithGoogle,
+    required TResult Function(UserRegisteredWithEmail value)
+    userRegisteredWithEmail,
+    required TResult Function(UserRegisteredWithPhone value)
+    userRegisteredWithPhone,
+    required TResult Function(UserModified value) userModified,
+    required TResult Function(UserLoggedOut value) userLoggedOut,
+    required TResult Function(UserCompletedProfileData value)
+    userCompletedProfileData,
+    required TResult Function(UserModifiedProfileData value)
+    userModifiedProfileData,
+    required TResult Function(UserModifiedPassword value) userModifiedPassword,
+    required TResult Function(AllChildrenFetched value) allChildrenFetched,
+    required TResult Function(ChildAdded value) childAdded,
+    required TResult Function(ChildRemoved value) childRemoved,
+    required TResult Function(AccountSwitched value) accountSwitched,
+    required TResult Function(ProfileFetched value) profileFetched,
+    required TResult Function(DoctorProfileModified value)
+    doctorProfileModified,
+    required TResult Function(DeleteFromSchedule value) deleteFromSchedule,
+  }) {
+    return deleteFromSchedule(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult? Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult? Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult? Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult? Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult? Function(UserModified value)? userModified,
+    TResult? Function(UserLoggedOut value)? userLoggedOut,
+    TResult? Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult? Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult? Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult? Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult? Function(ChildAdded value)? childAdded,
+    TResult? Function(ChildRemoved value)? childRemoved,
+    TResult? Function(AccountSwitched value)? accountSwitched,
+    TResult? Function(ProfileFetched value)? profileFetched,
+    TResult? Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult? Function(DeleteFromSchedule value)? deleteFromSchedule,
+  }) {
+    return deleteFromSchedule?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserLoggedInWithEmail value)? userLoggedInWithEmail,
+    TResult Function(UserLoggedInWithPhone value)? userLoggedInWithPhone,
+    TResult Function(UserLoggedInWithGoogle value)? userLoggedInWithGoogle,
+    TResult Function(UserRegisteredWithEmail value)? userRegisteredWithEmail,
+    TResult Function(UserRegisteredWithPhone value)? userRegisteredWithPhone,
+    TResult Function(UserModified value)? userModified,
+    TResult Function(UserLoggedOut value)? userLoggedOut,
+    TResult Function(UserCompletedProfileData value)? userCompletedProfileData,
+    TResult Function(UserModifiedProfileData value)? userModifiedProfileData,
+    TResult Function(UserModifiedPassword value)? userModifiedPassword,
+    TResult Function(AllChildrenFetched value)? allChildrenFetched,
+    TResult Function(ChildAdded value)? childAdded,
+    TResult Function(ChildRemoved value)? childRemoved,
+    TResult Function(AccountSwitched value)? accountSwitched,
+    TResult Function(ProfileFetched value)? profileFetched,
+    TResult Function(DoctorProfileModified value)? doctorProfileModified,
+    TResult Function(DeleteFromSchedule value)? deleteFromSchedule,
+    required TResult orElse(),
+  }) {
+    if (deleteFromSchedule != null) {
+      return deleteFromSchedule(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DeleteFromSchedule implements UserEvent {
+  const factory DeleteFromSchedule({required final int scheduleId}) =
+      _$DeleteFromScheduleImpl;
+
+  int get scheduleId;
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DeleteFromScheduleImplCopyWith<_$DeleteFromScheduleImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

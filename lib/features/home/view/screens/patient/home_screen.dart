@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -10,6 +12,7 @@ import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
+import '../../widgets/child_info_dialog.dart';
 import '../../widgets/home/home_screen_widget.dart';
 import '../../widgets/home_widgets.dart';
 import '../../widgets/profile/profile_widget.dart';
@@ -280,75 +283,92 @@ class SwitchProfilesSheetWidget extends StatelessWidget {
                           return _buildPlaceHolder(context);
                         }
                         final child = state.children[index];
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 10.0),
-                          child: Container(
-                            width: screenWidth(context),
-                            height: screenHeight(context) * 0.075,
-                            decoration: BoxDecoration(
-                              color: Pallete.grayScaleColor200,
-                              borderRadius: BorderRadius.circular(13),
-                            ),
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 5,
-                            ),
-                            child: Row(
-                              spacing: 10,
-                              children: [
-                                Container(
-                                  width: 50,
-                                  height: 70,
-                                  clipBehavior: Clip.hardEdge,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
+                        return GestureDetector(
+                          behavior: HitTestBehavior.opaque,
+                          onTap: () {
+                            showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  backgroundColor: Pallete.grayScaleColor200,
+                                  content: ChildInfoDialog(child: child),
+                                );
+                              },
+                            );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 10.0),
+                            child: Container(
+                              width: screenWidth(context),
+                              height: screenHeight(context) * 0.075,
+                              decoration: BoxDecoration(
+                                color: Pallete.grayScaleColor200,
+                                borderRadius: BorderRadius.circular(13),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 5,
+                              ),
+                              child: Row(
+                                spacing: 10,
+                                children: [
+                                  Container(
+                                    width: 50,
+                                    height: 70,
+                                    clipBehavior: Clip.hardEdge,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Lottie.asset(
+                                      'assets/lottie/single_child_icon_lottie.json',
+                                    ),
                                   ),
-                                  child: Lottie.asset(
-                                    'assets/lottie/single_child_icon_lottie.json',
+                                  Text(
+                                    '${child.firstName ?? 'No'} ${child.lastName ?? 'User'}',
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.displaySmall!.copyWith(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  '${child.firstName ?? 'No'} ${child.lastName ?? 'User'}',
-                                  style: Theme.of(
-                                    context,
-                                  ).textTheme.displaySmall!.copyWith(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                if ((state.currentChildId ?? -1) !=
-                                    child.id) ...[
-                                  Spacer(),
-                                  IconButton.outlined(
-                                    style: IconButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(25),
-                                        side: BorderSide(
-                                          width: 1,
-                                          color:
-                                              Theme.of(
-                                                context,
-                                              ).colorScheme.primary,
+                                  if ((state.currentChildId ?? -1) !=
+                                      child.id) ...[
+                                    Spacer(),
+                                    IconButton.outlined(
+                                      style: IconButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            25,
+                                          ),
+                                          side: BorderSide(
+                                            width: 1,
+                                            color:
+                                                Theme.of(
+                                                  context,
+                                                ).colorScheme.primary,
+                                          ),
                                         ),
                                       ),
+                                      onPressed: () {
+                                        userBloc.add(
+                                          AccountSwitched(childId: child.id),
+                                        );
+                                        context.pop();
+                                        context.goNamed(
+                                          AppRouteConstants
+                                              .switchAccountRouteName,
+                                        );
+                                      },
+                                      icon: Icon(
+                                        FontAwesomeIcons.arrowsRotate,
+                                        size: 15,
+                                      ),
                                     ),
-                                    onPressed: () {
-                                      userBloc.add(
-                                        AccountSwitched(childId: child.id),
-                                      );
-                                      context.pop();
-                                      context.goNamed(
-                                        AppRouteConstants
-                                            .switchAccountRouteName,
-                                      );
-                                    },
-                                    icon: Icon(
-                                      FontAwesomeIcons.arrowsRotate,
-                                      size: 15,
-                                    ),
-                                  ),
+                                  ],
                                 ],
-                              ],
+                              ),
                             ),
                           ),
                         );

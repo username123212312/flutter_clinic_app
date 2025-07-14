@@ -50,17 +50,17 @@ class DoctorScheduleRepository {
               workDays.map((workDay) {
                 return {
                   'day': workDay.day,
-                  'shift': workDay.availableShifts?.first.toJson,
+                  'Shift': workDay.availableShifts?.first.toJson,
                 };
               }).toList(),
         },
       );
       if (response.data['statusCode'] < 300) {
         return Right(
-          AppResponse(success: true, message: 'Work days fetched successfuly'),
+          AppResponse(success: true, message: 'Schedule is set successfuly'),
         );
       } else {
-        throw HttpException('Work days are not fetched');
+        throw HttpException('Schedule is not set');
       }
     } on DioException catch (e) {
       return Left(AppFailure(message: e.message ?? 'Error'));

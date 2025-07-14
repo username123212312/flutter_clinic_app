@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:our_flutter_clinic_app/core/widgets/custom_cached_network_image.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/general_utils.dart';
@@ -9,7 +10,14 @@ class ProfileImagePicker extends StatelessWidget {
   final File? image;
   final VoidCallback onPick;
 
-  const ProfileImagePicker({super.key, this.image, required this.onPick});
+  final String? existingImagePath;
+
+  const ProfileImagePicker({
+    super.key,
+    this.image,
+    required this.onPick,
+    this.existingImagePath,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +38,14 @@ class ProfileImagePicker extends StatelessWidget {
             color: Pallete.grayScaleColor0,
           ),
           child:
-              image != null
-                  ? ClipRRect(
+              image == null
+                  ? existingImagePath == null
+                      ? SizedBox()
+                      : CustomCachedNetworkImage(imagePath: existingImagePath!)
+                  : ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.file(image!, fit: BoxFit.contain),
-                  )
-                  : const SizedBox(),
+                    child: Image.file(image!, fit: BoxFit.cover),
+                  ),
         ),
         Positioned(
           right: -9,

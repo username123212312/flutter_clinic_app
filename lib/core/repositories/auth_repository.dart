@@ -20,7 +20,7 @@ class AuthRepository {
     final Response response;
     try {
       response = await _dio.get(AppConstants.authWithTokenPath);
-      if (response.data['statusCode']! < 300) {
+      if (response.data['statusCode'] < 300) {
         return Right(
           AppResponse<UserModel>(
             success: true,
@@ -31,7 +31,7 @@ class AuthRepository {
           ),
         );
       } else {
-        throw (HttpException(response.data['error']));
+        throw (HttpException('Authentication failure'));
       }
     } catch (e) {
       return Left(

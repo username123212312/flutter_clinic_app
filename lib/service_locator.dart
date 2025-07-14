@@ -11,9 +11,11 @@ import 'core/cubits/change_password_cubit/change_password_cubit.dart';
 import 'core/repositories/auth_repository.dart';
 import 'core/repositories/change_password_repository.dart';
 import 'features/home/controller/analysis_list_bloc/analysis_list_bloc.dart';
+import 'features/home/controller/doctor_appointments_bloc/doctor_appointments_bloc.dart';
 import 'features/home/controller/home_bloc/home_bloc.dart';
 import 'features/home/controller/labtech_analysis_bloc/labtech_analysis_bloc.dart';
 import 'features/home/controller/labtech_analysis_info/labtech_analysis_info_bloc.dart';
+import 'features/home/repository/doctor_appointments_repository.dart';
 import 'features/home/repository/labtech_analysis_repository.dart';
 
 class ServiceLocator {
@@ -69,6 +71,12 @@ class ServiceLocator {
     _instance.registerLazySingleton<ChangePasswordCubit>(
       () => ChangePasswordCubit(
         changePasswordRepository: _instance<ChangePasswordRepository>(),
+      ),
+    );
+    _instance.registerLazySingleton(() => DoctorAppointmentsRepository());
+    _instance.registerLazySingleton(
+      () => DoctorAppointmentsBloc(
+        doctorAppointmentsRepository: _instance<DoctorAppointmentsRepository>(),
       ),
     );
   }

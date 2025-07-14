@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:our_flutter_clinic_app/core/enums.dart';
@@ -8,7 +10,7 @@ import 'package:our_flutter_clinic_app/features/home/controller/doctor_schedule_
 import 'package:our_flutter_clinic_app/features/home/repository/doctor_schedule_repository.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../../../../core/navigation/navigation_exports.dart';
+import '../../../../../core/navigation/app_route_constants.dart';
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/general_utils.dart';
 import '../../../../auth/view/widgets/custom_button.dart';
@@ -202,18 +204,48 @@ class _DoctorScheduleScreenState extends State<DoctorScheduleScreen> {
               ),
 
               Center(
-                child: CustomButton(
-                  text: "Save The Schedule",
-                  onPressed: () {
-                    context.goNamed(AppRouteConstants.doctorHomeRouteName);
+                child: BlocConsumer<DoctorScheduleCubit, DoctorScheduleState>(
+                  bloc: _doctorScheduleCubit,
+                  listener: (context, state) {
+                    if (state.status.isLoading) {
+                      LoadingOverlay().show(context);
+                    } else {
+                      LoadingOverlay().hideAll();
+                      if (state.status.isDone) {
+                        Fluttertoast.showToast(msg: state.message);
+                        context.goNamed(AppRouteConstants.doctorHomeRouteName);
+                      }
+                      if (state.status.isError) {
+                        Fluttertoast.showToast(msg: state.message);
+                      }
+                    }
                   },
-                  color: Pallete.primaryColor,
-                  width: screenWidth(context) * 0.5,
-                  height: screenHeight(context) * 0.065,
-                  padding: const EdgeInsets.all(16),
-                  borderRadius: 32,
-                  fontSize: 16,
-                  textColor: Pallete.grayScaleColor0,
+                  builder: (context, state) {
+                    return CustomButton(
+                      text: "Save The Schedule",
+                      onPressed:
+                          selectedShifts.isEmpty
+                              ? null
+                              : () {
+                                if (_validateList()) {
+                                  _doctorScheduleCubit.setSchedule(
+                                    workDays: selectedShifts,
+                                  );
+                                } else {
+                                  Fluttertoast.showToast(
+                                    msg: 'You must select Shifts',
+                                  );
+                                }
+                              },
+                      color: Pallete.primaryColor,
+                      width: screenWidth(context) * 0.5,
+                      height: screenHeight(context) * 0.065,
+                      padding: const EdgeInsets.all(16),
+                      borderRadius: 32,
+                      fontSize: 16,
+                      textColor: Pallete.grayScaleColor0,
+                    );
+                  },
                 ),
               ),
             ],
@@ -221,6 +253,13 @@ class _DoctorScheduleScreenState extends State<DoctorScheduleScreen> {
         ),
       ),
     );
+  }
+
+  bool _validateList() {
+    return selectedShifts.isNotEmpty &&
+        selectedShifts.every((wDay) {
+          return wDay.availableShifts?.isNotEmpty ?? false;
+        });
   }
 
   void _toggleShift(WorkDay? workDay, AvailableShift availableShift) {
@@ -235,6 +274,7 @@ class _DoctorScheduleScreenState extends State<DoctorScheduleScreen> {
       if (temp.contains(availableShift)) {
         temp.remove(availableShift);
       } else {
+        temp.clear();
         temp.add(availableShift);
       }
       selectedShifts.removeWhere((wDay) {

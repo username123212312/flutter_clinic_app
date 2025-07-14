@@ -59,28 +59,31 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
     on<CheckUserAuthState>(_checkAuthState);
   }
   _checkAuthState(CheckUserAuthState event, Emitter emit) async {
-    emit(state.copyWith(isAuth: false));
-    final response = await _authRepository.checkAuthState();
-    final newState = switch (response) {
-      Left() => AuthState(
-        status: DataStatus.error,
-        statusMessage: 'No user',
-        token: null,
-        isAuth: false,
-        authUser: AuthUser(user: null, token: null),
-      ),
-      Right(value: final r) => AuthState(
-        status: DataStatus.data,
-        statusMessage: 'user',
-        token: state.token,
-        isAuth: true,
-        authUser: AuthUser(
-          user: r.data?.copyWith(token: state.token),
-          token: state.token,
+    try {
+      emit(state.copyWith(isAuth: false));
+      final response = await _authRepository.checkAuthState();
+      final newState = switch (response) {
+        Left(value: final l) => AuthState(
+          status: DataStatus.error,
+          statusMessage: l.message,
         ),
-      ),
-    };
-    emit(newState);
+        Right(value: final r) => AuthState(
+          status: DataStatus.data,
+          statusMessage: 'user',
+          token: state.token,
+          isAuth: true,
+          authUser: AuthUser(
+            user: r.data?.copyWith(token: state.token),
+            token: state.token,
+          ),
+        ),
+      };
+      emit(newState);
+    } catch (e) {
+      emit(
+        state.copyWith(status: DataStatus.error, statusMessage: e.toString()),
+      );
+    }
   }
 
   @override

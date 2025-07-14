@@ -20,6 +20,28 @@ enum AppointmentStatus {
   bool get isCancelled => this == AppointmentStatus.cancelled;
 }
 
+enum DoctorAppointmentStatus {
+  pending,
+  visited,
+  today;
+
+  bool get isPending => this == DoctorAppointmentStatus.pending;
+  bool get isVisited => this == DoctorAppointmentStatus.visited;
+  bool get isToday => this == DoctorAppointmentStatus.today;
+}
+
+enum DoctorAppointmentType {
+  firstTime,
+  checkup;
+
+  bool get isFirstTime => this == DoctorAppointmentType.firstTime;
+  bool get isCheckup => this == DoctorAppointmentType.checkup;
+
+  String toJson() {
+    return isFirstTime ? 'first time' : name;
+  }
+}
+
 enum PaymentStatus {
   paid,
   pending,

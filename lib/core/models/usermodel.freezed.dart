@@ -21,23 +21,41 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserModel {
+  //? User
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'first_name')
+  String? get firstName => throw _privateConstructorUsedError;
   @JsonKey(name: 'last_name')
   String? get lastName => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get phone => throw _privateConstructorUsedError;
+  Role? get role => throw _privateConstructorUsedError;
+  String? get token => throw _privateConstructorUsedError;
+  String? get password => throw _privateConstructorUsedError; //? Patient
   int? get age => throw _privateConstructorUsedError;
   String? get gender => throw _privateConstructorUsedError;
   @JsonKey(name: 'blood_type')
   String? get bloodType => throw _privateConstructorUsedError;
-  @JsonKey(name: 'first_name')
-  String? get firstName => throw _privateConstructorUsedError;
   @JsonKey(name: 'complete_profile')
   bool get isCompleteProfile => throw _privateConstructorUsedError;
-  int? get id => throw _privateConstructorUsedError;
-  String? get address => throw _privateConstructorUsedError;
-  String? get email => throw _privateConstructorUsedError;
-  String? get phone => throw _privateConstructorUsedError;
-  String? get password => throw _privateConstructorUsedError;
-  String? get token => throw _privateConstructorUsedError;
-  Role? get role => throw _privateConstructorUsedError;
+  String? get address => throw _privateConstructorUsedError; //? Doctor
+  String? get photo => throw _privateConstructorUsedError;
+  String? get clinic => throw _privateConstructorUsedError;
+  String? get speciality => throw _privateConstructorUsedError;
+  @JsonKey(name: 'professional_title')
+  String? get professionalTitle => throw _privateConstructorUsedError;
+  double? get finalRate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'average_visit_duration')
+  String? get averageVisitDuration => throw _privateConstructorUsedError;
+  @JsonKey(name: 'visit_fee')
+  double? get visitFee => throw _privateConstructorUsedError;
+  int? get experience => throw _privateConstructorUsedError;
+  int? get treated => throw _privateConstructorUsedError;
+  @JsonKey(name: 'booking_type')
+  String? get bookingType => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
+  String? get sign => throw _privateConstructorUsedError;
+  List<Schedule>? get schedule => throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -55,19 +73,32 @@ abstract class $UserModelCopyWith<$Res> {
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
   $Res call({
+    int? id,
+    @JsonKey(name: 'first_name') String? firstName,
     @JsonKey(name: 'last_name') String? lastName,
+    String? email,
+    String? phone,
+    Role? role,
+    String? token,
+    String? password,
     int? age,
     String? gender,
     @JsonKey(name: 'blood_type') String? bloodType,
-    @JsonKey(name: 'first_name') String? firstName,
     @JsonKey(name: 'complete_profile') bool isCompleteProfile,
-    int? id,
     String? address,
-    String? email,
-    String? phone,
-    String? password,
-    String? token,
-    Role? role,
+    String? photo,
+    String? clinic,
+    String? speciality,
+    @JsonKey(name: 'professional_title') String? professionalTitle,
+    double? finalRate,
+    @JsonKey(name: 'average_visit_duration') String? averageVisitDuration,
+    @JsonKey(name: 'visit_fee') double? visitFee,
+    int? experience,
+    int? treated,
+    @JsonKey(name: 'booking_type') String? bookingType,
+    String? status,
+    String? sign,
+    List<Schedule>? schedule,
   });
 }
 
@@ -86,26 +117,74 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
+    Object? firstName = freezed,
     Object? lastName = freezed,
+    Object? email = freezed,
+    Object? phone = freezed,
+    Object? role = freezed,
+    Object? token = freezed,
+    Object? password = freezed,
     Object? age = freezed,
     Object? gender = freezed,
     Object? bloodType = freezed,
-    Object? firstName = freezed,
     Object? isCompleteProfile = null,
-    Object? id = freezed,
     Object? address = freezed,
-    Object? email = freezed,
-    Object? phone = freezed,
-    Object? password = freezed,
-    Object? token = freezed,
-    Object? role = freezed,
+    Object? photo = freezed,
+    Object? clinic = freezed,
+    Object? speciality = freezed,
+    Object? professionalTitle = freezed,
+    Object? finalRate = freezed,
+    Object? averageVisitDuration = freezed,
+    Object? visitFee = freezed,
+    Object? experience = freezed,
+    Object? treated = freezed,
+    Object? bookingType = freezed,
+    Object? status = freezed,
+    Object? sign = freezed,
+    Object? schedule = freezed,
   }) {
     return _then(
       _value.copyWith(
+            id:
+                freezed == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as int?,
+            firstName:
+                freezed == firstName
+                    ? _value.firstName
+                    : firstName // ignore: cast_nullable_to_non_nullable
+                        as String?,
             lastName:
                 freezed == lastName
                     ? _value.lastName
                     : lastName // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            email:
+                freezed == email
+                    ? _value.email
+                    : email // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            phone:
+                freezed == phone
+                    ? _value.phone
+                    : phone // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            role:
+                freezed == role
+                    ? _value.role
+                    : role // ignore: cast_nullable_to_non_nullable
+                        as Role?,
+            token:
+                freezed == token
+                    ? _value.token
+                    : token // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            password:
+                freezed == password
+                    ? _value.password
+                    : password // ignore: cast_nullable_to_non_nullable
                         as String?,
             age:
                 freezed == age
@@ -122,51 +201,81 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.bloodType
                     : bloodType // ignore: cast_nullable_to_non_nullable
                         as String?,
-            firstName:
-                freezed == firstName
-                    ? _value.firstName
-                    : firstName // ignore: cast_nullable_to_non_nullable
-                        as String?,
             isCompleteProfile:
                 null == isCompleteProfile
                     ? _value.isCompleteProfile
                     : isCompleteProfile // ignore: cast_nullable_to_non_nullable
                         as bool,
-            id:
-                freezed == id
-                    ? _value.id
-                    : id // ignore: cast_nullable_to_non_nullable
-                        as int?,
             address:
                 freezed == address
                     ? _value.address
                     : address // ignore: cast_nullable_to_non_nullable
                         as String?,
-            email:
-                freezed == email
-                    ? _value.email
-                    : email // ignore: cast_nullable_to_non_nullable
+            photo:
+                freezed == photo
+                    ? _value.photo
+                    : photo // ignore: cast_nullable_to_non_nullable
                         as String?,
-            phone:
-                freezed == phone
-                    ? _value.phone
-                    : phone // ignore: cast_nullable_to_non_nullable
+            clinic:
+                freezed == clinic
+                    ? _value.clinic
+                    : clinic // ignore: cast_nullable_to_non_nullable
                         as String?,
-            password:
-                freezed == password
-                    ? _value.password
-                    : password // ignore: cast_nullable_to_non_nullable
+            speciality:
+                freezed == speciality
+                    ? _value.speciality
+                    : speciality // ignore: cast_nullable_to_non_nullable
                         as String?,
-            token:
-                freezed == token
-                    ? _value.token
-                    : token // ignore: cast_nullable_to_non_nullable
+            professionalTitle:
+                freezed == professionalTitle
+                    ? _value.professionalTitle
+                    : professionalTitle // ignore: cast_nullable_to_non_nullable
                         as String?,
-            role:
-                freezed == role
-                    ? _value.role
-                    : role // ignore: cast_nullable_to_non_nullable
-                        as Role?,
+            finalRate:
+                freezed == finalRate
+                    ? _value.finalRate
+                    : finalRate // ignore: cast_nullable_to_non_nullable
+                        as double?,
+            averageVisitDuration:
+                freezed == averageVisitDuration
+                    ? _value.averageVisitDuration
+                    : averageVisitDuration // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            visitFee:
+                freezed == visitFee
+                    ? _value.visitFee
+                    : visitFee // ignore: cast_nullable_to_non_nullable
+                        as double?,
+            experience:
+                freezed == experience
+                    ? _value.experience
+                    : experience // ignore: cast_nullable_to_non_nullable
+                        as int?,
+            treated:
+                freezed == treated
+                    ? _value.treated
+                    : treated // ignore: cast_nullable_to_non_nullable
+                        as int?,
+            bookingType:
+                freezed == bookingType
+                    ? _value.bookingType
+                    : bookingType // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            status:
+                freezed == status
+                    ? _value.status
+                    : status // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            sign:
+                freezed == sign
+                    ? _value.sign
+                    : sign // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            schedule:
+                freezed == schedule
+                    ? _value.schedule
+                    : schedule // ignore: cast_nullable_to_non_nullable
+                        as List<Schedule>?,
           )
           as $Val,
     );
@@ -183,19 +292,32 @@ abstract class _$$UserModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
+    int? id,
+    @JsonKey(name: 'first_name') String? firstName,
     @JsonKey(name: 'last_name') String? lastName,
+    String? email,
+    String? phone,
+    Role? role,
+    String? token,
+    String? password,
     int? age,
     String? gender,
     @JsonKey(name: 'blood_type') String? bloodType,
-    @JsonKey(name: 'first_name') String? firstName,
     @JsonKey(name: 'complete_profile') bool isCompleteProfile,
-    int? id,
     String? address,
-    String? email,
-    String? phone,
-    String? password,
-    String? token,
-    Role? role,
+    String? photo,
+    String? clinic,
+    String? speciality,
+    @JsonKey(name: 'professional_title') String? professionalTitle,
+    double? finalRate,
+    @JsonKey(name: 'average_visit_duration') String? averageVisitDuration,
+    @JsonKey(name: 'visit_fee') double? visitFee,
+    int? experience,
+    int? treated,
+    @JsonKey(name: 'booking_type') String? bookingType,
+    String? status,
+    String? sign,
+    List<Schedule>? schedule,
   });
 }
 
@@ -213,26 +335,74 @@ class __$$UserModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
+    Object? firstName = freezed,
     Object? lastName = freezed,
+    Object? email = freezed,
+    Object? phone = freezed,
+    Object? role = freezed,
+    Object? token = freezed,
+    Object? password = freezed,
     Object? age = freezed,
     Object? gender = freezed,
     Object? bloodType = freezed,
-    Object? firstName = freezed,
     Object? isCompleteProfile = null,
-    Object? id = freezed,
     Object? address = freezed,
-    Object? email = freezed,
-    Object? phone = freezed,
-    Object? password = freezed,
-    Object? token = freezed,
-    Object? role = freezed,
+    Object? photo = freezed,
+    Object? clinic = freezed,
+    Object? speciality = freezed,
+    Object? professionalTitle = freezed,
+    Object? finalRate = freezed,
+    Object? averageVisitDuration = freezed,
+    Object? visitFee = freezed,
+    Object? experience = freezed,
+    Object? treated = freezed,
+    Object? bookingType = freezed,
+    Object? status = freezed,
+    Object? sign = freezed,
+    Object? schedule = freezed,
   }) {
     return _then(
       _$UserModelImpl(
+        id:
+            freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as int?,
+        firstName:
+            freezed == firstName
+                ? _value.firstName
+                : firstName // ignore: cast_nullable_to_non_nullable
+                    as String?,
         lastName:
             freezed == lastName
                 ? _value.lastName
                 : lastName // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        email:
+            freezed == email
+                ? _value.email
+                : email // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        phone:
+            freezed == phone
+                ? _value.phone
+                : phone // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        role:
+            freezed == role
+                ? _value.role
+                : role // ignore: cast_nullable_to_non_nullable
+                    as Role?,
+        token:
+            freezed == token
+                ? _value.token
+                : token // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        password:
+            freezed == password
+                ? _value.password
+                : password // ignore: cast_nullable_to_non_nullable
                     as String?,
         age:
             freezed == age
@@ -249,51 +419,81 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value.bloodType
                 : bloodType // ignore: cast_nullable_to_non_nullable
                     as String?,
-        firstName:
-            freezed == firstName
-                ? _value.firstName
-                : firstName // ignore: cast_nullable_to_non_nullable
-                    as String?,
         isCompleteProfile:
             null == isCompleteProfile
                 ? _value.isCompleteProfile
                 : isCompleteProfile // ignore: cast_nullable_to_non_nullable
                     as bool,
-        id:
-            freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                    as int?,
         address:
             freezed == address
                 ? _value.address
                 : address // ignore: cast_nullable_to_non_nullable
                     as String?,
-        email:
-            freezed == email
-                ? _value.email
-                : email // ignore: cast_nullable_to_non_nullable
+        photo:
+            freezed == photo
+                ? _value.photo
+                : photo // ignore: cast_nullable_to_non_nullable
                     as String?,
-        phone:
-            freezed == phone
-                ? _value.phone
-                : phone // ignore: cast_nullable_to_non_nullable
+        clinic:
+            freezed == clinic
+                ? _value.clinic
+                : clinic // ignore: cast_nullable_to_non_nullable
                     as String?,
-        password:
-            freezed == password
-                ? _value.password
-                : password // ignore: cast_nullable_to_non_nullable
+        speciality:
+            freezed == speciality
+                ? _value.speciality
+                : speciality // ignore: cast_nullable_to_non_nullable
                     as String?,
-        token:
-            freezed == token
-                ? _value.token
-                : token // ignore: cast_nullable_to_non_nullable
+        professionalTitle:
+            freezed == professionalTitle
+                ? _value.professionalTitle
+                : professionalTitle // ignore: cast_nullable_to_non_nullable
                     as String?,
-        role:
-            freezed == role
-                ? _value.role
-                : role // ignore: cast_nullable_to_non_nullable
-                    as Role?,
+        finalRate:
+            freezed == finalRate
+                ? _value.finalRate
+                : finalRate // ignore: cast_nullable_to_non_nullable
+                    as double?,
+        averageVisitDuration:
+            freezed == averageVisitDuration
+                ? _value.averageVisitDuration
+                : averageVisitDuration // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        visitFee:
+            freezed == visitFee
+                ? _value.visitFee
+                : visitFee // ignore: cast_nullable_to_non_nullable
+                    as double?,
+        experience:
+            freezed == experience
+                ? _value.experience
+                : experience // ignore: cast_nullable_to_non_nullable
+                    as int?,
+        treated:
+            freezed == treated
+                ? _value.treated
+                : treated // ignore: cast_nullable_to_non_nullable
+                    as int?,
+        bookingType:
+            freezed == bookingType
+                ? _value.bookingType
+                : bookingType // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        status:
+            freezed == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        sign:
+            freezed == sign
+                ? _value.sign
+                : sign // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        schedule:
+            freezed == schedule
+                ? _value._schedule
+                : schedule // ignore: cast_nullable_to_non_nullable
+                    as List<Schedule>?,
       ),
     );
   }
@@ -303,27 +503,58 @@ class __$$UserModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserModelImpl implements _UserModel {
   _$UserModelImpl({
+    this.id,
+    @JsonKey(name: 'first_name') this.firstName,
     @JsonKey(name: 'last_name') this.lastName,
+    this.email,
+    this.phone,
+    this.role = Role.patient,
+    this.token,
+    this.password,
     this.age,
     this.gender,
     @JsonKey(name: 'blood_type') this.bloodType,
-    @JsonKey(name: 'first_name') this.firstName,
     @JsonKey(name: 'complete_profile') this.isCompleteProfile = false,
-    this.id,
     this.address,
-    this.email,
-    this.phone,
-    this.password,
-    this.token,
-    this.role = Role.patient,
-  });
+    this.photo,
+    this.clinic,
+    this.speciality,
+    @JsonKey(name: 'professional_title') this.professionalTitle,
+    this.finalRate,
+    @JsonKey(name: 'average_visit_duration') this.averageVisitDuration,
+    @JsonKey(name: 'visit_fee') this.visitFee,
+    this.experience,
+    this.treated,
+    @JsonKey(name: 'booking_type') this.bookingType,
+    this.status,
+    this.sign,
+    final List<Schedule>? schedule,
+  }) : _schedule = schedule;
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
 
+  //? User
+  @override
+  final int? id;
+  @override
+  @JsonKey(name: 'first_name')
+  final String? firstName;
   @override
   @JsonKey(name: 'last_name')
   final String? lastName;
+  @override
+  final String? email;
+  @override
+  final String? phone;
+  @override
+  @JsonKey()
+  final Role? role;
+  @override
+  final String? token;
+  @override
+  final String? password;
+  //? Patient
   @override
   final int? age;
   @override
@@ -332,30 +563,52 @@ class _$UserModelImpl implements _UserModel {
   @JsonKey(name: 'blood_type')
   final String? bloodType;
   @override
-  @JsonKey(name: 'first_name')
-  final String? firstName;
-  @override
   @JsonKey(name: 'complete_profile')
   final bool isCompleteProfile;
   @override
-  final int? id;
-  @override
   final String? address;
+  //? Doctor
   @override
-  final String? email;
+  final String? photo;
   @override
-  final String? phone;
+  final String? clinic;
   @override
-  final String? password;
+  final String? speciality;
   @override
-  final String? token;
+  @JsonKey(name: 'professional_title')
+  final String? professionalTitle;
   @override
-  @JsonKey()
-  final Role? role;
+  final double? finalRate;
+  @override
+  @JsonKey(name: 'average_visit_duration')
+  final String? averageVisitDuration;
+  @override
+  @JsonKey(name: 'visit_fee')
+  final double? visitFee;
+  @override
+  final int? experience;
+  @override
+  final int? treated;
+  @override
+  @JsonKey(name: 'booking_type')
+  final String? bookingType;
+  @override
+  final String? status;
+  @override
+  final String? sign;
+  final List<Schedule>? _schedule;
+  @override
+  List<Schedule>? get schedule {
+    final value = _schedule;
+    if (value == null) return null;
+    if (_schedule is EqualUnmodifiableListView) return _schedule;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'UserModel(lastName: $lastName, age: $age, gender: $gender, bloodType: $bloodType, firstName: $firstName, isCompleteProfile: $isCompleteProfile, id: $id, address: $address, email: $email, phone: $phone, password: $password, token: $token, role: $role)';
+    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, role: $role, token: $token, password: $password, age: $age, gender: $gender, bloodType: $bloodType, isCompleteProfile: $isCompleteProfile, address: $address, photo: $photo, clinic: $clinic, speciality: $speciality, professionalTitle: $professionalTitle, finalRate: $finalRate, averageVisitDuration: $averageVisitDuration, visitFee: $visitFee, experience: $experience, treated: $treated, bookingType: $bookingType, status: $status, sign: $sign, schedule: $schedule)';
   }
 
   @override
@@ -363,44 +616,77 @@ class _$UserModelImpl implements _UserModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.role, role) || other.role == role) &&
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
             (identical(other.age, age) || other.age == age) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.bloodType, bloodType) ||
                 other.bloodType == bloodType) &&
-            (identical(other.firstName, firstName) ||
-                other.firstName == firstName) &&
             (identical(other.isCompleteProfile, isCompleteProfile) ||
                 other.isCompleteProfile == isCompleteProfile) &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.address, address) || other.address == address) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.token, token) || other.token == token) &&
-            (identical(other.role, role) || other.role == role));
+            (identical(other.photo, photo) || other.photo == photo) &&
+            (identical(other.clinic, clinic) || other.clinic == clinic) &&
+            (identical(other.speciality, speciality) ||
+                other.speciality == speciality) &&
+            (identical(other.professionalTitle, professionalTitle) ||
+                other.professionalTitle == professionalTitle) &&
+            (identical(other.finalRate, finalRate) ||
+                other.finalRate == finalRate) &&
+            (identical(other.averageVisitDuration, averageVisitDuration) ||
+                other.averageVisitDuration == averageVisitDuration) &&
+            (identical(other.visitFee, visitFee) ||
+                other.visitFee == visitFee) &&
+            (identical(other.experience, experience) ||
+                other.experience == experience) &&
+            (identical(other.treated, treated) || other.treated == treated) &&
+            (identical(other.bookingType, bookingType) ||
+                other.bookingType == bookingType) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.sign, sign) || other.sign == sign) &&
+            const DeepCollectionEquality().equals(other._schedule, _schedule));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
+  int get hashCode => Object.hashAll([
     runtimeType,
+    id,
+    firstName,
     lastName,
+    email,
+    phone,
+    role,
+    token,
+    password,
     age,
     gender,
     bloodType,
-    firstName,
     isCompleteProfile,
-    id,
     address,
-    email,
-    phone,
-    password,
-    token,
-    role,
-  );
+    photo,
+    clinic,
+    speciality,
+    professionalTitle,
+    finalRate,
+    averageVisitDuration,
+    visitFee,
+    experience,
+    treated,
+    bookingType,
+    status,
+    sign,
+    const DeepCollectionEquality().hash(_schedule),
+  ]);
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
@@ -418,27 +704,56 @@ class _$UserModelImpl implements _UserModel {
 
 abstract class _UserModel implements UserModel {
   factory _UserModel({
+    final int? id,
+    @JsonKey(name: 'first_name') final String? firstName,
     @JsonKey(name: 'last_name') final String? lastName,
+    final String? email,
+    final String? phone,
+    final Role? role,
+    final String? token,
+    final String? password,
     final int? age,
     final String? gender,
     @JsonKey(name: 'blood_type') final String? bloodType,
-    @JsonKey(name: 'first_name') final String? firstName,
     @JsonKey(name: 'complete_profile') final bool isCompleteProfile,
-    final int? id,
     final String? address,
-    final String? email,
-    final String? phone,
-    final String? password,
-    final String? token,
-    final Role? role,
+    final String? photo,
+    final String? clinic,
+    final String? speciality,
+    @JsonKey(name: 'professional_title') final String? professionalTitle,
+    final double? finalRate,
+    @JsonKey(name: 'average_visit_duration') final String? averageVisitDuration,
+    @JsonKey(name: 'visit_fee') final double? visitFee,
+    final int? experience,
+    final int? treated,
+    @JsonKey(name: 'booking_type') final String? bookingType,
+    final String? status,
+    final String? sign,
+    final List<Schedule>? schedule,
   }) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
 
+  //? User
+  @override
+  int? get id;
+  @override
+  @JsonKey(name: 'first_name')
+  String? get firstName;
   @override
   @JsonKey(name: 'last_name')
   String? get lastName;
+  @override
+  String? get email;
+  @override
+  String? get phone;
+  @override
+  Role? get role;
+  @override
+  String? get token;
+  @override
+  String? get password; //? Patient
   @override
   int? get age;
   @override
@@ -447,25 +762,40 @@ abstract class _UserModel implements UserModel {
   @JsonKey(name: 'blood_type')
   String? get bloodType;
   @override
-  @JsonKey(name: 'first_name')
-  String? get firstName;
-  @override
   @JsonKey(name: 'complete_profile')
   bool get isCompleteProfile;
   @override
-  int? get id;
+  String? get address; //? Doctor
   @override
-  String? get address;
+  String? get photo;
   @override
-  String? get email;
+  String? get clinic;
   @override
-  String? get phone;
+  String? get speciality;
   @override
-  String? get password;
+  @JsonKey(name: 'professional_title')
+  String? get professionalTitle;
   @override
-  String? get token;
+  double? get finalRate;
   @override
-  Role? get role;
+  @JsonKey(name: 'average_visit_duration')
+  String? get averageVisitDuration;
+  @override
+  @JsonKey(name: 'visit_fee')
+  double? get visitFee;
+  @override
+  int? get experience;
+  @override
+  int? get treated;
+  @override
+  @JsonKey(name: 'booking_type')
+  String? get bookingType;
+  @override
+  String? get status;
+  @override
+  String? get sign;
+  @override
+  List<Schedule>? get schedule;
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.

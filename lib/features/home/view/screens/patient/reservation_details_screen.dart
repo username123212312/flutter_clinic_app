@@ -431,7 +431,7 @@ class __ReminderBottomSheetState extends State<_ReminderBottomSheet> {
                                 log('Reminder set for ${_hours.toInt()} hours');
                                 _reminderCubit.setReminder(
                                   widget.id,
-                                  // 1,
+                                  // 2,
                                   _hours.toInt(),
                                 );
                               },

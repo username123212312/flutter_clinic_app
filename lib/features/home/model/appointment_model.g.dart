@@ -17,6 +17,11 @@ _$AppointmentModelImpl _$$AppointmentModelImplFromJson(
   doctorId: (json['doctor_id'] as num?)?.toInt(),
   doctorPhoto: json['doctor_photo'] as String?,
   doctorName: json['doctor_name'] as String?,
+  patientFirstName: json['patient_first_name'] as String?,
+  patientLastName: json['patient_last_name'] as String?,
+  appointmentType: const DoctorAppointmentTypeConverter().fromJson(
+    json['appointment_type'] as String?,
+  ),
   visitFee: (json['visit_fee'] as num?)?.toDouble(),
   doctorSpeciality: json['doctor_speciality'] as String?,
   reservationDate:
@@ -45,6 +50,11 @@ Map<String, dynamic> _$$AppointmentModelImplToJson(
   'doctor_id': instance.doctorId,
   'doctor_photo': instance.doctorPhoto,
   'doctor_name': instance.doctorName,
+  'patient_first_name': instance.patientFirstName,
+  'patient_last_name': instance.patientLastName,
+  'appointment_type': const DoctorAppointmentTypeConverter().toJson(
+    instance.appointmentType,
+  ),
   'visit_fee': instance.visitFee,
   'doctor_speciality': instance.doctorSpeciality,
   'reservation_date': instance.reservationDate?.toIso8601String(),

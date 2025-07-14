@@ -1,9 +1,19 @@
 import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
+import 'package:our_flutter_clinic_app/core/widgets/custom_cached_network_image.dart';
+import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
 
+import '../../../../../core/blocs/user_bloc/user_bloc.dart';
+import '../../../../../core/models/modify_doctor_info_request.dart';
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/general_utils.dart';
 import '../../../../auth/view/widgets/custom_button.dart';
@@ -21,6 +31,7 @@ class DoctorEditProfile extends StatefulWidget {
 }
 
 class _DoctorEditProfilePageState extends State<DoctorEditProfile> {
+  int isEdited = 0;
   File? profileImage;
   File? signatureImage;
   final picker = ImagePicker();
@@ -39,6 +50,13 @@ class _DoctorEditProfilePageState extends State<DoctorEditProfile> {
   final phoneController = TextEditingController();
   final emailController = TextEditingController();
   final bookingTypeController = TextEditingController();
+
+  @override
+  initState() {
+    super.initState();
+
+    context.read<UserBloc>().add(ProfileFetched());
+  }
 
   Future<void> pickImage(bool isProfile) async {
     final picked = await picker.pickImage(source: ImageSource.gallery);
@@ -108,6 +126,7 @@ class _DoctorEditProfilePageState extends State<DoctorEditProfile> {
     phoneController.dispose();
     emailController.dispose();
     bookingTypeController.dispose();
+    LoadingOverlay().hideAll();
     super.dispose();
   }
 
@@ -140,9 +159,14 @@ class _DoctorEditProfilePageState extends State<DoctorEditProfile> {
             padding: const EdgeInsets.all(27),
             child: Column(
               children: [
-                ProfileImagePicker(
-                  image: profileImage,
-                  onPick: () => pickImage(true),
+                BlocBuilder<UserBloc, UserState>(
+                  builder: (context, state) {
+                    return ProfileImagePicker(
+                      existingImagePath: state.user?.photo,
+                      image: profileImage,
+                      onPick: () => pickImage(true),
+                    );
+                  },
                 ),
                 const SizedBox(height: 20),
                 _buildLabeledField(),
@@ -158,27 +182,45 @@ class _DoctorEditProfilePageState extends State<DoctorEditProfile> {
                       ),
                     ),
                     const SizedBox(height: 6),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: SignatureImagePicker(
-                        image: signatureImage,
-                        onPick: () => pickImage(false),
-                      ),
+                    BlocBuilder<UserBloc, UserState>(
+                      builder: (context, state) {
+                        return Align(
+                          alignment: Alignment.centerLeft,
+                          child: SignatureImagePicker(
+                            exsistingImagePath: state.user?.sign,
+                            image: signatureImage,
+                            onPick: () => pickImage(false),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
                 SizedBox(height: 20),
                 Center(
-                  child: CustomButton(
-                    text: "Edit Profile",
-                    onPressed: () {},
-                    color: Pallete.primaryColor,
-                    width: screenWidth(context) * 0.4,
-                    height: screenHeight(context) * 0.055,
-                    padding: const EdgeInsets.all(6),
-                    borderRadius: 4,
-                    textColor: Pallete.grayScaleColor0,
-                    fontSize: 16,
+                  child: BlocListener<UserBloc, UserState>(
+                    listener: (context, state) {
+                      if (state.status.isLoading) {
+                        LoadingOverlay().show(context);
+                      } else {
+                        LoadingOverlay().hideAll();
+                        Fluttertoast.showToast(msg: state.statusMessage);
+                        if (state.status.isModified && isEdited == 1) {
+                          context.pop();
+                        }
+                      }
+                    },
+                    child: CustomButton(
+                      text: "Edit Profile",
+                      onPressed: _isAllEmpty() ? null : submit,
+                      color: Pallete.primaryColor,
+                      width: screenWidth(context) * 0.4,
+                      height: screenHeight(context) * 0.055,
+                      padding: const EdgeInsets.all(6),
+                      borderRadius: 4,
+                      textColor: Pallete.grayScaleColor0,
+                      fontSize: 16,
+                    ),
                   ),
                 ),
               ],
@@ -189,120 +231,211 @@ class _DoctorEditProfilePageState extends State<DoctorEditProfile> {
     );
   }
 
-  Column _buildLabeledField() {
-    return Column(
-      children: [
-        LabeledField(
-          label: 'First Name',
-          field: CustomTextField(
-            hintText: 'First Name',
-            controller: firstNameController,
-            keyboardType: TextInputType.text,
-          ),
+  void submit() async {
+    context.read<UserBloc>().add(
+      DoctorProfileModified(
+        request: ModifyDoctorInfoRequest(
+          averageVisitDuration:
+              visitDurationController.text.trim().isEmpty
+                  ? null
+                  : visitDurationController.text.trim(),
+          email:
+              emailController.text.trim().isEmpty
+                  ? null
+                  : emailController.text.trim(),
+          phone:
+              phoneController.text.trim().isEmpty
+                  ? null
+                  : phoneController.text.trim(),
+          experience:
+              experienceController.text.trim().isEmpty
+                  ? null
+                  : experienceController.text.trim(),
+          firstName:
+              firstNameController.text.trim().isEmpty
+                  ? null
+                  : firstNameController.text.trim(),
+          lastName:
+              lastNameController.text.trim().isEmpty
+                  ? null
+                  : lastNameController.text.trim(),
+          speciality:
+              specialityController.text.trim().isEmpty
+                  ? null
+                  : specialityController.text.trim(),
+          professionalTitle:
+              titleController.text.trim().isEmpty
+                  ? null
+                  : titleController.text.trim(),
+          visitFee:
+              visitFeeController.text.trim().isEmpty
+                  ? null
+                  : double.parse(visitFeeController.text.trim()),
+          bookingType:
+              bookingTypeController.text.trim().isEmpty
+                  ? null
+                  : bookingTypeController.text.toLowerCase().trim(),
+          status:
+              statusController.text.trim().isEmpty
+                  ? null
+                  : (statusController.text == 'Available'
+                      ? 'available'
+                      : 'notAvailable'),
+          photo: profileImage,
+          sign: signatureImage,
         ),
-        LabeledField(
-          label: 'Last Name',
-          field: CustomTextField(
-            hintText: 'Last Name',
-            controller: lastNameController,
-            keyboardType: TextInputType.text,
-          ),
-        ),
-        LabeledField(
-          label: 'Speciality',
-          field: CustomTextField(
-            hintText: 'Speciality',
-            controller: specialityController,
-            keyboardType: TextInputType.text,
-          ),
-        ),
-        LabeledField(
-          label: 'Professional Title',
-          field: CustomTextField(
-            hintText: 'Professional Title',
-            controller: titleController,
-            keyboardType: TextInputType.text,
-          ),
-        ),
-        LabeledField(
-          label: 'Average Visit Duration',
-          field: CustomTextField(
-            hintText: 'Visit Duration',
-            controller: visitDurationController,
-            keyboardType: TextInputType.number,
-            readOnly: true,
-            onTap: openVisitDurationSheet,
-            suffixIcon: const Icon(
-              Icons.arrow_drop_down,
-              color: Pallete.grayScaleColor500,
-              size: 28,
-            ),
-          ),
-        ),
+      ),
+    );
+    await for (final newState in context.read<UserBloc>().stream) {
+      if (newState.status.isModified) {
+        isEdited = 1;
+      }
+    }
+  }
 
-        LabeledField(
-          label: 'Visit Fee',
-          field: CustomTextField(
-            hintText: 'Visit Fee',
-            controller: visitFeeController,
-            keyboardType: TextInputType.number,
-          ),
-        ),
-        LabeledField(
-          label: 'Experience',
-          field: CustomTextField(
-            hintText: 'Experience',
-            controller: experienceController,
-            keyboardType: TextInputType.number,
-          ),
-        ),
-        LabeledField(
-          label: 'Status',
-          field: CustomTextField(
-            hintText: 'Select Status',
-            controller: statusController,
-            keyboardType: TextInputType.text,
-            readOnly: true,
-            onTap: showStatusSheet,
-            suffixIcon: const Icon(
-              Icons.arrow_drop_down,
-              color: Pallete.grayScaleColor500,
-              size: 28,
+  bool _isAllEmpty() {
+    return firstNameController.text.trim().isEmpty &&
+        lastNameController.text.trim().isEmpty &&
+        specialityController.text.trim().isEmpty &&
+        titleController.text.trim().isEmpty &&
+        visitDurationController.text.trim().isEmpty &&
+        visitFeeController.text.trim().isEmpty &&
+        experienceController.text.trim().isEmpty &&
+        statusController.text.trim().isEmpty &&
+        phoneController.text.trim().isEmpty &&
+        emailController.text.trim().isEmpty &&
+        bookingTypeController.text.trim().isEmpty &&
+        profileImage == null &&
+        signatureImage == null &&
+        selectedBookingType == null &&
+        selectedStatus == null;
+  }
+
+  Widget _buildLabeledField() {
+    return BlocBuilder<UserBloc, UserState>(
+      builder: (context, state) {
+        final UserModel? user = state.user;
+        return Column(
+          children: [
+            LabeledField(
+              label: 'First Name',
+              field: CustomTextField(
+                hintText: user?.firstName ?? 'First Name',
+                controller: firstNameController,
+                keyboardType: TextInputType.text,
+              ),
             ),
-          ),
-        ),
-        LabeledField(
-          label: 'Phone Number',
-          field: CustomTextField(
-            hintText: 'Enter phone number',
-            controller: phoneController,
-            keyboardType: TextInputType.phone,
-          ),
-        ),
-        LabeledField(
-          label: 'Email Address',
-          field: CustomTextField(
-            hintText: 'Enter email address',
-            controller: emailController,
-            keyboardType: TextInputType.emailAddress,
-          ),
-        ),
-        LabeledField(
-          label: 'Booking Type',
-          field: CustomTextField(
-            hintText: 'Select booking type',
-            controller: bookingTypeController,
-            readOnly: true,
-            onTap: showBookingTypeSheet,
-            suffixIcon: const Icon(
-              Icons.arrow_drop_down,
-              color: Pallete.grayScaleColor500,
-              size: 28,
+            LabeledField(
+              label: 'Last Name',
+              field: CustomTextField(
+                hintText: user?.lastName ?? 'Last Name',
+                controller: lastNameController,
+                keyboardType: TextInputType.text,
+              ),
             ),
-            keyboardType: TextInputType.text,
-          ),
-        ),
-      ],
+            LabeledField(
+              label: 'Speciality',
+              field: CustomTextField(
+                hintText: user?.speciality ?? 'Speciality',
+                controller: specialityController,
+                keyboardType: TextInputType.text,
+              ),
+            ),
+            LabeledField(
+              label: 'Professional Title',
+              field: CustomTextField(
+                hintText: user?.professionalTitle ?? 'Professional Title',
+                controller: titleController,
+                keyboardType: TextInputType.text,
+              ),
+            ),
+            LabeledField(
+              label: 'Average Visit Duration',
+              field: CustomTextField(
+                hintText: user?.averageVisitDuration ?? 'Visit Duration',
+                controller: visitDurationController,
+                keyboardType: TextInputType.number,
+                readOnly: true,
+                onTap: openVisitDurationSheet,
+                suffixIcon: const Icon(
+                  Icons.arrow_drop_down,
+                  color: Pallete.grayScaleColor500,
+                  size: 28,
+                ),
+              ),
+            ),
+
+            LabeledField(
+              label: 'Visit Fee',
+              field: CustomTextField(
+                hintText: user?.visitFee.toString() ?? 'Visit Fee',
+                controller: visitFeeController,
+                keyboardType: TextInputType.number,
+              ),
+            ),
+            LabeledField(
+              label: 'Experience',
+              field: CustomTextField(
+                hintText: user?.experience.toString() ?? 'Experience',
+                controller: experienceController,
+                keyboardType: TextInputType.number,
+                formatters: [FilteringTextInputFormatter.digitsOnly],
+                suffixIcon: Transform.translate(
+                  offset: Offset(-10.3, 13.5),
+                  child: Text('Year/s', style: TextStyle(color: Colors.black)),
+                ),
+              ),
+            ),
+            LabeledField(
+              label: 'Status',
+              field: CustomTextField(
+                hintText: 'Select Status',
+                controller: statusController,
+                keyboardType: TextInputType.text,
+                readOnly: true,
+                onTap: showStatusSheet,
+                suffixIcon: const Icon(
+                  Icons.arrow_drop_down,
+                  color: Pallete.grayScaleColor500,
+                  size: 28,
+                ),
+              ),
+            ),
+            LabeledField(
+              label: 'Phone Number',
+              field: CustomTextField(
+                hintText: user?.phone ?? 'Enter phone number',
+                controller: phoneController,
+                keyboardType: TextInputType.phone,
+                formatters: [FilteringTextInputFormatter.digitsOnly],
+              ),
+            ),
+            LabeledField(
+              label: 'Email Address',
+              field: CustomTextField(
+                hintText: user?.email ?? 'Enter email address',
+                controller: emailController,
+                keyboardType: TextInputType.emailAddress,
+              ),
+            ),
+            LabeledField(
+              label: 'Booking Type',
+              field: CustomTextField(
+                hintText: 'Select booking type',
+                controller: bookingTypeController,
+                readOnly: true,
+                onTap: showBookingTypeSheet,
+                suffixIcon: const Icon(
+                  Icons.arrow_drop_down,
+                  color: Pallete.grayScaleColor500,
+                  size: 28,
+                ),
+                keyboardType: TextInputType.text,
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

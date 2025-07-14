@@ -39,5 +39,28 @@ class DoctorScheduleCubit extends Cubit<DoctorScheduleState> {
     }
   }
 
+  Future<void> setSchedule({required List<WorkDay> workDays}) async {
+    emit(state.copyWith(status: DataStatus.loading));
+    try {
+      final response = await _doctorScheduleRepository.setSchedule(
+        workDays: workDays,
+      );
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          status: DataStatus.error,
+          message: l.message,
+        ),
+        Right(value: final r) => state.copyWith(
+          status: DataStatus.done,
+          message: r.message,
+        ),
+      };
+
+      emit(newState);
+    } catch (e) {
+      emit(state.copyWith(message: e.toString(), status: DataStatus.error));
+    }
+  }
+
   final DoctorScheduleRepository _doctorScheduleRepository;
 }

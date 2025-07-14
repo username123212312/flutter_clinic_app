@@ -89,10 +89,25 @@ class AppConstants {
   static const doctorRatePath = '$patientPath/rate';
 
   //? Doctor
-  static const profilePath = '$doctorPath/profile';
+  static const doctorProfilePath = '$doctorPath/profile';
   static const availableWorkDaysPath = '$doctorPath/availableWorkDays';
   static const schedulePath = '$doctorPath/schedule';
   static const doctorEditProfilePath = '$doctorPath/editProfile';
+  static const deleteFromSchedulePath = '$doctorPath/deleteFromSchedule';
+
+  //* Doctor appointments
+  static const doctorshowAppointmantResultsPath =
+      '$serverUrl/Doctor/appointments/showAppointmantResults';
+  static const doctorShowpatientAppointmentsPath =
+      '$serverUrl/Doctor/appointments/showpatientAppointments';
+  static const doctorShowAppointmentDetailsPath =
+      '$serverUrl/Doctor/appointments/showAppointmentDetails';
+  static const doctorShowAllAppointmentsPath =
+      '$serverUrl/Doctor/appointments/showAllAppointments';
+  static const doctorShowAppointmentsByStatusPath =
+      '$serverUrl/Doctor/appointments/showAppointmentsByStatus';
+  static const doctorShowAppointmentsByTypePath =
+      '$serverUrl/Doctor/appointments/showAppointmentsByType';
 
   //? Labtech
   static const labTechAddAnalysePath = '$labTechPath/addAnalyse';

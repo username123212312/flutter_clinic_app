@@ -201,9 +201,7 @@ class DoctorProfileWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,
-              onTap: () {
-                context.pushNamed(AppRouteConstants.modifyPasswordRouteName);
-              },
+              onTap: () {},
               child: Row(
                 children: [
                   Container(

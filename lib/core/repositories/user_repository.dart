@@ -11,6 +11,7 @@ import 'package:our_flutter_clinic_app/features/home/model/requests/home_request
 import 'package:fpdart/fpdart.dart';
 
 import '../models/app_failure.dart';
+import '../models/modify_doctor_info_request.dart';
 import '../utils/utils.dart';
 import '../../features/auth/model/requests/auth_requests.dart';
 
@@ -96,7 +97,8 @@ class UserRepository {
                 response.data['statusCode'] < 300
                     ? UserModel.fromJson(response.data['user']).copyWith(
                       token: response.data['token'],
-                      isCompleteProfile: response.data['complete_profile'],
+                      isCompleteProfile:
+                          response.data['complete_profile'] ?? false,
                     )
                     : null,
             statusCode: response.data['statusCode'],
@@ -300,12 +302,80 @@ class UserRepository {
     }
   }
 
-  Future<Either<AppFailure, AppResponse<UserModel>>> modifyUserPassword(
-    ModifyPasswordRequest request,
+  Future<Either<AppFailure, AppResponse<UserModel>>> modifyDoctorInfo(
+    ModifyDoctorInfoRequest request,
   ) async {
+    final data = {
+      if (request.firstName != null) 'first_name': request.firstName,
+      if (request.lastName != null) 'last_name': request.lastName,
+      if (request.email != null) 'email': request.email,
+      if (request.phone != null) 'phone': request.phone,
+      if (request.speciality != null) 'speciality': request.speciality,
+      if (request.professionalTitle != null)
+        'professional_title': request.professionalTitle,
+      if (request.visitFee != null) 'average_visit_duration': request.visitFee,
+      if (request.experience != null) 'experience': request.experience,
+      if (request.bookingType != null) 'booking_type': request.bookingType,
+      if (request.status != null) 'status': request.status,
+      if (request.photo != null)
+        'photo': await MultipartFile.fromFile(
+          request.photo!.path,
+          filename: request.photo!.path.split('/').last,
+        ),
+      if (request.sign != null)
+        'sign': await MultipartFile.fromFile(
+          request.sign!.path,
+          filename: request.sign!.path.split('/').last,
+        ),
+    };
+    final requestBody = FormData.fromMap(data);
     try {
       final response = await _dio.post(
-        AppConstants.patientEditProfilePath,
+        AppConstants.doctorEditProfilePath,
+        data: requestBody,
+      );
+      wLog(response.data);
+      if (response.data['statusCode'] < 300) {
+        wLog(response.data);
+
+        return Right(
+          AppResponse<UserModel>(
+            success: true,
+            message: response.data['message'],
+            statusCode: response.data['statusCode'],
+            statusMessage: response.data['statusMessage'],
+          ),
+        );
+      } else {
+        throw HttpException(parseStringList(response.data['message']));
+      }
+    } on DioException catch (e) {
+      return Left(
+        AppFailure(
+          message: e.message ?? 'Error',
+          stacktracte: StackTrace.current,
+        ),
+      );
+    } on HttpException catch (e) {
+      return Left(
+        AppFailure(message: e.message, stacktracte: StackTrace.current),
+      );
+    } catch (e) {
+      return Left(
+        AppFailure(message: e.toString(), stacktracte: StackTrace.current),
+      );
+    }
+  }
+
+  Future<Either<AppFailure, AppResponse<UserModel>>> modifyUserPassword(
+    ModifyPasswordRequest request, [
+    Role role = Role.patient,
+  ]) async {
+    try {
+      final response = await _dio.post(
+        role.isPatient
+            ? AppConstants.patientEditProfilePath
+            : AppConstants.doctorEditProfilePath,
         data: {
           'password': request.newPassword,
           'old_password': request.oldPassword,
@@ -319,8 +389,7 @@ class UserRepository {
         return Right(
           AppResponse<UserModel>(
             success: true,
-            message: response.data['message'],
-            data: UserModel.fromJson(response.data['data']),
+            message: 'Password has been updated successfully!',
             statusCode: response.data['statusCode'],
             statusMessage: response.data['statusMessage'],
           ),
@@ -468,24 +537,36 @@ class UserRepository {
     }
   }
 
-  Future<Either<AppFailure, AppResponse<UserModel>>> showProfile() async {
+  Future<Either<AppFailure, AppResponse<UserModel>>> showProfile([
+    Role role = Role.patient,
+    int? childId,
+  ]) async {
     try {
       final response = await _dio.get(
-        AppConstants.showProfilePath,
+        role.isPatient
+            ? AppConstants.showProfilePath
+            : AppConstants.doctorProfilePath,
         queryParameters:
-            (getChildId() == null) ? null : {'child_id': getChildId()},
+            childId != null
+                ? {'child_id': childId}
+                : (getChildId() == null || !role.isPatient)
+                ? null
+                : {'child_id': getChildId()},
       );
-      wLog(response.data);
       if (response.data['statusCode'] < 300) {
         return Right(
           AppResponse<UserModel>(
-            data: UserModel.fromJson(response.data['data']),
+            data: UserModel.fromJson(
+              role.isPatient ? response.data['data'] : response.data,
+            ),
             success: true,
             message: 'account fetched successfully',
             statusCode: response.data['statusCode'],
             statusMessage: response.data['statusMessage'],
           ),
         );
+      } else if (response.data['statusCode'] == 404) {
+        throw HttpException('There is no schedules yet');
       } else {
         throw HttpException('account\'s not fetched');
       }
@@ -500,6 +581,58 @@ class UserRepository {
       return Left(
         AppFailure(message: e.message, stacktracte: StackTrace.current),
       );
+    } catch (e) {
+      return Left(
+        AppFailure(message: e.toString(), stacktracte: StackTrace.current),
+      );
+    }
+  }
+
+  Future<Either<AppFailure, AppResponse<UserModel>>> getUser() async {
+    final Response response;
+    try {
+      response = await _dio.get(AppConstants.authWithTokenPath);
+      if (response.data['statusCode']! < 300) {
+        return Right(
+          AppResponse<UserModel>(
+            success: true,
+            message: 'Successfully authenticated with token',
+            data: UserModel.fromJson(response.data),
+            statusCode: response.statusCode,
+            statusMessage: response.statusMessage,
+          ),
+        );
+      } else {
+        throw (HttpException(response.data['error']));
+      }
+    } catch (e) {
+      return Left(
+        AppFailure(message: e.toString(), stacktracte: StackTrace.current),
+      );
+    }
+  }
+
+  Future<Either<AppFailure, AppResponse>> deleteSchdule({
+    required int scheduleId,
+  }) async {
+    final Response response;
+    try {
+      response = await _dio.post(
+        AppConstants.deleteFromSchedulePath,
+        data: {'schedule_id': scheduleId},
+      );
+      if (response.data['statusCode']! < 300) {
+        return Right(
+          AppResponse(
+            success: true,
+            message: 'Schedule deleted successfully!',
+            statusCode: response.statusCode,
+            statusMessage: response.statusMessage,
+          ),
+        );
+      } else {
+        throw (HttpException('Schedule is not deleted'));
+      }
     } catch (e) {
       return Left(
         AppFailure(message: e.toString(), stacktracte: StackTrace.current),

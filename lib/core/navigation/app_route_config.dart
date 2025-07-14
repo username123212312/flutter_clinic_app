@@ -7,8 +7,10 @@ import 'package:our_flutter_clinic_app/features/home/view/screens/labtech/analys
 import 'package:our_flutter_clinic_app/features/home/view/screens/patient/reschedule_screen.dart';
 import 'package:our_flutter_clinic_app/features/home/view/screens/patient/switch_account_screen.dart';
 
+import '../../features/home/view/screens/doctor/doctor_appointment_datails_screen.dart';
 import '../../features/home/view/screens/doctor/doctor_home_screen.dart';
 import '../../features/home/view/screens/doctor/doctor_profile.dart';
+import '../../features/home/view/screens/doctor/doctor_reviews_screen.dart';
 import '../../features/home/view/screens/doctor/doctor_schedule_screen.dart';
 import '../../features/home/view/screens/doctor/edit_profile.dart';
 import '../../features/home/view/screens/patient/add_child_screen.dart';
@@ -194,9 +196,24 @@ class AppRouteConfig {
         },
       ),
       GoRoute(
+        name: AppRouteConstants.doctorAppointmentDetailsRouteName,
+        path: '/doctor_appointment_details',
+        pageBuilder: (_, state) {
+          final appointment = state.extra as AppointmentModel;
+          return TransitionPage(
+            child: DoctorAppointmentDatailsScreen(appointment: appointment),
+          );
+        },
+      ),
+      GoRoute(
         name: AppRouteConstants.findPharmaciesRouteName,
         path: '/find_pharmacies',
         pageBuilder: (_, state) => TransitionPage(child: PharmacyListScreen()),
+      ),
+      GoRoute(
+        name: AppRouteConstants.doctorReviewsRouteName,
+        path: '/doctor_reviews',
+        pageBuilder: (_, state) => TransitionPage(child: DoctorReviewsScreen()),
       ),
       GoRoute(
         name: AppRouteConstants.modifyPasswordRouteName,

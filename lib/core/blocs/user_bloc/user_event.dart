@@ -33,4 +33,10 @@ sealed class UserEvent with _$UserEvent {
   const factory UserEvent.childRemoved({required int childId}) = ChildRemoved;
 
   const factory UserEvent.accountSwitched({int? childId}) = AccountSwitched;
+  const factory UserEvent.profileFetched() = ProfileFetched;
+  const factory UserEvent.doctorProfileModified({
+    required ModifyDoctorInfoRequest request,
+  }) = DoctorProfileModified;
+  const factory UserEvent.deleteFromSchedule({required int scheduleId}) =
+      DeleteFromSchedule;
 }

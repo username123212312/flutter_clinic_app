@@ -32,6 +32,8 @@ class AppRouteConstants {
   static const doctorListRouteName = 'doctor_list';
   static const doctorInfoRouteName = 'doctor_info';
   static const doctorRatingRouteName = 'doctor_rating';
+  static const doctorAppointmentDetailsRouteName = 'doctor_appointment_details';
+  static const doctorReviewsRouteName = 'doctor_reviews';
   static const reservationDetailsRouteName = 'reservation_details';
   static const paymentMethodRouteName = 'payment_method';
   static const findPharmaciesRouteName = 'find_pharmacies';

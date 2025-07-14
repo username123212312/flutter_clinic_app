@@ -1,11 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:our_flutter_clinic_app/core/blocs/auth_bloc/auth_bloc.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/custom_bottom_app_bar.dart';
 
-import '../../../../../core/navigation/app_route_constants.dart';
+import '../../widgets/doctor_appointments/appointments_screen_widget.dart';
 import '../../widgets/profile/doctor_profile_widget.dart';
 
 class DoctorHomeScreen extends StatefulWidget {
@@ -29,9 +26,9 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
           },
           child: Text(
             _currentIndex == 0
-                ? 'My Patients'
-                : _currentIndex == 1
                 ? 'Appointments'
+                : _currentIndex == 1
+                ? 'My Patients'
                 : 'Profile',
             style: Theme.of(
               context,
@@ -54,8 +51,8 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
             bottom: 0,
             child: CustomBottomAppBar(
               titles: [
-                {'Patients': 'assets/icons/appointments_icon.png'},
                 {'Appointments': 'assets/icons/appointments_icon.png'},
+                {'Patients': 'assets/icons/appointments_icon.png'},
                 {'Profile': 'assets/icons/profile_icon.png'},
               ],
               onChange: (index) {
@@ -73,7 +70,7 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
   Widget _buildMainContent(int index) {
     switch (index) {
       case 0:
-        return Placeholder();
+        return AppointmentsScreenWidget();
       case 1:
         return Placeholder();
       case 2:
@@ -83,5 +80,5 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
     }
   }
 
-  int _currentIndex = 1;
+  int _currentIndex = 0;
 }

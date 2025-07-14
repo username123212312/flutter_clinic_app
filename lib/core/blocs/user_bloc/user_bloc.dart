@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:our_flutter_clinic_app/core/blocs/auth_bloc/auth_bloc.dart';
 import 'package:our_flutter_clinic_app/core/providers/file_manager/file_manager.dart';
 import 'package:our_flutter_clinic_app/features/auth/model/requests/auth_requests.dart';
@@ -12,6 +11,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 import '../../enums.dart';
+import '../../models/modify_doctor_info_request.dart';
 import '../../models/usermodel.dart';
 
 part 'user_event.dart';
@@ -45,6 +45,9 @@ class UserBloc extends HydratedBloc<UserEvent, UserState> {
     on<ChildAdded>(_addChild);
     on<ChildRemoved>(_removeChild);
     on<AccountSwitched>(_switchAccount);
+    on<ProfileFetched>(_fetchProfile);
+    on<DeleteFromSchedule>(_deleteFromSchedule);
+    on<DoctorProfileModified>(_modifyDoctorProfile);
   }
   Future<void> _registerUser(UserEvent event, Emitter<UserState> emit) async {
     (state as _UserState).user;
@@ -278,42 +281,23 @@ class UserBloc extends HydratedBloc<UserEvent, UserState> {
       newPassword: event.newPassword,
       oldPassword: event.oldPassword,
     );
-    final response = await _userRepository.modifyUserPassword(request);
+    final response = await _userRepository.modifyUserPassword(
+      request,
+      state.user?.role ?? Role.patient,
+    );
     final newState = switch (response) {
       Left(value: final l) => state.copyWith(
-        user: state.user,
         status: UserStatus.error,
         statusMessage: l.message,
       ),
       Right(value: final r) => state.copyWith(
-        user:
-            state.user?.copyWith(
-              firstName: r.data?.firstName,
-              lastName: r.data?.lastName,
-              age: r.data?.age,
-              bloodType: r.data?.bloodType,
-              gender: r.data?.gender,
-              address: r.data?.address,
-              email: r.data?.email,
-              phone: r.data?.phone,
-            ) ??
-            UserModel(
-              firstName: r.data?.firstName,
-              lastName: r.data?.lastName,
-              age: r.data?.age,
-              bloodType: r.data?.bloodType,
-              gender: r.data?.gender,
-              address: r.data?.address,
-              email: r.data?.email,
-              phone: r.data?.phone,
-            ),
         statusMessage: r.message,
         status: UserStatus.modified,
       ),
     };
     emit(newState);
-    if (!newState.status.isError) {
-      _authBloc.add(AuthEvent.userModified(user: state.user!));
+    if (!state.status.isError) {
+      add(ProfileFetched());
     }
   }
 
@@ -365,6 +349,9 @@ class UserBloc extends HydratedBloc<UserEvent, UserState> {
         ),
       };
       emit(newState);
+      if (state.childrenListStatus.isDone && !state.status.isError) {
+        add(AllChildrenFetched());
+      }
     } catch (e) {
       emit(
         state.copyWith(
@@ -431,6 +418,98 @@ class UserBloc extends HydratedBloc<UserEvent, UserState> {
           statusMessage: e.toString(),
           currentChildId: previousChildId,
         ),
+      );
+    }
+  }
+
+  Future<void> _fetchProfile(
+    ProfileFetched event,
+    Emitter<UserState> emit,
+  ) async {
+    try {
+      final prevoiusUser = state.user;
+      final response = await _userRepository.showProfile(
+        state.user?.role ?? Role.patient,
+      );
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          status: UserStatus.error,
+          statusMessage: l.message,
+        ),
+        Right(value: final r) => state.copyWith(
+          status: UserStatus.modified,
+          statusMessage: r.message,
+          user: r.data?.copyWith(
+            email: prevoiusUser?.email,
+            phone: prevoiusUser?.phone,
+            id: prevoiusUser?.id,
+            role: prevoiusUser?.role,
+          ),
+        ),
+      };
+      emit(newState);
+      if (!newState.status.isError) {
+        _authBloc.add(AuthEvent.userModified(user: state.user!));
+      }
+    } catch (e) {
+      emit(
+        state.copyWith(status: UserStatus.error, statusMessage: e.toString()),
+      );
+    }
+  }
+
+  Future<void> _deleteFromSchedule(
+    DeleteFromSchedule event,
+    Emitter<UserState> emit,
+  ) async {
+    try {
+      final response = await _userRepository.deleteSchdule(
+        scheduleId: event.scheduleId,
+      );
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          status: UserStatus.error,
+          statusMessage: l.message,
+        ),
+        Right(value: final r) => state.copyWith(
+          status: UserStatus.modified,
+          statusMessage: r.message,
+        ),
+      };
+      emit(newState);
+      if (!newState.status.isError) {
+        add(ProfileFetched());
+      }
+    } catch (e) {
+      emit(
+        state.copyWith(status: UserStatus.error, statusMessage: e.toString()),
+      );
+    }
+  }
+
+  Future<void> _modifyDoctorProfile(
+    DoctorProfileModified event,
+    Emitter<UserState> emit,
+  ) async {
+    try {
+      final response = await _userRepository.modifyDoctorInfo(event.request);
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          status: UserStatus.error,
+          statusMessage: l.message,
+        ),
+        Right(value: final r) => state.copyWith(
+          status: UserStatus.modified,
+          statusMessage: r.message,
+        ),
+      };
+      emit(newState);
+      if (!state.status.isError) {
+        add(ProfileFetched());
+      }
+    } catch (e) {
+      emit(
+        state.copyWith(status: UserStatus.error, statusMessage: e.toString()),
       );
     }
   }

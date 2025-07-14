@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -24,17 +26,30 @@ class LoadingOverlay {
     _overlayEntry = OverlayEntry(
       builder:
           (context) => Material(
-            color: Colors.black.withValues(alpha: 0.1),
+            color: Colors.transparent,
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: dismissOnTap ? _dismissOverlay : null,
-              child: Center(
-                child: Lottie.asset(
-                  lottieAsset,
-                  width: 150,
-                  height: 150,
-                  fit: BoxFit.contain,
-                ),
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                    child: Container(
+                      color: Colors.black.withValues(
+                        alpha: 0.2,
+                      ), // Optional dim overlay
+                    ),
+                  ),
+                  Center(
+                    child: Lottie.asset(
+                      lottieAsset,
+                      width: 150,
+                      height: 150,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

@@ -3,26 +3,44 @@
 import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../features/home/model/schedule.dart';
+import '../../features/home/model/work_day.dart';
+
 part 'usermodel.freezed.dart';
 part 'usermodel.g.dart';
 
 @freezed
 sealed class UserModel with _$UserModel {
   factory UserModel({
+    //? User
+    int? id,
+    @JsonKey(name: 'first_name') String? firstName,
     @JsonKey(name: 'last_name') String? lastName,
+    String? email,
+    String? phone,
+    @Default(Role.patient) Role? role,
+    String? token,
+    String? password,
+    //? Patient
     int? age,
     String? gender,
     @JsonKey(name: 'blood_type') String? bloodType,
-    @JsonKey(name: 'first_name') String? firstName,
     @Default(false) @JsonKey(name: 'complete_profile') bool isCompleteProfile,
-    int? id,
     String? address,
-    String? email,
-    String? phone,
-    String? password,
-    String? token,
-
-    @Default(Role.patient) Role? role,
+    //? Doctor
+    String? photo,
+    String? clinic,
+    String? speciality,
+    @JsonKey(name: 'professional_title') String? professionalTitle,
+    double? finalRate,
+    @JsonKey(name: 'average_visit_duration') String? averageVisitDuration,
+    @JsonKey(name: 'visit_fee') double? visitFee,
+    int? experience,
+    int? treated,
+    @JsonKey(name: 'booking_type') String? bookingType,
+    String? status,
+    String? sign,
+    List<Schedule>? schedule,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>

@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 
+import '../../../core/utils/doctor_appointment_type_converter.dart';
 import '../../../core/utils/time_of_day_converter.dart';
 
 part 'appointment_model.freezed.dart';
@@ -20,6 +21,11 @@ sealed class AppointmentModel with _$AppointmentModel {
     @JsonKey(name: 'doctor_id') int? doctorId,
     @JsonKey(name: 'doctor_photo') String? doctorPhoto,
     @JsonKey(name: 'doctor_name') String? doctorName,
+    @JsonKey(name: 'patient_first_name') String? patientFirstName,
+    @JsonKey(name: 'patient_last_name') String? patientLastName,
+    @JsonKey(name: 'appointment_type')
+    @DoctorAppointmentTypeConverter()
+    DoctorAppointmentType? appointmentType,
     @JsonKey(name: 'visit_fee') double? visitFee,
     @JsonKey(name: 'doctor_speciality') String? doctorSpeciality,
     @JsonKey(name: 'reservation_date') DateTime? reservationDate,
