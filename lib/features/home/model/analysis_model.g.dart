@@ -45,7 +45,6 @@ const _$AnalysisStatusEnumMap = {
   AnalysisStatus.all: 'all',
   AnalysisStatus.pending: 'pending',
   AnalysisStatus.finished: 'finished',
-  AnalysisStatus.canceled: 'canceled',
 };
 
 const _$PaymentStatusEnumMap = {

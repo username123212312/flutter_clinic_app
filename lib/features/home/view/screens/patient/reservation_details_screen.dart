@@ -39,8 +39,8 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
       appointmentId: widget.appointmentId,
       reservationDetailsRepository: ReservationDetailsRepository(),
     );
+    _reservationDetailsCubit.fetchAppointment();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _reservationDetailsCubit.fetchAppointment();
       if (mounted) {
         setState(() {
           themeData = Theme.of(context);
@@ -209,6 +209,27 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                     ),
                   ],
                 ),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Use Discount Points",
+                      style: themeData!.textTheme.titleMedium!.copyWith(
+                        fontSize: 18,
+                        color: Pallete.black1,
+                      ),
+                    ),
+                    Switch(
+                      value: _useDiscountPoints,
+                      onChanged: (newValue) {
+                        setState(() {
+                          _useDiscountPoints = newValue;
+                        });
+                      },
+                    ),
+                  ],
+                ),
                 const SizedBox(height: 30),
 
                 Center(
@@ -222,8 +243,13 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                         LoadingOverlay().show(context);
                       } else {
                         LoadingOverlay().hideAll();
-                        clearAndShowSnackBar(context, state.message);
+
+                        if (state.status.isError) {
+                          Fluttertoast.showToast(msg: state.message);
+                        }
+
                         if (state.status.isDone) {
+                          Fluttertoast.showToast(msg: state.message);
                           await TransparentDialog.show(
                             context: context,
                             barrierDismissible: false,
@@ -286,7 +312,7 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                       text: "Checkout",
                       onPressed: () async {
                         await _reservationDetailsCubit
-                            .confirmReservationPayment();
+                            .confirmReservationPayment(_useDiscountPoints);
                       },
                       color: Pallete.primaryColor,
                       width: (screenWidth ?? 0) * 0.75,
@@ -335,6 +361,7 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
   late final double? screenHeight;
   late final double? screenWidth;
   late final ThemeData? themeData;
+  bool _useDiscountPoints = false;
 }
 
 class _ReminderBottomSheet extends StatefulWidget {
@@ -431,8 +458,8 @@ class __ReminderBottomSheetState extends State<_ReminderBottomSheet> {
                                 log('Reminder set for ${_hours.toInt()} hours');
                                 _reminderCubit.setReminder(
                                   widget.id,
-                                  // 2,
-                                  _hours.toInt(),
+                                  2,
+                                  // _hours.toInt(),
                                 );
                               },
                       child: Text(

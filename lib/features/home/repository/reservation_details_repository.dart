@@ -46,12 +46,16 @@ class ReservationDetailsRepository {
   }
 
   Future<Either<AppFailure, AppResponse>> confirmReservationPayment(
-    int appointmentId,
-  ) async {
+    int appointmentId, [
+    bool useDiscountPoints = false,
+  ]) async {
     try {
       final response = await _dio.post(
         AppConstants.reservationPaymentPath,
-        data: {'reservation_id': appointmentId},
+        data: {
+          'reservation_id': appointmentId,
+          'discount_points': useDiscountPoints,
+        },
       );
 
       if (response.data['statusCode'] < 300) {

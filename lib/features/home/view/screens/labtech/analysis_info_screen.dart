@@ -80,10 +80,23 @@ class _AnalysisInfoScreenState extends State<AnalysisInfoScreen> {
                     spacing: 10,
                     children: [
                       Text(
+                        'Patient',
+                        style: Theme.of(
+                          context,
+                        ).textTheme.labelMedium!.copyWith(fontSize: 18),
+                      ),
+                      Text(
+                        '${widget.analysis.patientFirstName ?? 'No'} ${widget.analysis.patientLastName ?? 'No'}',
+                        style: Theme.of(
+                          context,
+                        ).textTheme.titleSmall!.copyWith(fontSize: 15),
+                      ),
+
+                      Text(
                         'Description',
                         style: Theme.of(
                           context,
-                        ).textTheme.labelMedium!.copyWith(fontSize: 20),
+                        ).textTheme.labelMedium!.copyWith(fontSize: 18),
                       ),
                       SizedBox(
                         width: screenWidth(context),
@@ -91,7 +104,7 @@ class _AnalysisInfoScreenState extends State<AnalysisInfoScreen> {
                         child: Text(
                           style: Theme.of(
                             context,
-                          ).textTheme.titleSmall!.copyWith(fontSize: 17),
+                          ).textTheme.titleSmall!.copyWith(fontSize: 15),
                           widget.analysis.description ?? 'Analysis description',
                         ),
                       ),
@@ -108,7 +121,7 @@ class _AnalysisInfoScreenState extends State<AnalysisInfoScreen> {
                         ? SizedBox.shrink()
                         : Column(
                           children: [
-                            SizedBox(height: screenHeight(context) * 0.2),
+                            SizedBox(height: screenHeight(context) * 0.1),
                             SizedBox(
                               width: screenWidth(context),
                               child: BlocConsumer<

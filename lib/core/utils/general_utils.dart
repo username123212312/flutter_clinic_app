@@ -9,6 +9,7 @@ import 'package:our_flutter_clinic_app/core/utils/logger.dart';
 import '../../service_locator.dart';
 import '../blocs/user_bloc/user_bloc.dart';
 import '../enums.dart';
+import '../theme/app_pallete.dart';
 
 double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
 double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
@@ -173,4 +174,21 @@ Future<bool> handlePayment(String clientSecret, [String? paymentName]) async {
 
 int? getChildId() {
   return ServiceLocator.instance<UserBloc>().state.currentChildId;
+}
+
+List<Color> selectAppointmentStatusColor(AppointmentStatus appointmentStatus) {
+  return switch (appointmentStatus) {
+    AppointmentStatus.pending => [
+      Pallete.statusColorPending,
+      Pallete.alertWarningColor,
+    ],
+    AppointmentStatus.visited => [
+      Pallete.statusColorFinished,
+      Pallete.alertSuccessColor,
+    ],
+    AppointmentStatus.cancelled => [
+      Pallete.statusColorCanceled,
+      Pallete.alertDangerColor,
+    ],
+  };
 }

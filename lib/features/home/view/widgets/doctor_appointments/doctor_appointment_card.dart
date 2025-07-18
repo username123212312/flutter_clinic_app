@@ -21,7 +21,7 @@ class DoctorAppointmentCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(13),
-        color: Pallete.grayScaleColor300,
+        color: Pallete.grayScaleColor200,
       ),
       padding: EdgeInsets.all(15),
       child: Stack(
@@ -97,7 +97,10 @@ class DoctorAppointmentCard extends StatelessWidget {
               height: 25,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(13),
-                color: Pallete.grayScaleColor400,
+                color:
+                    selectAppointmentStatusColor(
+                      appointment.status ?? AppointmentStatus.cancelled,
+                    )[0],
               ),
               padding: EdgeInsets.all(5),
               child: Row(
@@ -106,9 +109,13 @@ class DoctorAppointmentCard extends StatelessWidget {
                   FittedBox(
                     child: Text(
                       appointment.status?.name ?? 'no status',
-                      style: Theme.of(
-                        context,
-                      ).textTheme.labelMedium!.copyWith(fontSize: 8),
+                      style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                        fontSize: 8,
+                        color:
+                            selectAppointmentStatusColor(
+                              appointment.status ?? AppointmentStatus.cancelled,
+                            )[1],
+                      ),
                     ),
                   ),
                   Container(

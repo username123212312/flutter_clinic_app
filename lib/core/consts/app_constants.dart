@@ -95,6 +95,18 @@ class AppConstants {
   static const doctorEditProfilePath = '$doctorPath/editProfile';
   static const deleteFromSchedulePath = '$doctorPath/deleteFromSchedule';
   static const showDoctorReviewsPath = '$doctorPath/showDoctorReviews';
+  static const showVisitedPatientsPath =
+      '$serverUrl/Doctor/patientInfo/patientsRecord';
+  static const searchVisitedPatientsPath =
+      '$serverUrl/Doctor/patientInfo/searchPatient';
+  static const showPatientAnalysisPath =
+      '$serverUrl/Doctor/patientInfo/showPatientAnalysis';
+  static const showPatientAnalysisByClinicPath =
+      '$serverUrl/Doctor/patientInfo/showPatientAnalysisByClinic';
+  static const doctorShowClinicPath =
+      '$serverUrl/Doctor/patientInfo/showClinics';
+  static const showPatientProfilePath =
+      '$serverUrl/Doctor/patientInfo/showPatientProfile';
 
   //* Doctor appointments
   static const doctorshowAppointmantResultsPath =

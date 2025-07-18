@@ -44,58 +44,69 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
       onRefresh: () async {
         _loadData();
       },
-      child: BlocBuilder<AppointmentsBloc, AppointmentsState>(
-        builder: (context, state) {
-          return CustomScrollView(
-            slivers: [
-              _buildThreeSelectable(),
-              (state.appointments == null || state.appointments!.isEmpty)
-                  ? SliverToBoxAdapter(
-                    child: Center(
-                      heightFactor: 2.5,
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            'assets/images/il_empty_activity.webp',
-                            width: screenWidth(context) * 0.4,
-                            height: screenHeight(context) * 0.17,
-                            fit: BoxFit.contain,
-                          ),
-                          Text(
-                            'Appointments still empty',
-                            style: Theme.of(
-                              context,
-                            ).textTheme.labelSmall!.copyWith(
-                              fontSize: 16,
-                              color: Pallete.oxfordBlue,
+      child: Container(
+        decoration: BoxDecoration(
+          image:
+              getChildId() == null
+                  ? null
+                  : DecorationImage(
+                    repeat: ImageRepeat.repeat,
+                    image: AssetImage('assets/images/background child.png'),
+                  ),
+        ),
+        child: BlocBuilder<AppointmentsBloc, AppointmentsState>(
+          builder: (context, state) {
+            return CustomScrollView(
+              slivers: [
+                _buildThreeSelectable(),
+                (state.appointments == null || state.appointments!.isEmpty)
+                    ? SliverToBoxAdapter(
+                      child: Center(
+                        heightFactor: 2.5,
+                        child: Column(
+                          children: [
+                            Image.asset(
+                              'assets/images/il_empty_activity.webp',
+                              width: screenWidth(context) * 0.4,
+                              height: screenHeight(context) * 0.17,
+                              fit: BoxFit.contain,
                             ),
-                          ),
-                          Text(
-                            'Let\'s go to Mediverse for treatment!!!',
-                            style: Theme.of(
-                              context,
-                            ).textTheme.titleSmall!.copyWith(
-                              fontSize: 12,
-                              color: Pallete.sliverSand,
+                            Text(
+                              'Appointments still empty',
+                              style: Theme.of(
+                                context,
+                              ).textTheme.labelSmall!.copyWith(
+                                fontSize: 16,
+                                color: Pallete.oxfordBlue,
+                              ),
                             ),
-                          ),
-                        ],
+                            Text(
+                              'Let\'s go to Mediverse for treatment!!!',
+                              style: Theme.of(
+                                context,
+                              ).textTheme.titleSmall!.copyWith(
+                                fontSize: 12,
+                                color: Pallete.sliverSand,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  )
-                  : state.status!.isLoading
-                  ? SliverToBoxAdapter(
-                    child: Skeletonizer(
-                      effect: ShimmerEffect(
-                        // Animation duration
+                    )
+                    : state.status!.isLoading
+                    ? SliverToBoxAdapter(
+                      child: Skeletonizer(
+                        effect: ShimmerEffect(
+                          // Animation duration
+                        ),
+                        child: _buildSkeletonList(),
                       ),
-                      child: _buildSkeletonList(),
-                    ),
-                  )
-                  : _buildList(state),
-            ],
-          );
-        },
+                    )
+                    : _buildList(state),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

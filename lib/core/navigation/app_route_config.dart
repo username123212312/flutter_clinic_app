@@ -1,3 +1,4 @@
+import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/screens/change_password_screen.dart';
 import 'package:our_flutter_clinic_app/features/home/model/analysis_model.dart';
 import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
@@ -13,6 +14,7 @@ import '../../features/home/view/screens/doctor/doctor_profile.dart';
 import '../../features/home/view/screens/doctor/doctor_reviews_screen.dart';
 import '../../features/home/view/screens/doctor/doctor_schedule_screen.dart';
 import '../../features/home/view/screens/doctor/edit_profile.dart';
+import '../../features/home/view/screens/doctor/patient_profile_screen.dart';
 import '../../features/home/view/screens/patient/add_child_screen.dart';
 import '../../features/home/view/screens/patient/clinic_doctors_screen.dart';
 import '../../features/home/view/screens/patient/my_wallet_screen.dart';
@@ -203,6 +205,14 @@ class AppRouteConfig {
           return TransitionPage(
             child: DoctorAppointmentDatailsScreen(appointment: appointment),
           );
+        },
+      ),
+      GoRoute(
+        name: AppRouteConstants.patientProfileRouteName,
+        path: '/patient_profile',
+        pageBuilder: (_, state) {
+          final patient = state.extra as UserModel;
+          return TransitionPage(child: PatientProfileScreen(patient: patient));
         },
       ),
       GoRoute(

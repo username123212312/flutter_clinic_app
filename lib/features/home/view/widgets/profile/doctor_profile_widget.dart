@@ -5,6 +5,7 @@ import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:our_flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
 
+import '../../../../../core/widgets/loading_overlay.dart';
 import '../../screens/patient/report_screen.dart';
 
 class DoctorProfileWidget extends StatelessWidget {
@@ -246,8 +247,13 @@ class DoctorProfileWidget extends StatelessWidget {
             },
             child: BlocListener<UserBloc, UserState>(
               listener: (context, state) {
-                if (state.status.isError) {
-                  Fluttertoast.showToast(msg: state.statusMessage);
+                if (state.status.isLoading) {
+                  LoadingOverlay().show(context);
+                } else {
+                  LoadingOverlay().hideAll();
+                  if (state.status.isError) {
+                    Fluttertoast.showToast(msg: state.statusMessage);
+                  }
                 }
               },
               child: Container(

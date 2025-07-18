@@ -62,7 +62,11 @@ class _HomeScreenState extends State<HomeScreen>
                 title: FadeTransition(
                   opacity: _animationController,
                   child: Text(
-                    _currentIndex == 1 ? 'Appointments' : 'My Profile',
+                    _currentIndex == 1
+                        ? 'Appointments'
+                        : _currentIndex == 2
+                        ? 'Chat'
+                        : 'My Profile',
                     style: Theme.of(context).textTheme.labelSmall!.copyWith(
                       fontSize: 20,
                       color: Pallete.grayScaleColor700,
@@ -114,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen>
         child: Stack(
           children: [
             Positioned(
-              bottom: screenHeight(context) * 0.12,
+              bottom: screenHeight(context) * 0.102,
               top: 0,
               left: 0,
               right: 0,
@@ -129,9 +133,10 @@ class _HomeScreenState extends State<HomeScreen>
               right: 0,
               child: CustomBottomAppBar(
                 titles: [
-                  {'Home': 'assets/icons/home_icon.png'},
-                  {'Appointments': 'assets/icons/appointments_icon.png'},
-                  {'Profile': 'assets/icons/profile_icon.png'},
+                  {'Home': 'assets/icons/home.png'},
+                  {'Appointments': 'assets/icons/task.png'},
+                  {'Chat': 'assets/icons/messenger.png'},
+                  {'Profile': 'assets/icons/profile.png'},
                 ],
                 onChange: (index) {
                   setState(() {
@@ -152,7 +157,8 @@ class _HomeScreenState extends State<HomeScreen>
     return switch (index) {
       0 => HomeScreenWidget(),
       1 => AppontmentsScreen(),
-      2 => ProifileWidget(),
+      2 => Placeholder(),
+      3 => ProifileWidget(),
       _ => Placeholder(),
     };
   }

@@ -10,6 +10,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/blocs/user_bloc/user_bloc.dart';
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../controller/home_bloc/home_bloc.dart';
+import '../educational_slider.dart';
 import 'find_doctor_card.dart';
 import 'department.dart';
 import 'pharmecy_card.dart';
@@ -62,403 +63,249 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
         },
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Welcome Back',
-                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                          fontSize: 14,
-                          color: Pallete.gray1,
-                        ),
+          child: Container(
+            decoration: BoxDecoration(
+              image:
+                  getChildId() == null
+                      ? null
+                      : DecorationImage(
+                        repeat: ImageRepeat.repeat,
+                        image: AssetImage('assets/images/background child.png'),
                       ),
-                      Text(
-                        '${context.read<UserBloc>().state.user?.firstName ?? 'No'}'
-                        ' ${context.read<UserBloc>().state.user?.lastName ?? 'User'}',
-                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                          fontSize: 16,
-                          color: Pallete.black1,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Welcome Back',
+                          style: Theme.of(context).textTheme.titleSmall!
+                              .copyWith(fontSize: 14, color: Pallete.gray1),
                         ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      IconButton(
-                        icon: Stack(
-                          children: [
-                            const Icon(
-                              Icons.notifications_none,
-                              color: Pallete.black1,
-                              size: 25,
-                            ),
-                            BlocBuilder<HomeBloc, HomeState>(
-                              builder: (context, state) {
-                                return Visibility(
-                                  visible: state.notificationCount > 0,
-                                  child: Container(
-                                    height: 10,
-                                    width: 10,
-                                    decoration: BoxDecoration(
-                                      color:
-                                          Theme.of(context).colorScheme.primary,
-                                      shape: BoxShape.circle,
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                          ],
+                        Text(
+                          '${context.read<UserBloc>().state.user?.firstName ?? 'No'}'
+                          ' ${context.read<UserBloc>().state.user?.lastName ?? 'User'}',
+                          style: Theme.of(context).textTheme.titleSmall!
+                              .copyWith(fontSize: 16, color: Pallete.black1),
                         ),
-                        onPressed: () {
-                          context.pushNamed(
-                            AppRouteConstants.notificationsRouteName,
-                          );
-                        },
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.search,
-                          color: Pallete.black1,
-                          size: 25,
-                        ),
-                        onPressed: () {
-                          showSearchOverlay(context);
-                        },
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              const SectionHeader(title: 'Upcoming Appointments'),
-              const SizedBox(height: 16),
-              SizedBox(
-                height: 132,
-                child: BlocBuilder<HomeBloc, HomeState>(
-                  builder: (context, state) {
-                    if (state.upcomingAppointmentsList.isEmpty) {
-                      return Center(
-                        child: Image.asset(
-                          'assets/images/il_empty_activity.webp',
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        ),
-                      );
-                    }
-                    return Skeletonizer(
-                      enabled: state.upcomingAppointmentsListStatus.isLoading,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount:
-                            state.upcomingAppointmentsListStatus.isLoading
-                                ? 5
-                                : state.upcomingAppointmentsList.length,
-                        itemBuilder: (context, index) {
-                          if (state.upcomingAppointmentsListStatus.isLoading) {
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 12),
-                              child: UpcomingAppointmentCard(
-                                appointmentTime: 'bllabla',
-                                appointmentdate: 'bllabllabla',
-                                doctorName: 'No Doctor',
-                                imagePath: 'assets/images/app_logo.png',
-                                rating: 0.0,
-                                specialty: 'No speciality',
-                                onTap: () {},
-                              ),
-                            );
-                          }
-                          final appointment =
-                              state.upcomingAppointmentsList[index];
-                          return TweenAnimationBuilder(
-                            tween: Tween<Offset>(
-                              begin: const Offset(1, 0),
-                              end: Offset.zero,
-                            ),
-                            duration: Duration(
-                              milliseconds: 300 + (index * 100),
-                            ),
-                            builder: (context, offset, child) {
-                              return Transform.translate(
-                                offset: offset * 20,
-                                child: child,
-                              );
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 12),
-                              child: UpcomingAppointmentCard(
-                                appointmentTime: formatTime(
-                                  appointment.reservationHour ??
-                                      TimeOfDay.now(),
-                                  false,
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        IconButton(
+                          icon: Stack(
+                            children: [
+                              if (getChildId() == null)
+                                const Icon(
+                                  Icons.notifications_none,
+                                  color: Pallete.black1,
+                                  size: 25,
                                 ),
-                                appointmentdate:
-                                    DateFormat('d MMMM, EEE')
-                                        .format(
-                                          appointment.reservationDate ??
-                                              DateTime.now(),
-                                        )
-                                        .toString(),
-                                doctorName:
-                                    appointment.doctorName ?? 'No Doctor',
-                                imagePath:
-                                    appointment.doctorPhoto ??
-                                    'assets/images/logo.webp',
-                                rating:
-                                    appointment.finalRate?.toDouble() ?? 0.0,
-                                specialty:
-                                    appointment.doctorSpeciality ??
-                                    'No speciality',
-                                onTap: () {
-                                  context.pushNamed(
-                                    AppRouteConstants
-                                        .appointmentDetailsRouteName,
-                                    extra: appointment.copyWith(
-                                      status: AppointmentStatus.pending,
+                              if (getChildId() != null)
+                                Image.asset(
+                                  'assets/images/notification-bell_5800132.png',
+                                  width: 25,
+                                  height: 25,
+                                  fit: BoxFit.cover,
+                                ),
+                              BlocBuilder<HomeBloc, HomeState>(
+                                builder: (context, state) {
+                                  return Visibility(
+                                    visible: state.notificationCount > 0,
+                                    child: Container(
+                                      height: 10,
+                                      width: 10,
+                                      decoration: BoxDecoration(
+                                        color:
+                                            Theme.of(
+                                              context,
+                                            ).colorScheme.primary,
+                                        shape: BoxShape.circle,
+                                      ),
                                     ),
                                   );
                                 },
                               ),
-                            ),
-                          );
-                        },
-                      ),
-                    );
-                  },
-                ),
-              ),
-              SectionHeader(
-                title: 'Departments',
-                onSeeAll:
-                    () => context.pushNamed(
-                      AppRouteConstants.departmentsRouteName,
-                    ),
-              ),
-              const SizedBox(height: 10),
-              BlocBuilder<HomeBloc, HomeState>(
-                builder: (context, state) {
-                  return Skeletonizer(
-                    effect: SoldColorEffect(),
-                    enabled:
-                        state.departmentsListStatus.isLoading ||
-                        state.departmentsList.isEmpty,
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount:
-                          (state.departmentsListStatus.isLoading ||
-                                  state.departmentsList.isEmpty)
-                              ? 8
-                              : state.departmentsList.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 4,
-                            mainAxisSpacing: 15,
-                            crossAxisSpacing: 9,
+                            ],
                           ),
-                      itemBuilder: (context, index) {
-                        if (state.departmentsListStatus.isLoading ||
-                            state.departmentsList.isEmpty) {
-                          return Department(
-                            name: 'opengl',
-                            iconPath: 'assets/icons/Cadiologist.png',
-                          );
-                        }
-                        final clinic = state.departmentsList[index];
-                        return TweenAnimationBuilder(
-                          tween: Tween<double>(begin: 0, end: 1),
-                          duration: Duration(milliseconds: 300 + (index * 100)),
-                          builder: (context, value, child) {
-                            return Opacity(
-                              opacity: value,
-                              child: Transform.scale(
-                                scale: value,
-                                child: child,
+                          onPressed: () {
+                            context.pushNamed(
+                              AppRouteConstants.notificationsRouteName,
+                            );
+                          },
+                        ),
+                        IconButton(
+                          icon:
+                              getChildId() == null
+                                  ? Icon(
+                                    Icons.search,
+                                    color: Pallete.black1,
+                                    size: 25,
+                                  )
+                                  : Image.asset(
+                                    'assets/images/lollipop_11788366.png',
+                                    width: 25,
+                                    height: 25,
+                                    fit: BoxFit.cover,
+                                  ),
+                          onPressed: () {
+                            showSearchOverlay(context);
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                if (getChildId() != null) ...[
+                  const SizedBox(height: 12),
+                  SectionHeader(title: 'Family Tips'),
+                  const SizedBox(height: 12),
+                  const EducationalSlider(),
+                  const SizedBox(height: 16),
+                ],
+                const SectionHeader(title: 'Upcoming Appointments'),
+                const SizedBox(height: 16),
+                SizedBox(
+                  height: 132,
+                  child: BlocBuilder<HomeBloc, HomeState>(
+                    builder: (context, state) {
+                      if (state.upcomingAppointmentsList.isEmpty) {
+                        return Center(
+                          child: Image.asset(
+                            'assets/images/il_empty_activity.webp',
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          ),
+                        );
+                      }
+                      return Skeletonizer(
+                        enabled: state.upcomingAppointmentsListStatus.isLoading,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount:
+                              state.upcomingAppointmentsListStatus.isLoading
+                                  ? 5
+                                  : state.upcomingAppointmentsList.length,
+                          itemBuilder: (context, index) {
+                            if (state
+                                .upcomingAppointmentsListStatus
+                                .isLoading) {
+                              return Padding(
+                                padding: const EdgeInsets.only(right: 12),
+                                child: UpcomingAppointmentCard(
+                                  appointmentTime: 'bllabla',
+                                  appointmentdate: 'bllabllabla',
+                                  doctorName: 'No Doctor',
+                                  imagePath: 'assets/images/app_logo.png',
+                                  rating: 0.0,
+                                  specialty: 'No speciality',
+                                  onTap: () {},
+                                ),
+                              );
+                            }
+                            final appointment =
+                                state.upcomingAppointmentsList[index];
+                            return TweenAnimationBuilder(
+                              tween: Tween<Offset>(
+                                begin: const Offset(1, 0),
+                                end: Offset.zero,
+                              ),
+                              duration: Duration(
+                                milliseconds: 300 + (index * 100),
+                              ),
+                              builder: (context, offset, child) {
+                                return Transform.translate(
+                                  offset: offset * 20,
+                                  child: child,
+                                );
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 12),
+                                child: UpcomingAppointmentCard(
+                                  appointmentTime: formatTime(
+                                    appointment.reservationHour ??
+                                        TimeOfDay.now(),
+                                    false,
+                                  ),
+                                  appointmentdate:
+                                      DateFormat('d MMMM, EEE')
+                                          .format(
+                                            appointment.reservationDate ??
+                                                DateTime.now(),
+                                          )
+                                          .toString(),
+                                  doctorName:
+                                      appointment.doctorName ?? 'No Doctor',
+                                  imagePath:
+                                      appointment.doctorPhoto ??
+                                      'assets/images/logo.webp',
+                                  rating:
+                                      appointment.finalRate?.toDouble() ?? 0.0,
+                                  specialty:
+                                      appointment.doctorSpeciality ??
+                                      'No speciality',
+                                  onTap: () {
+                                    context.pushNamed(
+                                      AppRouteConstants
+                                          .appointmentDetailsRouteName,
+                                      extra: appointment.copyWith(
+                                        status: AppointmentStatus.pending,
+                                      ),
+                                    );
+                                  },
+                                ),
                               ),
                             );
                           },
-                          child: Department(
-                            name: clinic.name ?? 'No Clinic',
-                            iconPath: departmentsData[index]['icon'] ?? '',
-                            onTap: () {
-                              context.pushNamed(
-                                AppRouteConstants.clinicDoctorsRouteName,
-                                extra: clinic,
-                              );
-                            },
-                          ),
-                        );
-                      },
-                    ),
-                  );
-                },
-              ),
-              SectionHeader(
-                title: 'Find Doctors',
-                onSeeAll:
-                    () => context.pushNamed(
-                      AppRouteConstants.doctorListRouteName,
-                    ),
-              ),
-              const SizedBox(height: 12),
-              SizedBox(
-                height: 160,
-                child: BlocBuilder<HomeBloc, HomeState>(
-                  builder: (context, state) {
-                    if (state.doctorsList.isEmpty) {
-                      return Center(
-                        child: Image.asset(
-                          'assets/images/il_empty_activity.webp',
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
                         ),
                       );
-                    }
-                    return Skeletonizer(
-                      enabled: state.doctorsListStatus.isLoading,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount:
-                            state.doctorsListStatus.isLoading
-                                ? 3
-                                : state.doctorsList.length,
-                        itemBuilder: (context, index) {
-                          if (state.doctorsList.isEmpty) {
-                            return Center(
-                              child: Image.asset(
-                                'assets/images/il_empty_activity.webp',
-                              ),
-                            );
-                          }
-                          if (state.doctorsListStatus.isLoading) {
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 12),
-                              child: SizedBox(
-                                width: screenWidth(context) * 0.8,
-                                child: FindDoctorCard(
-                                  buttonOnTap: () {},
-                                  title: 'Jennifer Miller',
-                                  subtitle: 'Pediatrician',
-                                  imagePath: 'assets/icons/home_icon.png',
-                                  rating: 4.8,
-                                  startTime: '10:30am',
-                                  endTime: '5:30pm',
-                                ),
-                              ),
-                            );
-                          }
-                          final doctor = state.doctorsList[index];
-                          return TweenAnimationBuilder(
-                            tween: Tween<Offset>(
-                              begin: const Offset(1, 0),
-                              end: Offset.zero,
-                            ),
-                            duration: Duration(
-                              milliseconds: 300 + (index * 100),
-                            ),
-                            builder: (context, offset, child) {
-                              return Transform.translate(
-                                offset: offset * 20,
-                                child: child,
-                              );
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 12),
-                              child: SizedBox(
-                                width: screenWidth(context) * 0.8,
-                                child: FindDoctorCard(
-                                  buttonOnTap: () {
-                                    context.pushNamed(
-                                      AppRouteConstants.doctorInfoRouteName,
-                                      extra: doctor,
-                                    );
-                                  },
-                                  title:
-                                      '${doctor.firstName ?? 'No'} ${doctor.lastName ?? 'Doctor'}',
-                                  subtitle:
-                                      doctor.speciality ?? 'No speciality',
-                                  imagePath:
-                                      doctor.photoPath ??
-                                      'assets/images/logo.webp',
-                                  rating:
-                                      double.tryParse(
-                                        doctor.finalRate ?? '0.0',
-                                      ) ??
-                                      0.0,
-                                  startTime: '10:30am',
-                                  endTime: '5:30pm',
-                                  onTap: () {},
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    );
-                  },
+                    },
+                  ),
                 ),
-              ),
-
-              SectionHeader(
-                title: 'Nearby Pharmacies',
-                onSeeAll:
-                    () => context.pushNamed(
-                      AppRouteConstants.findPharmaciesRouteName,
-                    ),
-              ),
-              const SizedBox(height: 12),
-              SizedBox(
-                height: 195,
-                child: BlocBuilder<HomeBloc, HomeState>(
+                SectionHeader(
+                  title: 'Departments',
+                  onSeeAll:
+                      () => context.pushNamed(
+                        AppRouteConstants.departmentsRouteName,
+                      ),
+                ),
+                const SizedBox(height: 10),
+                BlocBuilder<HomeBloc, HomeState>(
                   builder: (context, state) {
-                    if (state.pharmaciesList.isEmpty) {
-                      return Center(
-                        child: Image.asset(
-                          'assets/images/il_empty_activity.webp',
-                          width: 120,
-                          height: 120,
-                          fit: BoxFit.cover,
-                        ),
-                      );
-                    }
                     return Skeletonizer(
-                      enabled: state.pharmaciesListStatus.isLoading,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
+                      effect: SoldColorEffect(),
+                      enabled:
+                          state.departmentsListStatus.isLoading ||
+                          state.departmentsList.isEmpty,
+                      child: GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount:
-                            state.pharmaciesListStatus.isLoading
-                                ? 5
-                                : state.pharmaciesList.length,
+                            (state.departmentsListStatus.isLoading ||
+                                    state.departmentsList.isEmpty)
+                                ? 8
+                                : state.departmentsList.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 4,
+                              mainAxisSpacing: 15,
+                              crossAxisSpacing: 9,
+                            ),
                         itemBuilder: (context, index) {
-                          if (state.pharmaciesListStatus.isLoading) {
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 12),
-                              child: SizedBox(
-                                width: 350,
-                                child: const PharmacyCard(
-                                  endTime: '09:00Am',
-                                  name: 'Pharmacy Name',
-                                  startTime: '05:00Pm',
-                                  latitude: 33.5138,
-                                  longitude: 36.2765,
-                                  namelocation: 'Al Amal Street',
-                                  phone: 'Tel: +963 998 998 998',
-                                  location:
-                                      'Location: Al Thawra Street - Tartus',
-                                ),
-                              ),
+                          if (state.departmentsListStatus.isLoading ||
+                              state.departmentsList.isEmpty) {
+                            return Department(
+                              name: 'opengl',
+                              iconPath: 'assets/icons/Cadiologist.png',
                             );
                           }
-                          final pharmacy = state.pharmaciesList[index];
+                          final clinic = state.departmentsList[index];
                           return TweenAnimationBuilder(
                             tween: Tween<double>(begin: 0, end: 1),
                             duration: Duration(
@@ -473,36 +320,15 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                                 ),
                               );
                             },
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 12),
-                              child: SizedBox(
-                                width: 350,
-                                child: PharmacyCard(
-                                  startTime:
-                                      pharmacy.startTime ??
-                                      DateTime.now().toString(),
-                                  endTime:
-                                      pharmacy.finishTime ??
-                                      DateTime.now().toString(),
-                                  name: pharmacy.name ?? 'No pharmacy',
-                                  latitude:
-                                      double.tryParse(
-                                        pharmacy.latitude ?? '0.0',
-                                      ) ??
-                                      34.0,
-                                  longitude:
-                                      double.tryParse(
-                                        pharmacy.longitude ?? '0.0',
-                                      ) ??
-                                      33.0,
-                                  namelocation:
-                                      pharmacy.location ?? 'Al Amal Street',
-                                  phone:
-                                      pharmacy.phone ?? 'Tel: +963 998 998 998',
-                                  location:
-                                      pharmacy.location ?? 'Al Amal Street',
-                                ),
-                              ),
+                            child: Department(
+                              name: clinic.name ?? 'No Clinic',
+                              iconPath: departmentsData[index]['icon'] ?? '',
+                              onTap: () {
+                                context.pushNamed(
+                                  AppRouteConstants.clinicDoctorsRouteName,
+                                  extra: clinic,
+                                );
+                              },
                             ),
                           );
                         },
@@ -510,8 +336,219 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                     );
                   },
                 ),
-              ),
-            ],
+                SectionHeader(
+                  title: 'Find Doctors',
+                  onSeeAll:
+                      () => context.pushNamed(
+                        AppRouteConstants.doctorListRouteName,
+                      ),
+                ),
+                const SizedBox(height: 12),
+                SizedBox(
+                  height: 160,
+                  child: BlocBuilder<HomeBloc, HomeState>(
+                    builder: (context, state) {
+                      if (state.doctorsList.isEmpty) {
+                        return Center(
+                          child: Image.asset(
+                            'assets/images/il_empty_activity.webp',
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          ),
+                        );
+                      }
+                      return Skeletonizer(
+                        enabled: state.doctorsListStatus.isLoading,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount:
+                              state.doctorsListStatus.isLoading
+                                  ? 3
+                                  : state.doctorsList.length,
+                          itemBuilder: (context, index) {
+                            if (state.doctorsList.isEmpty) {
+                              return Center(
+                                child: Image.asset(
+                                  'assets/images/il_empty_activity.webp',
+                                ),
+                              );
+                            }
+                            if (state.doctorsListStatus.isLoading) {
+                              return Padding(
+                                padding: const EdgeInsets.only(right: 12),
+                                child: SizedBox(
+                                  width: screenWidth(context) * 0.8,
+                                  child: FindDoctorCard(
+                                    buttonOnTap: () {},
+                                    title: 'Jennifer Miller',
+                                    subtitle: 'Pediatrician',
+                                    imagePath: 'assets/icons/home_icon.png',
+                                    rating: 4.8,
+                                    startTime: '10:30am',
+                                    endTime: '5:30pm',
+                                  ),
+                                ),
+                              );
+                            }
+                            final doctor = state.doctorsList[index];
+                            return TweenAnimationBuilder(
+                              tween: Tween<Offset>(
+                                begin: const Offset(1, 0),
+                                end: Offset.zero,
+                              ),
+                              duration: Duration(
+                                milliseconds: 300 + (index * 100),
+                              ),
+                              builder: (context, offset, child) {
+                                return Transform.translate(
+                                  offset: offset * 20,
+                                  child: child,
+                                );
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 12),
+                                child: SizedBox(
+                                  width: screenWidth(context) * 0.8,
+                                  child: FindDoctorCard(
+                                    buttonOnTap: () {
+                                      context.pushNamed(
+                                        AppRouteConstants.doctorInfoRouteName,
+                                        extra: doctor,
+                                      );
+                                    },
+                                    title:
+                                        '${doctor.firstName ?? 'No'} ${doctor.lastName ?? 'Doctor'}',
+                                    subtitle:
+                                        doctor.speciality ?? 'No speciality',
+                                    imagePath:
+                                        doctor.photoPath ??
+                                        'assets/images/logo.webp',
+                                    rating:
+                                        double.tryParse(
+                                          doctor.finalRate ?? '0.0',
+                                        ) ??
+                                        0.0,
+                                    startTime: '10:30am',
+                                    endTime: '5:30pm',
+                                    onTap: () {},
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ),
+
+                SectionHeader(
+                  title: 'Nearby Pharmacies',
+                  onSeeAll:
+                      () => context.pushNamed(
+                        AppRouteConstants.findPharmaciesRouteName,
+                      ),
+                ),
+                const SizedBox(height: 12),
+                SizedBox(
+                  height: 195,
+                  child: BlocBuilder<HomeBloc, HomeState>(
+                    builder: (context, state) {
+                      if (state.pharmaciesList.isEmpty) {
+                        return Center(
+                          child: Image.asset(
+                            'assets/images/il_empty_activity.webp',
+                            width: 120,
+                            height: 120,
+                            fit: BoxFit.cover,
+                          ),
+                        );
+                      }
+                      return Skeletonizer(
+                        enabled: state.pharmaciesListStatus.isLoading,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount:
+                              state.pharmaciesListStatus.isLoading
+                                  ? 5
+                                  : state.pharmaciesList.length,
+                          itemBuilder: (context, index) {
+                            if (state.pharmaciesListStatus.isLoading) {
+                              return Padding(
+                                padding: const EdgeInsets.only(right: 12),
+                                child: SizedBox(
+                                  width: 350,
+                                  child: const PharmacyCard(
+                                    endTime: '09:00Am',
+                                    name: 'Pharmacy Name',
+                                    startTime: '05:00Pm',
+                                    latitude: 33.5138,
+                                    longitude: 36.2765,
+                                    namelocation: 'Al Amal Street',
+                                    phone: 'Tel: +963 998 998 998',
+                                    location:
+                                        'Location: Al Thawra Street - Tartus',
+                                  ),
+                                ),
+                              );
+                            }
+                            final pharmacy = state.pharmaciesList[index];
+                            return TweenAnimationBuilder(
+                              tween: Tween<double>(begin: 0, end: 1),
+                              duration: Duration(
+                                milliseconds: 300 + (index * 100),
+                              ),
+                              builder: (context, value, child) {
+                                return Opacity(
+                                  opacity: value,
+                                  child: Transform.scale(
+                                    scale: value,
+                                    child: child,
+                                  ),
+                                );
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 12),
+                                child: SizedBox(
+                                  width: 350,
+                                  child: PharmacyCard(
+                                    startTime:
+                                        pharmacy.startTime ??
+                                        DateTime.now().toString(),
+                                    endTime:
+                                        pharmacy.finishTime ??
+                                        DateTime.now().toString(),
+                                    name: pharmacy.name ?? 'No pharmacy',
+                                    latitude:
+                                        double.tryParse(
+                                          pharmacy.latitude ?? '0.0',
+                                        ) ??
+                                        34.0,
+                                    longitude:
+                                        double.tryParse(
+                                          pharmacy.longitude ?? '0.0',
+                                        ) ??
+                                        33.0,
+                                    namelocation:
+                                        pharmacy.location ?? 'Al Amal Street',
+                                    phone:
+                                        pharmacy.phone ??
+                                        'Tel: +963 998 998 998',
+                                    location:
+                                        pharmacy.location ?? 'Al Amal Street',
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

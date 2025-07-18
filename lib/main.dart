@@ -23,6 +23,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'core/services/fcm/fcm_service.dart';
 import 'core/services/notification/notification_service.dart';
 import 'features/home/controller/doctor_appointments_bloc/doctor_appointments_bloc.dart';
+import 'features/home/controller/doctor_patients_bloc/doctor_patients_bloc.dart';
 import 'features/home/view/screens/doctor/doctor_home_screen.dart';
 import 'features/home/view/screens/patient/switch_account_screen.dart';
 
@@ -55,6 +56,9 @@ class ClinicApp extends StatelessWidget {
         ),
         BlocProvider.value(
           value: ServiceLocator.instance<DoctorAppointmentsBloc>(),
+        ),
+        BlocProvider.value(
+          value: ServiceLocator.instance<DoctorPatientsBloc>(),
         ),
       ],
       // child: MaterialApp(
