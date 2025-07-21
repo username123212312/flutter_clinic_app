@@ -1,7 +1,9 @@
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/custom_bottom_app_bar.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
+import '../../../../../core/theme/app_pallete.dart';
 import '../../widgets/doctor_appointments/appointments_screen_widget.dart';
 import '../../widgets/doctor_patients/visited_patients_screen.dart';
 import '../../widgets/profile/doctor_profile_widget.dart';
@@ -40,31 +42,83 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
                   ),
                 ),
               ),
-      body: Stack(
-        children: [
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: screenHeight(context) * 0.102,
-            child: _buildMainContent(_currentIndex),
+      body: _buildMainContent(_currentIndex),
+      bottomNavigationBar: SalomonBottomBar(
+        backgroundColor: Pallete.backgroundColor,
+        selectedItemColor: Theme.of(context).colorScheme.primary,
+        currentIndex: _currentIndex,
+        onTap: (p0) {
+          setState(() {
+            _currentIndex = p0;
+          });
+        },
+        items: [
+          SalomonBottomBarItem(
+            icon: Image.asset(
+              'assets/icons/patient.png',
+              width: 38,
+              height: 38,
+              fit: BoxFit.cover,
+              color: _currentIndex == 0 ? Colors.black : null,
+            ),
+            title: FittedBox(
+              child: Text(
+                'Patients',
+                style: Theme.of(
+                  context,
+                ).textTheme.labelMedium!.copyWith(fontSize: 15),
+              ),
+            ),
           ),
-          Positioned(
-            right: 0,
-            left: 0,
-            bottom: 0,
-            child: CustomBottomAppBar(
-              titles: [
-                {'Patients': 'assets/icons/patient.png'},
-                {'Appointments': 'assets/icons/task.png'},
-                {'Chat': 'assets/icons/messenger.png'},
-                {'Profile': 'assets/icons/profile.png'},
-              ],
-              onChange: (index) {
-                setState(() {
-                  _currentIndex = index;
-                });
-              },
+          SalomonBottomBarItem(
+            icon: Image.asset(
+              'assets/icons/task.png',
+              width: 38,
+              height: 38,
+              fit: BoxFit.cover,
+              color: _currentIndex == 1 ? Colors.black : null,
+            ),
+            title: FittedBox(
+              child: Text(
+                'Appoints',
+                style: Theme.of(
+                  context,
+                ).textTheme.labelMedium!.copyWith(fontSize: 15),
+              ),
+            ),
+          ),
+          SalomonBottomBarItem(
+            icon: Image.asset(
+              'assets/icons/messenger.png',
+              width: 38,
+              height: 38,
+              fit: BoxFit.cover,
+              color: _currentIndex == 2 ? Colors.black : null,
+            ),
+            title: FittedBox(
+              child: Text(
+                'Chat',
+                style: Theme.of(
+                  context,
+                ).textTheme.labelMedium!.copyWith(fontSize: 15),
+              ),
+            ),
+          ),
+          SalomonBottomBarItem(
+            icon: Image.asset(
+              'assets/icons/profile.png',
+              width: 38,
+              height: 38,
+              fit: BoxFit.cover,
+              color: _currentIndex == 3 ? Colors.black : null,
+            ),
+            title: FittedBox(
+              child: Text(
+                'Profile',
+                style: Theme.of(
+                  context,
+                ).textTheme.labelMedium!.copyWith(fontSize: 15),
+              ),
             ),
           ),
         ],
