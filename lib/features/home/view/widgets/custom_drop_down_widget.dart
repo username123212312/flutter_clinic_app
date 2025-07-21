@@ -62,22 +62,11 @@ class _CustomDropDownWidgetState<T> extends State<CustomDropDownWidget<T>>
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            RichText(
-              text: TextSpan(
-                style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                  fontSize: 14,
-                  color: Pallete.grayScaleColor500,
-                ),
-                text: widget.initialOption,
-                children: [
-                  TextSpan(
-                    text: ' *',
-                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                      fontSize: 14,
-                      color: Colors.red,
-                    ),
-                  ),
-                ],
+            Text(
+              widget.initialOption,
+              style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                fontSize: 14,
+                color: Pallete.grayScaleColor500,
               ),
             ),
             RotationTransition(

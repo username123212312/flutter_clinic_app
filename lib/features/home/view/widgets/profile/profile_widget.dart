@@ -1,7 +1,9 @@
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:our_flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
+import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/custom_switch.dart';
 
 import '../../screens/patient/report_screen.dart';
@@ -11,16 +13,27 @@ class ProifileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          children: [
-            _buildHeader(context),
-            SizedBox(height: 25),
+    return Container(
+      decoration: BoxDecoration(
+        image:
+            getChildId() == null
+                ? null
+                : DecorationImage(
+                  repeat: ImageRepeat.repeat,
+                  image: AssetImage('assets/images/background child.png'),
+                ),
+      ),
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              _buildHeader(context),
+              SizedBox(height: 25),
 
-            _buildProfileItems(context),
-          ],
+              _buildProfileItems(context),
+            ],
+          ),
         ),
       ),
     );
@@ -245,7 +258,14 @@ class ProifileWidget extends StatelessWidget {
             },
             child: BlocListener<UserBloc, UserState>(
               listener: (context, state) {
-                clearAndShowSnackBar(context, state.statusMessage);
+                if (state.status.isLoading) {
+                  LoadingOverlay().show(context);
+                } else {
+                  LoadingOverlay().hideAll();
+                  if (state.status.isError) {
+                    Fluttertoast.showToast(msg: state.statusMessage);
+                  }
+                }
               },
               child: Container(
                 padding: const EdgeInsets.symmetric(

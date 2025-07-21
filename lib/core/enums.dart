@@ -55,13 +55,11 @@ enum PaymentStatus {
 enum AnalysisStatus {
   all,
   pending,
-  finished,
-  canceled;
+  finished;
 
   bool get isAll => this == AnalysisStatus.all;
   bool get isPending => this == AnalysisStatus.pending;
   bool get isFinished => this == AnalysisStatus.finished;
-  bool get isCanceled => this == AnalysisStatus.canceled;
 }
 
 enum DataStatus {

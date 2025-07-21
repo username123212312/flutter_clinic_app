@@ -21,8 +21,8 @@ class CustomBottomAppBarItem extends StatelessWidget {
         Image.asset(
           color: isSelected ? activeColor : Pallete.graysGray2,
           iconImagePath,
-          width: isSelected ? 45 : 40,
-          height: isSelected ? 45 : 40,
+          width: isSelected ? 35 : 30,
+          height: isSelected ? 35 : 30,
           fit: BoxFit.cover,
         ),
         Text(

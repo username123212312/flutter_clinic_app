@@ -40,12 +40,17 @@ class ReservationDetailsCubit extends Cubit<ReservationDetailsState> {
     }
   }
 
-  Future<void> confirmReservationPayment() async {
+  Future<void> confirmReservationPayment([
+    bool useDiscountPoints = false,
+  ]) async {
     if (state.appointment?.id != null) {
       emit(state.copyWith(status: DataStatus.loading, message: 'Loading'));
       try {
         final response = await _reservationDetailsRepository
-            .confirmReservationPayment(state.appointment?.id ?? 0);
+            .confirmReservationPayment(
+              state.appointment?.id ?? 0,
+              useDiscountPoints,
+            );
         final newState = switch (response) {
           Left(value: final l) => state.copyWith(
             status: DataStatus.error,

@@ -12,6 +12,7 @@ import 'core/repositories/auth_repository.dart';
 import 'core/repositories/change_password_repository.dart';
 import 'features/home/controller/analysis_list_bloc/analysis_list_bloc.dart';
 import 'features/home/controller/doctor_appointments_bloc/doctor_appointments_bloc.dart';
+import 'features/home/controller/doctor_patients_bloc/doctor_patients_bloc.dart';
 import 'features/home/controller/home_bloc/home_bloc.dart';
 import 'features/home/controller/labtech_analysis_bloc/labtech_analysis_bloc.dart';
 import 'features/home/controller/labtech_analysis_info/labtech_analysis_info_bloc.dart';
@@ -79,5 +80,6 @@ class ServiceLocator {
         doctorAppointmentsRepository: _instance<DoctorAppointmentsRepository>(),
       ),
     );
+    _instance.registerLazySingleton(() => DoctorPatientsBloc());
   }
 }

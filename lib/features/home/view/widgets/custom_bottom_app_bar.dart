@@ -29,17 +29,19 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
         final size = renderBox.size;
 
         // Divide the widget into areas and call different methods
-        if (localPosition.dx < size.width / 3) {
+        if (localPosition.dx < size.width / 4) {
           _setIndex(0);
-        } else if (localPosition.dx < ((2 * size.width) / 3)) {
+        } else if (localPosition.dx < ((2 * size.width) / 4)) {
           _setIndex(1);
-        } else {
+        } else if (localPosition.dx < ((3 * size.width) / 4)) {
           _setIndex(2);
+        } else {
+          _setIndex(3);
         }
       },
       child: Container(
         padding: EdgeInsets.only(top: 13),
-        height: screenHeight(context) * 0.12,
+        height: screenHeight(context) * 0.1,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -71,6 +73,12 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
               isSelected: _currentIndex == 2,
               iconImagePath: widget.titles[2].values.first,
               title: widget.titles[2].keys.first,
+            ),
+            CustomBottomAppBarItem(
+              activeColor: Theme.of(context).colorScheme.primary,
+              isSelected: _currentIndex == 3,
+              iconImagePath: widget.titles[3].values.first,
+              title: widget.titles[3].keys.first,
             ),
           ],
         ),

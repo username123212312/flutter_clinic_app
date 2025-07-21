@@ -10,6 +10,7 @@ import 'package:our_flutter_clinic_app/core/navigation/app_route_constants.dart'
 import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:go_router/go_router.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../widgets/child_info_dialog.dart';
@@ -62,7 +63,11 @@ class _HomeScreenState extends State<HomeScreen>
                 title: FadeTransition(
                   opacity: _animationController,
                   child: Text(
-                    _currentIndex == 1 ? 'Appointments' : 'My Profile',
+                    _currentIndex == 1
+                        ? 'Appointments'
+                        : _currentIndex == 2
+                        ? 'Chat'
+                        : 'My Profile',
                     style: Theme.of(context).textTheme.labelSmall!.copyWith(
                       fontSize: 20,
                       color: Pallete.grayScaleColor700,
@@ -111,33 +116,98 @@ class _HomeScreenState extends State<HomeScreen>
             context.goNamed(AppRouteConstants.welcomeRouteName);
           }
         },
-        child: Stack(
-          children: [
-            Positioned(
-              bottom: screenHeight(context) * 0.12,
-              top: 0,
-              left: 0,
-              right: 0,
-              child: FadeTransition(
-                opacity: _fadeAnimation,
-                child: setHome(_currentIndex),
+        child: FadeTransition(
+          opacity: _fadeAnimation,
+          child: setHome(_currentIndex),
+        ),
+      ),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              offset: Offset(0.0, -1.0),
+              blurRadius: 7.9,
+              color: Colors.black.withAlpha(80),
+              spreadRadius: 0.1,
+            ),
+          ],
+        ),
+        child: SalomonBottomBar(
+          backgroundColor: Pallete.backgroundColor,
+          selectedItemColor: Theme.of(context).colorScheme.primary,
+          currentIndex: _currentIndex,
+          onTap: (p0) {
+            setState(() {
+              _currentIndex = p0;
+            });
+          },
+          items: [
+            SalomonBottomBarItem(
+              icon: Image.asset(
+                'assets/icons/home.png',
+                width: 38,
+                height: 38,
+                fit: BoxFit.cover,
+                color: _currentIndex == 0 ? Colors.black : null,
+              ),
+              title: FittedBox(
+                child: Text(
+                  'Home',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelMedium!.copyWith(fontSize: 15),
+                ),
               ),
             ),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: CustomBottomAppBar(
-                titles: [
-                  {'Home': 'assets/icons/home_icon.png'},
-                  {'Appointments': 'assets/icons/appointments_icon.png'},
-                  {'Profile': 'assets/icons/profile_icon.png'},
-                ],
-                onChange: (index) {
-                  setState(() {
-                    _currentIndex = index;
-                  });
-                },
+            SalomonBottomBarItem(
+              icon: Image.asset(
+                'assets/icons/task.png',
+                width: 38,
+                height: 38,
+                fit: BoxFit.cover,
+                color: _currentIndex == 1 ? Colors.black : null,
+              ),
+              title: FittedBox(
+                child: Text(
+                  'Appoints',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelMedium!.copyWith(fontSize: 15),
+                ),
+              ),
+            ),
+            SalomonBottomBarItem(
+              icon: Image.asset(
+                'assets/icons/messenger.png',
+                width: 38,
+                height: 38,
+                fit: BoxFit.cover,
+                color: _currentIndex == 2 ? Colors.black : null,
+              ),
+              title: FittedBox(
+                child: Text(
+                  'Chat',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelMedium!.copyWith(fontSize: 15),
+                ),
+              ),
+            ),
+            SalomonBottomBarItem(
+              icon: Image.asset(
+                'assets/icons/profile.png',
+                width: 38,
+                height: 38,
+                fit: BoxFit.cover,
+                color: _currentIndex == 3 ? Colors.black : null,
+              ),
+              title: FittedBox(
+                child: Text(
+                  'Profile',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelMedium!.copyWith(fontSize: 15),
+                ),
               ),
             ),
           ],
@@ -152,7 +222,8 @@ class _HomeScreenState extends State<HomeScreen>
     return switch (index) {
       0 => HomeScreenWidget(),
       1 => AppontmentsScreen(),
-      2 => ProifileWidget(),
+      2 => Placeholder(),
+      3 => ProifileWidget(),
       _ => Placeholder(),
     };
   }

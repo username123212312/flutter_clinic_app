@@ -47,7 +47,7 @@ class DoctorAppointmentDetailsCard extends StatelessWidget {
                 height: screenHeight(context) * 0.043,
                 decoration: BoxDecoration(
                   color:
-                      _selectColor(
+                      selectAppointmentStatusColor(
                         appointment.status ?? AppointmentStatus.pending,
                       )[0],
                   borderRadius: BorderRadius.circular(18),
@@ -58,14 +58,18 @@ class DoctorAppointmentDetailsCard extends StatelessWidget {
                     Icon(
                       Icons.circle,
                       size: 15,
-                      color: _selectColor(appointment.status!)[1],
+                      color:
+                          selectAppointmentStatusColor(appointment.status!)[1],
                     ),
                     Text(
                       appointment.status!.isVisited
                           ? 'Finished'
                           : appointment.status!.name,
                       style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                        color: _selectColor(appointment.status!)[1],
+                        color:
+                            selectAppointmentStatusColor(
+                              appointment.status!,
+                            )[1],
                       ),
                     ),
                   ],
@@ -122,22 +126,5 @@ class DoctorAppointmentDetailsCard extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  List<Color> _selectColor(AppointmentStatus appointmentStatus) {
-    return switch (appointmentStatus) {
-      AppointmentStatus.pending => [
-        Pallete.statusColorPending,
-        Pallete.alertWarningColor,
-      ],
-      AppointmentStatus.visited => [
-        Pallete.statusColorFinished,
-        Pallete.alertSuccessColor,
-      ],
-      AppointmentStatus.cancelled => [
-        Pallete.statusColorCanceled,
-        Pallete.alertDangerColor,
-      ],
-    };
   }
 }

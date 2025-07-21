@@ -43,7 +43,7 @@ dependencies:
   hydrated_bloc:
   google_sign_in: ^6.3.0
   skeletonizer: ^1.4.3
-  intl: ^0.20.2
+  intl: 
   hive:
   hive_flutter:
   path_provider: ^2.1.0
@@ -70,11 +70,17 @@ dependencies:
   flutter_dotenv: ^5.2.1
   firebase_messaging:
   firebase_core:
+  search_page:
+  dash_chat_2:
+  pusher_channels_flutter:
   shared_preferences:
   flutter_local_notifications:
   fluttertoast: ^8.2.12
   image_picker: ^1.1.2
   cached_network_image: ^3.4.1
+  carousel_slider: ^5.1.1
+  salomon_bottom_bar: ^3.3.2
+
 
 dev_dependencies:
   flutter_test:

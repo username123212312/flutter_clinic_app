@@ -330,7 +330,14 @@ class _LabtechHomeScreenState extends State<LabtechHomeScreen> {
                     LoadingOverlay().show(context);
                   } else {
                     LoadingOverlay().hideAll();
-                    await Fluttertoast.showToast(msg: state.statusMessage);
+                    if (state.status.isError &&
+                        state.statusMessage
+                                .substring(0, 1)
+                                .toLowerCase()
+                                .trim() !=
+                            'no') {
+                      await Fluttertoast.showToast(msg: state.statusMessage);
+                    }
                   }
                 },
               ),
