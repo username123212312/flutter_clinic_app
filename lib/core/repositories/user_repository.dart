@@ -313,7 +313,9 @@ class UserRepository {
       if (request.speciality != null) 'speciality': request.speciality,
       if (request.professionalTitle != null)
         'professional_title': request.professionalTitle,
-      if (request.visitFee != null) 'average_visit_duration': request.visitFee,
+      if (request.visitFee != null) 'visit_fee': request.visitFee,
+      if (request.averageVisitDuration != null)
+        'average_visit_duration': request.averageVisitDuration,
       if (request.experience != null) 'experience': request.experience,
       if (request.bookingType != null) 'booking_type': request.bookingType,
       if (request.status != null) 'status': request.status,

@@ -238,7 +238,7 @@ class _DoctorEditProfilePageState extends State<DoctorEditProfile> {
           averageVisitDuration:
               visitDurationController.text.trim().isEmpty
                   ? null
-                  : visitDurationController.text.trim(),
+                  : '${visitDurationController.text.trim()} min',
           email:
               emailController.text.trim().isEmpty
                   ? null
