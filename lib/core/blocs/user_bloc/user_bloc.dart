@@ -182,7 +182,7 @@ class UserBloc extends HydratedBloc<UserEvent, UserState> {
     request = CompleteUserInfoRequest(
       firstName: event.user.firstName,
       lastName: event.user.lastName,
-      age: event.user.age,
+      birthDate: event.user.birthDate,
       bloodType: event.user.bloodType,
       gender: event.user.gender,
       address: event.user.address,
@@ -198,7 +198,7 @@ class UserBloc extends HydratedBloc<UserEvent, UserState> {
         user: state.user!.copyWith(
           firstName: r.data?.firstName,
           lastName: r.data?.lastName,
-          age: r.data?.age,
+          birthDate: r.data?.birthDate,
           bloodType: r.data?.bloodType,
           gender: r.data?.gender,
           address: r.data?.address,
@@ -223,7 +223,7 @@ class UserBloc extends HydratedBloc<UserEvent, UserState> {
     request = CompleteUserInfoRequest(
       firstName: event.user.firstName,
       lastName: event.user.lastName,
-      age: event.user.age,
+      birthDate: event.user.birthDate,
       bloodType: event.user.bloodType,
       gender: event.user.gender,
       address: event.user.address,
@@ -242,7 +242,7 @@ class UserBloc extends HydratedBloc<UserEvent, UserState> {
             state.user?.copyWith(
               firstName: r.data?.firstName,
               lastName: r.data?.lastName,
-              age: r.data?.age,
+              birthDate: r.data?.birthDate,
               bloodType: r.data?.bloodType,
               gender: r.data?.gender,
               address: r.data?.address,
@@ -252,7 +252,7 @@ class UserBloc extends HydratedBloc<UserEvent, UserState> {
             UserModel(
               firstName: r.data?.firstName,
               lastName: r.data?.lastName,
-              age: r.data?.age,
+              birthDate: r.data?.birthDate,
               bloodType: r.data?.bloodType,
               gender: r.data?.gender,
               address: r.data?.address,

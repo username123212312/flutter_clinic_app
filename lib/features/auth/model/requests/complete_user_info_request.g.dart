@@ -11,7 +11,10 @@ _$CompleteUserInfoRequestImpl _$$CompleteUserInfoRequestImplFromJson(
 ) => _$CompleteUserInfoRequestImpl(
   firstName: json['first_name'] as String?,
   lastName: json['last_name'] as String?,
-  age: (json['age'] as num?)?.toInt(),
+  birthDate:
+      json['birthDate'] == null
+          ? null
+          : DateTime.parse(json['birthDate'] as String),
   bloodType: json['blood_type'] as String?,
   gender: json['gender'] as String?,
   address: json['address'] as String?,
@@ -24,7 +27,7 @@ Map<String, dynamic> _$$CompleteUserInfoRequestImplToJson(
 ) => <String, dynamic>{
   'first_name': instance.firstName,
   'last_name': instance.lastName,
-  'age': instance.age,
+  'birthDate': instance.birthDate?.toIso8601String(),
   'blood_type': instance.bloodType,
   'gender': instance.gender,
   'address': instance.address,

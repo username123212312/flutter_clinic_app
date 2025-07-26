@@ -116,7 +116,7 @@ class DoctorInfoCubit extends Cubit<DoctorInfoState> {
           AddNewAppointmentRequest(
             doctorId: state.doctor.id ?? 0,
             date: state.selectedDate ?? DateTime.now(),
-            time: state.selectedTime ?? TimeOfDay.now(),
+            time: state.selectedTime,
           ),
         );
         final newState = switch (response) {

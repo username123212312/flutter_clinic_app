@@ -1,5 +1,8 @@
 import 'dart:developer';
+import 'dart:ui';
 
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/widgets/custom_dialog.dart';
@@ -20,6 +23,7 @@ import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/utils.dart';
 import '../../../../../core/widgets/transparent_content_dialog.dart';
 import '../../../model/doctor_model.dart';
+import '../../../model/vaccinationrecord.dart';
 
 class BookNewAppointmentScreen extends StatefulWidget {
   const BookNewAppointmentScreen({super.key});
@@ -42,6 +46,7 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
   @override
   void dispose() {
     _dateController.dispose();
+    _vaccineController.dispose();
     _searchFocusNode.dispose();
     _searchController.dispose();
     _newAppointmentBloc.close();
@@ -92,13 +97,36 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if (getChildId() != null)
+              Align(
+                alignment: Alignment.center,
+                child: SizedBox(
+                  width: screenWidth(context) * 0.7,
+                  child: FittedBox(
+                    child: TwoSelectableWidget(
+                      twoTitles: ['Regular', 'Vaccine'],
+                      onToggleIndex: (index) {
+                        setState(() {
+                          _selectedIndex = index;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            SizedBox(height: 20),
             _buildTwoDropdowns(),
             SizedBox(height: 20),
+            if (_selectedIndex == 1) ...[
+              _buildVaccinePicker(),
+              SizedBox(height: 20),
+            ],
             _buildDatePicker(),
             SizedBox(height: 20),
             _buildSchedules(),
-            SizedBox(height: 30),
+            SizedBox(height: 50),
             _buildBottomButton(),
+            SizedBox(height: 50),
           ],
         ),
       ),
@@ -111,12 +139,12 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
       child: BlocListener<NewAppointmentBloc, NewAppointmentState>(
         bloc: _newAppointmentBloc,
         listener: (context, state) async {
-          if (state.status!.isLoading && !_isOverlayOpened) {
+          if (state.status.isLoading && !_isOverlayOpened) {
             LoadingOverlay().show(context);
           } else {
             LoadingOverlay().hideAll();
           }
-          if (state.status?.isError ?? false) {
+          if (state.status.isError) {
             clearAndShowSnackBar(
               context,
               state.statusMessage ?? 'Appointment is not added',
@@ -129,18 +157,33 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
             );
           }
         },
-        child: CustomElevatedButton(
-          borderRadius: 32,
-          title: 'Next',
-          onTap: () {
-            if (_currentSchedule != null) {
-              _newAppointmentBloc.add(BookedNewAppointment());
-            } else {
-              clearAndShowSnackBar(context, 'You must select a time');
-            }
-          },
-          fillColor: Theme.of(context).colorScheme.primary,
-          textColor: Colors.white,
+        child: BlocBuilder<NewAppointmentBloc, NewAppointmentState>(
+          bloc: _newAppointmentBloc,
+          builder:
+              (_, state) => CustomElevatedButton(
+                borderRadius: 32,
+                title: 'Next',
+                onTap: () {
+                  if (_currentSchedule != null || (state.isAuto ?? false)) {
+                    if (_selectedIndex == 0) {
+                      _newAppointmentBloc.add(BookedNewAppointment());
+                    }
+                    if (_selectedIndex == 1 && _vaccinationRecord == null) {
+                      Fluttertoast.showToast(msg: 'select a vaccination first');
+                      return;
+                    } else if (_selectedIndex == 1 &&
+                        _vaccinationRecord != null) {
+                      _newAppointmentBloc.add(
+                        BookedNewAppointment(vaccination: _vaccinationRecord),
+                      );
+                    }
+                  } else {
+                    Fluttertoast.showToast(msg: 'You must select a time');
+                  }
+                },
+                fillColor: Theme.of(context).colorScheme.primary,
+                textColor: Colors.white,
+              ),
         ),
       ),
     );
@@ -160,25 +203,49 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
         BlocBuilder<NewAppointmentBloc, NewAppointmentState>(
           bloc: _newAppointmentBloc,
           builder: (context, state) {
-            if (state.availableTimes?.isEmpty ?? true) {
-              return GridView(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.5,
-                  crossAxisSpacing: 10,
-                  mainAxisExtent: screenHeight(context) * 0.06,
-                  mainAxisSpacing: 10,
-                ),
-                shrinkWrap: true,
-                children: List.generate(6, (index) {
-                  final time = TimeOfDay(hour: 09 + index, minute: 00);
-                  return SchedulesItemWidget<TimeOfDay>(
-                    isSelected: false,
-                    onSelected: null,
-                    value: formatTime(time),
-                    data: time,
-                  );
-                }),
+            if ((state.availableTimes?.isEmpty ?? true)) {
+              return Stack(
+                children: [
+                  GridView(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.5,
+                      crossAxisSpacing: 10,
+                      mainAxisExtent: screenHeight(context) * 0.06,
+                      mainAxisSpacing: 10,
+                    ),
+                    shrinkWrap: true,
+                    children: List.generate(6, (index) {
+                      final time = TimeOfDay(hour: 09 + index, minute: 00);
+                      return SchedulesItemWidget<TimeOfDay>(
+                        isSelected: false,
+                        onSelected: null,
+                        value: formatTime(time),
+                        data: time,
+                      );
+                    }),
+                  ),
+                  if (state.isAuto ?? false)
+                    Positioned(
+                      top: 50,
+                      child: SizedBox(
+                        width: screenWidth(context),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 4.2, sigmaY: 4.2),
+                          child: Container(
+                            alignment: Alignment(-0.2, 0.0),
+                            height: screenHeight(context) * 0.05,
+                            child: Text(
+                              'Auto',
+                              style: Theme.of(
+                                context,
+                              ).textTheme.labelMedium!.copyWith(fontSize: 17),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
               );
             }
             return GridView(
@@ -218,6 +285,48 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
                   data: stateTime ?? time,
                 );
               }),
+            );
+          },
+        ),
+      ],
+    );
+  }
+
+  Column _buildVaccinePicker() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Select Vaccine',
+          style: Theme.of(
+            context,
+          ).textTheme.labelMedium!.copyWith(fontSize: 18),
+        ),
+        SizedBox(height: 10),
+        BlocBuilder<NewAppointmentBloc, NewAppointmentState>(
+          bloc: _newAppointmentBloc,
+          builder: (context, state) {
+            return CustomTextField(
+              onTap: () async {
+                final vaccine = await context.pushNamed<VaccinationRecord>(
+                  AppRouteConstants.selectVaccineRouteName,
+                );
+                if (vaccine != null) {
+                  setState(() {
+                    _vaccinationRecord = vaccine;
+                    _vaccineController.text =
+                        vaccine.vaccineName ?? 'no vaccine';
+                  });
+                }
+              },
+              hintText: 'Select Vaccine',
+              keyboardType: TextInputType.datetime,
+              readOnly: true,
+              controller: _vaccineController,
+              suffixIcon: Icon(
+                color: Colors.blueGrey,
+                FontAwesomeIcons.arrowRight,
+              ),
             );
           },
         ),
@@ -451,7 +560,7 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
                       ),
                     );
                     await for (final newState in _newAppointmentBloc.stream) {
-                      if (newState.status!.isData) {
+                      if (newState.status.isData) {
                         _newAppointmentBloc.add(DoctorSelected(doctor: doctor));
                         break;
                       }
@@ -474,6 +583,9 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
   late final NewAppointmentBloc _newAppointmentBloc;
   int? _currentSchedule;
   final _dateController = TextEditingController();
+  final _vaccineController = TextEditingController();
   OverlayEntry? _overlayEntry;
   bool _isOverlayOpened = false;
+  int _selectedIndex = 0;
+  VaccinationRecord? _vaccinationRecord;
 }

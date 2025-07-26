@@ -36,6 +36,19 @@ class AppConstants {
   static const resetPasswordPath = '/$apiPath/resetPassword';
   static const sendFCMTokenPath = '/$apiPath/saveFcmToken';
 
+  ///? Chat
+  static const _baseChat = "/$apiPath/chat";
+
+  static const getChats = _baseChat;
+  static const getSingleChat = "$_baseChat/";
+  static const createChat = _baseChat;
+
+  ///? Chat message
+  static const _baseChatMessage = "/$apiPath/chat_message";
+
+  static const getChatMessages = _baseChatMessage;
+  static const createChatMessage = _baseChatMessage;
+
   //! Home
   static const showDoctorsPath = '$homePath/showDoctors';
   static const showTopRatedDoctorsPath = '$homePath/topRatedDoctors';
@@ -64,6 +77,14 @@ class AppConstants {
   static const addChildPath = '$patientPath/addChild';
   static const deleteChildPath = '$patientPath/deleteChild';
   static const showAllChildrenPath = '$patientPath/showAllChildren';
+
+  //* vaccines
+  static const showVaccinationRecordsPath =
+      '$patientPath/showVaccinationRecords';
+  static const showVaccinationRecordDetailsPath =
+      '$patientPath/showVaccinationRecordDetails';
+  static const editVaccinationRecordPath = '$patientPath/editVaccinationRecord';
+  static const showChildRecordPath = '$patientPath/showChildRecord';
 
   //*   Appointment
   static const showAppointmentPath = '$patientPath/showAppointment';

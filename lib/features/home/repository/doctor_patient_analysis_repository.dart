@@ -32,7 +32,7 @@ class DoctorPatientAnalysisRepository {
             success: true,
             message: 'Analysis fetched successfully',
             data:
-                (response.data['items'] as List<dynamic>).map((analysis) {
+                (response.data['data'] as List<dynamic>).map((analysis) {
                   return AnalysisModel.fromJson(analysis);
                 }).toList(),
           ),
@@ -72,7 +72,7 @@ class DoctorPatientAnalysisRepository {
             success: true,
             message: 'Analysis fetched successfully',
             data:
-                (response.data['items'] as List<dynamic>).map((analysis) {
+                (response.data['data'] as List<dynamic>).map((analysis) {
                   return AnalysisModel.fromJson(analysis);
                 }).toList(),
           ),

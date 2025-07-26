@@ -4,6 +4,7 @@ import 'package:our_flutter_clinic_app/features/home/view/widgets/custom_bottom_
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
+import '../../widgets/chat/chat_list_widget.dart';
 import '../../widgets/doctor_appointments/appointments_screen_widget.dart';
 import '../../widgets/doctor_patients/visited_patients_screen.dart';
 import '../../widgets/profile/doctor_profile_widget.dart';
@@ -133,7 +134,7 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
       case 1:
         return AppointmentsScreenWidget();
       case 2:
-        return Placeholder();
+        return ChatListWidget();
       case 3:
         return DoctorProfileWidget();
       default:

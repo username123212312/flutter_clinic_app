@@ -25,7 +25,8 @@ mixin _$NewAppointmentEvent {
     required TResult Function(DoctorModel doctor) doctorSelected,
     required TResult Function(DateTime date) dateSelected,
     required TResult Function(TimeOfDay time) scheduleSelected,
-    required TResult Function() bookedNewAppointment,
+    required TResult Function(VaccinationRecord? vaccination)
+    bookedNewAppointment,
     required TResult Function(String query) doctorSearched,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -36,7 +37,7 @@ mixin _$NewAppointmentEvent {
     TResult? Function(DoctorModel doctor)? doctorSelected,
     TResult? Function(DateTime date)? dateSelected,
     TResult? Function(TimeOfDay time)? scheduleSelected,
-    TResult? Function()? bookedNewAppointment,
+    TResult? Function(VaccinationRecord? vaccination)? bookedNewAppointment,
     TResult? Function(String query)? doctorSearched,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,7 +48,7 @@ mixin _$NewAppointmentEvent {
     TResult Function(DoctorModel doctor)? doctorSelected,
     TResult Function(DateTime date)? dateSelected,
     TResult Function(TimeOfDay time)? scheduleSelected,
-    TResult Function()? bookedNewAppointment,
+    TResult Function(VaccinationRecord? vaccination)? bookedNewAppointment,
     TResult Function(String query)? doctorSearched,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
@@ -158,7 +159,8 @@ class _$ClinicsFetchedImpl implements ClinicsFetched {
     required TResult Function(DoctorModel doctor) doctorSelected,
     required TResult Function(DateTime date) dateSelected,
     required TResult Function(TimeOfDay time) scheduleSelected,
-    required TResult Function() bookedNewAppointment,
+    required TResult Function(VaccinationRecord? vaccination)
+    bookedNewAppointment,
     required TResult Function(String query) doctorSearched,
   }) {
     return clinicsFetched();
@@ -173,7 +175,7 @@ class _$ClinicsFetchedImpl implements ClinicsFetched {
     TResult? Function(DoctorModel doctor)? doctorSelected,
     TResult? Function(DateTime date)? dateSelected,
     TResult? Function(TimeOfDay time)? scheduleSelected,
-    TResult? Function()? bookedNewAppointment,
+    TResult? Function(VaccinationRecord? vaccination)? bookedNewAppointment,
     TResult? Function(String query)? doctorSearched,
   }) {
     return clinicsFetched?.call();
@@ -188,7 +190,7 @@ class _$ClinicsFetchedImpl implements ClinicsFetched {
     TResult Function(DoctorModel doctor)? doctorSelected,
     TResult Function(DateTime date)? dateSelected,
     TResult Function(TimeOfDay time)? scheduleSelected,
-    TResult Function()? bookedNewAppointment,
+    TResult Function(VaccinationRecord? vaccination)? bookedNewAppointment,
     TResult Function(String query)? doctorSearched,
     required TResult orElse(),
   }) {
@@ -345,7 +347,8 @@ class _$ClinicDoctorsFetchedImpl implements ClinicDoctorsFetched {
     required TResult Function(DoctorModel doctor) doctorSelected,
     required TResult Function(DateTime date) dateSelected,
     required TResult Function(TimeOfDay time) scheduleSelected,
-    required TResult Function() bookedNewAppointment,
+    required TResult Function(VaccinationRecord? vaccination)
+    bookedNewAppointment,
     required TResult Function(String query) doctorSearched,
   }) {
     return clinicDoctorsFetched(clinic);
@@ -360,7 +363,7 @@ class _$ClinicDoctorsFetchedImpl implements ClinicDoctorsFetched {
     TResult? Function(DoctorModel doctor)? doctorSelected,
     TResult? Function(DateTime date)? dateSelected,
     TResult? Function(TimeOfDay time)? scheduleSelected,
-    TResult? Function()? bookedNewAppointment,
+    TResult? Function(VaccinationRecord? vaccination)? bookedNewAppointment,
     TResult? Function(String query)? doctorSearched,
   }) {
     return clinicDoctorsFetched?.call(clinic);
@@ -375,7 +378,7 @@ class _$ClinicDoctorsFetchedImpl implements ClinicDoctorsFetched {
     TResult Function(DoctorModel doctor)? doctorSelected,
     TResult Function(DateTime date)? dateSelected,
     TResult Function(TimeOfDay time)? scheduleSelected,
-    TResult Function()? bookedNewAppointment,
+    TResult Function(VaccinationRecord? vaccination)? bookedNewAppointment,
     TResult Function(String query)? doctorSearched,
     required TResult orElse(),
   }) {
@@ -497,7 +500,8 @@ class _$AllDoctorsFetchedImpl implements AllDoctorsFetched {
     required TResult Function(DoctorModel doctor) doctorSelected,
     required TResult Function(DateTime date) dateSelected,
     required TResult Function(TimeOfDay time) scheduleSelected,
-    required TResult Function() bookedNewAppointment,
+    required TResult Function(VaccinationRecord? vaccination)
+    bookedNewAppointment,
     required TResult Function(String query) doctorSearched,
   }) {
     return allDoctorsFetched();
@@ -512,7 +516,7 @@ class _$AllDoctorsFetchedImpl implements AllDoctorsFetched {
     TResult? Function(DoctorModel doctor)? doctorSelected,
     TResult? Function(DateTime date)? dateSelected,
     TResult? Function(TimeOfDay time)? scheduleSelected,
-    TResult? Function()? bookedNewAppointment,
+    TResult? Function(VaccinationRecord? vaccination)? bookedNewAppointment,
     TResult? Function(String query)? doctorSearched,
   }) {
     return allDoctorsFetched?.call();
@@ -527,7 +531,7 @@ class _$AllDoctorsFetchedImpl implements AllDoctorsFetched {
     TResult Function(DoctorModel doctor)? doctorSelected,
     TResult Function(DateTime date)? dateSelected,
     TResult Function(TimeOfDay time)? scheduleSelected,
-    TResult Function()? bookedNewAppointment,
+    TResult Function(VaccinationRecord? vaccination)? bookedNewAppointment,
     TResult Function(String query)? doctorSearched,
     required TResult orElse(),
   }) {
@@ -683,7 +687,8 @@ class _$DoctorSelectedImpl implements DoctorSelected {
     required TResult Function(DoctorModel doctor) doctorSelected,
     required TResult Function(DateTime date) dateSelected,
     required TResult Function(TimeOfDay time) scheduleSelected,
-    required TResult Function() bookedNewAppointment,
+    required TResult Function(VaccinationRecord? vaccination)
+    bookedNewAppointment,
     required TResult Function(String query) doctorSearched,
   }) {
     return doctorSelected(doctor);
@@ -698,7 +703,7 @@ class _$DoctorSelectedImpl implements DoctorSelected {
     TResult? Function(DoctorModel doctor)? doctorSelected,
     TResult? Function(DateTime date)? dateSelected,
     TResult? Function(TimeOfDay time)? scheduleSelected,
-    TResult? Function()? bookedNewAppointment,
+    TResult? Function(VaccinationRecord? vaccination)? bookedNewAppointment,
     TResult? Function(String query)? doctorSearched,
   }) {
     return doctorSelected?.call(doctor);
@@ -713,7 +718,7 @@ class _$DoctorSelectedImpl implements DoctorSelected {
     TResult Function(DoctorModel doctor)? doctorSelected,
     TResult Function(DateTime date)? dateSelected,
     TResult Function(TimeOfDay time)? scheduleSelected,
-    TResult Function()? bookedNewAppointment,
+    TResult Function(VaccinationRecord? vaccination)? bookedNewAppointment,
     TResult Function(String query)? doctorSearched,
     required TResult orElse(),
   }) {
@@ -863,7 +868,8 @@ class _$DateSelectedImpl implements DateSelected {
     required TResult Function(DoctorModel doctor) doctorSelected,
     required TResult Function(DateTime date) dateSelected,
     required TResult Function(TimeOfDay time) scheduleSelected,
-    required TResult Function() bookedNewAppointment,
+    required TResult Function(VaccinationRecord? vaccination)
+    bookedNewAppointment,
     required TResult Function(String query) doctorSearched,
   }) {
     return dateSelected(date);
@@ -878,7 +884,7 @@ class _$DateSelectedImpl implements DateSelected {
     TResult? Function(DoctorModel doctor)? doctorSelected,
     TResult? Function(DateTime date)? dateSelected,
     TResult? Function(TimeOfDay time)? scheduleSelected,
-    TResult? Function()? bookedNewAppointment,
+    TResult? Function(VaccinationRecord? vaccination)? bookedNewAppointment,
     TResult? Function(String query)? doctorSearched,
   }) {
     return dateSelected?.call(date);
@@ -893,7 +899,7 @@ class _$DateSelectedImpl implements DateSelected {
     TResult Function(DoctorModel doctor)? doctorSelected,
     TResult Function(DateTime date)? dateSelected,
     TResult Function(TimeOfDay time)? scheduleSelected,
-    TResult Function()? bookedNewAppointment,
+    TResult Function(VaccinationRecord? vaccination)? bookedNewAppointment,
     TResult Function(String query)? doctorSearched,
     required TResult orElse(),
   }) {
@@ -1046,7 +1052,8 @@ class _$ScheduleSelectedImpl implements ScheduleSelected {
     required TResult Function(DoctorModel doctor) doctorSelected,
     required TResult Function(DateTime date) dateSelected,
     required TResult Function(TimeOfDay time) scheduleSelected,
-    required TResult Function() bookedNewAppointment,
+    required TResult Function(VaccinationRecord? vaccination)
+    bookedNewAppointment,
     required TResult Function(String query) doctorSearched,
   }) {
     return scheduleSelected(time);
@@ -1061,7 +1068,7 @@ class _$ScheduleSelectedImpl implements ScheduleSelected {
     TResult? Function(DoctorModel doctor)? doctorSelected,
     TResult? Function(DateTime date)? dateSelected,
     TResult? Function(TimeOfDay time)? scheduleSelected,
-    TResult? Function()? bookedNewAppointment,
+    TResult? Function(VaccinationRecord? vaccination)? bookedNewAppointment,
     TResult? Function(String query)? doctorSearched,
   }) {
     return scheduleSelected?.call(time);
@@ -1076,7 +1083,7 @@ class _$ScheduleSelectedImpl implements ScheduleSelected {
     TResult Function(DoctorModel doctor)? doctorSelected,
     TResult Function(DateTime date)? dateSelected,
     TResult Function(TimeOfDay time)? scheduleSelected,
-    TResult Function()? bookedNewAppointment,
+    TResult Function(VaccinationRecord? vaccination)? bookedNewAppointment,
     TResult Function(String query)? doctorSearched,
     required TResult orElse(),
   }) {
@@ -1155,6 +1162,10 @@ abstract class _$$BookedNewAppointmentImplCopyWith<$Res> {
     _$BookedNewAppointmentImpl value,
     $Res Function(_$BookedNewAppointmentImpl) then,
   ) = __$$BookedNewAppointmentImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({VaccinationRecord? vaccination});
+
+  $VaccinationRecordCopyWith<$Res>? get vaccination;
 }
 
 /// @nodoc
@@ -1168,27 +1179,71 @@ class __$$BookedNewAppointmentImplCopyWithImpl<$Res>
 
   /// Create a copy of NewAppointmentEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? vaccination = freezed}) {
+    return _then(
+      _$BookedNewAppointmentImpl(
+        vaccination:
+            freezed == vaccination
+                ? _value.vaccination
+                : vaccination // ignore: cast_nullable_to_non_nullable
+                    as VaccinationRecord?,
+      ),
+    );
+  }
+
+  /// Create a copy of NewAppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $VaccinationRecordCopyWith<$Res>? get vaccination {
+    if (_value.vaccination == null) {
+      return null;
+    }
+
+    return $VaccinationRecordCopyWith<$Res>(_value.vaccination!, (value) {
+      return _then(_value.copyWith(vaccination: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$BookedNewAppointmentImpl implements BookedNewAppointment {
-  const _$BookedNewAppointmentImpl();
+  const _$BookedNewAppointmentImpl({this.vaccination});
+
+  @override
+  final VaccinationRecord? vaccination;
 
   @override
   String toString() {
-    return 'NewAppointmentEvent.bookedNewAppointment()';
+    return 'NewAppointmentEvent.bookedNewAppointment(vaccination: $vaccination)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BookedNewAppointmentImpl);
+            other is _$BookedNewAppointmentImpl &&
+            (identical(other.vaccination, vaccination) ||
+                other.vaccination == vaccination));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, vaccination);
+
+  /// Create a copy of NewAppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BookedNewAppointmentImplCopyWith<_$BookedNewAppointmentImpl>
+  get copyWith =>
+      __$$BookedNewAppointmentImplCopyWithImpl<_$BookedNewAppointmentImpl>(
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
@@ -1199,10 +1254,11 @@ class _$BookedNewAppointmentImpl implements BookedNewAppointment {
     required TResult Function(DoctorModel doctor) doctorSelected,
     required TResult Function(DateTime date) dateSelected,
     required TResult Function(TimeOfDay time) scheduleSelected,
-    required TResult Function() bookedNewAppointment,
+    required TResult Function(VaccinationRecord? vaccination)
+    bookedNewAppointment,
     required TResult Function(String query) doctorSearched,
   }) {
-    return bookedNewAppointment();
+    return bookedNewAppointment(vaccination);
   }
 
   @override
@@ -1214,10 +1270,10 @@ class _$BookedNewAppointmentImpl implements BookedNewAppointment {
     TResult? Function(DoctorModel doctor)? doctorSelected,
     TResult? Function(DateTime date)? dateSelected,
     TResult? Function(TimeOfDay time)? scheduleSelected,
-    TResult? Function()? bookedNewAppointment,
+    TResult? Function(VaccinationRecord? vaccination)? bookedNewAppointment,
     TResult? Function(String query)? doctorSearched,
   }) {
-    return bookedNewAppointment?.call();
+    return bookedNewAppointment?.call(vaccination);
   }
 
   @override
@@ -1229,12 +1285,12 @@ class _$BookedNewAppointmentImpl implements BookedNewAppointment {
     TResult Function(DoctorModel doctor)? doctorSelected,
     TResult Function(DateTime date)? dateSelected,
     TResult Function(TimeOfDay time)? scheduleSelected,
-    TResult Function()? bookedNewAppointment,
+    TResult Function(VaccinationRecord? vaccination)? bookedNewAppointment,
     TResult Function(String query)? doctorSearched,
     required TResult orElse(),
   }) {
     if (bookedNewAppointment != null) {
-      return bookedNewAppointment();
+      return bookedNewAppointment(vaccination);
     }
     return orElse();
   }
@@ -1290,7 +1346,16 @@ class _$BookedNewAppointmentImpl implements BookedNewAppointment {
 }
 
 abstract class BookedNewAppointment implements NewAppointmentEvent {
-  const factory BookedNewAppointment() = _$BookedNewAppointmentImpl;
+  const factory BookedNewAppointment({final VaccinationRecord? vaccination}) =
+      _$BookedNewAppointmentImpl;
+
+  VaccinationRecord? get vaccination;
+
+  /// Create a copy of NewAppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$BookedNewAppointmentImplCopyWith<_$BookedNewAppointmentImpl>
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1373,7 +1438,8 @@ class _$DoctorSearchedImpl implements DoctorSearched {
     required TResult Function(DoctorModel doctor) doctorSelected,
     required TResult Function(DateTime date) dateSelected,
     required TResult Function(TimeOfDay time) scheduleSelected,
-    required TResult Function() bookedNewAppointment,
+    required TResult Function(VaccinationRecord? vaccination)
+    bookedNewAppointment,
     required TResult Function(String query) doctorSearched,
   }) {
     return doctorSearched(query);
@@ -1388,7 +1454,7 @@ class _$DoctorSearchedImpl implements DoctorSearched {
     TResult? Function(DoctorModel doctor)? doctorSelected,
     TResult? Function(DateTime date)? dateSelected,
     TResult? Function(TimeOfDay time)? scheduleSelected,
-    TResult? Function()? bookedNewAppointment,
+    TResult? Function(VaccinationRecord? vaccination)? bookedNewAppointment,
     TResult? Function(String query)? doctorSearched,
   }) {
     return doctorSearched?.call(query);
@@ -1403,7 +1469,7 @@ class _$DoctorSearchedImpl implements DoctorSearched {
     TResult Function(DoctorModel doctor)? doctorSelected,
     TResult Function(DateTime date)? dateSelected,
     TResult Function(TimeOfDay time)? scheduleSelected,
-    TResult Function()? bookedNewAppointment,
+    TResult Function(VaccinationRecord? vaccination)? bookedNewAppointment,
     TResult Function(String query)? doctorSearched,
     required TResult orElse(),
   }) {
@@ -1479,6 +1545,8 @@ abstract class DoctorSearched implements NewAppointmentEvent {
 /// @nodoc
 mixin _$NewAppointmentState {
   ClinicModel? get department => throw _privateConstructorUsedError;
+  bool? get isAuto => throw _privateConstructorUsedError;
+  bool get isVaccine => throw _privateConstructorUsedError;
   DoctorModel? get doctor => throw _privateConstructorUsedError;
   List<DoctorModel>? get searchList => throw _privateConstructorUsedError;
   String? get statusMessage => throw _privateConstructorUsedError;
@@ -1507,6 +1575,8 @@ abstract class $NewAppointmentStateCopyWith<$Res> {
   @useResult
   $Res call({
     ClinicModel? department,
+    bool? isAuto,
+    bool isVaccine,
     DoctorModel? doctor,
     List<DoctorModel>? searchList,
     String? statusMessage,
@@ -1540,6 +1610,8 @@ class _$NewAppointmentStateCopyWithImpl<$Res, $Val extends NewAppointmentState>
   @override
   $Res call({
     Object? department = freezed,
+    Object? isAuto = freezed,
+    Object? isVaccine = null,
     Object? doctor = freezed,
     Object? searchList = freezed,
     Object? statusMessage = freezed,
@@ -1559,6 +1631,16 @@ class _$NewAppointmentStateCopyWithImpl<$Res, $Val extends NewAppointmentState>
                     ? _value.department
                     : department // ignore: cast_nullable_to_non_nullable
                         as ClinicModel?,
+            isAuto:
+                freezed == isAuto
+                    ? _value.isAuto
+                    : isAuto // ignore: cast_nullable_to_non_nullable
+                        as bool?,
+            isVaccine:
+                null == isVaccine
+                    ? _value.isVaccine
+                    : isVaccine // ignore: cast_nullable_to_non_nullable
+                        as bool,
             doctor:
                 freezed == doctor
                     ? _value.doctor
@@ -1659,6 +1741,8 @@ abstract class _$$NewAppointmentStateImplCopyWith<$Res>
   @useResult
   $Res call({
     ClinicModel? department,
+    bool? isAuto,
+    bool isVaccine,
     DoctorModel? doctor,
     List<DoctorModel>? searchList,
     String? statusMessage,
@@ -1693,6 +1777,8 @@ class __$$NewAppointmentStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? department = freezed,
+    Object? isAuto = freezed,
+    Object? isVaccine = null,
     Object? doctor = freezed,
     Object? searchList = freezed,
     Object? statusMessage = freezed,
@@ -1712,6 +1798,16 @@ class __$$NewAppointmentStateImplCopyWithImpl<$Res>
                 ? _value.department
                 : department // ignore: cast_nullable_to_non_nullable
                     as ClinicModel?,
+        isAuto:
+            freezed == isAuto
+                ? _value.isAuto
+                : isAuto // ignore: cast_nullable_to_non_nullable
+                    as bool?,
+        isVaccine:
+            null == isVaccine
+                ? _value.isVaccine
+                : isVaccine // ignore: cast_nullable_to_non_nullable
+                    as bool,
         doctor:
             freezed == doctor
                 ? _value.doctor
@@ -1777,6 +1873,8 @@ class __$$NewAppointmentStateImplCopyWithImpl<$Res>
 class _$NewAppointmentStateImpl implements _NewAppointmentState {
   const _$NewAppointmentStateImpl({
     this.department,
+    this.isAuto,
+    this.isVaccine = false,
     this.doctor,
     final List<DoctorModel>? searchList,
     this.statusMessage,
@@ -1796,6 +1894,11 @@ class _$NewAppointmentStateImpl implements _NewAppointmentState {
 
   @override
   final ClinicModel? department;
+  @override
+  final bool? isAuto;
+  @override
+  @JsonKey()
+  final bool isVaccine;
   @override
   final DoctorModel? doctor;
   final List<DoctorModel>? _searchList;
@@ -1861,7 +1964,7 @@ class _$NewAppointmentStateImpl implements _NewAppointmentState {
 
   @override
   String toString() {
-    return 'NewAppointmentState(department: $department, doctor: $doctor, searchList: $searchList, statusMessage: $statusMessage, doctors: $doctors, clinics: $clinics, dates: $dates, date: $date, availableTimes: $availableTimes, time: $time, status: $status, appointmentID: $appointmentID)';
+    return 'NewAppointmentState(department: $department, isAuto: $isAuto, isVaccine: $isVaccine, doctor: $doctor, searchList: $searchList, statusMessage: $statusMessage, doctors: $doctors, clinics: $clinics, dates: $dates, date: $date, availableTimes: $availableTimes, time: $time, status: $status, appointmentID: $appointmentID)';
   }
 
   @override
@@ -1871,6 +1974,9 @@ class _$NewAppointmentStateImpl implements _NewAppointmentState {
             other is _$NewAppointmentStateImpl &&
             (identical(other.department, department) ||
                 other.department == department) &&
+            (identical(other.isAuto, isAuto) || other.isAuto == isAuto) &&
+            (identical(other.isVaccine, isVaccine) ||
+                other.isVaccine == isVaccine) &&
             (identical(other.doctor, doctor) || other.doctor == doctor) &&
             const DeepCollectionEquality().equals(
               other._searchList,
@@ -1896,6 +2002,8 @@ class _$NewAppointmentStateImpl implements _NewAppointmentState {
   int get hashCode => Object.hash(
     runtimeType,
     department,
+    isAuto,
+    isVaccine,
     doctor,
     const DeepCollectionEquality().hash(_searchList),
     statusMessage,
@@ -1924,6 +2032,8 @@ class _$NewAppointmentStateImpl implements _NewAppointmentState {
 abstract class _NewAppointmentState implements NewAppointmentState {
   const factory _NewAppointmentState({
     final ClinicModel? department,
+    final bool? isAuto,
+    final bool isVaccine,
     final DoctorModel? doctor,
     final List<DoctorModel>? searchList,
     final String? statusMessage,
@@ -1939,6 +2049,10 @@ abstract class _NewAppointmentState implements NewAppointmentState {
 
   @override
   ClinicModel? get department;
+  @override
+  bool? get isAuto;
+  @override
+  bool get isVaccine;
   @override
   DoctorModel? get doctor;
   @override

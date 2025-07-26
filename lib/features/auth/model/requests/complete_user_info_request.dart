@@ -8,7 +8,7 @@ sealed class CompleteUserInfoRequest with _$CompleteUserInfoRequest {
   factory CompleteUserInfoRequest({
     @JsonKey(name: 'first_name') String? firstName,
     @JsonKey(name: 'last_name') String? lastName,
-    int? age,
+    DateTime? birthDate,
     @JsonKey(name: 'blood_type') String? bloodType,
     String? gender,
     String? address,

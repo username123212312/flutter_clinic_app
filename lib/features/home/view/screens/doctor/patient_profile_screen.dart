@@ -175,13 +175,33 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
                                   alignment: Alignment.center,
                                   child: Text((appointment.id ?? 0).toString()),
                                 ),
-                                Text(
-                                  appointment.appointmentType?.name ??
-                                      'No type',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .labelMedium!
-                                      .copyWith(fontSize: 12),
+                                SizedBox(
+                                  height: 50,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                        appointment.appointmentType?.name ??
+                                            'No type',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .labelMedium!
+                                            .copyWith(fontSize: 12),
+                                      ),
+                                      if (appointment.referredBy != null)
+                                        Text(
+                                          'Referred by : ${appointment.referredBy!}',
+                                          overflow: TextOverflow.ellipsis,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelMedium!
+                                              .copyWith(fontSize: 10),
+                                        ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
@@ -462,7 +482,9 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
                             ),
                           ),
                           Text(
-                            '${patient.age ?? 'No Age'}',
+                            DateFormat(
+                              'dd/MM/yy',
+                            ).format(patient.birthDate ?? DateTime.now()),
                             style: Theme.of(context).textTheme.labelMedium!
                                 .copyWith(fontSize: 14, color: Colors.white),
                           ),

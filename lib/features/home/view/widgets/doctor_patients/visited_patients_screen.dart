@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/intl.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 import 'package:our_flutter_clinic_app/features/home/controller/doctor_patients_bloc/doctor_patients_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
+import '../../../../../core/blocs/user_bloc/user_bloc.dart';
 import '../../../../../core/theme/app_pallete.dart';
 import '../home/search.dart';
 import 'visited_patient_card.dart';
@@ -19,45 +21,6 @@ class VisitedPatientsScreen extends StatefulWidget {
 class _VisitedPatientsScreenState extends State<VisitedPatientsScreen> {
   String query = '';
   final TextEditingController _searchController = TextEditingController();
-
-  final List<Map<String, dynamic>> patientsData = const [
-    {
-      "first_name": "Naya",
-      "last_name": "Salha",
-      "age": 13,
-      "address": "Damascus",
-    },
-    {
-      "first_name": "Nour",
-      "last_name": "Shaheen",
-      "age": 6,
-      "address": "Damascus",
-    },
-    {
-      "first_name": "Ahmad",
-      "last_name": "Shaheen",
-      "age": 5,
-      "address": "Damascus",
-    },
-    {
-      "first_name": "Nirmen",
-      "last_name": "alzawahra",
-      "age": 6,
-      "address": "Damascus",
-    },
-  ];
-  List<Map<String, dynamic>> get filteredpatient {
-    if (query.isEmpty) return patientsData;
-    return patientsData
-        .where(
-          (patient) =>
-              patient['first_name'].toLowerCase().contains(
-                query.toLowerCase(),
-              ) ||
-              patient['last_name'].toLowerCase().contains(query.toLowerCase()),
-        )
-        .toList();
-  }
 
   @override
   void initState() {
@@ -141,12 +104,14 @@ class _VisitedPatientsScreenState extends State<VisitedPatientsScreen> {
                           color: Pallete.gray1,
                         ),
                       ),
-                      Text(
-                        'Doctor Name',
-                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                          fontSize: 16,
-                          color: Pallete.black1,
-                        ),
+                      BlocBuilder<UserBloc, UserState>(
+                        builder: (context, state) {
+                          return Text(
+                            '${state.user?.firstName ?? 'No'} ${state.user?.lastName ?? 'User'}',
+                            style: Theme.of(context).textTheme.titleSmall!
+                                .copyWith(fontSize: 16, color: Pallete.black1),
+                          );
+                        },
                       ),
                     ],
                   ),
@@ -255,7 +220,7 @@ class _VisitedPatientsScreenState extends State<VisitedPatientsScreen> {
                                 crossAxisCount: 2,
                                 crossAxisSpacing: 16,
                                 mainAxisSpacing: 16,
-                                mainAxisExtent: screenHeight(context) * 0.178,
+                                mainAxisExtent: screenHeight(context) * 0.192,
                                 childAspectRatio: 1.3,
                               ),
                           itemBuilder: (context, index) {
@@ -265,7 +230,7 @@ class _VisitedPatientsScreenState extends State<VisitedPatientsScreen> {
                                 lastName: 'Patient',
                                 address: 'No address',
                                 onTap: () {},
-                                age: 0,
+                                age: '0',
                               );
                             }
                             final patient = state.patients[index];
@@ -279,7 +244,12 @@ class _VisitedPatientsScreenState extends State<VisitedPatientsScreen> {
                                   extra: patient,
                                 );
                               },
-                              age: patient.age ?? 0,
+                              age:
+                                  patient.birthDate == null
+                                      ? ''
+                                      : DateFormat(
+                                        'dd/MM/yy',
+                                      ).format(patient.birthDate!),
                             );
                           },
                         ),

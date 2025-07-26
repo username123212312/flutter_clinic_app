@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/intl.dart';
 import 'package:our_flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
 import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
@@ -164,7 +165,10 @@ class _AddChildScreenState extends State<AddChildScreen> {
                   );
                   if (date != null) {
                     setState(() {
-                      _ageController.text = calculateAge(date).toString();
+                      _selectedDate = date;
+                      _ageController.text = DateFormat(
+                        'yyyy-MM-dd',
+                      ).format(date);
                     });
                   }
                 },
@@ -211,7 +215,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
             lastName: _lastNameController.text.trim(),
             gender: _genderController.text.toLowerCase().trim(),
             bloodType: AppConstants.bloodTypes[_selectedBloodType],
-            age: int.parse(_ageController.text.trim()),
+            birthDate: _selectedDate,
           ),
         ),
       );
@@ -257,6 +261,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
   final _genderController = TextEditingController(text: 'Male');
   final _ageController = TextEditingController();
   int _selectedBloodType = 0;
+  DateTime? _selectedDate;
   int _selectedGender = 0;
   final _formKey = GlobalKey<FormState>();
 }

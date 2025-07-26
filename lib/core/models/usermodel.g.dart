@@ -16,7 +16,10 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       role: $enumDecodeNullable(_$RoleEnumMap, json['role']) ?? Role.patient,
       token: json['token'] as String?,
       password: json['password'] as String?,
-      age: (json['age'] as num?)?.toInt(),
+      birthDate:
+          json['birth_date'] == null
+              ? null
+              : DateTime.parse(json['birth_date'] as String),
       gender: json['gender'] as String?,
       bloodType: json['blood_type'] as String?,
       isCompleteProfile: json['complete_profile'] as bool? ?? false,
@@ -49,7 +52,7 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'role': _$RoleEnumMap[instance.role],
       'token': instance.token,
       'password': instance.password,
-      'age': instance.age,
+      'birth_date': instance.birthDate?.toIso8601String(),
       'gender': instance.gender,
       'blood_type': instance.bloodType,
       'complete_profile': instance.isCompleteProfile,

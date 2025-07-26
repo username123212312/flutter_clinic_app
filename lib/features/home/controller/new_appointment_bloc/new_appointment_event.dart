@@ -15,8 +15,9 @@ class NewAppointmentEvent with _$NewAppointmentEvent {
   const factory NewAppointmentEvent.scheduleSelected({
     required TimeOfDay time,
   }) = ScheduleSelected;
-  const factory NewAppointmentEvent.bookedNewAppointment() =
-      BookedNewAppointment;
+  const factory NewAppointmentEvent.bookedNewAppointment({
+    VaccinationRecord? vaccination,
+  }) = BookedNewAppointment;
   const factory NewAppointmentEvent.doctorSearched({required String query}) =
       DoctorSearched;
 }

@@ -32,7 +32,8 @@ mixin _$UserModel {
   Role? get role => throw _privateConstructorUsedError;
   String? get token => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError; //? Patient
-  int? get age => throw _privateConstructorUsedError;
+  @JsonKey(name: 'birth_date')
+  DateTime? get birthDate => throw _privateConstructorUsedError;
   String? get gender => throw _privateConstructorUsedError;
   @JsonKey(name: 'blood_type')
   String? get bloodType => throw _privateConstructorUsedError;
@@ -81,7 +82,7 @@ abstract class $UserModelCopyWith<$Res> {
     Role? role,
     String? token,
     String? password,
-    int? age,
+    @JsonKey(name: 'birth_date') DateTime? birthDate,
     String? gender,
     @JsonKey(name: 'blood_type') String? bloodType,
     @JsonKey(name: 'complete_profile') bool isCompleteProfile,
@@ -125,7 +126,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? role = freezed,
     Object? token = freezed,
     Object? password = freezed,
-    Object? age = freezed,
+    Object? birthDate = freezed,
     Object? gender = freezed,
     Object? bloodType = freezed,
     Object? isCompleteProfile = null,
@@ -186,11 +187,11 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.password
                     : password // ignore: cast_nullable_to_non_nullable
                         as String?,
-            age:
-                freezed == age
-                    ? _value.age
-                    : age // ignore: cast_nullable_to_non_nullable
-                        as int?,
+            birthDate:
+                freezed == birthDate
+                    ? _value.birthDate
+                    : birthDate // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
             gender:
                 freezed == gender
                     ? _value.gender
@@ -300,7 +301,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
     Role? role,
     String? token,
     String? password,
-    int? age,
+    @JsonKey(name: 'birth_date') DateTime? birthDate,
     String? gender,
     @JsonKey(name: 'blood_type') String? bloodType,
     @JsonKey(name: 'complete_profile') bool isCompleteProfile,
@@ -343,7 +344,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? role = freezed,
     Object? token = freezed,
     Object? password = freezed,
-    Object? age = freezed,
+    Object? birthDate = freezed,
     Object? gender = freezed,
     Object? bloodType = freezed,
     Object? isCompleteProfile = null,
@@ -404,11 +405,11 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value.password
                 : password // ignore: cast_nullable_to_non_nullable
                     as String?,
-        age:
-            freezed == age
-                ? _value.age
-                : age // ignore: cast_nullable_to_non_nullable
-                    as int?,
+        birthDate:
+            freezed == birthDate
+                ? _value.birthDate
+                : birthDate // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
         gender:
             freezed == gender
                 ? _value.gender
@@ -501,7 +502,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UserModelImpl implements _UserModel {
+class _$UserModelImpl extends _UserModel {
   _$UserModelImpl({
     this.id,
     @JsonKey(name: 'first_name') this.firstName,
@@ -511,7 +512,7 @@ class _$UserModelImpl implements _UserModel {
     this.role = Role.patient,
     this.token,
     this.password,
-    this.age,
+    @JsonKey(name: 'birth_date') this.birthDate,
     this.gender,
     @JsonKey(name: 'blood_type') this.bloodType,
     @JsonKey(name: 'complete_profile') this.isCompleteProfile = false,
@@ -529,7 +530,8 @@ class _$UserModelImpl implements _UserModel {
     this.status,
     this.sign,
     final List<Schedule>? schedule,
-  }) : _schedule = schedule;
+  }) : _schedule = schedule,
+       super._();
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -556,7 +558,8 @@ class _$UserModelImpl implements _UserModel {
   final String? password;
   //? Patient
   @override
-  final int? age;
+  @JsonKey(name: 'birth_date')
+  final DateTime? birthDate;
   @override
   final String? gender;
   @override
@@ -608,7 +611,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, role: $role, token: $token, password: $password, age: $age, gender: $gender, bloodType: $bloodType, isCompleteProfile: $isCompleteProfile, address: $address, photo: $photo, clinic: $clinic, speciality: $speciality, professionalTitle: $professionalTitle, finalRate: $finalRate, averageVisitDuration: $averageVisitDuration, visitFee: $visitFee, experience: $experience, treated: $treated, bookingType: $bookingType, status: $status, sign: $sign, schedule: $schedule)';
+    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, role: $role, token: $token, password: $password, birthDate: $birthDate, gender: $gender, bloodType: $bloodType, isCompleteProfile: $isCompleteProfile, address: $address, photo: $photo, clinic: $clinic, speciality: $speciality, professionalTitle: $professionalTitle, finalRate: $finalRate, averageVisitDuration: $averageVisitDuration, visitFee: $visitFee, experience: $experience, treated: $treated, bookingType: $bookingType, status: $status, sign: $sign, schedule: $schedule)';
   }
 
   @override
@@ -627,7 +630,8 @@ class _$UserModelImpl implements _UserModel {
             (identical(other.token, token) || other.token == token) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.age, age) || other.age == age) &&
+            (identical(other.birthDate, birthDate) ||
+                other.birthDate == birthDate) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.bloodType, bloodType) ||
                 other.bloodType == bloodType) &&
@@ -668,7 +672,7 @@ class _$UserModelImpl implements _UserModel {
     role,
     token,
     password,
-    age,
+    birthDate,
     gender,
     bloodType,
     isCompleteProfile,
@@ -702,7 +706,7 @@ class _$UserModelImpl implements _UserModel {
   }
 }
 
-abstract class _UserModel implements UserModel {
+abstract class _UserModel extends UserModel {
   factory _UserModel({
     final int? id,
     @JsonKey(name: 'first_name') final String? firstName,
@@ -712,7 +716,7 @@ abstract class _UserModel implements UserModel {
     final Role? role,
     final String? token,
     final String? password,
-    final int? age,
+    @JsonKey(name: 'birth_date') final DateTime? birthDate,
     final String? gender,
     @JsonKey(name: 'blood_type') final String? bloodType,
     @JsonKey(name: 'complete_profile') final bool isCompleteProfile,
@@ -731,6 +735,7 @@ abstract class _UserModel implements UserModel {
     final String? sign,
     final List<Schedule>? schedule,
   }) = _$UserModelImpl;
+  _UserModel._() : super._();
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
@@ -755,7 +760,8 @@ abstract class _UserModel implements UserModel {
   @override
   String? get password; //? Patient
   @override
-  int? get age;
+  @JsonKey(name: 'birth_date')
+  DateTime? get birthDate;
   @override
   String? get gender;
   @override

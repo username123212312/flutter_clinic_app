@@ -1,5 +1,6 @@
 class AppRouteConstants {
   static const welcomeRouteName = 'welcome';
+  static const chatRouteName = 'chat';
   static const onBoardingRouteName = 'on_boarding';
   static const loginAsRouteName = 'login_as';
   static const loginRouteName = 'login';
@@ -41,6 +42,8 @@ class AppRouteConstants {
   static const errorRouteName = 'error';
   static const notificationsRouteName = 'notifications';
   static const clinicDoctorsRouteName = 'clinic_doctors';
+  static const selectVaccineRouteName = 'select_vaccine';
+  static const vaccineDetailsRouteName = 'vaccine_details';
 
   //? Doctor
   static const doctorHomeRouteName = 'doctor_home';

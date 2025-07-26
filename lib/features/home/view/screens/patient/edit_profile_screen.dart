@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:our_flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
 import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
@@ -22,8 +23,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   void initState() {
     super.initState();
-    _ageController.text =
-        context.read<UserBloc>().state.user?.age?.toString() ?? '';
+    _ageController.text = DateFormat(
+      'dd/MM/yy',
+    ).format(context.read<UserBloc>().state.user?.birthDate ?? DateTime.now());
   }
 
   @override
@@ -98,10 +100,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     gender: checkEmptiness(
                                       _genderController.text,
                                     ),
-                                    age: int.tryParse(
-                                      checkEmptiness(_ageController.text) ??
-                                          '0',
-                                    ),
+                                    birthDate: _selectedDate,
                                     address: checkEmptiness(
                                       _completeAddressController.text,
                                     ),
@@ -288,7 +287,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             );
             if (date != null) {
               setState(() {
-                _ageController.text = calculateAge(date).toString();
+                _selectedDate = date;
+                _ageController.text = DateFormat('yyyy-dd-MM').format(date);
               });
             }
           },
@@ -335,6 +335,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   }
 
   final _firstNameController = TextEditingController();
+  DateTime? _selectedDate;
   final _lastNameController = TextEditingController();
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();

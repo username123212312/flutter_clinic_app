@@ -80,6 +80,8 @@ dependencies:
   cached_network_image: ^3.4.1
   carousel_slider: ^5.1.1
   salomon_bottom_bar: ^3.3.2
+  flip_card: ^0.7.0
+  google_nav_bar: ^5.0.7
 
 
 dev_dependencies:
