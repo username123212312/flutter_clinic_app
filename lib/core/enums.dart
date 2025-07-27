@@ -10,7 +10,13 @@ enum Role {
   bool get isAdmin => this == Role.admin;
 }
 
-enum AppointmentType { visit, vaccination }
+enum AppointmentType {
+  visit,
+  vaccination;
+
+  bool get isVisit => this == AppointmentType.visit;
+  bool get isVaccination => this == AppointmentType.vaccination;
+}
 
 enum AppointmentStatus {
   pending,

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
+import '../../../model/vaccinationrecord.dart';
 
 class VaccineInfoCard extends StatelessWidget {
-  final Map<String, dynamic> vaccine;
+  final VaccinationRecord vaccine;
   final VoidCallback onTap;
 
   const VaccineInfoCard({
@@ -26,7 +27,8 @@ class VaccineInfoCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                vaccine['name'],
+                overflow: TextOverflow.ellipsis,
+                vaccine.vaccineName ?? 'No name',
                 style: Theme.of(context).textTheme.titleMedium!.copyWith(
                   fontSize: 17,
                   color: Pallete.black1,
@@ -34,7 +36,7 @@ class VaccineInfoCard extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                'Dose: ${vaccine['dose']}',
+                'Dose: ${vaccine.dose ?? 'No dose'}',
                 style: Theme.of(context).textTheme.titleMedium!.copyWith(
                   fontSize: 14,
                   color: Pallete.sliverSand,
@@ -42,7 +44,7 @@ class VaccineInfoCard extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                'When: ${vaccine['when']}',
+                'When: ${vaccine.whenToTake ?? 'No time'}',
                 style: Theme.of(context).textTheme.titleMedium!.copyWith(
                   fontSize: 14,
                   color: Pallete.sliverSand,
@@ -50,7 +52,7 @@ class VaccineInfoCard extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                'Price: ${vaccine['price']}',
+                'Price: ${vaccine.price ?? 'No price'}',
                 style: Theme.of(context).textTheme.titleMedium!.copyWith(
                   fontSize: 14,
                   color: Pallete.sliverSand,
@@ -60,7 +62,9 @@ class VaccineInfoCard extends StatelessWidget {
               Align(
                 alignment: Alignment.bottomRight,
                 child: Icon(
-                  vaccine['taken'] ? Icons.check_circle : Icons.schedule,
+                  (vaccine.isTaken ?? 0) == 1
+                      ? Icons.check_circle
+                      : Icons.schedule,
                   color: Pallete.primaryColor,
                 ),
               ),

@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
+import 'package:our_flutter_clinic_app/core/enums.dart';
+import 'package:our_flutter_clinic_app/features/home/controller/select_vaccination_cubit/select_vaccination_cubit.dart';
+import 'package:our_flutter_clinic_app/features/home/model/vaccinationrecord.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
+import '../../../../../core/navigation/app_route_constants.dart';
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/general_utils.dart';
 import '../../../../../core/widgets/two_sellectable_widget.dart';
@@ -61,50 +69,13 @@ class _VaccineScreenWidgetState extends State<VaccineScreenWidget> {
     },
   ];
 
-  final List<Map<String, dynamic>> vaccines = [
-    {
-      'name': 'Hepatitis B',
-      'dose': '1st Dose',
-      'taken': true,
-      'when': 'At birth',
-      'price': '\$20',
-    },
-    {
-      'name': 'Polio',
-      'dose': '2nd Dose',
-      'taken': false,
-      'when': '4 months',
-      'price': '\$15',
-    },
-    {
-      'name': 'MMR',
-      'dose': '1st Dose',
-      'taken': false,
-      'when': '12 months',
-      'price': '\$30',
-    },
-    {
-      'name': 'DTP',
-      'dose': '3rd Dose',
-      'taken': true,
-      'when': '6 months',
-      'price': '\$25',
-    },
-    {
-      'name': 'DTP1',
-      'dose': '3rd Dose',
-      'taken': true,
-      'when': '6 months',
-      'price': '\$25',
-    },
-    {
-      'name': 'DTP3',
-      'dose': '3rd Dose',
-      'taken': true,
-      'when': '6 months',
-      'price': '\$25',
-    },
-  ];
+  @override
+  void initState() {
+    super.initState();
+    if (getChildId() != null) {
+      context.read<SelectVaccinationCubit>().changeFilter(VaccintaionType.now);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -138,31 +109,74 @@ class _VaccineScreenWidgetState extends State<VaccineScreenWidget> {
             ),
             const SizedBox(height: 15),
             VaccineFlipCard(flipFacts: flipFacts),
-            const SizedBox(height: 15),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                "Available Vaccines",
-                style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                  fontSize: 17,
-                  color: Pallete.black1,
-                ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            TwoSelectableWidget(
-              inBetweenPadding: screenWidth(context) * 0.3,
-              twoTitles: const ['Now', 'Upcoming'],
-              onToggleIndex: (index) {
-                setState(() {
-                  _currentFilter = index;
-                });
-              },
-              currentIndex: _currentFilter,
-            ),
-            const SizedBox(height: 10),
+            if (getChildId() == null) ...buildSelectChild(),
+            if (getChildId() != null) ..._buildAvailableVaccines(),
+          ],
+        ),
+      ),
+    );
+  }
 
-            GridView.builder(
+  List<Widget> _buildAvailableVaccines() {
+    return [
+      const SizedBox(height: 15),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            "Available Vaccines",
+            style: Theme.of(context).textTheme.labelMedium!.copyWith(
+              fontSize: 17,
+              color: Pallete.black1,
+            ),
+          ),
+          IconButton(
+            iconSize: 20,
+            onPressed: () {
+              context.read<SelectVaccinationCubit>().fetchVaccines();
+            },
+            icon: Icon(FontAwesomeIcons.arrowsRotate),
+          ),
+        ],
+      ),
+      const SizedBox(height: 10),
+      TwoSelectableWidget(
+        inBetweenPadding: screenWidth(context) * 0.3,
+        twoTitles: const ['Now', 'Upcoming'],
+        onToggleIndex: (index) {
+          setState(() {
+            _currentFilter = index;
+            context.read<SelectVaccinationCubit>().changeFilter(
+              _currentFilter == 0
+                  ? VaccintaionType.now
+                  : VaccintaionType.upcoming,
+            );
+          });
+        },
+        currentIndex: _currentFilter,
+      ),
+      const SizedBox(height: 10),
+      BlocConsumer<SelectVaccinationCubit, SelectVaccinationState>(
+        listener: (context, state) {
+          if (state.status.isError) {
+            Fluttertoast.showToast(msg: state.message);
+          }
+        },
+        builder: (context, state) {
+          if (state.vaccines.isEmpty) {
+            return Center(
+              heightFactor: 1.7,
+              child: Image.asset(
+                'assets/images/il_empty_activity.webp',
+                width: 80,
+                height: 80,
+                fit: BoxFit.cover,
+              ),
+            );
+          }
+          return Skeletonizer(
+            enabled: state.status.isLoading,
+            child: GridView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -171,26 +185,44 @@ class _VaccineScreenWidgetState extends State<VaccineScreenWidget> {
                 mainAxisSpacing: 12,
                 childAspectRatio: 1,
               ),
-              itemCount:
-                  vaccines
-                      .where(
-                        (v) => _currentFilter == 0 ? v['taken'] : !v['taken'],
-                      )
-                      .length,
+              itemCount: state.status.isLoading ? 4 : state.vaccines.length,
               itemBuilder: (context, index) {
-                final filtered =
-                    vaccines
-                        .where(
-                          (v) => _currentFilter == 0 ? v['taken'] : !v['taken'],
-                        )
-                        .toList();
-                final v = filtered[index];
-                return VaccineInfoCard(vaccine: v, onTap: () {});
+                if (state.status.isLoading) {
+                  return VaccineInfoCard(
+                    vaccine: VaccinationRecord(),
+                    onTap: () {},
+                  );
+                }
+                final vaccine = state.vaccines[index];
+                return VaccineInfoCard(
+                  vaccine: vaccine,
+                  onTap: () {
+                    context.pushNamed(
+                      AppRouteConstants.vaccineDetailsRouteName,
+                      extra: vaccine,
+                    );
+                  },
+                );
               },
             ),
-          ],
+          );
+        },
+      ),
+    ];
+  }
+
+  List<Widget> buildSelectChild() {
+    return [
+      SizedBox(height: 70),
+      Text(
+        textAlign: TextAlign.center,
+        'Select a child to \nsee available vaccines',
+        style: Theme.of(context).textTheme.labelMedium!.copyWith(
+          fontSize: 18,
+          fontStyle: FontStyle.italic,
+          color: Pallete.grayScaleColor400,
         ),
       ),
-    );
+    ];
   }
 }

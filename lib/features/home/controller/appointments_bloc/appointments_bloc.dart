@@ -22,10 +22,14 @@ class AppointmentsBloc extends Bloc<AppointmentsEvent, AppointmentsState> {
       }
     });
     on<AppointmentsFetched>(_fetchAppointments);
-    on<AppointmentStatusChanged>(
-      (event, emit) =>
-          emit(state.copyWith(appointmentStatus: event.appointmentStatus)),
-    );
+    on<AppointmentStatusChanged>((event, emit) {
+      emit(state.copyWith(appointmentStatus: event.appointmentStatus));
+      add(AppointmentsEvent.appointmentsFetched());
+    });
+    on<AppointmentTypeChanged>((event, emit) {
+      emit(state.copyWith(appointmentType: event.appointmentType));
+      add(AppointmentsEvent.appointmentsFetched());
+    });
     on<AppointmentCanceled>(_removeAppointment);
   }
 
@@ -35,7 +39,8 @@ class AppointmentsBloc extends Bloc<AppointmentsEvent, AppointmentsState> {
   ) async {
     try {
       final response = await _appointmentsRepository.fetchAllAppointments(
-        state.appointmentStatus ?? AppointmentStatus.pending,
+        state.appointmentStatus,
+        state.appointmentType,
       );
       final newState = switch (response) {
         Left(value: final l) => state.copyWith(

@@ -147,7 +147,7 @@ Future<PusherChannelsFlutter> createPusherClient(String token) async {
           );
 
           log('Auth Response: ${response.data}');
-          // return response.data!; // Must return the auth payload
+          return response.data!; // Must return the auth payload
         } catch (e) {
           log('Pusher Auth Failed: $e');
           rethrow;

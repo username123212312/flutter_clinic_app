@@ -6,6 +6,9 @@ class AppointmentsEvent with _$AppointmentsEvent {
   const factory AppointmentsEvent.appointmentStatusChanged({
     required AppointmentStatus appointmentStatus,
   }) = AppointmentStatusChanged;
+  const factory AppointmentsEvent.appointmentTypeChanged({
+    required AppointmentType appointmentType,
+  }) = AppointmentTypeChanged;
   const factory AppointmentsEvent.appointmentCanceled({
     required int reservationId,
   }) = AppointmentCanceled;

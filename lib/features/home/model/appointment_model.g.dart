@@ -10,7 +10,7 @@ _$AppointmentModelImpl _$$AppointmentModelImplFromJson(
   Map<String, dynamic> json,
 ) => _$AppointmentModelImpl(
   id: (json['appointment_id'] as num?)?.toInt(),
-  type: json['type'] as String?,
+  type: $enumDecodeNullable(_$AppointmentTypeEnumMap, json['type']),
   finalRate: (json['finalRate'] as num?)?.toInt(),
   referredBy: json['referred by'] as String?,
   clinicId: (json['clinic_id'] as num?)?.toInt(),
@@ -44,7 +44,7 @@ Map<String, dynamic> _$$AppointmentModelImplToJson(
   _$AppointmentModelImpl instance,
 ) => <String, dynamic>{
   'appointment_id': instance.id,
-  'type': instance.type,
+  'type': _$AppointmentTypeEnumMap[instance.type],
   'finalRate': instance.finalRate,
   'referred by': instance.referredBy,
   'clinic_id': instance.clinicId,
@@ -66,6 +66,11 @@ Map<String, dynamic> _$$AppointmentModelImplToJson(
   'status': _$AppointmentStatusEnumMap[instance.status],
   'reminder_offset': instance.reminderOffset,
   'payment_status': _$PaymentStatusEnumMap[instance.paymentStatus],
+};
+
+const _$AppointmentTypeEnumMap = {
+  AppointmentType.visit: 'visit',
+  AppointmentType.vaccination: 'vaccination',
 };
 
 const _$AppointmentStatusEnumMap = {

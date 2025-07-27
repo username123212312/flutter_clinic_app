@@ -26,7 +26,7 @@ class AppConstants {
   //! Auth
   static const registerPath = '/$apiPath/register';
   static const loginPath = '/$apiPath/login';
-  static const authWithTokenPath = '/$apiPath/user';
+  static const authWithTokenPath = '/$apiPath/getUser';
   static const loginWithGooglePath = '/$apiPath/auth/google';
   static const logoutPath = '/$apiPath/logout';
   static const sendEmailOtpPath = '/$apiPath/send-email-otp';
@@ -85,6 +85,8 @@ class AppConstants {
       '$patientPath/showVaccinationRecordDetails';
   static const editVaccinationRecordPath = '$patientPath/editVaccinationRecord';
   static const showChildRecordPath = '$patientPath/showChildRecord';
+  static const deleteVaccinationRecordPath =
+      '$patientPath/deleteVaccinationRecord';
 
   //*   Appointment
   static const showAppointmentPath = '$patientPath/showAppointment';

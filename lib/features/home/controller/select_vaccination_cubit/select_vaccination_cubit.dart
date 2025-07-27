@@ -19,8 +19,12 @@ part 'select_vaccination_cubit.freezed.dart';
 class SelectVaccinationCubit extends Cubit<SelectVaccinationState> {
   SelectVaccinationCubit() : super(SelectVaccinationState.initial());
 
-  void reset() {
-    emit(SelectVaccinationState.initial());
+  void reset([bool isResetVac = false]) {
+    emit(
+      isResetVac
+          ? state.copyWith(selectedVaccine: null)
+          : SelectVaccinationState.initial(),
+    );
   }
 
   void chooseVaccine(VaccinationRecord vaccine) {
@@ -30,6 +34,49 @@ class SelectVaccinationCubit extends Cubit<SelectVaccinationState> {
   void changeFilter(VaccintaionType type) {
     emit(state.copyWith(type: type));
     fetchVaccines();
+  }
+
+  Future<void> editVaccine(VaccinationRecord vaccine) async {
+    emit(state.copyWith(status: DataStatus.loading));
+    try {
+      final response = await _editVaccineStatus(
+        vaccine.id ?? -1,
+        vaccine.isTaken == 1,
+      );
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          status: DataStatus.error,
+          message: l.message,
+        ),
+        Right(value: final r) => state.copyWith(
+          status: DataStatus.done,
+          message: r.message,
+        ),
+      };
+      emit(newState);
+    } catch (e) {
+      emit(state.copyWith(status: DataStatus.error, message: e.toString()));
+    }
+  }
+
+  Future<void> removeVaccine(VaccinationRecord vaccine) async {
+    emit(state.copyWith(status: DataStatus.loading));
+    try {
+      final response = await _deleteVaccine(vaccine.id ?? -1);
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          status: DataStatus.error,
+          message: l.message,
+        ),
+        Right(value: final r) => state.copyWith(
+          status: DataStatus.done,
+          message: r.message,
+        ),
+      };
+      emit(newState);
+    } catch (e) {
+      emit(state.copyWith(status: DataStatus.error, message: e.toString()));
+    }
   }
 
   Future<void> fetchVaccines() async {
@@ -76,6 +123,59 @@ class SelectVaccinationCubit extends Cubit<SelectVaccinationState> {
         );
       } else {
         throw HttpException('vaccines are not fetched');
+      }
+    } on DioException catch (e) {
+      return Left(AppFailure(message: e.message ?? 'Error'));
+    } on HttpException catch (e) {
+      return Left(AppFailure(message: e.message));
+    } catch (e) {
+      return Left(AppFailure(message: e.toString()));
+    }
+  }
+
+  Future<Either<AppFailure, AppResponse>> _deleteVaccine(int recordId) async {
+    try {
+      final response = await DioClient().instance.delete(
+        AppConstants.deleteVaccinationRecordPath,
+        queryParameters: {'record_id': recordId},
+      );
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse(
+            success: true,
+            message: 'vaccine record deleted successfully',
+          ),
+        );
+      } else {
+        throw HttpException('vaccine record is not deleted');
+      }
+    } on DioException catch (e) {
+      return Left(AppFailure(message: e.message ?? 'Error'));
+    } on HttpException catch (e) {
+      return Left(AppFailure(message: e.message));
+    } catch (e) {
+      return Left(AppFailure(message: e.toString()));
+    }
+  }
+
+  Future<Either<AppFailure, AppResponse>> _editVaccineStatus(
+    int recordId,
+    bool isTaken,
+  ) async {
+    try {
+      final response = await DioClient().instance.post(
+        AppConstants.editVaccinationRecordPath,
+        queryParameters: {'record_id': recordId, 'isTaken': isTaken ? 0 : 1},
+      );
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse(
+            success: true,
+            message: 'vaccine record edited successfully',
+          ),
+        );
+      } else {
+        throw HttpException('vaccine record is not edited');
       }
     } on DioException catch (e) {
       return Left(AppFailure(message: e.message ?? 'Error'));

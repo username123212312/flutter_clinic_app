@@ -10,6 +10,7 @@ import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
 import 'package:our_flutter_clinic_app/features/home/controller/appointments_bloc/appointments_bloc.dart';
 import 'package:our_flutter_clinic_app/features/home/controller/new_appointment_bloc/new_appointment_bloc.dart';
+import 'package:our_flutter_clinic_app/features/home/controller/select_vaccination_cubit/select_vaccination_cubit.dart';
 import 'package:our_flutter_clinic_app/features/home/model/clinic_model.dart';
 import 'package:our_flutter_clinic_app/features/home/repository/new_appointment_repository.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/appointments/schedules_item_widget.dart';
@@ -41,6 +42,13 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
     _newAppointmentBloc = NewAppointmentBloc(
       newAppointmentRepository: NewAppointmentRepository(),
     )..add(NewAppointmentEvent.clinicsFetched());
+    final vaccine =
+        context.read<SelectVaccinationCubit>().state.selectedVaccine;
+    if (vaccine != null) {
+      _selectedIndex = 1;
+      _vaccinationRecord = vaccine;
+      _vaccineController.text = vaccine.vaccineName ?? '';
+    }
   }
 
   @override
@@ -104,6 +112,7 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
                   width: screenWidth(context) * 0.7,
                   child: FittedBox(
                     child: TwoSelectableWidget(
+                      currentIndex: _selectedIndex,
                       twoTitles: ['Regular', 'Vaccine'],
                       onToggleIndex: (index) {
                         setState(() {
@@ -151,6 +160,7 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
             );
           }
           if (state.statusMessage == 'Appointment added successfully') {
+            context.read<SelectVaccinationCubit>().reset(true);
             context.goNamed(
               AppRouteConstants.reservationDetailsRouteName,
               pathParameters: {'appointmetnId': '${state.appointmentID ?? 0}'},

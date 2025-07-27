@@ -221,7 +221,8 @@ class _SelectVaccineScreenState extends State<SelectVaccineScreen> {
                                       value:
                                           state.selectedVaccine == null
                                               ? false
-                                              : state.selectedVaccine == vac,
+                                              : state.selectedVaccine?.id ==
+                                                  vac.id,
                                       onChanged: null,
                                     ),
                                   ),
