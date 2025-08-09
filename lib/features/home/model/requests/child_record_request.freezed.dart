@@ -21,24 +21,28 @@ ChildRecordRequest _$ChildRecordRequestFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ChildRecordRequest {
-  @JsonKey(name: 'child_id')
+  @JsonKey(name: 'child_id', includeIfNull: false)
   int? get childId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'height_cm')
+  @JsonKey(name: 'record_id', includeIfNull: false)
+  int? get recordId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'height_cm', includeIfNull: false)
   double? get heightCm => throw _privateConstructorUsedError;
-  @JsonKey(name: 'weight_kg')
+  @JsonKey(name: 'weight_kg', includeIfNull: false)
   double? get weightKg => throw _privateConstructorUsedError;
-  @JsonKey(name: 'growth_notes')
+  @JsonKey(name: 'growth_notes', includeIfNull: false)
   String? get growthNotes => throw _privateConstructorUsedError;
-  @JsonKey(name: 'doctor_notes')
+  @JsonKey(name: 'doctor_notes', includeIfNull: false)
   String? get doctorNotes => throw _privateConstructorUsedError;
-  @JsonKey(name: 'feeding_type')
+  @JsonKey(name: 'feeding_type', includeIfNull: false)
   FeedingType? get feedingType => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: false)
   String? get allergies => throw _privateConstructorUsedError;
-  @JsonKey(name: 'developmental_observations')
+  @JsonKey(name: 'developmental_observations', includeIfNull: false)
+  @JsonKey(includeIfNull: false)
   String? get developmentalObservations => throw _privateConstructorUsedError;
-  @JsonKey(name: 'head_circumference_cm')
+  @JsonKey(name: 'head_circumference_cm', includeIfNull: false)
   double? get headCircumferenceCm => throw _privateConstructorUsedError;
-  @JsonKey(name: 'next_visit_date')
+  @JsonKey(name: 'next_visit_date', includeIfNull: false)
   DateTime? get nextVisitDate => throw _privateConstructorUsedError;
 
   /// Serializes this ChildRecordRequest to a JSON map.
@@ -59,17 +63,22 @@ abstract class $ChildRecordRequestCopyWith<$Res> {
   ) = _$ChildRecordRequestCopyWithImpl<$Res, ChildRecordRequest>;
   @useResult
   $Res call({
-    @JsonKey(name: 'child_id') int? childId,
-    @JsonKey(name: 'height_cm') double? heightCm,
-    @JsonKey(name: 'weight_kg') double? weightKg,
-    @JsonKey(name: 'growth_notes') String? growthNotes,
-    @JsonKey(name: 'doctor_notes') String? doctorNotes,
-    @JsonKey(name: 'feeding_type') FeedingType? feedingType,
-    String? allergies,
-    @JsonKey(name: 'developmental_observations')
+    @JsonKey(name: 'child_id', includeIfNull: false) int? childId,
+    @JsonKey(name: 'record_id', includeIfNull: false) int? recordId,
+    @JsonKey(name: 'height_cm', includeIfNull: false) double? heightCm,
+    @JsonKey(name: 'weight_kg', includeIfNull: false) double? weightKg,
+    @JsonKey(name: 'growth_notes', includeIfNull: false) String? growthNotes,
+    @JsonKey(name: 'doctor_notes', includeIfNull: false) String? doctorNotes,
+    @JsonKey(name: 'feeding_type', includeIfNull: false)
+    FeedingType? feedingType,
+    @JsonKey(includeIfNull: false) String? allergies,
+    @JsonKey(name: 'developmental_observations', includeIfNull: false)
+    @JsonKey(includeIfNull: false)
     String? developmentalObservations,
-    @JsonKey(name: 'head_circumference_cm') double? headCircumferenceCm,
-    @JsonKey(name: 'next_visit_date') DateTime? nextVisitDate,
+    @JsonKey(name: 'head_circumference_cm', includeIfNull: false)
+    double? headCircumferenceCm,
+    @JsonKey(name: 'next_visit_date', includeIfNull: false)
+    DateTime? nextVisitDate,
   });
 }
 
@@ -89,6 +98,7 @@ class _$ChildRecordRequestCopyWithImpl<$Res, $Val extends ChildRecordRequest>
   @override
   $Res call({
     Object? childId = freezed,
+    Object? recordId = freezed,
     Object? heightCm = freezed,
     Object? weightKg = freezed,
     Object? growthNotes = freezed,
@@ -105,6 +115,11 @@ class _$ChildRecordRequestCopyWithImpl<$Res, $Val extends ChildRecordRequest>
                 freezed == childId
                     ? _value.childId
                     : childId // ignore: cast_nullable_to_non_nullable
+                        as int?,
+            recordId:
+                freezed == recordId
+                    ? _value.recordId
+                    : recordId // ignore: cast_nullable_to_non_nullable
                         as int?,
             heightCm:
                 freezed == heightCm
@@ -167,17 +182,22 @@ abstract class _$$ChildRecordRequestImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    @JsonKey(name: 'child_id') int? childId,
-    @JsonKey(name: 'height_cm') double? heightCm,
-    @JsonKey(name: 'weight_kg') double? weightKg,
-    @JsonKey(name: 'growth_notes') String? growthNotes,
-    @JsonKey(name: 'doctor_notes') String? doctorNotes,
-    @JsonKey(name: 'feeding_type') FeedingType? feedingType,
-    String? allergies,
-    @JsonKey(name: 'developmental_observations')
+    @JsonKey(name: 'child_id', includeIfNull: false) int? childId,
+    @JsonKey(name: 'record_id', includeIfNull: false) int? recordId,
+    @JsonKey(name: 'height_cm', includeIfNull: false) double? heightCm,
+    @JsonKey(name: 'weight_kg', includeIfNull: false) double? weightKg,
+    @JsonKey(name: 'growth_notes', includeIfNull: false) String? growthNotes,
+    @JsonKey(name: 'doctor_notes', includeIfNull: false) String? doctorNotes,
+    @JsonKey(name: 'feeding_type', includeIfNull: false)
+    FeedingType? feedingType,
+    @JsonKey(includeIfNull: false) String? allergies,
+    @JsonKey(name: 'developmental_observations', includeIfNull: false)
+    @JsonKey(includeIfNull: false)
     String? developmentalObservations,
-    @JsonKey(name: 'head_circumference_cm') double? headCircumferenceCm,
-    @JsonKey(name: 'next_visit_date') DateTime? nextVisitDate,
+    @JsonKey(name: 'head_circumference_cm', includeIfNull: false)
+    double? headCircumferenceCm,
+    @JsonKey(name: 'next_visit_date', includeIfNull: false)
+    DateTime? nextVisitDate,
   });
 }
 
@@ -196,6 +216,7 @@ class __$$ChildRecordRequestImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? childId = freezed,
+    Object? recordId = freezed,
     Object? heightCm = freezed,
     Object? weightKg = freezed,
     Object? growthNotes = freezed,
@@ -212,6 +233,11 @@ class __$$ChildRecordRequestImplCopyWithImpl<$Res>
             freezed == childId
                 ? _value.childId
                 : childId // ignore: cast_nullable_to_non_nullable
+                    as int?,
+        recordId:
+            freezed == recordId
+                ? _value.recordId
+                : recordId // ignore: cast_nullable_to_non_nullable
                     as int?,
         heightCm:
             freezed == heightCm
@@ -267,54 +293,63 @@ class __$$ChildRecordRequestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChildRecordRequestImpl implements _ChildRecordRequest {
   _$ChildRecordRequestImpl({
-    @JsonKey(name: 'child_id') this.childId,
-    @JsonKey(name: 'height_cm') this.heightCm,
-    @JsonKey(name: 'weight_kg') this.weightKg,
-    @JsonKey(name: 'growth_notes') this.growthNotes,
-    @JsonKey(name: 'doctor_notes') this.doctorNotes,
-    @JsonKey(name: 'feeding_type') this.feedingType,
-    this.allergies,
-    @JsonKey(name: 'developmental_observations') this.developmentalObservations,
-    @JsonKey(name: 'head_circumference_cm') this.headCircumferenceCm,
-    @JsonKey(name: 'next_visit_date') this.nextVisitDate,
+    @JsonKey(name: 'child_id', includeIfNull: false) this.childId,
+    @JsonKey(name: 'record_id', includeIfNull: false) this.recordId,
+    @JsonKey(name: 'height_cm', includeIfNull: false) this.heightCm,
+    @JsonKey(name: 'weight_kg', includeIfNull: false) this.weightKg,
+    @JsonKey(name: 'growth_notes', includeIfNull: false) this.growthNotes,
+    @JsonKey(name: 'doctor_notes', includeIfNull: false) this.doctorNotes,
+    @JsonKey(name: 'feeding_type', includeIfNull: false) this.feedingType,
+    @JsonKey(includeIfNull: false) this.allergies,
+    @JsonKey(name: 'developmental_observations', includeIfNull: false)
+    @JsonKey(includeIfNull: false)
+    this.developmentalObservations,
+    @JsonKey(name: 'head_circumference_cm', includeIfNull: false)
+    this.headCircumferenceCm,
+    @JsonKey(name: 'next_visit_date', includeIfNull: false) this.nextVisitDate,
   });
 
   factory _$ChildRecordRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChildRecordRequestImplFromJson(json);
 
   @override
-  @JsonKey(name: 'child_id')
+  @JsonKey(name: 'child_id', includeIfNull: false)
   final int? childId;
   @override
-  @JsonKey(name: 'height_cm')
+  @JsonKey(name: 'record_id', includeIfNull: false)
+  final int? recordId;
+  @override
+  @JsonKey(name: 'height_cm', includeIfNull: false)
   final double? heightCm;
   @override
-  @JsonKey(name: 'weight_kg')
+  @JsonKey(name: 'weight_kg', includeIfNull: false)
   final double? weightKg;
   @override
-  @JsonKey(name: 'growth_notes')
+  @JsonKey(name: 'growth_notes', includeIfNull: false)
   final String? growthNotes;
   @override
-  @JsonKey(name: 'doctor_notes')
+  @JsonKey(name: 'doctor_notes', includeIfNull: false)
   final String? doctorNotes;
   @override
-  @JsonKey(name: 'feeding_type')
+  @JsonKey(name: 'feeding_type', includeIfNull: false)
   final FeedingType? feedingType;
   @override
+  @JsonKey(includeIfNull: false)
   final String? allergies;
   @override
-  @JsonKey(name: 'developmental_observations')
+  @JsonKey(name: 'developmental_observations', includeIfNull: false)
+  @JsonKey(includeIfNull: false)
   final String? developmentalObservations;
   @override
-  @JsonKey(name: 'head_circumference_cm')
+  @JsonKey(name: 'head_circumference_cm', includeIfNull: false)
   final double? headCircumferenceCm;
   @override
-  @JsonKey(name: 'next_visit_date')
+  @JsonKey(name: 'next_visit_date', includeIfNull: false)
   final DateTime? nextVisitDate;
 
   @override
   String toString() {
-    return 'ChildRecordRequest(childId: $childId, heightCm: $heightCm, weightKg: $weightKg, growthNotes: $growthNotes, doctorNotes: $doctorNotes, feedingType: $feedingType, allergies: $allergies, developmentalObservations: $developmentalObservations, headCircumferenceCm: $headCircumferenceCm, nextVisitDate: $nextVisitDate)';
+    return 'ChildRecordRequest(childId: $childId, recordId: $recordId, heightCm: $heightCm, weightKg: $weightKg, growthNotes: $growthNotes, doctorNotes: $doctorNotes, feedingType: $feedingType, allergies: $allergies, developmentalObservations: $developmentalObservations, headCircumferenceCm: $headCircumferenceCm, nextVisitDate: $nextVisitDate)';
   }
 
   @override
@@ -323,6 +358,8 @@ class _$ChildRecordRequestImpl implements _ChildRecordRequest {
         (other.runtimeType == runtimeType &&
             other is _$ChildRecordRequestImpl &&
             (identical(other.childId, childId) || other.childId == childId) &&
+            (identical(other.recordId, recordId) ||
+                other.recordId == recordId) &&
             (identical(other.heightCm, heightCm) ||
                 other.heightCm == heightCm) &&
             (identical(other.weightKg, weightKg) ||
@@ -351,6 +388,7 @@ class _$ChildRecordRequestImpl implements _ChildRecordRequest {
   int get hashCode => Object.hash(
     runtimeType,
     childId,
+    recordId,
     heightCm,
     weightKg,
     growthNotes,
@@ -381,50 +419,62 @@ class _$ChildRecordRequestImpl implements _ChildRecordRequest {
 
 abstract class _ChildRecordRequest implements ChildRecordRequest {
   factory _ChildRecordRequest({
-    @JsonKey(name: 'child_id') final int? childId,
-    @JsonKey(name: 'height_cm') final double? heightCm,
-    @JsonKey(name: 'weight_kg') final double? weightKg,
-    @JsonKey(name: 'growth_notes') final String? growthNotes,
-    @JsonKey(name: 'doctor_notes') final String? doctorNotes,
-    @JsonKey(name: 'feeding_type') final FeedingType? feedingType,
-    final String? allergies,
-    @JsonKey(name: 'developmental_observations')
+    @JsonKey(name: 'child_id', includeIfNull: false) final int? childId,
+    @JsonKey(name: 'record_id', includeIfNull: false) final int? recordId,
+    @JsonKey(name: 'height_cm', includeIfNull: false) final double? heightCm,
+    @JsonKey(name: 'weight_kg', includeIfNull: false) final double? weightKg,
+    @JsonKey(name: 'growth_notes', includeIfNull: false)
+    final String? growthNotes,
+    @JsonKey(name: 'doctor_notes', includeIfNull: false)
+    final String? doctorNotes,
+    @JsonKey(name: 'feeding_type', includeIfNull: false)
+    final FeedingType? feedingType,
+    @JsonKey(includeIfNull: false) final String? allergies,
+    @JsonKey(name: 'developmental_observations', includeIfNull: false)
+    @JsonKey(includeIfNull: false)
     final String? developmentalObservations,
-    @JsonKey(name: 'head_circumference_cm') final double? headCircumferenceCm,
-    @JsonKey(name: 'next_visit_date') final DateTime? nextVisitDate,
+    @JsonKey(name: 'head_circumference_cm', includeIfNull: false)
+    final double? headCircumferenceCm,
+    @JsonKey(name: 'next_visit_date', includeIfNull: false)
+    final DateTime? nextVisitDate,
   }) = _$ChildRecordRequestImpl;
 
   factory _ChildRecordRequest.fromJson(Map<String, dynamic> json) =
       _$ChildRecordRequestImpl.fromJson;
 
   @override
-  @JsonKey(name: 'child_id')
+  @JsonKey(name: 'child_id', includeIfNull: false)
   int? get childId;
   @override
-  @JsonKey(name: 'height_cm')
+  @JsonKey(name: 'record_id', includeIfNull: false)
+  int? get recordId;
+  @override
+  @JsonKey(name: 'height_cm', includeIfNull: false)
   double? get heightCm;
   @override
-  @JsonKey(name: 'weight_kg')
+  @JsonKey(name: 'weight_kg', includeIfNull: false)
   double? get weightKg;
   @override
-  @JsonKey(name: 'growth_notes')
+  @JsonKey(name: 'growth_notes', includeIfNull: false)
   String? get growthNotes;
   @override
-  @JsonKey(name: 'doctor_notes')
+  @JsonKey(name: 'doctor_notes', includeIfNull: false)
   String? get doctorNotes;
   @override
-  @JsonKey(name: 'feeding_type')
+  @JsonKey(name: 'feeding_type', includeIfNull: false)
   FeedingType? get feedingType;
   @override
+  @JsonKey(includeIfNull: false)
   String? get allergies;
   @override
-  @JsonKey(name: 'developmental_observations')
+  @JsonKey(name: 'developmental_observations', includeIfNull: false)
+  @JsonKey(includeIfNull: false)
   String? get developmentalObservations;
   @override
-  @JsonKey(name: 'head_circumference_cm')
+  @JsonKey(name: 'head_circumference_cm', includeIfNull: false)
   double? get headCircumferenceCm;
   @override
-  @JsonKey(name: 'next_visit_date')
+  @JsonKey(name: 'next_visit_date', includeIfNull: false)
   DateTime? get nextVisitDate;
 
   /// Create a copy of ChildRecordRequest

@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,6 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:our_flutter_clinic_app/core/navigation/app_route_constants.dart';
+import 'package:our_flutter_clinic_app/core/widgets/custom_cached_network_image.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/home/model/doctor_model.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -103,22 +105,29 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
       body: Column(
         children: [
           SizedBox(height: screenHeight(context) * 0.001),
-          SizedBox(
-            child:
-                widget.doctor.photoPath == null
-                    ? Image.asset(
-                      widget.doctor.photoPath ??
-                          "assets/images/Jennifer_Miller.png",
-                      width: screenWidth(context) * 0.4,
-                      height: screenHeight(context) * 0.3,
-                      fit: BoxFit.cover,
-                    )
-                    : Image.network(
-                      '${AppConstants.serverUrl}${widget.doctor.photoPath!}',
-                      width: screenWidth(context) * 0.4,
-                      height: screenHeight(context) * 0.3,
-                      fit: BoxFit.cover,
-                    ),
+          BlocBuilder<DoctorInfoCubit, DoctorInfoState>(
+            bloc: _doctorInfoCubit,
+            builder: (context, state) {
+              return SizedBox(
+                child:
+                    state.doctor.photo == null
+                        ? Image.asset(
+                          state.doctor.photo ??
+                              "assets/images/Jennifer_Miller.png",
+                          width: screenWidth(context) * 0.4,
+                          height: screenHeight(context) * 0.3,
+                          fit: BoxFit.cover,
+                        )
+                        : Container(
+                          height: screenHeight(context) * 0.3,
+
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: CustomCachedNetworkImage(
+                            imagePath: state.doctor.photo!,
+                          ),
+                        ),
+              );
+            },
           ),
           Expanded(
             child: Container(
@@ -275,43 +284,76 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
                             builder: (context, state) {
                               return Skeletonizer(
                                 enabled: state.status.isLoading,
-                                child: GridView.builder(
-                                  shrinkWrap: true,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  itemCount:
-                                      (state.status.isLoading ||
-                                              state.availableTimes.isEmpty)
-                                          ? 6
-                                          : state.availableTimes.length,
-                                  gridDelegate:
-                                      const SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        mainAxisSpacing: 10,
-                                        crossAxisSpacing: 10,
-                                        childAspectRatio: 3.5,
-                                      ),
-                                  itemBuilder: (context, index) {
-                                    if (state.status.isLoading ||
-                                        state.availableTimes.isEmpty) {
-                                      return ScheduleWidget(
-                                        timeValue: '',
-                                        time: '09:00 AM',
-                                        isSelected: false,
-                                        onTap: (s) {},
-                                      );
-                                    }
-                                    final time = state.availableTimes[index];
-                                    return ScheduleWidget<TimeOfDay>(
-                                      timeValue: time,
-                                      time: formatTime(time),
-                                      isSelected:
-                                          state.selectedTime ==
-                                          state.availableTimes[index],
-                                      onTap: (newTime) {
-                                        _doctorInfoCubit.selectTime(newTime);
+                                child: Stack(
+                                  children: [
+                                    GridView.builder(
+                                      shrinkWrap: true,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      itemCount:
+                                          (state.status.isLoading ||
+                                                  state.availableTimes.isEmpty)
+                                              ? 6
+                                              : state.availableTimes.length,
+                                      gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 2,
+                                            mainAxisSpacing: 10,
+                                            crossAxisSpacing: 10,
+                                            childAspectRatio: 3.5,
+                                          ),
+                                      itemBuilder: (context, index) {
+                                        if (state.status.isLoading ||
+                                            state.availableTimes.isEmpty) {
+                                          return ScheduleWidget(
+                                            timeValue: '',
+                                            time: '09:00 AM',
+                                            isSelected: false,
+                                            onTap: (s) {},
+                                          );
+                                        }
+                                        final time =
+                                            state.availableTimes[index];
+                                        return ScheduleWidget<TimeOfDay>(
+                                          timeValue: time,
+                                          time: formatTime(time),
+                                          isSelected:
+                                              state.selectedTime ==
+                                              state.availableTimes[index],
+                                          onTap: (newTime) {
+                                            _doctorInfoCubit.selectTime(
+                                              newTime,
+                                            );
+                                          },
+                                        );
                                       },
-                                    );
-                                  },
+                                    ),
+                                    if (state.isAuto ?? false)
+                                      Positioned(
+                                        top: 50,
+                                        child: SizedBox(
+                                          width: screenWidth(context),
+                                          child: BackdropFilter(
+                                            filter: ImageFilter.blur(
+                                              sigmaX: 4.2,
+                                              sigmaY: 4.2,
+                                            ),
+                                            child: Container(
+                                              alignment: Alignment(-0.2, 0.0),
+                                              height:
+                                                  screenHeight(context) * 0.05,
+                                              child: Text(
+                                                'Auto',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .labelMedium!
+                                                    .copyWith(fontSize: 17),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                  ],
                                 ),
                               );
                             },
@@ -337,7 +379,8 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
                               return CustomButton(
                                 text: "Book Appointment",
                                 onPressed:
-                                    state.selectedTime == null
+                                    (state.selectedTime == null &&
+                                            !(state.isAuto ?? false))
                                         ? null
                                         : () {
                                           _doctorInfoCubit.bookNewAppointment();

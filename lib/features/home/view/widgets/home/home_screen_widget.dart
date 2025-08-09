@@ -422,7 +422,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                                     subtitle:
                                         doctor.speciality ?? 'No speciality',
                                     imagePath:
-                                        doctor.photoPath ??
+                                        doctor.photo ??
                                         'assets/images/logo.webp',
                                     rating:
                                         double.tryParse(

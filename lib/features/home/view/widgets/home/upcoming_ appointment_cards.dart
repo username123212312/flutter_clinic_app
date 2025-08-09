@@ -108,14 +108,19 @@ class UpcomingAppointmentCard extends StatelessWidget {
                     color: Pallete.grayScaleColor0,
                   ),
                 ),
-                const SizedBox(width: 40),
+                const SizedBox(width: 30),
                 Icon(Icons.access_time, size: 14, color: Pallete.shadowtext),
                 const SizedBox(width: 4),
-                Text(
-                  appointmentTime,
-                  style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                    fontSize: 10,
-                    color: Pallete.grayScaleColor0,
+                SizedBox(
+                  width: 40,
+                  child: FittedBox(
+                    child: Text(
+                      appointmentTime,
+                      style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                        fontSize: 10,
+                        color: Pallete.grayScaleColor0,
+                      ),
+                    ),
                   ),
                 ),
               ],

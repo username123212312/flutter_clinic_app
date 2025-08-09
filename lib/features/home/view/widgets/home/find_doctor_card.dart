@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/utils.dart';
+import '../../../../../core/widgets/custom_cached_network_image.dart';
 import '../../../../auth/view/widgets/custom_button.dart';
 import 'TimeRangeWidget.dart';
 
@@ -58,8 +59,8 @@ class FindDoctorCard extends StatelessWidget {
                       height: 33,
                       child: CircleAvatar(
                         radius: 24,
-                        backgroundImage: AssetImage(imagePath),
                         backgroundColor: Pallete.graysGray4,
+                        child: CustomCachedNetworkImage(imagePath: imagePath),
                       ),
                     ),
                     const SizedBox(height: 20),

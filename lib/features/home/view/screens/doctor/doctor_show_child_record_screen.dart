@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
 import 'package:our_flutter_clinic_app/core/navigation/app_route_constants.dart';
+import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
+import '../../../../../core/utils/general_utils.dart';
 import '../../../controller/doctor_show_child_record_cubit/doctor_show_child_record_cubit.dart';
 import '../../../repository/doctor_child_record_repository.dart';
 import 'add_child_record_screen.dart';
@@ -33,19 +36,6 @@ class _DoctorShowChildRecordScreenState
     });
   }
 
-  final Map<String, dynamic> visitDetails = const {
-    "last_visit_date": "2025-07-19",
-    "next_visit_date": "2025-09-19",
-    "height_cm": 50.5,
-    "weight_kg": 5.5,
-    "head_circumference_cm": 1.5,
-    "growth_notes": "Child is growing well. Keep monitoring diet.",
-    "developmental_observations": "Motor skills improving. Speech in progress.",
-    "allergies": "sugar",
-    "doctor_notes": "Follow up after 2 months.",
-    "feeding_type": "mixed",
-  };
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +53,7 @@ class _DoctorShowChildRecordScreenState
         iconTheme: IconThemeData(size: 18),
 
         actions: [
-          BlocBuilder<DoctorShowChildRecordCubit, DoctorShowChildRecordState>(
+          BlocConsumer<DoctorShowChildRecordCubit, DoctorShowChildRecordState>(
             bloc: _doctorShowChildRecordCubit,
             builder: (context, state) {
               return IconButton(
@@ -75,13 +65,28 @@ class _DoctorShowChildRecordScreenState
                 onPressed:
                     state.record == null
                         ? null
-                        : () {
-                          context.pushNamed(
+                        : () async {
+                          final isModified = await context.pushNamed<bool>(
                             AppRouteConstants.doctorModifyChildRecordRouteName,
                             extra: state.record,
                           );
+                          if (isModified != null) {
+                            if (isModified) {
+                              _doctorShowChildRecordCubit.fetchChildRecord();
+                            }
+                          }
                         },
               );
+            },
+            listener: (BuildContext context, DoctorShowChildRecordState state) {
+              if (state.status.isLoading) {
+                LoadingOverlay().show(context);
+              } else {
+                LoadingOverlay().hideAll();
+                if (state.status.isError) {
+                  showToast(msg: state.message);
+                }
+              }
             },
           ),
         ],
@@ -98,81 +103,123 @@ class _DoctorShowChildRecordScreenState
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              color: Pallete.grayScaleColor0,
-              elevation: 2,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 16,
+          BlocBuilder<DoctorShowChildRecordCubit, DoctorShowChildRecordState>(
+            bloc: _doctorShowChildRecordCubit,
+            builder: (context, state) {
+              final record = state.record;
+              return RefreshIndicator(
+                triggerMode: RefreshIndicatorTriggerMode.anywhere,
+                onRefresh: () async {
+                  _doctorShowChildRecordCubit.fetchChildRecord();
+                },
+                child: SingleChildScrollView(
+                  physics: AlwaysScrollableScrollPhysics(),
+                  padding: const EdgeInsets.all(16),
+                  child:
+                      record == null
+                          ? Center(
+                            heightFactor: 4,
+                            child: Image.asset(
+                              width: 150,
+                              height: 150,
+                              fit: BoxFit.cover,
+                              'assets/images/il_empty_activity.webp',
+                            ),
+                          )
+                          : Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            color: Pallete.grayScaleColor0,
+                            elevation: 2,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 16,
+                              ),
+                              child: ListView(
+                                shrinkWrap: true,
+                                children: [
+                                  _buildSectionTitle(context, 'Visit Dates'),
+                                  _buildInfoRow(
+                                    context,
+                                    'Last Visit',
+                                    record.lastVisitDate == null
+                                        ? 'No date'
+                                        : DateFormat(
+                                          'yyyy-MM-dd',
+                                        ).format(record.lastVisitDate!),
+                                  ),
+                                  _buildInfoRow(
+                                    context,
+                                    'Next Visit',
+                                    record.nextVisitDate == null
+                                        ? 'No date'
+                                        : DateFormat(
+                                          'yyyy-MM-dd',
+                                        ).format(record.nextVisitDate!),
+                                  ),
+                                  const SizedBox(height: 12),
+
+                                  _buildSectionTitle(context, 'Measurements'),
+                                  _buildInfoRow(
+                                    context,
+                                    'Height',
+                                    '${record.heightCm ?? 'No'} cm',
+                                  ),
+                                  _buildInfoRow(
+                                    context,
+                                    'Weight',
+                                    '${record.weightKg ?? 'No'} kg',
+                                  ),
+                                  _buildInfoRow(
+                                    context,
+                                    'Head Circumference',
+                                    '${record.headCircumferenceCm ?? 'No'} cm',
+                                  ),
+                                  const SizedBox(height: 12),
+
+                                  _buildSectionTitle(context, 'Health'),
+                                  _buildInfoRow(
+                                    context,
+                                    'Allergies',
+                                    record.allergies ?? 'No allergies',
+                                  ),
+                                  _buildInfoRow(
+                                    context,
+                                    'Feeding Type',
+                                    record.feedingType ?? 'No type',
+                                  ),
+                                  const SizedBox(height: 12),
+
+                                  _buildSectionTitle(context, 'Doctor Notes'),
+                                  _noteContainer(
+                                    context,
+                                    record.doctorNotes ?? 'No notes',
+                                  ),
+
+                                  _buildSectionTitle(context, 'Growth Notes'),
+                                  _noteContainer(
+                                    context,
+                                    record.growthNotes ?? 'No notes',
+                                  ),
+
+                                  _buildSectionTitle(
+                                    context,
+                                    'Developmental Observations',
+                                  ),
+                                  _noteContainer(
+                                    context,
+                                    record.developmentalObservations ??
+                                        'No Observations',
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                 ),
-                child: ListView(
-                  shrinkWrap: true,
-                  children: [
-                    _buildSectionTitle(context, 'Visit Dates'),
-                    _buildInfoRow(
-                      context,
-                      'Last Visit',
-                      visitDetails['last_visit_date'],
-                    ),
-                    _buildInfoRow(
-                      context,
-                      'Next Visit',
-                      visitDetails['next_visit_date'],
-                    ),
-                    const SizedBox(height: 12),
-
-                    _buildSectionTitle(context, 'Measurements'),
-                    _buildInfoRow(
-                      context,
-                      'Height',
-                      '${visitDetails['height_cm']} cm',
-                    ),
-                    _buildInfoRow(
-                      context,
-                      'Weight',
-                      '${visitDetails['weight_kg']} kg',
-                    ),
-                    _buildInfoRow(
-                      context,
-                      'Head Circumference',
-                      '${visitDetails['head_circumference_cm']} cm',
-                    ),
-                    const SizedBox(height: 12),
-
-                    _buildSectionTitle(context, 'Health'),
-                    _buildInfoRow(
-                      context,
-                      'Allergies',
-                      visitDetails['allergies'],
-                    ),
-                    _buildInfoRow(
-                      context,
-                      'Feeding Type',
-                      visitDetails['feeding_type'],
-                    ),
-                    const SizedBox(height: 12),
-
-                    _buildSectionTitle(context, 'Doctor Notes'),
-                    _noteContainer(context, visitDetails['doctor_notes']),
-
-                    _buildSectionTitle(context, 'Growth Notes'),
-                    _noteContainer(context, visitDetails['growth_notes']),
-
-                    _buildSectionTitle(context, 'Developmental Observations'),
-                    _noteContainer(
-                      context,
-                      visitDetails['developmental_observations'],
-                    ),
-                  ],
-                ),
-              ),
-            ),
+              );
+            },
           ),
         ],
       ),

@@ -6,6 +6,9 @@ part 'child_record.g.dart';
 @freezed
 class ChildRecord with _$ChildRecord {
   factory ChildRecord({
+    int? id,
+    @JsonKey(name: 'child_id') int? childId,
+    @JsonKey(name: 'doctor_id') int? doctorId,
     @JsonKey(name: 'height_cm') double? heightCm,
     @JsonKey(name: 'weight_kg') double? weightKg,
     @JsonKey(name: 'growth_notes') String? growthNotes,

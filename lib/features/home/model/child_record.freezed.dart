@@ -21,6 +21,11 @@ ChildRecord _$ChildRecordFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ChildRecord {
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'child_id')
+  int? get childId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'doctor_id')
+  int? get doctorId => throw _privateConstructorUsedError;
   @JsonKey(name: 'height_cm')
   double? get heightCm => throw _privateConstructorUsedError;
   @JsonKey(name: 'weight_kg')
@@ -59,6 +64,9 @@ abstract class $ChildRecordCopyWith<$Res> {
   ) = _$ChildRecordCopyWithImpl<$Res, ChildRecord>;
   @useResult
   $Res call({
+    int? id,
+    @JsonKey(name: 'child_id') int? childId,
+    @JsonKey(name: 'doctor_id') int? doctorId,
     @JsonKey(name: 'height_cm') double? heightCm,
     @JsonKey(name: 'weight_kg') double? weightKg,
     @JsonKey(name: 'growth_notes') String? growthNotes,
@@ -88,6 +96,9 @@ class _$ChildRecordCopyWithImpl<$Res, $Val extends ChildRecord>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
+    Object? childId = freezed,
+    Object? doctorId = freezed,
     Object? heightCm = freezed,
     Object? weightKg = freezed,
     Object? growthNotes = freezed,
@@ -101,6 +112,21 @@ class _$ChildRecordCopyWithImpl<$Res, $Val extends ChildRecord>
   }) {
     return _then(
       _value.copyWith(
+            id:
+                freezed == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as int?,
+            childId:
+                freezed == childId
+                    ? _value.childId
+                    : childId // ignore: cast_nullable_to_non_nullable
+                        as int?,
+            doctorId:
+                freezed == doctorId
+                    ? _value.doctorId
+                    : doctorId // ignore: cast_nullable_to_non_nullable
+                        as int?,
             heightCm:
                 freezed == heightCm
                     ? _value.heightCm
@@ -167,6 +193,9 @@ abstract class _$$ChildRecordImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
+    int? id,
+    @JsonKey(name: 'child_id') int? childId,
+    @JsonKey(name: 'doctor_id') int? doctorId,
     @JsonKey(name: 'height_cm') double? heightCm,
     @JsonKey(name: 'weight_kg') double? weightKg,
     @JsonKey(name: 'growth_notes') String? growthNotes,
@@ -195,6 +224,9 @@ class __$$ChildRecordImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
+    Object? childId = freezed,
+    Object? doctorId = freezed,
     Object? heightCm = freezed,
     Object? weightKg = freezed,
     Object? growthNotes = freezed,
@@ -208,6 +240,21 @@ class __$$ChildRecordImplCopyWithImpl<$Res>
   }) {
     return _then(
       _$ChildRecordImpl(
+        id:
+            freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as int?,
+        childId:
+            freezed == childId
+                ? _value.childId
+                : childId // ignore: cast_nullable_to_non_nullable
+                    as int?,
+        doctorId:
+            freezed == doctorId
+                ? _value.doctorId
+                : doctorId // ignore: cast_nullable_to_non_nullable
+                    as int?,
         heightCm:
             freezed == heightCm
                 ? _value.heightCm
@@ -267,6 +314,9 @@ class __$$ChildRecordImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChildRecordImpl implements _ChildRecord {
   _$ChildRecordImpl({
+    this.id,
+    @JsonKey(name: 'child_id') this.childId,
+    @JsonKey(name: 'doctor_id') this.doctorId,
     @JsonKey(name: 'height_cm') this.heightCm,
     @JsonKey(name: 'weight_kg') this.weightKg,
     @JsonKey(name: 'growth_notes') this.growthNotes,
@@ -282,6 +332,14 @@ class _$ChildRecordImpl implements _ChildRecord {
   factory _$ChildRecordImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChildRecordImplFromJson(json);
 
+  @override
+  final int? id;
+  @override
+  @JsonKey(name: 'child_id')
+  final int? childId;
+  @override
+  @JsonKey(name: 'doctor_id')
+  final int? doctorId;
   @override
   @JsonKey(name: 'height_cm')
   final double? heightCm;
@@ -314,7 +372,7 @@ class _$ChildRecordImpl implements _ChildRecord {
 
   @override
   String toString() {
-    return 'ChildRecord(heightCm: $heightCm, weightKg: $weightKg, growthNotes: $growthNotes, doctorNotes: $doctorNotes, feedingType: $feedingType, allergies: $allergies, developmentalObservations: $developmentalObservations, headCircumferenceCm: $headCircumferenceCm, nextVisitDate: $nextVisitDate, lastVisitDate: $lastVisitDate)';
+    return 'ChildRecord(id: $id, childId: $childId, doctorId: $doctorId, heightCm: $heightCm, weightKg: $weightKg, growthNotes: $growthNotes, doctorNotes: $doctorNotes, feedingType: $feedingType, allergies: $allergies, developmentalObservations: $developmentalObservations, headCircumferenceCm: $headCircumferenceCm, nextVisitDate: $nextVisitDate, lastVisitDate: $lastVisitDate)';
   }
 
   @override
@@ -322,6 +380,10 @@ class _$ChildRecordImpl implements _ChildRecord {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChildRecordImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.childId, childId) || other.childId == childId) &&
+            (identical(other.doctorId, doctorId) ||
+                other.doctorId == doctorId) &&
             (identical(other.heightCm, heightCm) ||
                 other.heightCm == heightCm) &&
             (identical(other.weightKg, weightKg) ||
@@ -351,6 +413,9 @@ class _$ChildRecordImpl implements _ChildRecord {
   @override
   int get hashCode => Object.hash(
     runtimeType,
+    id,
+    childId,
+    doctorId,
     heightCm,
     weightKg,
     growthNotes,
@@ -379,6 +444,9 @@ class _$ChildRecordImpl implements _ChildRecord {
 
 abstract class _ChildRecord implements ChildRecord {
   factory _ChildRecord({
+    final int? id,
+    @JsonKey(name: 'child_id') final int? childId,
+    @JsonKey(name: 'doctor_id') final int? doctorId,
     @JsonKey(name: 'height_cm') final double? heightCm,
     @JsonKey(name: 'weight_kg') final double? weightKg,
     @JsonKey(name: 'growth_notes') final String? growthNotes,
@@ -395,6 +463,14 @@ abstract class _ChildRecord implements ChildRecord {
   factory _ChildRecord.fromJson(Map<String, dynamic> json) =
       _$ChildRecordImpl.fromJson;
 
+  @override
+  int? get id;
+  @override
+  @JsonKey(name: 'child_id')
+  int? get childId;
+  @override
+  @JsonKey(name: 'doctor_id')
+  int? get doctorId;
   @override
   @JsonKey(name: 'height_cm')
   double? get heightCm;

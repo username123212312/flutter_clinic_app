@@ -10,6 +10,7 @@ _$ChildRecordRequestImpl _$$ChildRecordRequestImplFromJson(
   Map<String, dynamic> json,
 ) => _$ChildRecordRequestImpl(
   childId: (json['child_id'] as num?)?.toInt(),
+  recordId: (json['record_id'] as num?)?.toInt(),
   heightCm: (json['height_cm'] as num?)?.toDouble(),
   weightKg: (json['weight_kg'] as num?)?.toDouble(),
   growthNotes: json['growth_notes'] as String?,
@@ -27,16 +28,21 @@ _$ChildRecordRequestImpl _$$ChildRecordRequestImplFromJson(
 Map<String, dynamic> _$$ChildRecordRequestImplToJson(
   _$ChildRecordRequestImpl instance,
 ) => <String, dynamic>{
-  'child_id': instance.childId,
-  'height_cm': instance.heightCm,
-  'weight_kg': instance.weightKg,
-  'growth_notes': instance.growthNotes,
-  'doctor_notes': instance.doctorNotes,
-  'feeding_type': _$FeedingTypeEnumMap[instance.feedingType],
-  'allergies': instance.allergies,
-  'developmental_observations': instance.developmentalObservations,
-  'head_circumference_cm': instance.headCircumferenceCm,
-  'next_visit_date': instance.nextVisitDate?.toIso8601String(),
+  if (instance.childId case final value?) 'child_id': value,
+  if (instance.recordId case final value?) 'record_id': value,
+  if (instance.heightCm case final value?) 'height_cm': value,
+  if (instance.weightKg case final value?) 'weight_kg': value,
+  if (instance.growthNotes case final value?) 'growth_notes': value,
+  if (instance.doctorNotes case final value?) 'doctor_notes': value,
+  if (_$FeedingTypeEnumMap[instance.feedingType] case final value?)
+    'feeding_type': value,
+  if (instance.allergies case final value?) 'allergies': value,
+  if (instance.developmentalObservations case final value?)
+    'developmental_observations': value,
+  if (instance.headCircumferenceCm case final value?)
+    'head_circumference_cm': value,
+  if (instance.nextVisitDate?.toIso8601String() case final value?)
+    'next_visit_date': value,
 };
 
 const _$FeedingTypeEnumMap = {

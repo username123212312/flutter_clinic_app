@@ -8,6 +8,9 @@ part of 'child_record.dart';
 
 _$ChildRecordImpl _$$ChildRecordImplFromJson(Map<String, dynamic> json) =>
     _$ChildRecordImpl(
+      id: (json['id'] as num?)?.toInt(),
+      childId: (json['child_id'] as num?)?.toInt(),
+      doctorId: (json['doctor_id'] as num?)?.toInt(),
       heightCm: (json['height_cm'] as num?)?.toDouble(),
       weightKg: (json['weight_kg'] as num?)?.toDouble(),
       growthNotes: json['growth_notes'] as String?,
@@ -28,6 +31,9 @@ _$ChildRecordImpl _$$ChildRecordImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$ChildRecordImplToJson(_$ChildRecordImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
+      'child_id': instance.childId,
+      'doctor_id': instance.doctorId,
       'height_cm': instance.heightCm,
       'weight_kg': instance.weightKg,
       'growth_notes': instance.growthNotes,

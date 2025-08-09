@@ -64,7 +64,7 @@ class DoctorChildRecordRepository {
   ) async {
     try {
       final response = await _dio.get(
-        AppConstants.editChildRecordsPath,
+        AppConstants.doctorShowChildRecordPath,
         queryParameters: {'child_id': childId},
       );
       if (response.data['statusCode'] < 300) {
