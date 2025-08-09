@@ -23,6 +23,7 @@ AppointmentModel _$AppointmentModelFromJson(Map<String, dynamic> json) {
 mixin _$AppointmentModel {
   @JsonKey(name: 'appointment_id')
   int? get id => throw _privateConstructorUsedError;
+  @AppointmentTypeConverter()
   AppointmentType? get type => throw _privateConstructorUsedError;
   int? get finalRate => throw _privateConstructorUsedError;
   @JsonKey(name: 'referred by')
@@ -79,7 +80,7 @@ abstract class $AppointmentModelCopyWith<$Res> {
   @useResult
   $Res call({
     @JsonKey(name: 'appointment_id') int? id,
-    AppointmentType? type,
+    @AppointmentTypeConverter() AppointmentType? type,
     int? finalRate,
     @JsonKey(name: 'referred by') String? referredBy,
     @JsonKey(name: 'clinic_id') int? clinicId,
@@ -253,7 +254,7 @@ abstract class _$$AppointmentModelImplCopyWith<$Res>
   @useResult
   $Res call({
     @JsonKey(name: 'appointment_id') int? id,
-    AppointmentType? type,
+    @AppointmentTypeConverter() AppointmentType? type,
     int? finalRate,
     @JsonKey(name: 'referred by') String? referredBy,
     @JsonKey(name: 'clinic_id') int? clinicId,
@@ -419,7 +420,7 @@ class __$$AppointmentModelImplCopyWithImpl<$Res>
 class _$AppointmentModelImpl implements _AppointmentModel {
   _$AppointmentModelImpl({
     @JsonKey(name: 'appointment_id') this.id,
-    this.type,
+    @AppointmentTypeConverter() this.type,
     this.finalRate,
     @JsonKey(name: 'referred by') this.referredBy,
     @JsonKey(name: 'clinic_id') this.clinicId,
@@ -450,6 +451,7 @@ class _$AppointmentModelImpl implements _AppointmentModel {
   @JsonKey(name: 'appointment_id')
   final int? id;
   @override
+  @AppointmentTypeConverter()
   final AppointmentType? type;
   @override
   final int? finalRate;
@@ -595,7 +597,7 @@ class _$AppointmentModelImpl implements _AppointmentModel {
 abstract class _AppointmentModel implements AppointmentModel {
   factory _AppointmentModel({
     @JsonKey(name: 'appointment_id') final int? id,
-    final AppointmentType? type,
+    @AppointmentTypeConverter() final AppointmentType? type,
     final int? finalRate,
     @JsonKey(name: 'referred by') final String? referredBy,
     @JsonKey(name: 'clinic_id') final int? clinicId,
@@ -626,6 +628,7 @@ abstract class _AppointmentModel implements AppointmentModel {
   @JsonKey(name: 'appointment_id')
   int? get id;
   @override
+  @AppointmentTypeConverter()
   AppointmentType? get type;
   @override
   int? get finalRate;

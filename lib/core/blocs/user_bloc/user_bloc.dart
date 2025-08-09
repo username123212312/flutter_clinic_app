@@ -260,7 +260,7 @@ class UserBloc extends HydratedBloc<UserEvent, UserState> {
               phone: r.data?.phone,
             ),
         statusMessage: r.message,
-        status: UserStatus.modified,
+        status: UserStatus.done,
       ),
     };
     emit(newState);

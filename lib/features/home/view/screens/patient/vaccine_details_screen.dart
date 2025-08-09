@@ -100,7 +100,7 @@ class _VaccineDetailsScreenState extends State<VaccineDetailsScreen> {
                           } else {
                             LoadingOverlay().hideAll();
                             if (state.status.isError) {
-                              Fluttertoast.showToast(msg: state.message);
+                              showToast(msg: state.message);
                             }
                           }
                         },

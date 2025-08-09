@@ -133,7 +133,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
                     LoadingOverlay().show(context);
                   } else {
                     LoadingOverlay().hideAll();
-                    Fluttertoast.showToast(msg: state.statusMessage);
+                    showToast(msg: state.statusMessage);
 
                     if (state.childrenListStatus.isDone) {
                       context.pop();

@@ -159,7 +159,7 @@ class _VaccineScreenWidgetState extends State<VaccineScreenWidget> {
       BlocConsumer<SelectVaccinationCubit, SelectVaccinationState>(
         listener: (context, state) {
           if (state.status.isError) {
-            Fluttertoast.showToast(msg: state.message);
+            showToast(msg: state.message);
           }
         },
         builder: (context, state) {

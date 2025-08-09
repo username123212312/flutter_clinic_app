@@ -202,9 +202,7 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
                                   } else {
                                     LoadingOverlay().hideAll();
                                     if (state.status.isError) {
-                                      Fluttertoast.showToast(
-                                        msg: state.message,
-                                      );
+                                      showToast(msg: state.message);
                                     }
                                   }
                                 },
@@ -325,7 +323,7 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
                             listener: (context, state) {
                               if (state.status.isDone &&
                                   state.appointmentId != null) {
-                                Fluttertoast.showToast(msg: state.message);
+                                showToast(msg: state.message);
                                 context.goNamed(
                                   AppRouteConstants.reservationDetailsRouteName,
                                   pathParameters: {

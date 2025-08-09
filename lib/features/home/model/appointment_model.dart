@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 
+import '../../../core/utils/appointment_typpe_converter.dart';
 import '../../../core/utils/doctor_appointment_type_converter.dart';
 import '../../../core/utils/time_of_day_converter.dart';
 
@@ -14,7 +15,7 @@ part 'appointment_model.g.dart';
 sealed class AppointmentModel with _$AppointmentModel {
   factory AppointmentModel({
     @JsonKey(name: 'appointment_id') int? id,
-    AppointmentType? type,
+    @AppointmentTypeConverter() AppointmentType? type,
     int? finalRate,
     @JsonKey(name: 'referred by') String? referredBy,
     @JsonKey(name: 'clinic_id') int? clinicId,

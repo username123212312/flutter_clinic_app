@@ -118,8 +118,17 @@ class AppConstants {
   static const availableWorkDaysPath = '$doctorPath/availableWorkDays';
   static const schedulePath = '$doctorPath/schedule';
   static const doctorEditProfilePath = '$doctorPath/editProfile';
+  static const doctorShowChildVacRecordsPath = '$doctorPath/showVaccineRecords';
+  static const doctorShowChildVacRecordDetailsPath =
+      '$doctorPath/showVaccineRecordsDetails';
+  static const doctorEditChildVacRecordDetailsPath =
+      '$doctorPath/editVaccineRecordInfo';
+  static const doctorShowVaccinesPath = '$doctorPath/showVaccines';
   static const deleteFromSchedulePath = '$doctorPath/deleteFromSchedule';
   static const showDoctorReviewsPath = '$doctorPath/showDoctorReviews';
+  static const addChildRecordPath = '$doctorPath/addChildRecords';
+  static const editChildRecordsPath = '$doctorPath/editChildRecords';
+  static const doctorShowChildRecordPath = '$doctorPath/showChildRecord';
   static const showVisitedPatientsPath =
       '$serverUrl/Doctor/patientInfo/patientsRecord';
   static const searchVisitedPatientsPath =

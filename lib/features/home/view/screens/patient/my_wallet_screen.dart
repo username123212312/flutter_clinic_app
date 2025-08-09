@@ -99,7 +99,7 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
                 } else {
                   LoadingOverlay().hideAll();
                   if (state.status.isError) {
-                    Fluttertoast.showToast(msg: state.message);
+                    showToast(msg: state.message);
                   }
 
                   if (state.status.isDone) {

@@ -92,6 +92,80 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
           ],
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: BlocBuilder<DoctorPatientBloc, DoctorPatientState>(
+        bloc: _doctorPatientBloc,
+        builder: (context, state) {
+          return Visibility(
+            visible: (state.patient.isChild ?? false),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Flexible(
+                  flex: 1,
+                  child: ElevatedButton(
+                    onPressed:
+                        state.status.isLoading
+                            ? null
+                            : () {
+                              context.pushNamed(
+                                AppRouteConstants.doctorChildVacRecordRouteName,
+                                extra: widget.patient,
+                              );
+                            },
+                    child: Text(
+                      'Vaccine record',
+                      style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                        fontSize: 14,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                Flexible(
+                  flex: 1,
+                  child: BlocBuilder<DoctorPatientBloc, DoctorPatientState>(
+                    bloc: _doctorPatientBloc,
+                    builder: (context, state) {
+                      return ElevatedButton(
+                        onPressed:
+                            state.status.isLoading
+                                ? null
+                                : () async {
+                                  if (state.patient.childRecord == null) {
+                                    final isAdded = await context
+                                        .pushNamed<bool>(
+                                          AppRouteConstants
+                                              .doctorAddChildRecordRouteName,
+                                          extra: widget.patient,
+                                        );
+                                    if (isAdded != null) {
+                                      _doctorPatientBloc.add(
+                                        PatientProfileFetched(),
+                                      );
+                                    }
+                                  } else {
+                                    context.pushNamed(
+                                      AppRouteConstants
+                                          .doctorChildRecordRouteName,
+                                      extra: widget.patient,
+                                    );
+                                  }
+                                },
+                        child: Text(
+                          'Child record',
+                          style: Theme.of(context).textTheme.labelMedium!
+                              .copyWith(fontSize: 14, color: Colors.white),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 

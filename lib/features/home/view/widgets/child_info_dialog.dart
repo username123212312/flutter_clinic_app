@@ -186,7 +186,7 @@ class _ChildInfoDialogState extends State<ChildInfoDialog> {
                           context.pop();
                         }
                         if (state.status.isError) {
-                          Fluttertoast.showToast(msg: state.message);
+                          showToast(msg: state.message);
                         }
                       },
                       builder:

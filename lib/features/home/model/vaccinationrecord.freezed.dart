@@ -26,6 +26,12 @@ mixin _$VaccinationRecord {
   int? get vaccineId => throw _privateConstructorUsedError;
   @JsonKey(name: 'vaccine_name')
   String? get vaccineName => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'age_group')
+  String? get ageGroup => throw _privateConstructorUsedError;
+  @JsonKey(name: 'recommended_doses')
+  int? get recommendedDoses => throw _privateConstructorUsedError;
   @JsonKey(name: 'vaccine_description')
   String? get vaccineDescription => throw _privateConstructorUsedError;
   @JsonKey(name: 'vaccine_age_group')
@@ -81,6 +87,10 @@ abstract class $VaccinationRecordCopyWith<$Res> {
     int? id,
     @JsonKey(name: 'vaccine_id') int? vaccineId,
     @JsonKey(name: 'vaccine_name') String? vaccineName,
+    String? name,
+    String? description,
+    @JsonKey(name: 'age_group') String? ageGroup,
+    @JsonKey(name: 'recommended_doses') int? recommendedDoses,
     @JsonKey(name: 'vaccine_description') String? vaccineDescription,
     @JsonKey(name: 'vaccine_age_group') String? vaccineAgeGroup,
     @JsonKey(name: 'doctor_first_name') String? doctorFirstName,
@@ -122,6 +132,10 @@ class _$VaccinationRecordCopyWithImpl<$Res, $Val extends VaccinationRecord>
     Object? id = freezed,
     Object? vaccineId = freezed,
     Object? vaccineName = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? ageGroup = freezed,
+    Object? recommendedDoses = freezed,
     Object? vaccineDescription = freezed,
     Object? vaccineAgeGroup = freezed,
     Object? doctorFirstName = freezed,
@@ -158,6 +172,26 @@ class _$VaccinationRecordCopyWithImpl<$Res, $Val extends VaccinationRecord>
                     ? _value.vaccineName
                     : vaccineName // ignore: cast_nullable_to_non_nullable
                         as String?,
+            name:
+                freezed == name
+                    ? _value.name
+                    : name // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            description:
+                freezed == description
+                    ? _value.description
+                    : description // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            ageGroup:
+                freezed == ageGroup
+                    ? _value.ageGroup
+                    : ageGroup // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            recommendedDoses:
+                freezed == recommendedDoses
+                    ? _value.recommendedDoses
+                    : recommendedDoses // ignore: cast_nullable_to_non_nullable
+                        as int?,
             vaccineDescription:
                 freezed == vaccineDescription
                     ? _value.vaccineDescription
@@ -267,6 +301,10 @@ abstract class _$$VaccinationRecordImplCopyWith<$Res>
     int? id,
     @JsonKey(name: 'vaccine_id') int? vaccineId,
     @JsonKey(name: 'vaccine_name') String? vaccineName,
+    String? name,
+    String? description,
+    @JsonKey(name: 'age_group') String? ageGroup,
+    @JsonKey(name: 'recommended_doses') int? recommendedDoses,
     @JsonKey(name: 'vaccine_description') String? vaccineDescription,
     @JsonKey(name: 'vaccine_age_group') String? vaccineAgeGroup,
     @JsonKey(name: 'doctor_first_name') String? doctorFirstName,
@@ -307,6 +345,10 @@ class __$$VaccinationRecordImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? vaccineId = freezed,
     Object? vaccineName = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? ageGroup = freezed,
+    Object? recommendedDoses = freezed,
     Object? vaccineDescription = freezed,
     Object? vaccineAgeGroup = freezed,
     Object? doctorFirstName = freezed,
@@ -343,6 +385,26 @@ class __$$VaccinationRecordImplCopyWithImpl<$Res>
                 ? _value.vaccineName
                 : vaccineName // ignore: cast_nullable_to_non_nullable
                     as String?,
+        name:
+            freezed == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        description:
+            freezed == description
+                ? _value.description
+                : description // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        ageGroup:
+            freezed == ageGroup
+                ? _value.ageGroup
+                : ageGroup // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        recommendedDoses:
+            freezed == recommendedDoses
+                ? _value.recommendedDoses
+                : recommendedDoses // ignore: cast_nullable_to_non_nullable
+                    as int?,
         vaccineDescription:
             freezed == vaccineDescription
                 ? _value.vaccineDescription
@@ -445,6 +507,10 @@ class _$VaccinationRecordImpl implements _VaccinationRecord {
     this.id,
     @JsonKey(name: 'vaccine_id') this.vaccineId,
     @JsonKey(name: 'vaccine_name') this.vaccineName,
+    this.name,
+    this.description,
+    @JsonKey(name: 'age_group') this.ageGroup,
+    @JsonKey(name: 'recommended_doses') this.recommendedDoses,
     @JsonKey(name: 'vaccine_description') this.vaccineDescription,
     @JsonKey(name: 'vaccine_age_group') this.vaccineAgeGroup,
     @JsonKey(name: 'doctor_first_name') this.doctorFirstName,
@@ -477,6 +543,16 @@ class _$VaccinationRecordImpl implements _VaccinationRecord {
   @override
   @JsonKey(name: 'vaccine_name')
   final String? vaccineName;
+  @override
+  final String? name;
+  @override
+  final String? description;
+  @override
+  @JsonKey(name: 'age_group')
+  final String? ageGroup;
+  @override
+  @JsonKey(name: 'recommended_doses')
+  final int? recommendedDoses;
   @override
   @JsonKey(name: 'vaccine_description')
   final String? vaccineDescription;
@@ -529,7 +605,7 @@ class _$VaccinationRecordImpl implements _VaccinationRecord {
 
   @override
   String toString() {
-    return 'VaccinationRecord(id: $id, vaccineId: $vaccineId, vaccineName: $vaccineName, vaccineDescription: $vaccineDescription, vaccineAgeGroup: $vaccineAgeGroup, doctorFirstName: $doctorFirstName, doctorLastName: $doctorLastName, notes: $notes, appointmentPaymentStatus: $appointmentPaymentStatus, nextVaccineDate: $nextVaccineDate, appointmentReservationDate: $appointmentReservationDate, doseNumber: $doseNumber, doctorId: $doctorId, appointmentId: $appointmentId, appointmentPrice: $appointmentPrice, vaccineRecommendedDoses: $vaccineRecommendedDoses, dose: $dose, isTaken: $isTaken, whenToTake: $whenToTake, recommended: $recommended, price: $price)';
+    return 'VaccinationRecord(id: $id, vaccineId: $vaccineId, vaccineName: $vaccineName, name: $name, description: $description, ageGroup: $ageGroup, recommendedDoses: $recommendedDoses, vaccineDescription: $vaccineDescription, vaccineAgeGroup: $vaccineAgeGroup, doctorFirstName: $doctorFirstName, doctorLastName: $doctorLastName, notes: $notes, appointmentPaymentStatus: $appointmentPaymentStatus, nextVaccineDate: $nextVaccineDate, appointmentReservationDate: $appointmentReservationDate, doseNumber: $doseNumber, doctorId: $doctorId, appointmentId: $appointmentId, appointmentPrice: $appointmentPrice, vaccineRecommendedDoses: $vaccineRecommendedDoses, dose: $dose, isTaken: $isTaken, whenToTake: $whenToTake, recommended: $recommended, price: $price)';
   }
 
   @override
@@ -542,6 +618,13 @@ class _$VaccinationRecordImpl implements _VaccinationRecord {
                 other.vaccineId == vaccineId) &&
             (identical(other.vaccineName, vaccineName) ||
                 other.vaccineName == vaccineName) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.ageGroup, ageGroup) ||
+                other.ageGroup == ageGroup) &&
+            (identical(other.recommendedDoses, recommendedDoses) ||
+                other.recommendedDoses == recommendedDoses) &&
             (identical(other.vaccineDescription, vaccineDescription) ||
                 other.vaccineDescription == vaccineDescription) &&
             (identical(other.vaccineAgeGroup, vaccineAgeGroup) ||
@@ -593,6 +676,10 @@ class _$VaccinationRecordImpl implements _VaccinationRecord {
     id,
     vaccineId,
     vaccineName,
+    name,
+    description,
+    ageGroup,
+    recommendedDoses,
     vaccineDescription,
     vaccineAgeGroup,
     doctorFirstName,
@@ -635,6 +722,10 @@ abstract class _VaccinationRecord implements VaccinationRecord {
     final int? id,
     @JsonKey(name: 'vaccine_id') final int? vaccineId,
     @JsonKey(name: 'vaccine_name') final String? vaccineName,
+    final String? name,
+    final String? description,
+    @JsonKey(name: 'age_group') final String? ageGroup,
+    @JsonKey(name: 'recommended_doses') final int? recommendedDoses,
     @JsonKey(name: 'vaccine_description') final String? vaccineDescription,
     @JsonKey(name: 'vaccine_age_group') final String? vaccineAgeGroup,
     @JsonKey(name: 'doctor_first_name') final String? doctorFirstName,
@@ -669,6 +760,16 @@ abstract class _VaccinationRecord implements VaccinationRecord {
   @override
   @JsonKey(name: 'vaccine_name')
   String? get vaccineName;
+  @override
+  String? get name;
+  @override
+  String? get description;
+  @override
+  @JsonKey(name: 'age_group')
+  String? get ageGroup;
+  @override
+  @JsonKey(name: 'recommended_doses')
+  int? get recommendedDoses;
   @override
   @JsonKey(name: 'vaccine_description')
   String? get vaccineDescription;

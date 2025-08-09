@@ -40,7 +40,7 @@ class _AppointmentsScreenWidgetState extends State<AppointmentsScreenWidget> {
                 BlocConsumer<DoctorAppointmentsBloc, DoctorAppointmentsState>(
                   listener: (context, state) {
                     if (state.status.isError) {
-                      Fluttertoast.showToast(msg: state.message);
+                      showToast(msg: state.message);
                     }
                   },
                   builder: (context, state) {

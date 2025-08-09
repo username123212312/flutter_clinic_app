@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:our_flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
 import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
 import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 import 'package:our_flutter_clinic_app/core/widgets/blood_types_widget.dart';
+import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
+import 'package:our_flutter_clinic_app/core/widgets/transparent_content_dialog.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
 import 'package:go_router/go_router.dart';
 
@@ -23,9 +27,29 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   void initState() {
     super.initState();
-    _ageController.text = DateFormat(
-      'dd/MM/yy',
-    ).format(context.read<UserBloc>().state.user?.birthDate ?? DateTime.now());
+    _fetchProfile();
+  }
+
+  void _fetchProfile() async {
+    final userBloc = context.read<UserBloc>();
+    userBloc.add(ProfileFetched());
+    bool isDone = false;
+    await for (final newState in userBloc.stream) {
+      if (!newState.status.isLoading) {
+        if (newState.status.isModified) {
+          isDone = true;
+        }
+        break;
+      }
+    }
+    if (isDone) {
+      _ageController.text = DateFormat(
+        'dd/MM/yy',
+      ).format(userBloc.state.user?.birthDate ?? DateTime.now());
+      _discountPointsController.text =
+          (userBloc.state.user?.discountPoints ?? 0).toString();
+      _completeAddressController.text = userBloc.state.user?.address ?? '';
+    }
   }
 
   @override
@@ -37,6 +61,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     _genderController.dispose();
     _ageController.dispose();
     _completeAddressController.dispose();
+    _discountPointsController.dispose();
 
     super.dispose();
   }
@@ -48,6 +73,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         toolbarHeight: screenHeight(context) * 0.09,
         centerTitle: false,
         forceMaterialTransparency: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              _fetchProfile();
+            },
+            iconSize: 20,
+            icon: Icon(FontAwesomeIcons.arrowsRotate),
+          ),
+        ],
         title: Text(
           'Edit Profile',
           style: Theme.of(context).textTheme.titleSmall!.copyWith(
@@ -65,9 +99,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            BlocBuilder<UserBloc, UserState>(
+            BlocConsumer<UserBloc, UserState>(
               builder: (context, state) {
                 return _buildFormFields(state);
+              },
+              listener: (BuildContext context, UserState state) {
+                if (state.status.isLoading) {
+                  LoadingOverlay().show(context);
+                } else {
+                  LoadingOverlay().hideAll();
+                  if (state.status.isError) {
+                    showToast(msg: state.statusMessage);
+                  }
+                }
               },
             ),
             _buildBloodTypes(),
@@ -119,10 +163,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             ),
             BlocListener<UserBloc, UserState>(
               listenWhen: (previous, current) {
-                return previous.status.isLoading && current.status.isModified;
+                return previous.status.isLoading && current.status.isDone;
               },
               listener: (context, state) {
-                if (!state.status.isError) {
+                if (state.status.isError) {
+                  showToast(msg: state.statusMessage);
+                }
+                if (state.status.isDone) {
                   context.pop();
                 }
               },
@@ -267,7 +314,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         ),
         SizedBox(height: 20),
         Text(
-          'Age',
+          'Birth Date',
           style: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12),
         ),
         SizedBox(height: 10),
@@ -308,6 +355,26 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         SizedBox(height: 20),
         if (state.currentChildId == null) ...[
           Text(
+            'Discount Points',
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall!.copyWith(fontSize: 12),
+          ),
+          SizedBox(height: 10),
+          CustomTextField(
+            onTap: _buildDiscountDialog,
+            hintText: 'discount_points',
+            keyboardType: TextInputType.text,
+            readOnly: true,
+            controller: _discountPointsController,
+            suffixIcon: Icon(
+              color: Theme.of(context).colorScheme.primary,
+              FontAwesomeIcons.info,
+            ),
+          ),
+          SizedBox(height: 10),
+
+          Text(
             'Complete Address',
             style: Theme.of(
               context,
@@ -334,6 +401,104 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     );
   }
 
+  void _buildDiscountDialog() {
+    TransparentDialog.show(
+      context: context,
+      builder: (_) {
+        return Center(
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            width: screenWidth(context) * 0.8,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+            ),
+
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 10,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    '💰 Discount Points System',
+                    style: Theme.of(
+                      context,
+                    ).textTheme.labelMedium!.copyWith(fontSize: 18),
+                  ),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  '✴ Earn Points:',
+                  style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                    fontSize: 15,
+                    fontStyle: FontStyle.italic,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+                Text(
+                  '+2 points per doctor’s appointment booked.',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelMedium!.copyWith(fontSize: 13),
+                ),
+                Text(
+                  '✴ Redeem Discounts:',
+                  style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                    fontSize: 15,
+                    fontStyle: FontStyle.italic,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+                Text(
+                  '6+ pts → 5% off (6 pts used)',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelMedium!.copyWith(fontSize: 13),
+                ),
+                Text(
+                  '10+ pts → 10% off (10 pts used)',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelMedium!.copyWith(fontSize: 13),
+                ),
+                Text(
+                  '20+ pts → 20% off (20 pts used)',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelMedium!.copyWith(fontSize: 13),
+                ),
+                Text(
+                  '30+ pts → 30% off (30 pts used)',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelMedium!.copyWith(fontSize: 13),
+                ),
+                Text(
+                  'Example: Book 5 appointments → 10 pts → 10% discount!',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelMedium!.copyWith(fontSize: 13),
+                ),
+                SizedBox(height: 10),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {
+                      context.pop();
+                    },
+                    child: Text('close'),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   final _firstNameController = TextEditingController();
   DateTime? _selectedDate;
   final _lastNameController = TextEditingController();
@@ -343,4 +508,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   final _ageController = TextEditingController();
   final _completeAddressController = TextEditingController();
   int _selectedBloodType = 0;
+
+  final _discountPointsController = TextEditingController();
 }

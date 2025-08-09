@@ -245,11 +245,11 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                         LoadingOverlay().hideAll();
 
                         if (state.status.isError) {
-                          Fluttertoast.showToast(msg: state.message);
+                          showToast(msg: state.message);
                         }
 
                         if (state.status.isDone) {
-                          Fluttertoast.showToast(msg: state.message);
+                          showToast(msg: state.message);
                           await TransparentDialog.show(
                             context: context,
                             barrierDismissible: false,
@@ -445,7 +445,7 @@ class __ReminderBottomSheetState extends State<_ReminderBottomSheet> {
                   bloc: _reminderCubit,
                   listener: (context, state) {
                     if (state.status.isDone) {
-                      Fluttertoast.showToast(msg: state.message);
+                      showToast(msg: state.message);
                       context.pop<int>(_hours.toInt());
                     }
                   },

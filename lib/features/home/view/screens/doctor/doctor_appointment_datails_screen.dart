@@ -96,7 +96,7 @@ class _DoctorAppointmentDatailsScreenState
               } else {
                 LoadingOverlay().hideAll();
                 if (state.status.isError) {
-                  Fluttertoast.showToast(msg: state.message);
+                  showToast(msg: state.message);
                 }
               }
             },

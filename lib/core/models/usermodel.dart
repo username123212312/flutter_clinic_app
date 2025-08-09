@@ -34,16 +34,19 @@ sealed class UserModel with _$UserModel {
     String? photo,
     String? clinic,
     String? speciality,
+    @JsonKey(name: 'discount_points') int? discountPoints,
     @JsonKey(name: 'professional_title') String? professionalTitle,
     double? finalRate,
     @JsonKey(name: 'average_visit_duration') String? averageVisitDuration,
     @JsonKey(name: 'visit_fee') double? visitFee,
     int? experience,
     int? treated,
+    @JsonKey(name: 'is_child') bool? isChild,
     @JsonKey(name: 'booking_type') String? bookingType,
     String? status,
     String? sign,
     List<Schedule>? schedule,
+    @JsonKey(name: 'child_record') int? childRecord,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>

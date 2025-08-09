@@ -255,10 +255,7 @@ class _RatingScreenState extends State<RatingScreen>
                     onDone();
                   }
                   if (state.status.isError) {
-                    Fluttertoast.showToast(
-                      msg: state.message,
-                      gravity: ToastGravity.BOTTOM,
-                    );
+                    showToast(msg: state.message);
                   }
                 }
               },

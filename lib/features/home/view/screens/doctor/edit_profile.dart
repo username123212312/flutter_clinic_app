@@ -204,7 +204,7 @@ class _DoctorEditProfilePageState extends State<DoctorEditProfile> {
                         LoadingOverlay().show(context);
                       } else {
                         LoadingOverlay().hideAll();
-                        Fluttertoast.showToast(msg: state.statusMessage);
+                        showToast(msg: state.statusMessage);
                         if (state.status.isModified && isEdited == 1) {
                           context.pop();
                         }

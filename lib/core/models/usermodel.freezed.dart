@@ -43,6 +43,8 @@ mixin _$UserModel {
   String? get photo => throw _privateConstructorUsedError;
   String? get clinic => throw _privateConstructorUsedError;
   String? get speciality => throw _privateConstructorUsedError;
+  @JsonKey(name: 'discount_points')
+  int? get discountPoints => throw _privateConstructorUsedError;
   @JsonKey(name: 'professional_title')
   String? get professionalTitle => throw _privateConstructorUsedError;
   double? get finalRate => throw _privateConstructorUsedError;
@@ -52,11 +54,15 @@ mixin _$UserModel {
   double? get visitFee => throw _privateConstructorUsedError;
   int? get experience => throw _privateConstructorUsedError;
   int? get treated => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_child')
+  bool? get isChild => throw _privateConstructorUsedError;
   @JsonKey(name: 'booking_type')
   String? get bookingType => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
   String? get sign => throw _privateConstructorUsedError;
   List<Schedule>? get schedule => throw _privateConstructorUsedError;
+  @JsonKey(name: 'child_record')
+  int? get childRecord => throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -90,16 +96,19 @@ abstract class $UserModelCopyWith<$Res> {
     String? photo,
     String? clinic,
     String? speciality,
+    @JsonKey(name: 'discount_points') int? discountPoints,
     @JsonKey(name: 'professional_title') String? professionalTitle,
     double? finalRate,
     @JsonKey(name: 'average_visit_duration') String? averageVisitDuration,
     @JsonKey(name: 'visit_fee') double? visitFee,
     int? experience,
     int? treated,
+    @JsonKey(name: 'is_child') bool? isChild,
     @JsonKey(name: 'booking_type') String? bookingType,
     String? status,
     String? sign,
     List<Schedule>? schedule,
+    @JsonKey(name: 'child_record') int? childRecord,
   });
 }
 
@@ -134,16 +143,19 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? photo = freezed,
     Object? clinic = freezed,
     Object? speciality = freezed,
+    Object? discountPoints = freezed,
     Object? professionalTitle = freezed,
     Object? finalRate = freezed,
     Object? averageVisitDuration = freezed,
     Object? visitFee = freezed,
     Object? experience = freezed,
     Object? treated = freezed,
+    Object? isChild = freezed,
     Object? bookingType = freezed,
     Object? status = freezed,
     Object? sign = freezed,
     Object? schedule = freezed,
+    Object? childRecord = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -227,6 +239,11 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.speciality
                     : speciality // ignore: cast_nullable_to_non_nullable
                         as String?,
+            discountPoints:
+                freezed == discountPoints
+                    ? _value.discountPoints
+                    : discountPoints // ignore: cast_nullable_to_non_nullable
+                        as int?,
             professionalTitle:
                 freezed == professionalTitle
                     ? _value.professionalTitle
@@ -257,6 +274,11 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.treated
                     : treated // ignore: cast_nullable_to_non_nullable
                         as int?,
+            isChild:
+                freezed == isChild
+                    ? _value.isChild
+                    : isChild // ignore: cast_nullable_to_non_nullable
+                        as bool?,
             bookingType:
                 freezed == bookingType
                     ? _value.bookingType
@@ -277,6 +299,11 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.schedule
                     : schedule // ignore: cast_nullable_to_non_nullable
                         as List<Schedule>?,
+            childRecord:
+                freezed == childRecord
+                    ? _value.childRecord
+                    : childRecord // ignore: cast_nullable_to_non_nullable
+                        as int?,
           )
           as $Val,
     );
@@ -309,16 +336,19 @@ abstract class _$$UserModelImplCopyWith<$Res>
     String? photo,
     String? clinic,
     String? speciality,
+    @JsonKey(name: 'discount_points') int? discountPoints,
     @JsonKey(name: 'professional_title') String? professionalTitle,
     double? finalRate,
     @JsonKey(name: 'average_visit_duration') String? averageVisitDuration,
     @JsonKey(name: 'visit_fee') double? visitFee,
     int? experience,
     int? treated,
+    @JsonKey(name: 'is_child') bool? isChild,
     @JsonKey(name: 'booking_type') String? bookingType,
     String? status,
     String? sign,
     List<Schedule>? schedule,
+    @JsonKey(name: 'child_record') int? childRecord,
   });
 }
 
@@ -352,16 +382,19 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? photo = freezed,
     Object? clinic = freezed,
     Object? speciality = freezed,
+    Object? discountPoints = freezed,
     Object? professionalTitle = freezed,
     Object? finalRate = freezed,
     Object? averageVisitDuration = freezed,
     Object? visitFee = freezed,
     Object? experience = freezed,
     Object? treated = freezed,
+    Object? isChild = freezed,
     Object? bookingType = freezed,
     Object? status = freezed,
     Object? sign = freezed,
     Object? schedule = freezed,
+    Object? childRecord = freezed,
   }) {
     return _then(
       _$UserModelImpl(
@@ -445,6 +478,11 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value.speciality
                 : speciality // ignore: cast_nullable_to_non_nullable
                     as String?,
+        discountPoints:
+            freezed == discountPoints
+                ? _value.discountPoints
+                : discountPoints // ignore: cast_nullable_to_non_nullable
+                    as int?,
         professionalTitle:
             freezed == professionalTitle
                 ? _value.professionalTitle
@@ -475,6 +513,11 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value.treated
                 : treated // ignore: cast_nullable_to_non_nullable
                     as int?,
+        isChild:
+            freezed == isChild
+                ? _value.isChild
+                : isChild // ignore: cast_nullable_to_non_nullable
+                    as bool?,
         bookingType:
             freezed == bookingType
                 ? _value.bookingType
@@ -495,6 +538,11 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value._schedule
                 : schedule // ignore: cast_nullable_to_non_nullable
                     as List<Schedule>?,
+        childRecord:
+            freezed == childRecord
+                ? _value.childRecord
+                : childRecord // ignore: cast_nullable_to_non_nullable
+                    as int?,
       ),
     );
   }
@@ -520,16 +568,19 @@ class _$UserModelImpl extends _UserModel {
     this.photo,
     this.clinic,
     this.speciality,
+    @JsonKey(name: 'discount_points') this.discountPoints,
     @JsonKey(name: 'professional_title') this.professionalTitle,
     this.finalRate,
     @JsonKey(name: 'average_visit_duration') this.averageVisitDuration,
     @JsonKey(name: 'visit_fee') this.visitFee,
     this.experience,
     this.treated,
+    @JsonKey(name: 'is_child') this.isChild,
     @JsonKey(name: 'booking_type') this.bookingType,
     this.status,
     this.sign,
     final List<Schedule>? schedule,
+    @JsonKey(name: 'child_record') this.childRecord,
   }) : _schedule = schedule,
        super._();
 
@@ -578,6 +629,9 @@ class _$UserModelImpl extends _UserModel {
   @override
   final String? speciality;
   @override
+  @JsonKey(name: 'discount_points')
+  final int? discountPoints;
+  @override
   @JsonKey(name: 'professional_title')
   final String? professionalTitle;
   @override
@@ -592,6 +646,9 @@ class _$UserModelImpl extends _UserModel {
   final int? experience;
   @override
   final int? treated;
+  @override
+  @JsonKey(name: 'is_child')
+  final bool? isChild;
   @override
   @JsonKey(name: 'booking_type')
   final String? bookingType;
@@ -610,8 +667,12 @@ class _$UserModelImpl extends _UserModel {
   }
 
   @override
+  @JsonKey(name: 'child_record')
+  final int? childRecord;
+
+  @override
   String toString() {
-    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, role: $role, token: $token, password: $password, birthDate: $birthDate, gender: $gender, bloodType: $bloodType, isCompleteProfile: $isCompleteProfile, address: $address, photo: $photo, clinic: $clinic, speciality: $speciality, professionalTitle: $professionalTitle, finalRate: $finalRate, averageVisitDuration: $averageVisitDuration, visitFee: $visitFee, experience: $experience, treated: $treated, bookingType: $bookingType, status: $status, sign: $sign, schedule: $schedule)';
+    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, role: $role, token: $token, password: $password, birthDate: $birthDate, gender: $gender, bloodType: $bloodType, isCompleteProfile: $isCompleteProfile, address: $address, photo: $photo, clinic: $clinic, speciality: $speciality, discountPoints: $discountPoints, professionalTitle: $professionalTitle, finalRate: $finalRate, averageVisitDuration: $averageVisitDuration, visitFee: $visitFee, experience: $experience, treated: $treated, isChild: $isChild, bookingType: $bookingType, status: $status, sign: $sign, schedule: $schedule, childRecord: $childRecord)';
   }
 
   @override
@@ -642,6 +703,8 @@ class _$UserModelImpl extends _UserModel {
             (identical(other.clinic, clinic) || other.clinic == clinic) &&
             (identical(other.speciality, speciality) ||
                 other.speciality == speciality) &&
+            (identical(other.discountPoints, discountPoints) ||
+                other.discountPoints == discountPoints) &&
             (identical(other.professionalTitle, professionalTitle) ||
                 other.professionalTitle == professionalTitle) &&
             (identical(other.finalRate, finalRate) ||
@@ -653,11 +716,14 @@ class _$UserModelImpl extends _UserModel {
             (identical(other.experience, experience) ||
                 other.experience == experience) &&
             (identical(other.treated, treated) || other.treated == treated) &&
+            (identical(other.isChild, isChild) || other.isChild == isChild) &&
             (identical(other.bookingType, bookingType) ||
                 other.bookingType == bookingType) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.sign, sign) || other.sign == sign) &&
-            const DeepCollectionEquality().equals(other._schedule, _schedule));
+            const DeepCollectionEquality().equals(other._schedule, _schedule) &&
+            (identical(other.childRecord, childRecord) ||
+                other.childRecord == childRecord));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -680,16 +746,19 @@ class _$UserModelImpl extends _UserModel {
     photo,
     clinic,
     speciality,
+    discountPoints,
     professionalTitle,
     finalRate,
     averageVisitDuration,
     visitFee,
     experience,
     treated,
+    isChild,
     bookingType,
     status,
     sign,
     const DeepCollectionEquality().hash(_schedule),
+    childRecord,
   ]);
 
   /// Create a copy of UserModel
@@ -724,16 +793,19 @@ abstract class _UserModel extends UserModel {
     final String? photo,
     final String? clinic,
     final String? speciality,
+    @JsonKey(name: 'discount_points') final int? discountPoints,
     @JsonKey(name: 'professional_title') final String? professionalTitle,
     final double? finalRate,
     @JsonKey(name: 'average_visit_duration') final String? averageVisitDuration,
     @JsonKey(name: 'visit_fee') final double? visitFee,
     final int? experience,
     final int? treated,
+    @JsonKey(name: 'is_child') final bool? isChild,
     @JsonKey(name: 'booking_type') final String? bookingType,
     final String? status,
     final String? sign,
     final List<Schedule>? schedule,
+    @JsonKey(name: 'child_record') final int? childRecord,
   }) = _$UserModelImpl;
   _UserModel._() : super._();
 
@@ -779,6 +851,9 @@ abstract class _UserModel extends UserModel {
   @override
   String? get speciality;
   @override
+  @JsonKey(name: 'discount_points')
+  int? get discountPoints;
+  @override
   @JsonKey(name: 'professional_title')
   String? get professionalTitle;
   @override
@@ -794,6 +869,9 @@ abstract class _UserModel extends UserModel {
   @override
   int? get treated;
   @override
+  @JsonKey(name: 'is_child')
+  bool? get isChild;
+  @override
   @JsonKey(name: 'booking_type')
   String? get bookingType;
   @override
@@ -802,6 +880,9 @@ abstract class _UserModel extends UserModel {
   String? get sign;
   @override
   List<Schedule>? get schedule;
+  @override
+  @JsonKey(name: 'child_record')
+  int? get childRecord;
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.

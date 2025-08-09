@@ -12,10 +12,22 @@ enum Role {
 
 enum AppointmentType {
   visit,
+  firstTime,
   vaccination;
 
   bool get isVisit => this == AppointmentType.visit;
+  bool get isFirstTime => this == AppointmentType.firstTime;
   bool get isVaccination => this == AppointmentType.vaccination;
+}
+
+enum FeedingType {
+  natural,
+  formula,
+  mixed;
+
+  bool get isNatural => this == FeedingType.natural;
+  bool get isFormula => this == FeedingType.formula;
+  bool get isMixed => this == FeedingType.mixed;
 }
 
 enum AppointmentStatus {

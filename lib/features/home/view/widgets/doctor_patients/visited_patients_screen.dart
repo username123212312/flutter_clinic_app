@@ -234,22 +234,24 @@ class _VisitedPatientsScreenState extends State<VisitedPatientsScreen> {
                               );
                             }
                             final patient = state.patients[index];
-                            return VisitedPatientCard(
-                              firstName: patient.firstName ?? 'No',
-                              lastName: patient.lastName ?? 'Patient',
-                              address: patient.address ?? 'No address',
+                            return GestureDetector(
                               onTap: () {
                                 context.pushNamed(
                                   AppRouteConstants.patientProfileRouteName,
                                   extra: patient,
                                 );
                               },
-                              age:
-                                  patient.birthDate == null
-                                      ? ''
-                                      : DateFormat(
-                                        'dd/MM/yy',
-                                      ).format(patient.birthDate!),
+                              child: VisitedPatientCard(
+                                firstName: patient.firstName ?? 'No',
+                                lastName: patient.lastName ?? 'Patient',
+                                address: patient.address ?? 'No address',
+                                age:
+                                    patient.birthDate == null
+                                        ? ''
+                                        : DateFormat(
+                                          'dd/MM/yy',
+                                        ).format(patient.birthDate!),
+                              ),
                             );
                           },
                         ),
@@ -258,7 +260,7 @@ class _VisitedPatientsScreenState extends State<VisitedPatientsScreen> {
                   },
                   listener: (_, state) {
                     if (state.status.isError) {
-                      Fluttertoast.showToast(msg: state.message);
+                      showToast(msg: state.message);
                     }
                   },
                 ),

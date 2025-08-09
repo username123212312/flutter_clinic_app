@@ -336,7 +336,7 @@ class _LabtechHomeScreenState extends State<LabtechHomeScreen> {
                                 .toLowerCase()
                                 .trim() !=
                             'no') {
-                      await Fluttertoast.showToast(msg: state.statusMessage);
+                      showToast(msg: state.statusMessage);
                     }
                   }
                 },

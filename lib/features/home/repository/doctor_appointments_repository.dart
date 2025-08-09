@@ -32,7 +32,7 @@ class DoctorAppointmentsRepository {
             message: 'Appointments fetched successfully',
             success: true,
             data:
-                (response.data['data'] as List<dynamic>).map((appointment) {
+                (response.data['items'] as List<dynamic>).map((appointment) {
                   return AppointmentModel.fromJson(
                     appointment,
                   ).copyWith(id: appointment['id']);

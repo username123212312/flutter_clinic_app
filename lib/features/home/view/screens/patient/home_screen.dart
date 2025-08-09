@@ -200,7 +200,7 @@ class _HomeScreenState extends State<HomeScreen>
             ),
             SalomonBottomBarItem(
               icon: Image.asset(
-                'assets/icons/messenger.png',
+                'assets/icons/child_vaccination.png',
                 width: 32,
                 height: 32,
                 fit: BoxFit.cover,
@@ -221,7 +221,7 @@ class _HomeScreenState extends State<HomeScreen>
                 width: 32,
                 height: 32,
                 fit: BoxFit.cover,
-                color: _currentIndex == 3 ? Colors.black : null,
+                color: _currentIndex == 4 ? Colors.black : null,
               ),
               title: FittedBox(
                 child: Text(

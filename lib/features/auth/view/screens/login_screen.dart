@@ -147,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   LoadingOverlay().show(context);
                 } else if (state.status.isError) {
                   LoadingOverlay().hide();
-                  Fluttertoast.showToast(msg: state.statusMessage);
+                  showToast(msg: state.statusMessage);
                 }
               },
             ),

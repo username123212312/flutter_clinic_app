@@ -56,15 +56,7 @@ class _ReportBottomSheetState extends State<ReportScreen> {
 
   void _submitReport() async {
     if (_selectedReason == null || _commentController.text.trim().isEmpty) {
-      Fluttertoast.showToast(
-        msg: 'Please fill all fields',
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM_RIGHT,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Pallete.graysGray2,
-        textColor: Colors.black,
-        fontSize: 14.0,
-      );
+      showToast(msg: 'Please fill all fields');
       return;
     } else {
       _reportCubit.report(
@@ -75,15 +67,7 @@ class _ReportBottomSheetState extends State<ReportScreen> {
       );
       await for (final newState in _reportCubit.stream) {
         if (newState.status.isDone || newState.status.isError) {
-          Fluttertoast.showToast(
-            msg: newState.message,
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM_RIGHT,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Pallete.graysGray2,
-            textColor: Colors.black,
-            fontSize: 14.0,
-          );
+          showToast(msg: newState.message);
           break;
         }
       }

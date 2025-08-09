@@ -44,6 +44,7 @@ class AppRouteConstants {
   static const clinicDoctorsRouteName = 'clinic_doctors';
   static const selectVaccineRouteName = 'select_vaccine';
   static const vaccineDetailsRouteName = 'vaccine_details';
+  static const patientChildRecordRouteName = 'patient_child_record';
 
   //? Doctor
   static const doctorHomeRouteName = 'doctor_home';
@@ -51,4 +52,10 @@ class AppRouteConstants {
   static const doctorProfileRouteName = 'doctor_profile';
   static const doctorScheduleRouteName = 'doctor_schedule';
   static const patientProfileRouteName = 'patient_profile';
+  static const doctorChildRecordRouteName = 'doctor_child_record';
+  static const doctorAddChildRecordRouteName = 'doctor_add_child_record';
+  static const doctorModifyChildRecordRouteName = 'doctor_modify_child_record';
+  static const doctorChildVacRecordRouteName = 'doctor_child_vac_record';
+  static const doctorChildEditVacRecordRouteName =
+      'doctor_child_edit_vac_record';
 }

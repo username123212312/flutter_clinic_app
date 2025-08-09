@@ -2,6 +2,7 @@ import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/screens/change_password_screen.dart';
 import 'package:our_flutter_clinic_app/features/home/model/analysis_model.dart';
 import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
+import 'package:our_flutter_clinic_app/features/home/model/child_record.dart';
 import 'package:our_flutter_clinic_app/features/home/model/clinic_model.dart';
 import 'package:our_flutter_clinic_app/features/home/model/doctor_model.dart';
 import 'package:our_flutter_clinic_app/features/home/model/vaccinationrecord.dart';
@@ -9,18 +10,23 @@ import 'package:our_flutter_clinic_app/features/home/view/screens/labtech/analys
 import 'package:our_flutter_clinic_app/features/home/view/screens/patient/reschedule_screen.dart';
 import 'package:our_flutter_clinic_app/features/home/view/screens/patient/switch_account_screen.dart';
 
+import '../../features/home/view/screens/doctor/add_child_record_screen.dart';
 import '../../features/home/view/screens/doctor/doctor_appointment_datails_screen.dart';
 import '../../features/home/view/screens/doctor/doctor_home_screen.dart';
 import '../../features/home/view/screens/doctor/doctor_profile.dart';
 import '../../features/home/view/screens/doctor/doctor_reviews_screen.dart';
 import '../../features/home/view/screens/doctor/doctor_schedule_screen.dart';
+import '../../features/home/view/screens/doctor/doctor_show_child_record_screen.dart';
+import '../../features/home/view/screens/doctor/edit_child_vaccine_record_screen.dart';
 import '../../features/home/view/screens/doctor/edit_profile.dart';
+import '../../features/home/view/screens/doctor/modify_child_record_screen.dart';
 import '../../features/home/view/screens/doctor/patient_profile_screen.dart';
 import '../../features/home/view/screens/patient/add_child_screen.dart';
 import '../../features/home/view/screens/patient/chat_screen.dart';
 import '../../features/home/view/screens/patient/clinic_doctors_screen.dart';
 import '../../features/home/view/screens/patient/my_wallet_screen.dart';
 import '../../features/home/view/screens/patient/notifications_screen.dart';
+import '../../features/home/view/screens/patient/patient_show_child_record_screen.dart';
 import '../../features/home/view/screens/patient/reservation_details_screen.dart';
 import '../../features/home/view/screens/patient/doctor_rating_screen.dart';
 import '../../features/home/view/screens/labtech/add_new_analysis_screen.dart';
@@ -35,6 +41,7 @@ import '../../features/home/view/screens/patient/payment_method_screen.dart';
 import '../../features/home/view/screens/patient/pharmecy_screen.dart';
 import '../../features/home/view/screens/patient/select_vaccine_screen.dart';
 import '../../features/home/view/screens/patient/vaccine_details_screen.dart';
+import '../../features/home/view/screens/doctor/doctor_show_child_vaccine_records_screen.dart';
 import 'navigation_exports.dart';
 
 class AppRouteConfig {
@@ -235,6 +242,62 @@ class AppRouteConfig {
         pageBuilder: (_, state) {
           final vaccine = state.extra as VaccinationRecord;
           return TransitionPage(child: VaccineDetailsScreen(vaccine: vaccine));
+        },
+      ),
+      GoRoute(
+        name: AppRouteConstants.patientChildRecordRouteName,
+        path: '/patient_child_record',
+        pageBuilder: (_, state) {
+          return TransitionPage(child: PatientShowChildRecordScreen());
+        },
+      ),
+      GoRoute(
+        name: AppRouteConstants.doctorChildRecordRouteName,
+        path: '/doctor_child_record',
+        pageBuilder: (_, state) {
+          final child = state.extra as UserModel;
+          return TransitionPage(
+            child: DoctorShowChildRecordScreen(child: child),
+          );
+        },
+      ),
+      GoRoute(
+        name: AppRouteConstants.doctorAddChildRecordRouteName,
+        path: '/doctor_add_child_record',
+        pageBuilder: (_, state) {
+          final child = state.extra as UserModel;
+
+          return TransitionPage(child: AddChildRecordScreen(child: child));
+        },
+      ),
+      GoRoute(
+        name: AppRouteConstants.doctorModifyChildRecordRouteName,
+        path: '/doctor_modify_child_record',
+        pageBuilder: (_, state) {
+          final childRecord = state.extra as ChildRecord;
+          return TransitionPage(
+            child: ModifyChildRecordScreen(childRecord: childRecord),
+          );
+        },
+      ),
+      GoRoute(
+        name: AppRouteConstants.doctorChildVacRecordRouteName,
+        path: '/patient_child_vac_record',
+        pageBuilder: (_, state) {
+          final child = state.extra as UserModel;
+          return TransitionPage(
+            child: DoctorShowChildVaccineRecordsScreen(child: child),
+          );
+        },
+      ),
+      GoRoute(
+        name: AppRouteConstants.doctorChildEditVacRecordRouteName,
+        path: '/patient_child_edit_vac_record',
+        pageBuilder: (_, state) {
+          final record = state.extra as VaccinationRecord;
+          return TransitionPage(
+            child: EditChildVaccineRecordScreen(vaccineRecord: record),
+          );
         },
       ),
       GoRoute(

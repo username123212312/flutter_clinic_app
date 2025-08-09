@@ -73,7 +73,7 @@ class _ModifyPasswordScreenState extends State<ModifyPasswordScreen> {
                               LoadingOverlay().show(context);
                             } else {
                               LoadingOverlay().hideAll();
-                              Fluttertoast.showToast(msg: state.statusMessage);
+                              showToast(msg: state.statusMessage);
                               if (state.status.isModified) {
                                 context.goNamed(
                                   (state.user?.role?.isPatient ?? true)

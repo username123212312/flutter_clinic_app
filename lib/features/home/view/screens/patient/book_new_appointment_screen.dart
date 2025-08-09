@@ -179,7 +179,7 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
                       _newAppointmentBloc.add(BookedNewAppointment());
                     }
                     if (_selectedIndex == 1 && _vaccinationRecord == null) {
-                      Fluttertoast.showToast(msg: 'select a vaccination first');
+                      showToast(msg: 'select a vaccination first');
                       return;
                     } else if (_selectedIndex == 1 &&
                         _vaccinationRecord != null) {
@@ -188,7 +188,7 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
                       );
                     }
                   } else {
-                    Fluttertoast.showToast(msg: 'You must select a time');
+                    showToast(msg: 'You must select a time');
                   }
                 },
                 fillColor: Theme.of(context).colorScheme.primary,

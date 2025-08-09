@@ -8,7 +8,7 @@ class VisitedPatientCard extends StatelessWidget {
   final String lastName;
   final String age;
   final String address;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   const VisitedPatientCard({
     super.key,
@@ -16,7 +16,7 @@ class VisitedPatientCard extends StatelessWidget {
     required this.lastName,
     required this.age,
     required this.address,
-    required this.onTap,
+    this.onTap,
   });
 
   @override

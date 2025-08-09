@@ -252,7 +252,7 @@ class DoctorProfileWidget extends StatelessWidget {
                 } else {
                   LoadingOverlay().hideAll();
                   if (state.status.isError) {
-                    Fluttertoast.showToast(msg: state.statusMessage);
+                    showToast(msg: state.statusMessage);
                   }
                 }
               },
