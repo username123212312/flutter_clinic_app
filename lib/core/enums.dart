@@ -10,6 +10,26 @@ enum Role {
   bool get isAdmin => this == Role.admin;
 }
 
+enum AppointmentType {
+  visit,
+  firstTime,
+  vaccination;
+
+  bool get isVisit => this == AppointmentType.visit;
+  bool get isFirstTime => this == AppointmentType.firstTime;
+  bool get isVaccination => this == AppointmentType.vaccination;
+}
+
+enum FeedingType {
+  natural,
+  formula,
+  mixed;
+
+  bool get isNatural => this == FeedingType.natural;
+  bool get isFormula => this == FeedingType.formula;
+  bool get isMixed => this == FeedingType.mixed;
+}
+
 enum AppointmentStatus {
   pending,
   visited,
@@ -64,20 +84,30 @@ enum AnalysisStatus {
 
 enum DataStatus {
   data,
+  submitting,
   loading,
   uploading,
+  initial,
+  loaded,
+  fetching,
   downloading,
   noData,
   done,
+  loadingMore,
   error;
 
   bool get isData => this == DataStatus.data;
+  bool get isInitial => this == DataStatus.initial;
+  bool get isFetching => this == DataStatus.fetching;
+  bool get isSubmitting => this == DataStatus.submitting;
   bool get isLoading => this == DataStatus.loading;
+  bool get isLoaded => this == DataStatus.loaded;
   bool get isUploading => this == DataStatus.uploading;
   bool get isDownloading => this == DataStatus.downloading;
   bool get isError => this == DataStatus.error;
   bool get isNoData => this == DataStatus.noData;
   bool get isDone => this == DataStatus.done;
+  bool get isLoadingMore => this == DataStatus.loadingMore;
 }
 
 enum BookingType {
@@ -86,6 +116,16 @@ enum BookingType {
 
   bool get isManual => this == BookingType.manual;
   bool get isAuto => this == BookingType.auto;
+}
+
+enum VaccintaionType {
+  now,
+  all,
+  upcoming;
+
+  bool get isNow => this == VaccintaionType.now;
+  bool get isAll => this == VaccintaionType.all;
+  bool get isUpcoming => this == VaccintaionType.upcoming;
 }
 
 enum AvailableShift {

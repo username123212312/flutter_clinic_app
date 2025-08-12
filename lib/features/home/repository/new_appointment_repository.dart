@@ -234,14 +234,17 @@ class NewAppointmentRepository {
     AddNewAppointmentRequest request,
   ) async {
     try {
-      final time = formatTime24(request.time);
       final response = await _dio.post(
         AppConstants.addReservationPath,
         data: {
           'doctor_id': request.doctorId,
           'date': DateFormat('dd/MM/yy').format(request.date),
-          'time': time,
+          if (request.time != null) 'time': formatTime24(request.time!),
           if (getChildId() != null) 'child_id': getChildId(),
+          if (request.recordId != null && request.recordId != -1)
+            'record_id': request.recordId,
+          if (request.type != null && getChildId() != null)
+            'appointment_type': request.type!.name,
         },
       );
       if (response.data['statusCode'] < 300) {

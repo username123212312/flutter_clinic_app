@@ -44,6 +44,53 @@ class ProifileWidget extends StatelessWidget {
       height: screenHeight(context) * 0.65,
       child: ListView(
         children: [
+          if (getChildId() != null) ...[
+            SizedBox(
+              width: screenWidth(context),
+              child: Divider(color: Pallete.grayScaleColor400),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 10.0,
+                horizontal: 10,
+              ),
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () {
+                  context.pushNamed(
+                    AppRouteConstants.patientChildRecordRouteName,
+                  );
+                },
+                child: Row(
+                  children: [
+                    Container(
+                      width: screenWidth(context) * 0.13,
+                      height: screenHeight(context) * 0.06,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Pallete.grayScaleColor200,
+                      ),
+                      child: Icon(
+                        Icons.recent_actors_rounded,
+                        size: 25,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                    ),
+
+                    SizedBox(width: 10),
+                    Text(
+                      'Child Record',
+                      style: Theme.of(
+                        context,
+                      ).textTheme.titleSmall!.copyWith(fontSize: 17),
+                    ),
+                    Spacer(),
+                    Icon(Icons.arrow_forward_ios),
+                  ],
+                ),
+              ),
+            ),
+          ],
           SizedBox(
             width: screenWidth(context),
             child: Divider(color: Pallete.grayScaleColor400),
@@ -263,7 +310,7 @@ class ProifileWidget extends StatelessWidget {
                 } else {
                   LoadingOverlay().hideAll();
                   if (state.status.isError) {
-                    Fluttertoast.showToast(msg: state.statusMessage);
+                    showToast(msg: state.statusMessage);
                   }
                 }
               },

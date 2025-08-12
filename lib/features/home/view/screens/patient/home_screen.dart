@@ -13,10 +13,13 @@ import 'package:go_router/go_router.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
+import '../../widgets/chat/chat_list_widget.dart';
 import '../../widgets/child_info_dialog.dart';
 import '../../widgets/home/home_screen_widget.dart';
 import '../../widgets/home_widgets.dart';
 import '../../widgets/profile/profile_widget.dart';
+import '../../widgets/vaccines/vaccine_page.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -58,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen>
           _currentIndex == 0
               ? null
               : AppBar(
-                centerTitle: _currentIndex == 2 ? false : true,
+                centerTitle: _currentIndex == 3 ? false : true,
                 forceMaterialTransparency: true,
                 title: FadeTransition(
                   opacity: _animationController,
@@ -67,6 +70,8 @@ class _HomeScreenState extends State<HomeScreen>
                         ? 'Appointments'
                         : _currentIndex == 2
                         ? 'Chat'
+                        : _currentIndex == 3
+                        ? 'Vaccienes'
                         : 'My Profile',
                     style: Theme.of(context).textTheme.labelSmall!.copyWith(
                       fontSize: 20,
@@ -76,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen>
                 ),
                 actionsPadding: EdgeInsets.only(right: 10, top: 20, bottom: 20),
                 actions: [
-                  if (_currentIndex == 2)
+                  if (_currentIndex == 3 || _currentIndex == 4)
                     GestureDetector(
                       onTap: () {
                         showModalBottomSheet(
@@ -145,8 +150,8 @@ class _HomeScreenState extends State<HomeScreen>
             SalomonBottomBarItem(
               icon: Image.asset(
                 'assets/icons/home.png',
-                width: 38,
-                height: 38,
+                width: 32,
+                height: 32,
                 fit: BoxFit.cover,
                 color: _currentIndex == 0 ? Colors.black : null,
               ),
@@ -162,8 +167,8 @@ class _HomeScreenState extends State<HomeScreen>
             SalomonBottomBarItem(
               icon: Image.asset(
                 'assets/icons/task.png',
-                width: 38,
-                height: 38,
+                width: 32,
+                height: 32,
                 fit: BoxFit.cover,
                 color: _currentIndex == 1 ? Colors.black : null,
               ),
@@ -172,15 +177,15 @@ class _HomeScreenState extends State<HomeScreen>
                   'Appoints',
                   style: Theme.of(
                     context,
-                  ).textTheme.labelMedium!.copyWith(fontSize: 15),
+                  ).textTheme.labelMedium!.copyWith(fontSize: 12),
                 ),
               ),
             ),
             SalomonBottomBarItem(
               icon: Image.asset(
                 'assets/icons/messenger.png',
-                width: 38,
-                height: 38,
+                width: 32,
+                height: 32,
                 fit: BoxFit.cover,
                 color: _currentIndex == 2 ? Colors.black : null,
               ),
@@ -195,11 +200,28 @@ class _HomeScreenState extends State<HomeScreen>
             ),
             SalomonBottomBarItem(
               icon: Image.asset(
-                'assets/icons/profile.png',
-                width: 38,
-                height: 38,
+                'assets/icons/child_vaccination.png',
+                width: 32,
+                height: 32,
                 fit: BoxFit.cover,
                 color: _currentIndex == 3 ? Colors.black : null,
+              ),
+              title: FittedBox(
+                child: Text(
+                  'Vaccine',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelMedium!.copyWith(fontSize: 15),
+                ),
+              ),
+            ),
+            SalomonBottomBarItem(
+              icon: Image.asset(
+                'assets/icons/profile.png',
+                width: 32,
+                height: 32,
+                fit: BoxFit.cover,
+                color: _currentIndex == 4 ? Colors.black : null,
               ),
               title: FittedBox(
                 child: Text(
@@ -222,8 +244,9 @@ class _HomeScreenState extends State<HomeScreen>
     return switch (index) {
       0 => HomeScreenWidget(),
       1 => AppontmentsScreen(),
-      2 => Placeholder(),
-      3 => ProifileWidget(),
+      2 => ChatListWidget(),
+      3 => VaccineScreenWidget(),
+      4 => ProifileWidget(),
       _ => Placeholder(),
     };
   }

@@ -11,10 +11,14 @@ class AppConstants {
     'AB+',
     'AB-',
   ];
+  static const ngrokAddress = 'https://deep-pangolin-normally.ngrok-free.app';
+  static const nerminNgrokAddress =
+      'https://internal-krill-remotely.ngrok-free.app';
+  static const nayaNgrokAddress =
+      'https://capable-luckily-tetra.ngrok-free.app';
   static const ipAddress = '192.168.86.76'; //10.0.2.2
   static const localAddress = 'http://$ipAddress:8000';
-  static const ngrokAddress = 'https://deep-pangolin-normally.ngrok-free.app';
-  static const serverUrl = ngrokAddress;
+  static const serverUrl = nayaNgrokAddress;
   static const apiPath = 'api';
   static const patientPath = '/$apiPath/patient';
   static const homePath = '/$apiPath/home';
@@ -24,7 +28,7 @@ class AppConstants {
   //! Auth
   static const registerPath = '/$apiPath/register';
   static const loginPath = '/$apiPath/login';
-  static const authWithTokenPath = '/$apiPath/user';
+  static const authWithTokenPath = '/$apiPath/getUser';
   static const loginWithGooglePath = '/$apiPath/auth/google';
   static const logoutPath = '/$apiPath/logout';
   static const sendEmailOtpPath = '/$apiPath/send-email-otp';
@@ -33,6 +37,19 @@ class AppConstants {
   static const verifyEmailOtpPath = '/$apiPath/verify-email-otp';
   static const resetPasswordPath = '/$apiPath/resetPassword';
   static const sendFCMTokenPath = '/$apiPath/saveFcmToken';
+
+  ///? Chat
+  static const _baseChat = "/$apiPath/chat";
+
+  static const getChats = _baseChat;
+  static const getSingleChat = "$_baseChat/";
+  static const createChat = _baseChat;
+
+  ///? Chat message
+  static const _baseChatMessage = "/$apiPath/chat_message";
+
+  static const getChatMessages = _baseChatMessage;
+  static const createChatMessage = _baseChatMessage;
 
   //! Home
   static const showDoctorsPath = '$homePath/showDoctors';
@@ -62,6 +79,16 @@ class AppConstants {
   static const addChildPath = '$patientPath/addChild';
   static const deleteChildPath = '$patientPath/deleteChild';
   static const showAllChildrenPath = '$patientPath/showAllChildren';
+
+  //* vaccines
+  static const showVaccinationRecordsPath =
+      '$patientPath/showVaccinationRecords';
+  static const showVaccinationRecordDetailsPath =
+      '$patientPath/showVaccinationRecordDetails';
+  static const editVaccinationRecordPath = '$patientPath/editVaccinationRecord';
+  static const showChildRecordPath = '$patientPath/showChildRecord';
+  static const deleteVaccinationRecordPath =
+      '$patientPath/deleteVaccinationRecord';
 
   //*   Appointment
   static const showAppointmentPath = '$patientPath/showAppointment';
@@ -93,8 +120,17 @@ class AppConstants {
   static const availableWorkDaysPath = '$doctorPath/availableWorkDays';
   static const schedulePath = '$doctorPath/schedule';
   static const doctorEditProfilePath = '$doctorPath/editProfile';
+  static const doctorShowChildVacRecordsPath = '$doctorPath/showVaccineRecords';
+  static const doctorShowChildVacRecordDetailsPath =
+      '$doctorPath/showVaccineRecordsDetails';
+  static const doctorEditChildVacRecordDetailsPath =
+      '$doctorPath/editVaccineRecordInfo';
+  static const doctorShowVaccinesPath = '$doctorPath/showVaccines';
   static const deleteFromSchedulePath = '$doctorPath/deleteFromSchedule';
   static const showDoctorReviewsPath = '$doctorPath/showDoctorReviews';
+  static const addChildRecordPath = '$doctorPath/addChildRecords';
+  static const editChildRecordsPath = '$doctorPath/editChildRecords';
+  static const doctorShowChildRecordPath = '$doctorPath/showChildRecord';
   static const showVisitedPatientsPath =
       '$serverUrl/Doctor/patientInfo/patientsRecord';
   static const searchVisitedPatientsPath =

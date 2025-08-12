@@ -25,6 +25,7 @@ mixin _$DoctorInfoState {
   List<TimeOfDay> get availableTimes => throw _privateConstructorUsedError;
   TimeOfDay? get selectedTime => throw _privateConstructorUsedError;
   int? get appointmentId => throw _privateConstructorUsedError;
+  bool? get isAuto => throw _privateConstructorUsedError;
 
   /// Create a copy of DoctorInfoState
   /// with the given fields replaced by the non-null parameter values.
@@ -49,6 +50,7 @@ abstract class $DoctorInfoStateCopyWith<$Res> {
     List<TimeOfDay> availableTimes,
     TimeOfDay? selectedTime,
     int? appointmentId,
+    bool? isAuto,
   });
 
   $DoctorModelCopyWith<$Res> get doctor;
@@ -77,6 +79,7 @@ class _$DoctorInfoStateCopyWithImpl<$Res, $Val extends DoctorInfoState>
     Object? availableTimes = null,
     Object? selectedTime = freezed,
     Object? appointmentId = freezed,
+    Object? isAuto = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -120,6 +123,11 @@ class _$DoctorInfoStateCopyWithImpl<$Res, $Val extends DoctorInfoState>
                     ? _value.appointmentId
                     : appointmentId // ignore: cast_nullable_to_non_nullable
                         as int?,
+            isAuto:
+                freezed == isAuto
+                    ? _value.isAuto
+                    : isAuto // ignore: cast_nullable_to_non_nullable
+                        as bool?,
           )
           as $Val,
     );
@@ -154,6 +162,7 @@ abstract class _$$DoctorInfoStateImplCopyWith<$Res>
     List<TimeOfDay> availableTimes,
     TimeOfDay? selectedTime,
     int? appointmentId,
+    bool? isAuto,
   });
 
   @override
@@ -182,6 +191,7 @@ class __$$DoctorInfoStateImplCopyWithImpl<$Res>
     Object? availableTimes = null,
     Object? selectedTime = freezed,
     Object? appointmentId = freezed,
+    Object? isAuto = freezed,
   }) {
     return _then(
       _$DoctorInfoStateImpl(
@@ -225,6 +235,11 @@ class __$$DoctorInfoStateImplCopyWithImpl<$Res>
                 ? _value.appointmentId
                 : appointmentId // ignore: cast_nullable_to_non_nullable
                     as int?,
+        isAuto:
+            freezed == isAuto
+                ? _value.isAuto
+                : isAuto // ignore: cast_nullable_to_non_nullable
+                    as bool?,
       ),
     );
   }
@@ -242,6 +257,7 @@ class _$DoctorInfoStateImpl implements _DoctorInfoState {
     required final List<TimeOfDay> availableTimes,
     this.selectedTime,
     this.appointmentId,
+    this.isAuto,
   }) : _avaiableDates = avaiableDates,
        _availableTimes = availableTimes;
 
@@ -273,10 +289,12 @@ class _$DoctorInfoStateImpl implements _DoctorInfoState {
   final TimeOfDay? selectedTime;
   @override
   final int? appointmentId;
+  @override
+  final bool? isAuto;
 
   @override
   String toString() {
-    return 'DoctorInfoState(status: $status, message: $message, doctor: $doctor, avaiableDates: $avaiableDates, selectedDate: $selectedDate, availableTimes: $availableTimes, selectedTime: $selectedTime, appointmentId: $appointmentId)';
+    return 'DoctorInfoState(status: $status, message: $message, doctor: $doctor, avaiableDates: $avaiableDates, selectedDate: $selectedDate, availableTimes: $availableTimes, selectedTime: $selectedTime, appointmentId: $appointmentId, isAuto: $isAuto)';
   }
 
   @override
@@ -300,7 +318,8 @@ class _$DoctorInfoStateImpl implements _DoctorInfoState {
             (identical(other.selectedTime, selectedTime) ||
                 other.selectedTime == selectedTime) &&
             (identical(other.appointmentId, appointmentId) ||
-                other.appointmentId == appointmentId));
+                other.appointmentId == appointmentId) &&
+            (identical(other.isAuto, isAuto) || other.isAuto == isAuto));
   }
 
   @override
@@ -314,6 +333,7 @@ class _$DoctorInfoStateImpl implements _DoctorInfoState {
     const DeepCollectionEquality().hash(_availableTimes),
     selectedTime,
     appointmentId,
+    isAuto,
   );
 
   /// Create a copy of DoctorInfoState
@@ -338,6 +358,7 @@ abstract class _DoctorInfoState implements DoctorInfoState {
     required final List<TimeOfDay> availableTimes,
     final TimeOfDay? selectedTime,
     final int? appointmentId,
+    final bool? isAuto,
   }) = _$DoctorInfoStateImpl;
 
   @override
@@ -356,6 +377,8 @@ abstract class _DoctorInfoState implements DoctorInfoState {
   TimeOfDay? get selectedTime;
   @override
   int? get appointmentId;
+  @override
+  bool? get isAuto;
 
   /// Create a copy of DoctorInfoState
   /// with the given fields replaced by the non-null parameter values.

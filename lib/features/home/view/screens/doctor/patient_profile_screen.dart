@@ -92,6 +92,80 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
           ],
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: BlocBuilder<DoctorPatientBloc, DoctorPatientState>(
+        bloc: _doctorPatientBloc,
+        builder: (context, state) {
+          return Visibility(
+            visible: (state.patient.isChild ?? false),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Flexible(
+                  flex: 1,
+                  child: ElevatedButton(
+                    onPressed:
+                        state.status.isLoading
+                            ? null
+                            : () {
+                              context.pushNamed(
+                                AppRouteConstants.doctorChildVacRecordRouteName,
+                                extra: widget.patient,
+                              );
+                            },
+                    child: Text(
+                      'Vaccine record',
+                      style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                        fontSize: 14,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                Flexible(
+                  flex: 1,
+                  child: BlocBuilder<DoctorPatientBloc, DoctorPatientState>(
+                    bloc: _doctorPatientBloc,
+                    builder: (context, state) {
+                      return ElevatedButton(
+                        onPressed:
+                            state.status.isLoading
+                                ? null
+                                : () async {
+                                  if (state.patient.childRecord == null) {
+                                    final isAdded = await context
+                                        .pushNamed<bool>(
+                                          AppRouteConstants
+                                              .doctorAddChildRecordRouteName,
+                                          extra: widget.patient,
+                                        );
+                                    if (isAdded != null) {
+                                      _doctorPatientBloc.add(
+                                        PatientProfileFetched(),
+                                      );
+                                    }
+                                  } else {
+                                    context.pushNamed(
+                                      AppRouteConstants
+                                          .doctorChildRecordRouteName,
+                                      extra: widget.patient,
+                                    );
+                                  }
+                                },
+                        child: Text(
+                          'Child record',
+                          style: Theme.of(context).textTheme.labelMedium!
+                              .copyWith(fontSize: 14, color: Colors.white),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 
@@ -118,7 +192,7 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
                     ),
                     const SizedBox(height: 20),
                     Text(
-                      "No Analysis found",
+                      "No Appointments found",
                       style: Theme.of(context).textTheme.labelSmall!.copyWith(
                         color: Pallete.black1,
                         fontSize: 16,
@@ -175,13 +249,33 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
                                   alignment: Alignment.center,
                                   child: Text((appointment.id ?? 0).toString()),
                                 ),
-                                Text(
-                                  appointment.appointmentType?.name ??
-                                      'No type',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .labelMedium!
-                                      .copyWith(fontSize: 12),
+                                SizedBox(
+                                  height: 50,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                        appointment.appointmentType?.name ??
+                                            'No type',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .labelMedium!
+                                            .copyWith(fontSize: 12),
+                                      ),
+                                      if (appointment.referredBy != null)
+                                        Text(
+                                          'Referred by : ${appointment.referredBy!}',
+                                          overflow: TextOverflow.ellipsis,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelMedium!
+                                              .copyWith(fontSize: 10),
+                                        ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
@@ -462,7 +556,9 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
                             ),
                           ),
                           Text(
-                            '${patient.age ?? 'No Age'}',
+                            DateFormat(
+                              'dd/MM/yy',
+                            ).format(patient.birthDate ?? DateTime.now()),
                             style: Theme.of(context).textTheme.labelMedium!
                                 .copyWith(fontSize: 14, color: Colors.white),
                           ),

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
 import 'package:our_flutter_clinic_app/core/navigation/app_route_constants.dart';
@@ -223,6 +224,7 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
             BasicInfoWidget(
               onTap: () async {
                 final date = await showDatePicker(
+                  initialEntryMode: DatePickerEntryMode.calendarOnly,
                   context: context,
                   firstDate: DateTime(1920),
                   lastDate: DateTime(2016),
@@ -230,7 +232,8 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
                 );
                 if (date != null) {
                   setState(() {
-                    _ageController.text = calculateAge(date).toString();
+                    _selectedDate = date;
+                    _ageController.text = DateFormat('yyyy-dd-MM').format(date);
                   });
                 }
               },
@@ -309,7 +312,7 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
                   user: UserModel(
                     firstName: firstNameController.text,
                     lastName: lastNameController.text,
-                    age: int.tryParse(_ageController.text) ?? 0,
+                    birthDate: _selectedDate,
                     address: _completeAddressController.text,
                     bloodType: AppConstants.bloodTypes[_selectedBloodType],
                     gender: _selectedGender == 0 ? 'male' : 'female',
@@ -399,6 +402,7 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final _ageController = TextEditingController();
+  DateTime? _selectedDate;
   final _completeAddressController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   LatLng? _chosenLocation;

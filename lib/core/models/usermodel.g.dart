@@ -16,7 +16,10 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       role: $enumDecodeNullable(_$RoleEnumMap, json['role']) ?? Role.patient,
       token: json['token'] as String?,
       password: json['password'] as String?,
-      age: (json['age'] as num?)?.toInt(),
+      birthDate:
+          json['birth_date'] == null
+              ? null
+              : DateTime.parse(json['birth_date'] as String),
       gender: json['gender'] as String?,
       bloodType: json['blood_type'] as String?,
       isCompleteProfile: json['complete_profile'] as bool? ?? false,
@@ -24,12 +27,14 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       photo: json['photo'] as String?,
       clinic: json['clinic'] as String?,
       speciality: json['speciality'] as String?,
+      discountPoints: (json['discount_points'] as num?)?.toInt(),
       professionalTitle: json['professional_title'] as String?,
       finalRate: (json['finalRate'] as num?)?.toDouble(),
       averageVisitDuration: json['average_visit_duration'] as String?,
       visitFee: (json['visit_fee'] as num?)?.toDouble(),
       experience: (json['experience'] as num?)?.toInt(),
       treated: (json['treated'] as num?)?.toInt(),
+      isChild: json['is_child'] as bool?,
       bookingType: json['booking_type'] as String?,
       status: json['status'] as String?,
       sign: json['sign'] as String?,
@@ -37,6 +42,7 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
           (json['schedule'] as List<dynamic>?)
               ?.map((e) => Schedule.fromJson(e as Map<String, dynamic>))
               .toList(),
+      childRecord: (json['child_record'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
@@ -49,7 +55,7 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'role': _$RoleEnumMap[instance.role],
       'token': instance.token,
       'password': instance.password,
-      'age': instance.age,
+      'birth_date': instance.birthDate?.toIso8601String(),
       'gender': instance.gender,
       'blood_type': instance.bloodType,
       'complete_profile': instance.isCompleteProfile,
@@ -57,16 +63,19 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'photo': instance.photo,
       'clinic': instance.clinic,
       'speciality': instance.speciality,
+      'discount_points': instance.discountPoints,
       'professional_title': instance.professionalTitle,
       'finalRate': instance.finalRate,
       'average_visit_duration': instance.averageVisitDuration,
       'visit_fee': instance.visitFee,
       'experience': instance.experience,
       'treated': instance.treated,
+      'is_child': instance.isChild,
       'booking_type': instance.bookingType,
       'status': instance.status,
       'sign': instance.sign,
       'schedule': instance.schedule,
+      'child_record': instance.childRecord,
     };
 
 const _$RoleEnumMap = {

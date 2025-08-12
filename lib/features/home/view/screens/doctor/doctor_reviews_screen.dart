@@ -56,7 +56,7 @@ class _DoctorReviewsScreenState extends State<DoctorReviewsScreen> {
           bloc: _doctorReviewsCubit,
           listener: (context, state) {
             if (state.status.isError) {
-              Fluttertoast.showToast(msg: state.message);
+              showToast(msg: state.message);
             }
           },
           builder: (context, state) {

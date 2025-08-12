@@ -4,6 +4,8 @@ import 'package:our_flutter_clinic_app/features/home/view/widgets/custom_bottom_
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
+import '../../widgets/doctor_vaccines/show_vaccines_screen.dart';
+import '../../widgets/chat/chat_list_widget.dart';
 import '../../widgets/doctor_appointments/appointments_screen_widget.dart';
 import '../../widgets/doctor_patients/visited_patients_screen.dart';
 import '../../widgets/profile/doctor_profile_widget.dart';
@@ -35,6 +37,8 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
                         ? 'Appointments'
                         : _currentIndex == 2
                         ? 'Chat'
+                        : _currentIndex == 3
+                        ? 'Vaccines'
                         : 'Profile',
                     style: Theme.of(
                       context,
@@ -56,8 +60,8 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
           SalomonBottomBarItem(
             icon: Image.asset(
               'assets/icons/patient.png',
-              width: 38,
-              height: 38,
+              width: 32,
+              height: 32,
               fit: BoxFit.cover,
               color: _currentIndex == 0 ? Colors.black : null,
             ),
@@ -66,15 +70,15 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
                 'Patients',
                 style: Theme.of(
                   context,
-                ).textTheme.labelMedium!.copyWith(fontSize: 15),
+                ).textTheme.labelMedium!.copyWith(fontSize: 12),
               ),
             ),
           ),
           SalomonBottomBarItem(
             icon: Image.asset(
               'assets/icons/task.png',
-              width: 38,
-              height: 38,
+              width: 32,
+              height: 32,
               fit: BoxFit.cover,
               color: _currentIndex == 1 ? Colors.black : null,
             ),
@@ -83,15 +87,15 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
                 'Appoints',
                 style: Theme.of(
                   context,
-                ).textTheme.labelMedium!.copyWith(fontSize: 15),
+                ).textTheme.labelMedium!.copyWith(fontSize: 12),
               ),
             ),
           ),
           SalomonBottomBarItem(
             icon: Image.asset(
               'assets/icons/messenger.png',
-              width: 38,
-              height: 38,
+              width: 32,
+              height: 32,
               fit: BoxFit.cover,
               color: _currentIndex == 2 ? Colors.black : null,
             ),
@@ -100,24 +104,41 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
                 'Chat',
                 style: Theme.of(
                   context,
-                ).textTheme.labelMedium!.copyWith(fontSize: 15),
+                ).textTheme.labelMedium!.copyWith(fontSize: 14),
+              ),
+            ),
+          ),
+          SalomonBottomBarItem(
+            icon: Image.asset(
+              'assets/icons/doctor_vaccine.png',
+              width: 32,
+              height: 32,
+              fit: BoxFit.cover,
+              color: _currentIndex == 3 ? Colors.black : null,
+            ),
+            title: FittedBox(
+              child: Text(
+                'Vaccine',
+                style: Theme.of(
+                  context,
+                ).textTheme.labelMedium!.copyWith(fontSize: 14),
               ),
             ),
           ),
           SalomonBottomBarItem(
             icon: Image.asset(
               'assets/icons/profile.png',
-              width: 38,
-              height: 38,
+              width: 32,
+              height: 32,
               fit: BoxFit.cover,
-              color: _currentIndex == 3 ? Colors.black : null,
+              color: _currentIndex == 4 ? Colors.black : null,
             ),
             title: FittedBox(
               child: Text(
                 'Profile',
                 style: Theme.of(
                   context,
-                ).textTheme.labelMedium!.copyWith(fontSize: 15),
+                ).textTheme.labelMedium!.copyWith(fontSize: 14),
               ),
             ),
           ),
@@ -133,8 +154,10 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
       case 1:
         return AppointmentsScreenWidget();
       case 2:
-        return Placeholder();
+        return ChatListWidget();
       case 3:
+        return ShowVaccinesScreen();
+      case 4:
         return DoctorProfileWidget();
       default:
         return Placeholder();

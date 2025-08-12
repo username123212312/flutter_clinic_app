@@ -17,13 +17,17 @@ class AppointmentsRepository {
   AppointmentsRepository({Dio? dio}) : _dio = dio ?? DioClient().instance;
 
   Future<Either<AppFailure, AppResponse<List<AppointmentModel>>>>
-  fetchAllAppointments(AppointmentStatus appointmentStatus) async {
+  fetchAllAppointments(
+    AppointmentStatus appointmentStatus,
+    AppointmentType appointmentType,
+  ) async {
     try {
       final response = await _dio.post(
         AppConstants.showAppointmentPath,
         data: {
           'status': appointmentStatus.name,
           if (getChildId() != null) 'child_id': getChildId(),
+          if (getChildId() != null) 'appointment_type': appointmentType.name,
         },
       );
       if (response.data['statusCode'] < 300) {
@@ -33,7 +37,11 @@ class AppointmentsRepository {
             success: true,
             data:
                 (response.data['items'] as List<dynamic>).map((appointment) {
-                  return AppointmentModel.fromJson(appointment);
+                  return AppointmentModel.fromJson(appointment).copyWith(
+                    type: AppointmentType.values.firstWhere((a) {
+                      return a.name == appointment['appointment_type'];
+                    }),
+                  );
                 }).toList(),
             statusCode: response.data['statusCode'],
             statusMessage: response.data['statusMessage'],

@@ -27,7 +27,7 @@ mixin _$CompleteUserInfoRequest {
   String? get firstName => throw _privateConstructorUsedError;
   @JsonKey(name: 'last_name')
   String? get lastName => throw _privateConstructorUsedError;
-  int? get age => throw _privateConstructorUsedError;
+  DateTime? get birthDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'blood_type')
   String? get bloodType => throw _privateConstructorUsedError;
   String? get gender => throw _privateConstructorUsedError;
@@ -55,7 +55,7 @@ abstract class $CompleteUserInfoRequestCopyWith<$Res> {
   $Res call({
     @JsonKey(name: 'first_name') String? firstName,
     @JsonKey(name: 'last_name') String? lastName,
-    int? age,
+    DateTime? birthDate,
     @JsonKey(name: 'blood_type') String? bloodType,
     String? gender,
     String? address,
@@ -84,7 +84,7 @@ class _$CompleteUserInfoRequestCopyWithImpl<
   $Res call({
     Object? firstName = freezed,
     Object? lastName = freezed,
-    Object? age = freezed,
+    Object? birthDate = freezed,
     Object? bloodType = freezed,
     Object? gender = freezed,
     Object? address = freezed,
@@ -103,11 +103,11 @@ class _$CompleteUserInfoRequestCopyWithImpl<
                     ? _value.lastName
                     : lastName // ignore: cast_nullable_to_non_nullable
                         as String?,
-            age:
-                freezed == age
-                    ? _value.age
-                    : age // ignore: cast_nullable_to_non_nullable
-                        as int?,
+            birthDate:
+                freezed == birthDate
+                    ? _value.birthDate
+                    : birthDate // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
             bloodType:
                 freezed == bloodType
                     ? _value.bloodType
@@ -151,7 +151,7 @@ abstract class _$$CompleteUserInfoRequestImplCopyWith<$Res>
   $Res call({
     @JsonKey(name: 'first_name') String? firstName,
     @JsonKey(name: 'last_name') String? lastName,
-    int? age,
+    DateTime? birthDate,
     @JsonKey(name: 'blood_type') String? bloodType,
     String? gender,
     String? address,
@@ -180,7 +180,7 @@ class __$$CompleteUserInfoRequestImplCopyWithImpl<$Res>
   $Res call({
     Object? firstName = freezed,
     Object? lastName = freezed,
-    Object? age = freezed,
+    Object? birthDate = freezed,
     Object? bloodType = freezed,
     Object? gender = freezed,
     Object? address = freezed,
@@ -199,11 +199,11 @@ class __$$CompleteUserInfoRequestImplCopyWithImpl<$Res>
                 ? _value.lastName
                 : lastName // ignore: cast_nullable_to_non_nullable
                     as String?,
-        age:
-            freezed == age
-                ? _value.age
-                : age // ignore: cast_nullable_to_non_nullable
-                    as int?,
+        birthDate:
+            freezed == birthDate
+                ? _value.birthDate
+                : birthDate // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
         bloodType:
             freezed == bloodType
                 ? _value.bloodType
@@ -240,7 +240,7 @@ class _$CompleteUserInfoRequestImpl implements _CompleteUserInfoRequest {
   _$CompleteUserInfoRequestImpl({
     @JsonKey(name: 'first_name') this.firstName,
     @JsonKey(name: 'last_name') this.lastName,
-    this.age,
+    this.birthDate,
     @JsonKey(name: 'blood_type') this.bloodType,
     this.gender,
     this.address,
@@ -258,7 +258,7 @@ class _$CompleteUserInfoRequestImpl implements _CompleteUserInfoRequest {
   @JsonKey(name: 'last_name')
   final String? lastName;
   @override
-  final int? age;
+  final DateTime? birthDate;
   @override
   @JsonKey(name: 'blood_type')
   final String? bloodType;
@@ -273,7 +273,7 @@ class _$CompleteUserInfoRequestImpl implements _CompleteUserInfoRequest {
 
   @override
   String toString() {
-    return 'CompleteUserInfoRequest(firstName: $firstName, lastName: $lastName, age: $age, bloodType: $bloodType, gender: $gender, address: $address, email: $email, phone: $phone)';
+    return 'CompleteUserInfoRequest(firstName: $firstName, lastName: $lastName, birthDate: $birthDate, bloodType: $bloodType, gender: $gender, address: $address, email: $email, phone: $phone)';
   }
 
   @override
@@ -285,7 +285,8 @@ class _$CompleteUserInfoRequestImpl implements _CompleteUserInfoRequest {
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
-            (identical(other.age, age) || other.age == age) &&
+            (identical(other.birthDate, birthDate) ||
+                other.birthDate == birthDate) &&
             (identical(other.bloodType, bloodType) ||
                 other.bloodType == bloodType) &&
             (identical(other.gender, gender) || other.gender == gender) &&
@@ -300,7 +301,7 @@ class _$CompleteUserInfoRequestImpl implements _CompleteUserInfoRequest {
     runtimeType,
     firstName,
     lastName,
-    age,
+    birthDate,
     bloodType,
     gender,
     address,
@@ -328,7 +329,7 @@ abstract class _CompleteUserInfoRequest implements CompleteUserInfoRequest {
   factory _CompleteUserInfoRequest({
     @JsonKey(name: 'first_name') final String? firstName,
     @JsonKey(name: 'last_name') final String? lastName,
-    final int? age,
+    final DateTime? birthDate,
     @JsonKey(name: 'blood_type') final String? bloodType,
     final String? gender,
     final String? address,
@@ -346,7 +347,7 @@ abstract class _CompleteUserInfoRequest implements CompleteUserInfoRequest {
   @JsonKey(name: 'last_name')
   String? get lastName;
   @override
-  int? get age;
+  DateTime? get birthDate;
   @override
   @JsonKey(name: 'blood_type')
   String? get bloodType;

@@ -4,6 +4,8 @@ part of 'new_appointment_bloc.dart';
 sealed class NewAppointmentState with _$NewAppointmentState {
   const factory NewAppointmentState({
     ClinicModel? department,
+    bool? isAuto,
+    @Default(false) bool isVaccine,
     DoctorModel? doctor,
     List<DoctorModel>? searchList,
     String? statusMessage,
@@ -19,7 +21,6 @@ sealed class NewAppointmentState with _$NewAppointmentState {
   factory NewAppointmentState.initial() {
     return NewAppointmentState(
       dates: [],
-      time: TimeOfDay.now(),
       searchList: [],
       doctor: DoctorModel(firstName: 'Choose', lastName: ' a doctor'),
       clinics: [],

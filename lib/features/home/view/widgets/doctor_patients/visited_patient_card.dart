@@ -6,9 +6,9 @@ import '../../../../../core/theme/app_pallete.dart';
 class VisitedPatientCard extends StatelessWidget {
   final String firstName;
   final String lastName;
-  final int age;
+  final String age;
   final String address;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   const VisitedPatientCard({
     super.key,
@@ -16,7 +16,7 @@ class VisitedPatientCard extends StatelessWidget {
     required this.lastName,
     required this.age,
     required this.address,
-    required this.onTap,
+    this.onTap,
   });
 
   @override
@@ -49,6 +49,8 @@ class VisitedPatientCard extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             address,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.titleSmall!.copyWith(
               fontSize: 13,
               color: Pallete.grayScaleColor500,

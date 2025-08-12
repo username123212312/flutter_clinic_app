@@ -19,7 +19,11 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AddNewAppointmentRequest {
   int get doctorId => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
-  TimeOfDay get time => throw _privateConstructorUsedError;
+  TimeOfDay? get time => throw _privateConstructorUsedError;
+  @JsonKey(name: 'record_id')
+  int? get recordId => throw _privateConstructorUsedError;
+  bool get isVaccine => throw _privateConstructorUsedError;
+  AppointmentType? get type => throw _privateConstructorUsedError;
 
   /// Create a copy of AddNewAppointmentRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -35,7 +39,14 @@ abstract class $AddNewAppointmentRequestCopyWith<$Res> {
     $Res Function(AddNewAppointmentRequest) then,
   ) = _$AddNewAppointmentRequestCopyWithImpl<$Res, AddNewAppointmentRequest>;
   @useResult
-  $Res call({int doctorId, DateTime date, TimeOfDay time});
+  $Res call({
+    int doctorId,
+    DateTime date,
+    TimeOfDay? time,
+    @JsonKey(name: 'record_id') int? recordId,
+    bool isVaccine,
+    AppointmentType? type,
+  });
 }
 
 /// @nodoc
@@ -58,7 +69,10 @@ class _$AddNewAppointmentRequestCopyWithImpl<
   $Res call({
     Object? doctorId = null,
     Object? date = null,
-    Object? time = null,
+    Object? time = freezed,
+    Object? recordId = freezed,
+    Object? isVaccine = null,
+    Object? type = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -73,10 +87,25 @@ class _$AddNewAppointmentRequestCopyWithImpl<
                     : date // ignore: cast_nullable_to_non_nullable
                         as DateTime,
             time:
-                null == time
+                freezed == time
                     ? _value.time
                     : time // ignore: cast_nullable_to_non_nullable
-                        as TimeOfDay,
+                        as TimeOfDay?,
+            recordId:
+                freezed == recordId
+                    ? _value.recordId
+                    : recordId // ignore: cast_nullable_to_non_nullable
+                        as int?,
+            isVaccine:
+                null == isVaccine
+                    ? _value.isVaccine
+                    : isVaccine // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            type:
+                freezed == type
+                    ? _value.type
+                    : type // ignore: cast_nullable_to_non_nullable
+                        as AppointmentType?,
           )
           as $Val,
     );
@@ -92,7 +121,14 @@ abstract class _$$AddNewAppointmentRequestImplCopyWith<$Res>
   ) = __$$AddNewAppointmentRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int doctorId, DateTime date, TimeOfDay time});
+  $Res call({
+    int doctorId,
+    DateTime date,
+    TimeOfDay? time,
+    @JsonKey(name: 'record_id') int? recordId,
+    bool isVaccine,
+    AppointmentType? type,
+  });
 }
 
 /// @nodoc
@@ -115,7 +151,10 @@ class __$$AddNewAppointmentRequestImplCopyWithImpl<$Res>
   $Res call({
     Object? doctorId = null,
     Object? date = null,
-    Object? time = null,
+    Object? time = freezed,
+    Object? recordId = freezed,
+    Object? isVaccine = null,
+    Object? type = freezed,
   }) {
     return _then(
       _$AddNewAppointmentRequestImpl(
@@ -130,10 +169,25 @@ class __$$AddNewAppointmentRequestImplCopyWithImpl<$Res>
                 : date // ignore: cast_nullable_to_non_nullable
                     as DateTime,
         time:
-            null == time
+            freezed == time
                 ? _value.time
                 : time // ignore: cast_nullable_to_non_nullable
-                    as TimeOfDay,
+                    as TimeOfDay?,
+        recordId:
+            freezed == recordId
+                ? _value.recordId
+                : recordId // ignore: cast_nullable_to_non_nullable
+                    as int?,
+        isVaccine:
+            null == isVaccine
+                ? _value.isVaccine
+                : isVaccine // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        type:
+            freezed == type
+                ? _value.type
+                : type // ignore: cast_nullable_to_non_nullable
+                    as AppointmentType?,
       ),
     );
   }
@@ -145,7 +199,10 @@ class _$AddNewAppointmentRequestImpl implements _AddNewAppointmentRequest {
   _$AddNewAppointmentRequestImpl({
     required this.doctorId,
     required this.date,
-    required this.time,
+    this.time,
+    @JsonKey(name: 'record_id') this.recordId,
+    this.isVaccine = false,
+    this.type,
   });
 
   @override
@@ -153,11 +210,19 @@ class _$AddNewAppointmentRequestImpl implements _AddNewAppointmentRequest {
   @override
   final DateTime date;
   @override
-  final TimeOfDay time;
+  final TimeOfDay? time;
+  @override
+  @JsonKey(name: 'record_id')
+  final int? recordId;
+  @override
+  @JsonKey()
+  final bool isVaccine;
+  @override
+  final AppointmentType? type;
 
   @override
   String toString() {
-    return 'AddNewAppointmentRequest(doctorId: $doctorId, date: $date, time: $time)';
+    return 'AddNewAppointmentRequest(doctorId: $doctorId, date: $date, time: $time, recordId: $recordId, isVaccine: $isVaccine, type: $type)';
   }
 
   @override
@@ -168,11 +233,17 @@ class _$AddNewAppointmentRequestImpl implements _AddNewAppointmentRequest {
             (identical(other.doctorId, doctorId) ||
                 other.doctorId == doctorId) &&
             (identical(other.date, date) || other.date == date) &&
-            (identical(other.time, time) || other.time == time));
+            (identical(other.time, time) || other.time == time) &&
+            (identical(other.recordId, recordId) ||
+                other.recordId == recordId) &&
+            (identical(other.isVaccine, isVaccine) ||
+                other.isVaccine == isVaccine) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, doctorId, date, time);
+  int get hashCode =>
+      Object.hash(runtimeType, doctorId, date, time, recordId, isVaccine, type);
 
   /// Create a copy of AddNewAppointmentRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -189,7 +260,10 @@ abstract class _AddNewAppointmentRequest implements AddNewAppointmentRequest {
   factory _AddNewAppointmentRequest({
     required final int doctorId,
     required final DateTime date,
-    required final TimeOfDay time,
+    final TimeOfDay? time,
+    @JsonKey(name: 'record_id') final int? recordId,
+    final bool isVaccine,
+    final AppointmentType? type,
   }) = _$AddNewAppointmentRequestImpl;
 
   @override
@@ -197,7 +271,14 @@ abstract class _AddNewAppointmentRequest implements AddNewAppointmentRequest {
   @override
   DateTime get date;
   @override
-  TimeOfDay get time;
+  TimeOfDay? get time;
+  @override
+  @JsonKey(name: 'record_id')
+  int? get recordId;
+  @override
+  bool get isVaccine;
+  @override
+  AppointmentType? get type;
 
   /// Create a copy of AddNewAppointmentRequest
   /// with the given fields replaced by the non-null parameter values.

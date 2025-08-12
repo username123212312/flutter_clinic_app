@@ -3,11 +3,13 @@ part of 'user_bloc.dart';
 enum UserStatus {
   loading,
   error,
+  done,
   modified,
   noUser;
 
   bool get isLoading => this == UserStatus.loading;
   bool get isError => this == UserStatus.error;
+  bool get isDone => this == UserStatus.done;
   bool get isModified => this == UserStatus.modified;
   bool get isNoUser => this == UserStatus.noUser;
 }

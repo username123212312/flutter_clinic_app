@@ -10,8 +10,9 @@ _$AppointmentModelImpl _$$AppointmentModelImplFromJson(
   Map<String, dynamic> json,
 ) => _$AppointmentModelImpl(
   id: (json['appointment_id'] as num?)?.toInt(),
-  type: json['type'] as String?,
+  type: const AppointmentTypeConverter().fromJson(json['type'] as String?),
   finalRate: (json['finalRate'] as num?)?.toInt(),
+  referredBy: json['referred by'] as String?,
   clinicId: (json['clinic_id'] as num?)?.toInt(),
   clinicName: json['clinic_name'] as String?,
   doctorId: (json['doctor_id'] as num?)?.toInt(),
@@ -43,8 +44,9 @@ Map<String, dynamic> _$$AppointmentModelImplToJson(
   _$AppointmentModelImpl instance,
 ) => <String, dynamic>{
   'appointment_id': instance.id,
-  'type': instance.type,
+  'type': const AppointmentTypeConverter().toJson(instance.type),
   'finalRate': instance.finalRate,
+  'referred by': instance.referredBy,
   'clinic_id': instance.clinicId,
   'clinic_name': instance.clinicName,
   'doctor_id': instance.doctorId,

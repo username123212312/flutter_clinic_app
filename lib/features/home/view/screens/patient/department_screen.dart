@@ -172,7 +172,7 @@ class _AllDepartmentsScreenState extends State<AllDepartmentsScreen> {
         },
         listener: (_, state) {
           if (state.status.isError) {
-            Fluttertoast.showToast(msg: state.message);
+            showToast(msg: state.message);
           }
         },
       ),

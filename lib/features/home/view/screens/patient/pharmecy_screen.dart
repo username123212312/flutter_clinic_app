@@ -184,7 +184,7 @@ class _PharmacyListScreenState extends State<PharmacyListScreen> {
             },
             listener: (_, state) {
               if (state.status.isError) {
-                Fluttertoast.showToast(msg: state.message);
+                showToast(msg: state.message);
               }
             },
           ),

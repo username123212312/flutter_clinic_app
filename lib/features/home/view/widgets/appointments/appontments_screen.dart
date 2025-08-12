@@ -1,10 +1,4 @@
-import 'dart:developer';
-
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:our_flutter_clinic_app/core/enums.dart';
-import 'package:our_flutter_clinic_app/core/navigation/fade_page_route_builder.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:our_flutter_clinic_app/core/widgets/transparent_content_dialog.dart';
@@ -12,10 +6,7 @@ import 'package:our_flutter_clinic_app/core/widgets/widgets.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
 import 'package:our_flutter_clinic_app/features/home/controller/appointments_bloc/appointments_bloc.dart';
 import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
-import 'package:our_flutter_clinic_app/features/home/repository/appointments_repository.dart';
-import 'package:our_flutter_clinic_app/features/home/view/screens/patient/appointment_details_screen.dart';
 import '../../../../../core/utils/utils.dart';
-import '../../screens/patient/reschedule_screen.dart';
 import '../home_widgets.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -143,8 +134,8 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
       backgroundColor: Colors.transparent,
       elevation: 0,
       floating: true,
-      collapsedHeight: screenHeight(context) * 0.101,
-      toolbarHeight: screenHeight(context) * 0.1,
+      collapsedHeight: screenHeight(context) * 0.1,
+      toolbarHeight: screenHeight(context) * 0.09,
       title: ThreeSelectableWidget(
         titles: ['Pending', 'Finished', 'Canceled'],
         onChange: (newIndex) async {
@@ -152,15 +143,48 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
           context.read<AppointmentsBloc>().add(
             AppointmentStatusChanged(appointmentStatus: _currentStatus),
           );
-          await for (final newState
-              in context.read<AppointmentsBloc>().stream) {
-            if (newState.status?.isData ?? false) {
-              _loadData();
-              break;
-            }
-          }
+          // await for (final newState
+          //     in context.read<AppointmentsBloc>().stream) {
+          //   if (newState.status?.isData ?? false) {
+          //     _loadData();
+          //     break;
+          //   }
+          // }
         },
       ),
+      bottom:
+          getChildId() == null
+              ? null
+              : PreferredSize(
+                preferredSize: Size(
+                  screenWidth(context),
+                  screenHeight(context) * 0.05,
+                ),
+                child: SizedBox(
+                  width: screenWidth(context) * 0.7,
+                  height: screenHeight(context) * 0.09,
+                  child: FittedBox(
+                    child: BlocBuilder<AppointmentsBloc, AppointmentsState>(
+                      builder: (context, state) {
+                        return TwoSelectableWidget(
+                          currentIndex: state.appointmentType.isVisit ? 0 : 1,
+                          twoTitles: ['Regular', 'Vaccine'],
+                          onToggleIndex: (newIndex) {
+                            context.read<AppointmentsBloc>().add(
+                              AppointmentTypeChanged(
+                                appointmentType:
+                                    newIndex == 0
+                                        ? AppointmentType.visit
+                                        : AppointmentType.vaccination,
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ),
     );
   }
 
@@ -290,6 +314,7 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
   }
 
   AppointmentStatus _currentStatus = AppointmentStatus.pending;
+  int _currentAppointmentTypeIndex = 0;
 
   final GlobalKey<SliverAnimatedListState> _listKey =
       GlobalKey<SliverAnimatedListState>();

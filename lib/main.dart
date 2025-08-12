@@ -15,6 +15,7 @@ import 'package:our_flutter_clinic_app/features/home/controller/labtech_analysis
 import 'package:our_flutter_clinic_app/service_locator.dart';
 import 'package:path_provider/path_provider.dart' as p;
 
+import 'core/blocs/chat_bloc/chat_bloc.dart';
 import 'core/cubits/change_password_cubit/change_password_cubit.dart';
 import 'core/observers/custom_bloc_observer.dart';
 import 'core/blocs/user_bloc/user_bloc.dart';
@@ -22,8 +23,10 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 import 'core/services/fcm/fcm_service.dart';
 import 'core/services/notification/notification_service.dart';
+import 'features/home/controller/chat_doctors_list_cubit/chat_doctors_list_cubit.dart';
 import 'features/home/controller/doctor_appointments_bloc/doctor_appointments_bloc.dart';
 import 'features/home/controller/doctor_patients_bloc/doctor_patients_bloc.dart';
+import 'features/home/controller/select_vaccination_cubit/select_vaccination_cubit.dart';
 import 'features/home/view/screens/doctor/doctor_home_screen.dart';
 import 'features/home/view/screens/patient/switch_account_screen.dart';
 
@@ -59,6 +62,13 @@ class ClinicApp extends StatelessWidget {
         ),
         BlocProvider.value(
           value: ServiceLocator.instance<DoctorPatientsBloc>(),
+        ),
+        BlocProvider.value(value: ServiceLocator.instance<ChatBloc>()),
+        BlocProvider.value(
+          value: ServiceLocator.instance<ChatDoctorsListCubit>(),
+        ),
+        BlocProvider.value(
+          value: ServiceLocator.instance<SelectVaccinationCubit>(),
         ),
       ],
       // child: MaterialApp(

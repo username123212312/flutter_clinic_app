@@ -11,7 +11,7 @@ class CustomCachedNetworkImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       errorWidget: (context, url, error) {
-        return Container(color: Colors.blue);
+        return Image.asset(fit: BoxFit.cover, 'assets/images/logo.webp');
       },
       fit: BoxFit.cover,
       imageUrl: '${AppConstants.serverUrl}$imagePath',

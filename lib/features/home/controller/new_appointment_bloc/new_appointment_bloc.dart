@@ -12,6 +12,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../core/enums.dart';
 import '../../model/doctor_model.dart';
+import '../../model/vaccinationrecord.dart';
 
 part 'new_appointment_event.dart';
 part 'new_appointment_state.dart';
@@ -178,6 +179,7 @@ class NewAppointmentBloc
           statusMessage: r.message,
           date: event.date,
           availableTimes: r.data,
+          isAuto: (r.data ?? []).isEmpty,
           status: DataStatus.data,
         ),
       };
@@ -198,7 +200,12 @@ class NewAppointmentBloc
         AddNewAppointmentRequest(
           doctorId: state.doctor?.id ?? 0,
           date: state.date ?? DateTime.now(),
-          time: state.time ?? TimeOfDay.now(),
+          time: state.time,
+          recordId: event.vaccination?.id ?? -1,
+          type:
+              event.vaccination == null
+                  ? AppointmentType.visit
+                  : AppointmentType.vaccination,
         ),
       );
       final newState = switch (response) {

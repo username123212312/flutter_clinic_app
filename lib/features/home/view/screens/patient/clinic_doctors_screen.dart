@@ -80,7 +80,7 @@ class _ClinicDoctorsScreenState extends State<ClinicDoctorsScreen> {
                 bloc: _clinicDoctorsCubit,
                 listener: (context, state) {
                   if (state.status.isError) {
-                    Fluttertoast.showToast(msg: state.message);
+                    showToast(msg: state.message);
                   }
                 },
                 builder: (context, state) {

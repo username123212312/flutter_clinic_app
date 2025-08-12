@@ -32,6 +32,7 @@ mixin _$DoctorModel {
   String? get clinic => throw _privateConstructorUsedError;
   @JsonKey(name: 'photo_path')
   String? get photoPath => throw _privateConstructorUsedError;
+  String? get photo => throw _privateConstructorUsedError;
   @JsonKey(name: 'professional_title')
   String? get professionalTitle => throw _privateConstructorUsedError;
   @JsonKey(name: 'average_visit_duration')
@@ -73,6 +74,7 @@ abstract class $DoctorModelCopyWith<$Res> {
     @JsonKey(name: 'clinic_id') int? clinicId,
     String? clinic,
     @JsonKey(name: 'photo_path') String? photoPath,
+    String? photo,
     @JsonKey(name: 'professional_title') String? professionalTitle,
     @JsonKey(name: 'average_visit_duration') String? averageVisitDuration,
     int? treated,
@@ -109,6 +111,7 @@ class _$DoctorModelCopyWithImpl<$Res, $Val extends DoctorModel>
     Object? clinicId = freezed,
     Object? clinic = freezed,
     Object? photoPath = freezed,
+    Object? photo = freezed,
     Object? professionalTitle = freezed,
     Object? averageVisitDuration = freezed,
     Object? treated = freezed,
@@ -157,6 +160,11 @@ class _$DoctorModelCopyWithImpl<$Res, $Val extends DoctorModel>
                 freezed == photoPath
                     ? _value.photoPath
                     : photoPath // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            photo:
+                freezed == photo
+                    ? _value.photo
+                    : photo // ignore: cast_nullable_to_non_nullable
                         as String?,
             professionalTitle:
                 freezed == professionalTitle
@@ -236,6 +244,7 @@ abstract class _$$DoctorModelImplCopyWith<$Res>
     @JsonKey(name: 'clinic_id') int? clinicId,
     String? clinic,
     @JsonKey(name: 'photo_path') String? photoPath,
+    String? photo,
     @JsonKey(name: 'professional_title') String? professionalTitle,
     @JsonKey(name: 'average_visit_duration') String? averageVisitDuration,
     int? treated,
@@ -271,6 +280,7 @@ class __$$DoctorModelImplCopyWithImpl<$Res>
     Object? clinicId = freezed,
     Object? clinic = freezed,
     Object? photoPath = freezed,
+    Object? photo = freezed,
     Object? professionalTitle = freezed,
     Object? averageVisitDuration = freezed,
     Object? treated = freezed,
@@ -319,6 +329,11 @@ class __$$DoctorModelImplCopyWithImpl<$Res>
             freezed == photoPath
                 ? _value.photoPath
                 : photoPath // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        photo:
+            freezed == photo
+                ? _value.photo
+                : photo // ignore: cast_nullable_to_non_nullable
                     as String?,
         professionalTitle:
             freezed == professionalTitle
@@ -391,6 +406,7 @@ class _$DoctorModelImpl implements _DoctorModel {
     @JsonKey(name: 'clinic_id') this.clinicId,
     this.clinic,
     @JsonKey(name: 'photo_path') this.photoPath,
+    this.photo,
     @JsonKey(name: 'professional_title') this.professionalTitle,
     @JsonKey(name: 'average_visit_duration') this.averageVisitDuration,
     this.treated,
@@ -425,6 +441,8 @@ class _$DoctorModelImpl implements _DoctorModel {
   @override
   @JsonKey(name: 'photo_path')
   final String? photoPath;
+  @override
+  final String? photo;
   @override
   @JsonKey(name: 'professional_title')
   final String? professionalTitle;
@@ -461,7 +479,7 @@ class _$DoctorModelImpl implements _DoctorModel {
 
   @override
   String toString() {
-    return 'DoctorModel(id: $id, firstName: $firstName, lastName: $lastName, phone: $phone, clinicId: $clinicId, clinic: $clinic, photoPath: $photoPath, professionalTitle: $professionalTitle, averageVisitDuration: $averageVisitDuration, treated: $treated, speciality: $speciality, department: $department, finalRate: $finalRate, visitFee: $visitFee, excperience: $excperience, status: $status, sign: $sign, schedule: $schedule)';
+    return 'DoctorModel(id: $id, firstName: $firstName, lastName: $lastName, phone: $phone, clinicId: $clinicId, clinic: $clinic, photoPath: $photoPath, photo: $photo, professionalTitle: $professionalTitle, averageVisitDuration: $averageVisitDuration, treated: $treated, speciality: $speciality, department: $department, finalRate: $finalRate, visitFee: $visitFee, excperience: $excperience, status: $status, sign: $sign, schedule: $schedule)';
   }
 
   @override
@@ -480,6 +498,7 @@ class _$DoctorModelImpl implements _DoctorModel {
             (identical(other.clinic, clinic) || other.clinic == clinic) &&
             (identical(other.photoPath, photoPath) ||
                 other.photoPath == photoPath) &&
+            (identical(other.photo, photo) || other.photo == photo) &&
             (identical(other.professionalTitle, professionalTitle) ||
                 other.professionalTitle == professionalTitle) &&
             (identical(other.averageVisitDuration, averageVisitDuration) ||
@@ -502,7 +521,7 @@ class _$DoctorModelImpl implements _DoctorModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
+  int get hashCode => Object.hashAll([
     runtimeType,
     id,
     firstName,
@@ -511,6 +530,7 @@ class _$DoctorModelImpl implements _DoctorModel {
     clinicId,
     clinic,
     photoPath,
+    photo,
     professionalTitle,
     averageVisitDuration,
     treated,
@@ -522,7 +542,7 @@ class _$DoctorModelImpl implements _DoctorModel {
     status,
     sign,
     const DeepCollectionEquality().hash(_schedule),
-  );
+  ]);
 
   /// Create a copy of DoctorModel
   /// with the given fields replaced by the non-null parameter values.
@@ -547,6 +567,7 @@ abstract class _DoctorModel implements DoctorModel {
     @JsonKey(name: 'clinic_id') final int? clinicId,
     final String? clinic,
     @JsonKey(name: 'photo_path') final String? photoPath,
+    final String? photo,
     @JsonKey(name: 'professional_title') final String? professionalTitle,
     @JsonKey(name: 'average_visit_duration') final String? averageVisitDuration,
     final int? treated,
@@ -581,6 +602,8 @@ abstract class _DoctorModel implements DoctorModel {
   @override
   @JsonKey(name: 'photo_path')
   String? get photoPath;
+  @override
+  String? get photo;
   @override
   @JsonKey(name: 'professional_title')
   String? get professionalTitle;

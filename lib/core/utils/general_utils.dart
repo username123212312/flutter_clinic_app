@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/logger.dart';
@@ -42,6 +43,7 @@ Future<DateTime?> showRestrictedDatePicker({
 }) async {
   if (availableDates.isNotEmpty) {
     return await showDatePicker(
+      initialEntryMode: DatePickerEntryMode.calendarOnly,
       context: context,
       initialDate: availableDates.first,
       firstDate: availableDates.first,
@@ -191,4 +193,17 @@ List<Color> selectAppointmentStatusColor(AppointmentStatus appointmentStatus) {
       Pallete.alertDangerColor,
     ],
   };
+}
+
+void showToast({required String msg}) {
+  Fluttertoast.showToast(
+    msg: msg.length > 70 ? 'Some Error occurred' : msg,
+
+    toastLength: Toast.LENGTH_SHORT,
+    gravity: ToastGravity.BOTTOM_RIGHT,
+    timeInSecForIosWeb: 1,
+    backgroundColor: Pallete.graysGray2,
+    textColor: Colors.black,
+    fontSize: 14.0,
+  );
 }

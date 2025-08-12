@@ -67,7 +67,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                 LoadingOverlay().show(context);
               } else {
                 LoadingOverlay().hideAll();
-                Fluttertoast.showToast(msg: state.message);
+                showToast(msg: state.message);
               }
             },
             builder: (context, state) {

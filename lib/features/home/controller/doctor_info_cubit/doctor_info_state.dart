@@ -11,6 +11,7 @@ class DoctorInfoState with _$DoctorInfoState {
     required List<TimeOfDay> availableTimes,
     TimeOfDay? selectedTime,
     int? appointmentId,
+    bool? isAuto,
   }) = _DoctorInfoState;
   factory DoctorInfoState.initial(DoctorModel doctor) {
     return DoctorInfoState(

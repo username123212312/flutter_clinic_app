@@ -95,6 +95,7 @@ class DoctorInfoCubit extends Cubit<DoctorInfoState> {
             status: DataStatus.data,
             message: r.message,
             availableTimes: r.data ?? state.availableTimes,
+            isAuto: (r.data ?? []).isEmpty,
           ),
         };
         emit(newState);
@@ -109,14 +110,14 @@ class DoctorInfoCubit extends Cubit<DoctorInfoState> {
   }
 
   Future<void> bookNewAppointment() async {
-    if (state.selectedTime != null) {
+    if (state.selectedDate != null) {
       _emitLoading();
       try {
         final response = await _doctorInfoRepository.addNewAppointment(
           AddNewAppointmentRequest(
-            doctorId: state.doctor.id ?? 0,
+            doctorId: state.doctor.id ?? -1,
             date: state.selectedDate ?? DateTime.now(),
-            time: state.selectedTime ?? TimeOfDay.now(),
+            time: (state.isAuto ?? false) ? null : state.selectedTime,
           ),
         );
         final newState = switch (response) {

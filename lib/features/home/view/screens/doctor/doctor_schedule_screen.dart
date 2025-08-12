@@ -212,11 +212,11 @@ class _DoctorScheduleScreenState extends State<DoctorScheduleScreen> {
                     } else {
                       LoadingOverlay().hideAll();
                       if (state.status.isDone) {
-                        Fluttertoast.showToast(msg: state.message);
+                        showToast(msg: state.message);
                         context.goNamed(AppRouteConstants.doctorHomeRouteName);
                       }
                       if (state.status.isError) {
-                        Fluttertoast.showToast(msg: state.message);
+                        showToast(msg: state.message);
                       }
                     }
                   },
@@ -232,9 +232,7 @@ class _DoctorScheduleScreenState extends State<DoctorScheduleScreen> {
                                     workDays: selectedShifts,
                                   );
                                 } else {
-                                  Fluttertoast.showToast(
-                                    msg: 'You must select Shifts',
-                                  );
+                                  showToast(msg: 'You must select Shifts');
                                 }
                               },
                       color: Pallete.primaryColor,

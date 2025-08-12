@@ -135,7 +135,7 @@ class _AnalysisInfoScreenState extends State<AnalysisInfoScreen> {
                                         current.status.isError,
                                 listener: (context, state) {
                                   if (state.status.isData) {
-                                    Fluttertoast.showToast(msg: state.message);
+                                    showToast(msg: state.message);
                                     _labtechAnalysisInfoBloc.add(
                                       FetchAnalysis(),
                                     );

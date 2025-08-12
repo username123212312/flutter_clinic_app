@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:intl/intl.dart';
 import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:our_flutter_clinic_app/core/models/app_response.dart';
@@ -211,7 +212,8 @@ class UserRepository {
         data: {
           if (request.firstName != null) 'first_name': request.firstName,
           if (request.lastName != null) 'last_name': request.lastName,
-          if (request.age != null) 'age': request.age,
+          if (request.birthDate != null)
+            'birth_date': DateFormat('yyyy-dd-MM').format(request.birthDate!),
           if (request.gender != null) 'gender': request.gender,
           if (request.bloodType != null) 'blood_type': request.bloodType,
           if (request.address != null) 'address': request.address,
@@ -262,7 +264,8 @@ class UserRepository {
           if (request.email != null) 'email': request.email,
           if (request.phone != null) 'phone': request.phone,
           if (request.gender != null) 'gender': request.gender,
-          if (request.age != null) 'age': request.age,
+          if (request.birthDate != null)
+            'birth_date': DateFormat('yyyy-dd-MM').format(request.birthDate!),
           if (request.address != null) 'address': request.address,
           if (request.bloodType != null) 'blood_type': request.bloodType,
           if (getChildId() != null) 'child_id': getChildId(),
@@ -313,7 +316,9 @@ class UserRepository {
       if (request.speciality != null) 'speciality': request.speciality,
       if (request.professionalTitle != null)
         'professional_title': request.professionalTitle,
-      if (request.visitFee != null) 'average_visit_duration': request.visitFee,
+      if (request.visitFee != null) 'visit_fee': request.visitFee,
+      if (request.averageVisitDuration != null)
+        'average_visit_duration': request.averageVisitDuration,
       if (request.experience != null) 'experience': request.experience,
       if (request.bookingType != null) 'booking_type': request.bookingType,
       if (request.status != null) 'status': request.status,
@@ -463,7 +468,7 @@ class UserRepository {
         data: {
           'first_name': request.firstName,
           'last_name': request.lastName,
-          'age': request.age,
+          'birth_date': DateFormat('yyyy-MM-dd').format(request.birthDate!),
           'gender': request.gender,
           'blood_type': request.bloodType,
           'address': request.address,
