@@ -192,7 +192,7 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
                     ),
                     const SizedBox(height: 20),
                     Text(
-                      "No Analysis found",
+                      "No Appointments found",
                       style: Theme.of(context).textTheme.labelSmall!.copyWith(
                         color: Pallete.black1,
                         fontSize: 16,

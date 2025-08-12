@@ -43,6 +43,7 @@ Future<DateTime?> showRestrictedDatePicker({
 }) async {
   if (availableDates.isNotEmpty) {
     return await showDatePicker(
+      initialEntryMode: DatePickerEntryMode.calendarOnly,
       context: context,
       initialDate: availableDates.first,
       firstDate: availableDates.first,

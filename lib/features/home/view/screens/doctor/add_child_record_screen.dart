@@ -104,6 +104,7 @@ class _AddChildRecordScreenState extends State<AddChildRecordScreen> {
                         },
                         onTap: () async {
                           final date = await showDatePicker(
+                            initialEntryMode: DatePickerEntryMode.calendarOnly,
                             context: context,
                             firstDate: DateTime.now().add(Duration(days: 1)),
                             lastDate: DateTime.now().add(Duration(days: 365)),

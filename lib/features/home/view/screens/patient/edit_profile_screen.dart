@@ -321,6 +321,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         CustomTextField(
           onTap: () async {
             final date = await showDatePicker(
+              initialEntryMode: DatePickerEntryMode.calendarOnly,
               context: context,
               firstDate: DateTime(1920),
               lastDate:

@@ -224,6 +224,7 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
             BasicInfoWidget(
               onTap: () async {
                 final date = await showDatePicker(
+                  initialEntryMode: DatePickerEntryMode.calendarOnly,
                   context: context,
                   firstDate: DateTime(1920),
                   lastDate: DateTime(2016),

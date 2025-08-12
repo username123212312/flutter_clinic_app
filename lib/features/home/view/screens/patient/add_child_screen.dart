@@ -158,6 +158,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
                 },
                 onTap: () async {
                   final date = await showDatePicker(
+                    initialEntryMode: DatePickerEntryMode.calendarOnly,
                     context: context,
                     firstDate: DateTime(2016),
                     lastDate: DateTime.now(),
