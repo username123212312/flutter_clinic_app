@@ -41,7 +41,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
       child: Scaffold(
         body: SingleChildScrollView(
           padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).viewInsets.bottom,
+            bottom: MediaQuery.of(context).viewInsets.bottom * 0.3,
           ),
           child: BackgroundContainer(
             child: Column(
@@ -55,8 +55,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
                     },
                     icon: Icon(
                       Icons.arrow_back,
-                      size: 30,
-                      color: Pallete.grayScaleColor400,
+                      size: 28,
+                      color: Pallete.black1,
                     ),
                   ),
                 ),
@@ -64,11 +64,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
                 _buildHeader(),
                 SizedBox(height: screenHeight(context) * 0.05),
                 SizedBox(
-                  width: screenWidth(context) * 0.7,
-                  height: screenHeight(context) * 0.08,
+                  width: screenWidth(context) * 0.8,
                   child: FittedBox(
                     child: TwoSelectableWidget(
-                      inBetweenPadding: 100,
+                      inBetweenPadding: screenWidth(context) * 0.3,
                       twoTitles: ['Email', 'Phone'],
                       onToggleIndex: (index) {
                         FocusScope.of(context).unfocus();
@@ -80,7 +79,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
                 ),
                 SizedBox(height: screenHeight(context) * 0.04),
                 _buildFormField(),
-                SizedBox(height: screenHeight(context) * 0.08),
+                SizedBox(height: screenHeight(context) * 0.02),
                 _buildNextButton(),
               ],
             ),
@@ -175,18 +174,16 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
                     }
                   },
           decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            hintText: _selectedIndex == 0 ? 'Email' : 'Phone',
-            hintStyle: TextStyle(color: Pallete.gray1),
-            prefixIconConstraints: BoxConstraints(maxHeight: 25, maxWidth: 50),
-            prefixIcon:
-                _selectedIndex == 0
-                    ? null
-                    : Text(
-                      textAlign: TextAlign.center,
-                      '  +963',
-                      style: TextStyle(color: Colors.black),
-                    ),
+            contentPadding: EdgeInsets.only(left: 20, top: 40),
+            hintText: _selectedIndex == 0 ? 'Email' : '+963',
+            hintStyle: const TextStyle(
+              fontSize: 13,
+              color: Pallete.grayScaleColor500,
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Pallete.grayScaleColor300),
+              borderRadius: BorderRadius.circular(8),
+            ),
           ),
           keyboardType:
               _selectedIndex == 0 ? TextInputType.text : TextInputType.phone,

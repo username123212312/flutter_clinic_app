@@ -176,11 +176,10 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                     builder: (context, state) {
                       if (state.upcomingAppointmentsList.isEmpty) {
                         return Center(
-                          child: Image.asset(
-                            'assets/images/il_empty_activity.webp',
-                            width: 100,
-                            height: 100,
-                            fit: BoxFit.cover,
+                          child: Text(
+                            'No  Appointments',
+                            style: Theme.of(context).textTheme.labelSmall!
+                                .copyWith(color: Pallete.black1, fontSize: 18),
                           ),
                         );
                       }
@@ -350,11 +349,10 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                     builder: (context, state) {
                       if (state.doctorsList.isEmpty) {
                         return Center(
-                          child: Image.asset(
-                            'assets/images/il_empty_activity.webp',
-                            width: 100,
-                            height: 100,
-                            fit: BoxFit.cover,
+                          child: Text(
+                            'No Doctors',
+                            style: Theme.of(context).textTheme.labelSmall!
+                                .copyWith(color: Pallete.black1, fontSize: 18),
                           ),
                         );
                       }
@@ -457,11 +455,10 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                     builder: (context, state) {
                       if (state.pharmaciesList.isEmpty) {
                         return Center(
-                          child: Image.asset(
-                            'assets/images/il_empty_activity.webp',
-                            width: 120,
-                            height: 120,
-                            fit: BoxFit.cover,
+                          child: Text(
+                            'No pharmacies ',
+                            style: Theme.of(context).textTheme.labelSmall!
+                                .copyWith(color: Pallete.black1, fontSize: 18),
                           ),
                         );
                       }

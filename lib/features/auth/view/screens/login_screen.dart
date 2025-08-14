@@ -307,7 +307,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               TextSpan(text: 'Welcome to '),
               TextSpan(
-                text: 'Clinic',
+                text: 'Mediverse',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ],
