@@ -20,9 +20,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   int _currentIndex = 0;
 
   final _pageTitles = [
-    'Welcoming text about the Clinic application1',
-    'Welcoming text about the Clinic application2',
-    'Welcoming text about the Clinic application3',
+    'Mediverse - Your health, our universe.',
+    'Your Health. Our Mission.',
+    'Healing starts at Mediverse.',
   ];
   @override
   void dispose() {
