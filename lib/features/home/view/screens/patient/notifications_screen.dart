@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -29,7 +30,15 @@ class _NotificationScreenState extends State<NotificationScreen> {
       appBar: AppBar(
         centerTitle: false,
         scrolledUnderElevation: 0,
-        iconTheme: IconThemeData(size: 35),
+        leading: IconButton(
+          onPressed: () => Navigator.of(context).pop(),
+          icon: const Icon(
+            FontAwesomeIcons.arrowLeft,
+            color: Pallete.black1,
+            size: 18,
+          ),
+        ),
+
         title: Text(
           'Notifications',
           style: Theme.of(context).textTheme.titleMedium!.copyWith(
