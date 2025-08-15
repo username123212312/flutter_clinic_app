@@ -63,7 +63,6 @@ dependencies:
   url_launcher: ^6.3.1
   lottie: ^3.3.1
   bloc_concurrency: ^0.3.0
-  top_snackbar_flutter: ^3.3.0
   font_awesome_flutter: ^10.8.0
   flutter_rating_bar: ^4.0.1
   flutter_stripe: ^11.5.0
@@ -82,6 +81,8 @@ dependencies:
   salomon_bottom_bar: ^3.3.2
   flip_card: ^0.7.0
   google_nav_bar: ^5.0.7
+  toastification: ^3.0.3
+  convex_bottom_bar: ^3.2.0
 
 
 dev_dependencies:

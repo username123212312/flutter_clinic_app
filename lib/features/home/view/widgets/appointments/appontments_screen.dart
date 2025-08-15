@@ -50,7 +50,8 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
             return CustomScrollView(
               slivers: [
                 _buildThreeSelectable(),
-                (state.appointments == null || state.appointments!.isEmpty)
+                ((state.appointments == null || state.appointments!.isEmpty) &&
+                        !(state.status ?? DataStatus.error).isLoading)
                     ? SliverToBoxAdapter(
                       child: Center(
                         heightFactor: 2.5,

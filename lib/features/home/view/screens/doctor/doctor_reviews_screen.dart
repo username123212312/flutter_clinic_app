@@ -7,6 +7,7 @@ import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
 import 'package:our_flutter_clinic_app/features/home/model/review_model.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/general_utils.dart';
@@ -56,11 +57,15 @@ class _DoctorReviewsScreenState extends State<DoctorReviewsScreen> {
           bloc: _doctorReviewsCubit,
           listener: (context, state) {
             if (state.status.isError) {
-              showToast(msg: state.message);
+              showToast(
+                context: context,
+                msg: state.message,
+                type: ToastificationType.error,
+              );
             }
           },
           builder: (context, state) {
-            if (state.reviews.isEmpty) {
+            if (state.reviews.isEmpty && !state.status.isLoading) {
               return RefreshIndicator(
                 onRefresh: () async {
                   _doctorReviewsCubit.fetchAllReviews();

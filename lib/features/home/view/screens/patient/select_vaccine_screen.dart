@@ -7,6 +7,7 @@ import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 import 'package:our_flutter_clinic_app/features/home/controller/select_vaccination_cubit/select_vaccination_cubit.dart';
 import 'package:our_flutter_clinic_app/features/home/model/vaccinationrecord.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/enums.dart';
 import '../../../../../core/theme/app_pallete.dart';
@@ -94,30 +95,25 @@ class _SelectVaccineScreenState extends State<SelectVaccineScreen> {
             child: BlocConsumer<SelectVaccinationCubit, SelectVaccinationState>(
               listener: (context, state) {
                 if (state.status.isError) {
-                  showToast(msg: state.message);
+                  showToast(
+                    context: context,
+                    type: ToastificationType.error,
+                    msg: state.message,
+                  );
                 }
               },
               builder: (context, state) {
-                if (state.vaccines.isEmpty) {
+                if (state.vaccines.isEmpty && !state.status.isLoading) {
                   return RefreshIndicator(
                     onRefresh: () async {
                       context.read<SelectVaccinationCubit>().fetchVaccines();
                     },
                     child: SingleChildScrollView(
-                      child:
-                          state.status.isLoading
-                              ? Center(
-                                child: SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: CircularProgressIndicator(),
-                                ),
-                              )
-                              : Center(
-                                child: Image.asset(
-                                  'assets/images/il_empty_activity.webp',
-                                ),
-                              ),
+                      child: Center(
+                        child: Image.asset(
+                          'assets/images/il_empty_activity.webp',
+                        ),
+                      ),
                     ),
                   );
                 }

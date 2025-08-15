@@ -12,6 +12,7 @@ import 'package:our_flutter_clinic_app/core/widgets/custom_cached_network_image.
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/home/model/doctor_model.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../../../core/theme/app_pallete.dart';
 import '../../../../../../../core/utils/utils.dart';
@@ -211,7 +212,11 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
                                   } else {
                                     LoadingOverlay().hideAll();
                                     if (state.status.isError) {
-                                      showToast(msg: state.message);
+                                      showToast(
+                                        context: context,
+                                        type: ToastificationType.error,
+                                        msg: state.message,
+                                      );
                                     }
                                   }
                                 },
@@ -363,9 +368,20 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
                             key: ValueKey(2),
                             bloc: _doctorInfoCubit,
                             listener: (context, state) {
+                              if (state.status.isError) {
+                                showToast(
+                                  context: context,
+                                  type: ToastificationType.error,
+                                  msg: state.message,
+                                );
+                              }
                               if (state.status.isDone &&
                                   state.appointmentId != null) {
-                                showToast(msg: state.message);
+                                showToast(
+                                  context: context,
+                                  type: ToastificationType.success,
+                                  msg: state.message,
+                                );
                                 context.goNamed(
                                   AppRouteConstants.reservationDetailsRouteName,
                                   pathParameters: {

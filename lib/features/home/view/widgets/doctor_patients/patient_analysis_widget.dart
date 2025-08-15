@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/enums.dart';
 import '../../../../../core/models/usermodel.dart';
@@ -109,11 +110,15 @@ class _PatientAnalysisWidgetState extends State<PatientAnalysisWidget> {
               bloc: _doctorPatientAnalysisBloc,
               listener: (context, state) {
                 if (state.status.isError) {
-                  showToast(msg: state.message);
+                  showToast(
+                    context: context,
+                    type: ToastificationType.error,
+                    msg: state.message,
+                  );
                 }
               },
               builder: (context, state) {
-                if (state.analysisList.isEmpty) {
+                if (state.analysisList.isEmpty && !state.status.isLoading) {
                   return RefreshIndicator(
                     onRefresh: () async {
                       _doctorPatientAnalysisBloc.add(AnalysisFetched());

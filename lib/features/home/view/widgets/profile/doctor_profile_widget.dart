@@ -4,6 +4,7 @@ import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:our_flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/widgets/loading_overlay.dart';
 import '../../screens/patient/report_screen.dart';
@@ -252,7 +253,11 @@ class DoctorProfileWidget extends StatelessWidget {
                 } else {
                   LoadingOverlay().hideAll();
                   if (state.status.isError) {
-                    showToast(msg: state.statusMessage);
+                    showToast(
+                      context: context,
+                      type: ToastificationType.error,
+                      msg: state.statusMessage,
+                    );
                   }
                 }
               },

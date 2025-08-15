@@ -233,6 +233,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.2"
+  convex_bottom_bar:
+    dependency: "direct main"
+    description:
+      name: convex_bottom_bar
+      sha256: ebf0f3deb1e8e99374d844fee7485d2980ec502dedfaad395c12118477933aef
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.0"
   cross_file:
     dependency: transitive
     description:
@@ -800,6 +808,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "10.0.0"
+  iconsax_flutter:
+    dependency: transitive
+    description:
+      name: iconsax_flutter
+      sha256: d14b4cec8586025ac15276bdd40f6eea308cb85748135965bb6255f14beb2564
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   image:
     dependency: transitive
     description:
@@ -1168,6 +1184,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.0"
+  pausable_timer:
+    dependency: transitive
+    description:
+      name: pausable_timer
+      sha256: "6ef1a95441ec3439de6fb63f39a011b67e693198e7dae14e20675c3c00e86074"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0+3"
   permission_handler:
     dependency: "direct main"
     description:
@@ -1589,14 +1613,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
-  top_snackbar_flutter:
+  toastification:
     dependency: "direct main"
     description:
-      name: top_snackbar_flutter
-      sha256: ad3f93062450e8c7db97b271d405c180536408cc2be4380a59da7022eb1d750c
+      name: toastification
+      sha256: "69db2bff425b484007409650d8bcd5ed1ce2e9666293ece74dcd917dacf23112"
       url: "https://pub.dev"
     source: hosted
-    version: "3.3.0"
+    version: "3.0.3"
   typed_data:
     dependency: transitive
     description:

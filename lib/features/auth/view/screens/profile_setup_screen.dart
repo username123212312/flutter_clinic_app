@@ -16,6 +16,7 @@ import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/basic_info_widget.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/custom_elevated_button.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/select_your_gender_widet.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../core/blocs/user_bloc/user_bloc.dart';
 import '../../../../core/consts/app_constants.dart';
@@ -93,10 +94,20 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
                         if (state.status.isLoading) {
                           LoadingOverlay().show(context);
                         } else {
-                          clearAndShowSnackBar(context, state.statusMessage);
+                          if (state.status.isError) {
+                            showToast(
+                              context: context,
+                              type: ToastificationType.error,
+                              msg: state.statusMessage,
+                            );
+                          }
 
                           if (state.user?.firstName != null) {
-                            clearAndShowSnackBar(context, state.statusMessage);
+                            showToast(
+                              context: context,
+                              type: ToastificationType.success,
+                              msg: state.statusMessage,
+                            );
                             context.goNamed(AppRouteConstants.homeRouteName);
                           }
                         }
@@ -239,8 +250,8 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
               },
               controller: _ageController,
               readOnly: true,
-              title: 'Age',
-              hintText: 'Age',
+              title: 'Birth Date',
+              hintText: 'Birth Date',
               keyboardType: TextInputType.number,
               suffixIcon: Transform.scale(
                 scaleY: 0.7,

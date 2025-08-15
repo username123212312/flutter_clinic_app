@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/utils.dart';
@@ -56,7 +57,7 @@ class _ReportBottomSheetState extends State<ReportScreen> {
 
   void _submitReport() async {
     if (_selectedReason == null || _commentController.text.trim().isEmpty) {
-      showToast(msg: 'Please fill all fields');
+      showToast(context: context, msg: 'Please fill all fields');
       return;
     } else {
       _reportCubit.report(
@@ -66,8 +67,20 @@ class _ReportBottomSheetState extends State<ReportScreen> {
         ),
       );
       await for (final newState in _reportCubit.stream) {
-        if (newState.status.isDone || newState.status.isError) {
-          showToast(msg: newState.message);
+        if (newState.status.isError) {
+          showToast(
+            context: context,
+            type: ToastificationType.error,
+            msg: newState.message,
+          );
+          break;
+        }
+        if (newState.status.isDone) {
+          showToast(
+            context: context,
+            type: ToastificationType.success,
+            msg: newState.message,
+          );
           break;
         }
       }

@@ -1,7 +1,9 @@
 import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/utils.dart';
+import 'package:our_flutter_clinic_app/features/home/model/chat/chat_model.dart';
 import 'package:search_page/search_page.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/blocs/chat_bloc/chat_bloc.dart';
 import '../../../../../core/services/pusher_service/pusher_client.dart';
 import '../../../../../core/widgets/blank_content.dart';
@@ -37,7 +39,7 @@ class ChatListWidget extends StatelessWidget {
           child: BlocConsumer<ChatBloc, ChatState>(
             listener: (_, __) {},
             builder: (context, state) {
-              if (state.chats.isEmpty) {
+              if (state.chats.isEmpty && !state.status.isLoading) {
                 return SingleChildScrollView(
                   physics: AlwaysScrollableScrollPhysics(),
                   child: SizedBox(
@@ -50,22 +52,39 @@ class ChatListWidget extends StatelessWidget {
                 );
               }
 
-              return ListView.separated(
-                itemBuilder: (context, index) {
-                  final item = state.chats[index];
+              return Skeletonizer(
+                enabled: state.status.isLoading,
+                child: ListView.separated(
+                  itemBuilder: (context, index) {
+                    if (state.status.isLoading) {
+                      return ChatListItem(
+                        key: ValueKey(index),
+                        item: ChatEntity(
+                          id: index,
+                          isPrivate: 0,
+                          createdAt: 'createdAt',
+                          updatedAt: 'updatedAt',
+                          participants: [],
+                        ),
+                        currentUser: currentUser,
+                        onPressed: (chat) {},
+                      );
+                    }
+                    final item = state.chats[index];
 
-                  return ChatListItem(
-                    key: ValueKey(item.id),
-                    item: item,
-                    currentUser: currentUser,
-                    onPressed: (chat) {
-                      chatBloc.add(ChatSelected(chat));
-                      context.pushNamed(AppRouteConstants.chatRouteName);
-                    },
-                  );
-                },
-                separatorBuilder: (_, __) => const Divider(height: 1.5),
-                itemCount: state.chats.length,
+                    return ChatListItem(
+                      key: ValueKey(item.id),
+                      item: item,
+                      currentUser: currentUser,
+                      onPressed: (chat) {
+                        chatBloc.add(ChatSelected(chat));
+                        context.pushNamed(AppRouteConstants.chatRouteName);
+                      },
+                    );
+                  },
+                  separatorBuilder: (_, __) => const Divider(height: 1.5),
+                  itemCount: state.status.isLoading ? 10 : state.chats.length,
+                ),
               );
             },
           ),

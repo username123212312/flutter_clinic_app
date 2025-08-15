@@ -2,6 +2,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/features/home/model/clinic_model.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:toastification/toastification.dart';
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../controller/doctors_list_cubit/doctors_list_cubit.dart';
 import '../../../repository/doctors_list_repository.dart';
@@ -114,11 +115,15 @@ class _DoctorListState extends State<DoctorList> {
                 bloc: _doctorsListCubit,
                 listener: (context, state) {
                   if (state.status.isError) {
-                    showToast(msg: state.message);
+                    showToast(
+                      context: context,
+                      type: ToastificationType.error,
+                      msg: state.message,
+                    );
                   }
                 },
                 builder: (context, state) {
-                  if (state.doctors.isEmpty) {
+                  if (state.doctors.isEmpty && !state.status.isLoading) {
                     return _buildEmpty();
                   }
                   return Skeletonizer(

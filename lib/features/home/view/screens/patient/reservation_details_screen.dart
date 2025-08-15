@@ -9,6 +9,8 @@ import 'package:lottie/lottie.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/home/controller/appointments_bloc/appointments_bloc.dart';
+import 'package:our_flutter_clinic_app/features/home/view/widgets/reservation_detaild_recharge_widget.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/utils.dart';
@@ -69,17 +71,10 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
 
             listener: (context, state) {
               if (state.status.isError) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    duration: Duration(seconds: 5),
-                    action: SnackBarAction(
-                      label: 'Reconfirm',
-                      onPressed: () {
-                        _reservationDetailsCubit.confirmReservationPayment();
-                      },
-                    ),
-                    content: Text(state.message),
-                  ),
+                showToast(
+                  context: context,
+                  msg: state.message,
+                  type: ToastificationType.error,
                 );
               }
             },
@@ -117,8 +112,13 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(30),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.only(
+          top: 30,
+          left: 30,
+          right: 30,
+          bottom: MediaQuery.of(context).viewInsets.bottom * 0.3,
+        ),
         child: BlocBuilder<ReservationDetailsCubit, ReservationDetailsState>(
           bloc: _reservationDetailsCubit,
           builder: (context, state) {
@@ -245,11 +245,19 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                         LoadingOverlay().hideAll();
 
                         if (state.status.isError) {
-                          showToast(msg: state.message);
+                          showToast(
+                            context: context,
+                            type: ToastificationType.error,
+                            msg: state.message,
+                          );
                         }
 
                         if (state.status.isDone) {
-                          showToast(msg: state.message);
+                          showToast(
+                            context: context,
+                            type: ToastificationType.success,
+                            msg: state.message,
+                          );
                           await TransparentDialog.show(
                             context: context,
                             barrierDismissible: false,
@@ -324,6 +332,24 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                     ),
                   ),
                 ),
+
+                const SizedBox(height: 30),
+
+                Center(
+                  child: CustomButton(
+                    text: "My Wallet",
+                    onPressed: () async {
+                      _showTDialog();
+                    },
+                    color: Pallete.primaryColor,
+                    width: (screenWidth ?? 0) * 0.75,
+                    height: (screenHeight ?? 0) * 0.065,
+                    padding: const EdgeInsets.all(16),
+                    borderRadius: 32,
+                    fontSize: 16,
+                    textColor: Pallete.grayScaleColor0,
+                  ),
+                ),
               ],
             );
           },
@@ -354,6 +380,18 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
         _reminderController.text = reminder.toString();
       });
     }
+  }
+
+  Future<dynamic> _showTDialog() {
+    return TransparentDialog.show(
+      barrierDismissible: true,
+      context: context,
+      builder:
+          (_) => CustomDialog(
+            size: Size((screenWidth ?? 0) * 0.9, (screenHeight ?? 0) * 0.23),
+            content: ReservationDetaildRechargeWidget(),
+          ),
+    );
   }
 
   final _reminderController = TextEditingController()..text = '12';
@@ -444,8 +482,19 @@ class __ReminderBottomSheetState extends State<_ReminderBottomSheet> {
                 child: BlocConsumer<ReminderCubit, ReminderState>(
                   bloc: _reminderCubit,
                   listener: (context, state) {
+                    if (state.status.isError) {
+                      showToast(
+                        context: context,
+                        type: ToastificationType.error,
+                        msg: state.message,
+                      );
+                    }
                     if (state.status.isDone) {
-                      showToast(msg: state.message);
+                      showToast(
+                        context: context,
+                        type: ToastificationType.success,
+                        msg: state.message,
+                      );
                       context.pop<int>(_hours.toInt());
                     }
                   },

@@ -6,6 +6,7 @@ import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/home/controller/my_wallet_cubit/my_wallet_cubit.dart';
 import 'package:our_flutter_clinic_app/features/home/repository/payment_repository.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/utils/decimal_input_formatter.dart';
 import '../../../../../core/utils/utils.dart';
@@ -99,7 +100,11 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
                 } else {
                   LoadingOverlay().hideAll();
                   if (state.status.isError) {
-                    showToast(msg: state.message);
+                    showToast(
+                      context: context,
+                      type: ToastificationType.error,
+                      msg: state.message,
+                    );
                   }
 
                   if (state.status.isDone) {

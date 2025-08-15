@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/utils/utils.dart';
 
@@ -89,9 +90,10 @@ class _AddResultScreenState extends State<AddResultScreen> {
                     title: 'Confirm',
                     onTap: () {
                       if (_chosenFile == null && _chosenPhoto == null) {
-                        clearAndShowSnackBar(
-                          context,
-                          'You must enter either a file or photo or both',
+                        showToast(
+                          context: context,
+                          type: ToastificationType.success,
+                          msg: 'You must enter either a file or photo or both',
                         );
                       }
                     },

@@ -13,6 +13,7 @@ import 'package:our_flutter_clinic_app/features/home/controller/labtech_analysis
 import 'package:our_flutter_clinic_app/features/home/model/analysis_model.dart';
 import 'package:our_flutter_clinic_app/features/home/model/requests/add_analysis_result_request.dart';
 import 'package:our_flutter_clinic_app/features/home/repository/labtech_analysis_repository.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/utils/decimal_input_formatter.dart';
 import '../../../../../core/utils/utils.dart';
@@ -135,11 +136,22 @@ class _AnalysisInfoScreenState extends State<AnalysisInfoScreen> {
                                         current.status.isError,
                                 listener: (context, state) {
                                   if (state.status.isData) {
-                                    showToast(msg: state.message);
+                                    showToast(
+                                      context: context,
+                                      type: ToastificationType.success,
+                                      msg: state.message,
+                                    );
                                     _labtechAnalysisInfoBloc.add(
                                       FetchAnalysis(),
                                     );
                                     Navigator.of(context).pop();
+                                  }
+                                  if (state.status.isError) {
+                                    showToast(
+                                      context: context,
+                                      type: ToastificationType.error,
+                                      msg: state.message,
+                                    );
                                   }
                                 },
                                 bloc: _labtechAnalysisInfoBloc,

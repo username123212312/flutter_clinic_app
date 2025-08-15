@@ -8,6 +8,7 @@ import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/home/model/vaccinationrecord.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../controller/ediit_child_vac_record_cubit/ediit_child_vac_record_cubit.dart';
 import '../../../model/requests/doctor_edit_vac_record_request.dart';
@@ -80,10 +81,18 @@ class _EditChildVaccineRecordScreenState
               } else {
                 LoadingOverlay().hideAll();
                 if (state.status.isError) {
-                  showToast(msg: state.message);
+                  showToast(
+                    context: context,
+                    type: ToastificationType.error,
+                    msg: state.message,
+                  );
                 }
                 if (state.status.isDone) {
-                  showToast(msg: state.message);
+                  showToast(
+                    context: context,
+                    type: ToastificationType.success,
+                    msg: state.message,
+                  );
                   context.pop(true);
                 }
               }

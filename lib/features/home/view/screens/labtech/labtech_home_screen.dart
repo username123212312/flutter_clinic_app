@@ -8,6 +8,7 @@ import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/analysis_item_widget.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/utils.dart';
@@ -181,7 +182,7 @@ class _LabtechHomeScreenState extends State<LabtechHomeScreen> {
   BlocBuilder<LabtechAnalysisBloc, LabtechAnalysisState> _buildList() {
     return BlocBuilder<LabtechAnalysisBloc, LabtechAnalysisState>(
       builder: (context, state) {
-        if (state.analysisList.isEmpty) {
+        if (state.analysisList.isEmpty && !state.status.isLoading) {
           return _buildEmpty();
         }
         return Skeletonizer(
@@ -336,7 +337,11 @@ class _LabtechHomeScreenState extends State<LabtechHomeScreen> {
                                 .toLowerCase()
                                 .trim() !=
                             'no') {
-                      showToast(msg: state.statusMessage);
+                      showToast(
+                        context: context,
+                        type: ToastificationType.error,
+                        msg: state.statusMessage,
+                      );
                     }
                   }
                 },

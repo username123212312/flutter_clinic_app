@@ -19,6 +19,7 @@ import 'package:our_flutter_clinic_app/features/home/view/widgets/doctor_card_wi
 import 'package:our_flutter_clinic_app/features/home/view/widgets/search_text_field.dart';
 import 'package:intl/intl.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/utils.dart';
@@ -130,12 +131,33 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
               _buildVaccinePicker(),
               SizedBox(height: 20),
             ],
-            _buildDatePicker(),
-            SizedBox(height: 20),
-            _buildSchedules(),
-            SizedBox(height: 50),
-            _buildBottomButton(),
-            SizedBox(height: 50),
+            BlocBuilder<NewAppointmentBloc, NewAppointmentState>(
+              bloc: _newAppointmentBloc,
+              builder: (context, state) {
+                return state.doctor?.status != null &&
+                        (state.doctor!.status![0] == 'n')
+                    ? Center(
+                      heightFactor: 4.5,
+                      child: Text(
+                        'Doctor is not available now',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.labelMedium!.copyWith(fontSize: 24),
+                      ),
+                    )
+                    : Column(
+                      children: [
+                        _buildDatePicker(),
+                        SizedBox(height: 20),
+                        _buildSchedules(),
+                        SizedBox(height: 50),
+                        _buildBottomButton(),
+                        SizedBox(height: 50),
+                      ],
+                    );
+              },
+            ),
           ],
         ),
       ),
@@ -154,12 +176,17 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
             LoadingOverlay().hideAll();
           }
           if (state.status.isError) {
-            clearAndShowSnackBar(
-              context,
-              state.statusMessage ?? 'Appointment is not added',
+            showToast(
+              context: context,
+              msg: state.statusMessage ?? 'Appointment is not added',
             );
           }
           if (state.statusMessage == 'Appointment added successfully') {
+            showToast(
+              context: context,
+              msg: state.statusMessage ?? 'Appointment is not added',
+              type: ToastificationType.success,
+            );
             context.read<SelectVaccinationCubit>().reset(true);
             context.goNamed(
               AppRouteConstants.reservationDetailsRouteName,
@@ -176,19 +203,25 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
                 onTap: () {
                   if (_currentSchedule != null || (state.isAuto ?? false)) {
                     if (_selectedIndex == 0) {
-                      _newAppointmentBloc.add(BookedNewAppointment());
+                      _showTDialog();
                     }
                     if (_selectedIndex == 1 && _vaccinationRecord == null) {
-                      showToast(msg: 'select a vaccination first');
+                      showToast(
+                        context: context,
+                        type: ToastificationType.info,
+                        msg: 'select a vaccination first',
+                      );
                       return;
                     } else if (_selectedIndex == 1 &&
                         _vaccinationRecord != null) {
-                      _newAppointmentBloc.add(
-                        BookedNewAppointment(vaccination: _vaccinationRecord),
-                      );
+                      _showTDialog(vaccination: _vaccinationRecord);
                     }
                   } else {
-                    showToast(msg: 'You must select a time');
+                    showToast(
+                      context: context,
+                      type: ToastificationType.info,
+                      msg: 'You must select a time',
+                    );
                   }
                 },
                 fillColor: Theme.of(context).colorScheme.primary,
@@ -360,7 +393,15 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
           builder: (context, state) {
             return CustomTextField(
               onTap:
-                  (state.dates != null && state.dates!.isEmpty)
+                  state.doctor?.id == null
+                      ? () {
+                        showToast(
+                          context: context,
+                          msg: 'You must select a doctor first',
+                        );
+                        return;
+                      }
+                      : (state.dates != null && state.dates!.isEmpty)
                       ? null
                       : () async {
                         final selectedDate = await _selectDate(state.dates!);
@@ -547,13 +588,12 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
       bloc: _newAppointmentBloc,
       builder: (context, state) {
         return Skeletonizer(
-          enabled: state.status!.isLoading,
+          enabled: state.status.isLoading,
           child: ListView.builder(
             padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
             shrinkWrap: true,
             itemCount:
-                (state.searchList ?? List.generate(4, (_) => DoctorModel()))
-                    .length,
+                state.status.isLoading ? 10 : (state.searchList ?? []).length,
             itemBuilder: (_, index) {
               final doctor = (state.searchList ?? [])[index];
               return Padding(
@@ -585,6 +625,68 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
           ),
         );
       },
+    );
+  }
+
+  Future<dynamic> _showTDialog({VaccinationRecord? vaccination}) {
+    return TransparentDialog.show(
+      barrierDismissible: false,
+      context: context,
+      builder:
+          (_) => CustomDialog(
+            size: Size(
+              screenWidth(context) * 0.8,
+              screenHeight(context) * 0.17,
+            ),
+            content: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Are you sure?',
+                  style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                    color: Colors.black,
+                    fontSize: 15,
+                  ),
+                ),
+                SizedBox(height: 50),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(
+                      width: screenWidth(context) * 0.3,
+                      height: screenHeight(context) * 0.05,
+                      child: CustomElevatedButton(
+                        fontSize: 12,
+                        title: 'back',
+                        onTap: () {
+                          context.pop();
+                        },
+                        fillColor: Pallete.grayScaleColor400,
+                        textColor: Colors.black,
+                      ),
+                    ),
+                    SizedBox(
+                      width: screenWidth(context) * 0.3,
+                      height: screenHeight(context) * 0.05,
+                      child: CustomElevatedButton(
+                        fontSize: 12,
+                        title: 'Yes',
+                        onTap: () {
+                          _newAppointmentBloc.add(
+                            BookedNewAppointment(vaccination: vaccination),
+                          );
+
+                          context.pop();
+                        },
+                        fillColor: Theme.of(context).colorScheme.primary,
+                        textColor: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
     );
   }
 

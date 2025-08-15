@@ -31,6 +31,7 @@ class AppTheme {
         enabledBorder: _border(Pallete.grayScaleColor500),
         focusedBorder: _border(Pallete.primaryColor),
         disabledBorder: _border(Pallete.grayScaleColor500),
+        errorBorder: _border(Colors.red),
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData().copyWith(
         backgroundColor: Pallete.backgroundColor,

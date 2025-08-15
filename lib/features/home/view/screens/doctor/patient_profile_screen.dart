@@ -173,7 +173,7 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
     return BlocBuilder<DoctorPatientBloc, DoctorPatientState>(
       bloc: _doctorPatientBloc,
       builder: (context, state) {
-        if (state.appointments.isEmpty) {
+        if (state.appointments.isEmpty && !state.status.isLoading) {
           return RefreshIndicator(
             onRefresh: () async {
               _doctorPatientBloc.add(PatientAppointmentsFetched());

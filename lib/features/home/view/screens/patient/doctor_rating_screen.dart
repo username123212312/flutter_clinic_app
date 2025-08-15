@@ -6,6 +6,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:go_router/go_router.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/home/model/doctor_model.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/utils.dart';
@@ -255,7 +256,11 @@ class _RatingScreenState extends State<RatingScreen>
                     onDone();
                   }
                   if (state.status.isError) {
-                    showToast(msg: state.message);
+                    showToast(
+                      context: context,
+                      type: ToastificationType.error,
+                      msg: state.message,
+                    );
                   }
                 }
               },

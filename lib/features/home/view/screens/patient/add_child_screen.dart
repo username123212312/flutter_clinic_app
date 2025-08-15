@@ -6,6 +6,7 @@ import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/general_utils.dart';
@@ -133,7 +134,14 @@ class _AddChildScreenState extends State<AddChildScreen> {
                     LoadingOverlay().show(context);
                   } else {
                     LoadingOverlay().hideAll();
-                    showToast(msg: state.statusMessage);
+                    showToast(
+                      context: context,
+                      type:
+                          state.status.isError
+                              ? ToastificationType.error
+                              : ToastificationType.success,
+                      msg: state.statusMessage,
+                    );
 
                     if (state.childrenListStatus.isDone) {
                       context.pop();

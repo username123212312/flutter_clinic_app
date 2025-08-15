@@ -11,6 +11,7 @@ import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
 import 'package:our_flutter_clinic_app/core/widgets/custom_cached_network_image.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/blocs/user_bloc/user_bloc.dart';
 import '../../../../../core/models/modify_doctor_info_request.dart';
@@ -204,7 +205,15 @@ class _DoctorEditProfilePageState extends State<DoctorEditProfile> {
                         LoadingOverlay().show(context);
                       } else {
                         LoadingOverlay().hideAll();
-                        showToast(msg: state.statusMessage);
+                        showToast(
+                          context: context,
+                          type:
+                              state.status.isModified
+                                  ? ToastificationType.success
+                                  : ToastificationType.error,
+
+                          msg: state.statusMessage,
+                        );
                         if (state.status.isModified && isEdited == 1) {
                           context.pop();
                         }

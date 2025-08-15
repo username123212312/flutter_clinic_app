@@ -11,6 +11,7 @@ import 'package:our_flutter_clinic_app/features/home/controller/analysis_list_bl
 import 'package:our_flutter_clinic_app/features/home/model/analysis_model.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/analysis_item_widget.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:toastification/toastification.dart';
 
 class DocumentsScreen extends StatefulWidget {
   const DocumentsScreen({super.key});
@@ -180,8 +181,19 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
                     current.status.isUploading;
               },
               listener: (context, state) {
+                if (state.status.isError) {
+                  showToast(
+                    context: context,
+                    type: ToastificationType.error,
+                    msg: state.statusMessage,
+                  );
+                }
                 if (!state.status.isError && !state.status.isUploading) {
-                  clearAndShowSnackBar(context, state.statusMessage);
+                  showToast(
+                    context: context,
+                    type: ToastificationType.success,
+                    msg: state.statusMessage,
+                  );
                   setState(() {
                     _fetchAllAnalysis();
                     _currentIndex = 0;
@@ -373,7 +385,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
   Widget _buildDocumentsList() {
     return BlocBuilder<AnalysisListBloc, AnalysisListState>(
       builder: (context, state) {
-        return state.analysisList!.isEmpty
+        return state.analysisList!.isEmpty && !state.status.isLoading
             ? RefreshIndicator(
               onRefresh: () async {
                 _fetchAllAnalysis();

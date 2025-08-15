@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
 import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/enums.dart';
 import '../../../../../core/navigation/navigation_exports.dart';
@@ -96,7 +97,11 @@ class _DoctorAppointmentDatailsScreenState
               } else {
                 LoadingOverlay().hideAll();
                 if (state.status.isError) {
-                  showToast(msg: state.message);
+                  showToast(
+                    context: context,
+                    msg: state.message,
+                    type: ToastificationType.error,
+                  );
                 }
               }
             },

@@ -174,7 +174,8 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                   height: 132,
                   child: BlocBuilder<HomeBloc, HomeState>(
                     builder: (context, state) {
-                      if (state.upcomingAppointmentsList.isEmpty) {
+                      if (state.upcomingAppointmentsList.isEmpty &&
+                          !state.upcomingAppointmentsListStatus.isLoading) {
                         return Center(
                           child: Image.asset(
                             'assets/images/il_empty_activity.webp',
@@ -348,7 +349,8 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                   height: 160,
                   child: BlocBuilder<HomeBloc, HomeState>(
                     builder: (context, state) {
-                      if (state.doctorsList.isEmpty) {
+                      if (state.doctorsList.isEmpty &&
+                          !state.doctorsListStatus.isLoading) {
                         return Center(
                           child: Image.asset(
                             'assets/images/il_empty_activity.webp',
@@ -455,7 +457,8 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                   height: 195,
                   child: BlocBuilder<HomeBloc, HomeState>(
                     builder: (context, state) {
-                      if (state.pharmaciesList.isEmpty) {
+                      if (state.pharmaciesList.isEmpty &&
+                          !state.pharmaciesListStatus.isLoading) {
                         return Center(
                           child: Image.asset(
                             'assets/images/il_empty_activity.webp',

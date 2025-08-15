@@ -7,6 +7,7 @@ import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
 import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/general_utils.dart';
@@ -365,7 +366,15 @@ class _AddChildRecordScreenState extends State<AddChildRecordScreen> {
                           LoadingOverlay().show(context);
                         } else {
                           LoadingOverlay().hideAll();
-                          showToast(msg: state.message);
+
+                          showToast(
+                            context: context,
+                            msg: state.message,
+                            type:
+                                state.status.isError
+                                    ? ToastificationType.error
+                                    : ToastificationType.success,
+                          );
 
                           if (state.status.isDone) {
                             context.pop<bool>(true);
