@@ -1,9 +1,10 @@
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/validator_util.dart';
 import '../../../../core/blocs/user_bloc/user_bloc.dart';
 import '../../../../core/widgets/loading_overlay.dart';
 import '../widgets/auth_widgets.dart';
-
+import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import '../../../../core/utils/general_utils.dart';
 import '../widgets/bullet_item.dart';
 
@@ -31,6 +32,14 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
         appBar: AppBar(
           forceMaterialTransparency: true,
           elevation: 0,
+          leading: IconButton(
+            onPressed: () => Navigator.of(context).pop(),
+            icon: const Icon(
+              FontAwesomeIcons.arrowLeft,
+              color: Pallete.black1,
+              size: 18,
+            ),
+          ),
           toolbarHeight: screenHeight(context) * 0.1,
           title: Text('Create a Password'),
           titleTextStyle: Theme.of(

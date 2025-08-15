@@ -37,13 +37,15 @@ class ChooseFromWidget extends StatelessWidget {
           boxShadow:
               isSelected
                   ? null
-                  : [BoxShadow(blurRadius: 4, color: Colors.black)],
+                  : [BoxShadow(blurRadius: 2, color: Colors.black)],
         ),
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
               child: SizedBox(
+                height: screenHeight(context) * 0.12,
                 child: Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: applyPadding ? 10.0 : 0.0,
@@ -52,14 +54,16 @@ class ChooseFromWidget extends StatelessWidget {
                 ),
               ),
             ),
-            Text(
-              title,
-              style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                fontSize: 18,
-                color: isSelected ? Pallete.primaryColor : Colors.black,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 15),
+              child: Text(
+                title,
+                style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                  fontSize: 18,
+                  color: isSelected ? Pallete.primaryColor : Colors.black,
+                ),
               ),
             ),
-            SizedBox(height: 15),
           ],
         ),
       ),

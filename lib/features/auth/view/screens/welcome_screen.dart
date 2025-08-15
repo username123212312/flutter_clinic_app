@@ -89,7 +89,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       ).textTheme.titleSmall!.copyWith(fontSize: 20),
                       children: [
                         TextSpan(
-                          text: 'Clinic',
+                          text: 'Mediverse',
                           style: Theme.of(
                             context,
                           ).textTheme.titleSmall!.copyWith(

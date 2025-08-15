@@ -71,6 +71,7 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
         },
         child: Scaffold(
           appBar: AppBar(
+            scrolledUnderElevation: 0,
             toolbarHeight: screenHeight(context) * 0.1,
             title: Text('Your Profile'),
             titleTextStyle: Theme.of(
@@ -253,13 +254,10 @@ class ProfileSetupnState extends State<ProfileSetupScreen>
               title: 'Birth Date',
               hintText: 'Birth Date',
               keyboardType: TextInputType.number,
-              suffixIcon: Transform.scale(
-                scaleY: 0.7,
-                scaleX: 0.7,
-                child: Image.asset(
-                  'assets/icons/ic_calendar.png',
-                  fit: BoxFit.cover,
-                ),
+              suffixIcon: Icon(
+                Icons.calendar_today,
+                color: Pallete.gray1,
+                size: 20,
               ),
             ),
             SizedBox(height: 20),
