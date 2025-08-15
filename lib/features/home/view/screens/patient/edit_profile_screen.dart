@@ -85,6 +85,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       appBar: AppBar(
         toolbarHeight: screenHeight(context) * 0.09,
         centerTitle: false,
+        leading: IconButton(
+          onPressed: () => Navigator.of(context).pop(),
+          icon: const Icon(
+            FontAwesomeIcons.arrowLeft,
+            color: Pallete.black1,
+            size: 18,
+          ),
+        ),
         forceMaterialTransparency: true,
         actions: [
           IconButton(
@@ -98,7 +106,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         title: Text(
           'Edit Profile',
           style: Theme.of(context).textTheme.titleSmall!.copyWith(
-            fontSize: 20,
+            fontSize: 17,
             color: Pallete.grayScaleColor700,
           ),
         ),
@@ -317,16 +325,31 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           controller: _genderController,
           readOnly: true,
           suffixIcon: DropdownButton<int>(
+
+            dropdownColor: Pallete.grayScaleColor0,
             value: _selectedGender,
+
             underline: Container(color: Colors.transparent),
             icon: Icon(
               Icons.arrow_drop_down,
-              color: Pallete.grayScaleColor400,
+              color: Pallete.grayScaleColor500,
               size: 40,
             ),
             items: [
-              DropdownMenuItem(value: 0, child: Text('Male')),
-              DropdownMenuItem(value: 1, child: Text('Female')),
+              DropdownMenuItem(
+                value: 0,
+                child: Text(
+                  'Male',
+                  style: TextStyle(fontSize: 13, color: Pallete.black1),
+                ),
+              ),
+              DropdownMenuItem(
+                value: 1,
+                child: Text(
+                  'Female',
+                  style: TextStyle(fontSize: 13, color: Pallete.black1),
+                ),
+              ),
             ],
             onChanged: (index) {
               if (index != null) {
@@ -375,9 +398,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           suffixIcon: Transform.scale(
             scaleY: 0.7,
             scaleX: 0.7,
-            child: Image.asset(
-              'assets/icons/ic_calendar.png',
-              fit: BoxFit.cover,
+            child: Icon(
+              Icons.calendar_today,
+              color: Pallete.grayScaleColor400,
+              size: 30,
             ),
           ),
         ),
@@ -397,8 +421,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             readOnly: true,
             controller: _discountPointsController,
             suffixIcon: Icon(
-              color: Theme.of(context).colorScheme.primary,
+              color: Pallete.grayScaleColor400,
               FontAwesomeIcons.info,
+              size: 20,
             ),
           ),
           SizedBox(height: 10),
@@ -441,7 +466,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       builder: (_) {
         return Center(
           child: Container(
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
             width: screenWidth(context) * 0.8,
             decoration: BoxDecoration(
               color: Colors.white,
@@ -453,18 +478,26 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               spacing: 10,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    '💰 Discount Points System',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.labelMedium!.copyWith(fontSize: 18),
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/icons/discount.png',
+                      width: 26,
+                      height: 26,
+                    ),
+                    SizedBox(width: 8),
+                    Text(
+                      'Discount Points System',
+                      style: Theme.of(
+                        context,
+                      ).textTheme.labelMedium!.copyWith(fontSize: 15),
+                    ),
+                  ],
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 10),
                 Text(
-                  '✴ Earn Points:',
+                  'Earn Points:',
                   style: Theme.of(context).textTheme.labelMedium!.copyWith(
                     fontSize: 15,
                     fontStyle: FontStyle.italic,
@@ -478,7 +511,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ).textTheme.labelMedium!.copyWith(fontSize: 13),
                 ),
                 Text(
-                  '✴ Redeem Discounts:',
+                  'Redeem Discounts:',
                   style: Theme.of(context).textTheme.labelMedium!.copyWith(
                     fontSize: 15,
                     fontStyle: FontStyle.italic,

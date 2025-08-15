@@ -157,7 +157,7 @@ class ProifileWidget extends StatelessWidget {
                     ),
                     padding: EdgeInsets.all(10),
                     child: Image.asset(
-                      'assets/icons/wallet_icon.png',
+                      'assets/icons/wallet1.png',
                       fit: BoxFit.cover,
                     ),
                   ),

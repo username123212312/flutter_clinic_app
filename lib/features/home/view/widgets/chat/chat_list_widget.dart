@@ -1,5 +1,6 @@
 import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
+import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 import 'package:our_flutter_clinic_app/features/home/model/chat/chat_model.dart';
 import 'package:search_page/search_page.dart';
@@ -97,7 +98,7 @@ class ChatListWidget extends StatelessWidget {
                   visible: authState.authUser?.user?.role?.isPatient ?? true,
                   child: FloatingActionButton(
                     onPressed: () => _showSearch(context, state.doctors),
-                    child: Icon(Icons.search),
+                    child: Icon(Icons.search, color: Pallete.grayScaleColor0),
                   ),
                 );
               },

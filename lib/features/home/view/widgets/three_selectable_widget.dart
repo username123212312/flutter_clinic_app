@@ -86,10 +86,7 @@ class _ThreeSelectableWidgetState extends State<ThreeSelectableWidget>
                 ),
               ),
             ),
-            Positioned(
-              top: 15,
-              left: 0,
-              right: 0,
+            Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,

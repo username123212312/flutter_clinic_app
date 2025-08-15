@@ -33,10 +33,8 @@ class SearchTextField extends StatelessWidget {
         alignLabelWithHint: true,
         isDense: true, // Reduces the vertical padding
         contentPadding: EdgeInsets.symmetric(vertical: 18.0),
-        prefixIcon: Image.asset(
-          fit: BoxFit.cover,
-          'assets/icons/tabler_search.png',
-        ),
+        prefixIcon: Icon(Icons.search, color: Pallete.black1, size: 25),
+
         prefixIconConstraints: BoxConstraints(minWidth: 37, minHeight: 37),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.transparent),

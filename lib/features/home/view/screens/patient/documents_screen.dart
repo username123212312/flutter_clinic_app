@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:our_flutter_clinic_app/core/enums.dart';
@@ -43,11 +43,19 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
     return Scaffold(
       appBar: AppBar(
         forceMaterialTransparency: true,
+        leading: IconButton(
+          onPressed: () => Navigator.of(context).pop(),
+          icon: const Icon(
+            FontAwesomeIcons.arrowLeft,
+            color: Pallete.black1,
+            size: 18,
+          ),
+        ),
         toolbarHeight: screenHeight(context) * 0.12,
         title: Text('Documents'),
         titleTextStyle: Theme.of(
           context,
-        ).textTheme.titleMedium!.copyWith(fontSize: 25),
+        ).textTheme.titleMedium!.copyWith(fontSize: 19),
         bottom: _buildAppBarBottom(),
       ),
       body: SingleChildScrollView(
@@ -350,6 +358,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
             ),
             Spacer(),
             DropdownButton(
+              dropdownColor: Pallete.grayScaleColor0,
               alignment: Alignment.center,
               value: _currentAnalysisStatus,
               items:
@@ -403,11 +412,22 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
                           fit: BoxFit.contain,
                         ),
                         Text(
-                          textAlign: TextAlign.center,
-                          'No documents yet\n try adding one',
+                          'No documents yet',
                           style: Theme.of(
                             context,
-                          ).textTheme.titleMedium!.copyWith(fontSize: 20),
+                          ).textTheme.labelSmall!.copyWith(
+                            fontSize: 16,
+                            color: Pallete.oxfordBlue,
+                          ),
+                        ),
+                        Text(
+                          'try adding one',
+                          style: Theme.of(
+                            context,
+                          ).textTheme.titleSmall!.copyWith(
+                            fontSize: 14,
+                            color: Pallete.sliverSand,
+                          ),
                         ),
                       ],
                     ),

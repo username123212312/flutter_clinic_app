@@ -71,11 +71,10 @@ class _CustomDropDownWidgetState<T> extends State<CustomDropDownWidget<T>>
             ),
             RotationTransition(
               turns: _rotationAnimation,
-              child: Image.asset(
-                'assets/icons/tabler_chevron-down.png',
-                width: 35,
-                height: 35,
-                fit: BoxFit.cover,
+              child: Icon(
+                Icons.arrow_forward_ios,
+                color: Pallete.grayScaleColor500,
+                size: 20,
               ),
             ),
           ],
@@ -110,6 +109,7 @@ class _CustomDropDownWidgetState<T> extends State<CustomDropDownWidget<T>>
                 top: position.dy + size.height + 4,
                 width: size.width,
                 child: Material(
+                  color: Pallete.grayScaleColor0,
                   elevation: 4,
                   borderRadius: BorderRadius.circular(8),
                   child: SizedBox(

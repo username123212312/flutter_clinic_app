@@ -66,6 +66,14 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () => Navigator.of(context).pop(),
+          icon: const Icon(
+            FontAwesomeIcons.arrowLeft,
+            color: Pallete.black1,
+            size: 18,
+          ),
+        ),
         actions: [
           BlocBuilder<NewAppointmentBloc, NewAppointmentState>(
             bloc: _newAppointmentBloc,
@@ -89,7 +97,7 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
         title: Text(
           'Book New Appointment',
           style: Theme.of(context).textTheme.titleMedium!.copyWith(
-            fontSize: 20,
+            fontSize: 17,
             color: Pallete.black1,
           ),
         ),
@@ -131,6 +139,7 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
               _buildVaccinePicker(),
               SizedBox(height: 20),
             ],
+
             BlocBuilder<NewAppointmentBloc, NewAppointmentState>(
               bloc: _newAppointmentBloc,
               builder: (context, state) {
@@ -420,7 +429,11 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
               keyboardType: TextInputType.datetime,
               readOnly: true,
               controller: _dateController,
-              suffixIcon: Image.asset('assets/icons/ic_calendar.png'),
+              suffixIcon: Icon(
+                Icons.calendar_today,
+                color: Pallete.grayScaleColor500,
+                size: 20,
+              ),
             );
           },
         ),
@@ -550,6 +563,7 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
                 left: offset.dx + 0,
                 right: offset.dx + 0,
                 child: Material(
+                  color: Pallete.grayScaleColor0,
                   borderRadius: BorderRadius.circular(5),
                   elevation: 4,
                   child: Padding(
