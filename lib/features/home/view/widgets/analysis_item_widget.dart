@@ -101,20 +101,10 @@ class _AnalysisItemWidgetState extends State<AnalysisItemWidget> {
                   ).textTheme.labelSmall!.copyWith(fontSize: 14),
                 ),
                 Text(
-                  '${widget.analysis.patientFirstName ?? 'No'} ${widget.analysis.patientLastName ?? 'Patient'}',
+                  'P: ${widget.analysis.patientFirstName ?? 'No'} ${widget.analysis.patientLastName ?? 'Patient'}',
                   style: Theme.of(
                     context,
                   ).textTheme.labelSmall!.copyWith(fontSize: 14),
-                ),
-                SizedBox(
-                  width: screenWidth(context) * 0.53,
-                  child: Text(
-                    overflow: TextOverflow.ellipsis,
-                    widget.analysis.description ?? 'no description',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.labelSmall!.copyWith(fontSize: 10),
-                  ),
                 ),
               ],
             ),

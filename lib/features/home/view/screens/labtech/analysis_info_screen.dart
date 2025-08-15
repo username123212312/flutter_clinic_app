@@ -142,7 +142,7 @@ class _AnalysisInfoScreenState extends State<AnalysisInfoScreen> {
                                 child: Text(
                                   style: Theme.of(context).textTheme.titleSmall!
                                       .copyWith(fontSize: 15),
-                                  widget.analysis.price.toString(),
+                                  '\$ ${widget.analysis.price}',
                                 ),
                               ),
                             ],
