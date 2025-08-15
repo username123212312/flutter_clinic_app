@@ -149,7 +149,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
                   }
                 },
                 child: Text(
-                  'Age',
+                  'Birth date',
                   style: Theme.of(
                     context,
                   ).textTheme.titleSmall!.copyWith(fontSize: 12),
@@ -159,7 +159,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
               CustomTextField(
                 validator: (p0) {
                   if (p0!.trim().isEmpty) {
-                    return 'You must select an age';
+                    return 'You must select an date';
                   } else {
                     return null;
                   }
@@ -183,7 +183,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
                 },
                 controller: _ageController,
                 readOnly: true,
-                hintText: 'Age',
+                hintText: 'Birth Date',
                 keyboardType: TextInputType.number,
                 suffixIcon: Transform.scale(
                   scaleY: 0.7,

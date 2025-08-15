@@ -15,6 +15,7 @@ import 'package:our_flutter_clinic_app/features/home/model/requests/add_analysis
 import 'package:our_flutter_clinic_app/features/home/repository/labtech_analysis_repository.dart';
 import 'package:toastification/toastification.dart';
 
+import '../../../../../core/enums.dart';
 import '../../../../../core/utils/decimal_input_formatter.dart';
 import '../../../../../core/utils/utils.dart';
 import '../../../../../core/widgets/transparent_content_dialog.dart';
@@ -109,6 +110,75 @@ class _AnalysisInfoScreenState extends State<AnalysisInfoScreen> {
                           widget.analysis.description ?? 'Analysis description',
                         ),
                       ),
+                      Text(
+                        'Clinic',
+                        style: Theme.of(
+                          context,
+                        ).textTheme.labelMedium!.copyWith(fontSize: 18),
+                      ),
+                      SizedBox(
+                        width: screenWidth(context),
+                        // height: screenHeight(context) * 0.18,
+                        child: Text(
+                          style: Theme.of(
+                            context,
+                          ).textTheme.titleSmall!.copyWith(fontSize: 15),
+                          widget.analysis.clinic ?? 'Analysis Clinic',
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Price',
+                                style: Theme.of(
+                                  context,
+                                ).textTheme.labelMedium!.copyWith(fontSize: 18),
+                              ),
+                              SizedBox(
+                                child: Text(
+                                  style: Theme.of(context).textTheme.titleSmall!
+                                      .copyWith(fontSize: 15),
+                                  widget.analysis.price.toString(),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color:
+                                  (widget.analysis.paymentStatus ??
+                                              PaymentStatus.pending)
+                                          .isPaid
+                                      ? Pallete.statusColorFinished
+                                      : Pallete.statusColorPending,
+                            ),
+                            padding: EdgeInsets.all(10),
+                            child: Text(
+                              (widget.analysis.paymentStatus ??
+                                          PaymentStatus.pending)
+                                      .isPending
+                                  ? 'Unpaid'
+                                  : 'Paid',
+                              style: Theme.of(
+                                context,
+                              ).textTheme.labelMedium!.copyWith(
+                                color:
+                                    (widget.analysis.paymentStatus ??
+                                                PaymentStatus.pending)
+                                            .isPending
+                                        ? Pallete.alertWarningColor
+                                        : Pallete.alertSuccessColor,
+                                fontSize: 10,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -122,7 +192,7 @@ class _AnalysisInfoScreenState extends State<AnalysisInfoScreen> {
                         ? SizedBox.shrink()
                         : Column(
                           children: [
-                            SizedBox(height: screenHeight(context) * 0.1),
+                            SizedBox(height: screenHeight(context) * 0.05),
                             SizedBox(
                               width: screenWidth(context),
                               child: BlocConsumer<
@@ -218,6 +288,15 @@ class _AnalysisInfoScreenState extends State<AnalysisInfoScreen> {
                       isEnabled: !(_chosenFile == null && _chosenPhoto == null),
                       title: 'Add result',
                       onTap: () {
+                        if ((widget.analysis.paymentStatus ??
+                                PaymentStatus.pending)
+                            .isPending) {
+                          showToast(
+                            context: context,
+                            msg: 'The patient must pay first',
+                          );
+                          return;
+                        }
                         _labtechAnalysisInfoBloc.add(
                           AnalysisResultAdded(
                             request: AddAnalysisResultRequest(

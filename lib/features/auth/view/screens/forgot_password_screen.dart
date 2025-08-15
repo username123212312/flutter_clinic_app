@@ -99,7 +99,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
           SizedBox(
             width: screenWidth(context) * 0.85,
             child: BlocListener<ChangePasswordCubit, ChangePasswordState>(
-              listenWhen: (previous, current) => previous.email == null,
+              // listenWhen: (previous, current) => previous.email == null,
               listener: (context, state) {
                 if (state.status.isLoading) {
                   LoadingOverlay().show(context);
@@ -191,10 +191,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
             hintStyle: const TextStyle(
               fontSize: 13,
               color: Pallete.grayScaleColor500,
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Pallete.grayScaleColor300),
-              borderRadius: BorderRadius.circular(8),
             ),
           ),
           keyboardType:

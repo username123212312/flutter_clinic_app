@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:our_flutter_clinic_app/core/widgets/custom_cached_network_image.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import '../../../../../core/blocs/user_bloc/user_bloc.dart';
 import '../../../../../core/theme/app_pallete.dart';
@@ -41,10 +42,15 @@ class DoctorCardProfile extends StatelessWidget {
                   child: SizedBox(
                     width: screenWidth(context) * 0.3,
                     height: screenHeight(context) * 0.18,
-                    child: Image.asset(
-                      'assets/images/Jennifer_Miller.png',
-                      fit: BoxFit.cover,
-                    ),
+                    child:
+                        state.user?.photo == null
+                            ? Image.asset(
+                              'assets/images/Jennifer_Miller.png',
+                              fit: BoxFit.cover,
+                            )
+                            : CustomCachedNetworkImage(
+                              imagePath: state.user?.photo ?? '',
+                            ),
                   ),
                 ),
               ),

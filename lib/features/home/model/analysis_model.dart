@@ -19,6 +19,7 @@ sealed class AnalysisModel with _$AnalysisModel {
     @JsonKey(name: 'patient_first_name') String? patientFirstName,
     @JsonKey(name: 'patient_last_name') String? patientLastName,
     @JsonKey(name: 'patient_id') int? patientId,
+    @JsonKey(name: 'patient_number') int? patientNumber,
     double? price,
     @JsonKey(name: 'payment status') PaymentStatus? paymentStatus,
   }) = _AnalysisModel;

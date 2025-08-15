@@ -127,110 +127,114 @@ class _HomeScreenState extends State<HomeScreen>
           child: setHome(_currentIndex),
         ),
       ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              offset: Offset(0.0, -1.0),
-              blurRadius: 7.9,
-              color: Colors.black.withAlpha(80),
-              spreadRadius: 0.1,
-            ),
-          ],
-        ),
-        child: ConvexAppBar(
-          backgroundColor: Pallete.backgroundColor,
-          initialActiveIndex: _currentIndex,
-          color: Pallete.grayScaleColor500,
-          onTap: (p0) {
-            setState(() {
-              _currentIndex = p0;
-            });
-          },
-          items: [
-            TabItem(
-              icon: Padding(
-                padding: EdgeInsets.all(_currentIndex == 0 ? 10.0 : 0),
-                child: Image.asset(
-                  'assets/icons/home.png',
-                  width: 32,
-                  height: 32,
-                  fit: BoxFit.contain,
-                  color:
-                      _currentIndex == 0
-                          ? Theme.of(context).colorScheme.primary
-                          : null,
-                ),
+      bottomNavigationBar: _buildBottomBar(),
+    );
+  }
+
+  Container _buildBottomBar() {
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            offset: Offset(0.0, -1.0),
+            blurRadius: 7.9,
+            color: Colors.black.withAlpha(80),
+            spreadRadius: 0.1,
+          ),
+        ],
+      ),
+      child: ConvexAppBar(
+        backgroundColor: Pallete.backgroundColor,
+        initialActiveIndex: _currentIndex,
+        color: Pallete.grayScaleColor500,
+        onTap: (p0) {
+          setState(() {
+            _currentIndex = p0;
+          });
+        },
+        items: [
+          TabItem(
+            icon: Padding(
+              padding: EdgeInsets.all(_currentIndex == 0 ? 10.0 : 0),
+              child: Image.asset(
+                'assets/icons/home.png',
+                width: 32,
+                height: 32,
+                fit: BoxFit.contain,
+                color:
+                    _currentIndex == 0
+                        ? Theme.of(context).colorScheme.primary
+                        : null,
               ),
-              title: 'Home',
-              // isIconBlend: true,
             ),
-            TabItem(
-              icon: Padding(
-                padding: EdgeInsets.all(_currentIndex == 1 ? 10.0 : 0),
-                child: Image.asset(
-                  'assets/icons/task.png',
-                  width: 32,
-                  height: 32,
-                  fit: BoxFit.contain,
-                  color:
-                      _currentIndex == 1
-                          ? Theme.of(context).colorScheme.primary
-                          : null,
-                ),
+            title: 'Home',
+            // isIconBlend: true,
+          ),
+          TabItem(
+            icon: Padding(
+              padding: EdgeInsets.all(_currentIndex == 1 ? 10.0 : 0),
+              child: Image.asset(
+                'assets/icons/task.png',
+                width: 32,
+                height: 32,
+                fit: BoxFit.contain,
+                color:
+                    _currentIndex == 1
+                        ? Theme.of(context).colorScheme.primary
+                        : null,
               ),
-              title: 'Appoints',
             ),
-            TabItem(
-              icon: Padding(
-                padding: EdgeInsets.all(_currentIndex == 2 ? 10.0 : 0),
-                child: Image.asset(
-                  'assets/icons/messenger.png',
-                  width: 32,
-                  height: 32,
-                  fit: BoxFit.contain,
-                  color:
-                      _currentIndex == 2
-                          ? Theme.of(context).colorScheme.primary
-                          : null,
-                ),
+            title: 'Appoints',
+          ),
+          TabItem(
+            icon: Padding(
+              padding: EdgeInsets.all(_currentIndex == 2 ? 10.0 : 0),
+              child: Image.asset(
+                'assets/icons/messenger.png',
+                width: 32,
+                height: 32,
+                fit: BoxFit.contain,
+                color:
+                    _currentIndex == 2
+                        ? Theme.of(context).colorScheme.primary
+                        : null,
               ),
-              title: 'Chat',
             ),
-            TabItem(
-              icon: Padding(
-                padding: EdgeInsets.all(_currentIndex == 3 ? 10.0 : 0),
-                child: Image.asset(
-                  'assets/icons/child_vaccination.png',
-                  width: 32,
-                  height: 32,
-                  fit: BoxFit.contain,
-                  color:
-                      _currentIndex == 3
-                          ? Theme.of(context).colorScheme.primary
-                          : null,
-                ),
+            title: 'Chat',
+          ),
+          TabItem(
+            icon: Padding(
+              padding: EdgeInsets.all(_currentIndex == 3 ? 10.0 : 0),
+              child: Image.asset(
+                'assets/icons/child_vaccination.png',
+                width: 32,
+                height: 32,
+                fit: BoxFit.contain,
+                color:
+                    _currentIndex == 3
+                        ? Theme.of(context).colorScheme.primary
+                        : null,
               ),
-              title: 'Vaccine',
             ),
-            TabItem(
-              icon: Padding(
-                padding: EdgeInsets.all(_currentIndex == 4 ? 10.0 : 0),
-                child: Image.asset(
-                  'assets/icons/profile.png',
-                  width: 32,
-                  height: 32,
-                  fit: BoxFit.contain,
-                  color:
-                      _currentIndex == 4
-                          ? Theme.of(context).colorScheme.primary
-                          : null,
-                ),
+            title: 'Vaccine',
+          ),
+          TabItem(
+            icon: Padding(
+              padding: EdgeInsets.all(_currentIndex == 4 ? 10.0 : 0),
+              child: Image.asset(
+                'assets/icons/profile.png',
+                width: 32,
+                height: 32,
+                fit: BoxFit.contain,
+                color:
+                    _currentIndex == 4
+                        ? Theme.of(context).colorScheme.primary
+                        : null,
               ),
-              title: 'Profile',
             ),
-          ],
-        ),
+            title: 'Profile',
+          ),
+        ],
       ),
     );
   }

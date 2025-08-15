@@ -133,8 +133,7 @@ class _ClinicDoctorsScreenState extends State<ClinicDoctorsScreen> {
                             title:
                                 '${doctor.firstName ?? 'No'} ${doctor.lastName ?? 'Doctor'}',
                             subtitle: doctor.speciality ?? 'No speciality',
-                            imagePath:
-                                doctor.photoPath ?? 'assets/images/logo.webp',
+                            imagePath: doctor.photo,
                             startTime: '',
                             endTime: '',
                             rating:

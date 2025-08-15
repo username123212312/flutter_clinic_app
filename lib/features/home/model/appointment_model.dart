@@ -20,6 +20,7 @@ sealed class AppointmentModel with _$AppointmentModel {
     @JsonKey(name: 'referred by') String? referredBy,
     @JsonKey(name: 'clinic_id') int? clinicId,
     @JsonKey(name: 'clinic_name') String? clinicName,
+    @JsonKey(name: 'patient_gender') String? patientGender,
     @JsonKey(name: 'doctor_id') int? doctorId,
     @JsonKey(name: 'doctor_photo') String? doctorPhoto,
     @JsonKey(name: 'doctor_name') String? doctorName,

@@ -202,7 +202,6 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                                   appointmentTime: 'bllabla',
                                   appointmentdate: 'bllabllabla',
                                   doctorName: 'No Doctor',
-                                  imagePath: 'assets/images/app_logo.png',
                                   rating: 0.0,
                                   specialty: 'No speciality',
                                   onTap: () {},
@@ -242,9 +241,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                                           .toString(),
                                   doctorName:
                                       appointment.doctorName ?? 'No Doctor',
-                                  imagePath:
-                                      appointment.doctorPhoto ??
-                                      'assets/images/logo.webp',
+                                  imagePath: appointment.doctorPhoto,
                                   rating:
                                       appointment.finalRate?.toDouble() ?? 0.0,
                                   specialty:

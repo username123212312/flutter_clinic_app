@@ -1,3 +1,4 @@
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/custom_bottom_app_bar.dart';
@@ -47,100 +48,116 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
                 ),
               ),
       body: _buildMainContent(_currentIndex),
-      bottomNavigationBar: SalomonBottomBar(
+      bottomNavigationBar: _buildBottomBar(),
+    );
+  }
+
+  Container _buildBottomBar() {
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            offset: Offset(0.0, -1.0),
+            blurRadius: 7.9,
+            color: Colors.black.withAlpha(80),
+            spreadRadius: 0.1,
+          ),
+        ],
+      ),
+      child: ConvexAppBar(
         backgroundColor: Pallete.backgroundColor,
-        selectedItemColor: Theme.of(context).colorScheme.primary,
-        currentIndex: _currentIndex,
+        initialActiveIndex: _currentIndex,
+        color: Pallete.grayScaleColor500,
         onTap: (p0) {
           setState(() {
             _currentIndex = p0;
           });
         },
         items: [
-          SalomonBottomBarItem(
-            icon: Image.asset(
-              'assets/icons/patient.png',
-              width: 32,
-              height: 32,
-              fit: BoxFit.cover,
-              color: _currentIndex == 0 ? Colors.black : null,
-            ),
-            title: FittedBox(
-              child: Text(
-                'Patients',
-                style: Theme.of(
-                  context,
-                ).textTheme.labelMedium!.copyWith(fontSize: 12),
+          TabItem(
+            icon: Padding(
+              padding: EdgeInsets.all(_currentIndex == 0 ? 10.0 : 0),
+              child: Image.asset(
+                'assets/icons/patient.png',
+                width: 32,
+                height: 32,
+                fit: BoxFit.contain,
+                color:
+                    _currentIndex == 0
+                        ? Theme.of(context).colorScheme.primary
+                        : null,
               ),
             ),
+            title: 'Patients',
+            // isIconBlend: true,
           ),
-          SalomonBottomBarItem(
-            icon: Image.asset(
-              'assets/icons/task.png',
-              width: 32,
-              height: 32,
-              fit: BoxFit.cover,
-              color: _currentIndex == 1 ? Colors.black : null,
-            ),
-            title: FittedBox(
-              child: Text(
-                'Appoints',
-                style: Theme.of(
-                  context,
-                ).textTheme.labelMedium!.copyWith(fontSize: 12),
+          TabItem(
+            icon: Padding(
+              padding: EdgeInsets.all(_currentIndex == 1 ? 10.0 : 0),
+              child: Image.asset(
+                'assets/icons/task.png',
+                width: 32,
+                height: 32,
+                fit: BoxFit.contain,
+                color:
+                    _currentIndex == 1
+                        ? Theme.of(context).colorScheme.primary
+                        : null,
               ),
             ),
+            title: 'Appoints',
+            // isIconBlend: true,
           ),
-          SalomonBottomBarItem(
-            icon: Image.asset(
-              'assets/icons/messenger.png',
-              width: 32,
-              height: 32,
-              fit: BoxFit.cover,
-              color: _currentIndex == 2 ? Colors.black : null,
-            ),
-            title: FittedBox(
-              child: Text(
-                'Chat',
-                style: Theme.of(
-                  context,
-                ).textTheme.labelMedium!.copyWith(fontSize: 14),
+          TabItem(
+            icon: Padding(
+              padding: EdgeInsets.all(_currentIndex == 2 ? 10.0 : 0),
+              child: Image.asset(
+                'assets/icons/messenger.png',
+                width: 32,
+                height: 32,
+                fit: BoxFit.contain,
+                color:
+                    _currentIndex == 2
+                        ? Theme.of(context).colorScheme.primary
+                        : null,
               ),
             ),
+            title: 'Chat',
+            // isIconBlend: true,
           ),
-          SalomonBottomBarItem(
-            icon: Image.asset(
-              'assets/icons/doctor_vaccine.png',
-              width: 32,
-              height: 32,
-              fit: BoxFit.cover,
-              color: _currentIndex == 3 ? Colors.black : null,
-            ),
-            title: FittedBox(
-              child: Text(
-                'Vaccine',
-                style: Theme.of(
-                  context,
-                ).textTheme.labelMedium!.copyWith(fontSize: 14),
+          TabItem(
+            icon: Padding(
+              padding: EdgeInsets.all(_currentIndex == 3 ? 10.0 : 0),
+              child: Image.asset(
+                'assets/icons/doctor_vaccine.png',
+                width: 32,
+                height: 32,
+                fit: BoxFit.contain,
+                color:
+                    _currentIndex == 3
+                        ? Theme.of(context).colorScheme.primary
+                        : null,
               ),
             ),
+            title: 'Vaccine',
+            // isIconBlend: true,
           ),
-          SalomonBottomBarItem(
-            icon: Image.asset(
-              'assets/icons/profile.png',
-              width: 32,
-              height: 32,
-              fit: BoxFit.cover,
-              color: _currentIndex == 4 ? Colors.black : null,
-            ),
-            title: FittedBox(
-              child: Text(
-                'Profile',
-                style: Theme.of(
-                  context,
-                ).textTheme.labelMedium!.copyWith(fontSize: 14),
+          TabItem(
+            icon: Padding(
+              padding: EdgeInsets.all(_currentIndex == 4 ? 10.0 : 0),
+              child: Image.asset(
+                'assets/icons/profile.png',
+                width: 32,
+                height: 32,
+                fit: BoxFit.contain,
+                color:
+                    _currentIndex == 4
+                        ? Theme.of(context).colorScheme.primary
+                        : null,
               ),
             ),
+            title: 'Profile',
+            // isIconBlend: true,
           ),
         ],
       ),

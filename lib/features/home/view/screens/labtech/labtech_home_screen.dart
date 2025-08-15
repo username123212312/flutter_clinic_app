@@ -189,7 +189,7 @@ class _LabtechHomeScreenState extends State<LabtechHomeScreen> {
           enabled: state.status.isLoading,
           child: ListView.builder(
             reverse: true,
-            itemExtent: screenHeight(context) * 0.1,
+            itemExtent: screenHeight(context) * 0.12,
             padding: EdgeInsets.symmetric(horizontal: 30),
             itemCount: state.analysisList.length,
             shrinkWrap: true,
@@ -420,7 +420,7 @@ class _AnalysisSearchFilterSheetState
             fillColor: WidgetStatePropertyAll(Pallete.primaryColor),
 
             title: Text(
-              'Name',
+              'Analysis Name',
               style: Theme.of(
                 context,
               ).textTheme.labelMedium!.copyWith(fontSize: 12),
@@ -437,7 +437,7 @@ class _AnalysisSearchFilterSheetState
             fillColor: WidgetStatePropertyAll(Pallete.primaryColor),
 
             title: Text(
-              'Number',
+              'Patient Number',
               style: Theme.of(
                 context,
               ).textTheme.labelMedium!.copyWith(fontSize: 12),

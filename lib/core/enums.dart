@@ -64,10 +64,12 @@ enum DoctorAppointmentType {
 
 enum PaymentStatus {
   paid,
+  cancelled,
   pending,
   unpaid;
 
   bool get isPaid => this == PaymentStatus.paid;
+  bool get isCancelled => this == PaymentStatus.cancelled;
   bool get isUnpaid => this == PaymentStatus.unpaid;
   bool get isPending => this == PaymentStatus.pending;
 }

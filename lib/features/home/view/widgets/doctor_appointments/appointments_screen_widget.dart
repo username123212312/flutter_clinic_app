@@ -36,7 +36,7 @@ class _AppointmentsScreenWidgetState extends State<AppointmentsScreenWidget> {
         _buildHeader(),
         SliverToBoxAdapter(
           child: SizedBox(
-            height: screenHeight(context) * 0.8,
+            height: screenHeight(context),
             child:
                 BlocConsumer<DoctorAppointmentsBloc, DoctorAppointmentsState>(
                   listener: (context, state) {
@@ -108,6 +108,12 @@ class _AppointmentsScreenWidgetState extends State<AppointmentsScreenWidget> {
                                 behavior: HitTestBehavior.opaque,
                                 child: DoctorAppointmentCard(
                                   appointment: appointment,
+                                  image:
+                                      (appointment.patientGender ??
+                                                  'male')[0] ==
+                                              'm'
+                                          ? 'assets/icons/patient_icon2.png'
+                                          : 'assets/icons/patient_icon1.png',
                                 ),
                               ),
                             );

@@ -28,6 +28,7 @@ class AppTheme {
       scaffoldBackgroundColor: Pallete.backgroundColor,
       inputDecorationTheme: InputDecorationTheme(
         contentPadding: EdgeInsets.all(27),
+        border: _border(Pallete.grayScaleColor500),
         enabledBorder: _border(Pallete.grayScaleColor500),
         focusedBorder: _border(Pallete.primaryColor),
         disabledBorder: _border(Pallete.grayScaleColor500),

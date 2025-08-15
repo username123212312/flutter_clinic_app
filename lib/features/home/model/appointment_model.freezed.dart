@@ -32,6 +32,8 @@ mixin _$AppointmentModel {
   int? get clinicId => throw _privateConstructorUsedError;
   @JsonKey(name: 'clinic_name')
   String? get clinicName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'patient_gender')
+  String? get patientGender => throw _privateConstructorUsedError;
   @JsonKey(name: 'doctor_id')
   int? get doctorId => throw _privateConstructorUsedError;
   @JsonKey(name: 'doctor_photo')
@@ -85,6 +87,7 @@ abstract class $AppointmentModelCopyWith<$Res> {
     @JsonKey(name: 'referred by') String? referredBy,
     @JsonKey(name: 'clinic_id') int? clinicId,
     @JsonKey(name: 'clinic_name') String? clinicName,
+    @JsonKey(name: 'patient_gender') String? patientGender,
     @JsonKey(name: 'doctor_id') int? doctorId,
     @JsonKey(name: 'doctor_photo') String? doctorPhoto,
     @JsonKey(name: 'doctor_name') String? doctorName,
@@ -126,6 +129,7 @@ class _$AppointmentModelCopyWithImpl<$Res, $Val extends AppointmentModel>
     Object? referredBy = freezed,
     Object? clinicId = freezed,
     Object? clinicName = freezed,
+    Object? patientGender = freezed,
     Object? doctorId = freezed,
     Object? doctorPhoto = freezed,
     Object? doctorName = freezed,
@@ -171,6 +175,11 @@ class _$AppointmentModelCopyWithImpl<$Res, $Val extends AppointmentModel>
                 freezed == clinicName
                     ? _value.clinicName
                     : clinicName // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            patientGender:
+                freezed == patientGender
+                    ? _value.patientGender
+                    : patientGender // ignore: cast_nullable_to_non_nullable
                         as String?,
             doctorId:
                 freezed == doctorId
@@ -259,6 +268,7 @@ abstract class _$$AppointmentModelImplCopyWith<$Res>
     @JsonKey(name: 'referred by') String? referredBy,
     @JsonKey(name: 'clinic_id') int? clinicId,
     @JsonKey(name: 'clinic_name') String? clinicName,
+    @JsonKey(name: 'patient_gender') String? patientGender,
     @JsonKey(name: 'doctor_id') int? doctorId,
     @JsonKey(name: 'doctor_photo') String? doctorPhoto,
     @JsonKey(name: 'doctor_name') String? doctorName,
@@ -299,6 +309,7 @@ class __$$AppointmentModelImplCopyWithImpl<$Res>
     Object? referredBy = freezed,
     Object? clinicId = freezed,
     Object? clinicName = freezed,
+    Object? patientGender = freezed,
     Object? doctorId = freezed,
     Object? doctorPhoto = freezed,
     Object? doctorName = freezed,
@@ -344,6 +355,11 @@ class __$$AppointmentModelImplCopyWithImpl<$Res>
             freezed == clinicName
                 ? _value.clinicName
                 : clinicName // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        patientGender:
+            freezed == patientGender
+                ? _value.patientGender
+                : patientGender // ignore: cast_nullable_to_non_nullable
                     as String?,
         doctorId:
             freezed == doctorId
@@ -425,6 +441,7 @@ class _$AppointmentModelImpl implements _AppointmentModel {
     @JsonKey(name: 'referred by') this.referredBy,
     @JsonKey(name: 'clinic_id') this.clinicId,
     @JsonKey(name: 'clinic_name') this.clinicName,
+    @JsonKey(name: 'patient_gender') this.patientGender,
     @JsonKey(name: 'doctor_id') this.doctorId,
     @JsonKey(name: 'doctor_photo') this.doctorPhoto,
     @JsonKey(name: 'doctor_name') this.doctorName,
@@ -464,6 +481,9 @@ class _$AppointmentModelImpl implements _AppointmentModel {
   @override
   @JsonKey(name: 'clinic_name')
   final String? clinicName;
+  @override
+  @JsonKey(name: 'patient_gender')
+  final String? patientGender;
   @override
   @JsonKey(name: 'doctor_id')
   final int? doctorId;
@@ -507,7 +527,7 @@ class _$AppointmentModelImpl implements _AppointmentModel {
 
   @override
   String toString() {
-    return 'AppointmentModel(id: $id, type: $type, finalRate: $finalRate, referredBy: $referredBy, clinicId: $clinicId, clinicName: $clinicName, doctorId: $doctorId, doctorPhoto: $doctorPhoto, doctorName: $doctorName, patientFirstName: $patientFirstName, patientLastName: $patientLastName, appointmentType: $appointmentType, visitFee: $visitFee, doctorSpeciality: $doctorSpeciality, reservationDate: $reservationDate, reservationHour: $reservationHour, status: $status, reminderOffset: $reminderOffset, paymentStatus: $paymentStatus)';
+    return 'AppointmentModel(id: $id, type: $type, finalRate: $finalRate, referredBy: $referredBy, clinicId: $clinicId, clinicName: $clinicName, patientGender: $patientGender, doctorId: $doctorId, doctorPhoto: $doctorPhoto, doctorName: $doctorName, patientFirstName: $patientFirstName, patientLastName: $patientLastName, appointmentType: $appointmentType, visitFee: $visitFee, doctorSpeciality: $doctorSpeciality, reservationDate: $reservationDate, reservationHour: $reservationHour, status: $status, reminderOffset: $reminderOffset, paymentStatus: $paymentStatus)';
   }
 
   @override
@@ -525,6 +545,8 @@ class _$AppointmentModelImpl implements _AppointmentModel {
                 other.clinicId == clinicId) &&
             (identical(other.clinicName, clinicName) ||
                 other.clinicName == clinicName) &&
+            (identical(other.patientGender, patientGender) ||
+                other.patientGender == patientGender) &&
             (identical(other.doctorId, doctorId) ||
                 other.doctorId == doctorId) &&
             (identical(other.doctorPhoto, doctorPhoto) ||
@@ -562,6 +584,7 @@ class _$AppointmentModelImpl implements _AppointmentModel {
     referredBy,
     clinicId,
     clinicName,
+    patientGender,
     doctorId,
     doctorPhoto,
     doctorName,
@@ -602,6 +625,7 @@ abstract class _AppointmentModel implements AppointmentModel {
     @JsonKey(name: 'referred by') final String? referredBy,
     @JsonKey(name: 'clinic_id') final int? clinicId,
     @JsonKey(name: 'clinic_name') final String? clinicName,
+    @JsonKey(name: 'patient_gender') final String? patientGender,
     @JsonKey(name: 'doctor_id') final int? doctorId,
     @JsonKey(name: 'doctor_photo') final String? doctorPhoto,
     @JsonKey(name: 'doctor_name') final String? doctorName,
@@ -641,6 +665,9 @@ abstract class _AppointmentModel implements AppointmentModel {
   @override
   @JsonKey(name: 'clinic_name')
   String? get clinicName;
+  @override
+  @JsonKey(name: 'patient_gender')
+  String? get patientGender;
   @override
   @JsonKey(name: 'doctor_id')
   int? get doctorId;
