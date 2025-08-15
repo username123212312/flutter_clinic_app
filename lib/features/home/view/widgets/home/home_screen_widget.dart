@@ -163,6 +163,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                 ),
                 if (getChildId() != null) ...[
                   const SizedBox(height: 12),
+
                   SectionHeader(title: 'Family Tips'),
                   const SizedBox(height: 12),
                   const EducationalSlider(),

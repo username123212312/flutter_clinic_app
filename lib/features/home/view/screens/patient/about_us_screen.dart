@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 import 'package:our_flutter_clinic_app/core/widgets/background_container.dart';
-
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../../core/theme/app_pallete.dart';
 
 class AboutUsScreen extends StatelessWidget {
@@ -11,12 +11,20 @@ class AboutUsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () => Navigator.of(context).pop(),
+          icon: const Icon(
+            FontAwesomeIcons.arrowLeft,
+            color: Pallete.black1,
+            size: 18,
+          ),
+        ),
         centerTitle: false,
         forceMaterialTransparency: true,
         title: Text(
           'Info',
           style: Theme.of(context).textTheme.titleMedium!.copyWith(
-            fontSize: 20,
+            fontSize: 19,
             color: Pallete.black1,
           ),
         ),

@@ -44,7 +44,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
           title: Text('Create a Password'),
           titleTextStyle: Theme.of(
             context,
-          ).textTheme.labelSmall!.copyWith(fontSize: 20),
+          ).textTheme.labelSmall!.copyWith(fontSize: 19),
         ),
         body: SingleChildScrollView(
           padding: EdgeInsets.only(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:our_flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
 import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
@@ -33,12 +34,19 @@ class _AddChildScreenState extends State<AddChildScreen> {
       appBar: AppBar(
         toolbarHeight: screenHeight(context) * 0.09,
         centerTitle: false,
-        iconTheme: IconThemeData(size: 24),
+        leading: IconButton(
+          onPressed: () => Navigator.of(context).pop(),
+          icon: const Icon(
+            FontAwesomeIcons.arrowLeft,
+            color: Pallete.black1,
+            size: 18,
+          ),
+        ),
         forceMaterialTransparency: true,
         title: Text(
           'Add new child',
           style: Theme.of(context).textTheme.labelMedium!.copyWith(
-            fontSize: 20,
+            fontSize: 19,
             color: Pallete.grayScaleColor700,
           ),
         ),
@@ -105,16 +113,29 @@ class _AddChildScreenState extends State<AddChildScreen> {
                 controller: _genderController,
                 readOnly: true,
                 suffixIcon: DropdownButton<int>(
+                  dropdownColor: Pallete.grayScaleColor0,
                   value: _selectedGender,
                   underline: Container(color: Colors.transparent),
                   icon: Icon(
                     Icons.arrow_drop_down,
-                    color: Pallete.grayScaleColor400,
+                    color: Pallete.grayScaleColor500,
                     size: 40,
                   ),
                   items: [
-                    DropdownMenuItem(value: 0, child: Text('Male')),
-                    DropdownMenuItem(value: 1, child: Text('Female')),
+                    DropdownMenuItem(
+                      value: 0,
+                      child: Text(
+                        'Male',
+                        style: TextStyle(fontSize: 13, color: Pallete.black1),
+                      ),
+                    ),
+                    DropdownMenuItem(
+                      value: 1,
+                      child: Text(
+                        'Female',
+                        style: TextStyle(fontSize: 13, color: Pallete.black1),
+                      ),
+                    ),
                   ],
                   onChanged: (index) {
                     setState(() {
@@ -180,9 +201,10 @@ class _AddChildScreenState extends State<AddChildScreen> {
                 suffixIcon: Transform.scale(
                   scaleY: 0.7,
                   scaleX: 0.7,
-                  child: Image.asset(
-                    'assets/icons/ic_calendar.png',
-                    fit: BoxFit.cover,
+                  child: Icon(
+                    Icons.calendar_today,
+                    color: Pallete.grayScaleColor500,
+                    size: 30,
                   ),
                 ),
               ),

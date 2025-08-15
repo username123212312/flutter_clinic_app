@@ -6,7 +6,7 @@ import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/home/controller/my_wallet_cubit/my_wallet_cubit.dart';
 import 'package:our_flutter_clinic_app/features/home/repository/payment_repository.dart';
-
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../../core/utils/decimal_input_formatter.dart';
 import '../../../../../core/utils/utils.dart';
 
@@ -38,6 +38,14 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
     final user = context.read<AuthBloc>().state.authUser?.user;
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () => Navigator.of(context).pop(),
+          icon: const Icon(
+            FontAwesomeIcons.arrowLeft,
+            color: Pallete.black1,
+            size: 18,
+          ),
+        ),
         actions: [
           BlocBuilder<MyWalletCubit, MyWalletState>(
             bloc: _myWalletCubit,
@@ -55,11 +63,11 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
           ),
         ],
         forceMaterialTransparency: true,
-        toolbarHeight: screenHeight(context) * 0.13,
+        toolbarHeight: screenHeight(context) * 0.10,
         title: Text('My Wallet'),
         titleTextStyle: Theme.of(
           context,
-        ).textTheme.titleMedium!.copyWith(fontSize: 25),
+        ).textTheme.titleMedium!.copyWith(fontSize: 19),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.only(
@@ -111,7 +119,7 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
                 style: ElevatedButton.styleFrom(
                   fixedSize: Size(
                     screenWidth(context) * 0.9,
-                    screenHeight(context) * 0.08,
+                    screenHeight(context) * 0.075,
                   ),
                   foregroundColor: Colors.white,
                 ),
