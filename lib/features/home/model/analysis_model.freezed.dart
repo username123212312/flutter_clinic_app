@@ -36,6 +36,8 @@ mixin _$AnalysisModel {
   String? get patientLastName => throw _privateConstructorUsedError;
   @JsonKey(name: 'patient_id')
   int? get patientId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'patient_number')
+  int? get patientNumber => throw _privateConstructorUsedError;
   double? get price => throw _privateConstructorUsedError;
   @JsonKey(name: 'payment status')
   PaymentStatus? get paymentStatus => throw _privateConstructorUsedError;
@@ -68,6 +70,7 @@ abstract class $AnalysisModelCopyWith<$Res> {
     @JsonKey(name: 'patient_first_name') String? patientFirstName,
     @JsonKey(name: 'patient_last_name') String? patientLastName,
     @JsonKey(name: 'patient_id') int? patientId,
+    @JsonKey(name: 'patient_number') int? patientNumber,
     double? price,
     @JsonKey(name: 'payment status') PaymentStatus? paymentStatus,
   });
@@ -98,6 +101,7 @@ class _$AnalysisModelCopyWithImpl<$Res, $Val extends AnalysisModel>
     Object? patientFirstName = freezed,
     Object? patientLastName = freezed,
     Object? patientId = freezed,
+    Object? patientNumber = freezed,
     Object? price = freezed,
     Object? paymentStatus = freezed,
   }) {
@@ -153,6 +157,11 @@ class _$AnalysisModelCopyWithImpl<$Res, $Val extends AnalysisModel>
                     ? _value.patientId
                     : patientId // ignore: cast_nullable_to_non_nullable
                         as int?,
+            patientNumber:
+                freezed == patientNumber
+                    ? _value.patientNumber
+                    : patientNumber // ignore: cast_nullable_to_non_nullable
+                        as int?,
             price:
                 freezed == price
                     ? _value.price
@@ -189,6 +198,7 @@ abstract class _$$AnalysisModelImplCopyWith<$Res>
     @JsonKey(name: 'patient_first_name') String? patientFirstName,
     @JsonKey(name: 'patient_last_name') String? patientLastName,
     @JsonKey(name: 'patient_id') int? patientId,
+    @JsonKey(name: 'patient_number') int? patientNumber,
     double? price,
     @JsonKey(name: 'payment status') PaymentStatus? paymentStatus,
   });
@@ -218,6 +228,7 @@ class __$$AnalysisModelImplCopyWithImpl<$Res>
     Object? patientFirstName = freezed,
     Object? patientLastName = freezed,
     Object? patientId = freezed,
+    Object? patientNumber = freezed,
     Object? price = freezed,
     Object? paymentStatus = freezed,
   }) {
@@ -273,6 +284,11 @@ class __$$AnalysisModelImplCopyWithImpl<$Res>
                 ? _value.patientId
                 : patientId // ignore: cast_nullable_to_non_nullable
                     as int?,
+        patientNumber:
+            freezed == patientNumber
+                ? _value.patientNumber
+                : patientNumber // ignore: cast_nullable_to_non_nullable
+                    as int?,
         price:
             freezed == price
                 ? _value.price
@@ -302,6 +318,7 @@ class _$AnalysisModelImpl implements _AnalysisModel {
     @JsonKey(name: 'patient_first_name') this.patientFirstName,
     @JsonKey(name: 'patient_last_name') this.patientLastName,
     @JsonKey(name: 'patient_id') this.patientId,
+    @JsonKey(name: 'patient_number') this.patientNumber,
     this.price,
     @JsonKey(name: 'payment status') this.paymentStatus,
   });
@@ -336,6 +353,9 @@ class _$AnalysisModelImpl implements _AnalysisModel {
   @JsonKey(name: 'patient_id')
   final int? patientId;
   @override
+  @JsonKey(name: 'patient_number')
+  final int? patientNumber;
+  @override
   final double? price;
   @override
   @JsonKey(name: 'payment status')
@@ -343,7 +363,7 @@ class _$AnalysisModelImpl implements _AnalysisModel {
 
   @override
   String toString() {
-    return 'AnalysisModel(id: $id, name: $name, description: $description, status: $status, resultFile: $resultFile, resultPhoto: $resultPhoto, clinic: $clinic, patientFirstName: $patientFirstName, patientLastName: $patientLastName, patientId: $patientId, price: $price, paymentStatus: $paymentStatus)';
+    return 'AnalysisModel(id: $id, name: $name, description: $description, status: $status, resultFile: $resultFile, resultPhoto: $resultPhoto, clinic: $clinic, patientFirstName: $patientFirstName, patientLastName: $patientLastName, patientId: $patientId, patientNumber: $patientNumber, price: $price, paymentStatus: $paymentStatus)';
   }
 
   @override
@@ -367,6 +387,8 @@ class _$AnalysisModelImpl implements _AnalysisModel {
                 other.patientLastName == patientLastName) &&
             (identical(other.patientId, patientId) ||
                 other.patientId == patientId) &&
+            (identical(other.patientNumber, patientNumber) ||
+                other.patientNumber == patientNumber) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.paymentStatus, paymentStatus) ||
                 other.paymentStatus == paymentStatus));
@@ -386,6 +408,7 @@ class _$AnalysisModelImpl implements _AnalysisModel {
     patientFirstName,
     patientLastName,
     patientId,
+    patientNumber,
     price,
     paymentStatus,
   );
@@ -416,6 +439,7 @@ abstract class _AnalysisModel implements AnalysisModel {
     @JsonKey(name: 'patient_first_name') final String? patientFirstName,
     @JsonKey(name: 'patient_last_name') final String? patientLastName,
     @JsonKey(name: 'patient_id') final int? patientId,
+    @JsonKey(name: 'patient_number') final int? patientNumber,
     final double? price,
     @JsonKey(name: 'payment status') final PaymentStatus? paymentStatus,
   }) = _$AnalysisModelImpl;
@@ -448,6 +472,9 @@ abstract class _AnalysisModel implements AnalysisModel {
   @override
   @JsonKey(name: 'patient_id')
   int? get patientId;
+  @override
+  @JsonKey(name: 'patient_number')
+  int? get patientNumber;
   @override
   double? get price;
   @override

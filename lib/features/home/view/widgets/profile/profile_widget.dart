@@ -5,7 +5,11 @@ import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:our_flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/custom_switch.dart';
+import 'package:toastification/toastification.dart';
 
+import '../../../../../core/widgets/custom_dialog.dart';
+import '../../../../../core/widgets/transparent_content_dialog.dart';
+import '../../../../auth/view/widgets/custom_elevated_button.dart';
 import '../../screens/patient/report_screen.dart';
 
 class ProifileWidget extends StatelessWidget {
@@ -301,7 +305,7 @@ class ProifileWidget extends StatelessWidget {
           GestureDetector(
             behavior: HitTestBehavior.opaque,
             onTap: () {
-              context.read<UserBloc>().add(UserLoggedOut());
+              _showTDialog(context);
             },
             child: BlocListener<UserBloc, UserState>(
               listener: (context, state) {
@@ -310,7 +314,11 @@ class ProifileWidget extends StatelessWidget {
                 } else {
                   LoadingOverlay().hideAll();
                   if (state.status.isError) {
-                    showToast(msg: state.statusMessage);
+                    showToast(
+                      context: context,
+                      type: ToastificationType.error,
+                      msg: state.statusMessage,
+                    );
                   }
                 }
               },
@@ -351,6 +359,65 @@ class ProifileWidget extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Future<dynamic> _showTDialog(BuildContext context) {
+    return TransparentDialog.show(
+      barrierDismissible: true,
+      context: context,
+      builder:
+          (_) => CustomDialog(
+            size: Size(
+              screenWidth(context) * 0.8,
+              screenHeight(context) * 0.17,
+            ),
+            content: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Are you sure?',
+                  style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                    color: Colors.black,
+                    fontSize: 15,
+                  ),
+                ),
+                SizedBox(height: 50),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(
+                      width: screenWidth(context) * 0.3,
+                      height: screenHeight(context) * 0.05,
+                      child: CustomElevatedButton(
+                        fontSize: 12,
+                        title: 'back',
+                        onTap: () {
+                          context.pop();
+                        },
+                        fillColor: Pallete.grayScaleColor400,
+                        textColor: Colors.black,
+                      ),
+                    ),
+                    SizedBox(
+                      width: screenWidth(context) * 0.3,
+                      height: screenHeight(context) * 0.05,
+                      child: CustomElevatedButton(
+                        fontSize: 12,
+                        title: 'Logout',
+                        onTap: () {
+                          context.read<UserBloc>().add(UserLoggedOut());
+                          context.pop();
+                        },
+                        fillColor: Theme.of(context).colorScheme.primary,
+                        textColor: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
     );
   }
 

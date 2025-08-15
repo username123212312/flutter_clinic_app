@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/general_utils.dart';
@@ -44,7 +45,11 @@ class _PatientShowChildRecordScreenState
               } else {
                 LoadingOverlay().hideAll();
                 if (state.status.isError) {
-                  showToast(msg: state.message);
+                  showToast(
+                    context: context,
+                    type: ToastificationType.error,
+                    msg: state.message,
+                  );
                 }
               }
             },

@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:our_flutter_clinic_app/core/navigation/app_route_constants.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:toastification/toastification.dart';
 import '../../../../../core/widgets/loading_overlay.dart';
 import '../../../controller/clinics_cubit/clinics_cubit.dart';
 import '../../../repository/clinics_doctors_repository.dart';
@@ -117,7 +118,7 @@ class _AllDepartmentsScreenState extends State<AllDepartmentsScreen> {
       body: BlocConsumer<ClinicsCubit, ClinicsState>(
         bloc: _clinicsCubit,
         builder: (_, state) {
-          if (state.clinics.isEmpty) {
+          if (state.clinics.isEmpty && state.status.isLoading) {
             return Center(
               child: Column(
                 children: [
@@ -172,7 +173,11 @@ class _AllDepartmentsScreenState extends State<AllDepartmentsScreen> {
         },
         listener: (_, state) {
           if (state.status.isError) {
-            showToast(msg: state.message);
+            showToast(
+              context: context,
+              type: ToastificationType.error,
+              msg: state.message,
+            );
           }
         },
       ),

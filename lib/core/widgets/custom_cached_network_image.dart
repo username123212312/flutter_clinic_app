@@ -9,12 +9,15 @@ class CustomCachedNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CachedNetworkImage(
-      errorWidget: (context, url, error) {
-        return Image.asset(fit: BoxFit.cover, 'assets/images/logo.webp');
-      },
-      fit: BoxFit.cover,
-      imageUrl: '${AppConstants.serverUrl}$imagePath',
+    return Container(
+      decoration: BoxDecoration(shape: BoxShape.circle),
+      child: CachedNetworkImage(
+        errorWidget: (context, url, error) {
+          return Image.asset(fit: BoxFit.cover, 'assets/images/logo.webp');
+        },
+        fit: BoxFit.cover,
+        imageUrl: '${AppConstants.serverUrl}$imagePath',
+      ),
     );
   }
 }

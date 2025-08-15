@@ -40,7 +40,7 @@ class ProfileImagePicker extends StatelessWidget {
           child:
               image == null
                   ? existingImagePath == null
-                      ? SizedBox()
+                      ? Center(child: Icon(Icons.camera_alt_outlined))
                       : CustomCachedNetworkImage(imagePath: existingImagePath!)
                   : ClipRRect(
                     borderRadius: BorderRadius.circular(8),

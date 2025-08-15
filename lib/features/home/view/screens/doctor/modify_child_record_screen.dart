@@ -6,6 +6,7 @@ import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/home/model/child_record.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../auth/view/widgets/custom_button.dart';
@@ -324,7 +325,14 @@ class _ModifyChildRecordScreenState extends State<ModifyChildRecordScreen> {
                         LoadingOverlay().show(context);
                       } else {
                         LoadingOverlay().hideAll();
-                        showToast(msg: state.message);
+                        showToast(
+                          context: context,
+                          type:
+                              state.status.isError
+                                  ? ToastificationType.error
+                                  : ToastificationType.success,
+                          msg: state.message,
+                        );
 
                         if (state.status.isDone) {
                           context.pop<bool>(true);

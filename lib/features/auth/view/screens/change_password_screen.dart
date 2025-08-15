@@ -2,6 +2,7 @@ import 'package:lottie/lottie.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/validator_util.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
+import 'package:toastification/toastification.dart';
 import '../../../../core/cubits/change_password_cubit/change_password_cubit.dart';
 import '../../../../core/widgets/transparent_content_dialog.dart';
 import '../../../../core/widgets/widgets.dart';
@@ -112,7 +113,13 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         } else {
                           if (mounted) {
                             LoadingOverlay().hideAll();
-                            clearAndShowSnackBar(context, state.message);
+                            if (state.status.isError) {
+                              showToast(
+                                context: context,
+                                msg: state.message,
+                                type: ToastificationType.error,
+                              );
+                            }
                           }
                           if (state.status.isDone) {
                             await TransparentDialog.show(

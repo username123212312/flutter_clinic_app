@@ -9,6 +9,7 @@ import 'package:our_flutter_clinic_app/core/widgets/transparent_content_dialog.d
 import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
 import 'package:our_flutter_clinic_app/features/home/repository/reschedule_appointment_repository.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/home_widgets.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/navigation/navigation_exports.dart';
 import '../../../../../core/utils/utils.dart';
@@ -77,10 +78,10 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
                 LoadingOverlay().show(context);
               } else if (state.status?.isError ?? false) {
                 LoadingOverlay().hideAll();
-
-                clearAndShowSnackBar(
-                  context,
-                  state.statusMessage ?? 'No message',
+                showToast(
+                  context: context,
+                  type: ToastificationType.success,
+                  msg: state.statusMessage ?? 'No message',
                 );
               } else if (state.status?.isData ?? false) {
                 LoadingOverlay().hideAll();

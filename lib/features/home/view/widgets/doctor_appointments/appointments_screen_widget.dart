@@ -9,6 +9,7 @@ import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dar
 import 'package:our_flutter_clinic_app/features/home/view/widgets/doctor_appointments/doctor_appointment_card.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/home_widgets.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/navigation/navigation_exports.dart';
 import '../../../controller/doctor_appointments_bloc/doctor_appointments_bloc.dart';
@@ -35,16 +36,20 @@ class _AppointmentsScreenWidgetState extends State<AppointmentsScreenWidget> {
         _buildHeader(),
         SliverToBoxAdapter(
           child: SizedBox(
-            height: screenHeight(context) * 0.8,
+            height: screenHeight(context),
             child:
                 BlocConsumer<DoctorAppointmentsBloc, DoctorAppointmentsState>(
                   listener: (context, state) {
                     if (state.status.isError) {
-                      showToast(msg: state.message);
+                      showToast(
+                        context: context,
+                        type: ToastificationType.error,
+                        msg: state.message,
+                      );
                     }
                   },
                   builder: (context, state) {
-                    if (state.appointments.isEmpty) {
+                    if (state.appointments.isEmpty && !state.status.isLoading) {
                       return RefreshIndicator(
                         onRefresh: () async {
                           context.read<DoctorAppointmentsBloc>().add(
@@ -103,6 +108,12 @@ class _AppointmentsScreenWidgetState extends State<AppointmentsScreenWidget> {
                                 behavior: HitTestBehavior.opaque,
                                 child: DoctorAppointmentCard(
                                   appointment: appointment,
+                                  image:
+                                      (appointment.patientGender ??
+                                                  'male')[0] ==
+                                              'm'
+                                          ? 'assets/icons/patient_icon2.png'
+                                          : 'assets/icons/patient_icon1.png',
                                 ),
                               ),
                             );

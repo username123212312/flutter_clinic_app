@@ -9,6 +9,7 @@ import 'package:our_flutter_clinic_app/core/widgets/widgets.dart';
 import 'package:our_flutter_clinic_app/features/home/controller/doctor_schedule_cubit/doctor_schedule_cubit.dart';
 import 'package:our_flutter_clinic_app/features/home/repository/doctor_schedule_repository.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/navigation/app_route_constants.dart';
 import '../../../../../core/theme/app_pallete.dart';
@@ -212,11 +213,19 @@ class _DoctorScheduleScreenState extends State<DoctorScheduleScreen> {
                     } else {
                       LoadingOverlay().hideAll();
                       if (state.status.isDone) {
-                        showToast(msg: state.message);
+                        showToast(
+                          context: context,
+                          msg: state.message,
+                          type: ToastificationType.success,
+                        );
                         context.goNamed(AppRouteConstants.doctorHomeRouteName);
                       }
                       if (state.status.isError) {
-                        showToast(msg: state.message);
+                        showToast(
+                          context: context,
+                          msg: state.message,
+                          type: ToastificationType.error,
+                        );
                       }
                     }
                   },
@@ -232,7 +241,11 @@ class _DoctorScheduleScreenState extends State<DoctorScheduleScreen> {
                                     workDays: selectedShifts,
                                   );
                                 } else {
-                                  showToast(msg: 'You must select Shifts');
+                                  showToast(
+                                    context: context,
+                                    type: ToastificationType.info,
+                                    msg: 'You must select Shifts',
+                                  );
                                 }
                               },
                       color: Pallete.primaryColor,

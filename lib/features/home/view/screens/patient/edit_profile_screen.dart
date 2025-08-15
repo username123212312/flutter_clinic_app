@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:our_flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
 import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
@@ -12,9 +15,12 @@ import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/core/widgets/transparent_content_dialog.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/blocs/auth_bloc/auth_bloc.dart';
+import '../../../../../core/services/map_service/map_service.dart';
 import '../../../../../core/theme/app_pallete.dart';
+import '../../../../../core/widgets/map_location_picker.dart';
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});
@@ -27,10 +33,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   void initState() {
     super.initState();
-    _fetchProfile();
+    _fetchProfile(context);
   }
 
-  void _fetchProfile() async {
+  void _fetchProfile(BuildContext context) async {
     final userBloc = context.read<UserBloc>();
     userBloc.add(ProfileFetched());
     bool isDone = false;
@@ -48,7 +54,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       ).format(userBloc.state.user?.birthDate ?? DateTime.now());
       _discountPointsController.text =
           (userBloc.state.user?.discountPoints ?? 0).toString();
-      _completeAddressController.text = userBloc.state.user?.address ?? '';
+      // _completeAddressController.text = userBloc.state.user?.address ?? '';
+      _selectedGender =
+          (context.read<UserBloc>().state.user?.gender == null)
+              ? (context.read<UserBloc>().state.user?.gender ?? 'Male') ==
+                      'Male'
+                  ? 0
+                  : 1
+              : 0;
     }
   }
 
@@ -84,7 +97,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              _fetchProfile();
+              _fetchProfile(context);
             },
             iconSize: 20,
             icon: Icon(FontAwesomeIcons.arrowsRotate),
@@ -117,7 +130,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 } else {
                   LoadingOverlay().hideAll();
                   if (state.status.isError) {
-                    showToast(msg: state.statusMessage);
+                    showToast(
+                      context: context,
+                      type: ToastificationType.error,
+                      msg: state.statusMessage,
+                    );
                   }
                 }
               },
@@ -131,7 +148,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     fontSize: 16,
                     title: 'Save',
                     onTap:
-                        state.status.isLoading
+                        state.status.isLoading || checkIfAllEmptyOrNull()
                             ? null
                             : () {
                               context.read<UserBloc>().add(
@@ -150,15 +167,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                       _phoneController.text,
                                     ),
                                     gender: checkEmptiness(
-                                      _genderController.text,
+                                      _genderController.text.toLowerCase(),
                                     ),
                                     birthDate: _selectedDate,
                                     address: checkEmptiness(
                                       _completeAddressController.text,
                                     ),
                                     bloodType:
-                                        AppConstants
-                                            .bloodTypes[_selectedBloodType],
+                                        _selectedBloodType == null
+                                            ? null
+                                            : AppConstants
+                                                .bloodTypes[_selectedBloodType!],
                                   ),
                                 ),
                               );
@@ -175,9 +194,18 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               },
               listener: (context, state) {
                 if (state.status.isError) {
-                  showToast(msg: state.statusMessage);
+                  showToast(
+                    context: context,
+                    type: ToastificationType.error,
+                    msg: state.statusMessage,
+                  );
                 }
                 if (state.status.isDone) {
+                  showToast(
+                    context: context,
+                    type: ToastificationType.success,
+                    msg: state.statusMessage,
+                  );
                   context.pop();
                 }
               },
@@ -210,10 +238,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             builder: (context, state) {
               return BloodTypesWidget(
                 selectedBloodType: AppConstants.bloodTypes.indexOf(
-                  state.authUser?.user?.bloodType ?? 'A+',
+                  state.authUser?.user?.bloodType ?? 'pp',
                 ),
                 onSelected: (bloodType) {
-                  _selectedBloodType = bloodType;
+                  setState(() {
+                    _selectedBloodType = bloodType;
+                  });
                 },
               );
             },
@@ -262,7 +292,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             controller: _emailController,
             hintText:
                 (state.user?.email == null)
-                    ? '+963X-XXXX-XXXX'
+                    ? 'Email'
                     : state.user?.email ?? 'No Email',
             keyboardType: TextInputType.emailAddress,
           ),
@@ -292,16 +322,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         SizedBox(height: 10),
 
         CustomTextField(
-          controller: _genderController..text = (state.user?.gender ?? ''),
+          controller: _genderController,
           readOnly: true,
           suffixIcon: DropdownButton<int>(
+
             dropdownColor: Pallete.grayScaleColor0,
-            value:
-                (state.user?.gender == null)
-                    ? (state.user?.gender ?? 'Male') == 'Male'
-                        ? 0
-                        : 1
-                    : 0,
+            value: _selectedGender,
+
             underline: Container(color: Colors.transparent),
             icon: Icon(
               Icons.arrow_drop_down,
@@ -325,12 +352,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               ),
             ],
             onChanged: (index) {
-              setState(() {
-                _genderController.text = index == 0 ? 'Male' : 'Female';
-              });
+              if (index != null) {
+                setState(() {
+                  _selectedGender = index;
+                  _genderController.text = index == 0 ? 'Male' : 'Female';
+                });
+              }
             },
           ),
-          hintText: 'Gender',
+          hintText: state.user?.gender ?? 'Gender',
           keyboardType: TextInputType.text,
         ),
         SizedBox(height: 20),
@@ -363,7 +393,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           },
           controller: _ageController,
           readOnly: true,
-          hintText: 'Age',
+          hintText: 'Birth date',
           keyboardType: TextInputType.number,
           suffixIcon: Transform.scale(
             scaleY: 0.7,
@@ -406,6 +436,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           ),
           SizedBox(height: 10),
           CustomTextField(
+            suffixIcon: IconButton(
+              onPressed: () async {
+                await _pickLocation();
+              },
+              icon: Icon(Icons.location_on, color: Pallete.gray1),
+            ),
             validator: (value) {
               if (value!.trim().isEmpty) {
                 return 'Address should not be empty';
@@ -414,9 +450,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               }
             },
             maxLength: 100,
-            controller:
-                _completeAddressController..text = state.user?.address ?? '',
-            hintText: 'Address',
+            controller: _completeAddressController..text,
+            hintText: state.user?.address ?? 'Address',
             keyboardType: TextInputType.name,
             textInputAction: TextInputAction.done,
           ),
@@ -531,6 +566,35 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     );
   }
 
+  Future<void> _pickLocation() async {
+    LatLng? picked = await TransparentDialog.show<LatLng>(
+      context: context,
+      builder: (context) => MapLocationPicker(),
+    );
+
+    if (picked != null) {
+      final pickedLocation = await MapService().reverseGeocode(picked);
+      log("User selected location: ${picked.latitude}, ${picked.longitude}");
+
+      if (pickedLocation != null) {
+        setState(() {
+          _completeAddressController.text = pickedLocation;
+        });
+      }
+    }
+  }
+
+  bool checkIfAllEmptyOrNull() {
+    return checkEmptiness(_firstNameController.text) == null &&
+        checkEmptiness(_lastNameController.text) == null &&
+        checkEmptiness(_emailController.text) == null &&
+        checkEmptiness(_phoneController.text) == null &&
+        checkEmptiness(_genderController.text.toLowerCase()) == null &&
+        _selectedDate == null &&
+        checkEmptiness(_completeAddressController.text) == null &&
+        _selectedBloodType == null;
+  }
+
   final _firstNameController = TextEditingController();
   DateTime? _selectedDate;
   final _lastNameController = TextEditingController();
@@ -539,7 +603,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   final _genderController = TextEditingController();
   final _ageController = TextEditingController();
   final _completeAddressController = TextEditingController();
-  int _selectedBloodType = 0;
+  int? _selectedBloodType;
+  int _selectedGender = 0;
 
   final _discountPointsController = TextEditingController();
 }

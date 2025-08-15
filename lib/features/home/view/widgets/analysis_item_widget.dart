@@ -75,11 +75,17 @@ class _AnalysisItemWidgetState extends State<AnalysisItemWidget> {
                 height: 40,
                 decoration: BoxDecoration(
                   color: Pallete.grayScaleColor200,
-                  borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                    fit: BoxFit.scaleDown,
-                    image: AssetImage('assets/images/medical_file_icon.png'),
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: Theme.of(context).colorScheme.primary,
                   ),
+                ),
+                alignment: Alignment.center,
+                child: Text(
+                  (widget.analysis.patientNumber ?? 0).toString(),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelMedium!.copyWith(fontSize: 12),
                 ),
               ),
             ),
@@ -94,15 +100,11 @@ class _AnalysisItemWidgetState extends State<AnalysisItemWidget> {
                     context,
                   ).textTheme.labelSmall!.copyWith(fontSize: 14),
                 ),
-                SizedBox(
-                  width: screenWidth(context) * 0.53,
-                  child: Text(
-                    overflow: TextOverflow.ellipsis,
-                    widget.analysis.description ?? 'no description',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.labelSmall!.copyWith(fontSize: 10),
-                  ),
+                Text(
+                  'P: ${widget.analysis.patientFirstName ?? 'No'} ${widget.analysis.patientLastName ?? 'Patient'}',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelSmall!.copyWith(fontSize: 14),
                 ),
               ],
             ),

@@ -6,6 +6,7 @@ import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 import 'package:our_flutter_clinic_app/features/home/controller/doctor_all_vaccines_cubit/doctor_all_vaccines_cubit.dart';
 import 'package:our_flutter_clinic_app/features/home/model/vaccinationrecord.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 
@@ -44,7 +45,11 @@ class _ShowVaccinesScreenState extends State<ShowVaccinesScreen> {
             bloc: _doctorAllVaccinesCubit,
             listener: (context, state) {
               if (state.status.isError) {
-                showToast(msg: state.message);
+                showToast(
+                  context: context,
+                  type: ToastificationType.error,
+                  msg: state.message,
+                );
               }
             },
             builder: (context, state) {

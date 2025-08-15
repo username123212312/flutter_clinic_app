@@ -101,8 +101,13 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                               LoadingOverlay().show(context);
                             } else {
                               LoadingOverlay().hideAll();
+                              if (state.status.isError) {
+                                showToast(
+                                  context: context,
+                                  msg: state.statusMessage,
+                                );
+                              }
                             }
-                            clearAndShowSnackBar(context, state.statusMessage);
                           },
                         ),
                         BlocListener<AuthBloc, AuthState>(

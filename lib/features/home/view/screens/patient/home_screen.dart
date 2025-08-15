@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -126,114 +127,114 @@ class _HomeScreenState extends State<HomeScreen>
           child: setHome(_currentIndex),
         ),
       ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              offset: Offset(0.0, -1.0),
-              blurRadius: 7.9,
-              color: Colors.black.withAlpha(80),
-              spreadRadius: 0.1,
-            ),
-          ],
-        ),
-        child: SalomonBottomBar(
-          backgroundColor: Pallete.backgroundColor,
-          selectedItemColor: Theme.of(context).colorScheme.primary,
-          currentIndex: _currentIndex,
-          onTap: (p0) {
-            setState(() {
-              _currentIndex = p0;
-            });
-          },
-          items: [
-            SalomonBottomBarItem(
-              icon: Image.asset(
+      bottomNavigationBar: _buildBottomBar(),
+    );
+  }
+
+  Container _buildBottomBar() {
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            offset: Offset(0.0, -1.0),
+            blurRadius: 7.9,
+            color: Colors.black.withAlpha(80),
+            spreadRadius: 0.1,
+          ),
+        ],
+      ),
+      child: ConvexAppBar(
+        backgroundColor: Pallete.backgroundColor,
+        initialActiveIndex: _currentIndex,
+        color: Pallete.grayScaleColor500,
+        onTap: (p0) {
+          setState(() {
+            _currentIndex = p0;
+          });
+        },
+        items: [
+          TabItem(
+            icon: Padding(
+              padding: EdgeInsets.all(_currentIndex == 0 ? 10.0 : 0),
+              child: Image.asset(
                 'assets/icons/home.png',
                 width: 32,
                 height: 32,
-                fit: BoxFit.cover,
-                color: _currentIndex == 0 ? Colors.black : null,
-              ),
-              title: FittedBox(
-                child: Text(
-                  'Home',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.labelMedium!.copyWith(fontSize: 15),
-                ),
+                fit: BoxFit.contain,
+                color:
+                    _currentIndex == 0
+                        ? Theme.of(context).colorScheme.primary
+                        : null,
               ),
             ),
-            SalomonBottomBarItem(
-              icon: Image.asset(
+            title: 'Home',
+            // isIconBlend: true,
+          ),
+          TabItem(
+            icon: Padding(
+              padding: EdgeInsets.all(_currentIndex == 1 ? 10.0 : 0),
+              child: Image.asset(
                 'assets/icons/task.png',
                 width: 32,
                 height: 32,
-                fit: BoxFit.cover,
-                color: _currentIndex == 1 ? Colors.black : null,
-              ),
-              title: FittedBox(
-                child: Text(
-                  'Appoints',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.labelMedium!.copyWith(fontSize: 12),
-                ),
+                fit: BoxFit.contain,
+                color:
+                    _currentIndex == 1
+                        ? Theme.of(context).colorScheme.primary
+                        : null,
               ),
             ),
-            SalomonBottomBarItem(
-              icon: Image.asset(
+            title: 'Appoints',
+          ),
+          TabItem(
+            icon: Padding(
+              padding: EdgeInsets.all(_currentIndex == 2 ? 10.0 : 0),
+              child: Image.asset(
                 'assets/icons/messenger.png',
                 width: 32,
                 height: 32,
-                fit: BoxFit.cover,
-                color: _currentIndex == 2 ? Colors.black : null,
-              ),
-              title: FittedBox(
-                child: Text(
-                  'Chat',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.labelMedium!.copyWith(fontSize: 15),
-                ),
+                fit: BoxFit.contain,
+                color:
+                    _currentIndex == 2
+                        ? Theme.of(context).colorScheme.primary
+                        : null,
               ),
             ),
-            SalomonBottomBarItem(
-              icon: Image.asset(
+            title: 'Chat',
+          ),
+          TabItem(
+            icon: Padding(
+              padding: EdgeInsets.all(_currentIndex == 3 ? 10.0 : 0),
+              child: Image.asset(
                 'assets/icons/child_vaccination.png',
                 width: 32,
                 height: 32,
-                fit: BoxFit.cover,
-                color: _currentIndex == 3 ? Colors.black : null,
-              ),
-              title: FittedBox(
-                child: Text(
-                  'Vaccine',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.labelMedium!.copyWith(fontSize: 15),
-                ),
+                fit: BoxFit.contain,
+                color:
+                    _currentIndex == 3
+                        ? Theme.of(context).colorScheme.primary
+                        : null,
               ),
             ),
-            SalomonBottomBarItem(
-              icon: Image.asset(
+            title: 'Vaccine',
+          ),
+          TabItem(
+            icon: Padding(
+              padding: EdgeInsets.all(_currentIndex == 4 ? 10.0 : 0),
+              child: Image.asset(
                 'assets/icons/profile.png',
                 width: 32,
                 height: 32,
-                fit: BoxFit.cover,
-                color: _currentIndex == 4 ? Colors.black : null,
-              ),
-              title: FittedBox(
-                child: Text(
-                  'Profile',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.labelMedium!.copyWith(fontSize: 15),
-                ),
+                fit: BoxFit.contain,
+                color:
+                    _currentIndex == 4
+                        ? Theme.of(context).colorScheme.primary
+                        : null,
               ),
             ),
-          ],
-        ),
+            title: 'Profile',
+          ),
+        ],
       ),
     );
   }
@@ -517,3 +518,102 @@ class SwitchProfilesSheetWidget extends StatelessWidget {
     );
   }
 }
+
+
+// SalomonBottomBar(
+//           backgroundColor: Pallete.backgroundColor,
+//           selectedItemColor: Theme.of(context).colorScheme.primary,
+//           currentIndex: _currentIndex,
+//           onTap: (p0) {
+//             setState(() {
+//               _currentIndex = p0;
+//             });
+//           },
+//           items: [
+//             SalomonBottomBarItem(
+//               icon: Image.asset(
+//                 'assets/icons/home.png',
+//                 width: 32,
+//                 height: 32,
+//                 fit: BoxFit.cover,
+//                 color: _currentIndex == 0 ? Colors.black : null,
+//               ),
+//               title: FittedBox(
+//                 child: Text(
+//                   'Home',
+//                   style: Theme.of(
+//                     context,
+//                   ).textTheme.labelMedium!.copyWith(fontSize: 15),
+//                 ),
+//               ),
+//             ),
+//             SalomonBottomBarItem(
+//               icon: Image.asset(
+//                 'assets/icons/task.png',
+//                 width: 32,
+//                 height: 32,
+//                 fit: BoxFit.cover,
+//                 color: _currentIndex == 1 ? Colors.black : null,
+//               ),
+//               title: FittedBox(
+//                 child: Text(
+//                   'Appoints',
+//                   style: Theme.of(
+//                     context,
+//                   ).textTheme.labelMedium!.copyWith(fontSize: 12),
+//                 ),
+//               ),
+//             ),
+//             SalomonBottomBarItem(
+//               icon: Image.asset(
+//                 'assets/icons/messenger.png',
+//                 width: 32,
+//                 height: 32,
+//                 fit: BoxFit.cover,
+//                 color: _currentIndex == 2 ? Colors.black : null,
+//               ),
+//               title: FittedBox(
+//                 child: Text(
+//                   'Chat',
+//                   style: Theme.of(
+//                     context,
+//                   ).textTheme.labelMedium!.copyWith(fontSize: 15),
+//                 ),
+//               ),
+//             ),
+//             SalomonBottomBarItem(
+//               icon: Image.asset(
+//                 'assets/icons/child_vaccination.png',
+//                 width: 32,
+//                 height: 32,
+//                 fit: BoxFit.cover,
+//                 color: _currentIndex == 3 ? Colors.black : null,
+//               ),
+//               title: FittedBox(
+//                 child: Text(
+//                   'Vaccine',
+//                   style: Theme.of(
+//                     context,
+//                   ).textTheme.labelMedium!.copyWith(fontSize: 15),
+//                 ),
+//               ),
+//             ),
+//             SalomonBottomBarItem(
+//               icon: Image.asset(
+//                 'assets/icons/profile.png',
+//                 width: 32,
+//                 height: 32,
+//                 fit: BoxFit.cover,
+//                 color: _currentIndex == 4 ? Colors.black : null,
+//               ),
+//               title: FittedBox(
+//                 child: Text(
+//                   'Profile',
+//                   style: Theme.of(
+//                     context,
+//                   ).textTheme.labelMedium!.copyWith(fontSize: 15),
+//                 ),
+//               ),
+//             ),
+//           ],
+//         ),

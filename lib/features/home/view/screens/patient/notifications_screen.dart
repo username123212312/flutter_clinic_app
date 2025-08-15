@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/utils.dart';
@@ -76,11 +77,17 @@ class _NotificationScreenState extends State<NotificationScreen> {
                 LoadingOverlay().show(context);
               } else {
                 LoadingOverlay().hideAll();
-                showToast(msg: state.message);
+                if (state.status.isError) {
+                  showToast(
+                    context: context,
+                    type: ToastificationType.error,
+                    msg: state.message,
+                  );
+                }
               }
             },
             builder: (context, state) {
-              if (state.notifications.isEmpty) {
+              if (state.notifications.isEmpty && !state.status.isLoading) {
                 return _buildEmptyNotifications(context);
               }
               return Skeletonizer(

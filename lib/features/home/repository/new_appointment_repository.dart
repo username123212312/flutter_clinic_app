@@ -111,7 +111,7 @@ class NewAppointmentRepository {
             statusCode: response.data['statusCode'],
             statusMessage: response.data['statusMessage'],
             data:
-                (response.data['items'] as List<dynamic>).map((doctor) {
+                (response.data['data'] as List<dynamic>).map((doctor) {
                   return DoctorModel.fromJson(doctor);
                 }).toList(),
           ),

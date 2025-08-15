@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/validator_util.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
+import 'package:toastification/toastification.dart';
 import '../../../../../core/blocs/user_bloc/user_bloc.dart';
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/enums.dart';
@@ -83,8 +84,19 @@ class _ModifyPasswordScreenState extends State<ModifyPasswordScreen> {
                               LoadingOverlay().show(context);
                             } else {
                               LoadingOverlay().hideAll();
-                              showToast(msg: state.statusMessage);
+                              if (state.status.isError) {
+                                showToast(
+                                  context: context,
+                                  type: ToastificationType.error,
+                                  msg: state.statusMessage,
+                                );
+                              }
                               if (state.status.isModified) {
+                                showToast(
+                                  context: context,
+                                  type: ToastificationType.success,
+                                  msg: state.statusMessage,
+                                );
                                 context.goNamed(
                                   (state.user?.role?.isPatient ?? true)
                                       ? AppRouteConstants.homeRouteName

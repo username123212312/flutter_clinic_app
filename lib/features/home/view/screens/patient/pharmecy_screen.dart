@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:our_flutter_clinic_app/features/home/controller/pharmacies_cubit/pharmacies_cubit.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/utils.dart';
@@ -109,7 +110,7 @@ class _PharmacyListScreenState extends State<PharmacyListScreen> {
           child: BlocConsumer<PharmaciesCubit, PharmaciesState>(
             bloc: _pharmaciesCubit,
             builder: (_, state) {
-              if (state.pharmacies.isEmpty) {
+              if (state.pharmacies.isEmpty && !state.status.isLoading) {
                 return Center(
                   child: Column(
                     children: [
@@ -184,7 +185,11 @@ class _PharmacyListScreenState extends State<PharmacyListScreen> {
             },
             listener: (_, state) {
               if (state.status.isError) {
-                showToast(msg: state.message);
+                showToast(
+                  context: context,
+                  type: ToastificationType.error,
+                  msg: state.message,
+                );
               }
             },
           ),

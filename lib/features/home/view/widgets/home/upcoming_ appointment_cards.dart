@@ -3,11 +3,12 @@ import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/utils.dart';
+import '../../../../../core/widgets/custom_cached_network_image.dart';
 
 class UpcomingAppointmentCard extends StatelessWidget {
   final String doctorName;
   final String specialty;
-  final String imagePath;
+  final String? imagePath;
   final String appointmentTime;
   final double rating;
   final String appointmentdate;
@@ -17,7 +18,7 @@ class UpcomingAppointmentCard extends StatelessWidget {
     super.key,
     required this.doctorName,
     required this.specialty,
-    required this.imagePath,
+    this.imagePath,
     required this.appointmentTime,
     required this.rating,
     required this.appointmentdate,
@@ -45,9 +46,10 @@ class UpcomingAppointmentCard extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 16,
-                  foregroundImage: NetworkImage(
-                    '${AppConstants.serverUrl}$imagePath',
-                  ),
+                  foregroundImage:
+                      imagePath == null
+                          ? AssetImage('assets/images/app_logo.png')
+                          : NetworkImage('${AppConstants.serverUrl}$imagePath'),
                   backgroundColor: Pallete.graysGray4,
                 ),
                 const SizedBox(width: 10),

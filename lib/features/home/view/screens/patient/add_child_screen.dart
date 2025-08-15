@@ -7,6 +7,7 @@ import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/auth_widgets.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/general_utils.dart';
@@ -154,7 +155,14 @@ class _AddChildScreenState extends State<AddChildScreen> {
                     LoadingOverlay().show(context);
                   } else {
                     LoadingOverlay().hideAll();
-                    showToast(msg: state.statusMessage);
+                    showToast(
+                      context: context,
+                      type:
+                          state.status.isError
+                              ? ToastificationType.error
+                              : ToastificationType.success,
+                      msg: state.statusMessage,
+                    );
 
                     if (state.childrenListStatus.isDone) {
                       context.pop();
@@ -162,7 +170,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
                   }
                 },
                 child: Text(
-                  'Age',
+                  'Birth date',
                   style: Theme.of(
                     context,
                   ).textTheme.titleSmall!.copyWith(fontSize: 12),
@@ -172,7 +180,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
               CustomTextField(
                 validator: (p0) {
                   if (p0!.trim().isEmpty) {
-                    return 'You must select an age';
+                    return 'You must select an date';
                   } else {
                     return null;
                   }
@@ -196,7 +204,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
                 },
                 controller: _ageController,
                 readOnly: true,
-                hintText: 'Age',
+                hintText: 'Birth Date',
                 keyboardType: TextInputType.number,
                 suffixIcon: Transform.scale(
                   scaleY: 0.7,

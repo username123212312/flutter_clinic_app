@@ -6,6 +6,7 @@ import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:go_router/go_router.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
+import 'package:toastification/toastification.dart';
 import '../widgets/auth_widgets.dart';
 
 class VerificationCodeScreen extends StatefulWidget {
@@ -50,10 +51,21 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                       } else {
                         LoadingOverlay().hideAll();
                         if (mounted) {
-                          clearAndShowSnackBar(context, state.message);
+                          if (state.status.isError) {
+                            showToast(
+                              context: context,
+                              type: ToastificationType.error,
+                              msg: state.message,
+                            );
+                          }
                         }
 
                         if (state.status.isData) {
+                          showToast(
+                            context: context,
+                            type: ToastificationType.success,
+                            msg: state.message,
+                          );
                           if (mounted) {
                             context.goNamed(
                               AppRouteConstants.changePasswordRouteName,

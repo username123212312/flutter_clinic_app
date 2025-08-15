@@ -52,6 +52,8 @@ class PharmacyCard extends StatelessWidget {
           ),
           const SizedBox(height: 6),
           Text(
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             namelocation,
             style: Theme.of(context).textTheme.titleSmall!.copyWith(
               fontSize: 14,

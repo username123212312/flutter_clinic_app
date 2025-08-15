@@ -2,6 +2,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/features/home/model/clinic_model.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:toastification/toastification.dart';
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../controller/clinic_doctors_cubit/clinic_doctors_cubit.dart';
 import '../../../repository/clinics_doctors_repository.dart';
@@ -80,11 +81,16 @@ class _ClinicDoctorsScreenState extends State<ClinicDoctorsScreen> {
                 bloc: _clinicDoctorsCubit,
                 listener: (context, state) {
                   if (state.status.isError) {
-                    showToast(msg: state.message);
+                    showToast(
+                      context: context,
+                      type: ToastificationType.error,
+                      msg: state.message,
+                    );
                   }
                 },
                 builder: (context, state) {
-                  if (state.doctorsSearchList.isEmpty) {
+                  if (state.doctorsSearchList.isEmpty &&
+                      !state.status.isLoading) {
                     return _buildEmpty();
                   }
                   return Skeletonizer(
@@ -127,8 +133,7 @@ class _ClinicDoctorsScreenState extends State<ClinicDoctorsScreen> {
                             title:
                                 '${doctor.firstName ?? 'No'} ${doctor.lastName ?? 'Doctor'}',
                             subtitle: doctor.speciality ?? 'No speciality',
-                            imagePath:
-                                doctor.photoPath ?? 'assets/images/logo.webp',
+                            imagePath: doctor.photo,
                             startTime: '',
                             endTime: '',
                             rating:

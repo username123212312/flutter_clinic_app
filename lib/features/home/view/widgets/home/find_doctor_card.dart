@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/utils.dart';
@@ -9,7 +10,7 @@ import 'TimeRangeWidget.dart';
 class FindDoctorCard extends StatelessWidget {
   final String title;
   final String subtitle;
-  final String imagePath;
+  final String? imagePath;
   final double rating;
   final String startTime;
   final String endTime;
@@ -21,7 +22,7 @@ class FindDoctorCard extends StatelessWidget {
     super.key,
     required this.title,
     required this.subtitle,
-    required this.imagePath,
+    this.imagePath,
     required this.rating,
     required this.startTime,
     required this.endTime,
@@ -60,7 +61,10 @@ class FindDoctorCard extends StatelessWidget {
                       child: CircleAvatar(
                         radius: 24,
                         backgroundColor: Pallete.graysGray4,
-                        child: CustomCachedNetworkImage(imagePath: imagePath),
+
+                        child: CustomCachedNetworkImage(
+                          imagePath: imagePath ?? '',
+                        ),
                       ),
                     ),
                     const SizedBox(height: 20),

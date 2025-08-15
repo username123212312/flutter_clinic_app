@@ -15,6 +15,7 @@ _$AppointmentModelImpl _$$AppointmentModelImplFromJson(
   referredBy: json['referred by'] as String?,
   clinicId: (json['clinic_id'] as num?)?.toInt(),
   clinicName: json['clinic_name'] as String?,
+  patientGender: json['patient_gender'] as String?,
   doctorId: (json['doctor_id'] as num?)?.toInt(),
   doctorPhoto: json['doctor_photo'] as String?,
   doctorName: json['doctor_name'] as String?,
@@ -49,6 +50,7 @@ Map<String, dynamic> _$$AppointmentModelImplToJson(
   'referred by': instance.referredBy,
   'clinic_id': instance.clinicId,
   'clinic_name': instance.clinicName,
+  'patient_gender': instance.patientGender,
   'doctor_id': instance.doctorId,
   'doctor_photo': instance.doctorPhoto,
   'doctor_name': instance.doctorName,
@@ -76,6 +78,7 @@ const _$AppointmentStatusEnumMap = {
 
 const _$PaymentStatusEnumMap = {
   PaymentStatus.paid: 'paid',
+  PaymentStatus.cancelled: 'cancelled',
   PaymentStatus.pending: 'pending',
   PaymentStatus.unpaid: 'unpaid',
 };

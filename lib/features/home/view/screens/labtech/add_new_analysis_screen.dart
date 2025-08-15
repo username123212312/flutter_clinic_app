@@ -9,6 +9,7 @@ import 'package:our_flutter_clinic_app/features/home/controller/labtech_analysis
 import 'package:our_flutter_clinic_app/features/home/model/clinic_model.dart';
 import 'package:our_flutter_clinic_app/features/home/model/requests/add_analysis_request.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/custom_drop_down_widget.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/utils/decimal_input_formatter.dart';
 import '../../../../../core/utils/utils.dart';
@@ -242,7 +243,11 @@ class _AddNewAnalysisScreenState extends State<AddNewAnalysisScreen> {
                     } else {
                       LoadingOverlay().hideAll();
                       if (state.status.isError) {
-                        clearAndShowSnackBar(context, state.message);
+                        showToast(
+                          context: context,
+                          type: ToastificationType.error,
+                          msg: state.message,
+                        );
                       }
                       if (state.status.isDone) {
                         TransparentDialog.show(

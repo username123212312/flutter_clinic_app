@@ -8,6 +8,7 @@ import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:our_flutter_clinic_app/core/utils/validator_util.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
+import 'package:toastification/toastification.dart';
 import '../widgets/auth_widgets.dart';
 
 import 'package:go_router/go_router.dart';
@@ -98,7 +99,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
           SizedBox(
             width: screenWidth(context) * 0.85,
             child: BlocListener<ChangePasswordCubit, ChangePasswordState>(
-              listenWhen: (previous, current) => previous.email == null,
+              // listenWhen: (previous, current) => previous.email == null,
               listener: (context, state) {
                 if (state.status.isLoading) {
                   LoadingOverlay().show(context);
@@ -106,9 +107,20 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
                   if (mounted) {
                     LoadingOverlay().hideAll();
                   }
+                  if (state.status.isError) {
+                    showToast(
+                      context: context,
+                      type: ToastificationType.error,
+                      msg: state.message,
+                    );
+                  }
                   if (state.status.isData) {
                     if (mounted) {
-                      clearAndShowSnackBar(context, state.message);
+                      showToast(
+                        context: context,
+                        type: ToastificationType.success,
+                        msg: state.message,
+                      );
                       context.pushNamed(
                         AppRouteConstants.verificationCodeRouteName,
                         pathParameters: {
@@ -179,10 +191,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
             hintStyle: const TextStyle(
               fontSize: 13,
               color: Pallete.grayScaleColor500,
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Pallete.grayScaleColor300),
-              borderRadius: BorderRadius.circular(8),
             ),
           ),
           keyboardType:

@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:our_flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../core/models/usermodel.dart';
 import '../../../../core/theme/app_pallete.dart';
@@ -186,7 +187,11 @@ class _ChildInfoDialogState extends State<ChildInfoDialog> {
                           context.pop();
                         }
                         if (state.status.isError) {
-                          showToast(msg: state.message);
+                          showToast(
+                            context: context,
+                            type: ToastificationType.error,
+                            msg: state.message,
+                          );
                         }
                       },
                       builder:

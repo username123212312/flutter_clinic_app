@@ -57,7 +57,7 @@ class HomeRepository {
             success: true,
             message: 'Appointments fetched successfully!',
             data:
-                (response.data['items'] as List<dynamic>)
+                (response.data['data'] as List<dynamic>)
                     .map((appointment) {
                       return AppointmentModel.fromJson(appointment);
                     })

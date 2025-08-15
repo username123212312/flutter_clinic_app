@@ -7,7 +7,7 @@ class BloodTypesWidget extends StatefulWidget {
   const BloodTypesWidget({
     super.key,
     required this.onSelected,
-    this.selectedBloodType = 0,
+    this.selectedBloodType = -1,
   });
   final void Function(int bloodType)? onSelected;
   final int selectedBloodType;

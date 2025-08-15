@@ -8,6 +8,7 @@ import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:our_flutter_clinic_app/core/utils/validator_util.dart';
 import 'package:our_flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 
@@ -147,7 +148,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   LoadingOverlay().show(context);
                 } else if (state.status.isError) {
                   LoadingOverlay().hide();
-                  showToast(msg: state.statusMessage);
+                  showToast(
+                    context: context,
+                    msg: state.statusMessage,
+                    type: ToastificationType.error,
+                  );
                 }
               },
             ),

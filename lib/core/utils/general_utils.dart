@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/logger.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../service_locator.dart';
 import '../blocs/user_bloc/user_bloc.dart';
@@ -195,15 +196,20 @@ List<Color> selectAppointmentStatusColor(AppointmentStatus appointmentStatus) {
   };
 }
 
-void showToast({required String msg}) {
-  Fluttertoast.showToast(
-    msg: msg.length > 70 ? 'Some Error occurred' : msg,
-
-    toastLength: Toast.LENGTH_SHORT,
-    gravity: ToastGravity.BOTTOM_RIGHT,
-    timeInSecForIosWeb: 1,
-    backgroundColor: Pallete.graysGray2,
-    textColor: Colors.black,
-    fontSize: 14.0,
+void showToast({
+  required BuildContext context,
+  required String msg,
+  ToastificationType type = ToastificationType.info,
+}) {
+  toastification.show(
+    style: ToastificationStyle.flatColored,
+    type: type,
+    context: context,
+    title: Text(
+      // textAlign: TextAlign.center,
+      msg.length > 70 ? 'Some Error occurred' : msg,
+      style: Theme.of(context).textTheme.labelMedium!.copyWith(fontSize: 14.0),
+    ),
+    autoCloseDuration: Duration(seconds: 5),
   );
 }

@@ -18,6 +18,7 @@ _$AnalysisModelImpl _$$AnalysisModelImplFromJson(Map<String, dynamic> json) =>
       patientFirstName: json['patient_first_name'] as String?,
       patientLastName: json['patient_last_name'] as String?,
       patientId: (json['patient_id'] as num?)?.toInt(),
+      patientNumber: (json['patient_number'] as num?)?.toInt(),
       price: (json['price'] as num?)?.toDouble(),
       paymentStatus: $enumDecodeNullable(
         _$PaymentStatusEnumMap,
@@ -37,6 +38,7 @@ Map<String, dynamic> _$$AnalysisModelImplToJson(_$AnalysisModelImpl instance) =>
       'patient_first_name': instance.patientFirstName,
       'patient_last_name': instance.patientLastName,
       'patient_id': instance.patientId,
+      'patient_number': instance.patientNumber,
       'price': instance.price,
       'payment status': _$PaymentStatusEnumMap[instance.paymentStatus],
     };
@@ -49,6 +51,7 @@ const _$AnalysisStatusEnumMap = {
 
 const _$PaymentStatusEnumMap = {
   PaymentStatus.paid: 'paid',
+  PaymentStatus.cancelled: 'cancelled',
   PaymentStatus.pending: 'pending',
   PaymentStatus.unpaid: 'unpaid',
 };

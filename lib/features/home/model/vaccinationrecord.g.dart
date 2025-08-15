@@ -82,6 +82,7 @@ Map<String, dynamic> _$$VaccinationRecordImplToJson(
 
 const _$PaymentStatusEnumMap = {
   PaymentStatus.paid: 'paid',
+  PaymentStatus.cancelled: 'cancelled',
   PaymentStatus.pending: 'pending',
   PaymentStatus.unpaid: 'unpaid',
 };

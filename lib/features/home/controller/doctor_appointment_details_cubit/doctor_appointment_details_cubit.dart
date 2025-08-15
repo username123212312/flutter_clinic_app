@@ -61,9 +61,12 @@ class DoctorAppointmentDetailsCubit
             data: MedicalInfoModel.fromJson(
               response.data['medicalInfo'],
             ).copyWith(
-              prescription: PrescriptionModel.fromJson(
-                response.data['prescription'],
-              ),
+              prescription:
+                  response.data['prescription'] == null
+                      ? null
+                      : PrescriptionModel.fromJson(
+                        response.data['prescription'],
+                      ),
             ),
             message: 'Appointments fetched successfully',
             success: true,

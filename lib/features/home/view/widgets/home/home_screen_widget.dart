@@ -175,7 +175,8 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                   height: 132,
                   child: BlocBuilder<HomeBloc, HomeState>(
                     builder: (context, state) {
-                      if (state.upcomingAppointmentsList.isEmpty) {
+                      if (state.upcomingAppointmentsList.isEmpty &&
+                          !state.upcomingAppointmentsListStatus.isLoading) {
                         return Center(
                           child: Text(
                             'No  Appointments',
@@ -202,7 +203,6 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                                   appointmentTime: 'bllabla',
                                   appointmentdate: 'bllabllabla',
                                   doctorName: 'No Doctor',
-                                  imagePath: 'assets/images/app_logo.png',
                                   rating: 0.0,
                                   specialty: 'No speciality',
                                   onTap: () {},
@@ -242,9 +242,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                                           .toString(),
                                   doctorName:
                                       appointment.doctorName ?? 'No Doctor',
-                                  imagePath:
-                                      appointment.doctorPhoto ??
-                                      'assets/images/logo.webp',
+                                  imagePath: appointment.doctorPhoto,
                                   rating:
                                       appointment.finalRate?.toDouble() ?? 0.0,
                                   specialty:
@@ -348,7 +346,8 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                   height: 160,
                   child: BlocBuilder<HomeBloc, HomeState>(
                     builder: (context, state) {
-                      if (state.doctorsList.isEmpty) {
+                      if (state.doctorsList.isEmpty &&
+                          !state.doctorsListStatus.isLoading) {
                         return Center(
                           child: Text(
                             'No Doctors',
@@ -454,7 +453,8 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                   height: 195,
                   child: BlocBuilder<HomeBloc, HomeState>(
                     builder: (context, state) {
-                      if (state.pharmaciesList.isEmpty) {
+                      if (state.pharmaciesList.isEmpty &&
+                          !state.pharmaciesListStatus.isLoading) {
                         return Center(
                           child: Text(
                             'No pharmacies ',

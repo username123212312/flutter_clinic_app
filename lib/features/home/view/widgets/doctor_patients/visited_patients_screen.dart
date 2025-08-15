@@ -5,6 +5,7 @@ import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 import 'package:our_flutter_clinic_app/features/home/controller/doctor_patients_bloc/doctor_patients_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/blocs/user_bloc/user_bloc.dart';
 import '../../../../../core/theme/app_pallete.dart';
@@ -170,7 +171,7 @@ class _VisitedPatientsScreenState extends State<VisitedPatientsScreen> {
               Expanded(
                 child: BlocConsumer<DoctorPatientsBloc, DoctorPatientsState>(
                   builder: (_, state) {
-                    if (state.patients.isEmpty) {
+                    if (state.patients.isEmpty && !state.status.isLoading) {
                       return RefreshIndicator(
                         onRefresh: () async {
                           context.read<DoctorPatientsBloc>().add(LoadData());
@@ -260,7 +261,11 @@ class _VisitedPatientsScreenState extends State<VisitedPatientsScreen> {
                   },
                   listener: (_, state) {
                     if (state.status.isError) {
-                      showToast(msg: state.message);
+                      showToast(
+                        context: context,
+                        type: ToastificationType.error,
+                        msg: state.message,
+                      );
                     }
                   },
                 ),

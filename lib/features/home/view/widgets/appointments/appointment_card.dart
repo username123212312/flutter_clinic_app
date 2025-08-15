@@ -110,8 +110,8 @@ class AppointmentCard extends StatelessWidget {
               AppointmentDetailsListItem(
                 title: 'Patient',
                 subtitle:
-                    '${context.read<AuthBloc>().state.authUser?.user?.firstName ?? 'No'} '
-                    '${context.read<AuthBloc>().state.authUser?.user?.lastName ?? 'User'}',
+                    '${appointment.patientFirstName ?? 'No'} '
+                    '${appointment.patientLastName ?? 'User'}',
                 // subtitle: appointment.patient.name,
                 iconImagePath: 'assets/icons/ic_user_circle.png',
               ),
