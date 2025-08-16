@@ -383,8 +383,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                                     subtitle: 'Pediatrician',
                                     imagePath: 'assets/icons/home_icon.png',
                                     rating: 4.8,
-                                    startTime: '10:30am',
-                                    endTime: '5:30pm',
+                                    visitDuration: '',
                                   ),
                                 ),
                               );
@@ -427,8 +426,8 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                                           (doctor.finalRate ?? 0.0).toString(),
                                         ) ??
                                         0.0,
-                                    startTime: '10:30am',
-                                    endTime: '5:30pm',
+                                    visitDuration:
+                                        doctor.averageVisitDuration ?? '',
                                     onTap: () {},
                                   ),
                                 ),

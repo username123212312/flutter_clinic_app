@@ -12,8 +12,7 @@ class FindDoctorCard extends StatelessWidget {
   final String subtitle;
   final String? imagePath;
   final double rating;
-  final String startTime;
-  final String endTime;
+  final String visitDuration;
   final VoidCallback? onTap;
   final VoidCallback? buttonOnTap;
   final double? padding;
@@ -24,8 +23,7 @@ class FindDoctorCard extends StatelessWidget {
     required this.subtitle,
     this.imagePath,
     required this.rating,
-    required this.startTime,
-    required this.endTime,
+    required this.visitDuration,
     this.onTap,
     this.buttonOnTap,
     this.padding,
@@ -104,9 +102,23 @@ class FindDoctorCard extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          TimeRangeWidget(
-                            startTime: startTime,
-                            endTime: endTime,
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.access_time,
+                                size: 16,
+                                color: Pallete.gray1,
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                visitDuration,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  color: Pallete.black1,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),

@@ -19,12 +19,15 @@ class AppointmentsRepository {
   Future<Either<AppFailure, AppResponse<List<AppointmentModel>>>>
   fetchAllAppointments(
     AppointmentStatus appointmentStatus,
-    AppointmentType appointmentType,
-  ) async {
+    AppointmentType appointmentType, {
+    int? page = 1,
+  }) async {
     try {
       final response = await _dio.post(
         AppConstants.showAppointmentPath,
         data: {
+          'size': 5,
+          'page': page,
           'status': appointmentStatus.name,
           if (getChildId() != null) 'child_id': getChildId(),
           if (getChildId() != null) 'appointment_type': appointmentType.name,
@@ -34,7 +37,7 @@ class AppointmentsRepository {
         return Right(
           AppResponse<List<AppointmentModel>>(
             message: 'Appointments fetched successfully',
-            success: true,
+            success: doesListHaveMore(response.data['meta']),
             data:
                 (response.data['data'] as List<dynamic>).map((appointment) {
                   return AppointmentModel.fromJson(appointment).copyWith(

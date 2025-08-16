@@ -129,8 +129,8 @@ class _SearchOverlayState extends State<SearchOverlay> {
                                                     .toString(),
                                               ) ??
                                               0.0,
-                                          startTime: '',
-                                          endTime: '',
+                                          visitDuration:
+                                              doctor.averageVisitDuration ?? '',
                                           onTap: () {
                                             context.pushNamed(
                                               AppRouteConstants

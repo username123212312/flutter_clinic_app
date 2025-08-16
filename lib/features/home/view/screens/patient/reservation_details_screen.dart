@@ -131,7 +131,7 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                   specialty:
                       state.appointment?.doctorSpeciality ?? 'No speciality',
                   imagePath: state.appointment?.doctorPhoto,
-                  hourlyRate: "Hourly Rate:\$25.00",
+                  hourlyRate: "Avg Visit Duration :}",
                   rating: 4.8,
                   backgroundColor: Pallete.graysGray5,
                 ),

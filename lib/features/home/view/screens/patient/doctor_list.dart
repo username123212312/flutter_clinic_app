@@ -142,8 +142,7 @@ class _DoctorListState extends State<DoctorList> {
                             title: "doctor['title']",
                             subtitle: "doctor['subtitle']",
                             imagePath: 'assets/images/logo.webp',
-                            startTime: "",
-                            endTime: "",
+                            visitDuration: '',
                             rating: 0.0,
                           );
                         }
@@ -159,10 +158,8 @@ class _DoctorListState extends State<DoctorList> {
                           title:
                               '${doctor.firstName ?? 'No'} ${doctor.lastName ?? 'Doctor'}',
                           subtitle: doctor.speciality ?? 'No speciality',
-                          imagePath:
-                              doctor.photoPath ?? 'assets/images/logo.webp',
-                          startTime: '',
-                          endTime: '',
+                          imagePath: doctor.photo,
+                          visitDuration: doctor.averageVisitDuration ?? '',
                           rating:
                               double.tryParse(
                                 (doctor.finalRate ?? 0.0).toString(),

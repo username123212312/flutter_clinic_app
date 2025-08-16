@@ -3,7 +3,9 @@ part of 'appointments_bloc.dart';
 @freezed
 sealed class AppointmentsState with _$AppointmentsState {
   const factory AppointmentsState({
-    List<AppointmentModel>? appointments,
+    required int currentPage,
+    required bool hasMore,
+    required List<AppointmentModel> appointments,
     required AppointmentStatus appointmentStatus,
     required AppointmentType appointmentType,
     DataStatus? status,
@@ -11,6 +13,8 @@ sealed class AppointmentsState with _$AppointmentsState {
   }) = _AppointmentsState;
   factory AppointmentsState.initial() {
     return AppointmentsState(
+      currentPage: 0,
+      hasMore: true,
       appointmentType: AppointmentType.visit,
       appointments: [],
       appointmentStatus: AppointmentStatus.pending,
