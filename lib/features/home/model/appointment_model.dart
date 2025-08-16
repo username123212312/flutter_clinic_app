@@ -30,6 +30,8 @@ sealed class AppointmentModel with _$AppointmentModel {
     @DoctorAppointmentTypeConverter()
     DoctorAppointmentType? appointmentType,
     @JsonKey(name: 'visit_fee') double? visitFee,
+    @JsonKey(name: 'expected_price') int? expectedPrice,
+    @JsonKey(name: 'paid_price') int? paidPrice,
     @JsonKey(name: 'doctor_speciality') String? doctorSpeciality,
     @JsonKey(name: 'reservation_date') DateTime? reservationDate,
     @JsonKey(name: 'reservation_hour')

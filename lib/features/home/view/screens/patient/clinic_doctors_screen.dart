@@ -137,7 +137,9 @@ class _ClinicDoctorsScreenState extends State<ClinicDoctorsScreen> {
                             startTime: '',
                             endTime: '',
                             rating:
-                                double.tryParse(doctor.finalRate ?? '0.0') ??
+                                double.tryParse(
+                                  (doctor.finalRate ?? 0.0).toString(),
+                                ) ??
                                 0.0,
                           );
                         },

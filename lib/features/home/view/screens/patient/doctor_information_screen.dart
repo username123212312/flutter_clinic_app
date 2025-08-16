@@ -158,262 +158,126 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
                               ),
                             ),
                             padding: const EdgeInsets.only(bottom: 8),
-                            child: DoctorInfCard(
-                              doctorName:
-                                  '${widget.doctor.firstName ?? 'No'} ${widget.doctor.lastName ?? 'Doctor'}',
-                              specialty:
-                                  widget.doctor.speciality ?? 'No speciality',
-                              rating:
-                                  double.tryParse(
-                                    widget.doctor.finalRate ?? '0.0',
-                                  ) ??
-                                  0.0,
-                              backgroundColor: Pallete.grayScaleColor0,
-                              startTime: '',
-                              endTime: '',
-                              onRatePressed: () {
-                                context.pushNamed(
-                                  AppRouteConstants.doctorRatingRouteName,
-                                  extra: widget.doctor,
-                                );
-                              },
-                            ),
-                          ),
-                          const SizedBox(height: 16),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              InfoBox(
-                                backgroundColor: Pallete.grayScaleColor0,
-                                title: '15yr',
-                                subtitle: 'Experience',
-                              ),
-                              InfoBox(
-                                backgroundColor: Pallete.grayScaleColor0,
-                                title: widget.doctor.treated?.toString() ?? '0',
-                                subtitle: 'Treated',
-                              ),
-                              BlocConsumer<DoctorInfoCubit, DoctorInfoState>(
-                                key: ValueKey(1),
-                                bloc: _doctorInfoCubit,
-                                builder: (context, state) {
-                                  return InfoBox(
-                                    backgroundColor: Pallete.grayScaleColor0,
-                                    title: '\$${state.doctor.visitFee ?? 0.0}',
-                                    subtitle: 'Hourly Rate',
-                                  );
-                                },
-                                listener: (
-                                  BuildContext context,
-                                  DoctorInfoState state,
-                                ) {
-                                  if (state.status.isLoading) {
-                                    LoadingOverlay().show(context);
-                                  } else {
-                                    LoadingOverlay().hideAll();
-                                    if (state.status.isError) {
-                                      showToast(
-                                        context: context,
-                                        type: ToastificationType.error,
-                                        msg: state.message,
-                                      );
-                                    }
-                                  }
-                                },
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 16),
-                          Text(
-                            "Select Date",
-                            style: Theme.of(context).textTheme.labelMedium!
-                                .copyWith(color: Pallete.black1, fontSize: 18),
-                          ),
-                          const SizedBox(height: 5),
-                          SizedBox(
-                            height: screenHeight(context) * 0.085,
                             child: BlocBuilder<
                               DoctorInfoCubit,
                               DoctorInfoState
                             >(
                               bloc: _doctorInfoCubit,
                               builder: (context, state) {
-                                return CustomTextField(
-                                  hintText: 'Select Date',
-                                  keyboardType: TextInputType.text,
-                                  controller: _dateController,
-                                  readOnly: true,
-                                  onTap:
-                                      state.avaiableDates.isEmpty
-                                          ? null
-                                          : () async {
-                                            final selected =
-                                                await showRestrictedDatePicker(
-                                                  context: context,
-                                                  availableDates:
-                                                      state.avaiableDates,
-                                                );
-                                            if (selected != null) {
-                                              setState(() {
-                                                selectedDate = selected;
-                                                _dateController.text =
-                                                    "${selected.day}/${selected.month}/${selected.year}";
-                                              });
-                                              _doctorInfoCubit.selectDate(
-                                                selected,
-                                              );
-                                              if (mounted) {
-                                                FocusScope.of(
-                                                  context,
-                                                ).unfocus();
-                                              }
-                                            }
-                                          },
-                                  suffixIcon: const Icon(
-                                    Icons.calendar_month,
-                                    color: Pallete.grayScaleColor500,
-                                  ),
+                                return DoctorInfCard(
+                                  doctorName:
+                                      '${state.doctor.firstName ?? 'No'} ${state.doctor.lastName ?? 'Doctor'}',
+                                  specialty:
+                                      state.doctor.speciality ??
+                                      'No speciality',
+                                  rating:
+                                      double.tryParse(
+                                        (state.doctor.finalRate ?? 0.0)
+                                            .toString(),
+                                      ) ??
+                                      0.0,
+                                  backgroundColor: Pallete.grayScaleColor0,
+                                  avgDuration:
+                                      state.doctor.averageVisitDuration ?? '',
+                                  onRatePressed: () {
+                                    context.pushNamed(
+                                      AppRouteConstants.doctorRatingRouteName,
+                                      extra: state.doctor,
+                                    );
+                                  },
                                 );
                               },
                             ),
                           ),
-                          const SizedBox(height: 8),
-                          Text(
-                            "Schedules",
-                            style: Theme.of(context).textTheme.titleMedium!
-                                .copyWith(fontSize: 18, color: Pallete.black1),
-                          ),
-                          const SizedBox(height: 12),
+                          const SizedBox(height: 16),
                           BlocBuilder<DoctorInfoCubit, DoctorInfoState>(
                             bloc: _doctorInfoCubit,
                             builder: (context, state) {
-                              return Skeletonizer(
-                                enabled: state.status.isLoading,
-                                child: Stack(
-                                  children: [
-                                    GridView.builder(
-                                      shrinkWrap: true,
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      itemCount:
-                                          (state.status.isLoading ||
-                                                  state.availableTimes.isEmpty)
-                                              ? 6
-                                              : state.availableTimes.length,
-                                      gridDelegate:
-                                          const SliverGridDelegateWithFixedCrossAxisCount(
-                                            crossAxisCount: 2,
-                                            mainAxisSpacing: 10,
-                                            crossAxisSpacing: 10,
-                                            childAspectRatio: 3.5,
-                                          ),
-                                      itemBuilder: (context, index) {
-                                        if (state.status.isLoading ||
-                                            state.availableTimes.isEmpty) {
-                                          return ScheduleWidget(
-                                            timeValue: '',
-                                            time: '09:00 AM',
-                                            isSelected: false,
-                                            onTap: (s) {},
+                              return Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  InfoBox(
+                                    backgroundColor: Pallete.grayScaleColor0,
+                                    title: state.doctor.excperience ?? 'No XP',
+                                    subtitle: 'Experience',
+                                  ),
+                                  InfoBox(
+                                    backgroundColor: Pallete.grayScaleColor0,
+                                    title:
+                                        state.doctor.treated?.toString() ?? '0',
+                                    subtitle: 'Treated',
+                                  ),
+                                  BlocConsumer<
+                                    DoctorInfoCubit,
+                                    DoctorInfoState
+                                  >(
+                                    key: ValueKey(1),
+                                    bloc: _doctorInfoCubit,
+                                    builder: (context, state) {
+                                      return InfoBox(
+                                        backgroundColor:
+                                            Pallete.grayScaleColor0,
+                                        title:
+                                            '\$${state.doctor.visitFee ?? 0.0}',
+                                        subtitle: 'Hourly Rate',
+                                      );
+                                    },
+                                    listener: (
+                                      BuildContext context,
+                                      DoctorInfoState state,
+                                    ) {
+                                      if (state.status.isLoading) {
+                                        LoadingOverlay().show(context);
+                                      } else {
+                                        LoadingOverlay().hideAll();
+                                        if (state.status.isError) {
+                                          showToast(
+                                            context: context,
+                                            type: ToastificationType.error,
+                                            msg: state.message,
                                           );
                                         }
-                                        final time =
-                                            state.availableTimes[index];
-                                        return ScheduleWidget<TimeOfDay>(
-                                          timeValue: time,
-                                          time: formatTime(time),
-                                          isSelected:
-                                              state.selectedTime ==
-                                              state.availableTimes[index],
-                                          onTap: (newTime) {
-                                            _doctorInfoCubit.selectTime(
-                                              newTime,
-                                            );
-                                          },
-                                        );
-                                      },
-                                    ),
-                                    if (state.isAuto ?? false)
-                                      Positioned(
-                                        top: 50,
-                                        child: SizedBox(
-                                          width: screenWidth(context),
-                                          child: BackdropFilter(
-                                            filter: ImageFilter.blur(
-                                              sigmaX: 4.2,
-                                              sigmaY: 4.2,
-                                            ),
-                                            child: Container(
-                                              alignment: Alignment(-0.2, 0.0),
-                                              height:
-                                                  screenHeight(context) * 0.05,
-                                              child: Text(
-                                                'Auto',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .labelMedium!
-                                                    .copyWith(fontSize: 17),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                  ],
-                                ),
+                                      }
+                                    },
+                                  ),
+                                ],
                               );
                             },
                           ),
-                          const SizedBox(height: 24),
-                          BlocConsumer<DoctorInfoCubit, DoctorInfoState>(
-                            key: ValueKey(2),
+                          BlocBuilder<DoctorInfoCubit, DoctorInfoState>(
                             bloc: _doctorInfoCubit,
-                            listener: (context, state) {
-                              if (state.status.isError) {
-                                showToast(
-                                  context: context,
-                                  type: ToastificationType.error,
-                                  msg: state.message,
-                                );
-                              }
-                              if (state.status.isDone &&
-                                  state.appointmentId != null) {
-                                showToast(
-                                  context: context,
-                                  type: ToastificationType.success,
-                                  msg: state.message,
-                                );
-                                context.goNamed(
-                                  AppRouteConstants.reservationDetailsRouteName,
-                                  pathParameters: {
-                                    'appointmetnId':
-                                        '${state.appointmentId ?? -1}',
-                                  },
-                                );
-                              }
-                            },
-                            builder: (context, state) {
-                              return CustomButton(
-                                text: "Book Appointment",
-                                onPressed:
-                                    (state.selectedTime == null &&
-                                            !(state.isAuto ?? false))
-                                        ? null
-                                        : () {
-                                          _doctorInfoCubit.bookNewAppointment();
-                                        },
-                                color: Pallete.primaryColor,
-
-                                width: double.infinity,
-                                height: screenHeight(context) * 0.058,
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 12,
-                                ),
-                                borderRadius: 32,
-                                textColor: Pallete.grayScaleColor0,
-                                fontSize: 16,
-                              );
+                            builder: (_, state) {
+                              return (state.doctor.status ??
+                                          'notAvailable')[0] ==
+                                      'a'
+                                  ? _buildTimesAndSchedules()
+                                  : Center(
+                                    heightFactor: 3,
+                                    child: Text(
+                                      'Doctor is not available right now',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelMedium!
+                                          .copyWith(fontSize: 13),
+                                    ),
+                                  );
                             },
                           ),
+                          // if ((widget.doctor.status ?? 'notAvailable')[0] ==
+                          //     'a')
+                          //   _buildTimesAndSchedules(),
+                          // if ((widget.doctor.status ?? 'notAvailable')[0] !=
+                          //     'a')
+                          //   Center(
+                          //     heightFactor: 3,
+                          //     child: Text(
+                          //       'Doctor is not available right now',
+                          //       style: Theme.of(
+                          //         context,
+                          //       ).textTheme.labelMedium!.copyWith(fontSize: 13),
+                          //     ),
+                          //   ),
                         ],
                       ),
                     ),
@@ -424,6 +288,184 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  Column _buildTimesAndSchedules() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 16),
+        Text(
+          "Select Date",
+          style: Theme.of(context).textTheme.labelMedium!.copyWith(
+            color: Pallete.black1,
+            fontSize: 18,
+          ),
+        ),
+        const SizedBox(height: 5),
+        SizedBox(
+          height: screenHeight(context) * 0.085,
+          child: BlocBuilder<DoctorInfoCubit, DoctorInfoState>(
+            bloc: _doctorInfoCubit,
+            builder: (context, state) {
+              return CustomTextField(
+                hintText: 'Select Date',
+                keyboardType: TextInputType.text,
+                controller: _dateController,
+                readOnly: true,
+                onTap:
+                    state.avaiableDates.isEmpty
+                        ? null
+                        : () async {
+                          final selected = await showRestrictedDatePicker(
+                            context: context,
+                            availableDates: state.avaiableDates,
+                          );
+                          if (selected != null) {
+                            setState(() {
+                              selectedDate = selected;
+                              _dateController.text =
+                                  "${selected.day}/${selected.month}/${selected.year}";
+                            });
+                            _doctorInfoCubit.selectDate(selected);
+                            if (mounted) {
+                              FocusScope.of(context).unfocus();
+                            }
+                          }
+                        },
+                suffixIcon: const Icon(
+                  Icons.calendar_month,
+                  color: Pallete.grayScaleColor500,
+                ),
+              );
+            },
+          ),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          "Schedules",
+          style: Theme.of(context).textTheme.titleMedium!.copyWith(
+            fontSize: 18,
+            color: Pallete.black1,
+          ),
+        ),
+        const SizedBox(height: 12),
+        BlocBuilder<DoctorInfoCubit, DoctorInfoState>(
+          bloc: _doctorInfoCubit,
+          builder: (context, state) {
+            return Skeletonizer(
+              enabled: state.status.isLoading,
+              child: Stack(
+                children: [
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount:
+                        (state.status.isLoading || state.availableTimes.isEmpty)
+                            ? 6
+                            : state.availableTimes.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10,
+                          childAspectRatio: 3.5,
+                        ),
+                    itemBuilder: (context, index) {
+                      if (state.status.isLoading ||
+                          state.availableTimes.isEmpty) {
+                        return ScheduleWidget(
+                          timeValue: '',
+                          time: '09:00 AM',
+                          isSelected: false,
+                          onTap: (s) {},
+                        );
+                      }
+                      final time = state.availableTimes[index];
+                      return ScheduleWidget<TimeOfDay>(
+                        timeValue: time,
+                        time: formatTime(time),
+                        isSelected:
+                            state.selectedTime == state.availableTimes[index],
+                        onTap: (newTime) {
+                          _doctorInfoCubit.selectTime(newTime);
+                        },
+                      );
+                    },
+                  ),
+                  if (state.isAuto ?? false)
+                    Positioned(
+                      top: 50,
+                      child: SizedBox(
+                        width: screenWidth(context),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 4.2, sigmaY: 4.2),
+                          child: Container(
+                            alignment: Alignment(-0.2, 0.0),
+                            height: screenHeight(context) * 0.05,
+                            child: Text(
+                              'Auto',
+                              style: Theme.of(
+                                context,
+                              ).textTheme.labelMedium!.copyWith(fontSize: 17),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            );
+          },
+        ),
+        const SizedBox(height: 24),
+        BlocConsumer<DoctorInfoCubit, DoctorInfoState>(
+          key: ValueKey(2),
+          bloc: _doctorInfoCubit,
+          listener: (context, state) {
+            if (state.status.isError) {
+              showToast(
+                context: context,
+                type: ToastificationType.error,
+                msg: state.message,
+              );
+            }
+            if (state.status.isDone && state.appointmentId != null) {
+              showToast(
+                context: context,
+                type: ToastificationType.success,
+                msg: state.message,
+              );
+              context.goNamed(
+                AppRouteConstants.reservationDetailsRouteName,
+                pathParameters: {
+                  'appointmetnId': '${state.appointmentId ?? -1}',
+                },
+              );
+            }
+          },
+          builder: (context, state) {
+            return CustomButton(
+              text: "Book Appointment",
+              onPressed:
+                  (state.selectedTime == null && !(state.isAuto ?? false))
+                      ? null
+                      : () {
+                        _doctorInfoCubit.bookNewAppointment();
+                      },
+              color: Pallete.primaryColor,
+
+              width: double.infinity,
+              height: screenHeight(context) * 0.058,
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              borderRadius: 32,
+              textColor: Pallete.grayScaleColor0,
+              fontSize: 16,
+            );
+          },
+        ),
+      ],
     );
   }
 

@@ -40,6 +40,36 @@ class ReservationDetailsCubit extends Cubit<ReservationDetailsState> {
     }
   }
 
+  Future<void> fetchDiscountPoints() async {
+    emit(state.copyWith(discountPointsStatus: DataStatus.loading));
+    try {
+      final response =
+          await _reservationDetailsRepository.fetchDiscountPoints();
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          discountPointsStatus: DataStatus.error,
+          status: DataStatus.error,
+          message: l.message,
+        ),
+        Right(value: final r) => state.copyWith(
+          discountPointsStatus: DataStatus.data,
+          status: DataStatus.data,
+          message: r.message,
+          discountPoints: r.data ?? state.discountPoints,
+        ),
+      };
+      emit(newState);
+    } catch (e) {
+      emit(
+        state.copyWith(
+          status: DataStatus.error,
+          discountPointsStatus: DataStatus.error,
+          message: e.toString(),
+        ),
+      );
+    }
+  }
+
   Future<void> confirmReservationPayment([
     bool useDiscountPoints = false,
   ]) async {

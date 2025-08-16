@@ -424,7 +424,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                                         'assets/images/logo.webp',
                                     rating:
                                         double.tryParse(
-                                          doctor.finalRate ?? '0.0',
+                                          (doctor.finalRate ?? 0.0).toString(),
                                         ) ??
                                         0.0,
                                     startTime: '10:30am',

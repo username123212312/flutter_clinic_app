@@ -30,10 +30,7 @@ class DoctorInfoCubit extends Cubit<DoctorInfoState> {
           message: l.message,
         ),
         Right(value: final r) => state.copyWith(
-          doctor: state.doctor.copyWith(
-            visitFee: r.data?.visitFee ?? state.doctor.visitFee,
-            clinic: r.data?.clinic ?? state.doctor.clinic,
-          ),
+          doctor: r.data ?? state.doctor,
           status: DataStatus.data,
           message: r.message,
         ),

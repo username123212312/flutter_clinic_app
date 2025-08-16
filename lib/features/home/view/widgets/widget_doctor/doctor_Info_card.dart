@@ -9,8 +9,7 @@ class DoctorInfCard extends StatelessWidget {
   final String doctorName;
   final String specialty;
   final double rating;
-  final String startTime;
-  final String endTime;
+  final String avgDuration;
   final Color backgroundColor;
 
   final VoidCallback? onRatePressed;
@@ -20,8 +19,7 @@ class DoctorInfCard extends StatelessWidget {
     required this.doctorName,
     required this.specialty,
     required this.rating,
-    required this.startTime,
-    required this.endTime,
+    required this.avgDuration,
     this.backgroundColor = Pallete.grayScaleColor0,
 
     this.onRatePressed,
@@ -74,7 +72,20 @@ class DoctorInfCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 4),
-          TimeRangeWidget(startTime: startTime, endTime: endTime),
+          Row(
+            children: [
+              const Icon(Icons.access_time, size: 16, color: Pallete.gray1),
+              const SizedBox(width: 4),
+              Text(
+                avgDuration,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Pallete.black1,
+                ),
+              ),
+            ],
+          ),
 
           const SizedBox(height: 2),
           if (onRatePressed != null)

@@ -25,6 +25,8 @@ _$AppointmentModelImpl _$$AppointmentModelImplFromJson(
     json['appointment_type'] as String?,
   ),
   visitFee: (json['visit_fee'] as num?)?.toDouble(),
+  expectedPrice: (json['expected_price'] as num?)?.toInt(),
+  paidPrice: (json['paid_price'] as num?)?.toInt(),
   doctorSpeciality: json['doctor_speciality'] as String?,
   reservationDate:
       json['reservation_date'] == null
@@ -60,6 +62,8 @@ Map<String, dynamic> _$$AppointmentModelImplToJson(
     instance.appointmentType,
   ),
   'visit_fee': instance.visitFee,
+  'expected_price': instance.expectedPrice,
+  'paid_price': instance.paidPrice,
   'doctor_speciality': instance.doctorSpeciality,
   'reservation_date': instance.reservationDate?.toIso8601String(),
   'reservation_hour': const TimeOfDayConverter().toJson(

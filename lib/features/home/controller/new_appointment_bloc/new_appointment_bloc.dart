@@ -148,6 +148,12 @@ class NewAppointmentBloc
           statusMessage: r.message,
           dates: r.data,
           doctor: event.doctor,
+          availableTimes: [],
+          time: null,
+
+          date: null,
+          isAuto: null,
+
           status: DataStatus.data,
         ),
       };
