@@ -1,10 +1,14 @@
+import 'dart:developer';
+
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:month_picker_dialog/month_picker_dialog.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:our_flutter_clinic_app/features/home/view/widgets/custom_bottom_app_bar.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
+import '../../../controller/doctor_appointments_bloc/doctor_appointments_bloc.dart';
 import '../../widgets/doctor_vaccines/show_vaccines_screen.dart';
 import '../../widgets/chat/chat_list_widget.dart';
 import '../../widgets/doctor_appointments/appointments_screen_widget.dart';
@@ -26,6 +30,62 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
           _currentIndex == 0
               ? null
               : AppBar(
+                centerTitle: _currentIndex != 1,
+                actions:
+                    _currentIndex == 1
+                        ? [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 10.0),
+                            child: BlocBuilder<
+                              DoctorAppointmentsBloc,
+                              DoctorAppointmentsState
+                            >(
+                              builder: (context, state) {
+                                return GestureDetector(
+                                  behavior: HitTestBehavior.opaque,
+                                  onTap: () async {
+                                    final month = await showMonthPicker(
+                                      initialDate: state.currentMonth,
+                                      firstDate: DateTime.now(),
+                                      context: context,
+                                    );
+                                    if (month != null) {
+                                      if (context.mounted) {
+                                        context
+                                            .read<DoctorAppointmentsBloc>()
+                                            .add(
+                                              ChangeAppointmentMonth(
+                                                month: month,
+                                              ),
+                                            );
+                                      }
+                                    }
+                                  },
+                                  child: Container(
+                                    width: 100,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      '2025-08',
+                                      style: Theme.of(
+                                        context,
+                                      ).textTheme.labelMedium!.copyWith(
+                                        fontSize: 13,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ]
+                        : null,
                 toolbarHeight: screenHeight(context) * 0.1,
                 title: BlocListener<AuthBloc, AuthState>(
                   listener: (context, state) {

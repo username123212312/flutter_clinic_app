@@ -893,8 +893,8 @@ mixin _$AppointmentsState {
   List<AppointmentModel> get appointments => throw _privateConstructorUsedError;
   AppointmentStatus get appointmentStatus => throw _privateConstructorUsedError;
   AppointmentType get appointmentType => throw _privateConstructorUsedError;
-  DataStatus? get status => throw _privateConstructorUsedError;
-  String? get statusMessage => throw _privateConstructorUsedError;
+  DataStatus get status => throw _privateConstructorUsedError;
+  String get statusMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of AppointmentsState
   /// with the given fields replaced by the non-null parameter values.
@@ -916,8 +916,8 @@ abstract class $AppointmentsStateCopyWith<$Res> {
     List<AppointmentModel> appointments,
     AppointmentStatus appointmentStatus,
     AppointmentType appointmentType,
-    DataStatus? status,
-    String? statusMessage,
+    DataStatus status,
+    String statusMessage,
   });
 }
 
@@ -941,8 +941,8 @@ class _$AppointmentsStateCopyWithImpl<$Res, $Val extends AppointmentsState>
     Object? appointments = null,
     Object? appointmentStatus = null,
     Object? appointmentType = null,
-    Object? status = freezed,
-    Object? statusMessage = freezed,
+    Object? status = null,
+    Object? statusMessage = null,
   }) {
     return _then(
       _value.copyWith(
@@ -972,15 +972,15 @@ class _$AppointmentsStateCopyWithImpl<$Res, $Val extends AppointmentsState>
                     : appointmentType // ignore: cast_nullable_to_non_nullable
                         as AppointmentType,
             status:
-                freezed == status
+                null == status
                     ? _value.status
                     : status // ignore: cast_nullable_to_non_nullable
-                        as DataStatus?,
+                        as DataStatus,
             statusMessage:
-                freezed == statusMessage
+                null == statusMessage
                     ? _value.statusMessage
                     : statusMessage // ignore: cast_nullable_to_non_nullable
-                        as String?,
+                        as String,
           )
           as $Val,
     );
@@ -1002,8 +1002,8 @@ abstract class _$$AppointmentsStateImplCopyWith<$Res>
     List<AppointmentModel> appointments,
     AppointmentStatus appointmentStatus,
     AppointmentType appointmentType,
-    DataStatus? status,
-    String? statusMessage,
+    DataStatus status,
+    String statusMessage,
   });
 }
 
@@ -1026,8 +1026,8 @@ class __$$AppointmentsStateImplCopyWithImpl<$Res>
     Object? appointments = null,
     Object? appointmentStatus = null,
     Object? appointmentType = null,
-    Object? status = freezed,
-    Object? statusMessage = freezed,
+    Object? status = null,
+    Object? statusMessage = null,
   }) {
     return _then(
       _$AppointmentsStateImpl(
@@ -1057,15 +1057,15 @@ class __$$AppointmentsStateImplCopyWithImpl<$Res>
                 : appointmentType // ignore: cast_nullable_to_non_nullable
                     as AppointmentType,
         status:
-            freezed == status
+            null == status
                 ? _value.status
                 : status // ignore: cast_nullable_to_non_nullable
-                    as DataStatus?,
+                    as DataStatus,
         statusMessage:
-            freezed == statusMessage
+            null == statusMessage
                 ? _value.statusMessage
                 : statusMessage // ignore: cast_nullable_to_non_nullable
-                    as String?,
+                    as String,
       ),
     );
   }
@@ -1080,8 +1080,8 @@ class _$AppointmentsStateImpl implements _AppointmentsState {
     required final List<AppointmentModel> appointments,
     required this.appointmentStatus,
     required this.appointmentType,
-    this.status,
-    this.statusMessage,
+    required this.status,
+    required this.statusMessage,
   }) : _appointments = appointments;
 
   @override
@@ -1101,9 +1101,9 @@ class _$AppointmentsStateImpl implements _AppointmentsState {
   @override
   final AppointmentType appointmentType;
   @override
-  final DataStatus? status;
+  final DataStatus status;
   @override
-  final String? statusMessage;
+  final String statusMessage;
 
   @override
   String toString() {
@@ -1162,8 +1162,8 @@ abstract class _AppointmentsState implements AppointmentsState {
     required final List<AppointmentModel> appointments,
     required final AppointmentStatus appointmentStatus,
     required final AppointmentType appointmentType,
-    final DataStatus? status,
-    final String? statusMessage,
+    required final DataStatus status,
+    required final String statusMessage,
   }) = _$AppointmentsStateImpl;
 
   @override
@@ -1177,9 +1177,9 @@ abstract class _AppointmentsState implements AppointmentsState {
   @override
   AppointmentType get appointmentType;
   @override
-  DataStatus? get status;
+  DataStatus get status;
   @override
-  String? get statusMessage;
+  String get statusMessage;
 
   /// Create a copy of AppointmentsState
   /// with the given fields replaced by the non-null parameter values.

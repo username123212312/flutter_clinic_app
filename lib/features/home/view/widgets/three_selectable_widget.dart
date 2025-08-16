@@ -30,7 +30,7 @@ class _ThreeSelectableWidgetState extends State<ThreeSelectableWidget>
       duration: Duration(milliseconds: 500),
     );
     _slideAnimation = Tween<Offset>(
-      begin: Offset(0.0, 0.0),
+      begin: Offset(0.05, 0.0),
       end: Offset(2.0, 0.0),
     ).animate(_animationController);
   }
@@ -139,7 +139,7 @@ class _ThreeSelectableWidgetState extends State<ThreeSelectableWidget>
         _animationController.animateTo(0.49);
         break;
       case 2:
-        _animationController.animateTo(1.0);
+        _animationController.animateTo(0.95);
         break;
       default:
         _animationController.animateTo(0.0);

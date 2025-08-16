@@ -26,7 +26,6 @@ class AppointmentsRepository {
       final response = await _dio.post(
         AppConstants.showAppointmentPath,
         data: {
-          'size': 5,
           'page': page,
           'status': appointmentStatus.name,
           if (getChildId() != null) 'child_id': getChildId(),

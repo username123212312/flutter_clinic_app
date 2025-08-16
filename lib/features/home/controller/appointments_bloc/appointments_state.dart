@@ -8,8 +8,8 @@ sealed class AppointmentsState with _$AppointmentsState {
     required List<AppointmentModel> appointments,
     required AppointmentStatus appointmentStatus,
     required AppointmentType appointmentType,
-    DataStatus? status,
-    String? statusMessage,
+    required DataStatus status,
+    required String statusMessage,
   }) = _AppointmentsState;
   factory AppointmentsState.initial() {
     return AppointmentsState(

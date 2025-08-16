@@ -7,10 +7,14 @@ class DoctorsListState with _$DoctorsListState {
     required String message,
     required List<ClinicModel> clinics,
     required List<DoctorModel> doctors,
+    required bool hasMore,
+    required int currentPage,
     ClinicModel? selectedClinic,
   }) = _DoctorsListState;
   factory DoctorsListState.initial() {
     return DoctorsListState(
+      currentPage: 0,
+      hasMore: true,
       clinics: [],
       doctors: [],
       message: 'No data',

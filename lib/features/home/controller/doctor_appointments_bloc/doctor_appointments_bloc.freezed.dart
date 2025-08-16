@@ -19,25 +19,28 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$DoctorAppointmentsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchAppointmentsByType,
+    required TResult Function(bool isRefresh) fetchAppointmentsByType,
     required TResult Function() resetAppointments,
     required TResult Function(DoctorAppointmentStatus status)
     changeAppointmentStatus,
     required TResult Function(DoctorAppointmentType type) changeAppointmentType,
+    required TResult Function(DateTime month) changeAppointmentMonth,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchAppointmentsByType,
+    TResult? Function(bool isRefresh)? fetchAppointmentsByType,
     TResult? Function()? resetAppointments,
     TResult? Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
     TResult? Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult? Function(DateTime month)? changeAppointmentMonth,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchAppointmentsByType,
+    TResult Function(bool isRefresh)? fetchAppointmentsByType,
     TResult Function()? resetAppointments,
     TResult Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
     TResult Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult Function(DateTime month)? changeAppointmentMonth,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -49,6 +52,8 @@ mixin _$DoctorAppointmentsEvent {
     changeAppointmentStatus,
     required TResult Function(ChangeAppointmentType value)
     changeAppointmentType,
+    required TResult Function(ChangeAppointmentMonth value)
+    changeAppointmentMonth,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
@@ -56,6 +61,7 @@ mixin _$DoctorAppointmentsEvent {
     TResult? Function(ResetAppointments value)? resetAppointments,
     TResult? Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
     TResult? Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult? Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
@@ -63,6 +69,7 @@ mixin _$DoctorAppointmentsEvent {
     TResult Function(ResetAppointments value)? resetAppointments,
     TResult Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
     TResult Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -98,6 +105,8 @@ abstract class _$$FetchAppointmentsByTypeImplCopyWith<$Res> {
     _$FetchAppointmentsByTypeImpl value,
     $Res Function(_$FetchAppointmentsByTypeImpl) then,
   ) = __$$FetchAppointmentsByTypeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isRefresh});
 }
 
 /// @nodoc
@@ -115,62 +124,93 @@ class __$$FetchAppointmentsByTypeImplCopyWithImpl<$Res>
 
   /// Create a copy of DoctorAppointmentsEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? isRefresh = null}) {
+    return _then(
+      _$FetchAppointmentsByTypeImpl(
+        null == isRefresh
+            ? _value.isRefresh
+            : isRefresh // ignore: cast_nullable_to_non_nullable
+                as bool,
+      ),
+    );
+  }
 }
 
 /// @nodoc
 
 class _$FetchAppointmentsByTypeImpl implements FetchAppointmentsByType {
-  const _$FetchAppointmentsByTypeImpl();
+  const _$FetchAppointmentsByTypeImpl([this.isRefresh = false]);
+
+  @override
+  @JsonKey()
+  final bool isRefresh;
 
   @override
   String toString() {
-    return 'DoctorAppointmentsEvent.fetchAppointmentsByType()';
+    return 'DoctorAppointmentsEvent.fetchAppointmentsByType(isRefresh: $isRefresh)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FetchAppointmentsByTypeImpl);
+            other is _$FetchAppointmentsByTypeImpl &&
+            (identical(other.isRefresh, isRefresh) ||
+                other.isRefresh == isRefresh));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, isRefresh);
+
+  /// Create a copy of DoctorAppointmentsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchAppointmentsByTypeImplCopyWith<_$FetchAppointmentsByTypeImpl>
+  get copyWith => __$$FetchAppointmentsByTypeImplCopyWithImpl<
+    _$FetchAppointmentsByTypeImpl
+  >(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchAppointmentsByType,
+    required TResult Function(bool isRefresh) fetchAppointmentsByType,
     required TResult Function() resetAppointments,
     required TResult Function(DoctorAppointmentStatus status)
     changeAppointmentStatus,
     required TResult Function(DoctorAppointmentType type) changeAppointmentType,
+    required TResult Function(DateTime month) changeAppointmentMonth,
   }) {
-    return fetchAppointmentsByType();
+    return fetchAppointmentsByType(isRefresh);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchAppointmentsByType,
+    TResult? Function(bool isRefresh)? fetchAppointmentsByType,
     TResult? Function()? resetAppointments,
     TResult? Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
     TResult? Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult? Function(DateTime month)? changeAppointmentMonth,
   }) {
-    return fetchAppointmentsByType?.call();
+    return fetchAppointmentsByType?.call(isRefresh);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchAppointmentsByType,
+    TResult Function(bool isRefresh)? fetchAppointmentsByType,
     TResult Function()? resetAppointments,
     TResult Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
     TResult Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult Function(DateTime month)? changeAppointmentMonth,
     required TResult orElse(),
   }) {
     if (fetchAppointmentsByType != null) {
-      return fetchAppointmentsByType();
+      return fetchAppointmentsByType(isRefresh);
     }
     return orElse();
   }
@@ -185,6 +225,8 @@ class _$FetchAppointmentsByTypeImpl implements FetchAppointmentsByType {
     changeAppointmentStatus,
     required TResult Function(ChangeAppointmentType value)
     changeAppointmentType,
+    required TResult Function(ChangeAppointmentMonth value)
+    changeAppointmentMonth,
   }) {
     return fetchAppointmentsByType(this);
   }
@@ -196,6 +238,7 @@ class _$FetchAppointmentsByTypeImpl implements FetchAppointmentsByType {
     TResult? Function(ResetAppointments value)? resetAppointments,
     TResult? Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
     TResult? Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult? Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
   }) {
     return fetchAppointmentsByType?.call(this);
   }
@@ -207,6 +250,7 @@ class _$FetchAppointmentsByTypeImpl implements FetchAppointmentsByType {
     TResult Function(ResetAppointments value)? resetAppointments,
     TResult Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
     TResult Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
     required TResult orElse(),
   }) {
     if (fetchAppointmentsByType != null) {
@@ -217,7 +261,16 @@ class _$FetchAppointmentsByTypeImpl implements FetchAppointmentsByType {
 }
 
 abstract class FetchAppointmentsByType implements DoctorAppointmentsEvent {
-  const factory FetchAppointmentsByType() = _$FetchAppointmentsByTypeImpl;
+  const factory FetchAppointmentsByType([final bool isRefresh]) =
+      _$FetchAppointmentsByTypeImpl;
+
+  bool get isRefresh;
+
+  /// Create a copy of DoctorAppointmentsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$FetchAppointmentsByTypeImplCopyWith<_$FetchAppointmentsByTypeImpl>
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -263,11 +316,12 @@ class _$ResetAppointmentsImpl implements ResetAppointments {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchAppointmentsByType,
+    required TResult Function(bool isRefresh) fetchAppointmentsByType,
     required TResult Function() resetAppointments,
     required TResult Function(DoctorAppointmentStatus status)
     changeAppointmentStatus,
     required TResult Function(DoctorAppointmentType type) changeAppointmentType,
+    required TResult Function(DateTime month) changeAppointmentMonth,
   }) {
     return resetAppointments();
   }
@@ -275,10 +329,11 @@ class _$ResetAppointmentsImpl implements ResetAppointments {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchAppointmentsByType,
+    TResult? Function(bool isRefresh)? fetchAppointmentsByType,
     TResult? Function()? resetAppointments,
     TResult? Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
     TResult? Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult? Function(DateTime month)? changeAppointmentMonth,
   }) {
     return resetAppointments?.call();
   }
@@ -286,10 +341,11 @@ class _$ResetAppointmentsImpl implements ResetAppointments {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchAppointmentsByType,
+    TResult Function(bool isRefresh)? fetchAppointmentsByType,
     TResult Function()? resetAppointments,
     TResult Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
     TResult Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult Function(DateTime month)? changeAppointmentMonth,
     required TResult orElse(),
   }) {
     if (resetAppointments != null) {
@@ -308,6 +364,8 @@ class _$ResetAppointmentsImpl implements ResetAppointments {
     changeAppointmentStatus,
     required TResult Function(ChangeAppointmentType value)
     changeAppointmentType,
+    required TResult Function(ChangeAppointmentMonth value)
+    changeAppointmentMonth,
   }) {
     return resetAppointments(this);
   }
@@ -319,6 +377,7 @@ class _$ResetAppointmentsImpl implements ResetAppointments {
     TResult? Function(ResetAppointments value)? resetAppointments,
     TResult? Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
     TResult? Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult? Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
   }) {
     return resetAppointments?.call(this);
   }
@@ -330,6 +389,7 @@ class _$ResetAppointmentsImpl implements ResetAppointments {
     TResult Function(ResetAppointments value)? resetAppointments,
     TResult Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
     TResult Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
     required TResult orElse(),
   }) {
     if (resetAppointments != null) {
@@ -420,11 +480,12 @@ class _$ChangeAppointmentStatusImpl implements ChangeAppointmentStatus {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchAppointmentsByType,
+    required TResult Function(bool isRefresh) fetchAppointmentsByType,
     required TResult Function() resetAppointments,
     required TResult Function(DoctorAppointmentStatus status)
     changeAppointmentStatus,
     required TResult Function(DoctorAppointmentType type) changeAppointmentType,
+    required TResult Function(DateTime month) changeAppointmentMonth,
   }) {
     return changeAppointmentStatus(status);
   }
@@ -432,10 +493,11 @@ class _$ChangeAppointmentStatusImpl implements ChangeAppointmentStatus {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchAppointmentsByType,
+    TResult? Function(bool isRefresh)? fetchAppointmentsByType,
     TResult? Function()? resetAppointments,
     TResult? Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
     TResult? Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult? Function(DateTime month)? changeAppointmentMonth,
   }) {
     return changeAppointmentStatus?.call(status);
   }
@@ -443,10 +505,11 @@ class _$ChangeAppointmentStatusImpl implements ChangeAppointmentStatus {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchAppointmentsByType,
+    TResult Function(bool isRefresh)? fetchAppointmentsByType,
     TResult Function()? resetAppointments,
     TResult Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
     TResult Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult Function(DateTime month)? changeAppointmentMonth,
     required TResult orElse(),
   }) {
     if (changeAppointmentStatus != null) {
@@ -465,6 +528,8 @@ class _$ChangeAppointmentStatusImpl implements ChangeAppointmentStatus {
     changeAppointmentStatus,
     required TResult Function(ChangeAppointmentType value)
     changeAppointmentType,
+    required TResult Function(ChangeAppointmentMonth value)
+    changeAppointmentMonth,
   }) {
     return changeAppointmentStatus(this);
   }
@@ -476,6 +541,7 @@ class _$ChangeAppointmentStatusImpl implements ChangeAppointmentStatus {
     TResult? Function(ResetAppointments value)? resetAppointments,
     TResult? Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
     TResult? Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult? Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
   }) {
     return changeAppointmentStatus?.call(this);
   }
@@ -487,6 +553,7 @@ class _$ChangeAppointmentStatusImpl implements ChangeAppointmentStatus {
     TResult Function(ResetAppointments value)? resetAppointments,
     TResult Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
     TResult Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
     required TResult orElse(),
   }) {
     if (changeAppointmentStatus != null) {
@@ -586,11 +653,12 @@ class _$ChangeAppointmentTypeImpl implements ChangeAppointmentType {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchAppointmentsByType,
+    required TResult Function(bool isRefresh) fetchAppointmentsByType,
     required TResult Function() resetAppointments,
     required TResult Function(DoctorAppointmentStatus status)
     changeAppointmentStatus,
     required TResult Function(DoctorAppointmentType type) changeAppointmentType,
+    required TResult Function(DateTime month) changeAppointmentMonth,
   }) {
     return changeAppointmentType(type);
   }
@@ -598,10 +666,11 @@ class _$ChangeAppointmentTypeImpl implements ChangeAppointmentType {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchAppointmentsByType,
+    TResult? Function(bool isRefresh)? fetchAppointmentsByType,
     TResult? Function()? resetAppointments,
     TResult? Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
     TResult? Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult? Function(DateTime month)? changeAppointmentMonth,
   }) {
     return changeAppointmentType?.call(type);
   }
@@ -609,10 +678,11 @@ class _$ChangeAppointmentTypeImpl implements ChangeAppointmentType {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchAppointmentsByType,
+    TResult Function(bool isRefresh)? fetchAppointmentsByType,
     TResult Function()? resetAppointments,
     TResult Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
     TResult Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult Function(DateTime month)? changeAppointmentMonth,
     required TResult orElse(),
   }) {
     if (changeAppointmentType != null) {
@@ -631,6 +701,8 @@ class _$ChangeAppointmentTypeImpl implements ChangeAppointmentType {
     changeAppointmentStatus,
     required TResult Function(ChangeAppointmentType value)
     changeAppointmentType,
+    required TResult Function(ChangeAppointmentMonth value)
+    changeAppointmentMonth,
   }) {
     return changeAppointmentType(this);
   }
@@ -642,6 +714,7 @@ class _$ChangeAppointmentTypeImpl implements ChangeAppointmentType {
     TResult? Function(ResetAppointments value)? resetAppointments,
     TResult? Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
     TResult? Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult? Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
   }) {
     return changeAppointmentType?.call(this);
   }
@@ -653,6 +726,7 @@ class _$ChangeAppointmentTypeImpl implements ChangeAppointmentType {
     TResult Function(ResetAppointments value)? resetAppointments,
     TResult Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
     TResult Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
     required TResult orElse(),
   }) {
     if (changeAppointmentType != null) {
@@ -677,12 +751,190 @@ abstract class ChangeAppointmentType implements DoctorAppointmentsEvent {
 }
 
 /// @nodoc
+abstract class _$$ChangeAppointmentMonthImplCopyWith<$Res> {
+  factory _$$ChangeAppointmentMonthImplCopyWith(
+    _$ChangeAppointmentMonthImpl value,
+    $Res Function(_$ChangeAppointmentMonthImpl) then,
+  ) = __$$ChangeAppointmentMonthImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime month});
+}
+
+/// @nodoc
+class __$$ChangeAppointmentMonthImplCopyWithImpl<$Res>
+    extends
+        _$DoctorAppointmentsEventCopyWithImpl<
+          $Res,
+          _$ChangeAppointmentMonthImpl
+        >
+    implements _$$ChangeAppointmentMonthImplCopyWith<$Res> {
+  __$$ChangeAppointmentMonthImplCopyWithImpl(
+    _$ChangeAppointmentMonthImpl _value,
+    $Res Function(_$ChangeAppointmentMonthImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of DoctorAppointmentsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? month = null}) {
+    return _then(
+      _$ChangeAppointmentMonthImpl(
+        month:
+            null == month
+                ? _value.month
+                : month // ignore: cast_nullable_to_non_nullable
+                    as DateTime,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$ChangeAppointmentMonthImpl implements ChangeAppointmentMonth {
+  const _$ChangeAppointmentMonthImpl({required this.month});
+
+  @override
+  final DateTime month;
+
+  @override
+  String toString() {
+    return 'DoctorAppointmentsEvent.changeAppointmentMonth(month: $month)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeAppointmentMonthImpl &&
+            (identical(other.month, month) || other.month == month));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, month);
+
+  /// Create a copy of DoctorAppointmentsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeAppointmentMonthImplCopyWith<_$ChangeAppointmentMonthImpl>
+  get copyWith =>
+      __$$ChangeAppointmentMonthImplCopyWithImpl<_$ChangeAppointmentMonthImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool isRefresh) fetchAppointmentsByType,
+    required TResult Function() resetAppointments,
+    required TResult Function(DoctorAppointmentStatus status)
+    changeAppointmentStatus,
+    required TResult Function(DoctorAppointmentType type) changeAppointmentType,
+    required TResult Function(DateTime month) changeAppointmentMonth,
+  }) {
+    return changeAppointmentMonth(month);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool isRefresh)? fetchAppointmentsByType,
+    TResult? Function()? resetAppointments,
+    TResult? Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
+    TResult? Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult? Function(DateTime month)? changeAppointmentMonth,
+  }) {
+    return changeAppointmentMonth?.call(month);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isRefresh)? fetchAppointmentsByType,
+    TResult Function()? resetAppointments,
+    TResult Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
+    TResult Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult Function(DateTime month)? changeAppointmentMonth,
+    required TResult orElse(),
+  }) {
+    if (changeAppointmentMonth != null) {
+      return changeAppointmentMonth(month);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FetchAppointmentsByType value)
+    fetchAppointmentsByType,
+    required TResult Function(ResetAppointments value) resetAppointments,
+    required TResult Function(ChangeAppointmentStatus value)
+    changeAppointmentStatus,
+    required TResult Function(ChangeAppointmentType value)
+    changeAppointmentType,
+    required TResult Function(ChangeAppointmentMonth value)
+    changeAppointmentMonth,
+  }) {
+    return changeAppointmentMonth(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FetchAppointmentsByType value)? fetchAppointmentsByType,
+    TResult? Function(ResetAppointments value)? resetAppointments,
+    TResult? Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
+    TResult? Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult? Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
+  }) {
+    return changeAppointmentMonth?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FetchAppointmentsByType value)? fetchAppointmentsByType,
+    TResult Function(ResetAppointments value)? resetAppointments,
+    TResult Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
+    TResult Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
+    required TResult orElse(),
+  }) {
+    if (changeAppointmentMonth != null) {
+      return changeAppointmentMonth(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ChangeAppointmentMonth implements DoctorAppointmentsEvent {
+  const factory ChangeAppointmentMonth({required final DateTime month}) =
+      _$ChangeAppointmentMonthImpl;
+
+  DateTime get month;
+
+  /// Create a copy of DoctorAppointmentsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ChangeAppointmentMonthImplCopyWith<_$ChangeAppointmentMonthImpl>
+  get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$DoctorAppointmentsState {
   DoctorAppointmentStatus get doctorAppointmentStatus =>
       throw _privateConstructorUsedError;
   DoctorAppointmentType get doctorAppointmentType =>
       throw _privateConstructorUsedError;
   List<AppointmentModel> get appointments => throw _privateConstructorUsedError;
+  DateTime get currentMonth => throw _privateConstructorUsedError;
+  int get currentPage => throw _privateConstructorUsedError;
+  bool get hasMore => throw _privateConstructorUsedError;
   DataStatus get status => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
 
@@ -704,6 +956,9 @@ abstract class $DoctorAppointmentsStateCopyWith<$Res> {
     DoctorAppointmentStatus doctorAppointmentStatus,
     DoctorAppointmentType doctorAppointmentType,
     List<AppointmentModel> appointments,
+    DateTime currentMonth,
+    int currentPage,
+    bool hasMore,
     DataStatus status,
     String message,
   });
@@ -730,6 +985,9 @@ class _$DoctorAppointmentsStateCopyWithImpl<
     Object? doctorAppointmentStatus = null,
     Object? doctorAppointmentType = null,
     Object? appointments = null,
+    Object? currentMonth = null,
+    Object? currentPage = null,
+    Object? hasMore = null,
     Object? status = null,
     Object? message = null,
   }) {
@@ -750,6 +1008,21 @@ class _$DoctorAppointmentsStateCopyWithImpl<
                     ? _value.appointments
                     : appointments // ignore: cast_nullable_to_non_nullable
                         as List<AppointmentModel>,
+            currentMonth:
+                null == currentMonth
+                    ? _value.currentMonth
+                    : currentMonth // ignore: cast_nullable_to_non_nullable
+                        as DateTime,
+            currentPage:
+                null == currentPage
+                    ? _value.currentPage
+                    : currentPage // ignore: cast_nullable_to_non_nullable
+                        as int,
+            hasMore:
+                null == hasMore
+                    ? _value.hasMore
+                    : hasMore // ignore: cast_nullable_to_non_nullable
+                        as bool,
             status:
                 null == status
                     ? _value.status
@@ -779,6 +1052,9 @@ abstract class _$$DoctorAppointmentsStateImplCopyWith<$Res>
     DoctorAppointmentStatus doctorAppointmentStatus,
     DoctorAppointmentType doctorAppointmentType,
     List<AppointmentModel> appointments,
+    DateTime currentMonth,
+    int currentPage,
+    bool hasMore,
     DataStatus status,
     String message,
   });
@@ -805,6 +1081,9 @@ class __$$DoctorAppointmentsStateImplCopyWithImpl<$Res>
     Object? doctorAppointmentStatus = null,
     Object? doctorAppointmentType = null,
     Object? appointments = null,
+    Object? currentMonth = null,
+    Object? currentPage = null,
+    Object? hasMore = null,
     Object? status = null,
     Object? message = null,
   }) {
@@ -825,6 +1104,21 @@ class __$$DoctorAppointmentsStateImplCopyWithImpl<$Res>
                 ? _value._appointments
                 : appointments // ignore: cast_nullable_to_non_nullable
                     as List<AppointmentModel>,
+        currentMonth:
+            null == currentMonth
+                ? _value.currentMonth
+                : currentMonth // ignore: cast_nullable_to_non_nullable
+                    as DateTime,
+        currentPage:
+            null == currentPage
+                ? _value.currentPage
+                : currentPage // ignore: cast_nullable_to_non_nullable
+                    as int,
+        hasMore:
+            null == hasMore
+                ? _value.hasMore
+                : hasMore // ignore: cast_nullable_to_non_nullable
+                    as bool,
         status:
             null == status
                 ? _value.status
@@ -847,6 +1141,9 @@ class _$DoctorAppointmentsStateImpl implements _DoctorAppointmentsState {
     required this.doctorAppointmentStatus,
     required this.doctorAppointmentType,
     required final List<AppointmentModel> appointments,
+    required this.currentMonth,
+    required this.currentPage,
+    required this.hasMore,
     required this.status,
     required this.message,
   }) : _appointments = appointments;
@@ -864,13 +1161,19 @@ class _$DoctorAppointmentsStateImpl implements _DoctorAppointmentsState {
   }
 
   @override
+  final DateTime currentMonth;
+  @override
+  final int currentPage;
+  @override
+  final bool hasMore;
+  @override
   final DataStatus status;
   @override
   final String message;
 
   @override
   String toString() {
-    return 'DoctorAppointmentsState(doctorAppointmentStatus: $doctorAppointmentStatus, doctorAppointmentType: $doctorAppointmentType, appointments: $appointments, status: $status, message: $message)';
+    return 'DoctorAppointmentsState(doctorAppointmentStatus: $doctorAppointmentStatus, doctorAppointmentType: $doctorAppointmentType, appointments: $appointments, currentMonth: $currentMonth, currentPage: $currentPage, hasMore: $hasMore, status: $status, message: $message)';
   }
 
   @override
@@ -889,6 +1192,11 @@ class _$DoctorAppointmentsStateImpl implements _DoctorAppointmentsState {
               other._appointments,
               _appointments,
             ) &&
+            (identical(other.currentMonth, currentMonth) ||
+                other.currentMonth == currentMonth) &&
+            (identical(other.currentPage, currentPage) ||
+                other.currentPage == currentPage) &&
+            (identical(other.hasMore, hasMore) || other.hasMore == hasMore) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message));
   }
@@ -899,6 +1207,9 @@ class _$DoctorAppointmentsStateImpl implements _DoctorAppointmentsState {
     doctorAppointmentStatus,
     doctorAppointmentType,
     const DeepCollectionEquality().hash(_appointments),
+    currentMonth,
+    currentPage,
+    hasMore,
     status,
     message,
   );
@@ -919,6 +1230,9 @@ abstract class _DoctorAppointmentsState implements DoctorAppointmentsState {
     required final DoctorAppointmentStatus doctorAppointmentStatus,
     required final DoctorAppointmentType doctorAppointmentType,
     required final List<AppointmentModel> appointments,
+    required final DateTime currentMonth,
+    required final int currentPage,
+    required final bool hasMore,
     required final DataStatus status,
     required final String message,
   }) = _$DoctorAppointmentsStateImpl;
@@ -929,6 +1243,12 @@ abstract class _DoctorAppointmentsState implements DoctorAppointmentsState {
   DoctorAppointmentType get doctorAppointmentType;
   @override
   List<AppointmentModel> get appointments;
+  @override
+  DateTime get currentMonth;
+  @override
+  int get currentPage;
+  @override
+  bool get hasMore;
   @override
   DataStatus get status;
   @override

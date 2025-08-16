@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:our_flutter_clinic_app/core/providers/dio_client/dio_client.dart';
+import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:our_flutter_clinic_app/features/home/model/doctor_model.dart';
 
 import '../../../core/models/app_failure.dart';
@@ -40,14 +41,18 @@ class DoctorsListRepository {
     }
   }
 
-  Future<Either<AppFailure, AppResponse<List<DoctorModel>>>>
-  fetchAllDoctors() async {
+  Future<Either<AppFailure, AppResponse<List<DoctorModel>>>> fetchAllDoctors([
+    int? page = 1,
+  ]) async {
     try {
-      final response = await _dio.get(AppConstants.showDoctorsPath);
+      final response = await _dio.get(
+        AppConstants.showDoctorsPath,
+        queryParameters: {'page': page},
+      );
       if (response.data['statusCode'] < 300) {
         return Right(
           AppResponse<List<DoctorModel>>(
-            success: true,
+            success: doesListHaveMore(response.data['meta']),
             message: 'All doctors are fetched successfully',
             data:
                 (response.data['data'] as List<dynamic>).map((doctor) {
@@ -68,20 +73,21 @@ class DoctorsListRepository {
   }
 
   Future<Either<AppFailure, AppResponse<List<DoctorModel>>>> fetchClinicDoctors(
-    int clinicId,
-  ) async {
+    int clinicId, {
+    int page = 1,
+  }) async {
     try {
       final response = await _dio.get(
         AppConstants.showClinicDoctorsPath,
-        queryParameters: {'clinic_id': clinicId},
+        queryParameters: {'clinic_id': clinicId, 'page': page},
       );
       if (response.data['statusCode'] < 300) {
         return Right(
           AppResponse<List<DoctorModel>>(
-            success: true,
+            success: doesListHaveMore(response.data['meta']),
             message: 'Clinic doctors are fetched successfully',
             data:
-                (response.data['items'] as List<dynamic>).map((doctor) {
+                (response.data['data'] as List<dynamic>).map((doctor) {
                   return DoctorModel.fromJson(doctor);
                 }).toList(),
           ),

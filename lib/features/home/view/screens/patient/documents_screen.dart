@@ -394,155 +394,148 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
   Widget _buildDocumentsList() {
     return BlocBuilder<AnalysisListBloc, AnalysisListState>(
       builder: (context, state) {
-        return state.analysisList!.isEmpty && !state.status.isLoading
-            ? RefreshIndicator(
-              onRefresh: () async {
-                _fetchAllAnalysis();
-              },
-              child: ListView(
-                children: [
-                  Center(
-                    heightFactor: 2.5,
-                    child: Column(
-                      children: [
-                        Image.asset(
-                          'assets/images/il_empty_activity.webp',
-                          width: screenWidth(context) * 0.4,
-                          height: screenHeight(context) * 0.17,
-                          fit: BoxFit.contain,
-                        ),
-                        Text(
-                          'No documents yet',
-                          style: Theme.of(
-                            context,
-                          ).textTheme.labelSmall!.copyWith(
-                            fontSize: 16,
-                            color: Pallete.oxfordBlue,
-                          ),
-                        ),
-                        Text(
-                          'try adding one',
-                          style: Theme.of(
-                            context,
-                          ).textTheme.titleSmall!.copyWith(
-                            fontSize: 14,
-                            color: Pallete.sliverSand,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            )
-            : state.status.isLoading
-            ? Skeletonizer(
-              containersColor: Pallete.grayScaleColor400,
-              child: ListView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                shrinkWrap: true,
-                itemCount: 5,
-                itemExtent: screenHeight(context) * 0.1,
-                itemBuilder: (_, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Pallete.grayScaleColor300.withAlpha(100),
-                        borderRadius: BorderRadius.circular(10),
+        if (state.analysisList.isEmpty && !state.status.isLoading) {
+          return RefreshIndicator(
+            onRefresh: () async {
+              _fetchAllAnalysis();
+            },
+            child: ListView(
+              children: [
+                Center(
+                  heightFactor: 2.5,
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        'assets/images/il_empty_activity.webp',
+                        width: screenWidth(context) * 0.4,
+                        height: screenHeight(context) * 0.17,
+                        fit: BoxFit.contain,
                       ),
-                      padding: EdgeInsets.all(10),
+                      Text(
+                        'No documents yet',
+                        style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                          fontSize: 16,
+                          color: Pallete.oxfordBlue,
+                        ),
+                      ),
+                      Text(
+                        'try adding one',
+                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                          fontSize: 14,
+                          color: Pallete.sliverSand,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
+
+        return RefreshIndicator(
+          onRefresh: () async {
+            _fetchAllAnalysis();
+          },
+          child: Skeletonizer(
+            enabled: state.status.isLoading,
+            child: ListView.builder(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              shrinkWrap: true,
+              itemCount:
+                  state.status.isLoading ? 10 : state.analysisList.length,
+              itemExtent: screenHeight(context) * 0.1,
+              itemBuilder: (_, index) {
+                if (state.status.isLoading) {
+                  return _buildLoading();
+                }
+                final analysis = state.analysisList[index];
+                return Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5),
+                  child: Dismissible(
+                    onDismissed: (_) {
+                      if (analysis.id != null) {
+                        context.read<AnalysisListBloc>().add(
+                          AnalysisListEvent.analysisRemoved(
+                            analysisId: analysis.id!,
+                          ),
+                        );
+                      }
+                    },
+                    key: ObjectKey(analysis),
+                    background: Container(
+                      width: screenWidth(context),
+                      color: Theme.of(context).colorScheme.errorContainer,
                       child: Row(
                         children: [
-                          Container(
-                            width: 50,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: Pallete.grayScaleColor200,
-                              borderRadius: BorderRadius.circular(10),
-                              image: DecorationImage(
-                                image: AssetImage('assets/icons/pdf_icon.png'),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(
-                                'no document',
-                                style: Theme.of(
-                                  context,
-                                ).textTheme.labelSmall!.copyWith(fontSize: 14),
-                              ),
-                              Text(
-                                'no description',
-                                style: Theme.of(
-                                  context,
-                                ).textTheme.labelSmall!.copyWith(fontSize: 10),
-                              ),
-                            ],
-                          ),
+                          SizedBox(width: 5),
+                          Icon(Icons.delete),
+                          Spacer(),
+                          Icon(Icons.delete),
+                          SizedBox(width: 5),
                         ],
                       ),
                     ),
-                  );
-                },
-              ),
-            )
-            : RefreshIndicator(
-              onRefresh: () async {
-                _fetchAllAnalysis();
-              },
-              child: ListView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                shrinkWrap: true,
-                itemCount: state.analysisList?.length ?? 0,
-                itemExtent: screenHeight(context) * 0.1,
-                itemBuilder: (_, index) {
-                  final analysis = state.analysisList?[index];
-                  return Padding(
-                    padding: EdgeInsets.symmetric(vertical: 5),
-                    child: Dismissible(
-                      onDismissed: (_) {
-                        if (analysis!.id != null) {
-                          context.read<AnalysisListBloc>().add(
-                            AnalysisListEvent.analysisRemoved(
-                              analysisId: analysis.id!,
-                            ),
-                          );
-                        }
-                      },
-                      key: ObjectKey(analysis),
-                      background: Container(
-                        width: screenWidth(context),
-                        color: Theme.of(context).colorScheme.errorContainer,
-                        child: Row(
-                          children: [
-                            SizedBox(width: 5),
-                            Icon(Icons.delete),
-                            Spacer(),
-                            Icon(Icons.delete),
-                            SizedBox(width: 5),
-                          ],
-                        ),
-                      ),
-                      child: AnalysisItemWidget(
-                        analysis:
-                            state.analysisList?[(state.analysisList ??
-                                        [AnalysisModel(name: 'name')])
-                                    .length -
-                                1 -
-                                index] ??
-                            AnalysisModel(name: 'name'),
-                      ),
+                    child: AnalysisItemWidget(
+                      analysis:
+                          state.analysisList[(state.analysisList).length -
+                              1 -
+                              index],
                     ),
-                  );
-                },
-              ),
-            );
+                  ),
+                );
+              },
+            ),
+          ),
+        );
       },
+    );
+  }
+
+  Padding _buildLoading() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Pallete.grayScaleColor300.withAlpha(100),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        padding: EdgeInsets.all(10),
+        child: Row(
+          children: [
+            Container(
+              width: 50,
+              height: 50,
+              decoration: BoxDecoration(
+                color: Pallete.grayScaleColor200,
+                borderRadius: BorderRadius.circular(10),
+                image: DecorationImage(
+                  image: AssetImage('assets/icons/pdf_icon.png'),
+                ),
+              ),
+            ),
+            SizedBox(width: 10),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  'no document',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelSmall!.copyWith(fontSize: 14),
+                ),
+                Text(
+                  'no description',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelSmall!.copyWith(fontSize: 10),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 

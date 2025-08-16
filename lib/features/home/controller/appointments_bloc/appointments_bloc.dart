@@ -18,21 +18,27 @@ class AppointmentsBloc extends Bloc<AppointmentsEvent, AppointmentsState> {
       super(AppointmentsState.initial()) {
     on<AppointmentsEvent>((event, emit) {
       if (event is! AppointmentStatusChanged) {
-        emit(state.copyWith(status: DataStatus.loading));
+        // emit(state.copyWith(status: DataStatus.loading));
       }
     });
     on<AppointmentsRefreshed>((event, emit) {
-      emit(state.copyWith(hasMore: true, currentPage: 0));
+      emit(
+        state.copyWith(
+          hasMore: true,
+          currentPage: 0,
+          status: DataStatus.loading,
+        ),
+      );
       add(AppointmentsFetched());
     });
     on<AppointmentsFetched>(_fetchAppointments);
     on<AppointmentStatusChanged>((event, emit) {
       emit(state.copyWith(appointmentStatus: event.appointmentStatus));
-      add(AppointmentsEvent.appointmentsFetched());
+      add(AppointmentsRefreshed());
     });
     on<AppointmentTypeChanged>((event, emit) {
       emit(state.copyWith(appointmentType: event.appointmentType));
-      add(AppointmentsEvent.appointmentsFetched());
+      add(AppointmentsRefreshed());
     });
     on<AppointmentCanceled>(_removeAppointment);
   }
@@ -42,6 +48,11 @@ class AppointmentsBloc extends Bloc<AppointmentsEvent, AppointmentsState> {
     Emitter<AppointmentsState> emit,
   ) async {
     try {
+      if (state.currentPage == 0) {
+        emit(state.copyWith(status: DataStatus.loading));
+      } else {
+        emit(state.copyWith(status: DataStatus.loadingMore));
+      }
       if (state.hasMore) {
         final newPage = state.currentPage + 1;
         final currentList = List.of(state.appointments);
@@ -59,6 +70,8 @@ class AppointmentsBloc extends Bloc<AppointmentsEvent, AppointmentsState> {
             appointments:
                 r.data == null
                     ? state.appointments
+                    : newPage == 1
+                    ? r.data!
                     : [...currentList, ...r.data!],
             hasMore: r.success,
             currentPage: newPage,
@@ -92,8 +105,8 @@ class AppointmentsBloc extends Bloc<AppointmentsEvent, AppointmentsState> {
         ),
       };
       emit(newState);
-      if (state.status!.isData) {
-        add(AppointmentsFetched());
+      if (state.status.isData) {
+        add(AppointmentsRefreshed());
       }
     } catch (e) {
       emit(state.copyWith(status: DataStatus.error));

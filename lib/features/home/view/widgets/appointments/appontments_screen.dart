@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
@@ -27,6 +29,13 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
       );
       _loadData();
     }
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -48,10 +57,11 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
         child: BlocBuilder<AppointmentsBloc, AppointmentsState>(
           builder: (context, state) {
             return CustomScrollView(
+              controller: _scrollController,
+
               slivers: [
                 _buildThreeSelectable(),
-                ((state.appointments == null || state.appointments!.isEmpty) &&
-                        !(state.status ?? DataStatus.error).isLoading)
+                ((state.appointments.isEmpty) && !state.status.isLoading)
                     ? SliverToBoxAdapter(
                       child: Center(
                         heightFactor: 2.5,
@@ -85,16 +95,47 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
                         ),
                       ),
                     )
-                    : state.status!.isLoading
-                    ? SliverToBoxAdapter(
+                    : SliverToBoxAdapter(
                       child: Skeletonizer(
+                        enabled: state.status.isLoading,
                         effect: ShimmerEffect(
                           // Animation duration
                         ),
-                        child: _buildSkeletonList(),
+                        child: ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount:
+                              state.status.isLoading
+                                  ? 5
+                                  : state.status.isLoadingMore
+                                  ? (state.appointments.length + 1)
+                                  : state.appointments.length,
+                          itemBuilder: (context, index) {
+                            if (state.status.isLoading) {
+                              return AppointmentWidgetItem(
+                                appointment: AppointmentModel(),
+                              );
+                            }
+                            if (index == state.appointments.length) {
+                              return Padding(
+                                padding: EdgeInsets.symmetric(vertical: 16.0),
+                                child: Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                              );
+                            } else {
+                              return _buildItem(
+                                state,
+                                state.appointments[index].copyWith(
+                                  status: _currentStatus,
+                                ),
+                                index,
+                              );
+                            }
+                          },
+                        ),
                       ),
-                    )
-                    : _buildList(state),
+                    ),
               ],
             );
           },
@@ -103,30 +144,16 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
     );
   }
 
-  Widget _buildList(AppointmentsState state) {
-    return SliverAnimatedList(
-      key: _listKey,
-
-      initialItemCount: (state.appointments ?? []).length,
-      itemBuilder:
-          (_, index, animation) => _buildItem(
-            state,
-            state.appointments![index].copyWith(status: _currentStatus),
-            animation,
-            index,
-          ),
-    );
-  }
-
-  Widget _buildSkeletonList() {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      itemCount: 10,
-      itemBuilder: (context, index) {
-        return AppointmentWidgetItem(appointment: AppointmentModel());
-      },
-    );
+  void _onScroll() {
+    final appointmentsBloc = context.read<AppointmentsBloc>();
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      if (appointmentsBloc.state.hasMore &&
+          !appointmentsBloc.state.status.isLoading &&
+          !appointmentsBloc.state.status.isLoadingMore) {
+        appointmentsBloc.add(AppointmentsFetched());
+      }
+    }
   }
 
   Widget _buildThreeSelectable() {
@@ -144,13 +171,6 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
           context.read<AppointmentsBloc>().add(
             AppointmentStatusChanged(appointmentStatus: _currentStatus),
           );
-          // await for (final newState
-          //     in context.read<AppointmentsBloc>().stream) {
-          //   if (newState.status?.isData ?? false) {
-          //     _loadData();
-          //     break;
-          //   }
-          // }
         },
       ),
       bottom:
@@ -189,46 +209,38 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
     );
   }
 
-  Widget _buildItem(
-    AppointmentsState state,
-    AppointmentModel item,
-    Animation<double> animation,
-    int index,
-  ) {
-    return ScaleTransition(
-      scale: animation,
-      child: AppointmentWidgetItem(
-        onCancel:
-            state.appointmentStatus!.isPending
-                ? () async {
-                  await _showTDialog(item);
-                }
-                : null,
-        onReschedule:
-            state.appointmentStatus!.isPending
-                ? () {
-                  context.pushNamed(
-                    AppRouteConstants.rescheduleRouteName,
-                    extra: item,
-                  );
-                }
-                : null,
-        appointment: item,
-        onTap: () {
-          context.pushNamed(
-            AppRouteConstants.appointmentDetailsRouteName,
-            extra: AppointmentModel(
-              doctorName: item.doctorName,
-              doctorPhoto: item.doctorPhoto,
-              doctorSpeciality: item.doctorSpeciality,
-              reservationHour: item.reservationHour,
-              id: item.id,
-              reservationDate: item.reservationDate,
-              status: state.appointmentStatus,
-            ),
-          );
-        },
-      ),
+  Widget _buildItem(AppointmentsState state, AppointmentModel item, int index) {
+    return AppointmentWidgetItem(
+      onCancel:
+          state.appointmentStatus.isPending
+              ? () async {
+                await _showTDialog(item);
+              }
+              : null,
+      onReschedule:
+          state.appointmentStatus.isPending
+              ? () {
+                context.pushNamed(
+                  AppRouteConstants.rescheduleRouteName,
+                  extra: item,
+                );
+              }
+              : null,
+      appointment: item,
+      onTap: () {
+        context.pushNamed(
+          AppRouteConstants.appointmentDetailsRouteName,
+          extra: AppointmentModel(
+            doctorName: item.doctorName,
+            doctorPhoto: item.doctorPhoto,
+            doctorSpeciality: item.doctorSpeciality,
+            reservationHour: item.reservationHour,
+            id: item.id,
+            reservationDate: item.reservationDate,
+            status: state.appointmentStatus,
+          ),
+        );
+      },
     );
   }
 
@@ -295,7 +307,7 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
 
   Future<void> _loadData() async {
     if (mounted) {
-      context.read<AppointmentsBloc>().add(AppointmentsFetched());
+      context.read<AppointmentsBloc>().add(AppointmentsRefreshed());
     }
   }
 
@@ -319,4 +331,6 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
 
   final GlobalKey<SliverAnimatedListState> _listKey =
       GlobalKey<SliverAnimatedListState>();
+
+  final _scrollController = ScrollController();
 }

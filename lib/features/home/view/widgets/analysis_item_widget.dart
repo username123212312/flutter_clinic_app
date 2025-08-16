@@ -68,9 +68,20 @@ class _AnalysisItemWidgetState extends State<AnalysisItemWidget> {
         padding: EdgeInsets.all(10),
         child: Row(
           children: [
-            GestureDetector(
-              onTap: () => log('message'),
-              child: Container(
+            if (widget.analysis.patientNumber == null)
+              Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Pallete.grayScaleColor200,
+                  borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(
+                    image: AssetImage('assets/icons/pdf_icon.png'),
+                  ),
+                ),
+              ),
+            if (widget.analysis.patientNumber != null)
+              Container(
                 width: 40,
                 height: 40,
                 decoration: BoxDecoration(
@@ -88,7 +99,6 @@ class _AnalysisItemWidgetState extends State<AnalysisItemWidget> {
                   ).textTheme.labelMedium!.copyWith(fontSize: 12),
                 ),
               ),
-            ),
             SizedBox(width: 10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,12 +110,25 @@ class _AnalysisItemWidgetState extends State<AnalysisItemWidget> {
                     context,
                   ).textTheme.labelSmall!.copyWith(fontSize: 14),
                 ),
-                Text(
-                  'P: ${widget.analysis.patientFirstName ?? 'No'} ${widget.analysis.patientLastName ?? 'Patient'}',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.labelSmall!.copyWith(fontSize: 14),
-                ),
+
+                if (widget.analysis.patientNumber == null)
+                  SizedBox(
+                    width: screenWidth(context) * 0.5,
+                    child: Text(
+                      overflow: TextOverflow.ellipsis,
+                      widget.analysis.description ?? 'No decription',
+                      style: Theme.of(
+                        context,
+                      ).textTheme.labelSmall!.copyWith(fontSize: 10),
+                    ),
+                  ),
+                if (widget.analysis.patientNumber != null)
+                  Text(
+                    'P: ${widget.analysis.patientFirstName ?? 'No'} ${widget.analysis.patientLastName ?? 'Patient'}',
+                    style: Theme.of(
+                      context,
+                    ).textTheme.labelSmall!.copyWith(fontSize: 14),
+                  ),
               ],
             ),
             if (!widget.isLab) ...[

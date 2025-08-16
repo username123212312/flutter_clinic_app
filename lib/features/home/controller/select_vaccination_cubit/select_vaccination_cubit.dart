@@ -32,7 +32,7 @@ class SelectVaccinationCubit extends Cubit<SelectVaccinationState> {
   }
 
   void changeFilter(VaccintaionType type) {
-    emit(state.copyWith(type: type));
+    emit(state.copyWith(type: type, currentPage: 0, hasMore: true));
     fetchVaccines();
   }
 
@@ -79,33 +79,50 @@ class SelectVaccinationCubit extends Cubit<SelectVaccinationState> {
     }
   }
 
-  Future<void> fetchVaccines() async {
-    emit(state.copyWith(status: DataStatus.loading));
+  Future<void> fetchVaccines([bool isRefresh = false]) async {
     try {
-      final response = await _fetchVaccines(state.type);
-      final newState = switch (response) {
-        Left(value: final l) => state.copyWith(
-          status: DataStatus.error,
-          message: l.message,
-        ),
-        Right(value: final r) => state.copyWith(
-          status: DataStatus.data,
-          message: r.message,
-          vaccines: r.data ?? state.vaccines,
-        ),
-      };
-      emit(newState);
+      if (state.hasMore) {
+        final newPage = isRefresh ? 1 : (state.currentPage + 1);
+        final currentList = state.vaccines;
+        if (newPage == 1) {
+          emit(state.copyWith(status: DataStatus.loading));
+        } else {
+          emit(state.copyWith(status: DataStatus.loadingMore));
+        }
+
+        final response = await _fetchVaccines(state.type, page: newPage);
+        final newState = switch (response) {
+          Left(value: final l) => state.copyWith(
+            status: DataStatus.error,
+            message: l.message,
+          ),
+          Right(value: final r) => state.copyWith(
+            currentPage: newPage,
+            hasMore: r.success,
+            status: DataStatus.data,
+            message: r.message,
+            vaccines:
+                r.data == null
+                    ? state.vaccines
+                    : newPage == 1
+                    ? r.data!
+                    : [...currentList, ...r.data!],
+          ),
+        };
+        emit(newState);
+      }
     } catch (e) {
       emit(state.copyWith(status: DataStatus.error, message: e.toString()));
     }
   }
 
   Future<Either<AppFailure, AppResponse<List<VaccinationRecord>>>>
-  _fetchVaccines(VaccintaionType type) async {
+  _fetchVaccines(VaccintaionType type, {int page = 1}) async {
     try {
       final response = await DioClient().instance.get(
         AppConstants.showVaccinationRecordsPath,
         queryParameters: {
+          'page': page,
           if (getChildId() != null) 'child_id': getChildId(),
           if (!type.isAll) 'recommended': type.name,
         },
@@ -113,10 +130,10 @@ class SelectVaccinationCubit extends Cubit<SelectVaccinationState> {
       if (response.data['statusCode'] < 300) {
         return Right(
           AppResponse<List<VaccinationRecord>>(
-            success: true,
+            success: doesListHaveMore(response.data['meta']),
             message: 'vaccines fetched successfully',
             data:
-                (response.data['items'] as List<dynamic>).map((vac) {
+                (response.data['data'] as List<dynamic>).map((vac) {
                   return VaccinationRecord.fromJson(vac);
                 }).toList(),
           ),

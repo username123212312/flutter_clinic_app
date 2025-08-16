@@ -21,7 +21,7 @@ class DoctorAppointmentsBloc
     on<DoctorAppointmentsEvent>((event, emit) {
       if (event is! ChangeAppointmentStatus &&
           event is! ChangeAppointmentType) {
-        emit(state.copyWith(status: DataStatus.loading, message: 'Loading'));
+        // emit(state.copyWith(status: DataStatus.loading, message: 'Loading'));
       }
     });
     on<ResetAppointments>((event, emit) {
@@ -29,16 +29,40 @@ class DoctorAppointmentsBloc
         state.copyWith(
           doctorAppointmentStatus: DoctorAppointmentStatus.pending,
           doctorAppointmentType: DoctorAppointmentType.firstTime,
+          currentPage: 0,
+          hasMore: true,
         ),
       );
       add(FetchAppointmentsByType());
     });
     on<ChangeAppointmentStatus>((event, emit) {
-      emit(state.copyWith(doctorAppointmentStatus: event.status));
+      emit(
+        state.copyWith(
+          doctorAppointmentStatus: event.status,
+          currentPage: 0,
+          hasMore: true,
+        ),
+      );
+      add(FetchAppointmentsByType());
+    });
+    on<ChangeAppointmentMonth>((event, emit) {
+      emit(
+        state.copyWith(
+          currentMonth: event.month,
+          currentPage: 0,
+          hasMore: true,
+        ),
+      );
       add(FetchAppointmentsByType());
     });
     on<ChangeAppointmentType>((event, emit) {
-      emit(state.copyWith(doctorAppointmentType: event.type));
+      emit(
+        state.copyWith(
+          doctorAppointmentType: event.type,
+          currentPage: 0,
+          hasMore: true,
+        ),
+      );
       add(FetchAppointmentsByType());
     });
 
@@ -49,23 +73,41 @@ class DoctorAppointmentsBloc
     Emitter<DoctorAppointmentsState> emit,
   ) async {
     try {
-      final response = await _doctorAppointmentsRepository
-          .fetchAppointmentsByType(
-            appointmentStatus: state.doctorAppointmentStatus,
-            appointmentType: state.doctorAppointmentType,
-          );
-      final newState = switch (response) {
-        Left(value: final l) => state.copyWith(
-          status: DataStatus.error,
-          message: l.message,
-        ),
-        Right(value: final r) => state.copyWith(
-          status: DataStatus.data,
-          message: r.message,
-          appointments: r.data ?? state.appointments,
-        ),
-      };
-      emit(newState);
+      if (state.hasMore || event.isRefresh) {
+        final newPage = event.isRefresh ? 1 : state.currentPage + 1;
+        if (newPage == 1) {
+          emit(state.copyWith(status: DataStatus.loading));
+        } else {
+          emit(state.copyWith(status: DataStatus.loadingMore));
+        }
+        final currentList = List.of(state.appointments);
+        final response = await _doctorAppointmentsRepository
+            .fetchAppointmentsByType(
+              date: state.currentMonth,
+              appointmentStatus: state.doctorAppointmentStatus,
+              appointmentType: state.doctorAppointmentType,
+              page: newPage,
+            );
+        final newState = switch (response) {
+          Left(value: final l) => state.copyWith(
+            status: DataStatus.error,
+            message: l.message,
+          ),
+          Right(value: final r) => state.copyWith(
+            hasMore: r.success,
+            status: DataStatus.data,
+            currentPage: newPage,
+            message: r.message,
+            appointments:
+                r.data == null
+                    ? state.appointments
+                    : newPage == 1
+                    ? r.data!
+                    : [...currentList, ...r.data!],
+          ),
+        };
+        emit(newState);
+      }
     } catch (e) {
       emit(state.copyWith(status: DataStatus.error, message: e.toString()));
     }

@@ -21,6 +21,8 @@ mixin _$DoctorsListState {
   String get message => throw _privateConstructorUsedError;
   List<ClinicModel> get clinics => throw _privateConstructorUsedError;
   List<DoctorModel> get doctors => throw _privateConstructorUsedError;
+  bool get hasMore => throw _privateConstructorUsedError;
+  int get currentPage => throw _privateConstructorUsedError;
   ClinicModel? get selectedClinic => throw _privateConstructorUsedError;
 
   /// Create a copy of DoctorsListState
@@ -42,6 +44,8 @@ abstract class $DoctorsListStateCopyWith<$Res> {
     String message,
     List<ClinicModel> clinics,
     List<DoctorModel> doctors,
+    bool hasMore,
+    int currentPage,
     ClinicModel? selectedClinic,
   });
 
@@ -67,6 +71,8 @@ class _$DoctorsListStateCopyWithImpl<$Res, $Val extends DoctorsListState>
     Object? message = null,
     Object? clinics = null,
     Object? doctors = null,
+    Object? hasMore = null,
+    Object? currentPage = null,
     Object? selectedClinic = freezed,
   }) {
     return _then(
@@ -91,6 +97,16 @@ class _$DoctorsListStateCopyWithImpl<$Res, $Val extends DoctorsListState>
                     ? _value.doctors
                     : doctors // ignore: cast_nullable_to_non_nullable
                         as List<DoctorModel>,
+            hasMore:
+                null == hasMore
+                    ? _value.hasMore
+                    : hasMore // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            currentPage:
+                null == currentPage
+                    ? _value.currentPage
+                    : currentPage // ignore: cast_nullable_to_non_nullable
+                        as int,
             selectedClinic:
                 freezed == selectedClinic
                     ? _value.selectedClinic
@@ -130,6 +146,8 @@ abstract class _$$DoctorsListStateImplCopyWith<$Res>
     String message,
     List<ClinicModel> clinics,
     List<DoctorModel> doctors,
+    bool hasMore,
+    int currentPage,
     ClinicModel? selectedClinic,
   });
 
@@ -155,6 +173,8 @@ class __$$DoctorsListStateImplCopyWithImpl<$Res>
     Object? message = null,
     Object? clinics = null,
     Object? doctors = null,
+    Object? hasMore = null,
+    Object? currentPage = null,
     Object? selectedClinic = freezed,
   }) {
     return _then(
@@ -179,6 +199,16 @@ class __$$DoctorsListStateImplCopyWithImpl<$Res>
                 ? _value._doctors
                 : doctors // ignore: cast_nullable_to_non_nullable
                     as List<DoctorModel>,
+        hasMore:
+            null == hasMore
+                ? _value.hasMore
+                : hasMore // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        currentPage:
+            null == currentPage
+                ? _value.currentPage
+                : currentPage // ignore: cast_nullable_to_non_nullable
+                    as int,
         selectedClinic:
             freezed == selectedClinic
                 ? _value.selectedClinic
@@ -197,6 +227,8 @@ class _$DoctorsListStateImpl implements _DoctorsListState {
     required this.message,
     required final List<ClinicModel> clinics,
     required final List<DoctorModel> doctors,
+    required this.hasMore,
+    required this.currentPage,
     this.selectedClinic,
   }) : _clinics = clinics,
        _doctors = doctors;
@@ -222,11 +254,15 @@ class _$DoctorsListStateImpl implements _DoctorsListState {
   }
 
   @override
+  final bool hasMore;
+  @override
+  final int currentPage;
+  @override
   final ClinicModel? selectedClinic;
 
   @override
   String toString() {
-    return 'DoctorsListState(status: $status, message: $message, clinics: $clinics, doctors: $doctors, selectedClinic: $selectedClinic)';
+    return 'DoctorsListState(status: $status, message: $message, clinics: $clinics, doctors: $doctors, hasMore: $hasMore, currentPage: $currentPage, selectedClinic: $selectedClinic)';
   }
 
   @override
@@ -238,6 +274,9 @@ class _$DoctorsListStateImpl implements _DoctorsListState {
             (identical(other.message, message) || other.message == message) &&
             const DeepCollectionEquality().equals(other._clinics, _clinics) &&
             const DeepCollectionEquality().equals(other._doctors, _doctors) &&
+            (identical(other.hasMore, hasMore) || other.hasMore == hasMore) &&
+            (identical(other.currentPage, currentPage) ||
+                other.currentPage == currentPage) &&
             (identical(other.selectedClinic, selectedClinic) ||
                 other.selectedClinic == selectedClinic));
   }
@@ -249,6 +288,8 @@ class _$DoctorsListStateImpl implements _DoctorsListState {
     message,
     const DeepCollectionEquality().hash(_clinics),
     const DeepCollectionEquality().hash(_doctors),
+    hasMore,
+    currentPage,
     selectedClinic,
   );
 
@@ -270,6 +311,8 @@ abstract class _DoctorsListState implements DoctorsListState {
     required final String message,
     required final List<ClinicModel> clinics,
     required final List<DoctorModel> doctors,
+    required final bool hasMore,
+    required final int currentPage,
     final ClinicModel? selectedClinic,
   }) = _$DoctorsListStateImpl;
 
@@ -281,6 +324,10 @@ abstract class _DoctorsListState implements DoctorsListState {
   List<ClinicModel> get clinics;
   @override
   List<DoctorModel> get doctors;
+  @override
+  bool get hasMore;
+  @override
+  int get currentPage;
   @override
   ClinicModel? get selectedClinic;
 
