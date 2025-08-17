@@ -4,6 +4,8 @@ part of 'doctor_show_child_vaccine_records_cubit.dart';
 class DoctorShowChildVaccineRecordsState
     with _$DoctorShowChildVaccineRecordsState {
   const factory DoctorShowChildVaccineRecordsState({
+    required int currentPage,
+    required bool hasMore,
     required DataStatus status,
     required String message,
     required List<VaccinationRecord> vaccinesRecords,
@@ -14,6 +16,8 @@ class DoctorShowChildVaccineRecordsState
     required UserModel child,
   }) {
     return DoctorShowChildVaccineRecordsState(
+      currentPage: 0,
+      hasMore: true,
       message: 'No data',
       status: DataStatus.noData,
       vaccinesRecords: [],

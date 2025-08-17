@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:our_flutter_clinic_app/core/providers/dio_client/dio_client.dart';
+import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:our_flutter_clinic_app/features/home/model/clinic_model.dart';
 
 import '../../../core/enums.dart';
@@ -16,11 +17,13 @@ class DoctorPatientAnalysisRepository {
   fetchAnalysisByStatus({
     required int patientId,
     required AnalysisStatus analysisStatus,
+    int page = 1,
   }) async {
     try {
-      final response = await _dio.post(
+      final response = await _dio.get(
         AppConstants.showPatientAnalysisPath,
-        data: {
+        queryParameters: {
+          'page': page,
           'patient_id': patientId,
           'status': analysisStatus.name.toLowerCase(),
         },
@@ -29,7 +32,7 @@ class DoctorPatientAnalysisRepository {
       if (response.data['statusCode'] < 300) {
         return Right(
           AppResponse<List<AnalysisModel>>(
-            success: true,
+            success: doesListHaveMore(response.data['meta']),
             message: 'Analysis fetched successfully',
             data:
                 (response.data['data'] as List<dynamic>).map((analysis) {
@@ -54,11 +57,13 @@ class DoctorPatientAnalysisRepository {
     required int patientId,
     required int clinicId,
     required AnalysisStatus analysisStatus,
+    int page = 1,
   }) async {
     try {
-      final response = await _dio.post(
+      final response = await _dio.get(
         AppConstants.showPatientAnalysisPath,
-        data: {
+        queryParameters: {
+          'page': page,
           'patient_id': patientId,
           'clinic_id': clinicId,
 
@@ -69,7 +74,7 @@ class DoctorPatientAnalysisRepository {
       if (response.data['statusCode'] < 300) {
         return Right(
           AppResponse<List<AnalysisModel>>(
-            success: true,
+            success: doesListHaveMore(response.data['meta']),
             message: 'Analysis fetched successfully',
             data:
                 (response.data['data'] as List<dynamic>).map((analysis) {

@@ -5,6 +5,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:intl/intl.dart';
 import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:our_flutter_clinic_app/core/providers/dio_client/dio_client.dart';
+import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 
 import '../../../core/models/app_failure.dart';
 import '../../../core/models/app_response.dart';
@@ -13,16 +14,16 @@ import '../model/vaccinationrecord.dart';
 
 class DoctorChildVaccinationRecordRepository {
   Future<Either<AppFailure, AppResponse<List<VaccinationRecord>>>>
-  fetchAllRecords(int childId) async {
+  fetchAllRecords(int childId, [int page = 1]) async {
     try {
       final response = await _dio.get(
         AppConstants.doctorShowChildVacRecordsPath,
-        queryParameters: {'child_id': childId},
+        queryParameters: {'page': page, 'child_id': childId},
       );
       if (response.data['statusCode'] < 300) {
         return Right(
           AppResponse<List<VaccinationRecord>>(
-            success: true,
+            success: doesListHaveMore(response.data['meta']),
             message: 'Vacccination Records fetched successfully',
             data:
                 (response.data['data'] as List<dynamic>).map((vacRecord) {

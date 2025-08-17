@@ -32,8 +32,10 @@ class _PatientAnalysisWidgetState extends State<PatientAnalysisWidget> {
       doctorPatientAnalysisRepository: DoctorPatientAnalysisRepository(),
       patient: widget.patient,
     );
-    _doctorPatientAnalysisBloc.add(AnalysisFetched());
+    _doctorPatientAnalysisBloc.add(AnalysisFetched(isRefresh: true));
     _doctorPatientAnalysisBloc.add(ClinicsFetched());
+
+    _scrollController.addListener(_onScroll);
   }
 
   @override
@@ -121,7 +123,9 @@ class _PatientAnalysisWidgetState extends State<PatientAnalysisWidget> {
                 if (state.analysisList.isEmpty && !state.status.isLoading) {
                   return RefreshIndicator(
                     onRefresh: () async {
-                      _doctorPatientAnalysisBloc.add(AnalysisFetched());
+                      _doctorPatientAnalysisBloc.add(
+                        AnalysisFetched(isRefresh: true),
+                      );
                       if (state.selectedClinic.id == null) {
                         _doctorPatientAnalysisBloc.add(ClinicsFetched());
                       }
@@ -158,18 +162,32 @@ class _PatientAnalysisWidgetState extends State<PatientAnalysisWidget> {
                   enabled: state.status.isLoading,
                   child: RefreshIndicator(
                     onRefresh: () async {
-                      _doctorPatientAnalysisBloc.add(AnalysisFetched());
+                      _doctorPatientAnalysisBloc.add(
+                        AnalysisFetched(isRefresh: true),
+                      );
                       if (state.selectedClinic.id == null) {
                         _doctorPatientAnalysisBloc.add(ClinicsFetched());
                       }
                     },
                     child: ListView.builder(
+                      physics: AlwaysScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      controller: _scrollController,
                       itemCount:
                           state.status.isLoading
                               ? 10
+                              : state.status.isLoadingMore
+                              ? state.analysisList.length + 1
                               : state.analysisList.length,
                       itemExtent: screenHeight(context) * 0.12,
                       itemBuilder: (_, index) {
+                        if (state.status.isLoadingMore &&
+                            index == state.analysisList.length) {
+                          return Padding(
+                            padding: EdgeInsets.symmetric(vertical: 16),
+                            child: Center(child: CircularProgressIndicator()),
+                          );
+                        }
                         if (state.status.isLoading) {
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 10.0),
@@ -195,6 +213,17 @@ class _PatientAnalysisWidgetState extends State<PatientAnalysisWidget> {
     );
   }
 
+  void _onScroll() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      if (!_doctorPatientAnalysisBloc.state.status.isLoading &&
+          !_doctorPatientAnalysisBloc.state.status.isLoadingMore) {
+        _doctorPatientAnalysisBloc.add(AnalysisFetched());
+      }
+    }
+  }
+
+  final _scrollController = ScrollController();
   int _currentIndex = 0;
   late final DoctorPatientAnalysisBloc _doctorPatientAnalysisBloc;
 }
