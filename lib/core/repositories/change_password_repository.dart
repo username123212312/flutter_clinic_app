@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -126,7 +128,7 @@ class ChangePasswordRepository {
   ) async {
     try {
       final response = await _dio.post(
-        AppConstants.resetPasswordPath,
+        AppConstants.emailResetPasswordPath,
         data: {
           'email': email,
           'reset_token': resetToken,
@@ -160,7 +162,7 @@ class ChangePasswordRepository {
   ) async {
     try {
       final response = await _dio.post(
-        AppConstants.resetPasswordPath,
+        AppConstants.phoneResetPasswordPath,
         data: {
           'phone': phone,
           'reset_token': resetToken,
