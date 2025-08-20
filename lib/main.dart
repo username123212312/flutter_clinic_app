@@ -20,7 +20,6 @@ import 'core/cubits/change_password_cubit/change_password_cubit.dart';
 import 'core/observers/custom_bloc_observer.dart';
 import 'core/blocs/user_bloc/user_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-
 import 'core/services/fcm/fcm_service.dart';
 import 'core/services/notification/notification_service.dart';
 import 'features/home/controller/chat_doctors_list_cubit/chat_doctors_list_cubit.dart';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
@@ -49,6 +50,14 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () => Navigator.of(context).pop(),
+          icon: const Icon(
+            FontAwesomeIcons.arrowLeft,
+            color: Pallete.black1,
+            size: 18,
+          ),
+        ),
         forceMaterialTransparency: true,
         title: Text(
           'Reschedule Appointment',
@@ -152,7 +161,6 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
                       state.selectedDate,
                     ),
                   ),
-                  SizedBox(height: 5),
                   CustomElevatedButton(
                     borderRadius: 32,
                     title: 'Reschedule',
@@ -198,7 +206,11 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
           keyboardType: TextInputType.datetime,
           readOnly: true,
           controller: _dateController,
-          suffixIcon: Image.asset('assets/icons/ic_calendar.png'),
+          suffixIcon: Icon(
+            Icons.calendar_today,
+            color: Pallete.grayScaleColor400,
+            size: 22,
+          ),
         ),
       ],
     );

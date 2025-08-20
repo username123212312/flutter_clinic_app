@@ -21,15 +21,28 @@ class AppointmentDetailsListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Container(
-          width: screenWidth(context) * 0.145,
-          height: screenHeight(context) * 0.064,
-          decoration: BoxDecoration(
-            color: Pallete.graysGray6,
-            borderRadius: BorderRadius.circular(8),
+        SizedBox(
+          width: 50,
+          height: 50,
+          child: OverflowBox(
+            maxWidth: 50,
+            maxHeight: 50,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Pallete.graysGray6,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              padding: EdgeInsets.zero,
+              alignment: Alignment.center,
+              child: Image.asset(
+                iconImagePath,
+                width: 24,
+                height: 24,
+                fit: BoxFit.scaleDown,
+                filterQuality: FilterQuality.low,
+              ),
+            ),
           ),
-          padding: EdgeInsets.all(0),
-          child: Image.asset(iconImagePath, width: 20, height: 20, scale: 0.7),
         ),
         SizedBox(width: 10),
         SizedBox(

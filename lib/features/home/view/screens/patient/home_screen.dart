@@ -326,9 +326,9 @@ class SwitchProfilesSheetWidget extends StatelessWidget {
                   '${context.read<AuthBloc>().state.authUser?.user?.firstName ?? 'No'}'
                   ' ${context.read<AuthBloc>().state.authUser?.user?.lastName ?? 'User'}',
 
-                  style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    fontSize: 16,
+                    color: Pallete.black1,
                   ),
                 ),
                 Spacer(),
@@ -423,9 +423,9 @@ class SwitchProfilesSheetWidget extends StatelessWidget {
                                     '${child.firstName ?? 'No'} ${child.lastName ?? 'User'}',
                                     style: Theme.of(
                                       context,
-                                    ).textTheme.displaySmall!.copyWith(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
+                                    ).textTheme.titleLarge!.copyWith(
+                                      fontSize: 16,
+                                      color: Pallete.black1,
                                     ),
                                   ),
                                   if ((state.currentChildId ?? -1) !=

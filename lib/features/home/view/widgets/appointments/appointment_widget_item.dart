@@ -99,9 +99,9 @@ class AppointmentWidgetItem extends StatelessWidget {
                   Row(
                     children: [
                       Image.asset(
-                        'assets/icons/tabler_calendar-event.png',
-                        width: 25,
-                        height: 25,
+                        'assets/icons/calendar.png',
+                        width: 20,
+                        height: 20,
                         fit: BoxFit.cover,
                       ),
                       SizedBox(width: 10),
@@ -119,9 +119,9 @@ class AppointmentWidgetItem extends StatelessWidget {
                   Row(
                     children: [
                       Image.asset(
-                        'assets/icons/ic_clock.png',
-                        width: 25,
-                        height: 25,
+                        'assets/icons/time_appoint.png',
+                        width: 20,
+                        height: 20,
                         fit: BoxFit.cover,
                       ),
                       SizedBox(width: 10),

@@ -50,7 +50,7 @@ class UpcomingAppointmentCard extends StatelessWidget {
                       imagePath == null
                           ? AssetImage('assets/images/app_logo.png')
                           : NetworkImage('${AppConstants.serverUrl}$imagePath'),
-                  backgroundColor: Pallete.graysGray4,
+                   backgroundColor: Pallete.graysGray4,
                 ),
                 const SizedBox(width: 10),
                 Expanded(

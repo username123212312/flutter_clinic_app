@@ -59,7 +59,7 @@ class FindDoctorCard extends StatelessWidget {
                       width: 33,
                       height: 33,
                       child: CircleAvatar(
-                        radius: 24,
+                        radius: 16.5,
                         backgroundColor: Pallete.graysGray4,
 
                         child: CustomCachedNetworkImage(

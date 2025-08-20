@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Pallete {
   static const Color backgroundColor = Color.fromARGB(255, 255, 255, 255);
-  static const Color primaryColor = Color.fromARGB(255, 45, 132, 251);
+  static const Color primaryColor = Color(0xFF2D84FB);
   static const Color inactiveColor1 = Color.fromRGBO(196, 196, 196, 1);
   static const Color inactiveColor2 = Color.fromRGBO(178, 178, 178, 1);
   static const Color inactiveColor3 = Color.fromRGBO(196, 196, 196, 1);
@@ -10,7 +10,7 @@ class Pallete {
   static const Color graysGray2 = Color.fromRGBO(174, 174, 178, 1);
   static const Color graysGray4 = Color.fromRGBO(244, 244, 246, 1);
   static const Color graysGray5 = Color.fromRGBO(250, 250, 252, 1);
-  static const Color shadowtext = Color.fromRGBO(192, 212, 251, 1);
+  static const Color shadowtext = Color.fromARGB(255, 192, 212, 251);
   static const Color star = Color.fromRGBO(249, 224, 0, 1);
   static const Color gray2 = Color.fromRGBO(170, 182, 195, 1);
   static const Color graysGray6 = Color.fromRGBO(242, 242, 247, 1);
@@ -43,7 +43,7 @@ class Pallete {
   static const Color borderColor = Color.fromRGBO(52, 51, 67, 1);
   static const Color whiteColor = Colors.white;
   static const Color greyColor = Colors.grey;
-  static const Color errorColor = Colors.redAccent;
+  static const Color errorColor = Color.fromRGBO(255, 82, 82, 1);
   static const Color transparentColor = Colors.transparent;
 
   static const Color inactiveSeekColor = Colors.white38;

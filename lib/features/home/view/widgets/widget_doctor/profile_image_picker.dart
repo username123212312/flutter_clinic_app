@@ -44,7 +44,7 @@ class ProfileImagePicker extends StatelessWidget {
                       : CustomCachedNetworkImage(imagePath: existingImagePath!)
                   : ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.file(image!, fit: BoxFit.cover),
+                    child: Image.file(image!, height: 50),
                   ),
         ),
         Positioned(

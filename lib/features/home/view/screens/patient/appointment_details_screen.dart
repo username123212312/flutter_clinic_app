@@ -51,7 +51,14 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(size: 28),
+        leading: IconButton(
+          onPressed: () => Navigator.of(context).pop(),
+          icon: const Icon(
+            FontAwesomeIcons.arrowLeft,
+            color: Pallete.black1,
+            size: 18,
+          ),
+        ),
         title: Text(
           'Appointment Details',
           style: Theme.of(context).textTheme.labelSmall!.copyWith(

@@ -18,7 +18,7 @@ class InfoBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: screenWidth(context) * 0.26,
+      width: screenWidth(context) * 0.20,
       height: screenHeight(context) * 0.10,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(

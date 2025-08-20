@@ -171,11 +171,12 @@ class _VaccineScreenWidgetState extends State<VaccineScreenWidget> {
           if (state.vaccines.isEmpty && !state.status.isLoading) {
             return Center(
               heightFactor: 1.7,
-              child: Image.asset(
-                'assets/images/il_empty_activity.webp',
-                width: 80,
-                height: 80,
-                fit: BoxFit.cover,
+              child: Text(
+                'No Vaccines',
+                style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                  color: Pallete.black1,
+                  fontSize: 18,
+                ),
               ),
             );
           }
