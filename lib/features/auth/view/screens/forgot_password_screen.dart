@@ -99,7 +99,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
           SizedBox(
             width: screenWidth(context) * 0.85,
             child: BlocListener<ChangePasswordCubit, ChangePasswordState>(
-              // listenWhen: (previous, current) => previous.email == null,
               listener: (context, state) {
                 if (state.status.isLoading) {
                   LoadingOverlay().show(context);

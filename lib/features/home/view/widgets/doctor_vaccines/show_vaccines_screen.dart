@@ -23,8 +23,26 @@ class _ShowVaccinesScreenState extends State<ShowVaccinesScreen> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _doctorAllVaccinesCubit.fetchAllVaccines();
+      _doctorAllVaccinesCubit.fetchAllVaccines(true);
+      _scrollController.addListener(_onScroll);
     });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      if (!_doctorAllVaccinesCubit.state.status.isLoading &&
+          !_doctorAllVaccinesCubit.state.status.isLoadingMore) {
+        _doctorAllVaccinesCubit.fetchAllVaccines();
+      }
+    }
   }
 
   @override
@@ -56,7 +74,7 @@ class _ShowVaccinesScreenState extends State<ShowVaccinesScreen> {
               if (!state.status.isLoading && state.vaccines.isEmpty) {
                 return RefreshIndicator(
                   onRefresh: () async {
-                    _doctorAllVaccinesCubit.fetchAllVaccines();
+                    _doctorAllVaccinesCubit.fetchAllVaccines(true);
                   },
                   child: SingleChildScrollView(
                     physics: AlwaysScrollableScrollPhysics(),
@@ -76,9 +94,12 @@ class _ShowVaccinesScreenState extends State<ShowVaccinesScreen> {
                 enabled: state.status.isLoading,
                 child: RefreshIndicator(
                   onRefresh: () async {
-                    _doctorAllVaccinesCubit.fetchAllVaccines();
+                    _doctorAllVaccinesCubit.fetchAllVaccines(true);
                   },
                   child: GridView.builder(
+                    shrinkWrap: true,
+                    physics: AlwaysScrollableScrollPhysics(),
+                    controller: _scrollController,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
@@ -87,8 +108,19 @@ class _ShowVaccinesScreenState extends State<ShowVaccinesScreen> {
                           childAspectRatio: 1.0,
                         ),
                     itemCount:
-                        state.status.isLoading ? 10 : state.vaccines.length,
+                        state.status.isLoading
+                            ? 10
+                            : state.status.isLoadingMore
+                            ? state.vaccines.length + 2
+                            : state.vaccines.length,
                     itemBuilder: (context, index) {
+                      if (state.status.isLoadingMore &&
+                          index >= state.vaccines.length) {
+                        return Padding(
+                          padding: EdgeInsets.symmetric(vertical: 16),
+                          child: Center(child: CircularProgressIndicator()),
+                        );
+                      }
                       if (state.status.isLoading) {
                         return _buildLoading();
                       }
@@ -361,6 +393,8 @@ class _ShowVaccinesScreenState extends State<ShowVaccinesScreen> {
       ),
     );
   }
+
+  final _scrollController = ScrollController();
 
   final _doctorAllVaccinesCubit = DoctorAllVaccinesCubit();
 }

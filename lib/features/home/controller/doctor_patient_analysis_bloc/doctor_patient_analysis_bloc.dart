@@ -27,17 +27,30 @@ class DoctorPatientAnalysisBloc
       if (event is! ClinicChanged &&
           event is! StatusChanged &&
           event is! ClinicsFetched) {
-        emit(state.copyWith(status: DataStatus.loading, message: 'Loading'));
+        // emit(state.copyWith(status: DataStatus.loading, message: 'Loading'));
       }
     });
     on<ClinicsFetched>(_fetchClinics);
     on<AnalysisFetched>(_fetchAnalysis);
     on<StatusChanged>((event, emit) {
-      emit(state.copyWith(analysisStatus: event.analysisStatus));
+      emit(
+        state.copyWith(
+          analysisStatus: event.analysisStatus,
+          currentPage: 0,
+          hasMore: true,
+        ),
+      );
       add(AnalysisFetched());
     });
     on<ClinicChanged>((event, emit) {
-      emit(state.copyWith(selectedClinic: event.clinic));
+      emit(
+        state.copyWith(
+          selectedClinic: event.clinic,
+
+          currentPage: 0,
+          hasMore: true,
+        ),
+      );
       add(AnalysisFetched());
     });
   }
@@ -78,31 +91,52 @@ class DoctorPatientAnalysisBloc
     Emitter<DoctorPatientAnalysisState> emit,
   ) async {
     try {
-      final Either<AppFailure, AppResponse<List<AnalysisModel>>> response;
-      if (state.selectedClinic.id == null) {
-        response = await _doctorPatientAnalysisRepository.fetchAnalysisByStatus(
-          analysisStatus: state.analysisStatus,
-          patientId: state.patient.id ?? -1,
-        );
-      } else {
-        response = await _doctorPatientAnalysisRepository.fetchAnalysisByClinic(
-          clinicId: state.selectedClinic.id ?? -1,
-          patientId: state.patient.id ?? -1,
-          analysisStatus: state.analysisStatus,
-        );
+      if (state.hasMore || event.isRefresh) {
+        final newPage = event.isRefresh ? 1 : state.currentPage + 1;
+        final currentList = List.of(state.analysisList);
+        if (newPage == 1) {
+          emit(state.copyWith(status: DataStatus.loading));
+        } else {
+          emit(state.copyWith(status: DataStatus.loadingMore));
+        }
+
+        final Either<AppFailure, AppResponse<List<AnalysisModel>>> response;
+        if (state.selectedClinic.id == null) {
+          response = await _doctorPatientAnalysisRepository
+              .fetchAnalysisByStatus(
+                analysisStatus: state.analysisStatus,
+                patientId: state.patient.id ?? -1,
+                page: newPage,
+              );
+        } else {
+          response = await _doctorPatientAnalysisRepository
+              .fetchAnalysisByClinic(
+                clinicId: state.selectedClinic.id ?? -1,
+                patientId: state.patient.id ?? -1,
+                analysisStatus: state.analysisStatus,
+                page: newPage,
+              );
+        }
+        final newState = switch (response) {
+          Left(value: final l) => state.copyWith(
+            status: DataStatus.error,
+            message: l.message,
+          ),
+          Right(value: final r) => state.copyWith(
+            hasMore: r.success,
+
+            status: DataStatus.data,
+            message: r.message,
+            analysisList:
+                r.data == null
+                    ? state.analysisList
+                    : newPage == 1
+                    ? r.data!
+                    : [...currentList, ...r.data!],
+          ),
+        };
+        emit(newState);
       }
-      final newState = switch (response) {
-        Left(value: final l) => state.copyWith(
-          status: DataStatus.error,
-          message: l.message,
-        ),
-        Right(value: final r) => state.copyWith(
-          status: DataStatus.data,
-          message: r.message,
-          analysisList: r.data ?? state.analysisList,
-        ),
-      };
-      emit(newState);
     } catch (e) {
       emit(state.copyWith(status: DataStatus.error, message: e.toString()));
     }

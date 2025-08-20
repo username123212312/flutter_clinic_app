@@ -34,10 +34,12 @@ class _DoctorShowChildVaccineRecordsScreenState
           DoctorChildVaccinationRecordRepository(),
     );
 
+    _scrollController.addListener(_onScroll);
+
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _doctorShowChildVaccineRecordsCubit.fetchAllVacRecords();
+      _doctorShowChildVaccineRecordsCubit.fetchAllVacRecords(true);
     });
   }
 
@@ -89,7 +91,9 @@ class _DoctorShowChildVaccineRecordsScreenState
                 if (state.vaccinesRecords.isEmpty && !state.status.isLoading) {
                   return RefreshIndicator(
                     onRefresh: () async {
-                      _doctorShowChildVaccineRecordsCubit.fetchAllVacRecords();
+                      _doctorShowChildVaccineRecordsCubit.fetchAllVacRecords(
+                        true,
+                      );
                     },
                     child: SingleChildScrollView(
                       physics: AlwaysScrollableScrollPhysics(),
@@ -109,12 +113,19 @@ class _DoctorShowChildVaccineRecordsScreenState
                   enabled: state.status.isLoading,
                   child: RefreshIndicator(
                     onRefresh: () async {
-                      _doctorShowChildVaccineRecordsCubit.fetchAllVacRecords();
+                      _doctorShowChildVaccineRecordsCubit.fetchAllVacRecords(
+                        true,
+                      );
                     },
                     child: GridView.builder(
+                      shrinkWrap: true,
+                      physics: AlwaysScrollableScrollPhysics(),
+                      controller: _scrollController,
                       itemCount:
                           state.status.isLoading
                               ? 10
+                              : state.status.isLoadingMore
+                              ? state.vaccinesRecords.length + 2
                               : state.vaccinesRecords.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
@@ -124,6 +135,13 @@ class _DoctorShowChildVaccineRecordsScreenState
                             childAspectRatio: 0.95,
                           ),
                       itemBuilder: (context, index) {
+                        if (index >= state.vaccinesRecords.length &&
+                            state.status.isLoadingMore) {
+                          return Padding(
+                            padding: EdgeInsets.symmetric(vertical: 16),
+                            child: Center(child: CircularProgressIndicator()),
+                          );
+                        }
                         if (state.status.isLoading) {
                           return _buildLoading();
                         }
@@ -288,7 +306,9 @@ class _DoctorShowChildVaccineRecordsScreenState
                   );
                   if (isModified != null) {
                     if (isModified) {
-                      _doctorShowChildVaccineRecordsCubit.fetchAllVacRecords();
+                      _doctorShowChildVaccineRecordsCubit.fetchAllVacRecords(
+                        true,
+                      );
                       if (context.mounted) {
                         context.pop();
                       }
@@ -312,6 +332,16 @@ class _DoctorShowChildVaccineRecordsScreenState
             ],
           ),
     );
+  }
+
+  void _onScroll() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      if (!_doctorShowChildVaccineRecordsCubit.state.status.isLoading &&
+          !_doctorShowChildVaccineRecordsCubit.state.status.isLoadingMore) {
+        _doctorShowChildVaccineRecordsCubit.fetchAllVacRecords();
+      }
+    }
   }
 
   Widget _buildDetailRow(String label, String value) {
@@ -341,6 +371,7 @@ class _DoctorShowChildVaccineRecordsScreenState
     );
   }
 
+  final _scrollController = ScrollController();
   late final DoctorShowChildVaccineRecordsCubit
   _doctorShowChildVaccineRecordsCubit;
 }

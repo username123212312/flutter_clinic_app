@@ -213,3 +213,7 @@ void showToast({
     autoCloseDuration: Duration(seconds: 5),
   );
 }
+
+bool doesListHaveMore(Map<String, dynamic> meta) {
+  return (meta['current_page'] ?? -1) < (meta['last_page'] ?? 0);
+}

@@ -8,6 +8,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
 import 'package:our_flutter_clinic_app/core/providers/dio_client/dio_client.dart';
+import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 
 import '../../../../core/enums.dart';
 import '../../../../core/models/app_failure.dart';
@@ -36,19 +37,36 @@ class DoctorPatientsBloc
     Emitter<DoctorPatientsState> emit,
   ) async {
     try {
-      final response = await _fetchVisitedPatients();
-      final newState = switch (response) {
-        Left(value: final l) => state.copyWith(
-          status: DataStatus.error,
-          message: l.message,
-        ),
-        Right(value: final r) => state.copyWith(
-          status: DataStatus.data,
-          message: r.message,
-          patients: r.data ?? state.patients,
-        ),
-      };
-      emit(newState);
+      if (state.hasMore || event.isRefresh) {
+        final newPage = event.isRefresh ? 1 : state.currentPage + 1;
+        final currentList = List.of(state.patients);
+        if (newPage == 1) {
+          emit(state.copyWith(status: DataStatus.loading));
+        } else {
+          emit(state.copyWith(status: DataStatus.loadingMore));
+        }
+
+        final response = await _fetchVisitedPatients(newPage);
+        final newState = switch (response) {
+          Left(value: final l) => state.copyWith(
+            status: DataStatus.error,
+            message: l.message,
+          ),
+          Right(value: final r) => state.copyWith(
+            currentPage: newPage,
+            hasMore: r.success,
+            status: DataStatus.data,
+            message: r.message,
+            patients:
+                r.data == null
+                    ? state.patients
+                    : newPage == 1
+                    ? r.data!
+                    : [...currentList, ...r.data!],
+          ),
+        };
+        emit(newState);
+      }
     } catch (e) {
       emit(state.copyWith(status: DataStatus.error, message: e.toString()));
     }
@@ -104,7 +122,7 @@ class DoctorPatientsBloc
     LoadData event,
     Emitter<DoctorPatientsState> emit,
   ) async {
-    add(PatientsFetched());
+    add(PatientsFetched(isRefresh: true));
     add(NotificationsFetched());
   }
 
@@ -133,13 +151,16 @@ class DoctorPatientsBloc
   }
 
   Future<Either<AppFailure, AppResponse<List<UserModel>>>>
-  _fetchVisitedPatients() async {
+  _fetchVisitedPatients([int page = 1]) async {
     try {
-      final response = await _dio.get(AppConstants.showVisitedPatientsPath);
+      final response = await _dio.get(
+        AppConstants.showVisitedPatientsPath,
+        queryParameters: {'page': page},
+      );
       if (response.data['statusCode'] < 300) {
         return Right(
           AppResponse<List<UserModel>>(
-            success: true,
+            success: doesListHaveMore(response.data['meta']),
             message: 'Patients fetched successfully',
             data:
                 (response.data['data'] as List<dynamic>).map((patient) {

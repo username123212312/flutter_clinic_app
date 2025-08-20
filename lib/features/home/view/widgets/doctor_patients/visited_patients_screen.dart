@@ -27,6 +27,24 @@ class _VisitedPatientsScreenState extends State<VisitedPatientsScreen> {
   void initState() {
     super.initState();
     context.read<DoctorPatientsBloc>().add(LoadData());
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    final dPationBloc = context.read<DoctorPatientsBloc>();
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      if (!dPationBloc.state.status.isLoadingMore &&
+          !dPationBloc.state.status.isLoading) {
+        dPationBloc.add(PatientsFetched());
+      }
+    }
   }
 
   void _showSearchDialog() {
@@ -212,9 +230,14 @@ class _VisitedPatientsScreenState extends State<VisitedPatientsScreen> {
                       child: Skeletonizer(
                         enabled: state.status.isLoading,
                         child: GridView.builder(
+                          shrinkWrap: true,
+                          physics: AlwaysScrollableScrollPhysics(),
+                          controller: _scrollController,
                           itemCount:
                               state.status.isLoading
                                   ? 8
+                                  : state.status.isLoadingMore
+                                  ? state.patients.length + 2
                                   : state.patients.length,
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
@@ -225,6 +248,16 @@ class _VisitedPatientsScreenState extends State<VisitedPatientsScreen> {
                                 childAspectRatio: 1.3,
                               ),
                           itemBuilder: (context, index) {
+                            if (state.status.isLoadingMore &&
+                                index >= state.patients.length) {
+                              return Padding(
+                                padding: EdgeInsets.symmetric(vertical: 16),
+
+                                child: Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                              );
+                            }
                             if (state.status.isLoading) {
                               return VisitedPatientCard(
                                 firstName: 'No',
@@ -276,4 +309,6 @@ class _VisitedPatientsScreenState extends State<VisitedPatientsScreen> {
       ),
     );
   }
+
+  final _scrollController = ScrollController();
 }

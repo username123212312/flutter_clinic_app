@@ -40,8 +40,7 @@ mixin _$DoctorModel {
   int? get treated => throw _privateConstructorUsedError;
   String? get speciality => throw _privateConstructorUsedError;
   String? get department => throw _privateConstructorUsedError;
-  @JsonKey(name: 'final_rate')
-  String? get finalRate => throw _privateConstructorUsedError;
+  int? get finalRate => throw _privateConstructorUsedError;
   @JsonKey(name: 'visit_fee')
   double? get visitFee => throw _privateConstructorUsedError;
   String? get excperience => throw _privateConstructorUsedError;
@@ -80,7 +79,7 @@ abstract class $DoctorModelCopyWith<$Res> {
     int? treated,
     String? speciality,
     String? department,
-    @JsonKey(name: 'final_rate') String? finalRate,
+    int? finalRate,
     @JsonKey(name: 'visit_fee') double? visitFee,
     String? excperience,
     String? status,
@@ -195,7 +194,7 @@ class _$DoctorModelCopyWithImpl<$Res, $Val extends DoctorModel>
                 freezed == finalRate
                     ? _value.finalRate
                     : finalRate // ignore: cast_nullable_to_non_nullable
-                        as String?,
+                        as int?,
             visitFee:
                 freezed == visitFee
                     ? _value.visitFee
@@ -250,7 +249,7 @@ abstract class _$$DoctorModelImplCopyWith<$Res>
     int? treated,
     String? speciality,
     String? department,
-    @JsonKey(name: 'final_rate') String? finalRate,
+    int? finalRate,
     @JsonKey(name: 'visit_fee') double? visitFee,
     String? excperience,
     String? status,
@@ -364,7 +363,7 @@ class __$$DoctorModelImplCopyWithImpl<$Res>
             freezed == finalRate
                 ? _value.finalRate
                 : finalRate // ignore: cast_nullable_to_non_nullable
-                    as String?,
+                    as int?,
         visitFee:
             freezed == visitFee
                 ? _value.visitFee
@@ -412,7 +411,7 @@ class _$DoctorModelImpl implements _DoctorModel {
     this.treated,
     this.speciality,
     this.department,
-    @JsonKey(name: 'final_rate') this.finalRate,
+    this.finalRate,
     @JsonKey(name: 'visit_fee') this.visitFee,
     this.excperience,
     this.status,
@@ -456,8 +455,7 @@ class _$DoctorModelImpl implements _DoctorModel {
   @override
   final String? department;
   @override
-  @JsonKey(name: 'final_rate')
-  final String? finalRate;
+  final int? finalRate;
   @override
   @JsonKey(name: 'visit_fee')
   final double? visitFee;
@@ -573,7 +571,7 @@ abstract class _DoctorModel implements DoctorModel {
     final int? treated,
     final String? speciality,
     final String? department,
-    @JsonKey(name: 'final_rate') final String? finalRate,
+    final int? finalRate,
     @JsonKey(name: 'visit_fee') final double? visitFee,
     final String? excperience,
     final String? status,
@@ -617,8 +615,7 @@ abstract class _DoctorModel implements DoctorModel {
   @override
   String? get department;
   @override
-  @JsonKey(name: 'final_rate')
-  String? get finalRate;
+  int? get finalRate;
   @override
   @JsonKey(name: 'visit_fee')
   double? get visitFee;

@@ -131,7 +131,7 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                   specialty:
                       state.appointment?.doctorSpeciality ?? 'No speciality',
                   imagePath: state.appointment?.doctorPhoto,
-                  hourlyRate: "Hourly Rate:\$25.00",
+                  hourlyRate: "Avg Visit Duration :}",
                   rating: 4.8,
                   backgroundColor: Pallete.graysGray5,
                 ),
@@ -213,11 +213,37 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "Use Discount Points",
-                      style: themeData!.textTheme.titleMedium!.copyWith(
-                        fontSize: 18,
-                        color: Pallete.black1,
+                    GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      onTap: () {
+                        _buildDiscountDialog();
+                      },
+                      child: Row(
+                        spacing: 5,
+                        children: [
+                          Text(
+                            "Use Discount Points",
+                            style: themeData!.textTheme.titleMedium!.copyWith(
+                              fontSize: 18,
+                              color: Pallete.black1,
+                            ),
+                          ),
+                          Container(
+                            width: 20,
+                            height: 20,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+
+                            child: FittedBox(
+                              child: Icon(
+                                Icons.question_mark,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     Switch(
@@ -230,6 +256,63 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                     ),
                   ],
                 ),
+                const SizedBox(height: 20),
+                Divider(color: Colors.black, thickness: 2),
+                const SizedBox(height: 10),
+                BlocBuilder<ReservationDetailsCubit, ReservationDetailsState>(
+                  bloc: _reservationDetailsCubit,
+                  builder: (context, state) {
+                    return Column(
+                      spacing: 10,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Expected Price",
+                              style: themeData!.textTheme.titleMedium!.copyWith(
+                                fontSize: 14,
+                                color: Pallete.black1,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                            Text(
+                              "\$ ${double.tryParse(state.appointment?.expectedPrice.toString() ?? '0.0')}",
+                              style: themeData!.textTheme.titleMedium!.copyWith(
+                                fontSize: 14,
+                                color: Pallete.black1,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Paid Price",
+                              style: themeData!.textTheme.titleMedium!.copyWith(
+                                fontSize: 14,
+                                color: Pallete.black1,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+
+                            Text(
+                              "\$ ${double.tryParse(state.appointment?.paidPrice.toString() ?? '0.0')}",
+                              style: themeData!.textTheme.titleMedium!.copyWith(
+                                fontSize: 14,
+                                color: Pallete.black1,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    );
+                  },
+                ),
+
                 const SizedBox(height: 30),
 
                 Center(
@@ -333,7 +416,7 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                   ),
                 ),
 
-                const SizedBox(height: 30),
+                const SizedBox(height: 20),
 
                 Center(
                   child: CustomButton(
@@ -350,6 +433,8 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                     textColor: Pallete.grayScaleColor0,
                   ),
                 ),
+
+                const SizedBox(height: 30),
               ],
             );
           },
@@ -391,6 +476,166 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
             size: Size((screenWidth ?? 0) * 0.9, (screenHeight ?? 0) * 0.23),
             content: ReservationDetaildRechargeWidget(),
           ),
+    );
+  }
+
+  void _buildDiscountDialog() {
+    _reservationDetailsCubit.fetchDiscountPoints();
+
+    TransparentDialog.show(
+      context: context,
+      builder: (_) {
+        return Center(
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+            width: (screenWidth ?? 0) * 0.8,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+            ),
+
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 10,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/icons/discount.png',
+                      width: 26,
+                      height: 26,
+                    ),
+                    SizedBox(width: 8),
+                    Text(
+                      'Discount Points System',
+                      style: Theme.of(
+                        context,
+                      ).textTheme.labelMedium!.copyWith(fontSize: 15),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.only(right: 10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'My points:',
+                        style: Theme.of(
+                          context,
+                        ).textTheme.labelMedium!.copyWith(
+                          fontSize: 15,
+
+                          fontStyle: FontStyle.italic,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      ),
+                      BlocBuilder<
+                        ReservationDetailsCubit,
+                        ReservationDetailsState
+                      >(
+                        bloc: _reservationDetailsCubit,
+                        builder: (context, state) {
+                          return state.discountPointsStatus.isLoading
+                              ? SizedBox(
+                                width: 24,
+                                height: 24,
+                                child: CircularProgressIndicator(),
+                              )
+                              : Text(
+                                (state.discountPoints).toString(),
+                                style: Theme.of(
+                                  context,
+                                ).textTheme.labelMedium!.copyWith(
+                                  fontSize: 15,
+                                  fontStyle: FontStyle.italic,
+                                ),
+                              );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+
+                Text(
+                  'Earn Points:',
+                  style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                    fontSize: 15,
+                    fontStyle: FontStyle.italic,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+                Text(
+                  '+2 points per doctor’s appointment booked.',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelMedium!.copyWith(fontSize: 13),
+                ),
+                Text(
+                  'Redeem Discounts:',
+                  style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                    fontSize: 15,
+                    fontStyle: FontStyle.italic,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+                Text(
+                  '6+ pts → 5% off (6 pts used)',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelMedium!.copyWith(fontSize: 13),
+                ),
+                Text(
+                  '10+ pts → 10% off (10 pts used)',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelMedium!.copyWith(fontSize: 13),
+                ),
+                Text(
+                  '20+ pts → 20% off (20 pts used)',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelMedium!.copyWith(fontSize: 13),
+                ),
+                Text(
+                  '30+ pts → 30% off (30 pts used)',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelMedium!.copyWith(fontSize: 13),
+                ),
+                Text(
+                  'Example: Book 5 appointments → 10 pts → 10% discount!',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelMedium!.copyWith(fontSize: 13),
+                ),
+                SizedBox(height: 10),
+                Row(
+                  spacing: 10,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        _reservationDetailsCubit.fetchDiscountPoints();
+                      },
+                      child: Text('refresh'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        context.pop();
+                      },
+                      child: Text('close'),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 

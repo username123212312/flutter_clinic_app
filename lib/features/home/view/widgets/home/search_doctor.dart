@@ -125,11 +125,12 @@ class _SearchOverlayState extends State<SearchOverlay> {
                                               'assets/images/logo.webp',
                                           rating:
                                               double.tryParse(
-                                                doctor.finalRate ?? '0.0',
+                                                (doctor.finalRate ?? 0.0)
+                                                    .toString(),
                                               ) ??
                                               0.0,
-                                          startTime: '',
-                                          endTime: '',
+                                          visitDuration:
+                                              doctor.averageVisitDuration ?? '',
                                           onTap: () {
                                             context.pushNamed(
                                               AppRouteConstants

@@ -186,6 +186,7 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
           }
           if (state.status.isError) {
             showToast(
+              type: ToastificationType.error,
               context: context,
               msg: state.statusMessage ?? 'Appointment is not added',
             );
@@ -488,11 +489,23 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
                   state.doctor ??
                   DoctorModel(firstName: 'Choose', lastName: 'Doctor'),
               values: state.doctors,
-              onSelected: (option, value) {
+              onSelected: (option, value) async {
                 if (value != null) {
                   _newAppointmentBloc.add(
                     NewAppointmentEvent.doctorSelected(doctor: value),
                   );
+                  bool isChanged = false;
+                  await for (final newState in _newAppointmentBloc.stream) {
+                    if (!newState.status.isLoading) {
+                      if (newState.status.isData) {
+                        isChanged = true;
+                        break;
+                      }
+                    }
+                  }
+                  if (isChanged) {
+                    _dateController.text = 'Select Date';
+                  }
                 }
               },
               initialOption:
@@ -684,7 +697,7 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
                       height: screenHeight(context) * 0.05,
                       child: CustomElevatedButton(
                         fontSize: 12,
-                        title: 'Yes',
+                        title: 'Book',
                         onTap: () {
                           _newAppointmentBloc.add(
                             BookedNewAppointment(vaccination: vaccination),

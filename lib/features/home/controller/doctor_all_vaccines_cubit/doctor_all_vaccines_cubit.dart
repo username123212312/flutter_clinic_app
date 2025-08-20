@@ -8,6 +8,7 @@ import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:our_flutter_clinic_app/core/models/app_failure.dart';
 import 'package:our_flutter_clinic_app/core/models/app_response.dart';
 import 'package:our_flutter_clinic_app/core/providers/dio_client/dio_client.dart';
+import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:our_flutter_clinic_app/features/home/model/vaccinationrecord.dart';
 
 import '../../../../core/enums.dart';
@@ -18,37 +19,54 @@ part 'doctor_all_vaccines_cubit.freezed.dart';
 class DoctorAllVaccinesCubit extends Cubit<DoctorAllVaccinesState> {
   DoctorAllVaccinesCubit() : super(DoctorAllVaccinesState.initial());
 
-  Future<void> fetchAllVaccines() async {
-    emit(state.copyWith(status: DataStatus.loading));
+  Future<void> fetchAllVaccines([bool isRefresh = false]) async {
     try {
-      final response = await _fetchAllVaccines();
-      final newState = switch (response) {
-        Left(value: final l) => state.copyWith(
-          status: DataStatus.error,
-          message: l.message,
-        ),
-        Right(value: final r) => state.copyWith(
-          status: DataStatus.data,
-          message: r.message,
-          vaccines: r.data ?? state.vaccines,
-        ),
-      };
-      emit(newState);
+      if (state.hasMore || isRefresh) {
+        final newPage = isRefresh ? 1 : state.currentPage + 1;
+        final currentList = List.of(state.vaccines);
+        if (newPage == 1) {
+          emit(state.copyWith(status: DataStatus.loading));
+        } else {
+          emit(state.copyWith(status: DataStatus.loadingMore));
+        }
+
+        final response = await _fetchAllVaccines(newPage);
+        final newState = switch (response) {
+          Left(value: final l) => state.copyWith(
+            status: DataStatus.error,
+            message: l.message,
+          ),
+          Right(value: final r) => state.copyWith(
+            status: DataStatus.data,
+            message: r.message,
+            currentPage: newPage,
+            hasMore: r.success,
+            vaccines:
+                r.data == null
+                    ? state.vaccines
+                    : newPage == 1
+                    ? r.data!
+                    : [...currentList, ...r.data!],
+          ),
+        };
+        emit(newState);
+      }
     } catch (e) {
       emit(state.copyWith(status: DataStatus.error, message: e.toString()));
     }
   }
 
   Future<Either<AppFailure, AppResponse<List<VaccinationRecord>>>>
-  _fetchAllVaccines() async {
+  _fetchAllVaccines([int page = 1]) async {
     try {
       final response = await DioClient().instance.get(
         AppConstants.doctorShowVaccinesPath,
+        queryParameters: {'page': page},
       );
       if (response.data['statusCode'] < 300) {
         return Right(
           AppResponse<List<VaccinationRecord>>(
-            success: true,
+            success: doesListHaveMore(response.data['meta']),
             message: 'Vaccines fetched successfully',
             data:
                 (response.data['data'] as List<dynamic>).map((vaccine) {

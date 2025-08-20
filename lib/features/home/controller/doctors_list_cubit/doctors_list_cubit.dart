@@ -36,7 +36,10 @@ class DoctorsListCubit extends Cubit<DoctorsListState> {
     }
   }
 
-  Future<void> fetchDoctors() async {
+  Future<void> fetchDoctors([bool isRefresh = false]) async {
+    if (isRefresh) {
+      emit(state.copyWith(currentPage: 0, hasMore: true));
+    }
     if (state.selectedClinic == null || state.selectedClinic?.id == null) {
       fetchAllDoctors();
     } else {
@@ -45,21 +48,36 @@ class DoctorsListCubit extends Cubit<DoctorsListState> {
   }
 
   Future<void> fetchAllDoctors() async {
-    _emitLoading();
     try {
-      final response = await _doctorsListRepository.fetchAllDoctors();
-      final newState = switch (response) {
-        Left(value: final l) => state.copyWith(
-          status: DataStatus.error,
-          message: l.message,
-        ),
-        Right(value: final r) => state.copyWith(
-          status: DataStatus.data,
-          message: r.message,
-          doctors: r.data ?? state.doctors,
-        ),
-      };
-      emit(newState);
+      if (state.hasMore) {
+        final newPage = state.currentPage + 1;
+        final currentList = List.of(state.doctors);
+        if (newPage == 1) {
+          emit(state.copyWith(status: DataStatus.loading));
+        } else {
+          emit(state.copyWith(status: DataStatus.loadingMore));
+        }
+        final response = await _doctorsListRepository.fetchAllDoctors(newPage);
+        final newState = switch (response) {
+          Left(value: final l) => state.copyWith(
+            status: DataStatus.error,
+            message: l.message,
+          ),
+          Right(value: final r) => state.copyWith(
+            hasMore: r.success,
+            currentPage: newPage,
+            status: DataStatus.data,
+            message: r.message,
+            doctors:
+                r.data == null
+                    ? state.doctors
+                    : newPage == 1
+                    ? r.data!
+                    : [...currentList, ...r.data!],
+          ),
+        };
+        emit(newState);
+      }
     } catch (e) {
       emit(state.copyWith(status: DataStatus.error, message: e.toString()));
     }
@@ -68,28 +86,45 @@ class DoctorsListCubit extends Cubit<DoctorsListState> {
   Future<void> fetchClinicDoctors() async {
     _emitLoading();
     try {
-      final response = await _doctorsListRepository.fetchClinicDoctors(
-        state.selectedClinic?.id ?? 0,
-      );
-      final newState = switch (response) {
-        Left(value: final l) => state.copyWith(
-          status: DataStatus.error,
-          message: l.message,
-        ),
-        Right(value: final r) => state.copyWith(
-          status: DataStatus.data,
-          message: r.message,
-          doctors: r.data ?? state.doctors,
-        ),
-      };
-      emit(newState);
+      if (state.hasMore) {
+        final newPage = state.currentPage + 1;
+        final currentList = List.of(state.doctors);
+        if (newPage == 1) {
+          emit(state.copyWith(status: DataStatus.loading));
+        } else {
+          emit(state.copyWith(status: DataStatus.loadingMore));
+        }
+        final response = await _doctorsListRepository.fetchClinicDoctors(
+          state.selectedClinic?.id ?? 0,
+        );
+        final newState = switch (response) {
+          Left(value: final l) => state.copyWith(
+            status: DataStatus.error,
+            message: l.message,
+          ),
+          Right(value: final r) => state.copyWith(
+            status: DataStatus.data,
+            message: r.message,
+            doctors:
+                r.data == null
+                    ? state.doctors
+                    : newPage == 1
+                    ? r.data!
+                    : [...currentList, ...r.data!],
+          ),
+        };
+        emit(newState);
+      }
     } catch (e) {
       emit(state.copyWith(status: DataStatus.error, message: e.toString()));
     }
   }
 
   Future<void> searchDoctor(String query) async {
-    _emitLoading();
+    emit(
+      state.copyWith(currentPage: 0, hasMore: true, status: DataStatus.loading),
+    );
+
     try {
       final response = await _doctorsListRepository.searchDoctor(query);
       final newState = switch (response) {
@@ -111,7 +146,7 @@ class DoctorsListCubit extends Cubit<DoctorsListState> {
   }
 
   void changeClinic(ClinicModel clinic) {
-    emit(state.copyWith(selectedClinic: clinic));
+    emit(state.copyWith(selectedClinic: clinic, hasMore: true, currentPage: 0));
     fetchDoctors();
   }
 

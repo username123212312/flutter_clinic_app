@@ -20,23 +20,39 @@ class DoctorShowChildVaccineRecordsCubit
            doctorChildVaccinationRecordRepository,
        super(DoctorShowChildVaccineRecordsState.initial(child: child));
 
-  Future<void> fetchAllVacRecords() async {
-    emit(state.copyWith(status: DataStatus.loading));
+  Future<void> fetchAllVacRecords([bool isRefresh = false]) async {
     try {
-      final response = await _doctorChildVaccinationRecordRepository
-          .fetchAllRecords(state.child.id ?? -1);
-      final newState = switch (response) {
-        Left(value: final l) => state.copyWith(
-          status: DataStatus.error,
-          message: l.message,
-        ),
-        Right(value: final r) => state.copyWith(
-          status: DataStatus.data,
-          message: r.message,
-          vaccinesRecords: r.data ?? state.vaccinesRecords,
-        ),
-      };
-      emit(newState);
+      if (state.hasMore || isRefresh) {
+        final newPage = isRefresh ? 1 : state.currentPage + 1;
+        final currentList = List.of(state.vaccinesRecords);
+        if (newPage == 1) {
+          emit(state.copyWith(status: DataStatus.loading));
+        } else {
+          emit(state.copyWith(status: DataStatus.loadingMore));
+        }
+
+        final response = await _doctorChildVaccinationRecordRepository
+            .fetchAllRecords(state.child.id ?? -1, newPage);
+        final newState = switch (response) {
+          Left(value: final l) => state.copyWith(
+            status: DataStatus.error,
+            message: l.message,
+          ),
+          Right(value: final r) => state.copyWith(
+            currentPage: newPage,
+            hasMore: r.success,
+            status: DataStatus.data,
+            message: r.message,
+            vaccinesRecords:
+                r.data == null
+                    ? state.vaccinesRecords
+                    : newPage == 1
+                    ? r.data!
+                    : [...currentList, ...r.data!],
+          ),
+        };
+        emit(newState);
+      }
     } catch (e) {
       emit(state.copyWith(status: DataStatus.error, message: e.toString()));
     }

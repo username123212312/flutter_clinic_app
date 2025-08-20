@@ -28,6 +28,13 @@ class _DoctorListState extends State<DoctorList> {
     _doctorsListCubit
       ..fetchAllClinics()
       ..fetchDoctors();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -62,9 +69,10 @@ class _DoctorListState extends State<DoctorList> {
         onRefresh: () async {
           _doctorsListCubit
             ..fetchAllClinics()
-            ..fetchDoctors();
+            ..fetchDoctors(true);
         },
         child: SingleChildScrollView(
+          controller: _scrollController,
           physics: AlwaysScrollableScrollPhysics(),
           padding: EdgeInsets.only(
             bottom: MediaQuery.of(context).viewInsets.bottom * 0.3,
@@ -129,21 +137,33 @@ class _DoctorListState extends State<DoctorList> {
                   return Skeletonizer(
                     enabled: state.status.isLoading,
                     child: ListView.separated(
+                      physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       padding: const EdgeInsets.all(20),
                       itemCount:
-                          state.status.isLoading ? 10 : state.doctors.length,
+                          state.status.isLoading
+                              ? 10
+                              : state.status.isLoadingMore
+                              ? state.doctors.length + 1
+                              : state.doctors.length,
                       separatorBuilder:
                           (context, index) => const SizedBox(height: 12),
                       itemBuilder: (context, index) {
+                        if (state.status.isLoadingMore &&
+                            index == state.doctors.length) {
+                          return Padding(
+                            padding: EdgeInsets.symmetric(vertical: 16),
+
+                            child: Center(child: CircularProgressIndicator()),
+                          );
+                        }
                         if (state.status.isLoading) {
                           return FindDoctorCard(
                             padding: 25,
                             title: "doctor['title']",
                             subtitle: "doctor['subtitle']",
                             imagePath: 'assets/images/logo.webp',
-                            startTime: "",
-                            endTime: "",
+                            visitDuration: '',
                             rating: 0.0,
                           );
                         }
@@ -159,12 +179,13 @@ class _DoctorListState extends State<DoctorList> {
                           title:
                               '${doctor.firstName ?? 'No'} ${doctor.lastName ?? 'Doctor'}',
                           subtitle: doctor.speciality ?? 'No speciality',
-                          imagePath:
-                              doctor.photoPath ?? 'assets/images/logo.webp',
-                          startTime: '',
-                          endTime: '',
+                          imagePath: doctor.photo,
+                          visitDuration: doctor.averageVisitDuration ?? '',
                           rating:
-                              double.tryParse(doctor.finalRate ?? '0.0') ?? 0.0,
+                              double.tryParse(
+                                (doctor.finalRate ?? 0.0).toString(),
+                              ) ??
+                              0.0,
                         );
                       },
                     ),
@@ -245,6 +266,17 @@ class _DoctorListState extends State<DoctorList> {
     );
   }
 
+  void _onScroll() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      if (!_doctorsListCubit.state.status.isLoading &&
+          !_doctorsListCubit.state.status.isLoadingMore) {
+        _doctorsListCubit.fetchDoctors();
+      }
+    }
+  }
+
+  final _scrollController = ScrollController();
   final DoctorsListCubit _doctorsListCubit = DoctorsListCubit(
     doctorsListRepository: DoctorsListRepository(),
   );

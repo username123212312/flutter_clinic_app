@@ -19,21 +19,21 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$DoctorPatientAnalysisEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() analysisFetched,
+    required TResult Function(bool isRefresh) analysisFetched,
     required TResult Function() clinicsFetched,
     required TResult Function(AnalysisStatus analysisStatus) statusChanged,
     required TResult Function(ClinicModel clinic) clinicChanged,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? analysisFetched,
+    TResult? Function(bool isRefresh)? analysisFetched,
     TResult? Function()? clinicsFetched,
     TResult? Function(AnalysisStatus analysisStatus)? statusChanged,
     TResult? Function(ClinicModel clinic)? clinicChanged,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? analysisFetched,
+    TResult Function(bool isRefresh)? analysisFetched,
     TResult Function()? clinicsFetched,
     TResult Function(AnalysisStatus analysisStatus)? statusChanged,
     TResult Function(ClinicModel clinic)? clinicChanged,
@@ -98,6 +98,8 @@ abstract class _$$AnalysisFetchedImplCopyWith<$Res> {
     _$AnalysisFetchedImpl value,
     $Res Function(_$AnalysisFetchedImpl) then,
   ) = __$$AnalysisFetchedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isRefresh});
 }
 
 /// @nodoc
@@ -112,60 +114,91 @@ class __$$AnalysisFetchedImplCopyWithImpl<$Res>
 
   /// Create a copy of DoctorPatientAnalysisEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? isRefresh = null}) {
+    return _then(
+      _$AnalysisFetchedImpl(
+        isRefresh:
+            null == isRefresh
+                ? _value.isRefresh
+                : isRefresh // ignore: cast_nullable_to_non_nullable
+                    as bool,
+      ),
+    );
+  }
 }
 
 /// @nodoc
 
 class _$AnalysisFetchedImpl implements AnalysisFetched {
-  const _$AnalysisFetchedImpl();
+  const _$AnalysisFetchedImpl({this.isRefresh = false});
+
+  @override
+  @JsonKey()
+  final bool isRefresh;
 
   @override
   String toString() {
-    return 'DoctorPatientAnalysisEvent.analysisFetched()';
+    return 'DoctorPatientAnalysisEvent.analysisFetched(isRefresh: $isRefresh)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AnalysisFetchedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$AnalysisFetchedImpl &&
+            (identical(other.isRefresh, isRefresh) ||
+                other.isRefresh == isRefresh));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, isRefresh);
+
+  /// Create a copy of DoctorPatientAnalysisEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AnalysisFetchedImplCopyWith<_$AnalysisFetchedImpl> get copyWith =>
+      __$$AnalysisFetchedImplCopyWithImpl<_$AnalysisFetchedImpl>(
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() analysisFetched,
+    required TResult Function(bool isRefresh) analysisFetched,
     required TResult Function() clinicsFetched,
     required TResult Function(AnalysisStatus analysisStatus) statusChanged,
     required TResult Function(ClinicModel clinic) clinicChanged,
   }) {
-    return analysisFetched();
+    return analysisFetched(isRefresh);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? analysisFetched,
+    TResult? Function(bool isRefresh)? analysisFetched,
     TResult? Function()? clinicsFetched,
     TResult? Function(AnalysisStatus analysisStatus)? statusChanged,
     TResult? Function(ClinicModel clinic)? clinicChanged,
   }) {
-    return analysisFetched?.call();
+    return analysisFetched?.call(isRefresh);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? analysisFetched,
+    TResult Function(bool isRefresh)? analysisFetched,
     TResult Function()? clinicsFetched,
     TResult Function(AnalysisStatus analysisStatus)? statusChanged,
     TResult Function(ClinicModel clinic)? clinicChanged,
     required TResult orElse(),
   }) {
     if (analysisFetched != null) {
-      return analysisFetched();
+      return analysisFetched(isRefresh);
     }
     return orElse();
   }
@@ -209,7 +242,15 @@ class _$AnalysisFetchedImpl implements AnalysisFetched {
 }
 
 abstract class AnalysisFetched implements DoctorPatientAnalysisEvent {
-  const factory AnalysisFetched() = _$AnalysisFetchedImpl;
+  const factory AnalysisFetched({final bool isRefresh}) = _$AnalysisFetchedImpl;
+
+  bool get isRefresh;
+
+  /// Create a copy of DoctorPatientAnalysisEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AnalysisFetchedImplCopyWith<_$AnalysisFetchedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -255,7 +296,7 @@ class _$ClinicsFetchedImpl implements ClinicsFetched {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() analysisFetched,
+    required TResult Function(bool isRefresh) analysisFetched,
     required TResult Function() clinicsFetched,
     required TResult Function(AnalysisStatus analysisStatus) statusChanged,
     required TResult Function(ClinicModel clinic) clinicChanged,
@@ -266,7 +307,7 @@ class _$ClinicsFetchedImpl implements ClinicsFetched {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? analysisFetched,
+    TResult? Function(bool isRefresh)? analysisFetched,
     TResult? Function()? clinicsFetched,
     TResult? Function(AnalysisStatus analysisStatus)? statusChanged,
     TResult? Function(ClinicModel clinic)? clinicChanged,
@@ -277,7 +318,7 @@ class _$ClinicsFetchedImpl implements ClinicsFetched {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? analysisFetched,
+    TResult Function(bool isRefresh)? analysisFetched,
     TResult Function()? clinicsFetched,
     TResult Function(AnalysisStatus analysisStatus)? statusChanged,
     TResult Function(ClinicModel clinic)? clinicChanged,
@@ -403,7 +444,7 @@ class _$StatusChangedImpl implements StatusChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() analysisFetched,
+    required TResult Function(bool isRefresh) analysisFetched,
     required TResult Function() clinicsFetched,
     required TResult Function(AnalysisStatus analysisStatus) statusChanged,
     required TResult Function(ClinicModel clinic) clinicChanged,
@@ -414,7 +455,7 @@ class _$StatusChangedImpl implements StatusChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? analysisFetched,
+    TResult? Function(bool isRefresh)? analysisFetched,
     TResult? Function()? clinicsFetched,
     TResult? Function(AnalysisStatus analysisStatus)? statusChanged,
     TResult? Function(ClinicModel clinic)? clinicChanged,
@@ -425,7 +466,7 @@ class _$StatusChangedImpl implements StatusChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? analysisFetched,
+    TResult Function(bool isRefresh)? analysisFetched,
     TResult Function()? clinicsFetched,
     TResult Function(AnalysisStatus analysisStatus)? statusChanged,
     TResult Function(ClinicModel clinic)? clinicChanged,
@@ -571,7 +612,7 @@ class _$ClinicChangedImpl implements ClinicChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() analysisFetched,
+    required TResult Function(bool isRefresh) analysisFetched,
     required TResult Function() clinicsFetched,
     required TResult Function(AnalysisStatus analysisStatus) statusChanged,
     required TResult Function(ClinicModel clinic) clinicChanged,
@@ -582,7 +623,7 @@ class _$ClinicChangedImpl implements ClinicChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? analysisFetched,
+    TResult? Function(bool isRefresh)? analysisFetched,
     TResult? Function()? clinicsFetched,
     TResult? Function(AnalysisStatus analysisStatus)? statusChanged,
     TResult? Function(ClinicModel clinic)? clinicChanged,
@@ -593,7 +634,7 @@ class _$ClinicChangedImpl implements ClinicChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? analysisFetched,
+    TResult Function(bool isRefresh)? analysisFetched,
     TResult Function()? clinicsFetched,
     TResult Function(AnalysisStatus analysisStatus)? statusChanged,
     TResult Function(ClinicModel clinic)? clinicChanged,
@@ -658,6 +699,8 @@ abstract class ClinicChanged implements DoctorPatientAnalysisEvent {
 
 /// @nodoc
 mixin _$DoctorPatientAnalysisState {
+  int get currentPage => throw _privateConstructorUsedError;
+  bool get hasMore => throw _privateConstructorUsedError;
   DataStatus get status => throw _privateConstructorUsedError;
   DataStatus get clinicsStatus => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
@@ -686,6 +729,8 @@ abstract class $DoctorPatientAnalysisStateCopyWith<$Res> {
       >;
   @useResult
   $Res call({
+    int currentPage,
+    bool hasMore,
     DataStatus status,
     DataStatus clinicsStatus,
     String message,
@@ -718,6 +763,8 @@ class _$DoctorPatientAnalysisStateCopyWithImpl<
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? currentPage = null,
+    Object? hasMore = null,
     Object? status = null,
     Object? clinicsStatus = null,
     Object? message = null,
@@ -729,6 +776,16 @@ class _$DoctorPatientAnalysisStateCopyWithImpl<
   }) {
     return _then(
       _value.copyWith(
+            currentPage:
+                null == currentPage
+                    ? _value.currentPage
+                    : currentPage // ignore: cast_nullable_to_non_nullable
+                        as int,
+            hasMore:
+                null == hasMore
+                    ? _value.hasMore
+                    : hasMore // ignore: cast_nullable_to_non_nullable
+                        as bool,
             status:
                 null == status
                     ? _value.status
@@ -805,6 +862,8 @@ abstract class _$$DoctorPatientAnalysisStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
+    int currentPage,
+    bool hasMore,
     DataStatus status,
     DataStatus clinicsStatus,
     String message,
@@ -839,6 +898,8 @@ class __$$DoctorPatientAnalysisStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? currentPage = null,
+    Object? hasMore = null,
     Object? status = null,
     Object? clinicsStatus = null,
     Object? message = null,
@@ -850,6 +911,16 @@ class __$$DoctorPatientAnalysisStateImplCopyWithImpl<$Res>
   }) {
     return _then(
       _$DoctorPatientAnalysisStateImpl(
+        currentPage:
+            null == currentPage
+                ? _value.currentPage
+                : currentPage // ignore: cast_nullable_to_non_nullable
+                    as int,
+        hasMore:
+            null == hasMore
+                ? _value.hasMore
+                : hasMore // ignore: cast_nullable_to_non_nullable
+                    as bool,
         status:
             null == status
                 ? _value.status
@@ -899,6 +970,8 @@ class __$$DoctorPatientAnalysisStateImplCopyWithImpl<$Res>
 
 class _$DoctorPatientAnalysisStateImpl implements _DoctorPatientAnalysisState {
   const _$DoctorPatientAnalysisStateImpl({
+    required this.currentPage,
+    required this.hasMore,
     required this.status,
     required this.clinicsStatus,
     required this.message,
@@ -910,6 +983,10 @@ class _$DoctorPatientAnalysisStateImpl implements _DoctorPatientAnalysisState {
   }) : _analysisList = analysisList,
        _clinics = clinics;
 
+  @override
+  final int currentPage;
+  @override
+  final bool hasMore;
   @override
   final DataStatus status;
   @override
@@ -941,7 +1018,7 @@ class _$DoctorPatientAnalysisStateImpl implements _DoctorPatientAnalysisState {
 
   @override
   String toString() {
-    return 'DoctorPatientAnalysisState(status: $status, clinicsStatus: $clinicsStatus, message: $message, patient: $patient, analysisList: $analysisList, analysisStatus: $analysisStatus, clinics: $clinics, selectedClinic: $selectedClinic)';
+    return 'DoctorPatientAnalysisState(currentPage: $currentPage, hasMore: $hasMore, status: $status, clinicsStatus: $clinicsStatus, message: $message, patient: $patient, analysisList: $analysisList, analysisStatus: $analysisStatus, clinics: $clinics, selectedClinic: $selectedClinic)';
   }
 
   @override
@@ -949,6 +1026,9 @@ class _$DoctorPatientAnalysisStateImpl implements _DoctorPatientAnalysisState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DoctorPatientAnalysisStateImpl &&
+            (identical(other.currentPage, currentPage) ||
+                other.currentPage == currentPage) &&
+            (identical(other.hasMore, hasMore) || other.hasMore == hasMore) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.clinicsStatus, clinicsStatus) ||
                 other.clinicsStatus == clinicsStatus) &&
@@ -968,6 +1048,8 @@ class _$DoctorPatientAnalysisStateImpl implements _DoctorPatientAnalysisState {
   @override
   int get hashCode => Object.hash(
     runtimeType,
+    currentPage,
+    hasMore,
     status,
     clinicsStatus,
     message,
@@ -992,6 +1074,8 @@ class _$DoctorPatientAnalysisStateImpl implements _DoctorPatientAnalysisState {
 abstract class _DoctorPatientAnalysisState
     implements DoctorPatientAnalysisState {
   const factory _DoctorPatientAnalysisState({
+    required final int currentPage,
+    required final bool hasMore,
     required final DataStatus status,
     required final DataStatus clinicsStatus,
     required final String message,
@@ -1002,6 +1086,10 @@ abstract class _DoctorPatientAnalysisState
     required final ClinicModel selectedClinic,
   }) = _$DoctorPatientAnalysisStateImpl;
 
+  @override
+  int get currentPage;
+  @override
+  bool get hasMore;
   @override
   DataStatus get status;
   @override

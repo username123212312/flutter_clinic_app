@@ -13,6 +13,44 @@ import '../model/appointment_model.dart';
 class ReservationDetailsRepository {
   ReservationDetailsRepository({Dio? dio}) : _dio = dio ?? DioClient().instance;
 
+  Future<Either<AppFailure, AppResponse<int>>> fetchDiscountPoints() async {
+    try {
+      final response = await _dio.get(
+        AppConstants.showProfilePath,
+        queryParameters:
+            getChildId() != null ? {'child_id': getChildId()} : null,
+      );
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse<int>(
+            data: response.data['data']['discount_points'],
+            success: true,
+            message: 'discount points fetched successfully',
+            statusCode: response.data['statusCode'],
+            statusMessage: response.data['statusMessage'],
+          ),
+        );
+      } else {
+        throw HttpException('discount points are not fetched');
+      }
+    } on DioException catch (e) {
+      return Left(
+        AppFailure(
+          message: e.message ?? 'Error',
+          stacktracte: StackTrace.current,
+        ),
+      );
+    } on HttpException catch (e) {
+      return Left(
+        AppFailure(message: e.message, stacktracte: StackTrace.current),
+      );
+    } catch (e) {
+      return Left(
+        AppFailure(message: e.toString(), stacktracte: StackTrace.current),
+      );
+    }
+  }
+
   Future<Either<AppFailure, AppResponse<AppointmentModel>>> fetchAppointment(
     int appointmentId,
   ) async {

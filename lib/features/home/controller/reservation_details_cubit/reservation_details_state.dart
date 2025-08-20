@@ -5,6 +5,8 @@ class ReservationDetailsState with _$ReservationDetailsState {
   const factory ReservationDetailsState({
     AppointmentModel? appointment,
     required DataStatus status,
+    required DataStatus discountPointsStatus,
+    required int discountPoints,
     required String message,
     String? paymentIntentId,
     String? clientID,
@@ -12,6 +14,8 @@ class ReservationDetailsState with _$ReservationDetailsState {
   }) = _ReservationDetailsState;
   factory ReservationDetailsState.initial() {
     return ReservationDetailsState(
+      discountPoints: -1,
+      discountPointsStatus: DataStatus.noData,
       status: DataStatus.noData,
       message: 'No data',
       isPaid: false,

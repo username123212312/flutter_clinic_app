@@ -711,7 +711,7 @@ abstract class AnalysisFilterRequested implements AnalysisListEvent {
 
 /// @nodoc
 mixin _$AnalysisListState {
-  List<AnalysisModel>? get analysisList => throw _privateConstructorUsedError;
+  List<AnalysisModel> get analysisList => throw _privateConstructorUsedError;
   DataStatus get status => throw _privateConstructorUsedError;
   String get statusMessage => throw _privateConstructorUsedError;
   double get progressValue => throw _privateConstructorUsedError;
@@ -731,7 +731,7 @@ abstract class $AnalysisListStateCopyWith<$Res> {
   ) = _$AnalysisListStateCopyWithImpl<$Res, AnalysisListState>;
   @useResult
   $Res call({
-    List<AnalysisModel>? analysisList,
+    List<AnalysisModel> analysisList,
     DataStatus status,
     String statusMessage,
     double progressValue,
@@ -753,7 +753,7 @@ class _$AnalysisListStateCopyWithImpl<$Res, $Val extends AnalysisListState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? analysisList = freezed,
+    Object? analysisList = null,
     Object? status = null,
     Object? statusMessage = null,
     Object? progressValue = null,
@@ -761,10 +761,10 @@ class _$AnalysisListStateCopyWithImpl<$Res, $Val extends AnalysisListState>
     return _then(
       _value.copyWith(
             analysisList:
-                freezed == analysisList
+                null == analysisList
                     ? _value.analysisList
                     : analysisList // ignore: cast_nullable_to_non_nullable
-                        as List<AnalysisModel>?,
+                        as List<AnalysisModel>,
             status:
                 null == status
                     ? _value.status
@@ -796,7 +796,7 @@ abstract class _$$AnalysisListStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    List<AnalysisModel>? analysisList,
+    List<AnalysisModel> analysisList,
     DataStatus status,
     String statusMessage,
     double progressValue,
@@ -817,7 +817,7 @@ class __$$AnalysisListStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? analysisList = freezed,
+    Object? analysisList = null,
     Object? status = null,
     Object? statusMessage = null,
     Object? progressValue = null,
@@ -825,10 +825,10 @@ class __$$AnalysisListStateImplCopyWithImpl<$Res>
     return _then(
       _$AnalysisListStateImpl(
         analysisList:
-            freezed == analysisList
+            null == analysisList
                 ? _value._analysisList
                 : analysisList // ignore: cast_nullable_to_non_nullable
-                    as List<AnalysisModel>?,
+                    as List<AnalysisModel>,
         status:
             null == status
                 ? _value.status
@@ -853,20 +853,18 @@ class __$$AnalysisListStateImplCopyWithImpl<$Res>
 
 class _$AnalysisListStateImpl implements _AnalysisListState {
   const _$AnalysisListStateImpl({
-    final List<AnalysisModel>? analysisList,
+    required final List<AnalysisModel> analysisList,
     required this.status,
     this.statusMessage = 'no change',
     this.progressValue = 0.0,
   }) : _analysisList = analysisList;
 
-  final List<AnalysisModel>? _analysisList;
+  final List<AnalysisModel> _analysisList;
   @override
-  List<AnalysisModel>? get analysisList {
-    final value = _analysisList;
-    if (value == null) return null;
+  List<AnalysisModel> get analysisList {
     if (_analysisList is EqualUnmodifiableListView) return _analysisList;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_analysisList);
   }
 
   @override
@@ -922,14 +920,14 @@ class _$AnalysisListStateImpl implements _AnalysisListState {
 
 abstract class _AnalysisListState implements AnalysisListState {
   const factory _AnalysisListState({
-    final List<AnalysisModel>? analysisList,
+    required final List<AnalysisModel> analysisList,
     required final DataStatus status,
     final String statusMessage,
     final double progressValue,
   }) = _$AnalysisListStateImpl;
 
   @override
-  List<AnalysisModel>? get analysisList;
+  List<AnalysisModel> get analysisList;
   @override
   DataStatus get status;
   @override

@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SelectVaccinationState {
+  bool get hasMore => throw _privateConstructorUsedError;
+  int get currentPage => throw _privateConstructorUsedError;
   DataStatus get status => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   List<VaccinationRecord> get vaccines => throw _privateConstructorUsedError;
@@ -38,6 +40,8 @@ abstract class $SelectVaccinationStateCopyWith<$Res> {
   ) = _$SelectVaccinationStateCopyWithImpl<$Res, SelectVaccinationState>;
   @useResult
   $Res call({
+    bool hasMore,
+    int currentPage,
     DataStatus status,
     String message,
     List<VaccinationRecord> vaccines,
@@ -66,6 +70,8 @@ class _$SelectVaccinationStateCopyWithImpl<
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? hasMore = null,
+    Object? currentPage = null,
     Object? status = null,
     Object? message = null,
     Object? vaccines = null,
@@ -74,6 +80,16 @@ class _$SelectVaccinationStateCopyWithImpl<
   }) {
     return _then(
       _value.copyWith(
+            hasMore:
+                null == hasMore
+                    ? _value.hasMore
+                    : hasMore // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            currentPage:
+                null == currentPage
+                    ? _value.currentPage
+                    : currentPage // ignore: cast_nullable_to_non_nullable
+                        as int,
             status:
                 null == status
                     ? _value.status
@@ -129,6 +145,8 @@ abstract class _$$SelectVaccinationStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
+    bool hasMore,
+    int currentPage,
     DataStatus status,
     String message,
     List<VaccinationRecord> vaccines,
@@ -155,6 +173,8 @@ class __$$SelectVaccinationStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? hasMore = null,
+    Object? currentPage = null,
     Object? status = null,
     Object? message = null,
     Object? vaccines = null,
@@ -163,6 +183,16 @@ class __$$SelectVaccinationStateImplCopyWithImpl<$Res>
   }) {
     return _then(
       _$SelectVaccinationStateImpl(
+        hasMore:
+            null == hasMore
+                ? _value.hasMore
+                : hasMore // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        currentPage:
+            null == currentPage
+                ? _value.currentPage
+                : currentPage // ignore: cast_nullable_to_non_nullable
+                    as int,
         status:
             null == status
                 ? _value.status
@@ -197,6 +227,8 @@ class __$$SelectVaccinationStateImplCopyWithImpl<$Res>
 
 class _$SelectVaccinationStateImpl implements _SelectVaccinationState {
   const _$SelectVaccinationStateImpl({
+    required this.hasMore,
+    required this.currentPage,
     required this.status,
     required this.message,
     required final List<VaccinationRecord> vaccines,
@@ -204,6 +236,10 @@ class _$SelectVaccinationStateImpl implements _SelectVaccinationState {
     this.selectedVaccine,
   }) : _vaccines = vaccines;
 
+  @override
+  final bool hasMore;
+  @override
+  final int currentPage;
   @override
   final DataStatus status;
   @override
@@ -223,7 +259,7 @@ class _$SelectVaccinationStateImpl implements _SelectVaccinationState {
 
   @override
   String toString() {
-    return 'SelectVaccinationState(status: $status, message: $message, vaccines: $vaccines, type: $type, selectedVaccine: $selectedVaccine)';
+    return 'SelectVaccinationState(hasMore: $hasMore, currentPage: $currentPage, status: $status, message: $message, vaccines: $vaccines, type: $type, selectedVaccine: $selectedVaccine)';
   }
 
   @override
@@ -231,6 +267,9 @@ class _$SelectVaccinationStateImpl implements _SelectVaccinationState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SelectVaccinationStateImpl &&
+            (identical(other.hasMore, hasMore) || other.hasMore == hasMore) &&
+            (identical(other.currentPage, currentPage) ||
+                other.currentPage == currentPage) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
             const DeepCollectionEquality().equals(other._vaccines, _vaccines) &&
@@ -242,6 +281,8 @@ class _$SelectVaccinationStateImpl implements _SelectVaccinationState {
   @override
   int get hashCode => Object.hash(
     runtimeType,
+    hasMore,
+    currentPage,
     status,
     message,
     const DeepCollectionEquality().hash(_vaccines),
@@ -264,6 +305,8 @@ class _$SelectVaccinationStateImpl implements _SelectVaccinationState {
 
 abstract class _SelectVaccinationState implements SelectVaccinationState {
   const factory _SelectVaccinationState({
+    required final bool hasMore,
+    required final int currentPage,
     required final DataStatus status,
     required final String message,
     required final List<VaccinationRecord> vaccines,
@@ -271,6 +314,10 @@ abstract class _SelectVaccinationState implements SelectVaccinationState {
     final VaccinationRecord? selectedVaccine,
   }) = _$SelectVaccinationStateImpl;
 
+  @override
+  bool get hasMore;
+  @override
+  int get currentPage;
   @override
   DataStatus get status;
   @override

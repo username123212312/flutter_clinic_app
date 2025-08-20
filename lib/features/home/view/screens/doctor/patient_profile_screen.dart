@@ -1,20 +1,13 @@
-import 'dart:developer';
-
-import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
 import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
-import 'package:our_flutter_clinic_app/features/home/view/widgets/three_selectable_widget.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/navigation/navigation_exports.dart';
 import '../../../../../core/utils/general_utils.dart';
-import '../../../../../core/widgets/two_sellectable_widget.dart';
 import '../../../controller/doctor_patient_bloc/doctor_patient_bloc.dart';
-import '../../../model/clinic_model.dart';
-import '../../widgets/custom_drop_down_widget.dart';
 import '../../widgets/doctor_patients/patient_analysis_widget.dart';
 
 class PatientProfileScreen extends StatefulWidget {

@@ -19,6 +19,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$DoctorAllVaccinesState {
   DataStatus get status => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
+  bool get hasMore => throw _privateConstructorUsedError;
+  int get currentPage => throw _privateConstructorUsedError;
   List<VaccinationRecord> get vaccines => throw _privateConstructorUsedError;
 
   /// Create a copy of DoctorAllVaccinesState
@@ -38,6 +40,8 @@ abstract class $DoctorAllVaccinesStateCopyWith<$Res> {
   $Res call({
     DataStatus status,
     String message,
+    bool hasMore,
+    int currentPage,
     List<VaccinationRecord> vaccines,
   });
 }
@@ -62,6 +66,8 @@ class _$DoctorAllVaccinesStateCopyWithImpl<
   $Res call({
     Object? status = null,
     Object? message = null,
+    Object? hasMore = null,
+    Object? currentPage = null,
     Object? vaccines = null,
   }) {
     return _then(
@@ -76,6 +82,16 @@ class _$DoctorAllVaccinesStateCopyWithImpl<
                     ? _value.message
                     : message // ignore: cast_nullable_to_non_nullable
                         as String,
+            hasMore:
+                null == hasMore
+                    ? _value.hasMore
+                    : hasMore // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            currentPage:
+                null == currentPage
+                    ? _value.currentPage
+                    : currentPage // ignore: cast_nullable_to_non_nullable
+                        as int,
             vaccines:
                 null == vaccines
                     ? _value.vaccines
@@ -99,6 +115,8 @@ abstract class _$$DoctorAllVaccinesStateImplCopyWith<$Res>
   $Res call({
     DataStatus status,
     String message,
+    bool hasMore,
+    int currentPage,
     List<VaccinationRecord> vaccines,
   });
 }
@@ -120,6 +138,8 @@ class __$$DoctorAllVaccinesStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? message = null,
+    Object? hasMore = null,
+    Object? currentPage = null,
     Object? vaccines = null,
   }) {
     return _then(
@@ -134,6 +154,16 @@ class __$$DoctorAllVaccinesStateImplCopyWithImpl<$Res>
                 ? _value.message
                 : message // ignore: cast_nullable_to_non_nullable
                     as String,
+        hasMore:
+            null == hasMore
+                ? _value.hasMore
+                : hasMore // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        currentPage:
+            null == currentPage
+                ? _value.currentPage
+                : currentPage // ignore: cast_nullable_to_non_nullable
+                    as int,
         vaccines:
             null == vaccines
                 ? _value._vaccines
@@ -150,6 +180,8 @@ class _$DoctorAllVaccinesStateImpl implements _DoctorAllVaccinesState {
   const _$DoctorAllVaccinesStateImpl({
     required this.status,
     required this.message,
+    required this.hasMore,
+    required this.currentPage,
     required final List<VaccinationRecord> vaccines,
   }) : _vaccines = vaccines;
 
@@ -157,6 +189,10 @@ class _$DoctorAllVaccinesStateImpl implements _DoctorAllVaccinesState {
   final DataStatus status;
   @override
   final String message;
+  @override
+  final bool hasMore;
+  @override
+  final int currentPage;
   final List<VaccinationRecord> _vaccines;
   @override
   List<VaccinationRecord> get vaccines {
@@ -167,7 +203,7 @@ class _$DoctorAllVaccinesStateImpl implements _DoctorAllVaccinesState {
 
   @override
   String toString() {
-    return 'DoctorAllVaccinesState(status: $status, message: $message, vaccines: $vaccines)';
+    return 'DoctorAllVaccinesState(status: $status, message: $message, hasMore: $hasMore, currentPage: $currentPage, vaccines: $vaccines)';
   }
 
   @override
@@ -177,6 +213,9 @@ class _$DoctorAllVaccinesStateImpl implements _DoctorAllVaccinesState {
             other is _$DoctorAllVaccinesStateImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
+            (identical(other.hasMore, hasMore) || other.hasMore == hasMore) &&
+            (identical(other.currentPage, currentPage) ||
+                other.currentPage == currentPage) &&
             const DeepCollectionEquality().equals(other._vaccines, _vaccines));
   }
 
@@ -185,6 +224,8 @@ class _$DoctorAllVaccinesStateImpl implements _DoctorAllVaccinesState {
     runtimeType,
     status,
     message,
+    hasMore,
+    currentPage,
     const DeepCollectionEquality().hash(_vaccines),
   );
 
@@ -205,6 +246,8 @@ abstract class _DoctorAllVaccinesState implements DoctorAllVaccinesState {
   const factory _DoctorAllVaccinesState({
     required final DataStatus status,
     required final String message,
+    required final bool hasMore,
+    required final int currentPage,
     required final List<VaccinationRecord> vaccines,
   }) = _$DoctorAllVaccinesStateImpl;
 
@@ -212,6 +255,10 @@ abstract class _DoctorAllVaccinesState implements DoctorAllVaccinesState {
   DataStatus get status;
   @override
   String get message;
+  @override
+  bool get hasMore;
+  @override
+  int get currentPage;
   @override
   List<VaccinationRecord> get vaccines;
 

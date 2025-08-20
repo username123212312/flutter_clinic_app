@@ -20,12 +20,7 @@ class AnalysisListBloc
     : _analysisRepository = analysisRepository,
       super(AnalysisListState.initial()) {
     on<AnalysisListEvent>((event, emit) {
-      emit(
-        AnalysisListState(
-          status: DataStatus.loading,
-          analysisList: state.analysisList,
-        ),
-      );
+      emit(state.copyWith(status: DataStatus.loading));
     });
     on<AnaysisAdded>(_addAnalysis);
     on<AnalysisFetchRequested>(_fetchAllAnalysis);
@@ -117,7 +112,7 @@ class AnalysisListBloc
         statusMessage: l.message,
       ),
       Right(value: final r) => AnalysisListState(
-        analysisList: r.data,
+        analysisList: r.data ?? state.analysisList,
         status: DataStatus.data,
         statusMessage: r.message,
       ),
@@ -163,7 +158,7 @@ class AnalysisListBloc
       ),
       Right(value: final r) => AnalysisListState(
         status: DataStatus.data,
-        analysisList: r.data,
+        analysisList: r.data ?? state.analysisList,
         progressValue: state.progressValue,
         statusMessage: 'Analysis filtered successfully',
       ),

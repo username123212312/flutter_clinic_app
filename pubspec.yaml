@@ -83,6 +83,7 @@ dependencies:
   google_nav_bar: ^5.0.7
   toastification: ^3.0.3
   convex_bottom_bar: ^3.2.0
+  month_picker_dialog: ^6.0.3
 
 
 dev_dependencies:

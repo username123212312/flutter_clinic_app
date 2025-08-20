@@ -20,6 +20,7 @@ mixin _$AppointmentsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() appointmentsFetched,
+    required TResult Function() appointmentsRefreshed,
     required TResult Function(AppointmentStatus appointmentStatus)
     appointmentStatusChanged,
     required TResult Function(AppointmentType appointmentType)
@@ -29,6 +30,7 @@ mixin _$AppointmentsEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? appointmentsFetched,
+    TResult? Function()? appointmentsRefreshed,
     TResult? Function(AppointmentStatus appointmentStatus)?
     appointmentStatusChanged,
     TResult? Function(AppointmentType appointmentType)? appointmentTypeChanged,
@@ -37,6 +39,7 @@ mixin _$AppointmentsEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? appointmentsFetched,
+    TResult Function()? appointmentsRefreshed,
     TResult Function(AppointmentStatus appointmentStatus)?
     appointmentStatusChanged,
     TResult Function(AppointmentType appointmentType)? appointmentTypeChanged,
@@ -46,6 +49,8 @@ mixin _$AppointmentsEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(AppointmentsFetched value) appointmentsFetched,
+    required TResult Function(AppointmentsRefreshed value)
+    appointmentsRefreshed,
     required TResult Function(AppointmentStatusChanged value)
     appointmentStatusChanged,
     required TResult Function(AppointmentTypeChanged value)
@@ -55,6 +60,7 @@ mixin _$AppointmentsEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AppointmentsFetched value)? appointmentsFetched,
+    TResult? Function(AppointmentsRefreshed value)? appointmentsRefreshed,
     TResult? Function(AppointmentStatusChanged value)? appointmentStatusChanged,
     TResult? Function(AppointmentTypeChanged value)? appointmentTypeChanged,
     TResult? Function(AppointmentCanceled value)? appointmentCanceled,
@@ -62,6 +68,7 @@ mixin _$AppointmentsEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AppointmentsFetched value)? appointmentsFetched,
+    TResult Function(AppointmentsRefreshed value)? appointmentsRefreshed,
     TResult Function(AppointmentStatusChanged value)? appointmentStatusChanged,
     TResult Function(AppointmentTypeChanged value)? appointmentTypeChanged,
     TResult Function(AppointmentCanceled value)? appointmentCanceled,
@@ -136,6 +143,7 @@ class _$AppointmentsFetchedImpl implements AppointmentsFetched {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() appointmentsFetched,
+    required TResult Function() appointmentsRefreshed,
     required TResult Function(AppointmentStatus appointmentStatus)
     appointmentStatusChanged,
     required TResult Function(AppointmentType appointmentType)
@@ -149,6 +157,7 @@ class _$AppointmentsFetchedImpl implements AppointmentsFetched {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? appointmentsFetched,
+    TResult? Function()? appointmentsRefreshed,
     TResult? Function(AppointmentStatus appointmentStatus)?
     appointmentStatusChanged,
     TResult? Function(AppointmentType appointmentType)? appointmentTypeChanged,
@@ -161,6 +170,7 @@ class _$AppointmentsFetchedImpl implements AppointmentsFetched {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? appointmentsFetched,
+    TResult Function()? appointmentsRefreshed,
     TResult Function(AppointmentStatus appointmentStatus)?
     appointmentStatusChanged,
     TResult Function(AppointmentType appointmentType)? appointmentTypeChanged,
@@ -177,6 +187,8 @@ class _$AppointmentsFetchedImpl implements AppointmentsFetched {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(AppointmentsFetched value) appointmentsFetched,
+    required TResult Function(AppointmentsRefreshed value)
+    appointmentsRefreshed,
     required TResult Function(AppointmentStatusChanged value)
     appointmentStatusChanged,
     required TResult Function(AppointmentTypeChanged value)
@@ -190,6 +202,7 @@ class _$AppointmentsFetchedImpl implements AppointmentsFetched {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AppointmentsFetched value)? appointmentsFetched,
+    TResult? Function(AppointmentsRefreshed value)? appointmentsRefreshed,
     TResult? Function(AppointmentStatusChanged value)? appointmentStatusChanged,
     TResult? Function(AppointmentTypeChanged value)? appointmentTypeChanged,
     TResult? Function(AppointmentCanceled value)? appointmentCanceled,
@@ -201,6 +214,7 @@ class _$AppointmentsFetchedImpl implements AppointmentsFetched {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AppointmentsFetched value)? appointmentsFetched,
+    TResult Function(AppointmentsRefreshed value)? appointmentsRefreshed,
     TResult Function(AppointmentStatusChanged value)? appointmentStatusChanged,
     TResult Function(AppointmentTypeChanged value)? appointmentTypeChanged,
     TResult Function(AppointmentCanceled value)? appointmentCanceled,
@@ -215,6 +229,139 @@ class _$AppointmentsFetchedImpl implements AppointmentsFetched {
 
 abstract class AppointmentsFetched implements AppointmentsEvent {
   const factory AppointmentsFetched() = _$AppointmentsFetchedImpl;
+}
+
+/// @nodoc
+abstract class _$$AppointmentsRefreshedImplCopyWith<$Res> {
+  factory _$$AppointmentsRefreshedImplCopyWith(
+    _$AppointmentsRefreshedImpl value,
+    $Res Function(_$AppointmentsRefreshedImpl) then,
+  ) = __$$AppointmentsRefreshedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AppointmentsRefreshedImplCopyWithImpl<$Res>
+    extends _$AppointmentsEventCopyWithImpl<$Res, _$AppointmentsRefreshedImpl>
+    implements _$$AppointmentsRefreshedImplCopyWith<$Res> {
+  __$$AppointmentsRefreshedImplCopyWithImpl(
+    _$AppointmentsRefreshedImpl _value,
+    $Res Function(_$AppointmentsRefreshedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of AppointmentsEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$AppointmentsRefreshedImpl implements AppointmentsRefreshed {
+  const _$AppointmentsRefreshedImpl();
+
+  @override
+  String toString() {
+    return 'AppointmentsEvent.appointmentsRefreshed()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AppointmentsRefreshedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() appointmentsFetched,
+    required TResult Function() appointmentsRefreshed,
+    required TResult Function(AppointmentStatus appointmentStatus)
+    appointmentStatusChanged,
+    required TResult Function(AppointmentType appointmentType)
+    appointmentTypeChanged,
+    required TResult Function(int reservationId) appointmentCanceled,
+  }) {
+    return appointmentsRefreshed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? appointmentsFetched,
+    TResult? Function()? appointmentsRefreshed,
+    TResult? Function(AppointmentStatus appointmentStatus)?
+    appointmentStatusChanged,
+    TResult? Function(AppointmentType appointmentType)? appointmentTypeChanged,
+    TResult? Function(int reservationId)? appointmentCanceled,
+  }) {
+    return appointmentsRefreshed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? appointmentsFetched,
+    TResult Function()? appointmentsRefreshed,
+    TResult Function(AppointmentStatus appointmentStatus)?
+    appointmentStatusChanged,
+    TResult Function(AppointmentType appointmentType)? appointmentTypeChanged,
+    TResult Function(int reservationId)? appointmentCanceled,
+    required TResult orElse(),
+  }) {
+    if (appointmentsRefreshed != null) {
+      return appointmentsRefreshed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AppointmentsFetched value) appointmentsFetched,
+    required TResult Function(AppointmentsRefreshed value)
+    appointmentsRefreshed,
+    required TResult Function(AppointmentStatusChanged value)
+    appointmentStatusChanged,
+    required TResult Function(AppointmentTypeChanged value)
+    appointmentTypeChanged,
+    required TResult Function(AppointmentCanceled value) appointmentCanceled,
+  }) {
+    return appointmentsRefreshed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AppointmentsFetched value)? appointmentsFetched,
+    TResult? Function(AppointmentsRefreshed value)? appointmentsRefreshed,
+    TResult? Function(AppointmentStatusChanged value)? appointmentStatusChanged,
+    TResult? Function(AppointmentTypeChanged value)? appointmentTypeChanged,
+    TResult? Function(AppointmentCanceled value)? appointmentCanceled,
+  }) {
+    return appointmentsRefreshed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AppointmentsFetched value)? appointmentsFetched,
+    TResult Function(AppointmentsRefreshed value)? appointmentsRefreshed,
+    TResult Function(AppointmentStatusChanged value)? appointmentStatusChanged,
+    TResult Function(AppointmentTypeChanged value)? appointmentTypeChanged,
+    TResult Function(AppointmentCanceled value)? appointmentCanceled,
+    required TResult orElse(),
+  }) {
+    if (appointmentsRefreshed != null) {
+      return appointmentsRefreshed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AppointmentsRefreshed implements AppointmentsEvent {
+  const factory AppointmentsRefreshed() = _$AppointmentsRefreshedImpl;
 }
 
 /// @nodoc
@@ -293,6 +440,7 @@ class _$AppointmentStatusChangedImpl implements AppointmentStatusChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() appointmentsFetched,
+    required TResult Function() appointmentsRefreshed,
     required TResult Function(AppointmentStatus appointmentStatus)
     appointmentStatusChanged,
     required TResult Function(AppointmentType appointmentType)
@@ -306,6 +454,7 @@ class _$AppointmentStatusChangedImpl implements AppointmentStatusChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? appointmentsFetched,
+    TResult? Function()? appointmentsRefreshed,
     TResult? Function(AppointmentStatus appointmentStatus)?
     appointmentStatusChanged,
     TResult? Function(AppointmentType appointmentType)? appointmentTypeChanged,
@@ -318,6 +467,7 @@ class _$AppointmentStatusChangedImpl implements AppointmentStatusChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? appointmentsFetched,
+    TResult Function()? appointmentsRefreshed,
     TResult Function(AppointmentStatus appointmentStatus)?
     appointmentStatusChanged,
     TResult Function(AppointmentType appointmentType)? appointmentTypeChanged,
@@ -334,6 +484,8 @@ class _$AppointmentStatusChangedImpl implements AppointmentStatusChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(AppointmentsFetched value) appointmentsFetched,
+    required TResult Function(AppointmentsRefreshed value)
+    appointmentsRefreshed,
     required TResult Function(AppointmentStatusChanged value)
     appointmentStatusChanged,
     required TResult Function(AppointmentTypeChanged value)
@@ -347,6 +499,7 @@ class _$AppointmentStatusChangedImpl implements AppointmentStatusChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AppointmentsFetched value)? appointmentsFetched,
+    TResult? Function(AppointmentsRefreshed value)? appointmentsRefreshed,
     TResult? Function(AppointmentStatusChanged value)? appointmentStatusChanged,
     TResult? Function(AppointmentTypeChanged value)? appointmentTypeChanged,
     TResult? Function(AppointmentCanceled value)? appointmentCanceled,
@@ -358,6 +511,7 @@ class _$AppointmentStatusChangedImpl implements AppointmentStatusChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AppointmentsFetched value)? appointmentsFetched,
+    TResult Function(AppointmentsRefreshed value)? appointmentsRefreshed,
     TResult Function(AppointmentStatusChanged value)? appointmentStatusChanged,
     TResult Function(AppointmentTypeChanged value)? appointmentTypeChanged,
     TResult Function(AppointmentCanceled value)? appointmentCanceled,
@@ -461,6 +615,7 @@ class _$AppointmentTypeChangedImpl implements AppointmentTypeChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() appointmentsFetched,
+    required TResult Function() appointmentsRefreshed,
     required TResult Function(AppointmentStatus appointmentStatus)
     appointmentStatusChanged,
     required TResult Function(AppointmentType appointmentType)
@@ -474,6 +629,7 @@ class _$AppointmentTypeChangedImpl implements AppointmentTypeChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? appointmentsFetched,
+    TResult? Function()? appointmentsRefreshed,
     TResult? Function(AppointmentStatus appointmentStatus)?
     appointmentStatusChanged,
     TResult? Function(AppointmentType appointmentType)? appointmentTypeChanged,
@@ -486,6 +642,7 @@ class _$AppointmentTypeChangedImpl implements AppointmentTypeChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? appointmentsFetched,
+    TResult Function()? appointmentsRefreshed,
     TResult Function(AppointmentStatus appointmentStatus)?
     appointmentStatusChanged,
     TResult Function(AppointmentType appointmentType)? appointmentTypeChanged,
@@ -502,6 +659,8 @@ class _$AppointmentTypeChangedImpl implements AppointmentTypeChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(AppointmentsFetched value) appointmentsFetched,
+    required TResult Function(AppointmentsRefreshed value)
+    appointmentsRefreshed,
     required TResult Function(AppointmentStatusChanged value)
     appointmentStatusChanged,
     required TResult Function(AppointmentTypeChanged value)
@@ -515,6 +674,7 @@ class _$AppointmentTypeChangedImpl implements AppointmentTypeChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AppointmentsFetched value)? appointmentsFetched,
+    TResult? Function(AppointmentsRefreshed value)? appointmentsRefreshed,
     TResult? Function(AppointmentStatusChanged value)? appointmentStatusChanged,
     TResult? Function(AppointmentTypeChanged value)? appointmentTypeChanged,
     TResult? Function(AppointmentCanceled value)? appointmentCanceled,
@@ -526,6 +686,7 @@ class _$AppointmentTypeChangedImpl implements AppointmentTypeChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AppointmentsFetched value)? appointmentsFetched,
+    TResult Function(AppointmentsRefreshed value)? appointmentsRefreshed,
     TResult Function(AppointmentStatusChanged value)? appointmentStatusChanged,
     TResult Function(AppointmentTypeChanged value)? appointmentTypeChanged,
     TResult Function(AppointmentCanceled value)? appointmentCanceled,
@@ -628,6 +789,7 @@ class _$AppointmentCanceledImpl implements AppointmentCanceled {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() appointmentsFetched,
+    required TResult Function() appointmentsRefreshed,
     required TResult Function(AppointmentStatus appointmentStatus)
     appointmentStatusChanged,
     required TResult Function(AppointmentType appointmentType)
@@ -641,6 +803,7 @@ class _$AppointmentCanceledImpl implements AppointmentCanceled {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? appointmentsFetched,
+    TResult? Function()? appointmentsRefreshed,
     TResult? Function(AppointmentStatus appointmentStatus)?
     appointmentStatusChanged,
     TResult? Function(AppointmentType appointmentType)? appointmentTypeChanged,
@@ -653,6 +816,7 @@ class _$AppointmentCanceledImpl implements AppointmentCanceled {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? appointmentsFetched,
+    TResult Function()? appointmentsRefreshed,
     TResult Function(AppointmentStatus appointmentStatus)?
     appointmentStatusChanged,
     TResult Function(AppointmentType appointmentType)? appointmentTypeChanged,
@@ -669,6 +833,8 @@ class _$AppointmentCanceledImpl implements AppointmentCanceled {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(AppointmentsFetched value) appointmentsFetched,
+    required TResult Function(AppointmentsRefreshed value)
+    appointmentsRefreshed,
     required TResult Function(AppointmentStatusChanged value)
     appointmentStatusChanged,
     required TResult Function(AppointmentTypeChanged value)
@@ -682,6 +848,7 @@ class _$AppointmentCanceledImpl implements AppointmentCanceled {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AppointmentsFetched value)? appointmentsFetched,
+    TResult? Function(AppointmentsRefreshed value)? appointmentsRefreshed,
     TResult? Function(AppointmentStatusChanged value)? appointmentStatusChanged,
     TResult? Function(AppointmentTypeChanged value)? appointmentTypeChanged,
     TResult? Function(AppointmentCanceled value)? appointmentCanceled,
@@ -693,6 +860,7 @@ class _$AppointmentCanceledImpl implements AppointmentCanceled {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AppointmentsFetched value)? appointmentsFetched,
+    TResult Function(AppointmentsRefreshed value)? appointmentsRefreshed,
     TResult Function(AppointmentStatusChanged value)? appointmentStatusChanged,
     TResult Function(AppointmentTypeChanged value)? appointmentTypeChanged,
     TResult Function(AppointmentCanceled value)? appointmentCanceled,
@@ -720,12 +888,13 @@ abstract class AppointmentCanceled implements AppointmentsEvent {
 
 /// @nodoc
 mixin _$AppointmentsState {
-  List<AppointmentModel>? get appointments =>
-      throw _privateConstructorUsedError;
+  int get currentPage => throw _privateConstructorUsedError;
+  bool get hasMore => throw _privateConstructorUsedError;
+  List<AppointmentModel> get appointments => throw _privateConstructorUsedError;
   AppointmentStatus get appointmentStatus => throw _privateConstructorUsedError;
   AppointmentType get appointmentType => throw _privateConstructorUsedError;
-  DataStatus? get status => throw _privateConstructorUsedError;
-  String? get statusMessage => throw _privateConstructorUsedError;
+  DataStatus get status => throw _privateConstructorUsedError;
+  String get statusMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of AppointmentsState
   /// with the given fields replaced by the non-null parameter values.
@@ -742,11 +911,13 @@ abstract class $AppointmentsStateCopyWith<$Res> {
   ) = _$AppointmentsStateCopyWithImpl<$Res, AppointmentsState>;
   @useResult
   $Res call({
-    List<AppointmentModel>? appointments,
+    int currentPage,
+    bool hasMore,
+    List<AppointmentModel> appointments,
     AppointmentStatus appointmentStatus,
     AppointmentType appointmentType,
-    DataStatus? status,
-    String? statusMessage,
+    DataStatus status,
+    String statusMessage,
   });
 }
 
@@ -765,19 +936,31 @@ class _$AppointmentsStateCopyWithImpl<$Res, $Val extends AppointmentsState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? appointments = freezed,
+    Object? currentPage = null,
+    Object? hasMore = null,
+    Object? appointments = null,
     Object? appointmentStatus = null,
     Object? appointmentType = null,
-    Object? status = freezed,
-    Object? statusMessage = freezed,
+    Object? status = null,
+    Object? statusMessage = null,
   }) {
     return _then(
       _value.copyWith(
+            currentPage:
+                null == currentPage
+                    ? _value.currentPage
+                    : currentPage // ignore: cast_nullable_to_non_nullable
+                        as int,
+            hasMore:
+                null == hasMore
+                    ? _value.hasMore
+                    : hasMore // ignore: cast_nullable_to_non_nullable
+                        as bool,
             appointments:
-                freezed == appointments
+                null == appointments
                     ? _value.appointments
                     : appointments // ignore: cast_nullable_to_non_nullable
-                        as List<AppointmentModel>?,
+                        as List<AppointmentModel>,
             appointmentStatus:
                 null == appointmentStatus
                     ? _value.appointmentStatus
@@ -789,15 +972,15 @@ class _$AppointmentsStateCopyWithImpl<$Res, $Val extends AppointmentsState>
                     : appointmentType // ignore: cast_nullable_to_non_nullable
                         as AppointmentType,
             status:
-                freezed == status
+                null == status
                     ? _value.status
                     : status // ignore: cast_nullable_to_non_nullable
-                        as DataStatus?,
+                        as DataStatus,
             statusMessage:
-                freezed == statusMessage
+                null == statusMessage
                     ? _value.statusMessage
                     : statusMessage // ignore: cast_nullable_to_non_nullable
-                        as String?,
+                        as String,
           )
           as $Val,
     );
@@ -814,11 +997,13 @@ abstract class _$$AppointmentsStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    List<AppointmentModel>? appointments,
+    int currentPage,
+    bool hasMore,
+    List<AppointmentModel> appointments,
     AppointmentStatus appointmentStatus,
     AppointmentType appointmentType,
-    DataStatus? status,
-    String? statusMessage,
+    DataStatus status,
+    String statusMessage,
   });
 }
 
@@ -836,19 +1021,31 @@ class __$$AppointmentsStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? appointments = freezed,
+    Object? currentPage = null,
+    Object? hasMore = null,
+    Object? appointments = null,
     Object? appointmentStatus = null,
     Object? appointmentType = null,
-    Object? status = freezed,
-    Object? statusMessage = freezed,
+    Object? status = null,
+    Object? statusMessage = null,
   }) {
     return _then(
       _$AppointmentsStateImpl(
+        currentPage:
+            null == currentPage
+                ? _value.currentPage
+                : currentPage // ignore: cast_nullable_to_non_nullable
+                    as int,
+        hasMore:
+            null == hasMore
+                ? _value.hasMore
+                : hasMore // ignore: cast_nullable_to_non_nullable
+                    as bool,
         appointments:
-            freezed == appointments
+            null == appointments
                 ? _value._appointments
                 : appointments // ignore: cast_nullable_to_non_nullable
-                    as List<AppointmentModel>?,
+                    as List<AppointmentModel>,
         appointmentStatus:
             null == appointmentStatus
                 ? _value.appointmentStatus
@@ -860,15 +1057,15 @@ class __$$AppointmentsStateImplCopyWithImpl<$Res>
                 : appointmentType // ignore: cast_nullable_to_non_nullable
                     as AppointmentType,
         status:
-            freezed == status
+            null == status
                 ? _value.status
                 : status // ignore: cast_nullable_to_non_nullable
-                    as DataStatus?,
+                    as DataStatus,
         statusMessage:
-            freezed == statusMessage
+            null == statusMessage
                 ? _value.statusMessage
                 : statusMessage // ignore: cast_nullable_to_non_nullable
-                    as String?,
+                    as String,
       ),
     );
   }
@@ -878,21 +1075,25 @@ class __$$AppointmentsStateImplCopyWithImpl<$Res>
 
 class _$AppointmentsStateImpl implements _AppointmentsState {
   const _$AppointmentsStateImpl({
-    final List<AppointmentModel>? appointments,
+    required this.currentPage,
+    required this.hasMore,
+    required final List<AppointmentModel> appointments,
     required this.appointmentStatus,
     required this.appointmentType,
-    this.status,
-    this.statusMessage,
+    required this.status,
+    required this.statusMessage,
   }) : _appointments = appointments;
 
-  final List<AppointmentModel>? _appointments;
   @override
-  List<AppointmentModel>? get appointments {
-    final value = _appointments;
-    if (value == null) return null;
+  final int currentPage;
+  @override
+  final bool hasMore;
+  final List<AppointmentModel> _appointments;
+  @override
+  List<AppointmentModel> get appointments {
     if (_appointments is EqualUnmodifiableListView) return _appointments;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_appointments);
   }
 
   @override
@@ -900,13 +1101,13 @@ class _$AppointmentsStateImpl implements _AppointmentsState {
   @override
   final AppointmentType appointmentType;
   @override
-  final DataStatus? status;
+  final DataStatus status;
   @override
-  final String? statusMessage;
+  final String statusMessage;
 
   @override
   String toString() {
-    return 'AppointmentsState(appointments: $appointments, appointmentStatus: $appointmentStatus, appointmentType: $appointmentType, status: $status, statusMessage: $statusMessage)';
+    return 'AppointmentsState(currentPage: $currentPage, hasMore: $hasMore, appointments: $appointments, appointmentStatus: $appointmentStatus, appointmentType: $appointmentType, status: $status, statusMessage: $statusMessage)';
   }
 
   @override
@@ -914,6 +1115,9 @@ class _$AppointmentsStateImpl implements _AppointmentsState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppointmentsStateImpl &&
+            (identical(other.currentPage, currentPage) ||
+                other.currentPage == currentPage) &&
+            (identical(other.hasMore, hasMore) || other.hasMore == hasMore) &&
             const DeepCollectionEquality().equals(
               other._appointments,
               _appointments,
@@ -930,6 +1134,8 @@ class _$AppointmentsStateImpl implements _AppointmentsState {
   @override
   int get hashCode => Object.hash(
     runtimeType,
+    currentPage,
+    hasMore,
     const DeepCollectionEquality().hash(_appointments),
     appointmentStatus,
     appointmentType,
@@ -951,23 +1157,29 @@ class _$AppointmentsStateImpl implements _AppointmentsState {
 
 abstract class _AppointmentsState implements AppointmentsState {
   const factory _AppointmentsState({
-    final List<AppointmentModel>? appointments,
+    required final int currentPage,
+    required final bool hasMore,
+    required final List<AppointmentModel> appointments,
     required final AppointmentStatus appointmentStatus,
     required final AppointmentType appointmentType,
-    final DataStatus? status,
-    final String? statusMessage,
+    required final DataStatus status,
+    required final String statusMessage,
   }) = _$AppointmentsStateImpl;
 
   @override
-  List<AppointmentModel>? get appointments;
+  int get currentPage;
+  @override
+  bool get hasMore;
+  @override
+  List<AppointmentModel> get appointments;
   @override
   AppointmentStatus get appointmentStatus;
   @override
   AppointmentType get appointmentType;
   @override
-  DataStatus? get status;
+  DataStatus get status;
   @override
-  String? get statusMessage;
+  String get statusMessage;
 
   /// Create a copy of AppointmentsState
   /// with the given fields replaced by the non-null parameter values.

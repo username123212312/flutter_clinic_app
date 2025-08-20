@@ -19,21 +19,21 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$DoctorPatientsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() patientsFetched,
+    required TResult Function(bool isRefresh) patientsFetched,
     required TResult Function() notificationsFetched,
     required TResult Function(String query) patientsSearched,
     required TResult Function() loadData,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? patientsFetched,
+    TResult? Function(bool isRefresh)? patientsFetched,
     TResult? Function()? notificationsFetched,
     TResult? Function(String query)? patientsSearched,
     TResult? Function()? loadData,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? patientsFetched,
+    TResult Function(bool isRefresh)? patientsFetched,
     TResult Function()? notificationsFetched,
     TResult Function(String query)? patientsSearched,
     TResult Function()? loadData,
@@ -91,6 +91,8 @@ abstract class _$$PatientsFetchedImplCopyWith<$Res> {
     _$PatientsFetchedImpl value,
     $Res Function(_$PatientsFetchedImpl) then,
   ) = __$$PatientsFetchedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isRefresh});
 }
 
 /// @nodoc
@@ -104,60 +106,91 @@ class __$$PatientsFetchedImplCopyWithImpl<$Res>
 
   /// Create a copy of DoctorPatientsEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? isRefresh = null}) {
+    return _then(
+      _$PatientsFetchedImpl(
+        isRefresh:
+            null == isRefresh
+                ? _value.isRefresh
+                : isRefresh // ignore: cast_nullable_to_non_nullable
+                    as bool,
+      ),
+    );
+  }
 }
 
 /// @nodoc
 
 class _$PatientsFetchedImpl implements PatientsFetched {
-  const _$PatientsFetchedImpl();
+  const _$PatientsFetchedImpl({this.isRefresh = false});
+
+  @override
+  @JsonKey()
+  final bool isRefresh;
 
   @override
   String toString() {
-    return 'DoctorPatientsEvent.patientsFetched()';
+    return 'DoctorPatientsEvent.patientsFetched(isRefresh: $isRefresh)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$PatientsFetchedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$PatientsFetchedImpl &&
+            (identical(other.isRefresh, isRefresh) ||
+                other.isRefresh == isRefresh));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, isRefresh);
+
+  /// Create a copy of DoctorPatientsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PatientsFetchedImplCopyWith<_$PatientsFetchedImpl> get copyWith =>
+      __$$PatientsFetchedImplCopyWithImpl<_$PatientsFetchedImpl>(
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() patientsFetched,
+    required TResult Function(bool isRefresh) patientsFetched,
     required TResult Function() notificationsFetched,
     required TResult Function(String query) patientsSearched,
     required TResult Function() loadData,
   }) {
-    return patientsFetched();
+    return patientsFetched(isRefresh);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? patientsFetched,
+    TResult? Function(bool isRefresh)? patientsFetched,
     TResult? Function()? notificationsFetched,
     TResult? Function(String query)? patientsSearched,
     TResult? Function()? loadData,
   }) {
-    return patientsFetched?.call();
+    return patientsFetched?.call(isRefresh);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? patientsFetched,
+    TResult Function(bool isRefresh)? patientsFetched,
     TResult Function()? notificationsFetched,
     TResult Function(String query)? patientsSearched,
     TResult Function()? loadData,
     required TResult orElse(),
   }) {
     if (patientsFetched != null) {
-      return patientsFetched();
+      return patientsFetched(isRefresh);
     }
     return orElse();
   }
@@ -201,7 +234,15 @@ class _$PatientsFetchedImpl implements PatientsFetched {
 }
 
 abstract class PatientsFetched implements DoctorPatientsEvent {
-  const factory PatientsFetched() = _$PatientsFetchedImpl;
+  const factory PatientsFetched({final bool isRefresh}) = _$PatientsFetchedImpl;
+
+  bool get isRefresh;
+
+  /// Create a copy of DoctorPatientsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PatientsFetchedImplCopyWith<_$PatientsFetchedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -248,7 +289,7 @@ class _$NotificationsFetchedImpl implements NotificationsFetched {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() patientsFetched,
+    required TResult Function(bool isRefresh) patientsFetched,
     required TResult Function() notificationsFetched,
     required TResult Function(String query) patientsSearched,
     required TResult Function() loadData,
@@ -259,7 +300,7 @@ class _$NotificationsFetchedImpl implements NotificationsFetched {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? patientsFetched,
+    TResult? Function(bool isRefresh)? patientsFetched,
     TResult? Function()? notificationsFetched,
     TResult? Function(String query)? patientsSearched,
     TResult? Function()? loadData,
@@ -270,7 +311,7 @@ class _$NotificationsFetchedImpl implements NotificationsFetched {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? patientsFetched,
+    TResult Function(bool isRefresh)? patientsFetched,
     TResult Function()? notificationsFetched,
     TResult Function(String query)? patientsSearched,
     TResult Function()? loadData,
@@ -398,7 +439,7 @@ class _$PatientsSearchedImpl implements PatientsSearched {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() patientsFetched,
+    required TResult Function(bool isRefresh) patientsFetched,
     required TResult Function() notificationsFetched,
     required TResult Function(String query) patientsSearched,
     required TResult Function() loadData,
@@ -409,7 +450,7 @@ class _$PatientsSearchedImpl implements PatientsSearched {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? patientsFetched,
+    TResult? Function(bool isRefresh)? patientsFetched,
     TResult? Function()? notificationsFetched,
     TResult? Function(String query)? patientsSearched,
     TResult? Function()? loadData,
@@ -420,7 +461,7 @@ class _$PatientsSearchedImpl implements PatientsSearched {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? patientsFetched,
+    TResult Function(bool isRefresh)? patientsFetched,
     TResult Function()? notificationsFetched,
     TResult Function(String query)? patientsSearched,
     TResult Function()? loadData,
@@ -526,7 +567,7 @@ class _$LoadDataImpl implements LoadData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() patientsFetched,
+    required TResult Function(bool isRefresh) patientsFetched,
     required TResult Function() notificationsFetched,
     required TResult Function(String query) patientsSearched,
     required TResult Function() loadData,
@@ -537,7 +578,7 @@ class _$LoadDataImpl implements LoadData {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? patientsFetched,
+    TResult? Function(bool isRefresh)? patientsFetched,
     TResult? Function()? notificationsFetched,
     TResult? Function(String query)? patientsSearched,
     TResult? Function()? loadData,
@@ -548,7 +589,7 @@ class _$LoadDataImpl implements LoadData {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? patientsFetched,
+    TResult Function(bool isRefresh)? patientsFetched,
     TResult Function()? notificationsFetched,
     TResult Function(String query)? patientsSearched,
     TResult Function()? loadData,
@@ -604,6 +645,8 @@ abstract class LoadData implements DoctorPatientsEvent {
 
 /// @nodoc
 mixin _$DoctorPatientsState {
+  bool get hasMore => throw _privateConstructorUsedError;
+  int get currentPage => throw _privateConstructorUsedError;
   DataStatus get status => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   List<UserModel> get patients => throw _privateConstructorUsedError;
@@ -624,6 +667,8 @@ abstract class $DoctorPatientsStateCopyWith<$Res> {
   ) = _$DoctorPatientsStateCopyWithImpl<$Res, DoctorPatientsState>;
   @useResult
   $Res call({
+    bool hasMore,
+    int currentPage,
     DataStatus status,
     String message,
     List<UserModel> patients,
@@ -646,6 +691,8 @@ class _$DoctorPatientsStateCopyWithImpl<$Res, $Val extends DoctorPatientsState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? hasMore = null,
+    Object? currentPage = null,
     Object? status = null,
     Object? message = null,
     Object? patients = null,
@@ -653,6 +700,16 @@ class _$DoctorPatientsStateCopyWithImpl<$Res, $Val extends DoctorPatientsState>
   }) {
     return _then(
       _value.copyWith(
+            hasMore:
+                null == hasMore
+                    ? _value.hasMore
+                    : hasMore // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            currentPage:
+                null == currentPage
+                    ? _value.currentPage
+                    : currentPage // ignore: cast_nullable_to_non_nullable
+                        as int,
             status:
                 null == status
                     ? _value.status
@@ -689,6 +746,8 @@ abstract class _$$DoctorPatientsStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
+    bool hasMore,
+    int currentPage,
     DataStatus status,
     String message,
     List<UserModel> patients,
@@ -710,6 +769,8 @@ class __$$DoctorPatientsStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? hasMore = null,
+    Object? currentPage = null,
     Object? status = null,
     Object? message = null,
     Object? patients = null,
@@ -717,6 +778,16 @@ class __$$DoctorPatientsStateImplCopyWithImpl<$Res>
   }) {
     return _then(
       _$DoctorPatientsStateImpl(
+        hasMore:
+            null == hasMore
+                ? _value.hasMore
+                : hasMore // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        currentPage:
+            null == currentPage
+                ? _value.currentPage
+                : currentPage // ignore: cast_nullable_to_non_nullable
+                    as int,
         status:
             null == status
                 ? _value.status
@@ -746,12 +817,18 @@ class __$$DoctorPatientsStateImplCopyWithImpl<$Res>
 
 class _$DoctorPatientsStateImpl implements _DoctorPatientsState {
   const _$DoctorPatientsStateImpl({
+    required this.hasMore,
+    required this.currentPage,
     required this.status,
     required this.message,
     required final List<UserModel> patients,
     required this.notificationsCount,
   }) : _patients = patients;
 
+  @override
+  final bool hasMore;
+  @override
+  final int currentPage;
   @override
   final DataStatus status;
   @override
@@ -769,7 +846,7 @@ class _$DoctorPatientsStateImpl implements _DoctorPatientsState {
 
   @override
   String toString() {
-    return 'DoctorPatientsState(status: $status, message: $message, patients: $patients, notificationsCount: $notificationsCount)';
+    return 'DoctorPatientsState(hasMore: $hasMore, currentPage: $currentPage, status: $status, message: $message, patients: $patients, notificationsCount: $notificationsCount)';
   }
 
   @override
@@ -777,6 +854,9 @@ class _$DoctorPatientsStateImpl implements _DoctorPatientsState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DoctorPatientsStateImpl &&
+            (identical(other.hasMore, hasMore) || other.hasMore == hasMore) &&
+            (identical(other.currentPage, currentPage) ||
+                other.currentPage == currentPage) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
             const DeepCollectionEquality().equals(other._patients, _patients) &&
@@ -787,6 +867,8 @@ class _$DoctorPatientsStateImpl implements _DoctorPatientsState {
   @override
   int get hashCode => Object.hash(
     runtimeType,
+    hasMore,
+    currentPage,
     status,
     message,
     const DeepCollectionEquality().hash(_patients),
@@ -807,12 +889,18 @@ class _$DoctorPatientsStateImpl implements _DoctorPatientsState {
 
 abstract class _DoctorPatientsState implements DoctorPatientsState {
   const factory _DoctorPatientsState({
+    required final bool hasMore,
+    required final int currentPage,
     required final DataStatus status,
     required final String message,
     required final List<UserModel> patients,
     required final int notificationsCount,
   }) = _$DoctorPatientsStateImpl;
 
+  @override
+  bool get hasMore;
+  @override
+  int get currentPage;
   @override
   DataStatus get status;
   @override

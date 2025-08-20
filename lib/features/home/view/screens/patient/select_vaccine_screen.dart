@@ -22,14 +22,15 @@ class SelectVaccineScreen extends StatefulWidget {
 class _SelectVaccineScreenState extends State<SelectVaccineScreen> {
   @override
   void initState() {
+    context.read<SelectVaccinationCubit>().fetchVaccines(true);
     super.initState();
-    context.read<SelectVaccinationCubit>().fetchVaccines();
+    _scrollController.addListener(_onScroll);
   }
 
   @override
   void dispose() {
     context.read<SelectVaccinationCubit>().reset();
-
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -106,11 +107,18 @@ class _SelectVaccineScreenState extends State<SelectVaccineScreen> {
                 if (state.vaccines.isEmpty && !state.status.isLoading) {
                   return RefreshIndicator(
                     onRefresh: () async {
-                      context.read<SelectVaccinationCubit>().fetchVaccines();
+                      context.read<SelectVaccinationCubit>().fetchVaccines(
+                        true,
+                      );
                     },
                     child: SingleChildScrollView(
+                      physics: AlwaysScrollableScrollPhysics(),
                       child: Center(
+                        heightFactor: 4.5,
                         child: Image.asset(
+                          width: 130,
+                          height: 130,
+                          fit: BoxFit.cover,
                           'assets/images/il_empty_activity.webp',
                         ),
                       ),
@@ -121,14 +129,28 @@ class _SelectVaccineScreenState extends State<SelectVaccineScreen> {
                   enabled: state.status.isLoading,
                   child: RefreshIndicator(
                     onRefresh: () async {
-                      context.read<SelectVaccinationCubit>().fetchVaccines();
+                      context.read<SelectVaccinationCubit>().fetchVaccines(
+                        true,
+                      );
                     },
                     child: ListView.builder(
+                      controller: _scrollController,
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       itemCount:
-                          state.status.isLoading ? 10 : state.vaccines.length,
+                          state.status.isLoading
+                              ? 10
+                              : state.status.isLoadingMore
+                              ? state.vaccines.length + 1
+                              : state.vaccines.length,
                       itemExtent: screenHeight(context) * 0.14,
                       itemBuilder: (_, index) {
+                        if (state.status.isLoadingMore &&
+                            index == state.vaccines.length) {
+                          return Padding(
+                            padding: EdgeInsets.symmetric(vertical: 16),
+                            child: Center(child: CircularProgressIndicator()),
+                          );
+                        }
                         if (state.status.isLoading) {
                           return _buildLoadingItem(context);
                         }
@@ -293,4 +315,17 @@ class _SelectVaccineScreenState extends State<SelectVaccineScreen> {
       ),
     );
   }
+
+  void _onScroll() {
+    final vacCubit = context.read<SelectVaccinationCubit>();
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      if (!vacCubit.state.status.isLoading &&
+          !vacCubit.state.status.isLoadingMore) {
+        vacCubit.fetchVaccines();
+      }
+    }
+  }
+
+  final _scrollController = ScrollController();
 }

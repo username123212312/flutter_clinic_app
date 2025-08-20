@@ -35,7 +35,8 @@ class AppConstants {
   static const sendSMSOtpPath = '/$apiPath/send-sms-otp';
   static const verifySMSOtpPath = '/$apiPath/verify-sms-otp';
   static const verifyEmailOtpPath = '/$apiPath/verify-email-otp';
-  static const resetPasswordPath = '/$apiPath/resetPassword';
+  static const emailResetPasswordPath = '/$apiPath/email_resetPassword';
+  static const phoneResetPasswordPath = '/$apiPath/phone_resetPassword';
   static const sendFCMTokenPath = '/$apiPath/saveFcmToken';
 
   ///? Chat

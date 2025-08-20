@@ -5,7 +5,7 @@ final List<DoctorModel> doctorsList = List.generate(10, (index) {
     firstName: 'Jennifer',
     lastName: 'Miller',
     speciality: (index % 2 == 0) ? 'Heart' : 'Lung',
-    finalRate: 4.8.toString(),
+    finalRate: 4,
     department: '10:30am - 5:30pm',
   );
 });

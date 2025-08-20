@@ -19,6 +19,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ReservationDetailsState {
   AppointmentModel? get appointment => throw _privateConstructorUsedError;
   DataStatus get status => throw _privateConstructorUsedError;
+  DataStatus get discountPointsStatus => throw _privateConstructorUsedError;
+  int get discountPoints => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   String? get paymentIntentId => throw _privateConstructorUsedError;
   String? get clientID => throw _privateConstructorUsedError;
@@ -41,6 +43,8 @@ abstract class $ReservationDetailsStateCopyWith<$Res> {
   $Res call({
     AppointmentModel? appointment,
     DataStatus status,
+    DataStatus discountPointsStatus,
+    int discountPoints,
     String message,
     String? paymentIntentId,
     String? clientID,
@@ -70,6 +74,8 @@ class _$ReservationDetailsStateCopyWithImpl<
   $Res call({
     Object? appointment = freezed,
     Object? status = null,
+    Object? discountPointsStatus = null,
+    Object? discountPoints = null,
     Object? message = null,
     Object? paymentIntentId = freezed,
     Object? clientID = freezed,
@@ -87,6 +93,16 @@ class _$ReservationDetailsStateCopyWithImpl<
                     ? _value.status
                     : status // ignore: cast_nullable_to_non_nullable
                         as DataStatus,
+            discountPointsStatus:
+                null == discountPointsStatus
+                    ? _value.discountPointsStatus
+                    : discountPointsStatus // ignore: cast_nullable_to_non_nullable
+                        as DataStatus,
+            discountPoints:
+                null == discountPoints
+                    ? _value.discountPoints
+                    : discountPoints // ignore: cast_nullable_to_non_nullable
+                        as int,
             message:
                 null == message
                     ? _value.message
@@ -139,6 +155,8 @@ abstract class _$$ReservationDetailsStateImplCopyWith<$Res>
   $Res call({
     AppointmentModel? appointment,
     DataStatus status,
+    DataStatus discountPointsStatus,
+    int discountPoints,
     String message,
     String? paymentIntentId,
     String? clientID,
@@ -169,6 +187,8 @@ class __$$ReservationDetailsStateImplCopyWithImpl<$Res>
   $Res call({
     Object? appointment = freezed,
     Object? status = null,
+    Object? discountPointsStatus = null,
+    Object? discountPoints = null,
     Object? message = null,
     Object? paymentIntentId = freezed,
     Object? clientID = freezed,
@@ -186,6 +206,16 @@ class __$$ReservationDetailsStateImplCopyWithImpl<$Res>
                 ? _value.status
                 : status // ignore: cast_nullable_to_non_nullable
                     as DataStatus,
+        discountPointsStatus:
+            null == discountPointsStatus
+                ? _value.discountPointsStatus
+                : discountPointsStatus // ignore: cast_nullable_to_non_nullable
+                    as DataStatus,
+        discountPoints:
+            null == discountPoints
+                ? _value.discountPoints
+                : discountPoints // ignore: cast_nullable_to_non_nullable
+                    as int,
         message:
             null == message
                 ? _value.message
@@ -217,6 +247,8 @@ class _$ReservationDetailsStateImpl implements _ReservationDetailsState {
   const _$ReservationDetailsStateImpl({
     this.appointment,
     required this.status,
+    required this.discountPointsStatus,
+    required this.discountPoints,
     required this.message,
     this.paymentIntentId,
     this.clientID,
@@ -228,6 +260,10 @@ class _$ReservationDetailsStateImpl implements _ReservationDetailsState {
   @override
   final DataStatus status;
   @override
+  final DataStatus discountPointsStatus;
+  @override
+  final int discountPoints;
+  @override
   final String message;
   @override
   final String? paymentIntentId;
@@ -238,7 +274,7 @@ class _$ReservationDetailsStateImpl implements _ReservationDetailsState {
 
   @override
   String toString() {
-    return 'ReservationDetailsState(appointment: $appointment, status: $status, message: $message, paymentIntentId: $paymentIntentId, clientID: $clientID, isPaid: $isPaid)';
+    return 'ReservationDetailsState(appointment: $appointment, status: $status, discountPointsStatus: $discountPointsStatus, discountPoints: $discountPoints, message: $message, paymentIntentId: $paymentIntentId, clientID: $clientID, isPaid: $isPaid)';
   }
 
   @override
@@ -249,6 +285,10 @@ class _$ReservationDetailsStateImpl implements _ReservationDetailsState {
             (identical(other.appointment, appointment) ||
                 other.appointment == appointment) &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.discountPointsStatus, discountPointsStatus) ||
+                other.discountPointsStatus == discountPointsStatus) &&
+            (identical(other.discountPoints, discountPoints) ||
+                other.discountPoints == discountPoints) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.paymentIntentId, paymentIntentId) ||
                 other.paymentIntentId == paymentIntentId) &&
@@ -262,6 +302,8 @@ class _$ReservationDetailsStateImpl implements _ReservationDetailsState {
     runtimeType,
     appointment,
     status,
+    discountPointsStatus,
+    discountPoints,
     message,
     paymentIntentId,
     clientID,
@@ -283,6 +325,8 @@ abstract class _ReservationDetailsState implements ReservationDetailsState {
   const factory _ReservationDetailsState({
     final AppointmentModel? appointment,
     required final DataStatus status,
+    required final DataStatus discountPointsStatus,
+    required final int discountPoints,
     required final String message,
     final String? paymentIntentId,
     final String? clientID,
@@ -293,6 +337,10 @@ abstract class _ReservationDetailsState implements ReservationDetailsState {
   AppointmentModel? get appointment;
   @override
   DataStatus get status;
+  @override
+  DataStatus get discountPointsStatus;
+  @override
+  int get discountPoints;
   @override
   String get message;
   @override

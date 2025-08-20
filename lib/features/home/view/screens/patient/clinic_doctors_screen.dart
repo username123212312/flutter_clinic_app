@@ -116,8 +116,7 @@ class _ClinicDoctorsScreenState extends State<ClinicDoctorsScreen> {
                               title: "doctor['title']",
                               subtitle: "doctor['subtitle']",
                               imagePath: 'assets/images/logo.webp',
-                              startTime: "",
-                              endTime: "",
+                              visitDuration: '',
                               rating: 0.0,
                             );
                           }
@@ -134,10 +133,11 @@ class _ClinicDoctorsScreenState extends State<ClinicDoctorsScreen> {
                                 '${doctor.firstName ?? 'No'} ${doctor.lastName ?? 'Doctor'}',
                             subtitle: doctor.speciality ?? 'No speciality',
                             imagePath: doctor.photo,
-                            startTime: '',
-                            endTime: '',
+                            visitDuration: doctor.averageVisitDuration ?? '',
                             rating:
-                                double.tryParse(doctor.finalRate ?? '0.0') ??
+                                double.tryParse(
+                                  (doctor.finalRate ?? 0.0).toString(),
+                                ) ??
                                 0.0,
                           );
                         },

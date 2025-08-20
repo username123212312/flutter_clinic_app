@@ -2,8 +2,10 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:intl/intl.dart';
 import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:our_flutter_clinic_app/core/providers/dio_client/dio_client.dart';
+import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
 import 'package:our_flutter_clinic_app/features/home/model/medical_info_model.dart';
 import 'package:our_flutter_clinic_app/features/home/model/prescription_model.dart';
@@ -17,11 +19,15 @@ class DoctorAppointmentsRepository {
   fetchAppointmentsByType({
     required DoctorAppointmentStatus appointmentStatus,
     required DoctorAppointmentType appointmentType,
+    required DateTime date,
+    int? page = 1,
   }) async {
     try {
       final response = await _dio.post(
         AppConstants.doctorShowAppointmentsByTypePath,
         data: {
+          'page': page,
+          'date': DateFormat('MM-yyyy').format(date),
           'status': appointmentStatus.name,
           'type': appointmentType.toJson(),
         },
@@ -30,9 +36,9 @@ class DoctorAppointmentsRepository {
         return Right(
           AppResponse<List<AppointmentModel>>(
             message: 'Appointments fetched successfully',
-            success: true,
+            success: doesListHaveMore(response.data['meta']),
             data:
-                (response.data['items'] as List<dynamic>).map((appointment) {
+                (response.data['data'] as List<dynamic>).map((appointment) {
                   return AppointmentModel.fromJson(
                     appointment,
                   ).copyWith(id: appointment['id']);
