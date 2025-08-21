@@ -11,6 +11,7 @@ import 'package:our_flutter_clinic_app/features/home/view/screens/patient/resche
 import 'package:our_flutter_clinic_app/features/home/view/screens/patient/switch_account_screen.dart';
 
 import '../../features/home/view/screens/doctor/add_child_record_screen.dart';
+import '../../features/home/view/screens/doctor/change_appointments_schedules.dart';
 import '../../features/home/view/screens/doctor/doctor_appointment_datails_screen.dart';
 import '../../features/home/view/screens/doctor/doctor_home_screen.dart';
 import '../../features/home/view/screens/doctor/doctor_profile.dart';
@@ -194,6 +195,13 @@ class AppRouteConfig {
         pageBuilder: (_, state) {
           final doctor = state.extra as DoctorModel;
           return TransitionPage(child: DoctorInfoScreen(doctor: doctor));
+        },
+      ),
+      GoRoute(
+        name: AppRouteConstants.doctorChangeSchedulesRouteName,
+        path: '/doctor_change_schedules',
+        pageBuilder: (_, state) {
+          return TransitionPage(child: ChangeAppointmentsSchedules());
         },
       ),
       GoRoute(
