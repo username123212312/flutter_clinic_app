@@ -66,6 +66,8 @@ class DoctorAppointmentsBloc
       add(FetchAppointmentsByType());
     });
 
+    on<CancelAppointment>(_cancelAppointment);
+
     on<FetchAppointmentsByType>(_fetchAppointmentsByType);
   }
   Future<void> _fetchAppointmentsByType(
@@ -114,4 +116,33 @@ class DoctorAppointmentsBloc
   }
 
   final DoctorAppointmentsRepository _doctorAppointmentsRepository;
+
+  Future<void> _cancelAppointment(
+    CancelAppointment event,
+    Emitter<DoctorAppointmentsState> emit,
+  ) async {
+    try {
+      emit(state.copyWith(status: DataStatus.loading, message: 'Loading'));
+      final response = await _doctorAppointmentsRepository.cancelAppointment(
+        reservationId: event.reservationId,
+      );
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          status: DataStatus.error,
+          message: l.message,
+        ),
+        Right(value: final r) => state.copyWith(
+          status: DataStatus.done,
+          message: r.message,
+        ),
+      };
+      emit(newState);
+      if (state.status.isDone) {
+        emit(state.copyWith(currentPage: 0, hasMore: true));
+        add(FetchAppointmentsByType());
+      }
+    } catch (e) {
+      emit(state.copyWith(status: DataStatus.error, message: e.toString()));
+    }
+  }
 }

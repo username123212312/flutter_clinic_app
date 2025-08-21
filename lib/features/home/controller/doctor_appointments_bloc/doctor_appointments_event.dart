@@ -12,6 +12,9 @@ class DoctorAppointmentsEvent with _$DoctorAppointmentsEvent {
   const factory DoctorAppointmentsEvent.changeAppointmentType({
     required DoctorAppointmentType type,
   }) = ChangeAppointmentType;
+  const factory DoctorAppointmentsEvent.cancelAppointment({
+    required int reservationId,
+  }) = CancelAppointment;
   const factory DoctorAppointmentsEvent.changeAppointmentMonth({
     required DateTime month,
   }) = ChangeAppointmentMonth;

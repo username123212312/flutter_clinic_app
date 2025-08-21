@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:our_flutter_clinic_app/features/home/model/review_model.dart';
 
 import '../../../../core/enums.dart';
 import '../../model/doctor_model.dart';
@@ -36,6 +37,29 @@ class DoctorRateCubit extends Cubit<DoctorRateState> {
         ),
         Right(value: final r) => state.copyWith(
           status: DataStatus.done,
+          message: r.message,
+        ),
+      };
+      emit(newState);
+    } catch (e) {
+      emit(state.copyWith(status: DataStatus.error, message: e.toString()));
+    }
+  }
+
+  Future<void> fetchDoctorRates() async {
+    emit(state.copyWith(status: DataStatus.loading, message: 'Loading'));
+    try {
+      final response = await _doctorInfoRepository.fetchDoctorReviews(
+        state.doctor.id ?? -1,
+      );
+      final newState = switch (response) {
+        Left(value: final l) => state.copyWith(
+          status: DataStatus.error,
+          message: l.message,
+        ),
+        Right(value: final r) => state.copyWith(
+          reviews: r.data ?? state.reviews,
+          status: DataStatus.data,
           message: r.message,
         ),
       };

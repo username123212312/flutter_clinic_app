@@ -6,10 +6,10 @@ part 'review_model.g.dart';
 @freezed
 class ReviewModel with _$ReviewModel {
   factory ReviewModel({
-    @JsonKey(name: 'patient_id') int? patientId,
+    @JsonKey(name: 'patient_name') String? patientName,
     @JsonKey(name: 'patient_first_name') String? patientFirstName,
     @JsonKey(name: 'patient_last_name') String? patientLastName,
-    int? rate,
+    double? rate,
     String? comment,
   }) = _ReviewModel;
 

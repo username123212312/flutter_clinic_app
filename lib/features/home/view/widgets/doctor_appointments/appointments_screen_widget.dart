@@ -12,6 +12,8 @@ import 'package:skeletonizer/skeletonizer.dart';
 import 'package:toastification/toastification.dart';
 
 import '../../../../../core/navigation/navigation_exports.dart';
+import '../../../../../core/widgets/custom_dialog.dart';
+import '../../../../../core/widgets/transparent_content_dialog.dart';
 import '../../../controller/doctor_appointments_bloc/doctor_appointments_bloc.dart';
 
 class AppointmentsScreenWidget extends StatefulWidget {
@@ -94,7 +96,10 @@ class _AppointmentsScreenWidgetState extends State<AppointmentsScreenWidget> {
                       physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      itemExtent: screenHeight(context) * 0.22,
+                      itemExtent:
+                          _currentStatusIndex == 0
+                              ? (screenHeight(context) * 0.29)
+                              : (screenHeight(context) * 0.22),
                       itemCount:
                           state.status.isLoading
                               ? 10
@@ -130,6 +135,9 @@ class _AppointmentsScreenWidgetState extends State<AppointmentsScreenWidget> {
                             },
                             behavior: HitTestBehavior.opaque,
                             child: DoctorAppointmentCard(
+                              onCancel: () {
+                                _showTDialog(appointment);
+                              },
                               appointment: appointment,
                               image:
                                   (appointment.patientGender ?? 'male')[0] ==
@@ -148,6 +156,95 @@ class _AppointmentsScreenWidgetState extends State<AppointmentsScreenWidget> {
           ),
         ],
       ),
+    );
+  }
+
+  Future<dynamic> _showTDialog(AppointmentModel appointment) {
+    return TransparentDialog.show(
+      barrierDismissible: true,
+      context: context,
+      builder:
+          (_) => CustomDialog(
+            size: Size(
+              screenWidth(context) * 0.8,
+              screenHeight(context) * 0.17,
+            ),
+            content: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Are you sure?',
+                  style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                    color: Colors.black,
+                    fontSize: 15,
+                  ),
+                ),
+                SizedBox(height: 50),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(
+                      width: screenWidth(context) * 0.3,
+                      height: screenHeight(context) * 0.05,
+                      child: CustomElevatedButton(
+                        fontSize: 12,
+                        title: 'back',
+                        onTap: () {
+                          context.pop();
+                        },
+                        fillColor: Pallete.grayScaleColor400,
+                        textColor: Colors.black,
+                      ),
+                    ),
+                    SizedBox(
+                      width: screenWidth(context) * 0.3,
+                      height: screenHeight(context) * 0.05,
+                      child: CustomElevatedButton(
+                        fontSize: 12,
+                        title: 'Cancel',
+                        onTap: () async {
+                          context.read<DoctorAppointmentsBloc>().add(
+                            CancelAppointment(
+                              reservationId: appointment.id ?? -1,
+                            ),
+                          );
+                          context.pop();
+
+                          bool isCancelled = false;
+                          await for (final newState
+                              in context
+                                  .read<DoctorAppointmentsBloc>()
+                                  .stream) {
+                            if (!newState.status.isLoading) {
+                              if (newState.status.isDone) {
+                                isCancelled = true;
+                              }
+                              break;
+                            }
+                          }
+                          if (isCancelled) {
+                            showToast(
+                              context: context,
+                              msg: 'Appointment cancelled successfully',
+                              type: ToastificationType.success,
+                            );
+                          } else {
+                            showToast(
+                              context: context,
+                              msg: 'some error occurred',
+                              type: ToastificationType.error,
+                            );
+                          }
+                        },
+                        fillColor: Theme.of(context).colorScheme.primary,
+                        textColor: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
     );
   }
 

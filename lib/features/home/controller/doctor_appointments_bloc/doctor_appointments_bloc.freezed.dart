@@ -24,6 +24,7 @@ mixin _$DoctorAppointmentsEvent {
     required TResult Function(DoctorAppointmentStatus status)
     changeAppointmentStatus,
     required TResult Function(DoctorAppointmentType type) changeAppointmentType,
+    required TResult Function(int reservationId) cancelAppointment,
     required TResult Function(DateTime month) changeAppointmentMonth,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +33,7 @@ mixin _$DoctorAppointmentsEvent {
     TResult? Function()? resetAppointments,
     TResult? Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
     TResult? Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult? Function(int reservationId)? cancelAppointment,
     TResult? Function(DateTime month)? changeAppointmentMonth,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,6 +42,7 @@ mixin _$DoctorAppointmentsEvent {
     TResult Function()? resetAppointments,
     TResult Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
     TResult Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult Function(int reservationId)? cancelAppointment,
     TResult Function(DateTime month)? changeAppointmentMonth,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
@@ -52,6 +55,7 @@ mixin _$DoctorAppointmentsEvent {
     changeAppointmentStatus,
     required TResult Function(ChangeAppointmentType value)
     changeAppointmentType,
+    required TResult Function(CancelAppointment value) cancelAppointment,
     required TResult Function(ChangeAppointmentMonth value)
     changeAppointmentMonth,
   }) => throw _privateConstructorUsedError;
@@ -61,6 +65,7 @@ mixin _$DoctorAppointmentsEvent {
     TResult? Function(ResetAppointments value)? resetAppointments,
     TResult? Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
     TResult? Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult? Function(CancelAppointment value)? cancelAppointment,
     TResult? Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +74,7 @@ mixin _$DoctorAppointmentsEvent {
     TResult Function(ResetAppointments value)? resetAppointments,
     TResult Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
     TResult Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult Function(CancelAppointment value)? cancelAppointment,
     TResult Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
@@ -182,6 +188,7 @@ class _$FetchAppointmentsByTypeImpl implements FetchAppointmentsByType {
     required TResult Function(DoctorAppointmentStatus status)
     changeAppointmentStatus,
     required TResult Function(DoctorAppointmentType type) changeAppointmentType,
+    required TResult Function(int reservationId) cancelAppointment,
     required TResult Function(DateTime month) changeAppointmentMonth,
   }) {
     return fetchAppointmentsByType(isRefresh);
@@ -194,6 +201,7 @@ class _$FetchAppointmentsByTypeImpl implements FetchAppointmentsByType {
     TResult? Function()? resetAppointments,
     TResult? Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
     TResult? Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult? Function(int reservationId)? cancelAppointment,
     TResult? Function(DateTime month)? changeAppointmentMonth,
   }) {
     return fetchAppointmentsByType?.call(isRefresh);
@@ -206,6 +214,7 @@ class _$FetchAppointmentsByTypeImpl implements FetchAppointmentsByType {
     TResult Function()? resetAppointments,
     TResult Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
     TResult Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult Function(int reservationId)? cancelAppointment,
     TResult Function(DateTime month)? changeAppointmentMonth,
     required TResult orElse(),
   }) {
@@ -225,6 +234,7 @@ class _$FetchAppointmentsByTypeImpl implements FetchAppointmentsByType {
     changeAppointmentStatus,
     required TResult Function(ChangeAppointmentType value)
     changeAppointmentType,
+    required TResult Function(CancelAppointment value) cancelAppointment,
     required TResult Function(ChangeAppointmentMonth value)
     changeAppointmentMonth,
   }) {
@@ -238,6 +248,7 @@ class _$FetchAppointmentsByTypeImpl implements FetchAppointmentsByType {
     TResult? Function(ResetAppointments value)? resetAppointments,
     TResult? Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
     TResult? Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult? Function(CancelAppointment value)? cancelAppointment,
     TResult? Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
   }) {
     return fetchAppointmentsByType?.call(this);
@@ -250,6 +261,7 @@ class _$FetchAppointmentsByTypeImpl implements FetchAppointmentsByType {
     TResult Function(ResetAppointments value)? resetAppointments,
     TResult Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
     TResult Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult Function(CancelAppointment value)? cancelAppointment,
     TResult Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
     required TResult orElse(),
   }) {
@@ -321,6 +333,7 @@ class _$ResetAppointmentsImpl implements ResetAppointments {
     required TResult Function(DoctorAppointmentStatus status)
     changeAppointmentStatus,
     required TResult Function(DoctorAppointmentType type) changeAppointmentType,
+    required TResult Function(int reservationId) cancelAppointment,
     required TResult Function(DateTime month) changeAppointmentMonth,
   }) {
     return resetAppointments();
@@ -333,6 +346,7 @@ class _$ResetAppointmentsImpl implements ResetAppointments {
     TResult? Function()? resetAppointments,
     TResult? Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
     TResult? Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult? Function(int reservationId)? cancelAppointment,
     TResult? Function(DateTime month)? changeAppointmentMonth,
   }) {
     return resetAppointments?.call();
@@ -345,6 +359,7 @@ class _$ResetAppointmentsImpl implements ResetAppointments {
     TResult Function()? resetAppointments,
     TResult Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
     TResult Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult Function(int reservationId)? cancelAppointment,
     TResult Function(DateTime month)? changeAppointmentMonth,
     required TResult orElse(),
   }) {
@@ -364,6 +379,7 @@ class _$ResetAppointmentsImpl implements ResetAppointments {
     changeAppointmentStatus,
     required TResult Function(ChangeAppointmentType value)
     changeAppointmentType,
+    required TResult Function(CancelAppointment value) cancelAppointment,
     required TResult Function(ChangeAppointmentMonth value)
     changeAppointmentMonth,
   }) {
@@ -377,6 +393,7 @@ class _$ResetAppointmentsImpl implements ResetAppointments {
     TResult? Function(ResetAppointments value)? resetAppointments,
     TResult? Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
     TResult? Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult? Function(CancelAppointment value)? cancelAppointment,
     TResult? Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
   }) {
     return resetAppointments?.call(this);
@@ -389,6 +406,7 @@ class _$ResetAppointmentsImpl implements ResetAppointments {
     TResult Function(ResetAppointments value)? resetAppointments,
     TResult Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
     TResult Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult Function(CancelAppointment value)? cancelAppointment,
     TResult Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
     required TResult orElse(),
   }) {
@@ -485,6 +503,7 @@ class _$ChangeAppointmentStatusImpl implements ChangeAppointmentStatus {
     required TResult Function(DoctorAppointmentStatus status)
     changeAppointmentStatus,
     required TResult Function(DoctorAppointmentType type) changeAppointmentType,
+    required TResult Function(int reservationId) cancelAppointment,
     required TResult Function(DateTime month) changeAppointmentMonth,
   }) {
     return changeAppointmentStatus(status);
@@ -497,6 +516,7 @@ class _$ChangeAppointmentStatusImpl implements ChangeAppointmentStatus {
     TResult? Function()? resetAppointments,
     TResult? Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
     TResult? Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult? Function(int reservationId)? cancelAppointment,
     TResult? Function(DateTime month)? changeAppointmentMonth,
   }) {
     return changeAppointmentStatus?.call(status);
@@ -509,6 +529,7 @@ class _$ChangeAppointmentStatusImpl implements ChangeAppointmentStatus {
     TResult Function()? resetAppointments,
     TResult Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
     TResult Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult Function(int reservationId)? cancelAppointment,
     TResult Function(DateTime month)? changeAppointmentMonth,
     required TResult orElse(),
   }) {
@@ -528,6 +549,7 @@ class _$ChangeAppointmentStatusImpl implements ChangeAppointmentStatus {
     changeAppointmentStatus,
     required TResult Function(ChangeAppointmentType value)
     changeAppointmentType,
+    required TResult Function(CancelAppointment value) cancelAppointment,
     required TResult Function(ChangeAppointmentMonth value)
     changeAppointmentMonth,
   }) {
@@ -541,6 +563,7 @@ class _$ChangeAppointmentStatusImpl implements ChangeAppointmentStatus {
     TResult? Function(ResetAppointments value)? resetAppointments,
     TResult? Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
     TResult? Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult? Function(CancelAppointment value)? cancelAppointment,
     TResult? Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
   }) {
     return changeAppointmentStatus?.call(this);
@@ -553,6 +576,7 @@ class _$ChangeAppointmentStatusImpl implements ChangeAppointmentStatus {
     TResult Function(ResetAppointments value)? resetAppointments,
     TResult Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
     TResult Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult Function(CancelAppointment value)? cancelAppointment,
     TResult Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
     required TResult orElse(),
   }) {
@@ -658,6 +682,7 @@ class _$ChangeAppointmentTypeImpl implements ChangeAppointmentType {
     required TResult Function(DoctorAppointmentStatus status)
     changeAppointmentStatus,
     required TResult Function(DoctorAppointmentType type) changeAppointmentType,
+    required TResult Function(int reservationId) cancelAppointment,
     required TResult Function(DateTime month) changeAppointmentMonth,
   }) {
     return changeAppointmentType(type);
@@ -670,6 +695,7 @@ class _$ChangeAppointmentTypeImpl implements ChangeAppointmentType {
     TResult? Function()? resetAppointments,
     TResult? Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
     TResult? Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult? Function(int reservationId)? cancelAppointment,
     TResult? Function(DateTime month)? changeAppointmentMonth,
   }) {
     return changeAppointmentType?.call(type);
@@ -682,6 +708,7 @@ class _$ChangeAppointmentTypeImpl implements ChangeAppointmentType {
     TResult Function()? resetAppointments,
     TResult Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
     TResult Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult Function(int reservationId)? cancelAppointment,
     TResult Function(DateTime month)? changeAppointmentMonth,
     required TResult orElse(),
   }) {
@@ -701,6 +728,7 @@ class _$ChangeAppointmentTypeImpl implements ChangeAppointmentType {
     changeAppointmentStatus,
     required TResult Function(ChangeAppointmentType value)
     changeAppointmentType,
+    required TResult Function(CancelAppointment value) cancelAppointment,
     required TResult Function(ChangeAppointmentMonth value)
     changeAppointmentMonth,
   }) {
@@ -714,6 +742,7 @@ class _$ChangeAppointmentTypeImpl implements ChangeAppointmentType {
     TResult? Function(ResetAppointments value)? resetAppointments,
     TResult? Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
     TResult? Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult? Function(CancelAppointment value)? cancelAppointment,
     TResult? Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
   }) {
     return changeAppointmentType?.call(this);
@@ -726,6 +755,7 @@ class _$ChangeAppointmentTypeImpl implements ChangeAppointmentType {
     TResult Function(ResetAppointments value)? resetAppointments,
     TResult Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
     TResult Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult Function(CancelAppointment value)? cancelAppointment,
     TResult Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
     required TResult orElse(),
   }) {
@@ -748,6 +778,183 @@ abstract class ChangeAppointmentType implements DoctorAppointmentsEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChangeAppointmentTypeImplCopyWith<_$ChangeAppointmentTypeImpl>
   get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CancelAppointmentImplCopyWith<$Res> {
+  factory _$$CancelAppointmentImplCopyWith(
+    _$CancelAppointmentImpl value,
+    $Res Function(_$CancelAppointmentImpl) then,
+  ) = __$$CancelAppointmentImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int reservationId});
+}
+
+/// @nodoc
+class __$$CancelAppointmentImplCopyWithImpl<$Res>
+    extends _$DoctorAppointmentsEventCopyWithImpl<$Res, _$CancelAppointmentImpl>
+    implements _$$CancelAppointmentImplCopyWith<$Res> {
+  __$$CancelAppointmentImplCopyWithImpl(
+    _$CancelAppointmentImpl _value,
+    $Res Function(_$CancelAppointmentImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of DoctorAppointmentsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? reservationId = null}) {
+    return _then(
+      _$CancelAppointmentImpl(
+        reservationId:
+            null == reservationId
+                ? _value.reservationId
+                : reservationId // ignore: cast_nullable_to_non_nullable
+                    as int,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$CancelAppointmentImpl implements CancelAppointment {
+  const _$CancelAppointmentImpl({required this.reservationId});
+
+  @override
+  final int reservationId;
+
+  @override
+  String toString() {
+    return 'DoctorAppointmentsEvent.cancelAppointment(reservationId: $reservationId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CancelAppointmentImpl &&
+            (identical(other.reservationId, reservationId) ||
+                other.reservationId == reservationId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, reservationId);
+
+  /// Create a copy of DoctorAppointmentsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CancelAppointmentImplCopyWith<_$CancelAppointmentImpl> get copyWith =>
+      __$$CancelAppointmentImplCopyWithImpl<_$CancelAppointmentImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool isRefresh) fetchAppointmentsByType,
+    required TResult Function() resetAppointments,
+    required TResult Function(DoctorAppointmentStatus status)
+    changeAppointmentStatus,
+    required TResult Function(DoctorAppointmentType type) changeAppointmentType,
+    required TResult Function(int reservationId) cancelAppointment,
+    required TResult Function(DateTime month) changeAppointmentMonth,
+  }) {
+    return cancelAppointment(reservationId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool isRefresh)? fetchAppointmentsByType,
+    TResult? Function()? resetAppointments,
+    TResult? Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
+    TResult? Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult? Function(int reservationId)? cancelAppointment,
+    TResult? Function(DateTime month)? changeAppointmentMonth,
+  }) {
+    return cancelAppointment?.call(reservationId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isRefresh)? fetchAppointmentsByType,
+    TResult Function()? resetAppointments,
+    TResult Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
+    TResult Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult Function(int reservationId)? cancelAppointment,
+    TResult Function(DateTime month)? changeAppointmentMonth,
+    required TResult orElse(),
+  }) {
+    if (cancelAppointment != null) {
+      return cancelAppointment(reservationId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FetchAppointmentsByType value)
+    fetchAppointmentsByType,
+    required TResult Function(ResetAppointments value) resetAppointments,
+    required TResult Function(ChangeAppointmentStatus value)
+    changeAppointmentStatus,
+    required TResult Function(ChangeAppointmentType value)
+    changeAppointmentType,
+    required TResult Function(CancelAppointment value) cancelAppointment,
+    required TResult Function(ChangeAppointmentMonth value)
+    changeAppointmentMonth,
+  }) {
+    return cancelAppointment(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FetchAppointmentsByType value)? fetchAppointmentsByType,
+    TResult? Function(ResetAppointments value)? resetAppointments,
+    TResult? Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
+    TResult? Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult? Function(CancelAppointment value)? cancelAppointment,
+    TResult? Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
+  }) {
+    return cancelAppointment?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FetchAppointmentsByType value)? fetchAppointmentsByType,
+    TResult Function(ResetAppointments value)? resetAppointments,
+    TResult Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
+    TResult Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult Function(CancelAppointment value)? cancelAppointment,
+    TResult Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
+    required TResult orElse(),
+  }) {
+    if (cancelAppointment != null) {
+      return cancelAppointment(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CancelAppointment implements DoctorAppointmentsEvent {
+  const factory CancelAppointment({required final int reservationId}) =
+      _$CancelAppointmentImpl;
+
+  int get reservationId;
+
+  /// Create a copy of DoctorAppointmentsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CancelAppointmentImplCopyWith<_$CancelAppointmentImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -834,6 +1041,7 @@ class _$ChangeAppointmentMonthImpl implements ChangeAppointmentMonth {
     required TResult Function(DoctorAppointmentStatus status)
     changeAppointmentStatus,
     required TResult Function(DoctorAppointmentType type) changeAppointmentType,
+    required TResult Function(int reservationId) cancelAppointment,
     required TResult Function(DateTime month) changeAppointmentMonth,
   }) {
     return changeAppointmentMonth(month);
@@ -846,6 +1054,7 @@ class _$ChangeAppointmentMonthImpl implements ChangeAppointmentMonth {
     TResult? Function()? resetAppointments,
     TResult? Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
     TResult? Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult? Function(int reservationId)? cancelAppointment,
     TResult? Function(DateTime month)? changeAppointmentMonth,
   }) {
     return changeAppointmentMonth?.call(month);
@@ -858,6 +1067,7 @@ class _$ChangeAppointmentMonthImpl implements ChangeAppointmentMonth {
     TResult Function()? resetAppointments,
     TResult Function(DoctorAppointmentStatus status)? changeAppointmentStatus,
     TResult Function(DoctorAppointmentType type)? changeAppointmentType,
+    TResult Function(int reservationId)? cancelAppointment,
     TResult Function(DateTime month)? changeAppointmentMonth,
     required TResult orElse(),
   }) {
@@ -877,6 +1087,7 @@ class _$ChangeAppointmentMonthImpl implements ChangeAppointmentMonth {
     changeAppointmentStatus,
     required TResult Function(ChangeAppointmentType value)
     changeAppointmentType,
+    required TResult Function(CancelAppointment value) cancelAppointment,
     required TResult Function(ChangeAppointmentMonth value)
     changeAppointmentMonth,
   }) {
@@ -890,6 +1101,7 @@ class _$ChangeAppointmentMonthImpl implements ChangeAppointmentMonth {
     TResult? Function(ResetAppointments value)? resetAppointments,
     TResult? Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
     TResult? Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult? Function(CancelAppointment value)? cancelAppointment,
     TResult? Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
   }) {
     return changeAppointmentMonth?.call(this);
@@ -902,6 +1114,7 @@ class _$ChangeAppointmentMonthImpl implements ChangeAppointmentMonth {
     TResult Function(ResetAppointments value)? resetAppointments,
     TResult Function(ChangeAppointmentStatus value)? changeAppointmentStatus,
     TResult Function(ChangeAppointmentType value)? changeAppointmentType,
+    TResult Function(CancelAppointment value)? cancelAppointment,
     TResult Function(ChangeAppointmentMonth value)? changeAppointmentMonth,
     required TResult orElse(),
   }) {

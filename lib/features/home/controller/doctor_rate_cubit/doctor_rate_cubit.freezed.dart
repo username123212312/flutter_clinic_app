@@ -20,6 +20,7 @@ mixin _$DoctorRateState {
   DataStatus get status => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   DoctorModel get doctor => throw _privateConstructorUsedError;
+  List<ReviewModel> get reviews => throw _privateConstructorUsedError;
   double? get rate => throw _privateConstructorUsedError;
   String? get comment => throw _privateConstructorUsedError;
 
@@ -41,6 +42,7 @@ abstract class $DoctorRateStateCopyWith<$Res> {
     DataStatus status,
     String message,
     DoctorModel doctor,
+    List<ReviewModel> reviews,
     double? rate,
     String? comment,
   });
@@ -66,6 +68,7 @@ class _$DoctorRateStateCopyWithImpl<$Res, $Val extends DoctorRateState>
     Object? status = null,
     Object? message = null,
     Object? doctor = null,
+    Object? reviews = null,
     Object? rate = freezed,
     Object? comment = freezed,
   }) {
@@ -86,6 +89,11 @@ class _$DoctorRateStateCopyWithImpl<$Res, $Val extends DoctorRateState>
                     ? _value.doctor
                     : doctor // ignore: cast_nullable_to_non_nullable
                         as DoctorModel,
+            reviews:
+                null == reviews
+                    ? _value.reviews
+                    : reviews // ignore: cast_nullable_to_non_nullable
+                        as List<ReviewModel>,
             rate:
                 freezed == rate
                     ? _value.rate
@@ -125,6 +133,7 @@ abstract class _$$DoctorRateStateImplCopyWith<$Res>
     DataStatus status,
     String message,
     DoctorModel doctor,
+    List<ReviewModel> reviews,
     double? rate,
     String? comment,
   });
@@ -150,6 +159,7 @@ class __$$DoctorRateStateImplCopyWithImpl<$Res>
     Object? status = null,
     Object? message = null,
     Object? doctor = null,
+    Object? reviews = null,
     Object? rate = freezed,
     Object? comment = freezed,
   }) {
@@ -170,6 +180,11 @@ class __$$DoctorRateStateImplCopyWithImpl<$Res>
                 ? _value.doctor
                 : doctor // ignore: cast_nullable_to_non_nullable
                     as DoctorModel,
+        reviews:
+            null == reviews
+                ? _value._reviews
+                : reviews // ignore: cast_nullable_to_non_nullable
+                    as List<ReviewModel>,
         rate:
             freezed == rate
                 ? _value.rate
@@ -192,9 +207,10 @@ class _$DoctorRateStateImpl implements _DoctorRateState {
     required this.status,
     required this.message,
     required this.doctor,
+    required final List<ReviewModel> reviews,
     this.rate,
     this.comment,
-  });
+  }) : _reviews = reviews;
 
   @override
   final DataStatus status;
@@ -202,6 +218,14 @@ class _$DoctorRateStateImpl implements _DoctorRateState {
   final String message;
   @override
   final DoctorModel doctor;
+  final List<ReviewModel> _reviews;
+  @override
+  List<ReviewModel> get reviews {
+    if (_reviews is EqualUnmodifiableListView) return _reviews;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_reviews);
+  }
+
   @override
   final double? rate;
   @override
@@ -209,7 +233,7 @@ class _$DoctorRateStateImpl implements _DoctorRateState {
 
   @override
   String toString() {
-    return 'DoctorRateState(status: $status, message: $message, doctor: $doctor, rate: $rate, comment: $comment)';
+    return 'DoctorRateState(status: $status, message: $message, doctor: $doctor, reviews: $reviews, rate: $rate, comment: $comment)';
   }
 
   @override
@@ -220,13 +244,21 @@ class _$DoctorRateStateImpl implements _DoctorRateState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.doctor, doctor) || other.doctor == doctor) &&
+            const DeepCollectionEquality().equals(other._reviews, _reviews) &&
             (identical(other.rate, rate) || other.rate == rate) &&
             (identical(other.comment, comment) || other.comment == comment));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, status, message, doctor, rate, comment);
+  int get hashCode => Object.hash(
+    runtimeType,
+    status,
+    message,
+    doctor,
+    const DeepCollectionEquality().hash(_reviews),
+    rate,
+    comment,
+  );
 
   /// Create a copy of DoctorRateState
   /// with the given fields replaced by the non-null parameter values.
@@ -245,6 +277,7 @@ abstract class _DoctorRateState implements DoctorRateState {
     required final DataStatus status,
     required final String message,
     required final DoctorModel doctor,
+    required final List<ReviewModel> reviews,
     final double? rate,
     final String? comment,
   }) = _$DoctorRateStateImpl;
@@ -255,6 +288,8 @@ abstract class _DoctorRateState implements DoctorRateState {
   String get message;
   @override
   DoctorModel get doctor;
+  @override
+  List<ReviewModel> get reviews;
   @override
   double? get rate;
   @override

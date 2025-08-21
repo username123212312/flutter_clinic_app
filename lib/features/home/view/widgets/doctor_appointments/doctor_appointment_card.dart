@@ -8,13 +8,15 @@ import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dar
 import '../../../../../core/enums.dart';
 
 class DoctorAppointmentCard extends StatelessWidget {
-  const DoctorAppointmentCard({
+  DoctorAppointmentCard({
     super.key,
     required this.appointment,
     this.image,
+    this.onCancel,
   });
   final AppointmentModel appointment;
   final String? image;
+  void Function()? onCancel;
 
   @override
   Widget build(BuildContext context) {
@@ -87,6 +89,23 @@ class DoctorAppointmentCard extends StatelessWidget {
                   ),
                 ],
               ),
+              if (onCancel != null)
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: Size(
+                      screenWidth(context),
+                      screenHeight(context) * 0.04,
+                    ),
+                  ),
+                  onPressed: onCancel,
+                  child: Text(
+                    'Cancel',
+                    style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                      fontSize: 13,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
             ],
           ),
           Positioned(

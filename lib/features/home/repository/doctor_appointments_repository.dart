@@ -84,6 +84,34 @@ class DoctorAppointmentsRepository {
     }
   }
 
+  Future<Either<AppFailure, AppResponse>> cancelAppointment({
+    required int reservationId,
+  }) async {
+    try {
+      final response = await _dio.get(
+        AppConstants.doctorCancelAppointmentPath,
+        queryParameters: {'reservation_id': reservationId},
+      );
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse(
+            data: AppointmentModel.fromJson(response.data),
+            message: 'Appointment deleted successfully',
+            success: true,
+          ),
+        );
+      } else {
+        throw HttpException('Appointment is not deleted');
+      }
+    } on DioException catch (e) {
+      return Left(AppFailure(message: e.message ?? 'Error'));
+    } on HttpException catch (e) {
+      return Left(AppFailure(message: e.message));
+    } catch (e) {
+      return Left(AppFailure(message: e.toString()));
+    }
+  }
+
   Future<Either<AppFailure, AppResponse<MedicalInfoModel>>>
   fetchAppointmentsResults({required int appointmentId}) async {
     try {

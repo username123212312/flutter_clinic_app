@@ -6,6 +6,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:intl/intl.dart';
 import 'package:our_flutter_clinic_app/core/consts/app_constants.dart';
 import 'package:our_flutter_clinic_app/core/providers/dio_client/dio_client.dart';
+import 'package:our_flutter_clinic_app/features/home/model/review_model.dart';
 
 import '../../../core/models/app_failure.dart';
 import '../../../core/models/app_response.dart';
@@ -66,6 +67,37 @@ class DoctorInfoRepository {
         );
       } else {
         throw HttpException('Doctor Work days are not fetched');
+      }
+    } on DioException catch (e) {
+      return Left(AppFailure(message: e.message ?? 'Error'));
+    } on HttpException catch (e) {
+      return Left(AppFailure(message: e.message));
+    } catch (e) {
+      return Left(AppFailure(message: e.toString()));
+    }
+  }
+
+  Future<Either<AppFailure, AppResponse<List<ReviewModel>>>> fetchDoctorReviews(
+    int doctorId,
+  ) async {
+    try {
+      final response = await _dio.get(
+        AppConstants.patientShowDoctorReviewsPath,
+        queryParameters: {'doctor_id': doctorId},
+      );
+      if (response.data['statusCode'] < 300) {
+        return Right(
+          AppResponse<List<ReviewModel>>(
+            success: true,
+            message: 'Reviews fetched sucessfullly',
+            data:
+                (response.data['items'] as List<dynamic>).map((review) {
+                  return ReviewModel.fromJson(review);
+                }).toList(),
+          ),
+        );
+      } else {
+        throw HttpException('Reviews are not fetched');
       }
     } on DioException catch (e) {
       return Left(AppFailure(message: e.message ?? 'Error'));

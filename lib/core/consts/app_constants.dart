@@ -130,6 +130,7 @@ class AppConstants {
   static const doctorShowVaccinesPath = '$doctorPath/showVaccines';
   static const deleteFromSchedulePath = '$doctorPath/deleteFromSchedule';
   static const showDoctorReviewsPath = '$doctorPath/showDoctorReviews';
+  static const patientShowDoctorReviewsPath = '$patientPath/showDoctorReviews';
   static const addChildRecordPath = '$doctorPath/addChildRecords';
   static const editChildRecordsPath = '$doctorPath/editChildRecords';
   static const doctorShowChildRecordPath = '$doctorPath/showChildRecord';
@@ -155,6 +156,7 @@ class AppConstants {
       '$serverUrl/Doctor/appointments/showAppointmentDetails';
   static const doctorShowAllAppointmentsPath =
       '$serverUrl/Doctor/appointments/showAllAppointments';
+  static const doctorCancelAppointmentPath = '$doctorPath/cancelAppointment';
   static const doctorShowAppointmentsByStatusPath =
       '$serverUrl/Doctor/appointments/showAppointmentsByStatus';
   static const doctorShowAppointmentsByTypePath =

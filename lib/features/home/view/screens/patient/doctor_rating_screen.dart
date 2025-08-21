@@ -6,6 +6,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:go_router/go_router.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
 import 'package:our_flutter_clinic_app/features/home/model/doctor_model.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:toastification/toastification.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
@@ -36,6 +37,7 @@ class _RatingScreenState extends State<RatingScreen>
       doctorInfoRepository: DoctorInfoRepository(),
       doctor: widget.doctor,
     );
+    _doctorRateCubit.fetchDoctorRates();
   }
 
   void _submitReview() async {
@@ -290,57 +292,91 @@ class _RatingScreenState extends State<RatingScreen>
             const SizedBox(height: 10),
             SizedBox(
               height: screenHeight(context) * 0.5,
-              child: ListView.separated(
-                itemCount: _reviews.length,
-                separatorBuilder: (_, __) => const SizedBox(height: 18),
-                itemBuilder: (_, index) {
-                  final review = _reviews[index];
-                  return AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeOut,
-                    decoration: BoxDecoration(
-                      color: Pallete.graysGray5,
-                      borderRadius: BorderRadius.circular(16),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.05),
-                          offset: const Offset(2, 2),
-                          blurRadius: 8,
-                        ),
-                      ],
-                    ),
-                    padding: const EdgeInsets.all(14),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          review['name'],
-                          style: Theme.of(context).textTheme.titleMedium!
-                              .copyWith(fontSize: 16, color: Pallete.black1),
-                        ),
-                        SizedBox(height: 8),
-                        Text(
-                          review['comment'],
-                          style: Theme.of(context).textTheme.titleSmall!
-                              .copyWith(fontSize: 14, color: Pallete.gray1),
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Icon(Icons.star, color: Pallete.star, size: 18),
-                            Text(
-                              "${review['rating']}",
-                              style: Theme.of(
-                                context,
-                              ).textTheme.labelMedium!.copyWith(
-                                fontSize: 14,
-                                color: Pallete.black1,
+              child: BlocBuilder<DoctorRateCubit, DoctorRateState>(
+                bloc: _doctorRateCubit,
+                builder: (context, state) {
+                  if (state.reviews.isEmpty && !state.status.isLoading) {
+                    return Center(
+                      child: Image.asset(
+                        width: 150,
+                        height: 150,
+                        fit: BoxFit.contain,
+                        'assets/images/il_empty_activity.webp',
+                      ),
+                    );
+                  }
+                  return Skeletonizer(
+                    enabled: state.status.isLoading,
+                    child: ListView.separated(
+                      itemCount:
+                          state.status.isLoading ? 10 : state.reviews.length,
+                      separatorBuilder: (_, __) => const SizedBox(height: 18),
+                      itemBuilder: (_, index) {
+                        if (state.status.isLoading) {
+                          return _buildLoading(context);
+                        }
+                        final review = state.reviews[index];
+                        return AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeOut,
+                          decoration: BoxDecoration(
+                            color: Pallete.graysGray5,
+                            borderRadius: BorderRadius.circular(16),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withValues(alpha: 0.05),
+                                offset: const Offset(2, 2),
+                                blurRadius: 8,
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                          padding: const EdgeInsets.all(14),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                review.patientName ?? 'No User',
+                                style: Theme.of(
+                                  context,
+                                ).textTheme.titleMedium!.copyWith(
+                                  fontSize: 16,
+                                  color: Pallete.black1,
+                                ),
+                              ),
+                              SizedBox(height: 8),
+                              Text(
+                                review.comment ?? 'No comment',
+                                style: Theme.of(
+                                  context,
+                                ).textTheme.titleSmall!.copyWith(
+                                  fontSize: 14,
+                                  color: Pallete.gray1,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Icon(
+                                    Icons.star,
+                                    color: Pallete.star,
+                                    size: 18,
+                                  ),
+                                  Text(
+                                    "${review.rate ?? 0.0}",
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.labelMedium!.copyWith(
+                                      fontSize: 14,
+                                      color: Pallete.black1,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        );
+                      },
                     ),
                   );
                 },
@@ -348,6 +384,57 @@ class _RatingScreenState extends State<RatingScreen>
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Container _buildLoading(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Pallete.graysGray5,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            offset: const Offset(2, 2),
+            blurRadius: 8,
+          ),
+        ],
+      ),
+      padding: const EdgeInsets.all(14),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'No user',
+            style: Theme.of(context).textTheme.titleMedium!.copyWith(
+              fontSize: 16,
+              color: Pallete.black1,
+            ),
+          ),
+          SizedBox(height: 8),
+          Text(
+            'No comment',
+            style: Theme.of(context).textTheme.titleSmall!.copyWith(
+              fontSize: 14,
+              color: Pallete.gray1,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Icon(Icons.star, color: Pallete.star, size: 18),
+              Text(
+                "${0.0}",
+                style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                  fontSize: 14,
+                  color: Pallete.black1,
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

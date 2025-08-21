@@ -21,13 +21,13 @@ ReviewModel _$ReviewModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ReviewModel {
-  @JsonKey(name: 'patient_id')
-  int? get patientId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'patient_name')
+  String? get patientName => throw _privateConstructorUsedError;
   @JsonKey(name: 'patient_first_name')
   String? get patientFirstName => throw _privateConstructorUsedError;
   @JsonKey(name: 'patient_last_name')
   String? get patientLastName => throw _privateConstructorUsedError;
-  int? get rate => throw _privateConstructorUsedError;
+  double? get rate => throw _privateConstructorUsedError;
   String? get comment => throw _privateConstructorUsedError;
 
   /// Serializes this ReviewModel to a JSON map.
@@ -48,10 +48,10 @@ abstract class $ReviewModelCopyWith<$Res> {
   ) = _$ReviewModelCopyWithImpl<$Res, ReviewModel>;
   @useResult
   $Res call({
-    @JsonKey(name: 'patient_id') int? patientId,
+    @JsonKey(name: 'patient_name') String? patientName,
     @JsonKey(name: 'patient_first_name') String? patientFirstName,
     @JsonKey(name: 'patient_last_name') String? patientLastName,
-    int? rate,
+    double? rate,
     String? comment,
   });
 }
@@ -71,7 +71,7 @@ class _$ReviewModelCopyWithImpl<$Res, $Val extends ReviewModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? patientId = freezed,
+    Object? patientName = freezed,
     Object? patientFirstName = freezed,
     Object? patientLastName = freezed,
     Object? rate = freezed,
@@ -79,11 +79,11 @@ class _$ReviewModelCopyWithImpl<$Res, $Val extends ReviewModel>
   }) {
     return _then(
       _value.copyWith(
-            patientId:
-                freezed == patientId
-                    ? _value.patientId
-                    : patientId // ignore: cast_nullable_to_non_nullable
-                        as int?,
+            patientName:
+                freezed == patientName
+                    ? _value.patientName
+                    : patientName // ignore: cast_nullable_to_non_nullable
+                        as String?,
             patientFirstName:
                 freezed == patientFirstName
                     ? _value.patientFirstName
@@ -98,7 +98,7 @@ class _$ReviewModelCopyWithImpl<$Res, $Val extends ReviewModel>
                 freezed == rate
                     ? _value.rate
                     : rate // ignore: cast_nullable_to_non_nullable
-                        as int?,
+                        as double?,
             comment:
                 freezed == comment
                     ? _value.comment
@@ -120,10 +120,10 @@ abstract class _$$ReviewModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    @JsonKey(name: 'patient_id') int? patientId,
+    @JsonKey(name: 'patient_name') String? patientName,
     @JsonKey(name: 'patient_first_name') String? patientFirstName,
     @JsonKey(name: 'patient_last_name') String? patientLastName,
-    int? rate,
+    double? rate,
     String? comment,
   });
 }
@@ -142,7 +142,7 @@ class __$$ReviewModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? patientId = freezed,
+    Object? patientName = freezed,
     Object? patientFirstName = freezed,
     Object? patientLastName = freezed,
     Object? rate = freezed,
@@ -150,11 +150,11 @@ class __$$ReviewModelImplCopyWithImpl<$Res>
   }) {
     return _then(
       _$ReviewModelImpl(
-        patientId:
-            freezed == patientId
-                ? _value.patientId
-                : patientId // ignore: cast_nullable_to_non_nullable
-                    as int?,
+        patientName:
+            freezed == patientName
+                ? _value.patientName
+                : patientName // ignore: cast_nullable_to_non_nullable
+                    as String?,
         patientFirstName:
             freezed == patientFirstName
                 ? _value.patientFirstName
@@ -169,7 +169,7 @@ class __$$ReviewModelImplCopyWithImpl<$Res>
             freezed == rate
                 ? _value.rate
                 : rate // ignore: cast_nullable_to_non_nullable
-                    as int?,
+                    as double?,
         comment:
             freezed == comment
                 ? _value.comment
@@ -184,7 +184,7 @@ class __$$ReviewModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ReviewModelImpl implements _ReviewModel {
   _$ReviewModelImpl({
-    @JsonKey(name: 'patient_id') this.patientId,
+    @JsonKey(name: 'patient_name') this.patientName,
     @JsonKey(name: 'patient_first_name') this.patientFirstName,
     @JsonKey(name: 'patient_last_name') this.patientLastName,
     this.rate,
@@ -195,8 +195,8 @@ class _$ReviewModelImpl implements _ReviewModel {
       _$$ReviewModelImplFromJson(json);
 
   @override
-  @JsonKey(name: 'patient_id')
-  final int? patientId;
+  @JsonKey(name: 'patient_name')
+  final String? patientName;
   @override
   @JsonKey(name: 'patient_first_name')
   final String? patientFirstName;
@@ -204,13 +204,13 @@ class _$ReviewModelImpl implements _ReviewModel {
   @JsonKey(name: 'patient_last_name')
   final String? patientLastName;
   @override
-  final int? rate;
+  final double? rate;
   @override
   final String? comment;
 
   @override
   String toString() {
-    return 'ReviewModel(patientId: $patientId, patientFirstName: $patientFirstName, patientLastName: $patientLastName, rate: $rate, comment: $comment)';
+    return 'ReviewModel(patientName: $patientName, patientFirstName: $patientFirstName, patientLastName: $patientLastName, rate: $rate, comment: $comment)';
   }
 
   @override
@@ -218,8 +218,8 @@ class _$ReviewModelImpl implements _ReviewModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ReviewModelImpl &&
-            (identical(other.patientId, patientId) ||
-                other.patientId == patientId) &&
+            (identical(other.patientName, patientName) ||
+                other.patientName == patientName) &&
             (identical(other.patientFirstName, patientFirstName) ||
                 other.patientFirstName == patientFirstName) &&
             (identical(other.patientLastName, patientLastName) ||
@@ -232,7 +232,7 @@ class _$ReviewModelImpl implements _ReviewModel {
   @override
   int get hashCode => Object.hash(
     runtimeType,
-    patientId,
+    patientName,
     patientFirstName,
     patientLastName,
     rate,
@@ -255,10 +255,10 @@ class _$ReviewModelImpl implements _ReviewModel {
 
 abstract class _ReviewModel implements ReviewModel {
   factory _ReviewModel({
-    @JsonKey(name: 'patient_id') final int? patientId,
+    @JsonKey(name: 'patient_name') final String? patientName,
     @JsonKey(name: 'patient_first_name') final String? patientFirstName,
     @JsonKey(name: 'patient_last_name') final String? patientLastName,
-    final int? rate,
+    final double? rate,
     final String? comment,
   }) = _$ReviewModelImpl;
 
@@ -266,8 +266,8 @@ abstract class _ReviewModel implements ReviewModel {
       _$ReviewModelImpl.fromJson;
 
   @override
-  @JsonKey(name: 'patient_id')
-  int? get patientId;
+  @JsonKey(name: 'patient_name')
+  String? get patientName;
   @override
   @JsonKey(name: 'patient_first_name')
   String? get patientFirstName;
@@ -275,7 +275,7 @@ abstract class _ReviewModel implements ReviewModel {
   @JsonKey(name: 'patient_last_name')
   String? get patientLastName;
   @override
-  int? get rate;
+  double? get rate;
   @override
   String? get comment;
 
