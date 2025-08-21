@@ -48,6 +48,7 @@ class AppRouteConstants {
 
   //? Doctor
   static const doctorHomeRouteName = 'doctor_home';
+  static const doctorChangeSchedulesRouteName = 'doctor_change_schedules';
   static const doctorEditProfileRouteName = 'doctor_edit_profile';
   static const doctorProfileRouteName = 'doctor_profile';
   static const doctorScheduleRouteName = 'doctor_schedule';
