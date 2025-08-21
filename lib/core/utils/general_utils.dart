@@ -197,6 +197,7 @@ List<Color> selectAppointmentStatusColor(AppointmentStatus appointmentStatus) {
 }
 
 void showToast({
+  bool bypassLengthCheck = false,
   required BuildContext context,
   required String msg,
   ToastificationType type = ToastificationType.info,
@@ -207,7 +208,11 @@ void showToast({
     context: context,
     title: Text(
       // textAlign: TextAlign.center,
-      msg.length > 70 ? 'Some Error occurred' : msg,
+      bypassLengthCheck
+          ? msg
+          : msg.length > 70
+          ? 'Some Error occurred'
+          : msg,
       style: Theme.of(context).textTheme.labelMedium!.copyWith(fontSize: 14.0),
     ),
     autoCloseDuration: Duration(seconds: 5),

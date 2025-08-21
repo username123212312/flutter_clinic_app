@@ -207,6 +207,48 @@ class DoctorProfileWidget extends StatelessWidget {
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: () {
+                context.pushNamed(
+                  AppRouteConstants.doctorChangeSchedulesRouteName,
+                );
+              },
+              child: Row(
+                children: [
+                  Container(
+                    width: screenWidth(context) * 0.13,
+                    height: screenHeight(context) * 0.06,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Pallete.grayScaleColor200,
+                    ),
+                    child: Icon(
+                      Icons.lock,
+                      size: 25,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+
+                  SizedBox(width: 10),
+                  Text(
+                    'Change my schedules',
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleSmall!.copyWith(fontSize: 17),
+                  ),
+                  Spacer(),
+                  Icon(Icons.arrow_forward_ios),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            width: screenWidth(context),
+            child: Divider(color: Pallete.grayScaleColor400),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () {
                 context.pushNamed(AppRouteConstants.doctorReviewsRouteName);
               },
               child: Row(

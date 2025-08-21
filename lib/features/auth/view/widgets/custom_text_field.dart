@@ -19,6 +19,7 @@ class CustomTextField extends StatefulWidget {
   final void Function(String?)? onSaved;
   final TextInputAction? textInputAction;
   final List<TextInputFormatter>? formatters;
+  final TextAlign? textAlign;
 
   const CustomTextField({
     super.key,
@@ -37,6 +38,7 @@ class CustomTextField extends StatefulWidget {
     this.onSaved,
     this.textInputAction = TextInputAction.next,
     this.formatters,
+    this.textAlign,
   });
 
   @override
@@ -74,6 +76,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       transform:
           _isFocused ? (Matrix4.identity()..scale(1.02)) : Matrix4.identity(),
       child: TextFormField(
+        textAlign: widget.textAlign ?? TextAlign.start,
         inputFormatters: widget.formatters,
         textInputAction: widget.textInputAction,
         validator: widget.validator,

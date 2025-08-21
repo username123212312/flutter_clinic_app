@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -89,22 +91,26 @@ class ClinicApp extends StatelessWidget {
 }
 
 Future<void> initMain() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  await NotificationService().init();
-  await FCMService().init();
-  await dotenv.load();
-  Stripe.publishableKey = dotenv.env['STRIPE_PUBLISHABLE_KEY']!;
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+    await NotificationService().init();
+    await FCMService().init();
+    await dotenv.load();
+    Stripe.publishableKey = dotenv.env['STRIPE_PUBLISHABLE_KEY']!;
 
-  await Stripe.instance.applySettings();
-  HydratedBloc.storage = await HydratedStorage.build(
-    storageDirectory:
-        kIsWeb
-            ? HydratedStorageDirectory.web
-            : HydratedStorageDirectory(
-              (await p.getApplicationDocumentsDirectory()).path,
-            ),
-  );
-  Bloc.observer = CustomBlocObserver();
-  ServiceLocator.setup();
+    await Stripe.instance.applySettings();
+    HydratedBloc.storage = await HydratedStorage.build(
+      storageDirectory:
+          kIsWeb
+              ? HydratedStorageDirectory.web
+              : HydratedStorageDirectory(
+                (await p.getApplicationDocumentsDirectory()).path,
+              ),
+    );
+    Bloc.observer = CustomBlocObserver();
+    ServiceLocator.setup();
+  } catch (e) {
+    log(e.toString());
+  }
 }
