@@ -640,6 +640,7 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
         }
         return Skeletonizer(
           enabled: state.status.isLoading,
+
           child: RefreshIndicator(
             onRefresh: () async {
               _newAppointmentBloc.add(AllDoctorsFetched());

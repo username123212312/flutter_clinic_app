@@ -134,6 +134,7 @@ class _AppointmentsScreenWidgetState extends State<AppointmentsScreenWidget> {
                               );
                             },
                             behavior: HitTestBehavior.opaque,
+
                             child: DoctorAppointmentCard(
                               onCancel:
                                   _currentStatusIndex == 0
@@ -145,8 +146,8 @@ class _AppointmentsScreenWidgetState extends State<AppointmentsScreenWidget> {
                               image:
                                   (appointment.patientGender ?? 'male')[0] ==
                                           'm'
-                                      ? 'assets/icons/patient_icon2.png'
-                                      : 'assets/icons/patient_icon1.png',
+                                      ? 'assets/icons/man.png'
+                                      : 'assets/icons/girl.png',
                             ),
                           ),
                         );
