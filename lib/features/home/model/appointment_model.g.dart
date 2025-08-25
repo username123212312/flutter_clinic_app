@@ -10,6 +10,7 @@ _$AppointmentModelImpl _$$AppointmentModelImplFromJson(
   Map<String, dynamic> json,
 ) => _$AppointmentModelImpl(
   id: (json['appointment_id'] as num?)?.toInt(),
+  queueNumber: (json['queue_number'] as num?)?.toInt(),
   type: const AppointmentTypeConverter().fromJson(json['type'] as String?),
   finalRate: (json['finalRate'] as num?)?.toInt(),
   referredBy: json['referred by'] as String?,
@@ -18,6 +19,7 @@ _$AppointmentModelImpl _$$AppointmentModelImplFromJson(
   patientGender: json['patient_gender'] as String?,
   doctorId: (json['doctor_id'] as num?)?.toInt(),
   doctorPhoto: json['doctor_photo'] as String?,
+  averageVisitDuration: json['average_visit_duration'] as String?,
   doctorName: json['doctor_name'] as String?,
   patientFirstName: json['patient_first_name'] as String?,
   patientLastName: json['patient_last_name'] as String?,
@@ -47,6 +49,7 @@ Map<String, dynamic> _$$AppointmentModelImplToJson(
   _$AppointmentModelImpl instance,
 ) => <String, dynamic>{
   'appointment_id': instance.id,
+  'queue_number': instance.queueNumber,
   'type': const AppointmentTypeConverter().toJson(instance.type),
   'finalRate': instance.finalRate,
   'referred by': instance.referredBy,
@@ -55,6 +58,7 @@ Map<String, dynamic> _$$AppointmentModelImplToJson(
   'patient_gender': instance.patientGender,
   'doctor_id': instance.doctorId,
   'doctor_photo': instance.doctorPhoto,
+  'average_visit_duration': instance.averageVisitDuration,
   'doctor_name': instance.doctorName,
   'patient_first_name': instance.patientFirstName,
   'patient_last_name': instance.patientLastName,

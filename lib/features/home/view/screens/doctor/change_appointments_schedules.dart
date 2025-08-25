@@ -84,6 +84,7 @@ class _ChangeAppointmentsSchedulesState
                 },
                 onTap: () async {
                   final date = await showDateRangePicker(
+                    keyboardType: TextInputType.datetime,
                     builder: (context, child) {
                       return Theme(
                         data: ThemeData.light().copyWith(),

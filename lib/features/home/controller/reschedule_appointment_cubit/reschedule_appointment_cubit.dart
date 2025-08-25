@@ -80,7 +80,9 @@ class RescheduleAppointmentCubit extends Cubit<RescheduleAppointmentState> {
           status: DataStatus.error,
         ),
         Right(value: final r) => state.copyWith(
-          availableTimes: r.data ?? [],
+          availableTimes: r.data,
+
+          isAuto: (r.data ?? []).isEmpty,
           selectedDate: date,
           statusMessage: r.message,
           status: DataStatus.data,
@@ -103,7 +105,7 @@ class RescheduleAppointmentCubit extends Cubit<RescheduleAppointmentState> {
           clinicId: state.appointment?.clinicId ?? 0,
           doctorId: state.appointment?.doctorId ?? 0,
           newDate: state.selectedDate ?? DateTime.now(),
-          newTime: state.selectedTime ?? TimeOfDay.now(),
+          newTime: (state.isAuto ?? false) ? null : state.selectedTime,
         ),
       );
       final newState = switch (response) {

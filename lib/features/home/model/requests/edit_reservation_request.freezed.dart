@@ -21,7 +21,7 @@ mixin _$EditReservationRequest {
   int get clinicId => throw _privateConstructorUsedError;
   int get doctorId => throw _privateConstructorUsedError;
   DateTime get newDate => throw _privateConstructorUsedError;
-  TimeOfDay get newTime => throw _privateConstructorUsedError;
+  TimeOfDay? get newTime => throw _privateConstructorUsedError;
 
   /// Create a copy of EditReservationRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -42,7 +42,7 @@ abstract class $EditReservationRequestCopyWith<$Res> {
     int clinicId,
     int doctorId,
     DateTime newDate,
-    TimeOfDay newTime,
+    TimeOfDay? newTime,
   });
 }
 
@@ -68,7 +68,7 @@ class _$EditReservationRequestCopyWithImpl<
     Object? clinicId = null,
     Object? doctorId = null,
     Object? newDate = null,
-    Object? newTime = null,
+    Object? newTime = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -93,10 +93,10 @@ class _$EditReservationRequestCopyWithImpl<
                     : newDate // ignore: cast_nullable_to_non_nullable
                         as DateTime,
             newTime:
-                null == newTime
+                freezed == newTime
                     ? _value.newTime
                     : newTime // ignore: cast_nullable_to_non_nullable
-                        as TimeOfDay,
+                        as TimeOfDay?,
           )
           as $Val,
     );
@@ -117,7 +117,7 @@ abstract class _$$EditReservationRequestImplCopyWith<$Res>
     int clinicId,
     int doctorId,
     DateTime newDate,
-    TimeOfDay newTime,
+    TimeOfDay? newTime,
   });
 }
 
@@ -140,7 +140,7 @@ class __$$EditReservationRequestImplCopyWithImpl<$Res>
     Object? clinicId = null,
     Object? doctorId = null,
     Object? newDate = null,
-    Object? newTime = null,
+    Object? newTime = freezed,
   }) {
     return _then(
       _$EditReservationRequestImpl(
@@ -165,10 +165,10 @@ class __$$EditReservationRequestImplCopyWithImpl<$Res>
                 : newDate // ignore: cast_nullable_to_non_nullable
                     as DateTime,
         newTime:
-            null == newTime
+            freezed == newTime
                 ? _value.newTime
                 : newTime // ignore: cast_nullable_to_non_nullable
-                    as TimeOfDay,
+                    as TimeOfDay?,
       ),
     );
   }
@@ -182,7 +182,7 @@ class _$EditReservationRequestImpl implements _EditReservationRequest {
     required this.clinicId,
     required this.doctorId,
     required this.newDate,
-    required this.newTime,
+    this.newTime,
   });
 
   @override
@@ -194,7 +194,7 @@ class _$EditReservationRequestImpl implements _EditReservationRequest {
   @override
   final DateTime newDate;
   @override
-  final TimeOfDay newTime;
+  final TimeOfDay? newTime;
 
   @override
   String toString() {
@@ -245,7 +245,7 @@ abstract class _EditReservationRequest implements EditReservationRequest {
     required final int clinicId,
     required final int doctorId,
     required final DateTime newDate,
-    required final TimeOfDay newTime,
+    final TimeOfDay? newTime,
   }) = _$EditReservationRequestImpl;
 
   @override
@@ -257,7 +257,7 @@ abstract class _EditReservationRequest implements EditReservationRequest {
   @override
   DateTime get newDate;
   @override
-  TimeOfDay get newTime;
+  TimeOfDay? get newTime;
 
   /// Create a copy of EditReservationRequest
   /// with the given fields replaced by the non-null parameter values.

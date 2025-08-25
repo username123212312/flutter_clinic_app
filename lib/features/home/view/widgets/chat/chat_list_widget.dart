@@ -115,15 +115,20 @@ class ChatListWidget extends StatelessWidget {
           context,
         ).textTheme.labelMedium!.copyWith(fontSize: 17),
         builder: (user) {
-          return ListTile(
-            tileColor: Theme.of(context).colorScheme.primary,
-            leading: Icon(Icons.account_circle, size: 50.0),
-            title: Text('${user.firstName ?? 'No'} ${user.lastName ?? 'User'}'),
-            subtitle: Text(user.professionalTitle ?? 'No title'),
-            onTap: () {
-              context.read<ChatBloc>().add(UserSelected(user));
-              context.pushNamed(AppRouteConstants.chatRouteName);
-            },
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 5.0),
+            child: ListTile(
+              tileColor: Theme.of(context).colorScheme.primary,
+              leading: Icon(Icons.account_circle, size: 50.0),
+              title: Text(
+                '${user.firstName ?? 'No'} ${user.lastName ?? 'User'}',
+              ),
+              subtitle: Text(user.speciality ?? 'No spec'),
+              onTap: () {
+                context.read<ChatBloc>().add(UserSelected(user));
+                context.pushNamed(AppRouteConstants.chatRouteName);
+              },
+            ),
           );
         },
         showItemsOnEmpty: true,

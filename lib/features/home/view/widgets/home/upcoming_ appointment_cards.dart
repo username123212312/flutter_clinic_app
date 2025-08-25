@@ -31,7 +31,7 @@ class UpcomingAppointmentCard extends StatelessWidget {
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
       child: Container(
-        width: screenWidth(context) * 0.57,
+        width: screenWidth(context) * 0.59,
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primary,
@@ -50,7 +50,7 @@ class UpcomingAppointmentCard extends StatelessWidget {
                       imagePath == null
                           ? AssetImage('assets/images/app_logo.png')
                           : NetworkImage('${AppConstants.serverUrl}$imagePath'),
-                   backgroundColor: Pallete.graysGray4,
+                  backgroundColor: Pallete.graysGray4,
                 ),
                 const SizedBox(width: 10),
                 Expanded(

@@ -122,7 +122,6 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
         child: BlocBuilder<ReservationDetailsCubit, ReservationDetailsState>(
           bloc: _reservationDetailsCubit,
           builder: (context, state) {
-            log(state.appointment?.doctorPhoto ?? '');
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -131,7 +130,8 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                   specialty:
                       state.appointment?.doctorSpeciality ?? 'No speciality',
                   imagePath: state.appointment?.doctorPhoto,
-                  hourlyRate: "Avg Visit Duration :}",
+                  hourlyRate:
+                      "Avg Visit Duration : ${state.appointment?.averageVisitDuration}",
                   rating: 4.8,
                   backgroundColor: Pallete.graysGray5,
                 ),
@@ -473,7 +473,7 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
       context: context,
       builder:
           (_) => CustomDialog(
-            size: Size((screenWidth ?? 0) * 0.9, (screenHeight ?? 0) * 0.23),
+            size: Size((screenWidth ?? 0) * 0.9, (screenHeight ?? 0) * 0.25),
             content: ReservationDetaildRechargeWidget(),
           ),
     );

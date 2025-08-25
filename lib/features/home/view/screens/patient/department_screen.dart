@@ -118,7 +118,7 @@ class _AllDepartmentsScreenState extends State<AllDepartmentsScreen> {
       body: BlocConsumer<ClinicsCubit, ClinicsState>(
         bloc: _clinicsCubit,
         builder: (_, state) {
-          if (state.clinics.isEmpty && state.status.isLoading) {
+          if (state.clinics.isEmpty && !state.status.isLoading) {
             return Center(
               child: Column(
                 children: [

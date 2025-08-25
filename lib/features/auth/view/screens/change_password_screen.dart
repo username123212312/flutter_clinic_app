@@ -48,6 +48,12 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              context.goNamed(AppRouteConstants.loginRouteName);
+            },
+            icon: Icon(Icons.arrow_back),
+          ),
           forceMaterialTransparency: true,
           elevation: 0,
           toolbarHeight: (screenHeight ?? 0) * 0.1,

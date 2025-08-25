@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomGoogleButton extends StatelessWidget {
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final String text;
   final String imagePath;
 

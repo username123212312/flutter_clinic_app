@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -31,13 +33,15 @@ class RescheduleScreen extends StatefulWidget {
 class _RescheduleScreenState extends State<RescheduleScreen> {
   @override
   void initState() {
-    super.initState();
     _rescheduleAppointmentCubit = RescheduleAppointmentCubit(
       rescheduleAppointmentRepository: RescheduleAppointmentRepository(),
     );
-    _rescheduleAppointmentCubit.fetchAppointment(
-      appointmentId: widget.appointment.id ?? 0,
-    );
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _rescheduleAppointmentCubit.fetchAppointment(
+        appointmentId: widget.appointment.id ?? 0,
+      );
+    });
   }
 
   @override
@@ -50,6 +54,17 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              _rescheduleAppointmentCubit.fetchAppointment(
+                appointmentId: widget.appointment.id ?? 0,
+              );
+            },
+            iconSize: 18,
+            icon: Icon(FontAwesomeIcons.arrowsRotate),
+          ),
+        ],
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
           icon: const Icon(
@@ -62,7 +77,7 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
         title: Text(
           'Reschedule Appointment',
           style: Theme.of(context).textTheme.titleMedium!.copyWith(
-            fontSize: 20,
+            fontSize: 17,
             color: Pallete.black1,
           ),
         ),
@@ -83,65 +98,69 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
           >(
             bloc: _rescheduleAppointmentCubit,
             listener: (context, state) {
-              if (state.status?.isLoading ?? false) {
+              if (state.status.isLoading) {
                 LoadingOverlay().show(context);
-              } else if (state.status?.isError ?? false) {
+              } else {
                 LoadingOverlay().hideAll();
-                showToast(
-                  context: context,
-                  type: ToastificationType.success,
-                  msg: state.statusMessage ?? 'No message',
-                );
-              } else if (state.status?.isData ?? false) {
-                LoadingOverlay().hideAll();
-              } else if (state.status?.isDone ?? false) {
-                LoadingOverlay().hideAll();
-                TransparentDialog.show(
-                  barrierDismissible: false,
-                  context: context,
-                  builder:
-                      (_) => CustomDialog(
-                        content: Column(
-                          children: [
-                            Align(
-                              alignment: Alignment(-0.2, 0.0),
-                              child: Lottie.asset(
-                                'assets/lottie/successfully_animation.json',
-                                fit: BoxFit.cover,
-                                width: screenWidth(context) * 0.2,
-                                height: screenHeight(context) * 0.15,
+                if (state.status.isError) {
+                  showToast(
+                    context: context,
+                    msg: state.statusMessage,
+                    type: ToastificationType.error,
+                  );
+                }
+                if (state.status.isDone) {
+                  TransparentDialog.show(
+                    barrierDismissible: false,
+                    context: context,
+                    builder:
+                        (_) => CustomDialog(
+                          content: Column(
+                            children: [
+                              Align(
+                                alignment: Alignment(-0.2, 0.0),
+                                child: Lottie.asset(
+                                  'assets/lottie/successfully_animation.json',
+                                  fit: BoxFit.cover,
+                                  width: screenWidth(context) * 0.2,
+                                  height: screenHeight(context) * 0.15,
+                                ),
                               ),
-                            ),
-                            Text(
-                              textAlign: TextAlign.center,
-                              state.statusMessage ??
-                                  'Appointment Rescheduled Successfully!',
-                              style: Theme.of(context).textTheme.labelMedium!
-                                  .copyWith(color: Colors.black, fontSize: 15),
-                            ),
-                            SizedBox(height: 25),
-                            SizedBox(
-                              width: screenWidth(context) * 0.5,
-                              height: screenHeight(context) * 0.05,
-                              child: CustomElevatedButton(
-                                fontSize: 12,
-                                title: 'Back to Home',
-                                onTap: () {
-                                  context.read<AppointmentsBloc>().add(
-                                    AppointmentsFetched(),
-                                  );
-                                  context.pop();
-                                  context.pop();
-                                },
-                                fillColor:
-                                    Theme.of(context).colorScheme.primary,
-                                textColor: Colors.white,
+                              Text(
+                                textAlign: TextAlign.center,
+                                state.statusMessage ??
+                                    'Appointment Rescheduled Successfully!',
+                                style: Theme.of(
+                                  context,
+                                ).textTheme.labelMedium!.copyWith(
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                ),
                               ),
-                            ),
-                          ],
+                              SizedBox(height: 25),
+                              SizedBox(
+                                width: screenWidth(context) * 0.5,
+                                height: screenHeight(context) * 0.05,
+                                child: CustomElevatedButton(
+                                  fontSize: 12,
+                                  title: 'Back to Home',
+                                  onTap: () {
+                                    context.read<AppointmentsBloc>().add(
+                                      AppointmentsFetched(),
+                                    );
+                                    context.pop();
+                                    context.pop();
+                                  },
+                                  fillColor:
+                                      Theme.of(context).colorScheme.primary,
+                                  textColor: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                );
+                  );
+                }
               }
             },
             builder: (context, state) {
@@ -159,6 +178,7 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
                     child: _buildSchedules(
                       state.availableTimes,
                       state.selectedDate,
+                      state.isAuto,
                     ),
                   ),
                   CustomElevatedButton(
@@ -198,7 +218,9 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
               _rescheduleAppointmentCubit.showAvailableTimes(selectedDate);
               setState(() {
                 _selectedSchedule = null;
-                _dateController.text = selectedDate.toString();
+                _dateController.text = DateFormat(
+                  DateFormat.YEAR_ABBR_MONTH_DAY,
+                ).format(selectedDate);
               });
             }
           },
@@ -234,7 +256,11 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
     }
   }
 
-  Column _buildSchedules(List<TimeOfDay> times, DateTime? selectedDate) {
+  Column _buildSchedules(
+    List<TimeOfDay>? times,
+    DateTime? selectedDate, [
+    bool? isAuto,
+  ]) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -245,34 +271,82 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
           ).textTheme.labelMedium!.copyWith(fontSize: 18),
         ),
         SizedBox(height: 10),
-        GridView(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 0.5,
-            crossAxisSpacing: 10,
-            mainAxisExtent: screenHeight(context) * 0.06,
-            mainAxisSpacing: 10,
+        if ((times?.isEmpty ?? true))
+          Stack(
+            children: [
+              GridView(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.5,
+                  crossAxisSpacing: 10,
+                  mainAxisExtent: screenHeight(context) * 0.06,
+                  mainAxisSpacing: 10,
+                ),
+                shrinkWrap: true,
+                children: List.generate(6, (index) {
+                  final time = TimeOfDay(hour: 09 + index, minute: 00);
+                  return SchedulesItemWidget<TimeOfDay>(
+                    isSelected: false,
+                    onSelected: null,
+                    value: formatTime(time),
+                    data: time,
+                  );
+                }),
+              ),
+              if (isAuto ?? false)
+                Positioned(
+                  top: 50,
+                  child: SizedBox(
+                    width: screenWidth(context),
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 4.2, sigmaY: 4.2),
+                      child: Container(
+                        alignment: Alignment(-0.2, 0.0),
+                        height: screenHeight(context) * 0.05,
+                        child: Text(
+                          'Auto',
+                          style: Theme.of(
+                            context,
+                          ).textTheme.labelMedium!.copyWith(fontSize: 17),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+            ],
           ),
-          shrinkWrap: true,
-          children: List.generate(6, (index) {
-            final time = TimeOfDay(hour: 09 + index, minute: 00);
-            return SchedulesItemWidget<TimeOfDay>(
-              isSelected:
-                  _selectedSchedule == null ? null : _selectedSchedule == index,
-              onSelected:
-                  (times.isEmpty || !times.any((listTime) => listTime == time))
-                      ? null
-                      : (newValue) {
-                        setState(() {
-                          _selectedSchedule = index;
-                        });
-                        _rescheduleAppointmentCubit.selectTime(newValue);
-                      },
-              value: formatTime(time),
-              data: time,
-            );
-          }),
-        ),
+        if (times != null && times.isNotEmpty)
+          GridView(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 0.5,
+              crossAxisSpacing: 10,
+              mainAxisExtent: screenHeight(context) * 0.06,
+              mainAxisSpacing: 10,
+            ),
+            shrinkWrap: true,
+            children: List.generate(6, (index) {
+              final time = TimeOfDay(hour: 09 + index, minute: 00);
+              return SchedulesItemWidget<TimeOfDay>(
+                isSelected:
+                    _selectedSchedule == null
+                        ? null
+                        : _selectedSchedule == index,
+                onSelected:
+                    (times!.isEmpty ||
+                            !times.any((listTime) => listTime == time))
+                        ? null
+                        : (newValue) {
+                          setState(() {
+                            _selectedSchedule = index;
+                          });
+                          _rescheduleAppointmentCubit.selectTime(newValue);
+                        },
+                value: formatTime(time),
+                data: time,
+              );
+            }),
+          ),
       ],
     );
   }

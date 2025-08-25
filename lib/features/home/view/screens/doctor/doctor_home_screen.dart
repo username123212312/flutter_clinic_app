@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:intl/intl.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
@@ -71,7 +72,9 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
                                     ),
                                     alignment: Alignment.center,
                                     child: Text(
-                                      '2025-08',
+                                      DateFormat(
+                                        DateFormat.YEAR_ABBR_MONTH,
+                                      ).format(state.currentMonth),
                                       style: Theme.of(
                                         context,
                                       ).textTheme.labelMedium!.copyWith(

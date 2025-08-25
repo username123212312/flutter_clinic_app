@@ -51,7 +51,7 @@ class ChatDoctorsListCubit extends Cubit<ChatDoctorsListState> {
             success: true,
             message: 'Doctors fetched successfully',
             data:
-                (response.data['items'] as List<dynamic>).map((doctor) {
+                (response.data['data'] as List<dynamic>).map((doctor) {
                   return UserModel.fromJson(doctor);
                 }).toList(),
           ),

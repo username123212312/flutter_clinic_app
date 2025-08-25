@@ -15,6 +15,7 @@ part 'appointment_model.g.dart';
 sealed class AppointmentModel with _$AppointmentModel {
   factory AppointmentModel({
     @JsonKey(name: 'appointment_id') int? id,
+    @JsonKey(name: 'queue_number') int? queueNumber,
     @AppointmentTypeConverter() AppointmentType? type,
     int? finalRate,
     @JsonKey(name: 'referred by') String? referredBy,
@@ -23,6 +24,7 @@ sealed class AppointmentModel with _$AppointmentModel {
     @JsonKey(name: 'patient_gender') String? patientGender,
     @JsonKey(name: 'doctor_id') int? doctorId,
     @JsonKey(name: 'doctor_photo') String? doctorPhoto,
+    @JsonKey(name: 'average_visit_duration') String? averageVisitDuration,
     @JsonKey(name: 'doctor_name') String? doctorName,
     @JsonKey(name: 'patient_first_name') String? patientFirstName,
     @JsonKey(name: 'patient_last_name') String? patientLastName,

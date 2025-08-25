@@ -21,20 +21,21 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
         state.copyWith(status: DataStatus.loading, statusMessage: 'Loading'),
       );
     });
+    on<TokenAdded>((event, emit) => emit(state.copyWith(token: event.token)));
     on<UserAuthenticated>((event, emit) async {
       emit(
         state.copyWith(
-          status: DataStatus.loading,
+          status: DataStatus.data,
           statusMessage: 'user',
           authUser: AuthUser(token: event.token, user: event.user),
-          isAuth: false,
+          isAuth: true,
           token: event.token,
         ),
       );
-      final response = await _authRepository.sendFCMToken();
-      if (response.isRight()) {
-        emit(state.copyWith(isAuth: true, status: DataStatus.done));
-      }
+      // final response = await _authRepository.sendFCMToken();
+      // if (response.isRight()) {
+      //   emit(state.copyWith(isAuth: true, status: DataStatus.done));
+      // }
     });
     on<UserReset>(
       (event, emit) => emit(

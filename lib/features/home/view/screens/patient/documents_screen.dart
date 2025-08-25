@@ -83,32 +83,45 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
       alignment: Alignment.center,
       child: SizedBox(
         width: screenWidth(context) * 0.8,
-        child: CustomElevatedButton(
-          title: _currentIndex == 0 ? 'Next' : 'Upload File',
-          onTap: () {
-            if (_currentIndex == 1 && _formKey.currentState!.validate()) {
-              context.read<AnalysisListBloc>()
-                ..add(
-                  AnaysisAdded(
-                    analysis: AnalysisModel(
-                      name: _fileNameController.text,
-                      description: _fileDescriptionController.text,
-                      resultFile: _chosenFile?.path,
-                      resultPhoto: _chosenImage?.path,
-                    ),
-                  ),
-                )
-                ..add(AnalysisListEvent.analysisFetchRequested());
-            }
-            if ((_chosenFile != null && _chosenImage == null) ||
-                (_chosenFile == null && _chosenImage != null)) {
-              setState(() {
-                _currentIndex = 1;
-              });
-            }
+        child: BlocBuilder<AnalysisListBloc, AnalysisListState>(
+          builder: (context, state) {
+            return CustomElevatedButton(
+              title: _currentIndex == 0 ? 'Next' : 'Upload File',
+              onTap:
+                  (state.status.isLoading || state.status.isUploading)
+                      ? null
+                      : () {
+                        if (_currentIndex == 1 &&
+                            _formKey.currentState!.validate()) {
+                          context.read<AnalysisListBloc>()
+                            ..add(
+                              AnaysisAdded(
+                                analysis: AnalysisModel(
+                                  name: _fileNameController.text,
+                                  description: _fileDescriptionController.text,
+                                  resultFile: _chosenFile?.path,
+                                  resultPhoto: _chosenImage?.path,
+                                ),
+                              ),
+                            )
+                            ..add(AnalysisListEvent.analysisFetchRequested());
+                        }
+                        if ((_chosenFile != null && _chosenImage == null) ||
+                            (_chosenFile == null && _chosenImage != null)) {
+                          setState(() {
+                            _currentIndex = 1;
+                          });
+                        } else {
+                          showToast(
+                            context: context,
+                            msg: 'You must choose a file first',
+                          );
+                        }
+                      },
+              fillColor: Theme.of(context).colorScheme.primary,
+              textColor: Colors.white,
+            );
           },
-          fillColor: Theme.of(context).colorScheme.primary,
-          textColor: Colors.white,
         ),
       ),
     );

@@ -135,9 +135,12 @@ class _AppointmentsScreenWidgetState extends State<AppointmentsScreenWidget> {
                             },
                             behavior: HitTestBehavior.opaque,
                             child: DoctorAppointmentCard(
-                              onCancel: () {
-                                _showTDialog(appointment);
-                              },
+                              onCancel:
+                                  _currentStatusIndex == 0
+                                      ? () {
+                                        _showTDialog(appointment);
+                                      }
+                                      : null,
                               appointment: appointment,
                               image:
                                   (appointment.patientGender ?? 'male')[0] ==

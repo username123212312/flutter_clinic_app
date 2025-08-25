@@ -562,6 +562,7 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
               Positioned.fill(
                 child: GestureDetector(
                   onTap: () {
+                    _isOverlayOpened = false;
                     _overlayEntry?.remove();
                     Focus.of(context).unfocus();
                   },
@@ -614,41 +615,77 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
     return BlocBuilder<NewAppointmentBloc, NewAppointmentState>(
       bloc: _newAppointmentBloc,
       builder: (context, state) {
+        if (!state.status.isLoading && (state.doctors ?? []).isEmpty) {
+          return RefreshIndicator(
+            onRefresh: () async {
+              _newAppointmentBloc.add(AllDoctorsFetched());
+            },
+            child: SingleChildScrollView(
+              physics: AlwaysScrollableScrollPhysics(),
+              child: Center(
+                heightFactor: 4.5,
+                child: Image.asset(
+                  width: 120,
+                  height: 120,
+                  fit: BoxFit.cover,
+                  'assets/images/il_empty_activity.webp',
+                ),
+              ),
+            ),
+          );
+        }
         return Skeletonizer(
           enabled: state.status.isLoading,
-          child: ListView.builder(
-            padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-            shrinkWrap: true,
-            itemCount:
-                state.status.isLoading ? 10 : (state.searchList ?? []).length,
-            itemBuilder: (_, index) {
-              final doctor = (state.searchList ?? [])[index];
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 10.0),
-                child: DoctorCardWidget(
-                  doctor: doctor,
-                  isButton: false,
-                  onTap: (doctor) async {
-                    _newAppointmentBloc.add(
-                      ClinicDoctorsFetched(
-                        clinic: state.clinics!.firstWhere(
-                          (clinic) => clinic.id == doctor.clinicId,
-                        ),
-                      ),
-                    );
-                    await for (final newState in _newAppointmentBloc.stream) {
-                      if (newState.status.isData) {
-                        _newAppointmentBloc.add(DoctorSelected(doctor: doctor));
-                        break;
-                      }
-                    }
-                    _overlayEntry?.remove();
-                    _isOverlayOpened = false;
-                    Focus.of(context).unfocus();
-                  },
-                ),
-              );
+          child: RefreshIndicator(
+            onRefresh: () async {
+              _newAppointmentBloc.add(AllDoctorsFetched());
             },
+            child: ListView.builder(
+              padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+              shrinkWrap: true,
+              itemCount:
+                  state.status.isLoading ? 10 : (state.searchList ?? []).length,
+              itemBuilder: (_, index) {
+                if (state.status.isLoading) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: DoctorCardWidget(
+                      doctor: DoctorModel(),
+                      isButton: false,
+                      onTap: (doctor) async {},
+                    ),
+                  );
+                }
+                final doctor = (state.searchList ?? [])[index];
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 10.0),
+                  child: DoctorCardWidget(
+                    doctor: doctor,
+                    isButton: false,
+                    onTap: (doctor) async {
+                      _newAppointmentBloc.add(
+                        ClinicDoctorsFetched(
+                          clinic: state.clinics!.firstWhere(
+                            (clinic) => clinic.id == doctor.clinicId,
+                          ),
+                        ),
+                      );
+                      await for (final newState in _newAppointmentBloc.stream) {
+                        if (newState.status.isData) {
+                          _newAppointmentBloc.add(
+                            DoctorSelected(doctor: doctor),
+                          );
+                          break;
+                        }
+                      }
+                      _overlayEntry?.remove();
+                      _isOverlayOpened = false;
+                      Focus.of(context).unfocus();
+                    },
+                  ),
+                );
+              },
+            ),
           ),
         );
       },

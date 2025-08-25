@@ -158,6 +158,7 @@ class LabtechAnalysisInfoBloc
           message: l.message,
         ),
         Right(value: final r) => state.copyWith(
+          analysis: r.data ?? state.analysis,
           status: DataStatus.data,
           message: r.message,
         ),
