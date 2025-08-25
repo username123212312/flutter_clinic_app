@@ -134,16 +134,18 @@ class _AppointmentsScreenWidgetState extends State<AppointmentsScreenWidget> {
                               );
                             },
                             behavior: HitTestBehavior.opaque,
-                            child: DoctorAppointmentCard(
-                              onCancel: () {
-                                _showTDialog(appointment);
-                              },
-                              appointment: appointment,
-                              image:
-                                  (appointment.patientGender ?? 'male')[0] ==
-                                          'm'
-                                      ? 'assets/icons/patient_icon2.png'
-                                      : 'assets/icons/patient_icon1.png',
+                            child: SizedBox(
+                              child: DoctorAppointmentCard(
+                                onCancel: () {
+                                  _showTDialog(appointment);
+                                },
+                                appointment: appointment,
+                                image:
+                                    (appointment.patientGender ?? 'male')[0] ==
+                                            'm'
+                                        ? 'assets/icons/man.png'
+                                        : 'assets/icons/girl.png',
+                              ),
                             ),
                           ),
                         );

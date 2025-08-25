@@ -98,8 +98,8 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
                     : SliverToBoxAdapter(
                       child: Skeletonizer(
                         enabled: state.status.isLoading,
-                        effect: ShimmerEffect(
-                          // Animation duration
+                        effect: SoldColorEffect(
+                          color: Pallete.grayScaleColor300,
                         ),
                         child: ListView.builder(
                           physics: NeverScrollableScrollPhysics(),

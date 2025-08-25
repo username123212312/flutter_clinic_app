@@ -44,14 +44,27 @@ class UpcomingAppointmentCard extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CircleAvatar(
-                  radius: 16,
-                  foregroundImage:
-                      imagePath == null
-                          ? AssetImage('assets/images/app_logo.png')
-                          : NetworkImage('${AppConstants.serverUrl}$imagePath'),
-                   backgroundColor: Pallete.graysGray4,
+                Container(
+                  width: 32,
+                  height: 32,
+                  decoration: BoxDecoration(
+                    color: Pallete.grayScaleColor300,
+                    shape: BoxShape.circle,
+                  ),
+                  child: ClipOval(
+                    child:
+                        imagePath == null
+                            ? Image.asset(
+                              'assets/images/Doctor Image (2).png',
+                              fit: BoxFit.contain,
+                            )
+                            : Image.network(
+                              '${AppConstants.serverUrl}$imagePath',
+                              fit: BoxFit.contain,
+                            ),
+                  ),
                 ),
+
                 const SizedBox(width: 10),
                 Expanded(
                   child: Column(

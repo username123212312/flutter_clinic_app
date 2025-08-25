@@ -260,7 +260,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       TextSpan(
                         text:
                             _currentIndex == 0
-                                ? 'Clinic'
+                                ? 'Mediverse'
                                 : _currentIndex == 1
                                 ? 'Doctor'
                                 : 'Appointment',

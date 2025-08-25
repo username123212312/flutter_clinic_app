@@ -62,8 +62,8 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
         title: Text(
           'Reschedule Appointment',
           style: Theme.of(context).textTheme.titleMedium!.copyWith(
-            fontSize: 20,
-            color: Pallete.black1,
+            fontSize: 17,
+            color: Pallete.grayScaleColor700,
           ),
         ),
         toolbarHeight: screenHeight(context) * 0.1,

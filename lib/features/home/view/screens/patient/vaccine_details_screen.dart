@@ -259,8 +259,8 @@ class _VaccineDetailsScreenState extends State<VaccineDetailsScreen> {
                               SizedBox(height: 10),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Pallete.alertDangerColor,
-                                  foregroundColor: Colors.white,
+                                  backgroundColor: Pallete.primaryColor,
+                                  foregroundColor: Pallete.grayScaleColor0,
                                   fixedSize: Size(
                                     screenWidth(context),
                                     screenHeight(context) * 0.07,

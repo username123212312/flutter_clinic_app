@@ -55,22 +55,29 @@ class AppointmentWidgetItem extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        width: screenHeight(context) * 0.08,
-                        height: screenHeight(context) * 0.09,
+                        width: screenWidth(context) * 0.175,
+                        height: screenHeight(context) * 0.085,
                         decoration: BoxDecoration(
-                          color: Pallete.grayScaleColor200,
-                          image: DecorationImage(
-                            image:
-                                appointment.doctorPhoto == null
-                                    ? AssetImage('assets/images/logo.webp')
-                                    : NetworkImage(
-                                      '${AppConstants.serverUrl}${appointment.doctorPhoto!}',
-                                    ),
-                            fit: BoxFit.cover,
-                          ),
+                          color: Pallete.grayScaleColor300,
                           borderRadius: BorderRadius.circular(20),
                         ),
+                        clipBehavior: Clip.hardEdge,
+                        child:
+                            appointment.doctorPhoto == null
+                                ? Image.asset(
+                                  'assets/images/Doctor Image (2).png',
+                                  width: double.infinity,
+                                  height: double.infinity,
+                                  fit: BoxFit.contain,
+                                )
+                                : Image.network(
+                                  '${AppConstants.serverUrl}${appointment.doctorPhoto!}',
+                                  width: double.infinity,
+                                  height: double.infinity,
+                                  fit: BoxFit.cover,
+                                ),
                       ),
+
                       SizedBox(width: 10),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,7 +94,7 @@ class AppointmentWidgetItem extends StatelessWidget {
                             style: Theme.of(
                               context,
                             ).textTheme.titleSmall!.copyWith(
-                              fontSize: 10,
+                              fontSize: 11,
                               color: Pallete.sliverSand,
                             ),
                           ),

@@ -67,7 +67,7 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
                                     decoration: BoxDecoration(
                                       color:
                                           Theme.of(context).colorScheme.primary,
-                                      borderRadius: BorderRadius.circular(12),
+                                      borderRadius: BorderRadius.circular(25),
                                     ),
                                     alignment: Alignment.center,
                                     child: Text(

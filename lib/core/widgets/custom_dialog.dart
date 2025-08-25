@@ -15,7 +15,7 @@ class CustomDialog extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(13),
-            color: Pallete.grayScaleColor200,
+            color: Pallete.grayScaleColor0,
           ),
           width: size != null ? size!.width : screenWidth(context) * 0.8,
           height: size != null ? size!.height : screenHeight(context) * 0.3,

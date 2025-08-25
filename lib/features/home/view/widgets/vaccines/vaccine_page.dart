@@ -182,6 +182,7 @@ class _VaccineScreenWidgetState extends State<VaccineScreenWidget> {
           }
           return Skeletonizer(
             enabled: state.status.isLoading,
+            effect: SoldColorEffect(color: Pallete.grayScaleColor300),
             child: GridView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,

@@ -29,7 +29,7 @@ class DoctorAppointmentDetailsCard extends StatelessWidget {
           Row(
             children: [
               Image.asset(
-                'assets/icons/tabler_clipboard-list.png',
+                'assets/icons/appointements _details.png',
                 width: 30,
                 height: 30,
                 fit: BoxFit.cover,
@@ -87,7 +87,7 @@ class DoctorAppointmentDetailsCard extends StatelessWidget {
                     '${appointment.patientFirstName ?? 'No'} '
                     '${appointment.patientLastName ?? 'User'}',
                 // subtitle: appointment.patient.name,
-                iconImagePath: 'assets/icons/ic_user_circle.png',
+                iconImagePath: 'assets/icons/patient_appoi.png',
               ),
               AppointmentDetailsListItem(
                 title: 'Service',
@@ -98,20 +98,20 @@ class DoctorAppointmentDetailsCard extends StatelessWidget {
                         ? 'Finished'
                         : appointment.status?.name) ??
                     'No service',
-                iconImagePath: 'assets/icons/ic_service.png',
+                iconImagePath: 'assets/icons/self-love.png',
               ),
               AppointmentDetailsListItem(
                 title: 'Appointment Type',
                 subtitle: appointment.appointmentType?.name ?? 'No type',
                 // thirdtitle: appointment.doctor.speciality,
-                iconImagePath: 'assets/icons/ic_clinic.png',
+                iconImagePath: 'assets/icons/nurse-hat.png',
               ),
               AppointmentDetailsListItem(
                 title: 'Doctor Speciality',
                 subtitle:
                     context.read<UserBloc>().state.user?.speciality ??
                     'No Department',
-                iconImagePath: 'assets/icons/ic_doctor.png',
+                iconImagePath: 'assets/icons/hospital (1).png',
               ),
               AppointmentDetailsListItem(
                 fontSize: 11,
@@ -119,7 +119,7 @@ class DoctorAppointmentDetailsCard extends StatelessWidget {
                 subtitle:
                     '${DateFormat('EEEE, MMMM, d, y').format(appointment.reservationDate ?? DateTime.now())} '
                     ', ${formatTime(appointment.reservationHour ?? TimeOfDay.now())}',
-                iconImagePath: 'assets/icons/ic_time.png',
+                iconImagePath: 'assets/icons/data.png',
               ),
             ],
           ),

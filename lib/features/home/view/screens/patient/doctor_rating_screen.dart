@@ -307,6 +307,7 @@ class _RatingScreenState extends State<RatingScreen>
                   }
                   return Skeletonizer(
                     enabled: state.status.isLoading,
+                    effect: SoldColorEffect(color: Pallete.grayScaleColor300),
                     child: ListView.separated(
                       itemCount:
                           state.status.isLoading ? 10 : state.reviews.length,

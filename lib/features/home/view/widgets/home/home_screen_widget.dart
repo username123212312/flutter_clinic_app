@@ -187,6 +187,9 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                       }
                       return Skeletonizer(
                         enabled: state.upcomingAppointmentsListStatus.isLoading,
+                        effect: SoldColorEffect(
+                          color: Pallete.grayScaleColor300,
+                        ),
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount:
@@ -277,7 +280,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                 BlocBuilder<HomeBloc, HomeState>(
                   builder: (context, state) {
                     return Skeletonizer(
-                      effect: SoldColorEffect(),
+                      effect: SoldColorEffect(color: Pallete.grayScaleColor300),
                       enabled:
                           state.departmentsListStatus.isLoading ||
                           state.departmentsList.isEmpty,
@@ -358,6 +361,9 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                       }
                       return Skeletonizer(
                         enabled: state.doctorsListStatus.isLoading,
+                        effect: SoldColorEffect(
+                          color: Pallete.grayScaleColor300,
+                        ),
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount:
@@ -464,6 +470,9 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                       }
                       return Skeletonizer(
                         enabled: state.pharmaciesListStatus.isLoading,
+                        effect: SoldColorEffect(
+                          color: Pallete.grayScaleColor300,
+                        ),
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount:
