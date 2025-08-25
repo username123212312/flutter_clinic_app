@@ -129,10 +129,18 @@ class DoctorCardProfile extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(height: 6),
-                              Image.asset(
-                                'assets/images/signature.jpg',
+                              SizedBox(
                                 width: 25,
                                 height: 25,
+                                child:
+                                    state.user?.sign == null
+                                        ? Image.asset(
+                                          'assets/images/signature.jpg',
+                                          fit: BoxFit.cover,
+                                        )
+                                        : CustomCachedNetworkImage(
+                                          imagePath: state.user?.sign ?? '',
+                                        ),
                               ),
                             ],
                           ),

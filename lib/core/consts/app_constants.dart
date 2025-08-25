@@ -118,6 +118,7 @@ class AppConstants {
 
   //? Doctor
   static const doctorProfilePath = '$doctorPath/profile';
+  static const doctorShowWorkDaysPath = '$doctorPath/showDoctorWorkDates';
   static const availableWorkDaysPath = '$doctorPath/availableWorkDays';
   static const doctorChangSchedulePath = '$doctorPath/editSchedule';
   static const schedulePath = '$doctorPath/schedule';

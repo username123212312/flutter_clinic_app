@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:our_flutter_clinic_app/features/home/model/medical_info_model.dart';
+import 'package:our_flutter_clinic_app/features/home/model/medicine_model.dart';
 
 import '../../../../core/consts/app_constants.dart';
 import '../../../../core/enums.dart';
@@ -64,8 +65,15 @@ class DoctorAppointmentDetailsCubit
               prescription:
                   response.data['prescription'] == null
                       ? null
-                      : PrescriptionModel.fromJson(
-                        response.data['prescription'],
+                      : PrescriptionModel(
+                        medicines:
+                            (response.data['prescription']['medicines']['data']
+                                    as List<dynamic>)
+                                .map((m) {
+                                  return MedicineModel.fromJson(m);
+                                })
+                                .toList(),
+                        note: response.data['prescription']['note'],
                       ),
             ),
             message: 'Appointments fetched successfully',

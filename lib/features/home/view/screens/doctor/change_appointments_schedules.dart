@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:our_flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
+import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
 import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
 import 'package:our_flutter_clinic_app/core/widgets/loading_overlay.dart';
@@ -22,6 +25,15 @@ class ChangeAppointmentsSchedules extends StatefulWidget {
 class _ChangeAppointmentsSchedulesState
     extends State<ChangeAppointmentsSchedules> {
   @override
+  void initState() {
+    _changeAppointmentsCubit = ChangeAppointmentsCubit();
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _changeAppointmentsCubit.fetchWorkDays();
+    });
+  }
+
+  @override
   void dispose() {
     _startDateController.dispose();
     _startTimeController.dispose();
@@ -33,6 +45,15 @@ class _ChangeAppointmentsSchedulesState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              _changeAppointmentsCubit.fetchWorkDays();
+            },
+            iconSize: 17,
+            icon: Icon(FontAwesomeIcons.arrowsRotate),
+          ),
+        ],
         title: Text(
           'Change your schedules',
           style: Theme.of(
@@ -54,25 +75,73 @@ class _ChangeAppointmentsSchedulesState
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    'From',
-                    style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    'To',
-                    style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
+              Text(
+                'Start leave date',
+                style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
+              BlocBuilder<ChangeAppointmentsCubit, ChangeAppointmentsState>(
+                bloc: _changeAppointmentsCubit,
+                builder: (context, state) {
+                  return CustomTextField(
+                    textAlign: TextAlign.center,
+                    validator: (value) {
+                      if (value!.trim().isEmpty) {
+                        return 'You must enter start date';
+                      } else {
+                        return null;
+                      }
+                    },
+                    onTap:
+                        state.availableDays.isEmpty
+                            ? null
+                            : () async {
+                              final date = await showDatePicker(
+                                selectableDayPredicate: (day) {
+                                  return state.availableDays.contains(day);
+                                },
+                                initialEntryMode:
+                                    DatePickerEntryMode.calendarOnly,
+                                keyboardType: TextInputType.datetime,
+                                builder: (context, child) {
+                                  return Theme(
+                                    data: ThemeData.light().copyWith(),
+                                    child: child!,
+                                  );
+                                },
+                                context: context,
+                                firstDate: DateTime.now(),
+                                lastDate: DateTime.now().add(
+                                  Duration(days: 365),
+                                ),
+                              );
+                              if (date != null) {
+                                setState(() {
+                                  _startLeaveDate = date;
+                                  _startDateController.text = DateFormat(
+                                    'yyyy-MM-dd',
+                                  ).format(date);
+                                });
+                              }
+                            },
+                    controller: _startDateController,
+                    readOnly: true,
+                    hintText: 'Start leave date',
+                    keyboardType: TextInputType.text,
+                  );
+                },
+              ),
+
+              Text(
+                'End leave date',
+                style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
               CustomTextField(
                 textAlign: TextAlign.center,
                 validator: (value) {
@@ -82,31 +151,40 @@ class _ChangeAppointmentsSchedulesState
                     return null;
                   }
                 },
-                onTap: () async {
-                  final date = await showDateRangePicker(
-                    keyboardType: TextInputType.datetime,
-                    builder: (context, child) {
-                      return Theme(
-                        data: ThemeData.light().copyWith(),
-                        child: child!,
-                      );
-                    },
-                    context: context,
-                    firstDate: DateTime.now(),
-                    lastDate: DateTime.now().add(Duration(days: 30)),
-                  );
-                  if (date != null) {
-                    setState(() {
-                      _startLeaveDate = date;
-                      _startDateController.text =
-                          '${DateFormat('yyyy-MM-dd').format(date.start)}     '
-                          '|     ${DateFormat('yyyy-MM-dd').format(date.end)}';
-                    });
-                  }
-                },
-                controller: _startDateController,
+                onTap:
+                    _startLeaveDate == null
+                        ? () {
+                          showToast(
+                            context: context,
+                            msg: 'You must select a start date',
+                          );
+                        }
+                        : () async {
+                          final date = await showDatePicker(
+                            initialEntryMode: DatePickerEntryMode.calendarOnly,
+                            keyboardType: TextInputType.datetime,
+                            builder: (context, child) {
+                              return Theme(
+                                data: ThemeData.light().copyWith(),
+                                child: child!,
+                              );
+                            },
+                            context: context,
+                            firstDate: _startLeaveDate!,
+                            lastDate: DateTime.now().add(Duration(days: 365)),
+                          );
+                          if (date != null) {
+                            setState(() {
+                              _endLeaveDate = date;
+                              _endDateController.text = DateFormat(
+                                'yyyy-MM-dd',
+                              ).format(date);
+                            });
+                          }
+                        },
+                controller: _endDateController,
                 readOnly: true,
-                hintText: 'From        |        To',
+                hintText: 'End leave date',
                 keyboardType: TextInputType.text,
               ),
 
@@ -224,8 +302,8 @@ class _ChangeAppointmentsSchedulesState
                     if (_formKey.currentState!.validate()) {
                       _changeAppointmentsCubit.changeAppointmentsSchedules(
                         request: DoctorChangeSchedulesRequest(
-                          startLeaveDate: _startLeaveDate!.start,
-                          endLeaveDate: _startLeaveDate!.end,
+                          startLeaveDate: _startLeaveDate!,
+                          endLeaveDate: _endLeaveDate!,
                           startLeaveTime: _startTime!,
                           endLeaveTime: _endTime!,
                         ),
@@ -248,14 +326,16 @@ class _ChangeAppointmentsSchedulesState
     );
   }
 
-  DateTimeRange? _startLeaveDate;
+  DateTime? _startLeaveDate;
+  DateTime? _endLeaveDate;
   TimeOfDay? _startTime;
   TimeOfDay? _endTime;
 
   final _startDateController = TextEditingController();
+  final _endDateController = TextEditingController();
   final _startTimeController = TextEditingController();
   final _endTimeController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  final _changeAppointmentsCubit = ChangeAppointmentsCubit();
+  late final ChangeAppointmentsCubit _changeAppointmentsCubit;
 }

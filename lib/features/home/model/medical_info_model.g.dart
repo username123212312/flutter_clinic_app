@@ -10,6 +10,9 @@ _$MedicalInfoModelImpl _$$MedicalInfoModelImplFromJson(
   Map<String, dynamic> json,
 ) => _$MedicalInfoModelImpl(
   id: (json['id'] as num?)?.toInt(),
+  noteForTheDoctor: json['note for the doctor'],
+  noteForThePatient: json['note for the patient'],
+  symptoms: json['symptoms'] as String?,
   diagnosis: json['diagnosis'] as String?,
   doctorNote: json['doctorNote'] as String?,
   patientNote: json['patientNote'] as String?,
@@ -25,6 +28,9 @@ Map<String, dynamic> _$$MedicalInfoModelImplToJson(
   _$MedicalInfoModelImpl instance,
 ) => <String, dynamic>{
   'id': instance.id,
+  'note for the doctor': instance.noteForTheDoctor,
+  'note for the patient': instance.noteForThePatient,
+  'symptoms': instance.symptoms,
   'diagnosis': instance.diagnosis,
   'doctorNote': instance.doctorNote,
   'patientNote': instance.patientNote,

@@ -202,7 +202,9 @@ void showToast({
   required String msg,
   ToastificationType type = ToastificationType.info,
 }) {
+  toastification.dismissAll();
   toastification.show(
+    dismissDirection: DismissDirection.vertical,
     style: ToastificationStyle.flatColored,
     type: type,
     animationBuilder: (context, animation, alignment, child) {
@@ -231,4 +233,30 @@ void showToast({
 
 bool doesListHaveMore(Map<String, dynamic> meta) {
   return (meta['current_page'] ?? -1) < (meta['last_page'] ?? 0);
+}
+
+List<int> allowedWeekdayNumbers(List<String> allowedWeekdays) {
+  return allowedWeekdays
+      .map((day) {
+        switch (day.toLowerCase()) {
+          case 'monday':
+            return 1;
+          case 'tuesday':
+            return 2;
+          case 'wednesday':
+            return 3;
+          case 'thursday':
+            return 4;
+          case 'friday':
+            return 5;
+          case 'saturday':
+            return 6;
+          case 'sunday':
+            return 7;
+          default:
+            return 0;
+        }
+      })
+      .where((number) => number > 0)
+      .toList();
 }

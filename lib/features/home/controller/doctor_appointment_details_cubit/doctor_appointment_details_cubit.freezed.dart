@@ -21,6 +21,8 @@ mixin _$DoctorAppointmentDetailsState {
   String get message => throw _privateConstructorUsedError;
   AppointmentModel get appointment => throw _privateConstructorUsedError;
   MedicalInfoModel? get medicalInfo => throw _privateConstructorUsedError;
+  String? get prescriptionFilePath => throw _privateConstructorUsedError;
+  double? get downloadProgress => throw _privateConstructorUsedError;
 
   /// Create a copy of DoctorAppointmentDetailsState
   /// with the given fields replaced by the non-null parameter values.
@@ -45,6 +47,8 @@ abstract class $DoctorAppointmentDetailsStateCopyWith<$Res> {
     String message,
     AppointmentModel appointment,
     MedicalInfoModel? medicalInfo,
+    String? prescriptionFilePath,
+    double? downloadProgress,
   });
 
   $AppointmentModelCopyWith<$Res> get appointment;
@@ -73,6 +77,8 @@ class _$DoctorAppointmentDetailsStateCopyWithImpl<
     Object? message = null,
     Object? appointment = null,
     Object? medicalInfo = freezed,
+    Object? prescriptionFilePath = freezed,
+    Object? downloadProgress = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -96,6 +102,16 @@ class _$DoctorAppointmentDetailsStateCopyWithImpl<
                     ? _value.medicalInfo
                     : medicalInfo // ignore: cast_nullable_to_non_nullable
                         as MedicalInfoModel?,
+            prescriptionFilePath:
+                freezed == prescriptionFilePath
+                    ? _value.prescriptionFilePath
+                    : prescriptionFilePath // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            downloadProgress:
+                freezed == downloadProgress
+                    ? _value.downloadProgress
+                    : downloadProgress // ignore: cast_nullable_to_non_nullable
+                        as double?,
           )
           as $Val,
     );
@@ -140,6 +156,8 @@ abstract class _$$DoctorAppointmentDetailsStateImplCopyWith<$Res>
     String message,
     AppointmentModel appointment,
     MedicalInfoModel? medicalInfo,
+    String? prescriptionFilePath,
+    double? downloadProgress,
   });
 
   @override
@@ -170,6 +188,8 @@ class __$$DoctorAppointmentDetailsStateImplCopyWithImpl<$Res>
     Object? message = null,
     Object? appointment = null,
     Object? medicalInfo = freezed,
+    Object? prescriptionFilePath = freezed,
+    Object? downloadProgress = freezed,
   }) {
     return _then(
       _$DoctorAppointmentDetailsStateImpl(
@@ -193,6 +213,16 @@ class __$$DoctorAppointmentDetailsStateImplCopyWithImpl<$Res>
                 ? _value.medicalInfo
                 : medicalInfo // ignore: cast_nullable_to_non_nullable
                     as MedicalInfoModel?,
+        prescriptionFilePath:
+            freezed == prescriptionFilePath
+                ? _value.prescriptionFilePath
+                : prescriptionFilePath // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        downloadProgress:
+            freezed == downloadProgress
+                ? _value.downloadProgress
+                : downloadProgress // ignore: cast_nullable_to_non_nullable
+                    as double?,
       ),
     );
   }
@@ -207,6 +237,8 @@ class _$DoctorAppointmentDetailsStateImpl
     required this.message,
     required this.appointment,
     this.medicalInfo,
+    this.prescriptionFilePath,
+    this.downloadProgress = 0.0,
   });
 
   @override
@@ -217,10 +249,15 @@ class _$DoctorAppointmentDetailsStateImpl
   final AppointmentModel appointment;
   @override
   final MedicalInfoModel? medicalInfo;
+  @override
+  final String? prescriptionFilePath;
+  @override
+  @JsonKey()
+  final double? downloadProgress;
 
   @override
   String toString() {
-    return 'DoctorAppointmentDetailsState(status: $status, message: $message, appointment: $appointment, medicalInfo: $medicalInfo)';
+    return 'DoctorAppointmentDetailsState(status: $status, message: $message, appointment: $appointment, medicalInfo: $medicalInfo, prescriptionFilePath: $prescriptionFilePath, downloadProgress: $downloadProgress)';
   }
 
   @override
@@ -233,12 +270,23 @@ class _$DoctorAppointmentDetailsStateImpl
             (identical(other.appointment, appointment) ||
                 other.appointment == appointment) &&
             (identical(other.medicalInfo, medicalInfo) ||
-                other.medicalInfo == medicalInfo));
+                other.medicalInfo == medicalInfo) &&
+            (identical(other.prescriptionFilePath, prescriptionFilePath) ||
+                other.prescriptionFilePath == prescriptionFilePath) &&
+            (identical(other.downloadProgress, downloadProgress) ||
+                other.downloadProgress == downloadProgress));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, status, message, appointment, medicalInfo);
+  int get hashCode => Object.hash(
+    runtimeType,
+    status,
+    message,
+    appointment,
+    medicalInfo,
+    prescriptionFilePath,
+    downloadProgress,
+  );
 
   /// Create a copy of DoctorAppointmentDetailsState
   /// with the given fields replaced by the non-null parameter values.
@@ -260,6 +308,8 @@ abstract class _DoctorAppointmentDetailsState
     required final String message,
     required final AppointmentModel appointment,
     final MedicalInfoModel? medicalInfo,
+    final String? prescriptionFilePath,
+    final double? downloadProgress,
   }) = _$DoctorAppointmentDetailsStateImpl;
 
   @override
@@ -270,6 +320,10 @@ abstract class _DoctorAppointmentDetailsState
   AppointmentModel get appointment;
   @override
   MedicalInfoModel? get medicalInfo;
+  @override
+  String? get prescriptionFilePath;
+  @override
+  double? get downloadProgress;
 
   /// Create a copy of DoctorAppointmentDetailsState
   /// with the given fields replaced by the non-null parameter values.
