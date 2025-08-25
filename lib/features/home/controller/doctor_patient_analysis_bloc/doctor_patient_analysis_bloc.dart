@@ -35,6 +35,10 @@ class DoctorPatientAnalysisBloc
     on<StatusChanged>((event, emit) {
       emit(
         state.copyWith(
+          selectedClinic:
+              event.analysisStatus.isAll
+                  ? state.selectedClinic
+                  : ClinicModel(name: 'Select a clinic'),
           analysisStatus: event.analysisStatus,
           currentPage: 0,
           hasMore: true,
@@ -46,6 +50,8 @@ class DoctorPatientAnalysisBloc
       emit(
         state.copyWith(
           selectedClinic: event.clinic,
+
+          analysisStatus: AnalysisStatus.all,
 
           currentPage: 0,
           hasMore: true,
@@ -113,7 +119,6 @@ class DoctorPatientAnalysisBloc
               .fetchAnalysisByClinic(
                 clinicId: state.selectedClinic.id ?? -1,
                 patientId: state.patient.id ?? -1,
-                analysisStatus: state.analysisStatus,
                 page: newPage,
               );
         }

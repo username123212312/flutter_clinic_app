@@ -9,7 +9,8 @@ import '../../../../core/utils/general_utils.dart';
 import '../widgets/bullet_item.dart';
 
 class CreatePasswordScreen extends StatefulWidget {
-  const CreatePasswordScreen({super.key});
+  const CreatePasswordScreen({super.key, this.isChange = false});
+  final bool isChange;
 
   @override
   State<CreatePasswordScreen> createState() => _CreatePasswordScreenState();
@@ -41,7 +42,9 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
             ),
           ),
           toolbarHeight: screenHeight(context) * 0.1,
-          title: Text('Create a Password'),
+          title: Text(
+            widget.isChange ? 'Change Passsword' : 'Create a Password',
+          ),
           titleTextStyle: Theme.of(
             context,
           ).textTheme.labelSmall!.copyWith(fontSize: 19),
@@ -97,31 +100,26 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                       listeners: [
                         BlocListener<UserBloc, UserState>(
                           listener: (context, state) {
-                            if (state.status.isLoading) {
-                              LoadingOverlay().show(context);
-                            } else {
-                              LoadingOverlay().hideAll();
-                              if (state.status.isError) {
-                                showToast(
-                                  context: context,
-                                  msg: state.statusMessage,
-                                );
-                              }
-                            }
+                            // if (state.status.isLoading) {
+                            //   LoadingOverlay().show(context);
+                            // } else {
+                            //   LoadingOverlay().hideAll();
+                            //   if (state.status.isError) {
+                            //     showToast(
+                            //       context: context,
+                            //       msg: state.statusMessage,
+                            //     );
+                            //   }
+                            // }
                           },
                         ),
                         BlocListener<AuthBloc, AuthState>(
                           listener: (context, state) {
-                            if (state.status.isLoading) {
-                              LoadingOverlay().show(context);
-                            } else {
-                              LoadingOverlay().hideAll();
-                              if (state.isAuth != null && state.isAuth!) {
-                                context.goNamed(
-                                  AppRouteConstants.yourProfileRouteName,
-                                );
-                              }
-                            }
+                            // if (state.isAuth != null && state.isAuth!) {
+                            //   context.goNamed(
+                            //     AppRouteConstants.yourProfileRouteName,
+                            //   );
+                            // }
                           },
                         ),
                       ],

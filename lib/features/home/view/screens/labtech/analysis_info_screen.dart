@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/providers/file_manager/file_manager.dart';
@@ -39,281 +40,306 @@ class _AnalysisInfoScreenState extends State<AnalysisInfoScreen> {
       labtechAnalysisRepository: LabtechAnalysisRepository(),
     );
     _isPending = widget.analysis.status?.isPending ?? false;
-    _isPaid = widget.analysis.paymentStatus?.isPaid ?? false;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _labtechAnalysisInfoBloc.add(FetchAnalysis());
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        forceMaterialTransparency: true,
-        toolbarHeight: screenHeight(context) * 0.11,
-        title: Text(widget.analysis.name),
-        titleTextStyle: Theme.of(
-          context,
-        ).textTheme.titleMedium!.copyWith(fontSize: 25),
-      ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.only(
-          left: 15.0,
-          right: 15,
-          bottom: MediaQuery.of(context).viewInsets.bottom * 0.3,
+    return SafeArea(
+      bottom: true,
+      top: false,
+      child: Scaffold(
+        appBar: AppBar(
+          actions: [
+            IconButton(
+              onPressed: () {
+                _labtechAnalysisInfoBloc.add(FetchAnalysis());
+              },
+              iconSize: 16,
+              icon: Icon(FontAwesomeIcons.arrowsRotate),
+            ),
+          ],
+          forceMaterialTransparency: true,
+          toolbarHeight: screenHeight(context) * 0.11,
+          title: Text(widget.analysis.name),
+          titleTextStyle: Theme.of(
+            context,
+          ).textTheme.titleMedium!.copyWith(fontSize: 20),
         ),
-        child: PopScope(
-          canPop: true,
-          onPopInvokedWithResult: (didPop, result) {
-            if (didPop) {
-              context.read<LabtechAnalysisBloc>().add(AnalysisFetched());
-            }
-          },
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 20),
-              if (_isPending) _buildPendingFileAndPhoto(),
-              if (!_isPending) _buildFinishedFileAndPhoto(),
-              SizedBox(height: 25),
-              Card(
-                color: Pallete.graysGray5,
-                child: Padding(
-                  padding: EdgeInsets.all(15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    spacing: 10,
-                    children: [
-                      Text(
-                        'Patient',
-                        style: Theme.of(
-                          context,
-                        ).textTheme.labelMedium!.copyWith(fontSize: 18),
-                      ),
-                      Text(
-                        '${widget.analysis.patientFirstName ?? 'No'} ${widget.analysis.patientLastName ?? 'No'}',
-                        style: Theme.of(
-                          context,
-                        ).textTheme.titleSmall!.copyWith(fontSize: 15),
-                      ),
-
-                      Text(
-                        'Description',
-                        style: Theme.of(
-                          context,
-                        ).textTheme.labelMedium!.copyWith(fontSize: 18),
-                      ),
-                      SizedBox(
-                        width: screenWidth(context),
-                        // height: screenHeight(context) * 0.18,
-                        child: Text(
+        body: SingleChildScrollView(
+          padding: EdgeInsets.only(
+            left: 15.0,
+            right: 15,
+            bottom: MediaQuery.of(context).viewInsets.bottom * 0.3,
+          ),
+          child: PopScope(
+            canPop: true,
+            onPopInvokedWithResult: (didPop, result) {
+              if (didPop) {
+                context.read<LabtechAnalysisBloc>().add(AnalysisFetched());
+              }
+            },
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 20),
+                if (_isPending) _buildPendingFileAndPhoto(),
+                if (!_isPending) _buildFinishedFileAndPhoto(),
+                SizedBox(height: 25),
+                Card(
+                  color: Pallete.graysGray5,
+                  child: Padding(
+                    padding: EdgeInsets.all(15),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      spacing: 10,
+                      children: [
+                        Text(
+                          'Patient',
+                          style: Theme.of(
+                            context,
+                          ).textTheme.labelMedium!.copyWith(fontSize: 18),
+                        ),
+                        Text(
+                          '${widget.analysis.patientFirstName ?? 'No'} ${widget.analysis.patientLastName ?? 'No'}',
                           style: Theme.of(
                             context,
                           ).textTheme.titleSmall!.copyWith(fontSize: 15),
-                          widget.analysis.description ?? 'Analysis description',
                         ),
-                      ),
-                      Text(
-                        'Clinic',
-                        style: Theme.of(
-                          context,
-                        ).textTheme.labelMedium!.copyWith(fontSize: 18),
-                      ),
-                      SizedBox(
-                        width: screenWidth(context),
-                        // height: screenHeight(context) * 0.18,
-                        child: Text(
+
+                        Text(
+                          'Description',
                           style: Theme.of(
                             context,
-                          ).textTheme.titleSmall!.copyWith(fontSize: 15),
-                          widget.analysis.clinic ?? 'Analysis Clinic',
+                          ).textTheme.labelMedium!.copyWith(fontSize: 18),
                         ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Price',
-                                style: Theme.of(
-                                  context,
-                                ).textTheme.labelMedium!.copyWith(fontSize: 18),
-                              ),
-                              SizedBox(
-                                child: Text(
-                                  style: Theme.of(context).textTheme.titleSmall!
-                                      .copyWith(fontSize: 15),
-                                  '\$ ${widget.analysis.price}',
-                                ),
-                              ),
-                            ],
+                        SizedBox(
+                          width: screenWidth(context),
+                          // height: screenHeight(context) * 0.18,
+                          child: Text(
+                            style: Theme.of(
+                              context,
+                            ).textTheme.titleSmall!.copyWith(fontSize: 15),
+                            widget.analysis.description ??
+                                'Analysis description',
                           ),
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color:
-                                  (widget.analysis.paymentStatus ??
-                                              PaymentStatus.pending)
-                                          .isPaid
-                                      ? Pallete.statusColorFinished
-                                      : Pallete.statusColorPending,
-                            ),
-                            padding: EdgeInsets.all(10),
-                            child: Text(
-                              (widget.analysis.paymentStatus ??
-                                          PaymentStatus.pending)
-                                      .isPending
-                                  ? 'Unpaid'
-                                  : 'Paid',
-                              style: Theme.of(
-                                context,
-                              ).textTheme.labelMedium!.copyWith(
-                                color:
-                                    (widget.analysis.paymentStatus ??
-                                                PaymentStatus.pending)
-                                            .isPending
-                                        ? Pallete.alertWarningColor
-                                        : Pallete.alertSuccessColor,
-                                fontSize: 10,
-                              ),
-                            ),
+                        ),
+                        Text(
+                          'Clinic',
+                          style: Theme.of(
+                            context,
+                          ).textTheme.labelMedium!.copyWith(fontSize: 18),
+                        ),
+                        SizedBox(
+                          width: screenWidth(context),
+                          // height: screenHeight(context) * 0.18,
+                          child: Text(
+                            style: Theme.of(
+                              context,
+                            ).textTheme.titleSmall!.copyWith(fontSize: 15),
+                            widget.analysis.clinic ?? 'Analysis Clinic',
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-              if (!_isPaid)
-                BlocBuilder<LabtechAnalysisInfoBloc, LabtechAnalysisInfoState>(
-                  bloc: _labtechAnalysisInfoBloc,
-                  builder: (context, state) {
-                    return (state.analysis.paymentStatus?.isPaid ?? false)
-                        ? SizedBox.shrink()
-                        : Column(
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SizedBox(height: screenHeight(context) * 0.05),
-                            SizedBox(
-                              width: screenWidth(context),
-                              child: BlocConsumer<
-                                LabtechAnalysisInfoBloc,
-                                LabtechAnalysisInfoState
-                              >(
-                                listenWhen:
-                                    (previous, current) =>
-                                        current.message ==
-                                            'Analysis Bill added successfully!' ||
-                                        current.status.isError,
-                                listener: (context, state) {
-                                  if (state.status.isData) {
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Price',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelMedium!
+                                      .copyWith(fontSize: 18),
+                                ),
+                                BlocBuilder<
+                                  LabtechAnalysisInfoBloc,
+                                  LabtechAnalysisInfoState
+                                >(
+                                  bloc: _labtechAnalysisInfoBloc,
+                                  builder: (context, state) {
+                                    return SizedBox(
+                                      child: Text(
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleSmall!
+                                            .copyWith(fontSize: 15),
+                                        '\$ ${state.analysis.price}',
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                            BlocConsumer<
+                              LabtechAnalysisInfoBloc,
+                              LabtechAnalysisInfoState
+                            >(
+                              listener: (context, state) async {
+                                if (state.status.isLoading) {
+                                  LoadingOverlay().show(context);
+                                } else {
+                                  LoadingOverlay().hideAll();
+                                  if (state.message ==
+                                      'Analysis Bill added successfully!') {
                                     showToast(
                                       context: context,
-                                      type: ToastificationType.success,
                                       msg: state.message,
+                                      type: ToastificationType.success,
                                     );
+                                    context.pop();
                                     _labtechAnalysisInfoBloc.add(
                                       FetchAnalysis(),
                                     );
-                                    Navigator.of(context).pop();
                                   }
                                   if (state.status.isError) {
                                     showToast(
                                       context: context,
-                                      type: ToastificationType.error,
                                       msg: state.message,
+                                      type: ToastificationType.error,
                                     );
                                   }
-                                },
-                                bloc: _labtechAnalysisInfoBloc,
-                                builder:
-                                    (context, state) => CustomElevatedButton(
-                                      title: 'Add Bill',
-                                      onTap: () async {
-                                        await showModalBottomSheet(
-                                          context: context,
-                                          builder:
-                                              (_) => AddBillBottomSheet(
-                                                isLoading:
-                                                    state.status.isLoading,
-                                                onAdd: (price) {
-                                                  _labtechAnalysisInfoBloc.add(
-                                                    AddBill(
-                                                      analysisId:
-                                                          widget.analysis.id ??
-                                                          0,
-                                                      price: price,
-                                                    ),
-                                                  );
-                                                },
-                                              ),
-                                        );
-                                      },
-                                      fillColor:
-                                          Theme.of(context).colorScheme.primary,
-                                      textColor: Colors.white,
+                                  if (state.status.isDone) {
+                                    await TransparentDialog.show(
+                                      context: context,
+                                      barrierDismissible: false,
+                                      builder: (_) => _buildDialog(context),
+                                    );
+                                  }
+                                }
+                              },
+                              bloc: _labtechAnalysisInfoBloc,
+                              builder: (context, state) {
+                                return Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    color:
+                                        (state.analysis.paymentStatus ??
+                                                    PaymentStatus.pending)
+                                                .isPaid
+                                            ? Pallete.statusColorFinished
+                                            : Pallete.statusColorPending,
+                                  ),
+                                  padding: EdgeInsets.all(10),
+                                  child: Text(
+                                    (state.analysis.paymentStatus ??
+                                                PaymentStatus.pending)
+                                            .isPending
+                                        ? 'Unpaid'
+                                        : 'Paid',
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.labelMedium!.copyWith(
+                                      color:
+                                          (state.analysis.paymentStatus ??
+                                                      PaymentStatus.pending)
+                                                  .isPending
+                                              ? Pallete.alertWarningColor
+                                              : Pallete.alertSuccessColor,
+                                      fontSize: 10,
                                     ),
-                              ),
+                                  ),
+                                );
+                              },
                             ),
                           ],
-                        );
-                  },
-                ),
-
-              if (_isPending) ...[
-                SizedBox(
-                  height: screenHeight(context) * (_isPaid ? 0.2 : 0.02),
-                ),
-                SizedBox(
-                  width: screenWidth(context),
-                  child: BlocListener<
-                    LabtechAnalysisInfoBloc,
-                    LabtechAnalysisInfoState
-                  >(
-                    bloc: _labtechAnalysisInfoBloc,
-                    listener: (context, state) async {
-                      if (state.status.isLoading) {
-                        LoadingOverlay().show(context);
-                      } else {
-                        LoadingOverlay().hideAll();
-                        if (state.status.isDone) {
-                          await TransparentDialog.show(
-                            context: context,
-                            barrierDismissible: false,
-                            builder: (_) => _buildDialog(context),
-                          );
-                        }
-                      }
-                    },
-                    child: CustomElevatedButton(
-                      isEnabled: !(_chosenFile == null && _chosenPhoto == null),
-                      title: 'Add result',
-                      onTap: () {
-                        if ((widget.analysis.paymentStatus ??
-                                PaymentStatus.pending)
-                            .isPending) {
-                          showToast(
-                            context: context,
-                            msg: 'The patient must pay first',
-                          );
-                          return;
-                        }
-                        _labtechAnalysisInfoBloc.add(
-                          AnalysisResultAdded(
-                            request: AddAnalysisResultRequest(
-                              id: widget.analysis.id ?? 0,
-                              filePath: _chosenFile?.path,
-                              photoPath: _chosenPhoto?.path,
-                            ),
-                          ),
-                        );
-                      },
-                      fillColor: Theme.of(context).colorScheme.primary,
-                      textColor: Colors.white,
+                        ),
+                      ],
                     ),
                   ),
                 ),
+
+                BlocBuilder<LabtechAnalysisInfoBloc, LabtechAnalysisInfoState>(
+                  bloc: _labtechAnalysisInfoBloc,
+
+                  builder: (context, state) {
+                    return Visibility(
+                      visible:
+                          (state.analysis.status ?? AnalysisStatus.pending)
+                              .isPending,
+                      child: Column(
+                        spacing: 10,
+                        children: [
+                          SizedBox(height: 10),
+                          SizedBox(
+                            width: screenWidth(context),
+                            child: CustomElevatedButton(
+                              isEnabled:
+                                  !(_chosenFile == null &&
+                                      _chosenPhoto == null),
+                              title: 'Add result',
+                              onTap: () {
+                                if ((state.analysis.paymentStatus ??
+                                        PaymentStatus.pending)
+                                    .isPending) {
+                                  showToast(
+                                    context: context,
+                                    msg: 'The patient must pay first',
+                                  );
+                                  return;
+                                }
+                                _labtechAnalysisInfoBloc.add(
+                                  AnalysisResultAdded(
+                                    request: AddAnalysisResultRequest(
+                                      id: state.analysis.id ?? 0,
+                                      filePath: _chosenFile?.path,
+                                      photoPath: _chosenPhoto?.path,
+                                    ),
+                                  ),
+                                );
+                              },
+                              fillColor: Theme.of(context).colorScheme.primary,
+                              textColor: Colors.white,
+                            ),
+                          ),
+                          if ((state.analysis.paymentStatus ??
+                                  PaymentStatus.pending)
+                              .isPending)
+                            SizedBox(
+                              width: screenWidth(context),
+                              child: CustomElevatedButton(
+                                title: 'Add Bill',
+                                onTap: () async {
+                                  final isAdded = await showModalBottomSheet(
+                                    context: context,
+                                    builder:
+                                        (_) => AddBillBottomSheet(
+                                          isLoading: state.status.isLoading,
+                                          onAdd: (price) {
+                                            _labtechAnalysisInfoBloc.add(
+                                              AddBill(
+                                                analysisId:
+                                                    widget.analysis.id ?? 0,
+                                                price: price,
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                  );
+                                  if (isAdded != null) {
+                                    if (isAdded) {
+                                      _labtechAnalysisInfoBloc.add(
+                                        FetchAnalysis(),
+                                      );
+                                    }
+                                  }
+                                },
+                                fillColor:
+                                    Theme.of(context).colorScheme.primary,
+                                textColor: Colors.white,
+                              ),
+                            ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ],
-            ],
+            ),
           ),
         ),
       ),
@@ -544,7 +570,6 @@ class _AnalysisInfoScreenState extends State<AnalysisInfoScreen> {
   }
 
   bool _isPending = true;
-  bool _isPaid = false;
   File? _chosenFile;
   File? _chosenPhoto;
   late final LabtechAnalysisInfoBloc _labtechAnalysisInfoBloc;
@@ -581,9 +606,7 @@ class _AddBillBottomSheetState extends State<AddBillBottomSheet> {
     super.dispose();
   }
 
-  void _onTextChanged() {
-    // This will be handled by the keyboard visibility check
-  }
+  void _onTextChanged() {}
 
   @override
   Widget build(BuildContext context) {
@@ -653,6 +676,7 @@ class _AddBillBottomSheetState extends State<AddBillBottomSheet> {
                 child: Form(
                   key: _formKey,
                   child: TextFormField(
+                    keyboardType: TextInputType.number,
                     validator: (value) {
                       if (ValidatorUtil.isEmpty(value)) {
                         return 'Enter a valid price';
@@ -709,3 +733,178 @@ class _AddBillBottomSheetState extends State<AddBillBottomSheet> {
     );
   }
 }
+
+
+
+// if (false)
+//                   BlocBuilder<
+//                     LabtechAnalysisInfoBloc,
+//                     LabtechAnalysisInfoState
+//                   >(
+//                     bloc: _labtechAnalysisInfoBloc,
+//                     builder: (context, state) {
+//                       return (state.analysis.paymentStatus?.isPaid ?? false)
+//                           ? SizedBox.shrink()
+//                           : Column(
+//                             children: [
+//                               SizedBox(height: screenHeight(context) * 0.05),
+//                               SizedBox(
+//                                 width: screenWidth(context),
+//                                 child: BlocConsumer<
+//                                   LabtechAnalysisInfoBloc,
+//                                   LabtechAnalysisInfoState
+//                                 >(
+//                                   listenWhen:
+//                                       (previous, current) =>
+//                                           current.message ==
+//                                               'Analysis Bill added successfully!' ||
+//                                           current.status.isError,
+//                                   listener: (context, state) {
+//                                     if (state.status.isLoading) {
+//                                       LoadingOverlay().show(context);
+//                                     } else {
+//                                       LoadingOverlay().hideAll();
+
+//                                       if (state.status.isData) {
+//                                         showToast(
+//                                           context: context,
+//                                           type: ToastificationType.success,
+//                                           msg: state.message,
+//                                         );
+//                                         _labtechAnalysisInfoBloc.add(
+//                                           FetchAnalysis(),
+//                                         );
+//                                         Navigator.of(context).pop();
+//                                       }
+//                                       if (state.status.isError) {
+//                                         showToast(
+//                                           context: context,
+//                                           type: ToastificationType.error,
+//                                           msg: state.message,
+//                                         );
+//                                       }
+//                                     }
+//                                   },
+//                                   bloc: _labtechAnalysisInfoBloc,
+//                                   builder:
+//                                       (context, state) => CustomElevatedButton(
+//                                         title: 'Add Bill',
+//                                         onTap: () async {
+//                                           await showModalBottomSheet(
+//                                             context: context,
+//                                             builder:
+//                                                 (_) => AddBillBottomSheet(
+//                                                   isLoading:
+//                                                       state.status.isLoading,
+//                                                   onAdd: (price) {
+//                                                     _labtechAnalysisInfoBloc
+//                                                         .add(
+//                                                           AddBill(
+//                                                             analysisId:
+//                                                                 widget
+//                                                                     .analysis
+//                                                                     .id ??
+//                                                                 0,
+//                                                             price: price,
+//                                                           ),
+//                                                         );
+//                                                   },
+//                                                 ),
+//                                           );
+//                                         },
+//                                         fillColor:
+//                                             Theme.of(
+//                                               context,
+//                                             ).colorScheme.primary,
+//                                         textColor: Colors.white,
+//                                       ),
+//                                 ),
+//                               ),
+//                             ],
+//                           );
+//                     },
+//                   ),
+
+//                 if (false)
+//                   BlocBuilder<
+//                     LabtechAnalysisInfoBloc,
+//                     LabtechAnalysisInfoState
+//                   >(
+//                     bloc: _labtechAnalysisInfoBloc,
+//                     builder: (context, state) {
+//                       return Column(
+//                         children: [
+//                           SizedBox(
+//                             height:
+//                                 screenHeight(context) *
+//                                 (((state.analysis.paymentStatus ??
+//                                             PaymentStatus.unpaid)
+//                                         .isPaid)
+//                                     ? 0.1
+//                                     : 0.02),
+//                           ),
+//                           SizedBox(
+//                             width: screenWidth(context),
+//                             child: BlocListener<
+//                               LabtechAnalysisInfoBloc,
+//                               LabtechAnalysisInfoState
+//                             >(
+//                               bloc: _labtechAnalysisInfoBloc,
+//                               listener: (context, state) async {
+//                                 if (state.status.isLoading) {
+//                                   LoadingOverlay().show(context);
+//                                 } else {
+//                                   LoadingOverlay().hideAll();
+//                                   if (state.status.isDone) {
+//                                     await TransparentDialog.show(
+//                                       context: context,
+//                                       barrierDismissible: false,
+//                                       builder: (_) => _buildDialog(context),
+//                                     );
+//                                   }
+//                                 }
+//                               },
+//                               child: CustomElevatedButton(
+//                                 isEnabled:
+//                                     !(_chosenFile == null &&
+//                                         _chosenPhoto == null),
+//                                 title: 'Add result',
+//                                 onTap: () {
+//                                   if ((widget.analysis.paymentStatus ??
+//                                           PaymentStatus.pending)
+//                                       .isPending) {
+//                                     showToast(
+//                                       context: context,
+//                                       msg: 'The patient must pay first',
+//                                     );
+//                                     return;
+//                                   }
+//                                   _labtechAnalysisInfoBloc.add(
+//                                     AnalysisResultAdded(
+//                                       request: AddAnalysisResultRequest(
+//                                         id: widget.analysis.id ?? 0,
+//                                         filePath: _chosenFile?.path,
+//                                         photoPath: _chosenPhoto?.path,
+//                                       ),
+//                                     ),
+//                                   );
+//                                 },
+//                                 fillColor:
+//                                     Theme.of(context).colorScheme.primary,
+//                                 textColor: Colors.white,
+//                               ),
+//                             ),
+//                           ),
+//                           SizedBox(
+//                             height:
+//                                 screenHeight(context) *
+//                                 (((state.analysis.paymentStatus ??
+//                                             PaymentStatus.unpaid)
+//                                         .isPaid)
+//                                     ? 0.1
+//                                     : 0.02),
+//                           ),
+//                         ],
+//                       );
+//                     },
+//                   ),

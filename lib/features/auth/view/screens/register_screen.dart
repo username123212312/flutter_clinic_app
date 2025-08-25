@@ -5,8 +5,10 @@ import 'package:our_flutter_clinic_app/core/models/usermodel.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:our_flutter_clinic_app/core/blocs/user_bloc/user_bloc.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../../core/utils/utils.dart';
+import '../../../../core/widgets/loading_overlay.dart';
 import '../widgets/auth_widgets.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_google_button.dart';
@@ -49,7 +51,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
         );
       }
-      context.pushNamed(AppRouteConstants.createPasswordRouteName);
+      context.pushNamed(
+        AppRouteConstants.createPasswordRouteName,
+        extra: false,
+      );
     }
   }
 
@@ -127,7 +132,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           const SizedBox(height: 10),
           CustomTextField(
             textInputAction: TextInputAction.done,
-            hintText: _selectedTabIndex == 0 ? 'Email' : '+963',
+            hintText: _selectedTabIndex == 0 ? 'Email' : '09',
             controller:
                 _selectedTabIndex == 0 ? emailController : phoneController,
             keyboardType:
@@ -155,32 +160,74 @@ class _RegisterScreenState extends State<RegisterScreen> {
             },
           ),
           const SizedBox(height: 20),
-          CustomButton(
-            text: 'Register',
-            onPressed: _submitForm,
-            width: double.infinity,
-            height: 56,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            color: Pallete.primaryColor,
-            textColor: Colors.white,
-            borderRadius: 8,
-            fontSize: 16,
+          BlocBuilder<UserBloc, UserState>(
+            builder: (context, state) {
+              return CustomButton(
+                text: 'Register',
+                onPressed: state.status.isLoading ? null : _submitForm,
+                width: double.infinity,
+                height: 56,
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                color: Pallete.primaryColor,
+                textColor: Colors.white,
+                borderRadius: 8,
+                fontSize: 16,
+              );
+            },
           ),
           const SizedBox(height: 10),
-          Text(
-            'OR',
-            style: Theme.of(context).textTheme.titleSmall!.copyWith(
-              fontSize: 15,
-              color: Pallete.grayScaleColor700,
+          MultiBlocListener(
+            listeners: [
+              BlocListener<AuthBloc, AuthState>(
+                listener: (_, state) {
+                  if (state.isAuth != null && state.isAuth!) {
+                    if (state.isAuth != null && state.isAuth!) {
+                      context.goNamed(AppRouteConstants.yourProfileRouteName);
+                    }
+                  }
+                },
+              ),
+              BlocListener<UserBloc, UserState>(
+                listener: (context, state) {
+                  if (state.status.isLoading) {
+                    LoadingOverlay().show(context);
+                  } else {
+                    LoadingOverlay().hideAll();
+                    if (state.status.isError) {
+                      showToast(
+                        type: ToastificationType.error,
+                        context: context,
+                        msg: state.statusMessage,
+                      );
+                    }
+                  }
+                },
+              ),
+            ],
+            child: Text(
+              'OR',
+              style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                fontSize: 15,
+                color: Pallete.grayScaleColor700,
+              ),
             ),
           ),
           const SizedBox(height: 10),
-          CustomGoogleButton(
-            onPressed: () {
-              context.read<UserBloc>().add(UserLoggedInWithGoogle());
+          BlocBuilder<UserBloc, UserState>(
+            builder: (context, state) {
+              return CustomGoogleButton(
+                onPressed:
+                    state.status.isLoading
+                        ? null
+                        : () {
+                          context.read<UserBloc>().add(
+                            UserLoggedInWithGoogle(),
+                          );
+                        },
+                text: 'Google',
+                imagePath: 'assets/icons/ic_google.png',
+              );
             },
-            text: 'Google',
-            imagePath: 'assets/icons/ic_google.png',
           ),
         ],
       ),

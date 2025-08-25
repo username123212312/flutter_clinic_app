@@ -10,6 +10,6 @@ sealed class EditReservationRequest with _$EditReservationRequest {
     required int clinicId,
     required int doctorId,
     required DateTime newDate,
-    required TimeOfDay newTime,
+    TimeOfDay? newTime,
   }) = _EditReservationRequest;
 }

@@ -24,6 +24,7 @@ mixin _$DoctorInfoState {
   DateTime? get selectedDate => throw _privateConstructorUsedError;
   List<TimeOfDay> get availableTimes => throw _privateConstructorUsedError;
   TimeOfDay? get selectedTime => throw _privateConstructorUsedError;
+  VaccinationRecord? get vaccine => throw _privateConstructorUsedError;
   int? get appointmentId => throw _privateConstructorUsedError;
   bool? get isAuto => throw _privateConstructorUsedError;
 
@@ -49,11 +50,13 @@ abstract class $DoctorInfoStateCopyWith<$Res> {
     DateTime? selectedDate,
     List<TimeOfDay> availableTimes,
     TimeOfDay? selectedTime,
+    VaccinationRecord? vaccine,
     int? appointmentId,
     bool? isAuto,
   });
 
   $DoctorModelCopyWith<$Res> get doctor;
+  $VaccinationRecordCopyWith<$Res>? get vaccine;
 }
 
 /// @nodoc
@@ -78,6 +81,7 @@ class _$DoctorInfoStateCopyWithImpl<$Res, $Val extends DoctorInfoState>
     Object? selectedDate = freezed,
     Object? availableTimes = null,
     Object? selectedTime = freezed,
+    Object? vaccine = freezed,
     Object? appointmentId = freezed,
     Object? isAuto = freezed,
   }) {
@@ -118,6 +122,11 @@ class _$DoctorInfoStateCopyWithImpl<$Res, $Val extends DoctorInfoState>
                     ? _value.selectedTime
                     : selectedTime // ignore: cast_nullable_to_non_nullable
                         as TimeOfDay?,
+            vaccine:
+                freezed == vaccine
+                    ? _value.vaccine
+                    : vaccine // ignore: cast_nullable_to_non_nullable
+                        as VaccinationRecord?,
             appointmentId:
                 freezed == appointmentId
                     ? _value.appointmentId
@@ -142,6 +151,20 @@ class _$DoctorInfoStateCopyWithImpl<$Res, $Val extends DoctorInfoState>
       return _then(_value.copyWith(doctor: value) as $Val);
     });
   }
+
+  /// Create a copy of DoctorInfoState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $VaccinationRecordCopyWith<$Res>? get vaccine {
+    if (_value.vaccine == null) {
+      return null;
+    }
+
+    return $VaccinationRecordCopyWith<$Res>(_value.vaccine!, (value) {
+      return _then(_value.copyWith(vaccine: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -161,12 +184,15 @@ abstract class _$$DoctorInfoStateImplCopyWith<$Res>
     DateTime? selectedDate,
     List<TimeOfDay> availableTimes,
     TimeOfDay? selectedTime,
+    VaccinationRecord? vaccine,
     int? appointmentId,
     bool? isAuto,
   });
 
   @override
   $DoctorModelCopyWith<$Res> get doctor;
+  @override
+  $VaccinationRecordCopyWith<$Res>? get vaccine;
 }
 
 /// @nodoc
@@ -190,6 +216,7 @@ class __$$DoctorInfoStateImplCopyWithImpl<$Res>
     Object? selectedDate = freezed,
     Object? availableTimes = null,
     Object? selectedTime = freezed,
+    Object? vaccine = freezed,
     Object? appointmentId = freezed,
     Object? isAuto = freezed,
   }) {
@@ -230,6 +257,11 @@ class __$$DoctorInfoStateImplCopyWithImpl<$Res>
                 ? _value.selectedTime
                 : selectedTime // ignore: cast_nullable_to_non_nullable
                     as TimeOfDay?,
+        vaccine:
+            freezed == vaccine
+                ? _value.vaccine
+                : vaccine // ignore: cast_nullable_to_non_nullable
+                    as VaccinationRecord?,
         appointmentId:
             freezed == appointmentId
                 ? _value.appointmentId
@@ -256,6 +288,7 @@ class _$DoctorInfoStateImpl implements _DoctorInfoState {
     this.selectedDate,
     required final List<TimeOfDay> availableTimes,
     this.selectedTime,
+    this.vaccine,
     this.appointmentId,
     this.isAuto,
   }) : _avaiableDates = avaiableDates,
@@ -288,13 +321,15 @@ class _$DoctorInfoStateImpl implements _DoctorInfoState {
   @override
   final TimeOfDay? selectedTime;
   @override
+  final VaccinationRecord? vaccine;
+  @override
   final int? appointmentId;
   @override
   final bool? isAuto;
 
   @override
   String toString() {
-    return 'DoctorInfoState(status: $status, message: $message, doctor: $doctor, avaiableDates: $avaiableDates, selectedDate: $selectedDate, availableTimes: $availableTimes, selectedTime: $selectedTime, appointmentId: $appointmentId, isAuto: $isAuto)';
+    return 'DoctorInfoState(status: $status, message: $message, doctor: $doctor, avaiableDates: $avaiableDates, selectedDate: $selectedDate, availableTimes: $availableTimes, selectedTime: $selectedTime, vaccine: $vaccine, appointmentId: $appointmentId, isAuto: $isAuto)';
   }
 
   @override
@@ -317,6 +352,7 @@ class _$DoctorInfoStateImpl implements _DoctorInfoState {
             ) &&
             (identical(other.selectedTime, selectedTime) ||
                 other.selectedTime == selectedTime) &&
+            (identical(other.vaccine, vaccine) || other.vaccine == vaccine) &&
             (identical(other.appointmentId, appointmentId) ||
                 other.appointmentId == appointmentId) &&
             (identical(other.isAuto, isAuto) || other.isAuto == isAuto));
@@ -332,6 +368,7 @@ class _$DoctorInfoStateImpl implements _DoctorInfoState {
     selectedDate,
     const DeepCollectionEquality().hash(_availableTimes),
     selectedTime,
+    vaccine,
     appointmentId,
     isAuto,
   );
@@ -357,6 +394,7 @@ abstract class _DoctorInfoState implements DoctorInfoState {
     final DateTime? selectedDate,
     required final List<TimeOfDay> availableTimes,
     final TimeOfDay? selectedTime,
+    final VaccinationRecord? vaccine,
     final int? appointmentId,
     final bool? isAuto,
   }) = _$DoctorInfoStateImpl;
@@ -375,6 +413,8 @@ abstract class _DoctorInfoState implements DoctorInfoState {
   List<TimeOfDay> get availableTimes;
   @override
   TimeOfDay? get selectedTime;
+  @override
+  VaccinationRecord? get vaccine;
   @override
   int? get appointmentId;
   @override

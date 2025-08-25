@@ -31,7 +31,7 @@ class UpcomingAppointmentCard extends StatelessWidget {
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
       child: Container(
-        width: screenWidth(context) * 0.57,
+        width: screenWidth(context) * 0.52,
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primary,
@@ -44,27 +44,14 @@ class UpcomingAppointmentCard extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: 32,
-                  height: 32,
-                  decoration: BoxDecoration(
-                    color: Pallete.grayScaleColor300,
-                    shape: BoxShape.circle,
-                  ),
-                  child: ClipOval(
-                    child:
-                        imagePath == null
-                            ? Image.asset(
-                              'assets/images/Doctor Image (2).png',
-                              fit: BoxFit.contain,
-                            )
-                            : Image.network(
-                              '${AppConstants.serverUrl}$imagePath',
-                              fit: BoxFit.contain,
-                            ),
-                  ),
+                CircleAvatar(
+                  radius: 16,
+                  foregroundImage:
+                      imagePath == null
+                          ? AssetImage('assets/images/app_logo.png')
+                          : NetworkImage('${AppConstants.serverUrl}$imagePath'),
+                  backgroundColor: Pallete.graysGray4,
                 ),
-
                 const SizedBox(width: 10),
                 Expanded(
                   child: Column(

@@ -17,7 +17,7 @@ class AppointmentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: screenWidth(context) * 0.9,
-      height: screenHeight(context) * 0.502,
+      // height: screenHeight(context) * 0.502,
       decoration: BoxDecoration(
         border: Border.all(color: Pallete.grayScaleColor400, width: 1),
         color: Colors.white,
@@ -78,14 +78,14 @@ class AppointmentCard extends StatelessWidget {
           Column(
             children: [
               AppointmentDetailsListItem(
-                title: 'Service',
-                subtitle:
-                    (appointment.status == null
-                        ? 'No service'
-                        : appointment.status!.isVisited
-                        ? 'Finished'
-                        : appointment.status?.name) ??
-                    'No service',
+                fontSize: 12,
+                title: 'Queue',
+                subtitle: (appointment.queueNumber ?? 0).toString(),
+                iconImagePath: 'assets/icons/patient_appoi.png',
+              ),
+              AppointmentDetailsListItem(
+                title: 'Appointment Type',
+                subtitle: (appointment.type ?? AppointmentType.visit).name,
                 iconImagePath: 'assets/icons/self-love.png',
               ),
               AppointmentDetailsListItem(
@@ -99,6 +99,7 @@ class AppointmentCard extends StatelessWidget {
                 subtitle: appointment.clinicName ?? 'No Department',
                 iconImagePath: 'assets/icons/hospital (1).png',
               ),
+
               AppointmentDetailsListItem(
                 fontSize: 11,
                 title: 'Date & Time',
@@ -113,6 +114,14 @@ class AppointmentCard extends StatelessWidget {
                     '${appointment.patientFirstName ?? 'No'} '
                     '${appointment.patientLastName ?? 'User'}',
                 // subtitle: appointment.patient.name,
+                iconImagePath: 'assets/icons/patient_appoi.png',
+              ),
+              AppointmentDetailsListItem(
+                fontSize: 12,
+                title: 'Payment',
+                subtitle:
+                    'Expected: \$ ${appointment.expectedPrice}'
+                    ' || Paid: \$ ${appointment.paidPrice}',
                 iconImagePath: 'assets/icons/patient_appoi.png',
               ),
             ],

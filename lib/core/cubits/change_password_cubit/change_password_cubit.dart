@@ -14,7 +14,11 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
   }) : _changePasswordRepository = changePasswordRepository,
        super(ChangePasswordState.initial());
 
-  Future<void> sendEmailOtp(String email) async {
+  void reset() {
+    emit(ChangePasswordState.initial());
+  }
+
+  Future<void> sendEmailOtp(String email, {bool isResend = false}) async {
     emitLoading();
     try {
       final response = await _changePasswordRepository.sendEmailOtp(email);
@@ -27,7 +31,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
         Right(value: final r) => state.copyWith(
           email: email,
           phone: null,
-          status: DataStatus.data,
+          status: isResend ? DataStatus.loaded : DataStatus.data,
           message: r.message,
         ),
       };
@@ -37,7 +41,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
     }
   }
 
-  Future<void> sendSMSOtp(String phone) async {
+  Future<void> sendSMSOtp(String phone, {bool isResend = false}) async {
     emitLoading();
     try {
       final response = await _changePasswordRepository.sendSMSOtp(phone);
@@ -50,7 +54,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
         Right(value: final r) => state.copyWith(
           phone: phone,
           email: null,
-          status: DataStatus.data,
+          status: isResend ? DataStatus.loaded : DataStatus.data,
           message: r.message,
         ),
       };
@@ -75,7 +79,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
         ),
         Right(value: final r) => state.copyWith(
           resetToken: r.data,
-          status: DataStatus.data,
+          status: DataStatus.done,
           message: r.message,
         ),
       };
@@ -100,7 +104,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
         ),
         Right(value: final r) => state.copyWith(
           resetToken: r.data,
-          status: DataStatus.data,
+          status: DataStatus.done,
           message: r.message,
         ),
       };

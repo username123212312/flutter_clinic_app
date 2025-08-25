@@ -4,16 +4,16 @@ part of 'reschedule_appointment_cubit.dart';
 sealed class RescheduleAppointmentState with _$RescheduleAppointmentState {
   const factory RescheduleAppointmentState({
     AppointmentModel? appointment,
+    bool? isAuto,
     DateTime? selectedDate,
     required List<DateTime> availableDates,
     TimeOfDay? selectedTime,
-    required List<TimeOfDay> availableTimes,
-    DataStatus? status,
-    String? statusMessage,
+    List<TimeOfDay>? availableTimes,
+    required DataStatus status,
+    required String statusMessage,
   }) = _RescheduleAppointmentState;
   factory RescheduleAppointmentState.initial() {
     return RescheduleAppointmentState(
-      availableTimes: [],
       availableDates: [],
       status: DataStatus.noData,
       statusMessage: 'No message',

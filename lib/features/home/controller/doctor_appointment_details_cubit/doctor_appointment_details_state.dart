@@ -7,6 +7,8 @@ class DoctorAppointmentDetailsState with _$DoctorAppointmentDetailsState {
     required String message,
     required AppointmentModel appointment,
     MedicalInfoModel? medicalInfo,
+    String? prescriptionFilePath,
+    @Default(0.0) double? downloadProgress,
   }) = _DoctorAppointmentDetailsState;
   factory DoctorAppointmentDetailsState.initial({
     required AppointmentModel appointment,

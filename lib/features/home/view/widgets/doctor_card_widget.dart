@@ -94,7 +94,7 @@ class DoctorCardWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '${doctor.visitFee} \$',
+                  doctor.averageVisitDuration.toString(),
                   style: Theme.of(context).textTheme.titleSmall!.copyWith(
                     fontSize: 14,
                     color: Pallete.black1,

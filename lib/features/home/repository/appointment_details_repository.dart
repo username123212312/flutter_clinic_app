@@ -8,6 +8,7 @@ import 'package:our_flutter_clinic_app/core/utils/utils.dart';
 import 'package:our_flutter_clinic_app/features/home/model/medical_info_model.dart';
 
 import '../../../core/consts/app_constants.dart';
+import '../../../core/enums.dart';
 import '../../../core/models/app_response.dart';
 import '../../../core/providers/file_manager/file_manager.dart';
 import '../model/appointment_model.dart';
@@ -30,7 +31,16 @@ class AppointmentDetailsRepository {
           AppResponse(
             success: true,
             message: 'Appointment Fetched successfully!',
-            data: AppointmentModel.fromJson(response.data),
+            data: AppointmentModel.fromJson(response.data).copyWith(
+              type: AppointmentType.values.firstWhere(
+                (t) {
+                  return t.name == response.data['appointment_type'];
+                },
+                orElse: () {
+                  return AppointmentType.visit;
+                },
+              ),
+            ),
             statusCode: response.data['statusCode'],
             statusMessage: response.data['statusMessage'],
           ),

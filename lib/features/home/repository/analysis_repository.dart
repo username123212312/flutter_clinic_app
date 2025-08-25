@@ -88,7 +88,7 @@ class AnalysisRepository {
       eLog(response.data);
       if (response.data['statusCode'] < 300) {
         final List<AnalysisModel> newList = [
-          ...response.data['items'].map((analysis) {
+          ...response.data['data'].map((analysis) {
             return AnalysisModel.fromJson(analysis);
           }),
         ];
@@ -130,7 +130,7 @@ class AnalysisRepository {
       eLog(response.data);
       if (response.data['statusCode'] < 300) {
         final List<AnalysisModel> newList = [
-          ...response.data['items'].map((analysis) {
+          ...response.data['data'].map((analysis) {
             return AnalysisModel.fromJson(analysis);
           }),
         ];

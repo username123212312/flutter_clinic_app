@@ -186,7 +186,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
                   },
           decoration: InputDecoration(
             contentPadding: EdgeInsets.only(left: 20, top: 40),
-            hintText: _selectedIndex == 0 ? 'Email' : '+963',
+            hintText: _selectedIndex == 0 ? 'Email' : '09',
             hintStyle: const TextStyle(
               fontSize: 13,
               color: Pallete.grayScaleColor500,

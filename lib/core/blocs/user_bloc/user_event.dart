@@ -37,6 +37,7 @@ sealed class UserEvent with _$UserEvent {
   const factory UserEvent.doctorProfileModified({
     required ModifyDoctorInfoRequest request,
   }) = DoctorProfileModified;
+  const factory UserEvent.sendFcmToken() = FCMTokenSent;
   const factory UserEvent.deleteFromSchedule({required int scheduleId}) =
       DeleteFromSchedule;
 }

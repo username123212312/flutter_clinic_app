@@ -230,15 +230,7 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
       onTap: () {
         context.pushNamed(
           AppRouteConstants.appointmentDetailsRouteName,
-          extra: AppointmentModel(
-            doctorName: item.doctorName,
-            doctorPhoto: item.doctorPhoto,
-            doctorSpeciality: item.doctorSpeciality,
-            reservationHour: item.reservationHour,
-            id: item.id,
-            reservationDate: item.reservationDate,
-            status: state.appointmentStatus,
-          ),
+          extra: item.copyWith(status: state.appointmentStatus),
         );
       },
     );

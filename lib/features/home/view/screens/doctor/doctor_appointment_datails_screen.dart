@@ -148,10 +148,10 @@ class _DoctorAppointmentDatailsScreenState
                     title: 'Notes & Instructions',
                     iconImagePath: 'assets/icons/ic_notes.png',
                     listItems: [
-                      if (state.medicalInfo?.doctorNote != null)
-                        [state.medicalInfo!.doctorNote ?? ''],
-                      if (state.medicalInfo?.patientNote != null)
-                        [state.medicalInfo?.patientNote ?? ''],
+                      if (state.medicalInfo?.noteForTheDoctor != null)
+                        [state.medicalInfo!.noteForTheDoctor ?? ''],
+                      if (state.medicalInfo?.noteForThePatient != null)
+                        [state.medicalInfo?.noteForThePatient ?? ''],
                       if (state.medicalInfo?.prescription != null &&
                           state.medicalInfo?.prescription?.note != null)
                         [state.medicalInfo?.prescription!.note! ?? ''],

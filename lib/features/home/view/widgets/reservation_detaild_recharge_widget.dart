@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:our_flutter_clinic_app/core/utils/utils.dart';
@@ -61,19 +62,31 @@ class _ReservationDetaildRechargeWidgetState
           return state.status.isLoading
               ? Center(child: CircularProgressIndicator())
               : Column(
-                mainAxisSize: MainAxisSize.min,
+                spacing: 10,
                 children: [
-                  BlocBuilder<MyWalletCubit, MyWalletState>(
-                    bloc: _myWalletCubit,
-                    builder: (context, state) {
-                      return Text(
-                        'My Credit : \$${state.walletRange ?? 0.0}',
-                        style: Theme.of(context).textTheme.labelMedium!
-                            .copyWith(color: Colors.black, fontSize: 15),
-                      );
-                    },
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      BlocBuilder<MyWalletCubit, MyWalletState>(
+                        bloc: _myWalletCubit,
+                        builder: (context, state) {
+                          return Text(
+                            'My Credit : \$${state.walletRange ?? 0.0}',
+                            style: Theme.of(context).textTheme.labelMedium!
+                                .copyWith(color: Colors.black, fontSize: 15),
+                          );
+                        },
+                      ),
+                      IconButton(
+                        iconSize: 14,
+                        onPressed: () {
+                          _myWalletCubit.fetchWalletRange();
+                        },
+                        icon: Icon(FontAwesomeIcons.arrowsRotate),
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 20),
+                  // SizedBox(height: 10),
                   SizedBox(
                     width: screenWidth(context) * 0.6,
                     // height: screenHeight(context) * 0.05,
@@ -115,7 +128,7 @@ class _ReservationDetaildRechargeWidgetState
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
