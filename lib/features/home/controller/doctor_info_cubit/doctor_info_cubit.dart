@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:our_flutter_clinic_app/features/home/model/requests/add_new_appointment_request.dart';
+import 'package:our_flutter_clinic_app/features/home/model/vaccinationrecord.dart';
 
 import '../../../../core/enums.dart';
 import '../../model/doctor_model.dart';
@@ -69,6 +70,10 @@ class DoctorInfoCubit extends Cubit<DoctorInfoState> {
     }
   }
 
+  void selectVaccine(VaccinationRecord? vaccine) {
+    emit(state.copyWith(vaccine: vaccine));
+  }
+
   void selectDate(DateTime date) {
     emit(state.copyWith(selectedDate: date));
     fetchDoctorWorkTimes();
@@ -112,6 +117,12 @@ class DoctorInfoCubit extends Cubit<DoctorInfoState> {
       try {
         final response = await _doctorInfoRepository.addNewAppointment(
           AddNewAppointmentRequest(
+            type:
+                state.vaccine == null
+                    ? AppointmentType.visit
+                    : AppointmentType.vaccination,
+            recordId: state.vaccine?.id,
+            isVaccine: state.vaccine != null,
             doctorId: state.doctor.id ?? -1,
             date: state.selectedDate ?? DateTime.now(),
             time: (state.isAuto ?? false) ? null : state.selectedTime,

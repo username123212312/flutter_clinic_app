@@ -234,7 +234,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                                     false,
                                   ),
                                   appointmentdate:
-                                      DateFormat('d MMMM, EEE')
+                                      DateFormat('dd-MM-yyyy')
                                           .format(
                                             appointment.reservationDate ??
                                                 DateTime.now(),
@@ -244,7 +244,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                                       appointment.doctorName ?? 'No Doctor',
                                   imagePath: appointment.doctorPhoto,
                                   rating:
-                                      appointment.finalRate?.toDouble() ?? 0.0,
+                                      appointment.doctorRate?.toDouble() ?? 0.0,
                                   specialty:
                                       appointment.doctorSpeciality ??
                                       'No speciality',

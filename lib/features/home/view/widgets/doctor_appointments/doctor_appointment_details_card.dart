@@ -90,14 +90,8 @@ class DoctorAppointmentDetailsCard extends StatelessWidget {
                 iconImagePath: 'assets/icons/ic_user_circle.png',
               ),
               AppointmentDetailsListItem(
-                title: 'Service',
-                subtitle:
-                    (appointment.status == null
-                        ? 'No service'
-                        : appointment.status!.isVisited
-                        ? 'Finished'
-                        : appointment.status?.name) ??
-                    'No service',
+                title: 'Appointment info',
+                subtitle: appointment.appointmentInfo ?? '',
                 iconImagePath: 'assets/icons/ic_service.png',
               ),
               AppointmentDetailsListItem(
@@ -107,10 +101,11 @@ class DoctorAppointmentDetailsCard extends StatelessWidget {
                 iconImagePath: 'assets/icons/ic_clinic.png',
               ),
               AppointmentDetailsListItem(
-                title: 'Doctor Speciality',
+                title: 'Payment Status',
                 subtitle:
-                    context.read<UserBloc>().state.user?.speciality ??
-                    'No Department',
+                    appointment.paymentStatus == null
+                        ? ''
+                        : appointment.paymentStatus!.name,
                 iconImagePath: 'assets/icons/ic_doctor.png',
               ),
               AppointmentDetailsListItem(
@@ -121,6 +116,13 @@ class DoctorAppointmentDetailsCard extends StatelessWidget {
                     ', ${formatTime(appointment.reservationHour ?? TimeOfDay.now())}',
                 iconImagePath: 'assets/icons/ic_time.png',
               ),
+              if (appointment.referredBy != null)
+                AppointmentDetailsListItem(
+                  fontSize: 11,
+                  title: 'Doctor Referred By',
+                  subtitle: appointment.referredBy!,
+                  iconImagePath: 'assets/icons/ic_user_circle.png',
+                ),
             ],
           ),
         ],

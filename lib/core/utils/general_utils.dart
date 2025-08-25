@@ -204,6 +204,7 @@ void showToast({
 }) {
   toastification.dismissAll();
   toastification.show(
+    closeOnClick: false,
     dismissDirection: DismissDirection.vertical,
     style: ToastificationStyle.flatColored,
     type: type,

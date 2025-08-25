@@ -168,6 +168,8 @@ class DoctorInfoRepository {
           'date': DateFormat('dd/MM/yy').format(request.date),
           if (request.time != null) 'time': formatTime24(request.time!),
           if (getChildId() != null) 'child_id': getChildId(),
+          if (request.type != null) 'appointment_type': request.type!.name,
+          if (request.recordId != null) 'record_id': request.recordId!,
         },
       );
       if (response.data['statusCode'] < 300) {

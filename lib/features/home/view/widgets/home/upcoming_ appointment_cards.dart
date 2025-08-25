@@ -31,7 +31,7 @@ class UpcomingAppointmentCard extends StatelessWidget {
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
       child: Container(
-        width: screenWidth(context) * 0.59,
+        width: screenWidth(context) * 0.52,
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primary,
