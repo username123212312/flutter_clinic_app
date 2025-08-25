@@ -673,7 +673,6 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
                           clinic: state.clinics!.firstWhere(
                             (clinic) => clinic.id == doctor.clinicId,
                           ),
-
                         ),
                       );
                       await for (final newState in _newAppointmentBloc.stream) {

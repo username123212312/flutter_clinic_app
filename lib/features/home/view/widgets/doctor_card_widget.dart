@@ -94,7 +94,6 @@ class DoctorCardWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-
                   doctor.averageVisitDuration.toString(),
 
                   style: Theme.of(context).textTheme.titleSmall!.copyWith(
