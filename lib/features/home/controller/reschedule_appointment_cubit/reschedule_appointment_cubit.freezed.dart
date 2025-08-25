@@ -18,12 +18,13 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$RescheduleAppointmentState {
   AppointmentModel? get appointment => throw _privateConstructorUsedError;
+  bool? get isAuto => throw _privateConstructorUsedError;
   DateTime? get selectedDate => throw _privateConstructorUsedError;
   List<DateTime> get availableDates => throw _privateConstructorUsedError;
   TimeOfDay? get selectedTime => throw _privateConstructorUsedError;
-  List<TimeOfDay> get availableTimes => throw _privateConstructorUsedError;
-  DataStatus? get status => throw _privateConstructorUsedError;
-  String? get statusMessage => throw _privateConstructorUsedError;
+  List<TimeOfDay>? get availableTimes => throw _privateConstructorUsedError;
+  DataStatus get status => throw _privateConstructorUsedError;
+  String get statusMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of RescheduleAppointmentState
   /// with the given fields replaced by the non-null parameter values.
@@ -45,12 +46,13 @@ abstract class $RescheduleAppointmentStateCopyWith<$Res> {
   @useResult
   $Res call({
     AppointmentModel? appointment,
+    bool? isAuto,
     DateTime? selectedDate,
     List<DateTime> availableDates,
     TimeOfDay? selectedTime,
-    List<TimeOfDay> availableTimes,
-    DataStatus? status,
-    String? statusMessage,
+    List<TimeOfDay>? availableTimes,
+    DataStatus status,
+    String statusMessage,
   });
 
   $AppointmentModelCopyWith<$Res>? get appointment;
@@ -75,12 +77,13 @@ class _$RescheduleAppointmentStateCopyWithImpl<
   @override
   $Res call({
     Object? appointment = freezed,
+    Object? isAuto = freezed,
     Object? selectedDate = freezed,
     Object? availableDates = null,
     Object? selectedTime = freezed,
-    Object? availableTimes = null,
-    Object? status = freezed,
-    Object? statusMessage = freezed,
+    Object? availableTimes = freezed,
+    Object? status = null,
+    Object? statusMessage = null,
   }) {
     return _then(
       _value.copyWith(
@@ -89,6 +92,11 @@ class _$RescheduleAppointmentStateCopyWithImpl<
                     ? _value.appointment
                     : appointment // ignore: cast_nullable_to_non_nullable
                         as AppointmentModel?,
+            isAuto:
+                freezed == isAuto
+                    ? _value.isAuto
+                    : isAuto // ignore: cast_nullable_to_non_nullable
+                        as bool?,
             selectedDate:
                 freezed == selectedDate
                     ? _value.selectedDate
@@ -105,20 +113,20 @@ class _$RescheduleAppointmentStateCopyWithImpl<
                     : selectedTime // ignore: cast_nullable_to_non_nullable
                         as TimeOfDay?,
             availableTimes:
-                null == availableTimes
+                freezed == availableTimes
                     ? _value.availableTimes
                     : availableTimes // ignore: cast_nullable_to_non_nullable
-                        as List<TimeOfDay>,
+                        as List<TimeOfDay>?,
             status:
-                freezed == status
+                null == status
                     ? _value.status
                     : status // ignore: cast_nullable_to_non_nullable
-                        as DataStatus?,
+                        as DataStatus,
             statusMessage:
-                freezed == statusMessage
+                null == statusMessage
                     ? _value.statusMessage
                     : statusMessage // ignore: cast_nullable_to_non_nullable
-                        as String?,
+                        as String,
           )
           as $Val,
     );
@@ -150,12 +158,13 @@ abstract class _$$RescheduleAppointmentStateImplCopyWith<$Res>
   @useResult
   $Res call({
     AppointmentModel? appointment,
+    bool? isAuto,
     DateTime? selectedDate,
     List<DateTime> availableDates,
     TimeOfDay? selectedTime,
-    List<TimeOfDay> availableTimes,
-    DataStatus? status,
-    String? statusMessage,
+    List<TimeOfDay>? availableTimes,
+    DataStatus status,
+    String statusMessage,
   });
 
   @override
@@ -181,12 +190,13 @@ class __$$RescheduleAppointmentStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? appointment = freezed,
+    Object? isAuto = freezed,
     Object? selectedDate = freezed,
     Object? availableDates = null,
     Object? selectedTime = freezed,
-    Object? availableTimes = null,
-    Object? status = freezed,
-    Object? statusMessage = freezed,
+    Object? availableTimes = freezed,
+    Object? status = null,
+    Object? statusMessage = null,
   }) {
     return _then(
       _$RescheduleAppointmentStateImpl(
@@ -195,6 +205,11 @@ class __$$RescheduleAppointmentStateImplCopyWithImpl<$Res>
                 ? _value.appointment
                 : appointment // ignore: cast_nullable_to_non_nullable
                     as AppointmentModel?,
+        isAuto:
+            freezed == isAuto
+                ? _value.isAuto
+                : isAuto // ignore: cast_nullable_to_non_nullable
+                    as bool?,
         selectedDate:
             freezed == selectedDate
                 ? _value.selectedDate
@@ -211,20 +226,20 @@ class __$$RescheduleAppointmentStateImplCopyWithImpl<$Res>
                 : selectedTime // ignore: cast_nullable_to_non_nullable
                     as TimeOfDay?,
         availableTimes:
-            null == availableTimes
+            freezed == availableTimes
                 ? _value._availableTimes
                 : availableTimes // ignore: cast_nullable_to_non_nullable
-                    as List<TimeOfDay>,
+                    as List<TimeOfDay>?,
         status:
-            freezed == status
+            null == status
                 ? _value.status
                 : status // ignore: cast_nullable_to_non_nullable
-                    as DataStatus?,
+                    as DataStatus,
         statusMessage:
-            freezed == statusMessage
+            null == statusMessage
                 ? _value.statusMessage
                 : statusMessage // ignore: cast_nullable_to_non_nullable
-                    as String?,
+                    as String,
       ),
     );
   }
@@ -235,17 +250,20 @@ class __$$RescheduleAppointmentStateImplCopyWithImpl<$Res>
 class _$RescheduleAppointmentStateImpl implements _RescheduleAppointmentState {
   const _$RescheduleAppointmentStateImpl({
     this.appointment,
+    this.isAuto,
     this.selectedDate,
     required final List<DateTime> availableDates,
     this.selectedTime,
-    required final List<TimeOfDay> availableTimes,
-    this.status,
-    this.statusMessage,
+    final List<TimeOfDay>? availableTimes,
+    required this.status,
+    required this.statusMessage,
   }) : _availableDates = availableDates,
        _availableTimes = availableTimes;
 
   @override
   final AppointmentModel? appointment;
+  @override
+  final bool? isAuto;
   @override
   final DateTime? selectedDate;
   final List<DateTime> _availableDates;
@@ -258,22 +276,24 @@ class _$RescheduleAppointmentStateImpl implements _RescheduleAppointmentState {
 
   @override
   final TimeOfDay? selectedTime;
-  final List<TimeOfDay> _availableTimes;
+  final List<TimeOfDay>? _availableTimes;
   @override
-  List<TimeOfDay> get availableTimes {
+  List<TimeOfDay>? get availableTimes {
+    final value = _availableTimes;
+    if (value == null) return null;
     if (_availableTimes is EqualUnmodifiableListView) return _availableTimes;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_availableTimes);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
-  final DataStatus? status;
+  final DataStatus status;
   @override
-  final String? statusMessage;
+  final String statusMessage;
 
   @override
   String toString() {
-    return 'RescheduleAppointmentState(appointment: $appointment, selectedDate: $selectedDate, availableDates: $availableDates, selectedTime: $selectedTime, availableTimes: $availableTimes, status: $status, statusMessage: $statusMessage)';
+    return 'RescheduleAppointmentState(appointment: $appointment, isAuto: $isAuto, selectedDate: $selectedDate, availableDates: $availableDates, selectedTime: $selectedTime, availableTimes: $availableTimes, status: $status, statusMessage: $statusMessage)';
   }
 
   @override
@@ -283,6 +303,7 @@ class _$RescheduleAppointmentStateImpl implements _RescheduleAppointmentState {
             other is _$RescheduleAppointmentStateImpl &&
             (identical(other.appointment, appointment) ||
                 other.appointment == appointment) &&
+            (identical(other.isAuto, isAuto) || other.isAuto == isAuto) &&
             (identical(other.selectedDate, selectedDate) ||
                 other.selectedDate == selectedDate) &&
             const DeepCollectionEquality().equals(
@@ -304,6 +325,7 @@ class _$RescheduleAppointmentStateImpl implements _RescheduleAppointmentState {
   int get hashCode => Object.hash(
     runtimeType,
     appointment,
+    isAuto,
     selectedDate,
     const DeepCollectionEquality().hash(_availableDates),
     selectedTime,
@@ -327,16 +349,19 @@ abstract class _RescheduleAppointmentState
     implements RescheduleAppointmentState {
   const factory _RescheduleAppointmentState({
     final AppointmentModel? appointment,
+    final bool? isAuto,
     final DateTime? selectedDate,
     required final List<DateTime> availableDates,
     final TimeOfDay? selectedTime,
-    required final List<TimeOfDay> availableTimes,
-    final DataStatus? status,
-    final String? statusMessage,
+    final List<TimeOfDay>? availableTimes,
+    required final DataStatus status,
+    required final String statusMessage,
   }) = _$RescheduleAppointmentStateImpl;
 
   @override
   AppointmentModel? get appointment;
+  @override
+  bool? get isAuto;
   @override
   DateTime? get selectedDate;
   @override
@@ -344,11 +369,11 @@ abstract class _RescheduleAppointmentState
   @override
   TimeOfDay? get selectedTime;
   @override
-  List<TimeOfDay> get availableTimes;
+  List<TimeOfDay>? get availableTimes;
   @override
-  DataStatus? get status;
+  DataStatus get status;
   @override
-  String? get statusMessage;
+  String get statusMessage;
 
   /// Create a copy of RescheduleAppointmentState
   /// with the given fields replaced by the non-null parameter values.

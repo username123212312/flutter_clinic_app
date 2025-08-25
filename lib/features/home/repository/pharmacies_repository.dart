@@ -16,7 +16,10 @@ class PharmaciesRepository {
   Future<Either<AppFailure, AppResponse<List<PharmacyModel>>>>
   fetchAllPharmacies() async {
     try {
-      final response = await _dio.get(AppConstants.showAllPharmaciesPath);
+      final response = await _dio.get(
+        AppConstants.showAllPharmaciesPath,
+        queryParameters: {'isPaginate': false},
+      );
       if (response.data['statusCode'] < 300) {
         return Right(
           AppResponse<List<PharmacyModel>>(

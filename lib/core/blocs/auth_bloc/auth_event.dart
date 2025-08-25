@@ -10,4 +10,5 @@ sealed class AuthEvent with _$AuthEvent {
   }) = UserAuthenticated;
   const factory AuthEvent.userReset() = UserReset;
   const factory AuthEvent.checkUserAuthState() = CheckUserAuthState;
+  const factory AuthEvent.addToken({required String token}) = TokenAdded;
 }

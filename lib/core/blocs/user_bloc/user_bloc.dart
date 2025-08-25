@@ -32,6 +32,7 @@ class UserBloc extends HydratedBloc<UserEvent, UserState> {
       (event, emit) =>
           emit(state.copyWith(user: event.user, status: UserStatus.modified)),
     );
+    on<FCMTokenSent>(_sendFcmToken);
     on<UserLoggedInWithEmail>(_logUserIn);
     on<UserLoggedInWithPhone>(_logUserIn);
     on<UserRegisteredWithEmail>(_registerUser);
@@ -82,9 +83,7 @@ class UserBloc extends HydratedBloc<UserEvent, UserState> {
     };
     emit(newState);
     if (!state.status.isError) {
-      _authBloc.add(
-        UserAuthenticated(user: state.user!, token: state.user!.token!),
-      );
+      add(FCMTokenSent());
     }
   }
 
@@ -120,11 +119,7 @@ class UserBloc extends HydratedBloc<UserEvent, UserState> {
     emit(newState);
 
     if (!state.status.isError) {
-      if (state.user != null) {
-        _authBloc.add(
-          UserAuthenticated(user: state.user!, token: state.user!.token!),
-        );
-      }
+      add(FCMTokenSent());
     }
   }
 
@@ -149,11 +144,7 @@ class UserBloc extends HydratedBloc<UserEvent, UserState> {
     emit(newState);
 
     if (!state.status.isError) {
-      if (state.user != null) {
-        _authBloc.add(
-          UserAuthenticated(user: state.user!, token: state.user!.token!),
-        );
-      }
+      add(FCMTokenSent());
     }
   }
 
@@ -209,9 +200,7 @@ class UserBloc extends HydratedBloc<UserEvent, UserState> {
     };
     emit(newState);
     if (!newState.status.isError) {
-      _authBloc.add(
-        UserAuthenticated(user: state.user!, token: state.user!.token!),
-      );
+      add(FCMTokenSent());
     }
   }
 
@@ -511,6 +500,38 @@ class UserBloc extends HydratedBloc<UserEvent, UserState> {
       emit(
         state.copyWith(status: UserStatus.error, statusMessage: e.toString()),
       );
+    }
+  }
+
+  Future<void> _sendFcmToken(
+    FCMTokenSent event,
+    Emitter<UserState> emit,
+  ) async {
+    try {
+      if (state.user?.token != null) {
+        _authBloc.add(TokenAdded(token: state.user!.token!));
+        final response = await _userRepository.sendFCMToken();
+        final newState = switch (response) {
+          Left(value: final l) => state.copyWith(
+            status: UserStatus.error,
+            statusMessage: l.message,
+          ),
+          Right(value: final r) => state.copyWith(
+            status: UserStatus.done,
+            statusMessage: r.message,
+          ),
+        };
+        emit(newState);
+        if (state.status.isDone) {
+          if (state.user != null) {
+            _authBloc.add(
+              UserAuthenticated(user: state.user!, token: state.user!.token!),
+            );
+          }
+        }
+      }
+    } catch (e) {
+      emit(state.copyWith(status: UserStatus.error));
     }
   }
 

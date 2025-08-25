@@ -158,10 +158,6 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             BlocListener<AuthBloc, AuthState>(
               listener: (context, state) {
-                if (state.status.isLoading) {
-                  LoadingOverlay().show(context);
-                }
-                LoadingOverlay().hideAll();
                 if (state.isAuth!) {
                   navigateByRole(
                     context,

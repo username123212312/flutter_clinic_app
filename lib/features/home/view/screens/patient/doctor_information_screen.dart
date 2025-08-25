@@ -19,6 +19,7 @@ import '../../../../../../../core/utils/utils.dart';
 import '../../../../auth/view/widgets/auth_widgets.dart';
 import '../../../../auth/view/widgets/custom_button.dart';
 import '../../../controller/doctor_info_cubit/doctor_info_cubit.dart';
+import '../../../model/vaccinationrecord.dart';
 import '../../../repository/doctor_info_repository.dart';
 import '../../widgets/widget_doctor/Schedule_Box.dart';
 import '../../widgets/widget_doctor/doctor_Info_card.dart';
@@ -130,6 +131,7 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
               );
             },
           ),
+
           Expanded(
             child: Container(
               padding: const EdgeInsets.all(25),
@@ -245,6 +247,32 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
                               );
                             },
                           ),
+                          if (getChildId() != null)
+                            Align(
+                              alignment: Alignment.center,
+                              child: SizedBox(
+                                width: screenWidth(context) * 0.7,
+                                child: FittedBox(
+                                  child: TwoSelectableWidget(
+                                    currentIndex: _selectedIndex,
+                                    twoTitles: ['Regular', 'Vaccine'],
+                                    onToggleIndex: (index) {
+                                      if (index == 0) {
+                                        _doctorInfoCubit.selectVaccine(null);
+                                      }
+                                      setState(() {
+                                        _vaccinationRecord = null;
+                                        _selectedIndex = index;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ),
+                          if (_selectedIndex == 1) ...[
+                            _buildVaccinePicker(),
+                            SizedBox(height: 20),
+                          ],
                           BlocBuilder<DoctorInfoCubit, DoctorInfoState>(
                             bloc: _doctorInfoCubit,
                             builder: (_, state) {
@@ -329,7 +357,7 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
                                   "${selected.day}/${selected.month}/${selected.year}";
                             });
                             _doctorInfoCubit.selectDate(selected);
-                            if (mounted) {
+                            if (context.mounted) {
                               FocusScope.of(context).unfocus();
                             }
                           }
@@ -452,6 +480,13 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
                   (state.selectedTime == null && !(state.isAuto ?? false))
                       ? null
                       : () {
+                        if (_selectedIndex == 1 && state.vaccine == null) {
+                          showToast(
+                            context: context,
+                            msg: 'You must select a vaccine first',
+                          );
+                          return;
+                        }
                         _doctorInfoCubit.bookNewAppointment();
                       },
               color: Pallete.primaryColor,
@@ -469,5 +504,53 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
     );
   }
 
+  Column _buildVaccinePicker() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(height: 10),
+        Text(
+          'Select Vaccine',
+          style: Theme.of(context).textTheme.labelMedium!.copyWith(
+            color: Pallete.black1,
+            fontSize: 18,
+          ),
+        ),
+        SizedBox(height: 10),
+        BlocBuilder<DoctorInfoCubit, DoctorInfoState>(
+          bloc: _doctorInfoCubit,
+          builder: (context, state) {
+            return CustomTextField(
+              onTap: () async {
+                final vaccine = await context.pushNamed<VaccinationRecord>(
+                  AppRouteConstants.selectVaccineRouteName,
+                );
+                if (vaccine != null) {
+                  _doctorInfoCubit.selectVaccine(vaccine);
+                  setState(() {
+                    _vaccinationRecord = vaccine;
+                    _vaccineController.text =
+                        vaccine.vaccineName ?? 'no vaccine';
+                  });
+                }
+              },
+              hintText: 'Select Vaccine',
+              keyboardType: TextInputType.datetime,
+              readOnly: true,
+              controller: _vaccineController,
+              suffixIcon: Icon(
+                color: Colors.blueGrey,
+                FontAwesomeIcons.arrowRight,
+              ),
+            );
+          },
+        ),
+      ],
+    );
+  }
+
   late final DoctorInfoCubit _doctorInfoCubit;
+  final _vaccineController = TextEditingController();
+  VaccinationRecord? _vaccinationRecord;
+  int _selectedIndex = 0;
 }

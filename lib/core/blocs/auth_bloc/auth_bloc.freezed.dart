@@ -23,6 +23,7 @@ mixin _$AuthEvent {
     required TResult Function(UserModel user, String token) userAuthenticated,
     required TResult Function() userReset,
     required TResult Function() checkUserAuthState,
+    required TResult Function(String token) addToken,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
@@ -30,6 +31,7 @@ mixin _$AuthEvent {
     TResult? Function(UserModel user, String token)? userAuthenticated,
     TResult? Function()? userReset,
     TResult? Function()? checkUserAuthState,
+    TResult? Function(String token)? addToken,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
@@ -37,6 +39,7 @@ mixin _$AuthEvent {
     TResult Function(UserModel user, String token)? userAuthenticated,
     TResult Function()? userReset,
     TResult Function()? checkUserAuthState,
+    TResult Function(String token)? addToken,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -45,6 +48,7 @@ mixin _$AuthEvent {
     required TResult Function(UserAuthenticated value) userAuthenticated,
     required TResult Function(UserReset value) userReset,
     required TResult Function(CheckUserAuthState value) checkUserAuthState,
+    required TResult Function(TokenAdded value) addToken,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
@@ -52,6 +56,7 @@ mixin _$AuthEvent {
     TResult? Function(UserAuthenticated value)? userAuthenticated,
     TResult? Function(UserReset value)? userReset,
     TResult? Function(CheckUserAuthState value)? checkUserAuthState,
+    TResult? Function(TokenAdded value)? addToken,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
@@ -59,6 +64,7 @@ mixin _$AuthEvent {
     TResult Function(UserAuthenticated value)? userAuthenticated,
     TResult Function(UserReset value)? userReset,
     TResult Function(CheckUserAuthState value)? checkUserAuthState,
+    TResult Function(TokenAdded value)? addToken,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -170,6 +176,7 @@ class _$UserModifiedImpl implements UserModified {
     required TResult Function(UserModel user, String token) userAuthenticated,
     required TResult Function() userReset,
     required TResult Function() checkUserAuthState,
+    required TResult Function(String token) addToken,
   }) {
     return userModified(user);
   }
@@ -181,6 +188,7 @@ class _$UserModifiedImpl implements UserModified {
     TResult? Function(UserModel user, String token)? userAuthenticated,
     TResult? Function()? userReset,
     TResult? Function()? checkUserAuthState,
+    TResult? Function(String token)? addToken,
   }) {
     return userModified?.call(user);
   }
@@ -192,6 +200,7 @@ class _$UserModifiedImpl implements UserModified {
     TResult Function(UserModel user, String token)? userAuthenticated,
     TResult Function()? userReset,
     TResult Function()? checkUserAuthState,
+    TResult Function(String token)? addToken,
     required TResult orElse(),
   }) {
     if (userModified != null) {
@@ -207,6 +216,7 @@ class _$UserModifiedImpl implements UserModified {
     required TResult Function(UserAuthenticated value) userAuthenticated,
     required TResult Function(UserReset value) userReset,
     required TResult Function(CheckUserAuthState value) checkUserAuthState,
+    required TResult Function(TokenAdded value) addToken,
   }) {
     return userModified(this);
   }
@@ -218,6 +228,7 @@ class _$UserModifiedImpl implements UserModified {
     TResult? Function(UserAuthenticated value)? userAuthenticated,
     TResult? Function(UserReset value)? userReset,
     TResult? Function(CheckUserAuthState value)? checkUserAuthState,
+    TResult? Function(TokenAdded value)? addToken,
   }) {
     return userModified?.call(this);
   }
@@ -229,6 +240,7 @@ class _$UserModifiedImpl implements UserModified {
     TResult Function(UserAuthenticated value)? userAuthenticated,
     TResult Function(UserReset value)? userReset,
     TResult Function(CheckUserAuthState value)? checkUserAuthState,
+    TResult Function(TokenAdded value)? addToken,
     required TResult orElse(),
   }) {
     if (userModified != null) {
@@ -349,6 +361,7 @@ class _$UserAuthenticatedImpl implements UserAuthenticated {
     required TResult Function(UserModel user, String token) userAuthenticated,
     required TResult Function() userReset,
     required TResult Function() checkUserAuthState,
+    required TResult Function(String token) addToken,
   }) {
     return userAuthenticated(user, token);
   }
@@ -360,6 +373,7 @@ class _$UserAuthenticatedImpl implements UserAuthenticated {
     TResult? Function(UserModel user, String token)? userAuthenticated,
     TResult? Function()? userReset,
     TResult? Function()? checkUserAuthState,
+    TResult? Function(String token)? addToken,
   }) {
     return userAuthenticated?.call(user, token);
   }
@@ -371,6 +385,7 @@ class _$UserAuthenticatedImpl implements UserAuthenticated {
     TResult Function(UserModel user, String token)? userAuthenticated,
     TResult Function()? userReset,
     TResult Function()? checkUserAuthState,
+    TResult Function(String token)? addToken,
     required TResult orElse(),
   }) {
     if (userAuthenticated != null) {
@@ -386,6 +401,7 @@ class _$UserAuthenticatedImpl implements UserAuthenticated {
     required TResult Function(UserAuthenticated value) userAuthenticated,
     required TResult Function(UserReset value) userReset,
     required TResult Function(CheckUserAuthState value) checkUserAuthState,
+    required TResult Function(TokenAdded value) addToken,
   }) {
     return userAuthenticated(this);
   }
@@ -397,6 +413,7 @@ class _$UserAuthenticatedImpl implements UserAuthenticated {
     TResult? Function(UserAuthenticated value)? userAuthenticated,
     TResult? Function(UserReset value)? userReset,
     TResult? Function(CheckUserAuthState value)? checkUserAuthState,
+    TResult? Function(TokenAdded value)? addToken,
   }) {
     return userAuthenticated?.call(this);
   }
@@ -408,6 +425,7 @@ class _$UserAuthenticatedImpl implements UserAuthenticated {
     TResult Function(UserAuthenticated value)? userAuthenticated,
     TResult Function(UserReset value)? userReset,
     TResult Function(CheckUserAuthState value)? checkUserAuthState,
+    TResult Function(TokenAdded value)? addToken,
     required TResult orElse(),
   }) {
     if (userAuthenticated != null) {
@@ -480,6 +498,7 @@ class _$UserResetImpl implements UserReset {
     required TResult Function(UserModel user, String token) userAuthenticated,
     required TResult Function() userReset,
     required TResult Function() checkUserAuthState,
+    required TResult Function(String token) addToken,
   }) {
     return userReset();
   }
@@ -491,6 +510,7 @@ class _$UserResetImpl implements UserReset {
     TResult? Function(UserModel user, String token)? userAuthenticated,
     TResult? Function()? userReset,
     TResult? Function()? checkUserAuthState,
+    TResult? Function(String token)? addToken,
   }) {
     return userReset?.call();
   }
@@ -502,6 +522,7 @@ class _$UserResetImpl implements UserReset {
     TResult Function(UserModel user, String token)? userAuthenticated,
     TResult Function()? userReset,
     TResult Function()? checkUserAuthState,
+    TResult Function(String token)? addToken,
     required TResult orElse(),
   }) {
     if (userReset != null) {
@@ -517,6 +538,7 @@ class _$UserResetImpl implements UserReset {
     required TResult Function(UserAuthenticated value) userAuthenticated,
     required TResult Function(UserReset value) userReset,
     required TResult Function(CheckUserAuthState value) checkUserAuthState,
+    required TResult Function(TokenAdded value) addToken,
   }) {
     return userReset(this);
   }
@@ -528,6 +550,7 @@ class _$UserResetImpl implements UserReset {
     TResult? Function(UserAuthenticated value)? userAuthenticated,
     TResult? Function(UserReset value)? userReset,
     TResult? Function(CheckUserAuthState value)? checkUserAuthState,
+    TResult? Function(TokenAdded value)? addToken,
   }) {
     return userReset?.call(this);
   }
@@ -539,6 +562,7 @@ class _$UserResetImpl implements UserReset {
     TResult Function(UserAuthenticated value)? userAuthenticated,
     TResult Function(UserReset value)? userReset,
     TResult Function(CheckUserAuthState value)? checkUserAuthState,
+    TResult Function(TokenAdded value)? addToken,
     required TResult orElse(),
   }) {
     if (userReset != null) {
@@ -599,6 +623,7 @@ class _$CheckUserAuthStateImpl implements CheckUserAuthState {
     required TResult Function(UserModel user, String token) userAuthenticated,
     required TResult Function() userReset,
     required TResult Function() checkUserAuthState,
+    required TResult Function(String token) addToken,
   }) {
     return checkUserAuthState();
   }
@@ -610,6 +635,7 @@ class _$CheckUserAuthStateImpl implements CheckUserAuthState {
     TResult? Function(UserModel user, String token)? userAuthenticated,
     TResult? Function()? userReset,
     TResult? Function()? checkUserAuthState,
+    TResult? Function(String token)? addToken,
   }) {
     return checkUserAuthState?.call();
   }
@@ -621,6 +647,7 @@ class _$CheckUserAuthStateImpl implements CheckUserAuthState {
     TResult Function(UserModel user, String token)? userAuthenticated,
     TResult Function()? userReset,
     TResult Function()? checkUserAuthState,
+    TResult Function(String token)? addToken,
     required TResult orElse(),
   }) {
     if (checkUserAuthState != null) {
@@ -636,6 +663,7 @@ class _$CheckUserAuthStateImpl implements CheckUserAuthState {
     required TResult Function(UserAuthenticated value) userAuthenticated,
     required TResult Function(UserReset value) userReset,
     required TResult Function(CheckUserAuthState value) checkUserAuthState,
+    required TResult Function(TokenAdded value) addToken,
   }) {
     return checkUserAuthState(this);
   }
@@ -647,6 +675,7 @@ class _$CheckUserAuthStateImpl implements CheckUserAuthState {
     TResult? Function(UserAuthenticated value)? userAuthenticated,
     TResult? Function(UserReset value)? userReset,
     TResult? Function(CheckUserAuthState value)? checkUserAuthState,
+    TResult? Function(TokenAdded value)? addToken,
   }) {
     return checkUserAuthState?.call(this);
   }
@@ -658,6 +687,7 @@ class _$CheckUserAuthStateImpl implements CheckUserAuthState {
     TResult Function(UserAuthenticated value)? userAuthenticated,
     TResult Function(UserReset value)? userReset,
     TResult Function(CheckUserAuthState value)? checkUserAuthState,
+    TResult Function(TokenAdded value)? addToken,
     required TResult orElse(),
   }) {
     if (checkUserAuthState != null) {
@@ -669,6 +699,167 @@ class _$CheckUserAuthStateImpl implements CheckUserAuthState {
 
 abstract class CheckUserAuthState implements AuthEvent {
   const factory CheckUserAuthState() = _$CheckUserAuthStateImpl;
+}
+
+/// @nodoc
+abstract class _$$TokenAddedImplCopyWith<$Res> {
+  factory _$$TokenAddedImplCopyWith(
+    _$TokenAddedImpl value,
+    $Res Function(_$TokenAddedImpl) then,
+  ) = __$$TokenAddedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String token});
+}
+
+/// @nodoc
+class __$$TokenAddedImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$TokenAddedImpl>
+    implements _$$TokenAddedImplCopyWith<$Res> {
+  __$$TokenAddedImplCopyWithImpl(
+    _$TokenAddedImpl _value,
+    $Res Function(_$TokenAddedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? token = null}) {
+    return _then(
+      _$TokenAddedImpl(
+        token:
+            null == token
+                ? _value.token
+                : token // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$TokenAddedImpl implements TokenAdded {
+  const _$TokenAddedImpl({required this.token});
+
+  @override
+  final String token;
+
+  @override
+  String toString() {
+    return 'AuthEvent.addToken(token: $token)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TokenAddedImpl &&
+            (identical(other.token, token) || other.token == token));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, token);
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TokenAddedImplCopyWith<_$TokenAddedImpl> get copyWith =>
+      __$$TokenAddedImplCopyWithImpl<_$TokenAddedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserModel user) userModified,
+    required TResult Function(UserModel user, String token) userAuthenticated,
+    required TResult Function() userReset,
+    required TResult Function() checkUserAuthState,
+    required TResult Function(String token) addToken,
+  }) {
+    return addToken(token);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(UserModel user)? userModified,
+    TResult? Function(UserModel user, String token)? userAuthenticated,
+    TResult? Function()? userReset,
+    TResult? Function()? checkUserAuthState,
+    TResult? Function(String token)? addToken,
+  }) {
+    return addToken?.call(token);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserModel user)? userModified,
+    TResult Function(UserModel user, String token)? userAuthenticated,
+    TResult Function()? userReset,
+    TResult Function()? checkUserAuthState,
+    TResult Function(String token)? addToken,
+    required TResult orElse(),
+  }) {
+    if (addToken != null) {
+      return addToken(token);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserModified value) userModified,
+    required TResult Function(UserAuthenticated value) userAuthenticated,
+    required TResult Function(UserReset value) userReset,
+    required TResult Function(CheckUserAuthState value) checkUserAuthState,
+    required TResult Function(TokenAdded value) addToken,
+  }) {
+    return addToken(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserModified value)? userModified,
+    TResult? Function(UserAuthenticated value)? userAuthenticated,
+    TResult? Function(UserReset value)? userReset,
+    TResult? Function(CheckUserAuthState value)? checkUserAuthState,
+    TResult? Function(TokenAdded value)? addToken,
+  }) {
+    return addToken?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserModified value)? userModified,
+    TResult Function(UserAuthenticated value)? userAuthenticated,
+    TResult Function(UserReset value)? userReset,
+    TResult Function(CheckUserAuthState value)? checkUserAuthState,
+    TResult Function(TokenAdded value)? addToken,
+    required TResult orElse(),
+  }) {
+    if (addToken != null) {
+      return addToken(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TokenAdded implements AuthEvent {
+  const factory TokenAdded({required final String token}) = _$TokenAddedImpl;
+
+  String get token;
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$TokenAddedImplCopyWith<_$TokenAddedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

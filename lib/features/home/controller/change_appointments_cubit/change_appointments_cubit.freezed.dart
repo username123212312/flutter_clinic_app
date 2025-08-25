@@ -19,6 +19,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ChangeAppointmentsState {
   DataStatus get status => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
+  List<DateTime> get availableDays => throw _privateConstructorUsedError;
 
   /// Create a copy of ChangeAppointmentsState
   /// with the given fields replaced by the non-null parameter values.
@@ -34,7 +35,7 @@ abstract class $ChangeAppointmentsStateCopyWith<$Res> {
     $Res Function(ChangeAppointmentsState) then,
   ) = _$ChangeAppointmentsStateCopyWithImpl<$Res, ChangeAppointmentsState>;
   @useResult
-  $Res call({DataStatus status, String message});
+  $Res call({DataStatus status, String message, List<DateTime> availableDays});
 }
 
 /// @nodoc
@@ -54,7 +55,11 @@ class _$ChangeAppointmentsStateCopyWithImpl<
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? status = null, Object? message = null}) {
+  $Res call({
+    Object? status = null,
+    Object? message = null,
+    Object? availableDays = null,
+  }) {
     return _then(
       _value.copyWith(
             status:
@@ -67,6 +72,11 @@ class _$ChangeAppointmentsStateCopyWithImpl<
                     ? _value.message
                     : message // ignore: cast_nullable_to_non_nullable
                         as String,
+            availableDays:
+                null == availableDays
+                    ? _value.availableDays
+                    : availableDays // ignore: cast_nullable_to_non_nullable
+                        as List<DateTime>,
           )
           as $Val,
     );
@@ -82,7 +92,7 @@ abstract class _$$ChangeAppointmentsStateImplCopyWith<$Res>
   ) = __$$ChangeAppointmentsStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({DataStatus status, String message});
+  $Res call({DataStatus status, String message, List<DateTime> availableDays});
 }
 
 /// @nodoc
@@ -102,7 +112,11 @@ class __$$ChangeAppointmentsStateImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? status = null, Object? message = null}) {
+  $Res call({
+    Object? status = null,
+    Object? message = null,
+    Object? availableDays = null,
+  }) {
     return _then(
       _$ChangeAppointmentsStateImpl(
         status:
@@ -115,6 +129,11 @@ class __$$ChangeAppointmentsStateImplCopyWithImpl<$Res>
                 ? _value.message
                 : message // ignore: cast_nullable_to_non_nullable
                     as String,
+        availableDays:
+            null == availableDays
+                ? _value._availableDays
+                : availableDays // ignore: cast_nullable_to_non_nullable
+                    as List<DateTime>,
       ),
     );
   }
@@ -126,16 +145,24 @@ class _$ChangeAppointmentsStateImpl implements _ChangeAppointmentsState {
   const _$ChangeAppointmentsStateImpl({
     required this.status,
     required this.message,
-  });
+    required final List<DateTime> availableDays,
+  }) : _availableDays = availableDays;
 
   @override
   final DataStatus status;
   @override
   final String message;
+  final List<DateTime> _availableDays;
+  @override
+  List<DateTime> get availableDays {
+    if (_availableDays is EqualUnmodifiableListView) return _availableDays;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_availableDays);
+  }
 
   @override
   String toString() {
-    return 'ChangeAppointmentsState(status: $status, message: $message)';
+    return 'ChangeAppointmentsState(status: $status, message: $message, availableDays: $availableDays)';
   }
 
   @override
@@ -144,11 +171,20 @@ class _$ChangeAppointmentsStateImpl implements _ChangeAppointmentsState {
         (other.runtimeType == runtimeType &&
             other is _$ChangeAppointmentsStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            const DeepCollectionEquality().equals(
+              other._availableDays,
+              _availableDays,
+            ));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, message);
+  int get hashCode => Object.hash(
+    runtimeType,
+    status,
+    message,
+    const DeepCollectionEquality().hash(_availableDays),
+  );
 
   /// Create a copy of ChangeAppointmentsState
   /// with the given fields replaced by the non-null parameter values.
@@ -165,12 +201,15 @@ abstract class _ChangeAppointmentsState implements ChangeAppointmentsState {
   const factory _ChangeAppointmentsState({
     required final DataStatus status,
     required final String message,
+    required final List<DateTime> availableDays,
   }) = _$ChangeAppointmentsStateImpl;
 
   @override
   DataStatus get status;
   @override
   String get message;
+  @override
+  List<DateTime> get availableDays;
 
   /// Create a copy of ChangeAppointmentsState
   /// with the given fields replaced by the non-null parameter values.

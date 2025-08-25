@@ -90,15 +90,10 @@ class DoctorAppointmentDetailsCard extends StatelessWidget {
                 iconImagePath: 'assets/icons/patient_appoi.png',
               ),
               AppointmentDetailsListItem(
-                title: 'Service',
-                subtitle:
-                    (appointment.status == null
-                        ? 'No service'
-                        : appointment.status!.isVisited
-                        ? 'Finished'
-                        : appointment.status?.name) ??
-                    'No service',
-                iconImagePath: 'assets/icons/self-love.png',
+
+                title: 'Appointment info',
+                subtitle: appointment.appointmentInfo ?? '',
+                iconImagePath: 'assets/icons/ic_service.png',
               ),
               AppointmentDetailsListItem(
                 title: 'Appointment Type',
@@ -107,11 +102,14 @@ class DoctorAppointmentDetailsCard extends StatelessWidget {
                 iconImagePath: 'assets/icons/nurse-hat.png',
               ),
               AppointmentDetailsListItem(
-                title: 'Doctor Speciality',
+                title: 'Payment Status',
                 subtitle:
-                    context.read<UserBloc>().state.user?.speciality ??
-                    'No Department',
-                iconImagePath: 'assets/icons/hospital (1).png',
+
+                    appointment.paymentStatus == null
+                        ? ''
+                        : appointment.paymentStatus!.name,
+                iconImagePath: 'assets/icons/ic_doctor.png',
+
               ),
               AppointmentDetailsListItem(
                 fontSize: 11,
@@ -121,6 +119,13 @@ class DoctorAppointmentDetailsCard extends StatelessWidget {
                     ', ${formatTime(appointment.reservationHour ?? TimeOfDay.now())}',
                 iconImagePath: 'assets/icons/data.png',
               ),
+              if (appointment.referredBy != null)
+                AppointmentDetailsListItem(
+                  fontSize: 11,
+                  title: 'Doctor Referred By',
+                  subtitle: appointment.referredBy!,
+                  iconImagePath: 'assets/icons/ic_user_circle.png',
+                ),
             ],
           ),
         ],

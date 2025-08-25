@@ -18,7 +18,7 @@ class AppConstants {
       'https://capable-luckily-tetra.ngrok-free.app';
   static const ipAddress = '192.168.86.76'; //10.0.2.2
   static const localAddress = 'http://$ipAddress:8000';
-  static const serverUrl = nerminNgrokAddress;
+  static const serverUrl = nayaNgrokAddress;
   static const apiPath = 'api';
   static const patientPath = '/$apiPath/patient';
   static const homePath = '/$apiPath/home';
@@ -118,6 +118,7 @@ class AppConstants {
 
   //? Doctor
   static const doctorProfilePath = '$doctorPath/profile';
+  static const doctorShowWorkDaysPath = '$doctorPath/showDoctorWorkDates';
   static const availableWorkDaysPath = '$doctorPath/availableWorkDays';
   static const doctorChangSchedulePath = '$doctorPath/editSchedule';
   static const schedulePath = '$doctorPath/schedule';
@@ -138,8 +139,8 @@ class AppConstants {
       '$serverUrl/Doctor/patientInfo/patientsRecord';
   static const searchVisitedPatientsPath =
       '$serverUrl/Doctor/patientInfo/searchPatient';
-  static const showPatientAnalysisPath =
-      '$serverUrl/Doctor/patientInfo/showPatientAnalysis';
+  static const showPatientAnalysisByStatusPath =
+      '$serverUrl/Doctor/patientInfo/showPatientAnalysisByStatus';
   static const showPatientAnalysisByClinicPath =
       '$serverUrl/Doctor/patientInfo/showPatientAnalysisByClinic';
   static const doctorShowClinicPath =

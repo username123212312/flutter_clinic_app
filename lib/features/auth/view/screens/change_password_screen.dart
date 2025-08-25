@@ -45,156 +45,178 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          forceMaterialTransparency: true,
-          elevation: 0,
-          toolbarHeight: (screenHeight ?? 0) * 0.1,
-          title: Text('Change Password'),
-          titleTextStyle: Theme.of(
-            context,
-          ).textTheme.labelSmall!.copyWith(fontSize: 20),
-        ),
-        body: SingleChildScrollView(
-          padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).viewInsets.bottom * 0.1,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) {
+          context.read<ChangePasswordCubit>().reset();
+          context.goNamed(AppRouteConstants.loginRouteName);
+        }
+      },
+      child: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              onPressed: () {
+                context.goNamed(AppRouteConstants.loginRouteName);
+              },
+              icon: Icon(Icons.arrow_back),
+            ),
+            forceMaterialTransparency: true,
+            elevation: 0,
+            toolbarHeight: (screenHeight ?? 0) * 0.1,
+            title: Text('Change Password'),
+            titleTextStyle: Theme.of(
+              context,
+            ).textTheme.labelSmall!.copyWith(fontSize: 20),
           ),
-          child: BackgroundContainer(
-            height: (screenHeight ?? 0) * 0.86,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 40, right: 40),
-              child: Column(
-                children: [
-                  _buildHeader(),
-                  _buildTwoFormFields(),
-                  SizedBox(height: 40),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 0.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            BulletItem(
-                              text: 'Minimum 8 characters',
-                              fontSize: 13,
-                            ),
-                            BulletItem(text: 'Contains numbers', fontSize: 13),
-                          ],
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            BulletItem(
-                              text: 'Has lowercase letters',
-                              fontSize: 13,
-                            ),
-                            BulletItem(
-                              text: 'Has capital letters',
-                              fontSize: 13,
-                            ),
-                          ],
-                        ),
-                      ],
+          body: SingleChildScrollView(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom * 0.1,
+            ),
+            child: BackgroundContainer(
+              height: (screenHeight ?? 0) * 0.86,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 40, right: 40),
+                child: Column(
+                  children: [
+                    _buildHeader(),
+                    _buildTwoFormFields(),
+                    SizedBox(height: 40),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 0.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              BulletItem(
+                                text: 'Minimum 8 characters',
+                                fontSize: 13,
+                              ),
+                              BulletItem(
+                                text: 'Contains numbers',
+                                fontSize: 13,
+                              ),
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              BulletItem(
+                                text: 'Has lowercase letters',
+                                fontSize: 13,
+                              ),
+                              BulletItem(
+                                text: 'Has capital letters',
+                                fontSize: 13,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(height: (screenHeight ?? 0) * 0.05),
-                  SizedBox(
-                    width: (screenWidth ?? 0) * 0.9,
-                    child: BlocListener<
-                      ChangePasswordCubit,
-                      ChangePasswordState
-                    >(
-                      listener: (_, state) async {
-                        if (state.status.isLoading) {
-                          LoadingOverlay().show(context);
-                        } else {
-                          if (mounted) {
-                            LoadingOverlay().hideAll();
-                            if (state.status.isError) {
-                              showToast(
+                    SizedBox(height: (screenHeight ?? 0) * 0.05),
+                    SizedBox(
+                      width: (screenWidth ?? 0) * 0.9,
+                      child: BlocListener<
+                        ChangePasswordCubit,
+                        ChangePasswordState
+                      >(
+                        listener: (_, state) async {
+                          if (state.status.isLoading) {
+                            LoadingOverlay().show(context);
+                          } else {
+                            if (mounted) {
+                              LoadingOverlay().hideAll();
+                              if (state.status.isError) {
+                                showToast(
+                                  context: context,
+                                  msg: state.message,
+                                  type: ToastificationType.error,
+                                );
+                              }
+                            }
+                            if (state.status.isDone) {
+                              await TransparentDialog.show(
                                 context: context,
-                                msg: state.message,
-                                type: ToastificationType.error,
+                                barrierDismissible: false,
+                                builder:
+                                    (_) => CustomDialog(
+                                      content: Column(
+                                        children: [
+                                          Align(
+                                            alignment: Alignment(-0.2, 0.0),
+                                            child: Lottie.asset(
+                                              'assets/lottie/password_reset_animation.json',
+                                              fit: BoxFit.cover,
+                                              width: (screenWidth ?? 0) * 0.2,
+                                              height:
+                                                  (screenHeight ?? 0) * 0.15,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: (screenWidth ?? 0) * 0.7,
+                                            child: Text(
+                                              textAlign: TextAlign.center,
+                                              state.message,
+                                              style: themeData!
+                                                  .textTheme
+                                                  .labelMedium!
+                                                  .copyWith(
+                                                    color: Colors.black,
+                                                    fontSize: 13,
+                                                  ),
+                                            ),
+                                          ),
+                                          SizedBox(height: 25),
+                                          SizedBox(
+                                            width: (screenWidth ?? 0) * 0.5,
+                                            height: (screenHeight ?? 0) * 0.05,
+                                            child: CustomElevatedButton(
+                                              fontSize: 12,
+                                              title: 'Back to Login',
+                                              onTap: () {
+                                                context.pop();
+                                                context.goNamed(
+                                                  AppRouteConstants
+                                                      .loginRouteName,
+                                                );
+                                              },
+                                              fillColor:
+                                                  themeData!
+                                                      .colorScheme
+                                                      .primary,
+                                              textColor: Colors.white,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                               );
                             }
                           }
-                          if (state.status.isDone) {
-                            await TransparentDialog.show(
-                              context: context,
-                              barrierDismissible: false,
-                              builder:
-                                  (_) => CustomDialog(
-                                    content: Column(
-                                      children: [
-                                        Align(
-                                          alignment: Alignment(-0.2, 0.0),
-                                          child: Lottie.asset(
-                                            'assets/lottie/password_reset_animation.json',
-                                            fit: BoxFit.cover,
-                                            width: (screenWidth ?? 0) * 0.2,
-                                            height: (screenHeight ?? 0) * 0.15,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: (screenWidth ?? 0) * 0.7,
-                                          child: Text(
-                                            textAlign: TextAlign.center,
-                                            state.message,
-                                            style: themeData!
-                                                .textTheme
-                                                .labelMedium!
-                                                .copyWith(
-                                                  color: Colors.black,
-                                                  fontSize: 13,
-                                                ),
-                                          ),
-                                        ),
-                                        SizedBox(height: 25),
-                                        SizedBox(
-                                          width: (screenWidth ?? 0) * 0.5,
-                                          height: (screenHeight ?? 0) * 0.05,
-                                          child: CustomElevatedButton(
-                                            fontSize: 12,
-                                            title: 'Back to Login',
-                                            onTap: () {
-                                              context.pop();
-                                              context.goNamed(
-                                                AppRouteConstants
-                                                    .loginRouteName,
-                                              );
-                                            },
-                                            fillColor:
-                                                themeData!.colorScheme.primary,
-                                            textColor: Colors.white,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                        },
+                        child: BlocBuilder<
+                          ChangePasswordCubit,
+                          ChangePasswordState
+                        >(
+                          builder: (context, state) {
+                            return CustomElevatedButton(
+                              isEnabled: !state.status.isLoading,
+                              fontSize: 15,
+                              title: 'Change Password',
+                              onTap: submit,
+                              fillColor: Theme.of(context).colorScheme.primary,
+                              textColor: Colors.white,
                             );
-                          }
-                        }
-                      },
-                      child:
-                          BlocBuilder<ChangePasswordCubit, ChangePasswordState>(
-                            builder: (context, state) {
-                              return CustomElevatedButton(
-                                isEnabled: !state.status.isLoading,
-                                fontSize: 15,
-                                title: 'Change Password',
-                                onTap: submit,
-                                fillColor:
-                                    Theme.of(context).colorScheme.primary,
-                                textColor: Colors.white,
-                              );
-                            },
-                          ),
+                          },
+                        ),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

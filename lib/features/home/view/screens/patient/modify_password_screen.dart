@@ -47,7 +47,7 @@ class _ModifyPasswordScreenState extends State<ModifyPasswordScreen> {
           ),
           elevation: 0,
           toolbarHeight: screenHeight(context) * 0.1,
-          title: Text('Create a Password'),
+          title: Text('Change Password'),
           titleTextStyle: Theme.of(
             context,
           ).textTheme.labelSmall!.copyWith(fontSize: 19),

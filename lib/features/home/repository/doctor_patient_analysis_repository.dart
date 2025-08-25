@@ -20,9 +20,9 @@ class DoctorPatientAnalysisRepository {
     int page = 1,
   }) async {
     try {
-      final response = await _dio.get(
-        AppConstants.showPatientAnalysisPath,
-        queryParameters: {
+      final response = await _dio.post(
+        AppConstants.showPatientAnalysisByStatusPath,
+        data: {
           'page': page,
           'patient_id': patientId,
           'status': analysisStatus.name.toLowerCase(),
@@ -56,19 +56,12 @@ class DoctorPatientAnalysisRepository {
   fetchAnalysisByClinic({
     required int patientId,
     required int clinicId,
-    required AnalysisStatus analysisStatus,
     int page = 1,
   }) async {
     try {
-      final response = await _dio.get(
-        AppConstants.showPatientAnalysisPath,
-        queryParameters: {
-          'page': page,
-          'patient_id': patientId,
-          'clinic_id': clinicId,
-
-          'status': analysisStatus.name.toLowerCase(),
-        },
+      final response = await _dio.post(
+        AppConstants.showPatientAnalysisByClinicPath,
+        data: {'page': page, 'patient_id': patientId, 'clinic_id': clinicId},
       );
 
       if (response.data['statusCode'] < 300) {

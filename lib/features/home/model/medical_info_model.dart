@@ -8,6 +8,9 @@ part 'medical_info_model.g.dart';
 sealed class MedicalInfoModel with _$MedicalInfoModel {
   factory MedicalInfoModel({
     int? id,
+    @JsonKey(name: 'note for the doctor') noteForTheDoctor,
+    @JsonKey(name: 'note for the patient') noteForThePatient,
+    String? symptoms,
     String? diagnosis,
     String? doctorNote,
     String? patientNote,

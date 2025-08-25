@@ -90,6 +90,11 @@ class _PatientAnalysisWidgetState extends State<PatientAnalysisWidget> {
                       value: AnalysisStatus.finished,
                       child: Text('finished'),
                     ),
+                    if (state.selectedClinic.id != null)
+                      DropdownMenuItem<AnalysisStatus>(
+                        value: AnalysisStatus.all,
+                        child: Text('clinic'),
+                      ),
                   ],
                   onChanged: (status) {
                     if (status != null) {

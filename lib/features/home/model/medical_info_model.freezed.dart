@@ -22,6 +22,11 @@ MedicalInfoModel _$MedicalInfoModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MedicalInfoModel {
   int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'note for the doctor')
+  dynamic get noteForTheDoctor => throw _privateConstructorUsedError;
+  @JsonKey(name: 'note for the patient')
+  dynamic get noteForThePatient => throw _privateConstructorUsedError;
+  String? get symptoms => throw _privateConstructorUsedError;
   String? get diagnosis => throw _privateConstructorUsedError;
   String? get doctorNote => throw _privateConstructorUsedError;
   String? get patientNote => throw _privateConstructorUsedError;
@@ -46,6 +51,9 @@ abstract class $MedicalInfoModelCopyWith<$Res> {
   @useResult
   $Res call({
     int? id,
+    @JsonKey(name: 'note for the doctor') dynamic noteForTheDoctor,
+    @JsonKey(name: 'note for the patient') dynamic noteForThePatient,
+    String? symptoms,
     String? diagnosis,
     String? doctorNote,
     String? patientNote,
@@ -71,6 +79,9 @@ class _$MedicalInfoModelCopyWithImpl<$Res, $Val extends MedicalInfoModel>
   @override
   $Res call({
     Object? id = freezed,
+    Object? noteForTheDoctor = freezed,
+    Object? noteForThePatient = freezed,
+    Object? symptoms = freezed,
     Object? diagnosis = freezed,
     Object? doctorNote = freezed,
     Object? patientNote = freezed,
@@ -83,6 +94,21 @@ class _$MedicalInfoModelCopyWithImpl<$Res, $Val extends MedicalInfoModel>
                     ? _value.id
                     : id // ignore: cast_nullable_to_non_nullable
                         as int?,
+            noteForTheDoctor:
+                freezed == noteForTheDoctor
+                    ? _value.noteForTheDoctor
+                    : noteForTheDoctor // ignore: cast_nullable_to_non_nullable
+                        as dynamic,
+            noteForThePatient:
+                freezed == noteForThePatient
+                    ? _value.noteForThePatient
+                    : noteForThePatient // ignore: cast_nullable_to_non_nullable
+                        as dynamic,
+            symptoms:
+                freezed == symptoms
+                    ? _value.symptoms
+                    : symptoms // ignore: cast_nullable_to_non_nullable
+                        as String?,
             diagnosis:
                 freezed == diagnosis
                     ? _value.diagnosis
@@ -134,6 +160,9 @@ abstract class _$$MedicalInfoModelImplCopyWith<$Res>
   @useResult
   $Res call({
     int? id,
+    @JsonKey(name: 'note for the doctor') dynamic noteForTheDoctor,
+    @JsonKey(name: 'note for the patient') dynamic noteForThePatient,
+    String? symptoms,
     String? diagnosis,
     String? doctorNote,
     String? patientNote,
@@ -159,6 +188,9 @@ class __$$MedicalInfoModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? noteForTheDoctor = freezed,
+    Object? noteForThePatient = freezed,
+    Object? symptoms = freezed,
     Object? diagnosis = freezed,
     Object? doctorNote = freezed,
     Object? patientNote = freezed,
@@ -171,6 +203,19 @@ class __$$MedicalInfoModelImplCopyWithImpl<$Res>
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
                     as int?,
+        noteForTheDoctor:
+            freezed == noteForTheDoctor
+                ? _value.noteForTheDoctor!
+                : noteForTheDoctor,
+        noteForThePatient:
+            freezed == noteForThePatient
+                ? _value.noteForThePatient!
+                : noteForThePatient,
+        symptoms:
+            freezed == symptoms
+                ? _value.symptoms
+                : symptoms // ignore: cast_nullable_to_non_nullable
+                    as String?,
         diagnosis:
             freezed == diagnosis
                 ? _value.diagnosis
@@ -201,6 +246,9 @@ class __$$MedicalInfoModelImplCopyWithImpl<$Res>
 class _$MedicalInfoModelImpl implements _MedicalInfoModel {
   _$MedicalInfoModelImpl({
     this.id,
+    @JsonKey(name: 'note for the doctor') this.noteForTheDoctor,
+    @JsonKey(name: 'note for the patient') this.noteForThePatient,
+    this.symptoms,
     this.diagnosis,
     this.doctorNote,
     this.patientNote,
@@ -213,6 +261,14 @@ class _$MedicalInfoModelImpl implements _MedicalInfoModel {
   @override
   final int? id;
   @override
+  @JsonKey(name: 'note for the doctor')
+  final dynamic noteForTheDoctor;
+  @override
+  @JsonKey(name: 'note for the patient')
+  final dynamic noteForThePatient;
+  @override
+  final String? symptoms;
+  @override
   final String? diagnosis;
   @override
   final String? doctorNote;
@@ -223,7 +279,7 @@ class _$MedicalInfoModelImpl implements _MedicalInfoModel {
 
   @override
   String toString() {
-    return 'MedicalInfoModel(id: $id, diagnosis: $diagnosis, doctorNote: $doctorNote, patientNote: $patientNote, prescription: $prescription)';
+    return 'MedicalInfoModel(id: $id, noteForTheDoctor: $noteForTheDoctor, noteForThePatient: $noteForThePatient, symptoms: $symptoms, diagnosis: $diagnosis, doctorNote: $doctorNote, patientNote: $patientNote, prescription: $prescription)';
   }
 
   @override
@@ -232,6 +288,16 @@ class _$MedicalInfoModelImpl implements _MedicalInfoModel {
         (other.runtimeType == runtimeType &&
             other is _$MedicalInfoModelImpl &&
             (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality().equals(
+              other.noteForTheDoctor,
+              noteForTheDoctor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              other.noteForThePatient,
+              noteForThePatient,
+            ) &&
+            (identical(other.symptoms, symptoms) ||
+                other.symptoms == symptoms) &&
             (identical(other.diagnosis, diagnosis) ||
                 other.diagnosis == diagnosis) &&
             (identical(other.doctorNote, doctorNote) ||
@@ -247,6 +313,9 @@ class _$MedicalInfoModelImpl implements _MedicalInfoModel {
   int get hashCode => Object.hash(
     runtimeType,
     id,
+    const DeepCollectionEquality().hash(noteForTheDoctor),
+    const DeepCollectionEquality().hash(noteForThePatient),
+    symptoms,
     diagnosis,
     doctorNote,
     patientNote,
@@ -273,6 +342,9 @@ class _$MedicalInfoModelImpl implements _MedicalInfoModel {
 abstract class _MedicalInfoModel implements MedicalInfoModel {
   factory _MedicalInfoModel({
     final int? id,
+    @JsonKey(name: 'note for the doctor') final dynamic noteForTheDoctor,
+    @JsonKey(name: 'note for the patient') final dynamic noteForThePatient,
+    final String? symptoms,
     final String? diagnosis,
     final String? doctorNote,
     final String? patientNote,
@@ -284,6 +356,14 @@ abstract class _MedicalInfoModel implements MedicalInfoModel {
 
   @override
   int? get id;
+  @override
+  @JsonKey(name: 'note for the doctor')
+  dynamic get noteForTheDoctor;
+  @override
+  @JsonKey(name: 'note for the patient')
+  dynamic get noteForThePatient;
+  @override
+  String? get symptoms;
   @override
   String? get diagnosis;
   @override

@@ -104,8 +104,13 @@ class AppRouteConfig {
       GoRoute(
         name: AppRouteConstants.createPasswordRouteName,
         path: '/create_password',
-        pageBuilder:
-            (_, state) => TransitionPage(child: CreatePasswordScreen()),
+
+        pageBuilder: (_, state) {
+          final bool isChange = state.extra as bool;
+          return TransitionPage(
+            child: CreatePasswordScreen(isChange: isChange),
+          );
+        },
       ),
       GoRoute(
         name: AppRouteConstants.registerRouteName,

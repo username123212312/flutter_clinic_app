@@ -10,6 +10,7 @@ class DoctorInfoState with _$DoctorInfoState {
     DateTime? selectedDate,
     required List<TimeOfDay> availableTimes,
     TimeOfDay? selectedTime,
+    VaccinationRecord? vaccine,
     int? appointmentId,
     bool? isAuto,
   }) = _DoctorInfoState;
