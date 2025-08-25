@@ -97,11 +97,24 @@ class _PatientShowChildRecordScreenState
                 child:
                     state.childRecord == null
                         ? Center(
-                          child: Image.asset(
-                            width: 150,
-                            height: 150,
-                            fit: BoxFit.cover,
-                            'assets/images/il_empty_activity.webp',
+                          child: Column(
+                            children: [
+                              SizedBox(height: screenHeight(context) * 0.25),
+                              Image.asset(
+                                'assets/icons/medical-record.png',
+                                width: screenWidth(context) * 0.5,
+                                height: screenHeight(context) * 0.2,
+                              ),
+                              Text(
+                                'No records available',
+                                style: Theme.of(
+                                  context,
+                                ).textTheme.labelSmall!.copyWith(
+                                  color: Pallete.black1,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
                           ),
                         )
                         : Card(

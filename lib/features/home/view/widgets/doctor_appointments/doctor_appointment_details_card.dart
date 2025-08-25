@@ -29,7 +29,7 @@ class DoctorAppointmentDetailsCard extends StatelessWidget {
           Row(
             children: [
               Image.asset(
-                'assets/icons/tabler_clipboard-list.png',
+                'assets/icons/appointements _details.png',
                 width: 30,
                 height: 30,
                 fit: BoxFit.cover,
@@ -87,9 +87,10 @@ class DoctorAppointmentDetailsCard extends StatelessWidget {
                     '${appointment.patientFirstName ?? 'No'} '
                     '${appointment.patientLastName ?? 'User'}',
                 // subtitle: appointment.patient.name,
-                iconImagePath: 'assets/icons/ic_user_circle.png',
+                iconImagePath: 'assets/icons/patient_appoi.png',
               ),
               AppointmentDetailsListItem(
+
                 title: 'Appointment info',
                 subtitle: appointment.appointmentInfo ?? '',
                 iconImagePath: 'assets/icons/ic_service.png',
@@ -98,15 +99,17 @@ class DoctorAppointmentDetailsCard extends StatelessWidget {
                 title: 'Appointment Type',
                 subtitle: appointment.appointmentType?.name ?? 'No type',
                 // thirdtitle: appointment.doctor.speciality,
-                iconImagePath: 'assets/icons/ic_clinic.png',
+                iconImagePath: 'assets/icons/nurse-hat.png',
               ),
               AppointmentDetailsListItem(
                 title: 'Payment Status',
                 subtitle:
+
                     appointment.paymentStatus == null
                         ? ''
                         : appointment.paymentStatus!.name,
                 iconImagePath: 'assets/icons/ic_doctor.png',
+
               ),
               AppointmentDetailsListItem(
                 fontSize: 11,
@@ -114,7 +117,7 @@ class DoctorAppointmentDetailsCard extends StatelessWidget {
                 subtitle:
                     '${DateFormat('EEEE, MMMM, d, y').format(appointment.reservationDate ?? DateTime.now())} '
                     ', ${formatTime(appointment.reservationHour ?? TimeOfDay.now())}',
-                iconImagePath: 'assets/icons/ic_time.png',
+                iconImagePath: 'assets/icons/data.png',
               ),
               if (appointment.referredBy != null)
                 AppointmentDetailsListItem(

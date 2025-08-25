@@ -92,6 +92,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
               }
               return Skeletonizer(
                 enabled: state.status.isLoading,
+                effect: SoldColorEffect(color: Pallete.grayScaleColor300),
                 child: SizedBox(
                   height: screenHeight(context) * 0.8,
                   child: ListView.builder(

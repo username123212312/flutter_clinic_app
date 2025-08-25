@@ -44,6 +44,7 @@ class UpcomingAppointmentCard extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+
                 CircleAvatar(
                   radius: 16,
                   foregroundImage:
@@ -51,7 +52,9 @@ class UpcomingAppointmentCard extends StatelessWidget {
                           ? AssetImage('assets/images/app_logo.png')
                           : NetworkImage('${AppConstants.serverUrl}$imagePath'),
                   backgroundColor: Pallete.graysGray4,
+
                 ),
+
                 const SizedBox(width: 10),
                 Expanded(
                   child: Column(

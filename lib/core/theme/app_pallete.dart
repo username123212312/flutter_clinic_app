@@ -10,7 +10,7 @@ class Pallete {
   static const Color graysGray2 = Color.fromRGBO(174, 174, 178, 1);
   static const Color graysGray4 = Color.fromRGBO(244, 244, 246, 1);
   static const Color graysGray5 = Color.fromRGBO(250, 250, 252, 1);
-  static const Color shadowtext = Color.fromARGB(255, 192, 212, 251);
+  static const Color shadowtext = Color.fromRGBO(192, 212, 251, 1);
   static const Color star = Color.fromRGBO(249, 224, 0, 1);
   static const Color gray2 = Color.fromRGBO(170, 182, 195, 1);
   static const Color graysGray6 = Color.fromRGBO(242, 242, 247, 1);

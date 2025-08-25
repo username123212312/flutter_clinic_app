@@ -160,7 +160,7 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
                         _buildDatePicker(),
                         SizedBox(height: 20),
                         _buildSchedules(),
-                        SizedBox(height: 50),
+                        SizedBox(height: 20),
                         _buildBottomButton(),
                         SizedBox(height: 50),
                       ],
@@ -377,8 +377,9 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
               readOnly: true,
               controller: _vaccineController,
               suffixIcon: Icon(
-                color: Colors.blueGrey,
+                color: Pallete.grayScaleColor500,
                 FontAwesomeIcons.arrowRight,
+                size: 20,
               ),
             );
           },
@@ -579,9 +580,12 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
                 child: Material(
                   color: Pallete.grayScaleColor0,
                   borderRadius: BorderRadius.circular(5),
-                  elevation: 4,
+                  elevation: 2,
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30.0),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 30.0,
+                      vertical: 15,
+                    ),
                     child: Column(
                       children: [
                         SearchTextField(
@@ -636,6 +640,7 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
         }
         return Skeletonizer(
           enabled: state.status.isLoading,
+
           child: RefreshIndicator(
             onRefresh: () async {
               _newAppointmentBloc.add(AllDoctorsFetched());
@@ -668,6 +673,7 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
                           clinic: state.clinics!.firstWhere(
                             (clinic) => clinic.id == doctor.clinicId,
                           ),
+
                         ),
                       );
                       await for (final newState in _newAppointmentBloc.stream) {

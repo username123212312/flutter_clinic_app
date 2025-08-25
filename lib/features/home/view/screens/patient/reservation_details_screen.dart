@@ -64,6 +64,7 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
     return Scaffold(
       backgroundColor: Pallete.backgroundColor,
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         actions: [
           BlocConsumer<ReservationDetailsCubit, ReservationDetailsState>(
             bloc: _reservationDetailsCubit,
@@ -93,9 +94,9 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
         ],
         title: Text(
           'Appointment Details',
-          style: themeData!.textTheme.titleMedium!.copyWith(
-            fontSize: 20,
-            color: Pallete.black1,
+          style: Theme.of(context).textTheme.titleMedium!.copyWith(
+            fontSize: 17,
+            color: Pallete.grayScaleColor700,
           ),
         ),
         toolbarHeight: (screenHeight ?? 0) * 0.1,
@@ -314,124 +315,131 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                 ),
 
                 const SizedBox(height: 30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: BlocListener<
+                        ReservationDetailsCubit,
+                        ReservationDetailsState
+                      >(
+                        bloc: _reservationDetailsCubit,
+                        listener: (context, state) async {
+                          if (state.status.isLoading) {
+                            LoadingOverlay().show(context);
+                          } else {
+                            LoadingOverlay().hideAll();
 
-                Center(
-                  child: BlocListener<
-                    ReservationDetailsCubit,
-                    ReservationDetailsState
-                  >(
-                    bloc: _reservationDetailsCubit,
-                    listener: (context, state) async {
-                      if (state.status.isLoading) {
-                        LoadingOverlay().show(context);
-                      } else {
-                        LoadingOverlay().hideAll();
+                            if (state.status.isError) {
+                              showToast(
+                                context: context,
+                                type: ToastificationType.error,
+                                msg: state.message,
+                              );
+                            }
 
-                        if (state.status.isError) {
-                          showToast(
-                            context: context,
-                            type: ToastificationType.error,
-                            msg: state.message,
-                          );
-                        }
-
-                        if (state.status.isDone) {
-                          showToast(
-                            context: context,
-                            type: ToastificationType.success,
-                            msg: state.message,
-                          );
-                          await TransparentDialog.show(
-                            context: context,
-                            barrierDismissible: false,
-                            builder:
-                                (_) => CustomDialog(
-                                  content: Column(
-                                    children: [
-                                      Align(
-                                        alignment: Alignment(-0.2, 0.0),
-                                        child: Lottie.asset(
-                                          'assets/lottie/successfully_animation.json',
-                                          fit: BoxFit.cover,
-                                          width: (screenWidth ?? 0) * 0.2,
-                                          height: (screenHeight ?? 0) * 0.15,
-                                        ),
+                            if (state.status.isDone) {
+                              showToast(
+                                context: context,
+                                type: ToastificationType.success,
+                                msg: state.message,
+                              );
+                              await TransparentDialog.show(
+                                context: context,
+                                barrierDismissible: false,
+                                builder:
+                                    (_) => CustomDialog(
+                                      content: Column(
+                                        children: [
+                                          Align(
+                                            alignment: Alignment(-0.2, 0.0),
+                                            child: Lottie.asset(
+                                              'assets/lottie/successfully_animation.json',
+                                              fit: BoxFit.cover,
+                                              width: (screenWidth ?? 0) * 0.2,
+                                              height:
+                                                  (screenHeight ?? 0) * 0.15,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: (screenWidth ?? 0) * 0.7,
+                                            child: Text(
+                                              textAlign: TextAlign.center,
+                                              state.message,
+                                              style: themeData!
+                                                  .textTheme
+                                                  .labelMedium!
+                                                  .copyWith(
+                                                    color: Colors.black,
+                                                    fontSize: 13,
+                                                  ),
+                                            ),
+                                          ),
+                                          SizedBox(height: 25),
+                                          SizedBox(
+                                            width: (screenWidth ?? 0) * 0.5,
+                                            height: (screenHeight ?? 0) * 0.05,
+                                            child: CustomElevatedButton(
+                                              fontSize: 12,
+                                              title: 'Back to Home',
+                                              onTap: () {
+                                                context
+                                                    .read<AppointmentsBloc>()
+                                                    .add(AppointmentsFetched());
+                                                context.pop();
+                                                context.goNamed(
+                                                  AppRouteConstants
+                                                      .homeRouteName,
+                                                );
+                                              },
+                                              fillColor:
+                                                  themeData!
+                                                      .colorScheme
+                                                      .primary,
+                                              textColor: Colors.white,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      SizedBox(
-                                        width: (screenWidth ?? 0) * 0.7,
-                                        child: Text(
-                                          textAlign: TextAlign.center,
-                                          state.message,
-                                          style: themeData!
-                                              .textTheme
-                                              .labelMedium!
-                                              .copyWith(
-                                                color: Colors.black,
-                                                fontSize: 13,
-                                              ),
-                                        ),
-                                      ),
-                                      SizedBox(height: 25),
-                                      SizedBox(
-                                        width: (screenWidth ?? 0) * 0.5,
-                                        height: (screenHeight ?? 0) * 0.05,
-                                        child: CustomElevatedButton(
-                                          fontSize: 12,
-                                          title: 'Back to Home',
-                                          onTap: () {
-                                            context
-                                                .read<AppointmentsBloc>()
-                                                .add(AppointmentsFetched());
-                                            context.pop();
-                                            context.goNamed(
-                                              AppRouteConstants.homeRouteName,
-                                            );
-                                          },
-                                          fillColor:
-                                              themeData!.colorScheme.primary,
-                                          textColor: Colors.white,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                          );
-                        }
-                      }
-                    },
-                    child: CustomButton(
-                      text: "Checkout",
-                      onPressed: () async {
-                        await _reservationDetailsCubit
-                            .confirmReservationPayment(_useDiscountPoints);
-                      },
-                      color: Pallete.primaryColor,
-                      width: (screenWidth ?? 0) * 0.75,
-                      height: (screenHeight ?? 0) * 0.065,
-                      padding: const EdgeInsets.all(16),
-                      borderRadius: 32,
-                      fontSize: 16,
-                      textColor: Pallete.grayScaleColor0,
+                                    ),
+                              );
+                            }
+                          }
+                        },
+                        child: CustomButton(
+                          text: "Checkout",
+                          onPressed: () async {
+                            await _reservationDetailsCubit
+                                .confirmReservationPayment(_useDiscountPoints);
+                          },
+                          color: Pallete.primaryColor,
+                          height: (screenHeight ?? 0) * 0.065,
+                          padding: const EdgeInsets.all(16),
+                          borderRadius: 32,
+                          fontSize: 16,
+                          textColor: Pallete.grayScaleColor0,
+                          width: (screenWidth ?? 0) * 0.1,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
 
-                const SizedBox(height: 20),
-
-                Center(
-                  child: CustomButton(
-                    text: "My Wallet",
-                    onPressed: () async {
-                      _showTDialog();
-                    },
-                    color: Pallete.primaryColor,
-                    width: (screenWidth ?? 0) * 0.75,
-                    height: (screenHeight ?? 0) * 0.065,
-                    padding: const EdgeInsets.all(16),
-                    borderRadius: 32,
-                    fontSize: 16,
-                    textColor: Pallete.grayScaleColor0,
-                  ),
+                    SizedBox(width: 16),
+                    Expanded(
+                      child: CustomButton(
+                        text: "My Wallet",
+                        onPressed: () async {
+                          _showTDialog();
+                        },
+                        color: Pallete.primaryColor,
+                        height: (screenHeight ?? 0) * 0.065,
+                        padding: const EdgeInsets.all(16),
+                        borderRadius: 32,
+                        fontSize: 16,
+                        textColor: Pallete.grayScaleColor0,
+                        width: (screenWidth ?? 0) * 0.1,
+                      ),
+                    ),
+                  ],
                 ),
 
                 const SizedBox(height: 30),

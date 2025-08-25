@@ -39,7 +39,15 @@ class _SelectVaccineScreenState extends State<SelectVaccineScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
-        iconTheme: IconThemeData(size: 26),
+        scrolledUnderElevation: 0,
+        leading: IconButton(
+          onPressed: () => Navigator.of(context).pop(),
+          icon: const Icon(
+            FontAwesomeIcons.arrowLeft,
+            color: Pallete.black1,
+            size: 18,
+          ),
+        ),
         title: Text(
           'Select Vaccination',
           style: Theme.of(
@@ -72,6 +80,7 @@ class _SelectVaccineScreenState extends State<SelectVaccineScreen> {
                 return DropdownButton<VaccintaionType>(
                   alignment: Alignment.center,
                   iconEnabledColor: Colors.black,
+                  dropdownColor: Pallete.grayScaleColor0,
                   value: state.type,
                   items:
                       VaccintaionType.values.map((t) {
@@ -127,6 +136,7 @@ class _SelectVaccineScreenState extends State<SelectVaccineScreen> {
                 }
                 return Skeletonizer(
                   enabled: state.status.isLoading,
+                  effect: SoldColorEffect(color: Pallete.grayScaleColor300),
                   child: RefreshIndicator(
                     onRefresh: () async {
                       context.read<SelectVaccinationCubit>().fetchVaccines(
@@ -160,8 +170,12 @@ class _SelectVaccineScreenState extends State<SelectVaccineScreen> {
                           padding: EdgeInsets.only(bottom: 10),
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Pallete.grayScaleColor300,
+                              color: Pallete.grayScaleColor0,
                               borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: Pallete.grayScaleColor200,
+                                width: 2,
+                              ),
                             ),
                             padding: EdgeInsets.all(10),
                             child: Row(
@@ -176,15 +190,18 @@ class _SelectVaccineScreenState extends State<SelectVaccineScreen> {
                                     );
                                   },
                                   child: Container(
-                                    width: 90,
+                                    width: 80,
                                     height: double.infinity,
                                     decoration: BoxDecoration(
-                                      color:
-                                          Theme.of(context).colorScheme.primary,
+                                      color: Pallete.grayScaleColor200,
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     alignment: Alignment.center,
-                                    child: Icon(FontAwesomeIcons.info),
+                                    child: Image.asset(
+                                      "assets/icons/inf_vaccine.png",
+                                      height: 30,
+                                      width: 30,
+                                    ),
                                   ),
                                 ),
                                 Column(
@@ -197,26 +214,32 @@ class _SelectVaccineScreenState extends State<SelectVaccineScreen> {
                                       child: Text(
                                         overflow: TextOverflow.ellipsis,
                                         vac.vaccineName ?? 'No name',
-                                        style:
-                                            Theme.of(
-                                              context,
-                                            ).textTheme.labelMedium,
+                                        style: Theme.of(
+                                          context,
+                                        ).textTheme.labelMedium!.copyWith(
+                                          fontSize: 14,
+                                          color: Pallete.black1,
+                                        ),
                                       ),
                                     ),
                                     Text(
                                       (vac.recommended ?? VaccintaionType.now)
                                           .name,
-                                      style:
-                                          Theme.of(
-                                            context,
-                                          ).textTheme.labelMedium,
+                                      style: Theme.of(
+                                        context,
+                                      ).textTheme.titleSmall!.copyWith(
+                                        fontSize: 13,
+                                        color: Pallete.gray2,
+                                      ),
                                     ),
                                     Text(
                                       '\$ ${vac.price ?? '00.00'}',
-                                      style:
-                                          Theme.of(
-                                            context,
-                                          ).textTheme.labelMedium,
+                                      style: Theme.of(
+                                        context,
+                                      ).textTheme.titleSmall!.copyWith(
+                                        fontSize: 13,
+                                        color: Pallete.gray2,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -228,14 +251,15 @@ class _SelectVaccineScreenState extends State<SelectVaccineScreen> {
                                         .chooseVaccine(vac);
                                   },
                                   child: Container(
-                                    width: 50,
-                                    height: 50,
+                                    width: 40,
+                                    height: 40,
                                     decoration: BoxDecoration(
-                                      color: Pallete.grayScaleColor500,
+                                      color: Pallete.primaryColor,
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     alignment: Alignment.center,
                                     child: Checkbox(
+                                      checkColor: Pallete.grayScaleColor0,
                                       value:
                                           state.selectedVaccine == null
                                               ? false
@@ -266,7 +290,7 @@ class _SelectVaccineScreenState extends State<SelectVaccineScreen> {
       padding: EdgeInsets.only(bottom: 10),
       child: Container(
         decoration: BoxDecoration(
-          color: Pallete.grayScaleColor300,
+          color: Pallete.grayScaleColor200,
           borderRadius: BorderRadius.circular(12),
         ),
         padding: EdgeInsets.all(10),
@@ -280,7 +304,7 @@ class _SelectVaccineScreenState extends State<SelectVaccineScreen> {
                 width: 90,
                 height: double.infinity,
                 decoration: BoxDecoration(
-                  color: Pallete.primaryColor,
+                  color: Pallete.grayScaleColor300,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 alignment: Alignment.center,
@@ -300,10 +324,10 @@ class _SelectVaccineScreenState extends State<SelectVaccineScreen> {
             InkWell(
               onTap: () {},
               child: Container(
-                width: 50,
-                height: 50,
+                width: 40,
+                height: 40,
                 decoration: BoxDecoration(
-                  color: Pallete.grayScaleColor500,
+                  color: Pallete.grayScaleColor300,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 alignment: Alignment.center,

@@ -11,6 +11,7 @@ class DoctorCardWidget extends StatelessWidget {
     this.isButton = true,
     required this.onTap,
   });
+
   final DoctorModel doctor;
   final bool isButton;
   final void Function(DoctorModel doctor) onTap;
@@ -25,23 +26,30 @@ class DoctorCardWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           color: Pallete.graysGray4,
         ),
-        width: screenWidth(context) * 0.1,
-        // height: screenHeight(context) * 0.2,
-        padding: EdgeInsets.all(10),
+        width: screenWidth(context) * 0.7,
+        padding: const EdgeInsets.all(12),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Row(
               children: [
-                CircleAvatar(
-                  minRadius: 20,
-                  backgroundImage: AssetImage(
-                    'assets/images/Jennifer_Miller.png',
+                Container(
+                  decoration: BoxDecoration(
+                    color: Pallete.grayScaleColor300,
+                    shape: BoxShape.circle,
+                  ),
+                  child: ClipOval(
+                    child: Image.asset(
+                      'assets/images/Doctor Image (2).png',
+                      width: 32,
+                      height: 32,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
                       '${(doctor.firstName ?? 'No')} ${doctor.lastName ?? 'Doctor'}',
@@ -52,16 +60,16 @@ class DoctorCardWidget extends StatelessWidget {
                     ),
                     Text(
                       doctor.speciality ?? 'No speciality',
-                      style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                        fontSize: 14,
-                        color: Pallete.graysGray2,
+                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                        fontSize: 13,
+                        color: Pallete.gray2,
                       ),
                     ),
                   ],
                 ),
               ],
             ),
-            SizedBox(height: isButton ? 15 : 30),
+            SizedBox(height: isButton ? 15 : 25),
             Row(
               children: [
                 Text(
@@ -71,19 +79,24 @@ class DoctorCardWidget extends StatelessWidget {
                     color: Pallete.black1,
                   ),
                 ),
-                SizedBox(width: 5),
+                const SizedBox(width: 5),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 5.0),
-                  child: Image.asset('assets/icons/Star.png'),
+                  padding: const EdgeInsets.only(bottom: 3.0),
+                  child: const Icon(Icons.star, color: Pallete.star, size: 16),
                 ),
-                Spacer(),
+                const Spacer(),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 5.0, right: 5),
-                  child: Image.asset('assets/icons/Time.png'),
+                  padding: const EdgeInsets.only(bottom: 3.0, right: 5),
+                  child: Icon(
+                    Icons.access_time,
+                    size: 16,
+                    color: Pallete.gray1,
+                  ),
                 ),
-
                 Text(
+
                   doctor.averageVisitDuration.toString(),
+
                   style: Theme.of(context).textTheme.titleSmall!.copyWith(
                     fontSize: 14,
                     color: Pallete.black1,
@@ -91,24 +104,21 @@ class DoctorCardWidget extends StatelessWidget {
                 ),
               ],
             ),
-            if (isButton)
-              Column(
-                children: [
-                  SizedBox(height: 15),
-                  SizedBox(
-                    width: screenWidth(context) * 0.7,
-                    height: screenHeight(context) * 0.05,
-                    child: CustomElevatedButton(
-                      borderRadius: 32,
-                      fontSize: 12,
-                      title: 'Book Appointment',
-                      onTap: () {},
-                      fillColor: Pallete.buttonBG,
-                      textColor: Theme.of(context).colorScheme.primary,
-                    ),
-                  ),
-                ],
+            if (isButton) ...[
+              const SizedBox(height: 15),
+              SizedBox(
+                width: double.infinity,
+                height: screenHeight(context) * 0.05,
+                child: CustomElevatedButton(
+                  borderRadius: 32,
+                  fontSize: 12,
+                  title: 'Book Appointment',
+                  onTap: () {},
+                  fillColor: Pallete.buttonBG,
+                  textColor: Theme.of(context).colorScheme.primary,
+                ),
               ),
+            ],
           ],
         ),
       ),

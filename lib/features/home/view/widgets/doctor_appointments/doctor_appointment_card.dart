@@ -14,54 +14,71 @@ class DoctorAppointmentCard extends StatelessWidget {
     this.image,
     this.onCancel,
   });
+
   final AppointmentModel appointment;
   final String? image;
-  void Function()? onCancel;
+  final void Function()? onCancel;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(13),
-        color: Pallete.grayScaleColor200,
+      constraints: const BoxConstraints(
+        minHeight: 180, // ارتفاع موحد للكرت
       ),
-      padding: EdgeInsets.all(15),
+      decoration: BoxDecoration(
+        boxShadow: const [
+          BoxShadow(
+            offset: Offset(0.0, 0.0),
+            blurRadius: 16,
+            spreadRadius: 0,
+            color: Color.fromRGBO(67, 67, 67, 0.16),
+          ),
+        ],
+        borderRadius: BorderRadius.circular(12),
+        color: Pallete.grayScaleColor0,
+      ),
+      padding: const EdgeInsets.all(17),
       child: Stack(
         children: [
           Column(
-            spacing: 20,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                spacing: 10,
                 children: [
                   Container(
-                    width: screenWidth(context) * 0.2,
-                    height: screenHeight(context) * 0.1,
+                    width: screenWidth(context) * 0.12,
+                    height: screenWidth(context) * 0.12,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
+                      shape: BoxShape.circle,
+                      color: Pallete.grayScaleColor300,
                       image: DecorationImage(
-                        fit: BoxFit.cover,
+                        fit: BoxFit.contain,
                         image: AssetImage(
                           image ?? 'assets/icons/patient_icon2.png',
                         ),
                       ),
                     ),
                   ),
-                  Text(
-                    '${appointment.patientFirstName ?? 'No'} ${appointment.patientLastName ?? 'Patient'}',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.labelMedium!.copyWith(fontSize: 13),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      '${appointment.patientFirstName ?? 'No'} ${appointment.patientLastName ?? 'Patient'}',
+                      style: Theme.of(
+                        context,
+                      ).textTheme.labelMedium!.copyWith(fontSize: 13),
+                    ),
                   ),
                 ],
               ),
+
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
-                    spacing: 10,
                     children: [
-                      Icon(FontAwesomeIcons.calendar),
+                      const Icon(FontAwesomeIcons.calendar, size: 16),
+                      const SizedBox(width: 10),
                       Text(
                         DateFormat.MMMMEEEEd().format(
                           appointment.reservationDate ?? DateTime.now(),
@@ -73,9 +90,9 @@ class DoctorAppointmentCard extends StatelessWidget {
                     ],
                   ),
                   Row(
-                    spacing: 10,
                     children: [
-                      Icon(FontAwesomeIcons.clock),
+                      const Icon(FontAwesomeIcons.clock, size: 16),
+                      const SizedBox(width: 10),
                       Text(
                         formatTime(
                           appointment.reservationHour ?? TimeOfDay.now(),
@@ -89,23 +106,29 @@ class DoctorAppointmentCard extends StatelessWidget {
                   ),
                 ],
               ),
-              if (onCancel != null)
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    fixedSize: Size(
-                      screenWidth(context),
-                      screenHeight(context) * 0.04,
-                    ),
-                  ),
-                  onPressed: onCancel,
-                  child: Text(
-                    'Cancel',
-                    style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                      fontSize: 13,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
+
+              const SizedBox(height: 25),
+              SizedBox(
+                height: screenHeight(context) * 0.04,
+                width: screenWidth(context),
+                child:
+                    onCancel != null
+                        ? ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            fixedSize: Size(
+                              screenWidth(context),
+                              screenHeight(context) * 0.04,
+                            ),
+                          ),
+                          onPressed: onCancel,
+                          child: Text(
+                            'Cancel',
+                            style: Theme.of(context).textTheme.labelMedium!
+                                .copyWith(fontSize: 13, color: Colors.white),
+                          ),
+                        )
+                        : const SizedBox(),
+              ),
             ],
           ),
           Positioned(
@@ -121,7 +144,7 @@ class DoctorAppointmentCard extends StatelessWidget {
                       appointment.status ?? AppointmentStatus.cancelled,
                     )[0],
               ),
-              padding: EdgeInsets.all(5),
+              padding: const EdgeInsets.all(5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
