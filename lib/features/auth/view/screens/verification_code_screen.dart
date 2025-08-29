@@ -33,6 +33,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
+            iconTheme: IconThemeData(size: 22),
             toolbarHeight: screenHeight(context) * 0.1,
             title: Text('Verification'),
             titleTextStyle: Theme.of(
@@ -75,13 +76,13 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                                         .email !=
                                     null;
                                 if (isEmail) {
-                                  await context
+                                  context
                                       .read<ChangePasswordCubit>()
                                       .verifyEmailOtp(
                                         int.tryParse('$f1$f2$f3$f4') ?? 0000,
                                       );
                                 } else {
-                                  await context
+                                  context
                                       .read<ChangePasswordCubit>()
                                       .verifySMSOtp(
                                         int.tryParse('$f1$f2$f3$f4') ?? 0000,

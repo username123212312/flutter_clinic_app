@@ -40,6 +40,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   void dispose() {
     _confirmPasswordController.dispose();
     _passwordController.dispose();
+    context.read<ChangePasswordCubit>().reset();
+
     super.dispose();
   }
 
@@ -49,7 +51,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
         if (didPop) {
-          context.read<ChangePasswordCubit>().reset();
           context.goNamed(AppRouteConstants.loginRouteName);
         }
       },
@@ -341,6 +342,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
 
   void submit() {
     if (_formKey.currentState!.validate()) {
+      final s = context.read<ChangePasswordCubit>().state;
       final isEmail = context.read<ChangePasswordCubit>().state.email != null;
       if (isEmail) {
         context.read<ChangePasswordCubit>().emailResetPassword(

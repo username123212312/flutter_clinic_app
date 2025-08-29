@@ -71,11 +71,11 @@ class ServiceLocator {
     _instance.registerLazySingleton<HomeBloc>(
       () => HomeBloc(homeRepository: _instance<HomeRepository>()),
     );
-    _instance.registerLazySingleton<ChangePasswordRepository>(
-      () => ChangePasswordRepository(),
+    _instance.registerSingleton<ChangePasswordRepository>(
+      ChangePasswordRepository(),
     );
-    _instance.registerLazySingleton<ChangePasswordCubit>(
-      () => ChangePasswordCubit(
+    _instance.registerSingleton<ChangePasswordCubit>(
+      ChangePasswordCubit(
         changePasswordRepository: _instance<ChangePasswordRepository>(),
       ),
     );

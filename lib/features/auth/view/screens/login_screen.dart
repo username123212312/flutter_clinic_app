@@ -94,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   _buildFormFields(),
                   SizedBox(height: 10),
                   if (!_isPatient)
-                    SizedBox(height: screenHeight(context) * 0.1),
+                    SizedBox(height: screenHeight(context) * 0.01),
                   _buildTwoButtons(),
                   const SizedBox(height: 25),
                   if (_isPatient)
