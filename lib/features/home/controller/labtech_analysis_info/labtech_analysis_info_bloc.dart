@@ -68,7 +68,7 @@ class LabtechAnalysisInfoBloc
         state.analysis.resultFile ?? '',
       );
       emit(
-        state.copyWith(downloadedFile: downloadedFile, status: DataStatus.done),
+        state.copyWith(downloadedFile: downloadedFile, status: DataStatus.data),
       );
     } catch (e) {
       emit(state.copyWith(status: DataStatus.error, message: e.toString()));
@@ -86,7 +86,7 @@ class LabtechAnalysisInfoBloc
       emit(
         state.copyWith(
           downloadedPhoto: downloadedFile,
-          status: DataStatus.done,
+          status: DataStatus.data,
         ),
       );
     } catch (e) {

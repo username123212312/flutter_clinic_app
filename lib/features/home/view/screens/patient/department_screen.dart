@@ -139,6 +139,7 @@ class _AllDepartmentsScreenState extends State<AllDepartmentsScreen> {
             );
           }
           return Skeletonizer(
+            effect: SoldColorEffect(color: Pallete.grayScaleColor300),
             enabled: state.status.isLoading,
             child: GridView.builder(
               padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
@@ -159,7 +160,7 @@ class _AllDepartmentsScreenState extends State<AllDepartmentsScreen> {
                 final clinic = state.clinics[index];
                 return Department(
                   name: clinic.name ?? 'No clinic',
-                  iconPath: 'assets/images/logo.webp',
+                  iconPath: clinic.photo ?? '',
                   onTap: () {
                     context.pushNamed(
                       AppRouteConstants.clinicDoctorsRouteName,

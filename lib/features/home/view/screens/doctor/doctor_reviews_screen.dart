@@ -99,6 +99,7 @@ class _DoctorReviewsScreenState extends State<DoctorReviewsScreen> {
                 _doctorReviewsCubit.fetchAllReviews();
               },
               child: Skeletonizer(
+                effect: SoldColorEffect(color: Pallete.grayScaleColor300),
                 enabled: state.status.isLoading,
                 child: ListView.builder(
                   padding: const EdgeInsets.all(16),

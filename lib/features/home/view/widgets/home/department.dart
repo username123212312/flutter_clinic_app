@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:our_flutter_clinic_app/core/widgets/custom_cached_network_image.dart';
 
 import '../../../../../core/theme/app_pallete.dart';
 import '../../../../../core/utils/utils.dart';
@@ -30,10 +31,10 @@ class Department extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              iconPath,
+            SizedBox(
               width: screenWidth(context) * 0.05,
               height: screenHeight(context) * 0.03,
+              child: CustomCachedNetworkImage(imagePath: iconPath),
             ),
             const SizedBox(height: 8),
             Text(

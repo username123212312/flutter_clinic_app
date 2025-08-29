@@ -12,10 +12,7 @@ class CustomCachedNetworkImage extends StatelessWidget {
     return ClipOval(
       child: CachedNetworkImage(
         errorWidget: (context, url, error) {
-          return Image.asset(
-            'assets/images/Doctor Image (2).png',
-            fit: BoxFit.contain,
-          );
+          return Image.asset('assets/images/logo.webp', fit: BoxFit.contain);
         },
         fit: BoxFit.contain,
         imageUrl: '${AppConstants.serverUrl}$imagePath',

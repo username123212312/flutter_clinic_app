@@ -99,6 +99,7 @@ class _DoctorListState extends State<DoctorList> {
                   bloc: _doctorsListCubit,
                   builder: (context, state) {
                     return Skeletonizer(
+                      effect: SoldColorEffect(color: Pallete.grayScaleColor300),
                       enabled: state.status.isLoading,
                       child: DepartmentDropdownFilter<ClinicModel>(
                         selectedDepartmentValue: state.selectedClinic,
@@ -135,6 +136,7 @@ class _DoctorListState extends State<DoctorList> {
                     return _buildEmpty();
                   }
                   return Skeletonizer(
+                    effect: SoldColorEffect(color: Pallete.grayScaleColor300),
                     enabled: state.status.isLoading,
                     child: ListView.separated(
                       physics: NeverScrollableScrollPhysics(),

@@ -50,6 +50,7 @@ class _PatientAnalysisWidgetState extends State<PatientAnalysisWidget> {
             bloc: _doctorPatientAnalysisBloc,
             builder: (context, state) {
               return Skeletonizer(
+                effect: SoldColorEffect(color: Pallete.grayScaleColor300),
                 enabled: state.clinicsStatus.isLoading,
                 child: CustomDropDownWidget<ClinicModel>(
                   values: state.clinics,
@@ -80,6 +81,7 @@ class _PatientAnalysisWidgetState extends State<PatientAnalysisWidget> {
               bloc: _doctorPatientAnalysisBloc,
               builder: (context, state) {
                 return DropdownButton<AnalysisStatus>(
+                  dropdownColor: Pallete.grayScaleColor0,
                   value: state.analysisStatus,
                   items: [
                     DropdownMenuItem<AnalysisStatus>(
@@ -164,6 +166,7 @@ class _PatientAnalysisWidgetState extends State<PatientAnalysisWidget> {
                   );
                 }
                 return Skeletonizer(
+                  effect: SoldColorEffect(color: Pallete.grayScaleColor300),
                   enabled: state.status.isLoading,
                   child: RefreshIndicator(
                     onRefresh: () async {

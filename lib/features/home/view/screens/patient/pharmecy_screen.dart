@@ -138,6 +138,7 @@ class _PharmacyListScreenState extends State<PharmacyListScreen> {
               return SizedBox(
                 height: screenHeight(context) * 0.9,
                 child: Skeletonizer(
+                  effect: SoldColorEffect(color: Pallete.grayScaleColor300),
                   enabled: state.status.isLoading,
                   child: RefreshIndicator(
                     onRefresh: () async {

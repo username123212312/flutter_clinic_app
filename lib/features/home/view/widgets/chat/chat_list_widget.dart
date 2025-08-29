@@ -54,6 +54,7 @@ class ChatListWidget extends StatelessWidget {
               }
 
               return Skeletonizer(
+                effect: SoldColorEffect(color: Pallete.grayScaleColor300),
                 enabled: state.status.isLoading,
                 child: ListView.separated(
                   itemBuilder: (context, index) {
@@ -111,19 +112,45 @@ class ChatListWidget extends StatelessWidget {
     showSearch(
       context: context,
       delegate: SearchPage<UserModel>(
+        barTheme: Theme.of(context).copyWith(
+          appBarTheme: const AppBarTheme(
+            // Applies globally to the search app bar
+            backgroundColor: Colors.white,
+            iconTheme: IconThemeData(size: 24, color: Colors.black),
+          ),
+          inputDecorationTheme: const InputDecorationTheme(
+            hintStyle: TextStyle(color: Colors.grey), // hint text color
+            border: InputBorder.none,
+          ),
+        ),
         searchStyle: Theme.of(
           context,
-        ).textTheme.labelMedium!.copyWith(fontSize: 17),
+        ).textTheme.labelMedium!.copyWith(fontSize: 17, color: Colors.black),
         builder: (user) {
           return Padding(
-            padding: const EdgeInsets.only(bottom: 5.0),
+            padding: const EdgeInsets.only(bottom: 0.0),
             child: ListTile(
-              tileColor: Theme.of(context).colorScheme.primary,
-              leading: Icon(Icons.account_circle, size: 50.0),
+              tileColor: Pallete.grayScaleColor200,
+              leading: CircleAvatar(
+                backgroundColor: Pallete.grayScaleColor300,
+                child: Image.asset(
+                  'assets/icons/user.png',
+                  width: 24,
+                  height: 24,
+                  fit: BoxFit.contain,
+                ),
+              ),
               title: Text(
                 '${user.firstName ?? 'No'} ${user.lastName ?? 'User'}',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-              subtitle: Text(user.speciality ?? 'No spec'),
+              subtitle: Text(
+                user.speciality ?? 'No spec',
+                style: TextStyle(color: Pallete.sliverSand),
+              ),
               onTap: () {
                 context.read<ChatBloc>().add(UserSelected(user));
                 context.pushNamed(AppRouteConstants.chatRouteName);

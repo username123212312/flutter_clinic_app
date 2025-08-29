@@ -8,7 +8,7 @@ import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dar
 import '../../../../../core/enums.dart';
 
 class DoctorAppointmentCard extends StatelessWidget {
-  DoctorAppointmentCard({
+  const DoctorAppointmentCard({
     super.key,
     required this.appointment,
     this.image,
@@ -22,9 +22,6 @@ class DoctorAppointmentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints(
-        minHeight: 180, // ارتفاع موحد للكرت
-      ),
       decoration: BoxDecoration(
         boxShadow: const [
           BoxShadow(
@@ -108,27 +105,27 @@ class DoctorAppointmentCard extends StatelessWidget {
               ),
 
               const SizedBox(height: 25),
-              SizedBox(
-                height: screenHeight(context) * 0.04,
-                width: screenWidth(context),
-                child:
-                    onCancel != null
-                        ? ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            fixedSize: Size(
-                              screenWidth(context),
-                              screenHeight(context) * 0.04,
-                            ),
-                          ),
-                          onPressed: onCancel,
-                          child: Text(
-                            'Cancel',
-                            style: Theme.of(context).textTheme.labelMedium!
-                                .copyWith(fontSize: 13, color: Colors.white),
-                          ),
-                        )
-                        : const SizedBox(),
-              ),
+              if (onCancel != null)
+                SizedBox(
+                  height: screenHeight(context) * 0.04,
+                  width: screenWidth(context),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: Size(
+                        screenWidth(context),
+                        screenHeight(context) * 0.04,
+                      ),
+                    ),
+                    onPressed: onCancel,
+                    child: Text(
+                      'Cancel',
+                      style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                        fontSize: 13,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
             ],
           ),
           Positioned(

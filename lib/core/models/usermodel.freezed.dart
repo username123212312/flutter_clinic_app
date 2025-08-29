@@ -23,6 +23,8 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 mixin _$UserModel {
   //? User
   int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_id')
+  int? get userId => throw _privateConstructorUsedError;
   @JsonKey(name: 'first_name')
   String? get firstName => throw _privateConstructorUsedError;
   @JsonKey(name: 'last_name')
@@ -81,6 +83,7 @@ abstract class $UserModelCopyWith<$Res> {
   @useResult
   $Res call({
     int? id,
+    @JsonKey(name: 'user_id') int? userId,
     @JsonKey(name: 'first_name') String? firstName,
     @JsonKey(name: 'last_name') String? lastName,
     String? email,
@@ -128,6 +131,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @override
   $Res call({
     Object? id = freezed,
+    Object? userId = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? email = freezed,
@@ -163,6 +167,11 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                 freezed == id
                     ? _value.id
                     : id // ignore: cast_nullable_to_non_nullable
+                        as int?,
+            userId:
+                freezed == userId
+                    ? _value.userId
+                    : userId // ignore: cast_nullable_to_non_nullable
                         as int?,
             firstName:
                 freezed == firstName
@@ -321,6 +330,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
   @useResult
   $Res call({
     int? id,
+    @JsonKey(name: 'user_id') int? userId,
     @JsonKey(name: 'first_name') String? firstName,
     @JsonKey(name: 'last_name') String? lastName,
     String? email,
@@ -367,6 +377,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? userId = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? email = freezed,
@@ -402,6 +413,11 @@ class __$$UserModelImplCopyWithImpl<$Res>
             freezed == id
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
+                    as int?,
+        userId:
+            freezed == userId
+                ? _value.userId
+                : userId // ignore: cast_nullable_to_non_nullable
                     as int?,
         firstName:
             freezed == firstName
@@ -553,6 +569,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
 class _$UserModelImpl extends _UserModel {
   _$UserModelImpl({
     this.id,
+    @JsonKey(name: 'user_id') this.userId,
     @JsonKey(name: 'first_name') this.firstName,
     @JsonKey(name: 'last_name') this.lastName,
     this.email,
@@ -590,6 +607,9 @@ class _$UserModelImpl extends _UserModel {
   //? User
   @override
   final int? id;
+  @override
+  @JsonKey(name: 'user_id')
+  final int? userId;
   @override
   @JsonKey(name: 'first_name')
   final String? firstName;
@@ -672,7 +692,7 @@ class _$UserModelImpl extends _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, role: $role, token: $token, password: $password, birthDate: $birthDate, gender: $gender, bloodType: $bloodType, isCompleteProfile: $isCompleteProfile, address: $address, photo: $photo, clinic: $clinic, speciality: $speciality, discountPoints: $discountPoints, professionalTitle: $professionalTitle, finalRate: $finalRate, averageVisitDuration: $averageVisitDuration, visitFee: $visitFee, experience: $experience, treated: $treated, isChild: $isChild, bookingType: $bookingType, status: $status, sign: $sign, schedule: $schedule, childRecord: $childRecord)';
+    return 'UserModel(id: $id, userId: $userId, firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, role: $role, token: $token, password: $password, birthDate: $birthDate, gender: $gender, bloodType: $bloodType, isCompleteProfile: $isCompleteProfile, address: $address, photo: $photo, clinic: $clinic, speciality: $speciality, discountPoints: $discountPoints, professionalTitle: $professionalTitle, finalRate: $finalRate, averageVisitDuration: $averageVisitDuration, visitFee: $visitFee, experience: $experience, treated: $treated, isChild: $isChild, bookingType: $bookingType, status: $status, sign: $sign, schedule: $schedule, childRecord: $childRecord)';
   }
 
   @override
@@ -681,6 +701,7 @@ class _$UserModelImpl extends _UserModel {
         (other.runtimeType == runtimeType &&
             other is _$UserModelImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -731,6 +752,7 @@ class _$UserModelImpl extends _UserModel {
   int get hashCode => Object.hashAll([
     runtimeType,
     id,
+    userId,
     firstName,
     lastName,
     email,
@@ -778,6 +800,7 @@ class _$UserModelImpl extends _UserModel {
 abstract class _UserModel extends UserModel {
   factory _UserModel({
     final int? id,
+    @JsonKey(name: 'user_id') final int? userId,
     @JsonKey(name: 'first_name') final String? firstName,
     @JsonKey(name: 'last_name') final String? lastName,
     final String? email,
@@ -815,6 +838,9 @@ abstract class _UserModel extends UserModel {
   //? User
   @override
   int? get id;
+  @override
+  @JsonKey(name: 'user_id')
+  int? get userId;
   @override
   @JsonKey(name: 'first_name')
   String? get firstName;

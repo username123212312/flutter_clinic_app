@@ -53,6 +53,8 @@ class _AnalysisInfoScreenState extends State<AnalysisInfoScreen> {
       top: false,
       child: Scaffold(
         appBar: AppBar(
+          iconTheme: IconThemeData(size: 24),
+
           actions: [
             IconButton(
               onPressed: () {
@@ -101,7 +103,7 @@ class _AnalysisInfoScreenState extends State<AnalysisInfoScreen> {
                           'Patient',
                           style: Theme.of(
                             context,
-                          ).textTheme.labelMedium!.copyWith(fontSize: 18),
+                          ).textTheme.labelMedium!.copyWith(fontSize: 16),
                         ),
                         Text(
                           '${widget.analysis.patientFirstName ?? 'No'} ${widget.analysis.patientLastName ?? 'No'}',
@@ -114,11 +116,11 @@ class _AnalysisInfoScreenState extends State<AnalysisInfoScreen> {
                           'Description',
                           style: Theme.of(
                             context,
-                          ).textTheme.labelMedium!.copyWith(fontSize: 18),
+                          ).textTheme.labelMedium!.copyWith(fontSize: 16),
                         ),
                         SizedBox(
                           width: screenWidth(context),
-                          // height: screenHeight(context) * 0.18,
+                          // height: screenHeight(context) * 0.16,
                           child: Text(
                             style: Theme.of(
                               context,
@@ -131,11 +133,11 @@ class _AnalysisInfoScreenState extends State<AnalysisInfoScreen> {
                           'Clinic',
                           style: Theme.of(
                             context,
-                          ).textTheme.labelMedium!.copyWith(fontSize: 18),
+                          ).textTheme.labelMedium!.copyWith(fontSize: 16),
                         ),
                         SizedBox(
                           width: screenWidth(context),
-                          // height: screenHeight(context) * 0.18,
+                          // height: screenHeight(context) * 0.16,
                           child: Text(
                             style: Theme.of(
                               context,
@@ -154,7 +156,7 @@ class _AnalysisInfoScreenState extends State<AnalysisInfoScreen> {
                                   style: Theme.of(context)
                                       .textTheme
                                       .labelMedium!
-                                      .copyWith(fontSize: 18),
+                                      .copyWith(fontSize: 16),
                                 ),
                                 BlocBuilder<
                                   LabtechAnalysisInfoBloc,

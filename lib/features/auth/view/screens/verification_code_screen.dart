@@ -23,82 +23,69 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: true,
-      onPopInvokedWithResult: (didPop, result) {
-        if (didPop) {
-          context.read<ChangePasswordCubit>().reset();
-        }
-      },
-      child: SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            iconTheme: IconThemeData(size: 22),
-            toolbarHeight: screenHeight(context) * 0.1,
-            title: Text('Verification'),
-            titleTextStyle: Theme.of(
-              context,
-            ).textTheme.labelSmall!.copyWith(fontSize: 23),
-          ),
-          body: BackgroundContainer(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
-              child: Column(
-                children: [
-                  _buildHeader(),
-                  SizedBox(height: 40),
-                  _buildOTP(),
-                  SizedBox(height: 20),
-                  _buildResend(),
-                  SizedBox(height: 20),
-                  SizedBox(
-                    width: screenWidth(context) * 0.77,
-                    child:
-                        BlocListener<ChangePasswordCubit, ChangePasswordState>(
-                          listener: (context, state) {
-                            if (state.status.isDone) {
-                              showToast(context: context, msg: state.message);
-                              if (mounted) {
-                                context.goNamed(
-                                  AppRouteConstants.changePasswordRouteName,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          toolbarHeight: screenHeight(context) * 0.1,
+          title: Text('Verification'),
+          titleTextStyle: Theme.of(
+            context,
+          ).textTheme.labelSmall!.copyWith(fontSize: 23),
+        ),
+        body: BackgroundContainer(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
+            child: Column(
+              children: [
+                _buildHeader(),
+                SizedBox(height: 40),
+                _buildOTP(),
+                SizedBox(height: 20),
+                _buildResend(),
+                SizedBox(height: 20),
+                SizedBox(
+                  width: screenWidth(context) * 0.77,
+                  child: BlocListener<ChangePasswordCubit, ChangePasswordState>(
+                    listener: (context, state) {
+                      if (state.status.isDone) {
+                        showToast(context: context, msg: state.message);
+                        if (mounted) {
+                          context.goNamed(
+                            AppRouteConstants.changePasswordRouteName,
+                          );
+                        }
+                      }
+                    },
+                    child: CustomElevatedButton(
+                      title: 'Verify',
+                      onTap: () async {
+                        if (submit()) {
+                          final isEmail =
+                              context.read<ChangePasswordCubit>().state.email !=
+                              null;
+                          if (isEmail) {
+                            await context
+                                .read<ChangePasswordCubit>()
+                                .verifyEmailOtp(
+                                  int.tryParse('$f1$f2$f3$f4') ?? 0000,
                                 );
-                              }
-                            }
-                          },
-                          child: CustomElevatedButton(
-                            title: 'Verify',
-                            onTap: () async {
-                              if (submit()) {
-                                final isEmail =
-                                    context
-                                        .read<ChangePasswordCubit>()
-                                        .state
-                                        .email !=
-                                    null;
-                                if (isEmail) {
-                                  context
-                                      .read<ChangePasswordCubit>()
-                                      .verifyEmailOtp(
-                                        int.tryParse('$f1$f2$f3$f4') ?? 0000,
-                                      );
-                                } else {
-                                  context
-                                      .read<ChangePasswordCubit>()
-                                      .verifySMSOtp(
-                                        int.tryParse('$f1$f2$f3$f4') ?? 0000,
-                                      );
-                                }
-                              }
-                            },
-                            fillColor: Colors.transparent,
-                            textColor: Pallete.primaryColor,
-                            elevation: 0,
-                            borderColor: Pallete.primaryColor,
-                          ),
-                        ),
+                          } else {
+                            await context
+                                .read<ChangePasswordCubit>()
+                                .verifySMSOtp(
+                                  int.tryParse('$f1$f2$f3$f4') ?? 0000,
+                                );
+                          }
+                        }
+                      },
+                      fillColor: Colors.transparent,
+                      textColor: Pallete.primaryColor,
+                      elevation: 0,
+                      borderColor: Pallete.primaryColor,
+                    ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

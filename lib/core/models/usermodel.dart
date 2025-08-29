@@ -17,6 +17,7 @@ sealed class UserModel with _$UserModel {
   factory UserModel({
     //? User
     int? id,
+    @JsonKey(name: 'user_id') int? userId,
     @JsonKey(name: 'first_name') String? firstName,
     @JsonKey(name: 'last_name') String? lastName,
     String? email,

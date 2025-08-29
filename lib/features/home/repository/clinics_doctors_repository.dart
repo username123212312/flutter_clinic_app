@@ -23,12 +23,9 @@ class ClinicsDoctorsRepository {
             success: true,
             message: 'Clinics fetched successfully!',
             data:
-                (response.data['items'] as List<dynamic>)
-                    .map((clinic) {
-                      return ClinicModel.fromJson(clinic);
-                    })
-                    .take(8)
-                    .toList(),
+                (response.data['items'] as List<dynamic>).map((clinic) {
+                  return ClinicModel.fromJson(clinic);
+                }).toList(),
           ),
         );
       } else {

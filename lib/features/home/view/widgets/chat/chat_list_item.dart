@@ -21,10 +21,14 @@ class ChatListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: const Icon(
-        Icons.account_circle,
-        size: 50.0,
-        color: Colors.black,
+      leading: CircleAvatar(
+        backgroundColor: Pallete.grayScaleColor300,
+        child: Image.asset(
+          'assets/icons/user.png',
+          width: 24,
+          height: 24,
+          fit: BoxFit.contain,
+        ),
       ),
       title: Text(
         item.name ?? getChatName(item.participants, currentUser),
@@ -38,16 +42,18 @@ class ChatListItem extends StatelessWidget {
               item.lastMessage?.message ?? "...",
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
-              style: Theme.of(
-                context,
-              ).textTheme.labelMedium!.copyWith(fontSize: 12),
+              style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                fontSize: 12,
+                color: Pallete.gray1,
+              ),
             ),
           ),
           Text(
             utcToLocal(item.updatedAt),
-            style: Theme.of(
-              context,
-            ).textTheme.labelMedium!.copyWith(fontSize: 10),
+            style: Theme.of(context).textTheme.labelMedium!.copyWith(
+              fontSize: 10,
+              color: Pallete.gray1,
+            ),
           ),
         ],
       ),
