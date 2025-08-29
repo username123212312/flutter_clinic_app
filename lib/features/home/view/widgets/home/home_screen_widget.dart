@@ -323,7 +323,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                             },
                             child: Department(
                               name: clinic.name ?? 'No Clinic',
-                              iconPath: departmentsData[index]['icon'] ?? '',
+                              iconPath: clinic.photo ?? '',
                               onTap: () {
                                 context.pushNamed(
                                   AppRouteConstants.clinicDoctorsRouteName,

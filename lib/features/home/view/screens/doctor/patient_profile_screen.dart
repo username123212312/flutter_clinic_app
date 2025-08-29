@@ -76,7 +76,7 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
         ),
       ),
       body: Container(
-        color: Pallete.buttonBG,
+        color: Pallete.grayScaleColor200,
         child: TabBarView(
           controller: _tabController,
           children: [
@@ -199,6 +199,11 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
           );
         }
         return Skeletonizer(
+          containersColor: Pallete.grayScaleColor0,
+          effect: SoldColorEffect(
+            color: Pallete.grayScaleColor300, // solid gray effect
+          ),
+          // effect: SoldColorEffect(color: Pallete.grayScaleColor300),
           enabled: state.appointmentsStatus.isLoading,
           child: RefreshIndicator(
             onRefresh: () async {
@@ -218,133 +223,144 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
                 final appointment = state.appointments[index];
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 10.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Pallete.grayScaleColor300,
-                      borderRadius: BorderRadius.circular(13),
-                    ),
-                    padding: EdgeInsets.all(10),
-                    child: Stack(
-                      children: [
-                        Column(
-                          spacing: 20,
-                          children: [
-                            Row(
-                              spacing: 10,
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
+                  child: GestureDetector(
+                    onTap: () {
+                      context.pushNamed(
+                        AppRouteConstants.doctorAppointmentDetailsRouteName,
+                        extra: appointment,
+                      );
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Pallete.grayScaleColor0,
+                        borderRadius: BorderRadius.circular(13),
+                      ),
+                      padding: EdgeInsets.all(10),
+                      child: Stack(
+                        children: [
+                          Column(
+                            spacing: 20,
+                            children: [
+                              Row(
+                                spacing: 10,
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
+                                    ),
+                                    width: screenWidth(context) * 0.15,
+                                    height: screenHeight(context) * 0.08,
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      (appointment.id ?? 0).toString(),
+                                    ),
                                   ),
-                                  width: screenWidth(context) * 0.15,
-                                  height: screenHeight(context) * 0.08,
-                                  alignment: Alignment.center,
-                                  child: Text((appointment.id ?? 0).toString()),
-                                ),
-                                SizedBox(
-                                  height: 50,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Text(
-                                        appointment.appointmentType?.name ??
-                                            'No type',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelMedium!
-                                            .copyWith(fontSize: 12),
-                                      ),
-                                      if (appointment.referredBy != null)
+                                  SizedBox(
+                                    height: 50,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
                                         Text(
-                                          'Referred by : ${appointment.referredBy!}',
-                                          overflow: TextOverflow.ellipsis,
+                                          appointment.appointmentType?.name ??
+                                              'No type',
                                           style: Theme.of(context)
                                               .textTheme
                                               .labelMedium!
-                                              .copyWith(fontSize: 10),
+                                              .copyWith(fontSize: 12),
                                         ),
-                                    ],
+                                        if (appointment.referredBy != null)
+                                          Text(
+                                            'Referred by : ${appointment.referredBy!}',
+                                            overflow: TextOverflow.ellipsis,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .labelMedium!
+                                                .copyWith(fontSize: 10),
+                                          ),
+                                      ],
+                                    ),
                                   ),
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 10.0,
                                 ),
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 10.0,
+                                child: Row(
+                                  spacing: 5,
+                                  children: [
+                                    Icon(FontAwesomeIcons.calendar, size: 20),
+                                    Text(
+                                      DateFormat.yMMMMEEEEd().format(
+                                        appointment.reservationDate ??
+                                            DateTime.now(),
+                                      ),
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                    Spacer(),
+                                    Icon(FontAwesomeIcons.clock, size: 20),
+                                    Text(
+                                      formatTime(
+                                        appointment.reservationHour ??
+                                            TimeOfDay.now(),
+                                      ),
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          Positioned(
+                            top: 0,
+                            right: 0,
+                            child: Container(
+                              padding: EdgeInsets.all(3),
+                              width: 70,
+                              height: 23,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(13),
+                                color:
+                                    selectAppointmentStatusColor(
+                                      appointment.status ??
+                                          AppointmentStatus.pending,
+                                    )[0],
                               ),
                               child: Row(
-                                spacing: 5,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Icon(FontAwesomeIcons.calendar),
-                                  Text(
-                                    DateFormat.yMMMMEEEEd().format(
-                                      appointment.reservationDate ??
-                                          DateTime.now(),
+                                  Container(
+                                    width: 5,
+                                    height: 5,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color:
+                                          selectAppointmentStatusColor(
+                                            appointment.status ??
+                                                AppointmentStatus.pending,
+                                          )[1],
                                     ),
-                                    style: TextStyle(color: Colors.black),
                                   ),
-                                  Spacer(),
-                                  Icon(FontAwesomeIcons.clock),
-                                  Text(
-                                    formatTime(
-                                      appointment.reservationHour ??
-                                          TimeOfDay.now(),
+                                  FittedBox(
+                                    child: Text(
+                                      (appointment.status ??
+                                              AppointmentStatus.pending)
+                                          .name,
+                                      style: TextStyle(color: Colors.black),
                                     ),
-                                    style: TextStyle(color: Colors.black),
                                   ),
                                 ],
                               ),
                             ),
-                          ],
-                        ),
-                        Positioned(
-                          top: 0,
-                          right: 0,
-                          child: Container(
-                            padding: EdgeInsets.all(3),
-                            width: 70,
-                            height: 23,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(13),
-                              color:
-                                  selectAppointmentStatusColor(
-                                    appointment.status ??
-                                        AppointmentStatus.pending,
-                                  )[0],
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Container(
-                                  width: 5,
-                                  height: 5,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color:
-                                        selectAppointmentStatusColor(
-                                          appointment.status ??
-                                              AppointmentStatus.pending,
-                                        )[1],
-                                  ),
-                                ),
-                                FittedBox(
-                                  child: Text(
-                                    (appointment.status ??
-                                            AppointmentStatus.pending)
-                                        .name,
-                                    style: TextStyle(color: Colors.black),
-                                  ),
-                                ),
-                              ],
-                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 );
@@ -454,15 +470,15 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
                 SizedBox(height: screenHeight(context) * 0.1),
                 Container(
                   width: screenWidth(context) * 0.8,
-                  // height: screenHeight(context) * 0.3,
+                  clipBehavior: Clip.hardEdge,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(13),
-                    color: Pallete.primaryColor,
+                    color: Colors.white,
                     boxShadow: [
                       BoxShadow(
-                        offset: Offset(0.0, 2.0),
+                        color: Pallete.grayScaleColor200,
                         spreadRadius: 0.5,
-                        blurRadius: 3,
+                        blurRadius: 0.5,
                       ),
                     ],
                   ),
@@ -472,27 +488,34 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
                     spacing: 10,
                     children: [
                       Row(
+                        spacing: 10,
                         children: [
-                          Container(
-                            width: screenWidth(context) * 0.2,
-                            height: screenHeight(context) * 0.1,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              image: DecorationImage(
-                                image: AssetImage(
-                                  (widget.patient.gender ?? 'm')[0]
+                          BlocBuilder<DoctorPatientBloc, DoctorPatientState>(
+                            bloc: _doctorPatientBloc,
+                            builder: (context, state) {
+                              return Container(
+                                width: screenWidth(context) * 0.14,
+                                height: screenHeight(context) * 0.1,
+
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Pallete.grayScaleColor300,
+                                ),
+                                padding: EdgeInsets.all(10),
+                                child: Image.asset(
+                                  (state.patient.gender ?? 'm')[0]
                                               .toLowerCase() ==
                                           'm'
-                                      ? 'assets/icons/patient_icon2.png'
-                                      : 'assets/icons/patient_icon1.png',
+                                      ? 'assets/icons/man.png'
+                                      : 'assets/icons/girl.png',
                                 ),
-                              ),
-                            ),
+                              );
+                            },
                           ),
                           Text(
                             '${widget.patient.firstName ?? 'No'} ${widget.patient.lastName ?? 'Patient'}',
                             style: Theme.of(context).textTheme.labelMedium!
-                                .copyWith(fontSize: 14, color: Colors.white),
+                                .copyWith(fontSize: 14, color: Colors.black),
                           ),
                         ],
                       ),
@@ -505,14 +528,14 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
                               context,
                             ).textTheme.labelMedium!.copyWith(
                               fontSize: 14,
-                              color: Colors.white,
+                              color: Colors.black,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
                             patient.gender ?? 'No gender',
                             style: Theme.of(context).textTheme.labelMedium!
-                                .copyWith(fontSize: 14, color: Colors.white),
+                                .copyWith(fontSize: 14, color: Colors.black),
                           ),
                         ],
                       ),
@@ -526,14 +549,14 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
                               context,
                             ).textTheme.labelMedium!.copyWith(
                               fontSize: 14,
-                              color: Colors.white,
+                              color: Colors.black,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
                             patient.bloodType ?? 'No Type',
                             style: Theme.of(context).textTheme.labelMedium!
-                                .copyWith(fontSize: 14, color: Colors.white),
+                                .copyWith(fontSize: 14, color: Colors.black),
                           ),
                         ],
                       ),
@@ -546,7 +569,7 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
                               context,
                             ).textTheme.labelMedium!.copyWith(
                               fontSize: 14,
-                              color: Colors.white,
+                              color: Colors.black,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -555,7 +578,7 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
                               'dd/MM/yy',
                             ).format(patient.birthDate ?? DateTime.now()),
                             style: Theme.of(context).textTheme.labelMedium!
-                                .copyWith(fontSize: 14, color: Colors.white),
+                                .copyWith(fontSize: 14, color: Colors.black),
                           ),
                         ],
                       ),
@@ -565,14 +588,14 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
                           context,
                         ).textTheme.labelMedium!.copyWith(
                           fontSize: 14,
-                          color: Colors.white,
+                          color: Colors.black,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
                         patient.address ?? 'No Address',
                         style: Theme.of(context).textTheme.labelMedium!
-                            .copyWith(fontSize: 14, color: Colors.white),
+                            .copyWith(fontSize: 14, color: Colors.black),
                       ),
                     ],
                   ),

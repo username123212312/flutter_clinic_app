@@ -58,6 +58,8 @@ class _ChatScreenState extends State<ChatScreen> {
             //   icon: Icon(FontAwesomeIcons.arrowsRotate),
             // ),
           ],
+          forceMaterialTransparency: true,
+          iconTheme: IconThemeData(size: 24),
           centerTitle: false,
           title: BlocConsumer<ChatBloc, ChatState>(
             listener: (context, state) {

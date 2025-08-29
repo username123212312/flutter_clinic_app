@@ -94,6 +94,7 @@ class _ClinicDoctorsScreenState extends State<ClinicDoctorsScreen> {
                     return _buildEmpty();
                   }
                   return Skeletonizer(
+                    effect: SoldColorEffect(color: Pallete.grayScaleColor300),
                     enabled: state.status.isLoading,
                     child: RefreshIndicator(
                       onRefresh: () async {

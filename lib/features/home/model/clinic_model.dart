@@ -7,6 +7,8 @@ part 'clinic_model.g.dart';
 sealed class ClinicModel with _$ClinicModel {
   factory ClinicModel({
     int? id,
+
+    String? photo,
     String? name,
     int? numOfDoctors,
     String? location,

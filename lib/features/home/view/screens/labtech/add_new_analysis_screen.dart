@@ -45,6 +45,7 @@ class _AddNewAnalysisScreenState extends State<AddNewAnalysisScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(size: 24),
         actions: [
           BlocBuilder<LabtechNewAnalysisCubit, LabtechNewAnalysisState>(
             bloc: _labtechNewAnalysisCubit,
@@ -70,8 +71,8 @@ class _AddNewAnalysisScreenState extends State<AddNewAnalysisScreen> {
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.only(
-          left: 20.0,
-          right: 20,
+          left: 21,
+          right: 21,
           bottom: MediaQuery.of(context).viewInsets.bottom * 0.3,
         ),
         child: Form(
@@ -233,7 +234,7 @@ class _AddNewAnalysisScreenState extends State<AddNewAnalysisScreen> {
                 ],
               ),
 
-              SizedBox(height: screenHeight(context) * 0.05),
+              SizedBox(height: screenHeight(context) * 0.01),
               SizedBox(
                 width: screenWidth(context),
                 child: BlocListener<LabtechAnalysisBloc, LabtechAnalysisState>(

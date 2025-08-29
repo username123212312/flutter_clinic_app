@@ -45,6 +45,7 @@ class _ChangeAppointmentsSchedulesState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(size: 24),
         actions: [
           IconButton(
             onPressed: () {
@@ -64,8 +65,8 @@ class _ChangeAppointmentsSchedulesState
       body: SingleChildScrollView(
         padding: EdgeInsets.only(
           top: 10,
-          left: 10,
-          right: 10,
+          left: 20,
+          right: 20,
           bottom: MediaQuery.of(context).viewInsets.bottom * 0.3,
         ),
         child: Form(
@@ -107,7 +108,10 @@ class _ChangeAppointmentsSchedulesState
                                 keyboardType: TextInputType.datetime,
                                 builder: (context, child) {
                                   return Theme(
-                                    data: ThemeData.light().copyWith(),
+                                    data: ThemeData.light().copyWith(
+                                      datePickerTheme:
+                                          Theme.of(context).datePickerTheme,
+                                    ),
                                     child: child!,
                                   );
                                 },
@@ -165,10 +169,14 @@ class _ChangeAppointmentsSchedulesState
                             keyboardType: TextInputType.datetime,
                             builder: (context, child) {
                               return Theme(
-                                data: ThemeData.light().copyWith(),
+                                data: ThemeData.light().copyWith(
+                                  datePickerTheme:
+                                      Theme.of(context).datePickerTheme,
+                                ),
                                 child: child!,
                               );
                             },
+
                             context: context,
                             firstDate: _startLeaveDate!,
                             lastDate: DateTime.now().add(Duration(days: 365)),
@@ -197,18 +205,26 @@ class _ChangeAppointmentsSchedulesState
               ),
               CustomTextField(
                 textAlign: TextAlign.center,
-                onTap: () async {
-                  final time = await showTimePicker(
-                    context: context,
-                    initialTime: TimeOfDay.now(),
-                  );
-                  if (time != null) {
-                    setState(() {
-                      _startTime = time;
-                      _startTimeController.text = formatTime(time);
-                    });
-                  }
-                },
+                onTap:
+                    _startLeaveDate == null
+                        ? () {
+                          showToast(
+                            context: context,
+                            msg: 'You must select a start date',
+                          );
+                        }
+                        : () async {
+                          final time = await showTimePicker(
+                            context: context,
+                            initialTime: TimeOfDay.now(),
+                          );
+                          if (time != null) {
+                            setState(() {
+                              _startTime = time;
+                              _startTimeController.text = formatTime(time);
+                            });
+                          }
+                        },
                 validator: (value) {
                   if (value!.trim().isEmpty) {
                     return 'You must enter start time';

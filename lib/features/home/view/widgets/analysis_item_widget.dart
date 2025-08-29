@@ -73,7 +73,6 @@ class _AnalysisItemWidgetState extends State<AnalysisItemWidget> {
                 width: 50,
                 height: 50,
                 decoration: BoxDecoration(
-                  color: Pallete.grayScaleColor200,
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
                     image: AssetImage('assets/icons/pdf_icon.png'),

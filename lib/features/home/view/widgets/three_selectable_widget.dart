@@ -1,9 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_pallete.dart';
-import '../../../../core/utils/general_utils.dart';
+import '../../../../core/utils/utils.dart';
 
 class ThreeSelectableWidget extends StatefulWidget {
   const ThreeSelectableWidget({
@@ -12,6 +10,7 @@ class ThreeSelectableWidget extends StatefulWidget {
     required this.onChange,
     this.currentIndex,
   });
+
   final List<String> titles;
   final void Function(int newIndex) onChange;
   final int? currentIndex;
@@ -20,137 +19,100 @@ class ThreeSelectableWidget extends StatefulWidget {
   State<ThreeSelectableWidget> createState() => _ThreeSelectableWidgetState();
 }
 
-class _ThreeSelectableWidgetState extends State<ThreeSelectableWidget>
-    with SingleTickerProviderStateMixin {
+class _ThreeSelectableWidgetState extends State<ThreeSelectableWidget> {
+  int _currentIndex = 0;
+
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 500),
-    );
-    _slideAnimation = Tween<Offset>(
-      begin: Offset(0.05, 0.0),
-      end: Offset(2.0, 0.0),
-    ).animate(_animationController);
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTapDown: (TapDownDetails details) {
-        final localPosition = details.localPosition;
-
-        final renderBox = context.findRenderObject() as RenderBox;
-        final size = renderBox.size;
-
-        if (localPosition.dx < size.width / 3) {
-          log('left clicked');
-          onChange(0);
-        } else if (localPosition.dx < (1.65 * size.width) / 3) {
-          onChange(1);
-          log('middle clicked');
-        } else {
-          onChange(2);
-
-          log('right clicked');
-        }
-      },
-      child: Container(
-        width: screenWidth(context) * 0.83,
-        height: 54,
-        decoration: BoxDecoration(
-          color: Pallete.grayScaleColor200,
-          borderRadius: BorderRadius.circular(100),
-        ),
-        child: Stack(
-          children: [
-            Positioned(
-              top: 4,
-              left: 13,
-              child: SlideTransition(
-                position: _slideAnimation,
-                child: Container(
-                  height: 45,
-                  width: screenWidth(context) * 0.25,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.primary,
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                ),
-              ),
-            ),
-            Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    widget.titles[0],
-                    style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                      fontSize: 12,
-                      color:
-                          (widget.currentIndex ?? _currentIndex) == 0
-                              ? Colors.white
-                              : Pallete.grayScaleColor400,
-                    ),
-                  ),
-                  Text(
-                    widget.titles[1],
-                    style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                      fontSize: 12,
-                      color:
-                          (widget.currentIndex ?? _currentIndex) == 1
-                              ? Colors.white
-                              : Pallete.grayScaleColor400,
-                    ),
-                  ),
-                  Text(
-                    widget.titles[2],
-                    style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                      fontSize: 12,
-                      color:
-                          (widget.currentIndex ?? _currentIndex) == 2
-                              ? Colors.white
-                              : Pallete.grayScaleColor400,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+    _currentIndex = widget.currentIndex ?? 0;
   }
 
   void onChange(int index) {
-    switch (index) {
-      case 0:
-        _animationController.animateTo(0.0);
-        break;
-      case 1:
-        _animationController.animateTo(0.49);
-        break;
-      case 2:
-        _animationController.animateTo(0.95);
-        break;
-      default:
-        _animationController.animateTo(0.0);
-    }
     setState(() {
       _currentIndex = index;
     });
     widget.onChange(index);
   }
 
-  late final AnimationController _animationController;
-  late final Animation<Offset> _slideAnimation;
-  int _currentIndex = 0;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: screenWidth(context) * 0.8,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final segmentWidth = constraints.maxWidth / 3;
+
+          return GestureDetector(
+            onTapDown: (details) {
+              final localDx = details.localPosition.dx;
+
+              int tappedIndex = (localDx / segmentWidth).floor();
+              tappedIndex = tappedIndex.clamp(0, 2);
+
+              onChange(tappedIndex);
+            },
+            child: Container(
+              width: constraints.maxWidth,
+              height: 54,
+              decoration: BoxDecoration(
+                color: Pallete.grayScaleColor200,
+                borderRadius: BorderRadius.circular(100),
+              ),
+              child: Stack(
+                children: [
+                  AnimatedPositioned(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                    top: 4,
+                    left: segmentWidth * _currentIndex + 10,
+                    child: Container(
+                      width: segmentWidth - 15, // some horizontal padding
+                      height: 45,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primary,
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      alignment: Alignment.center,
+                      child: Text(
+                        widget.titles[_currentIndex],
+                        style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                          fontSize: 12,
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: List.generate(3, (index) {
+                      return SizedBox(
+                        width: segmentWidth,
+                        child: Center(
+                          child: Text(
+                            widget.titles[index],
+                            style: Theme.of(
+                              context,
+                            ).textTheme.labelSmall!.copyWith(
+                              fontSize: 12,
+                              color:
+                                  (index == _currentIndex)
+                                      ? Colors.transparent
+                                      : Pallete.grayScaleColor400,
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
 }

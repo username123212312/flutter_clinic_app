@@ -40,23 +40,24 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: () async {
-        _loadData();
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          image:
-              getChildId() == null
-                  ? null
-                  : DecorationImage(
-                    repeat: ImageRepeat.repeat,
-                    image: AssetImage('assets/images/background child.png'),
-                  ),
-        ),
-        child: BlocBuilder<AppointmentsBloc, AppointmentsState>(
-          builder: (context, state) {
-            return CustomScrollView(
+    return Container(
+      decoration: BoxDecoration(
+        image:
+            getChildId() == null
+                ? null
+                : DecorationImage(
+                  repeat: ImageRepeat.repeat,
+                  image: AssetImage('assets/images/background child.png'),
+                ),
+      ),
+      child: BlocBuilder<AppointmentsBloc, AppointmentsState>(
+        builder: (context, state) {
+          return RefreshIndicator(
+            onRefresh: () async {
+              _loadData();
+            },
+            child: CustomScrollView(
+              physics: AlwaysScrollableScrollPhysics(),
               controller: _scrollController,
 
               slivers: [
@@ -137,9 +138,9 @@ class _AppontmentsScreenState extends State<AppontmentsScreen> {
                       ),
                     ),
               ],
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

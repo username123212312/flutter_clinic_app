@@ -627,18 +627,19 @@ class _BookNewAppointmentScreenState extends State<BookNewAppointmentScreen> {
             child: SingleChildScrollView(
               physics: AlwaysScrollableScrollPhysics(),
               child: Center(
-                heightFactor: 4.5,
+                heightFactor: 2,
                 child: Image.asset(
-                  width: 120,
-                  height: 120,
+                  width: 150,
+                  height: 180,
                   fit: BoxFit.cover,
-                  'assets/images/il_empty_activity.webp',
+                  'assets/images/search.png',
                 ),
               ),
             ),
           );
         }
         return Skeletonizer(
+          effect: SoldColorEffect(color: Pallete.grayScaleColor300),
           enabled: state.status.isLoading,
 
           child: RefreshIndicator(

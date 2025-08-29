@@ -64,11 +64,15 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
                                     }
                                   },
                                   child: Container(
-                                    width: 100,
-                                    height: 50,
+                                    width: 90,
+                                    height: 40,
                                     decoration: BoxDecoration(
-                                      color:
-                                          Theme.of(context).colorScheme.primary,
+                                      border: Border.all(
+                                        color:
+                                            Theme.of(
+                                              context,
+                                            ).colorScheme.primary,
+                                      ),
                                       borderRadius: BorderRadius.circular(25),
                                     ),
                                     alignment: Alignment.center,
@@ -80,7 +84,10 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
                                         context,
                                       ).textTheme.labelMedium!.copyWith(
                                         fontSize: 13,
-                                        color: Colors.white,
+                                        color:
+                                            Theme.of(
+                                              context,
+                                            ).colorScheme.primary,
                                       ),
                                     ),
                                   ),

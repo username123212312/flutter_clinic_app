@@ -383,6 +383,7 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
           bloc: _doctorInfoCubit,
           builder: (context, state) {
             return Skeletonizer(
+              effect: SoldColorEffect(color: Pallete.grayScaleColor300),
               enabled: state.status.isLoading,
               child: Stack(
                 children: [

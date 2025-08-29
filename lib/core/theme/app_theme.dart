@@ -20,6 +20,27 @@ class AppTheme {
   static ThemeData _baseTheme(ColorScheme colorScheme) {
     return ThemeData().copyWith(
       colorScheme: colorScheme,
+      datePickerTheme: DatePickerThemeData(
+        cancelButtonStyle: ButtonStyle(
+          foregroundColor: WidgetStatePropertyAll(Color(0xFF2D84FB)),
+        ),
+        confirmButtonStyle: ButtonStyle(
+          foregroundColor: WidgetStatePropertyAll(Color(0xFF2D84FB)),
+        ),
+        dayBackgroundColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return const Color(0xFF2D84FB);
+          }
+          return null;
+        }),
+        dayForegroundColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return Colors.white; // text inside selected circle
+          }
+          return null;
+        }),
+      ),
+
       appBarTheme: AppBarTheme().copyWith(
         backgroundColor: Pallete.backgroundColor,
         iconTheme: IconThemeData(color: Colors.black, size: 34),

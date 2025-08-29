@@ -91,9 +91,7 @@ class _AppointmentsScreenWidgetState extends State<AppointmentsScreenWidget> {
                     );
                   }
                   return Skeletonizer(
-                     effect: SoldColorEffect(
-                          color: Pallete.grayScaleColor300,
-                        ),
+                    effect: SoldColorEffect(color: Pallete.grayScaleColor300),
                     enabled: state.status.isLoading,
                     child: ListView.builder(
                       physics: NeverScrollableScrollPhysics(),
@@ -101,7 +99,7 @@ class _AppointmentsScreenWidgetState extends State<AppointmentsScreenWidget> {
                       padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
                       itemExtent:
                           _currentStatusIndex == 0
-                              ? (screenHeight(context) * 0.29)
+                              ? (screenHeight(context) * 0.24)
                               : (screenHeight(context) * 0.22),
                       itemCount:
                           state.status.isLoading

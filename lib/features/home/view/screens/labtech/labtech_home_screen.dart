@@ -46,7 +46,7 @@ class _LabtechHomeScreenState extends State<LabtechHomeScreen> {
           context.pushNamed(AppRouteConstants.labtechAddAnalysisRouteName);
         },
         tooltip: 'New Analysis',
-        child: Icon(Icons.add),
+        child: Icon(Icons.add, color: Colors.white),
       ),
 
       body: RefreshIndicator(
@@ -188,6 +188,7 @@ class _LabtechHomeScreenState extends State<LabtechHomeScreen> {
           return _buildEmpty();
         }
         return Skeletonizer(
+          effect: SoldColorEffect(color: Pallete.grayScaleColor300),
           enabled: state.status.isLoading,
           child: ListView.builder(
             reverse: true,

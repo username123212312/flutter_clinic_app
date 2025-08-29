@@ -35,7 +35,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       emit(
         state.copyWith(
           status: DataStatus.loaded,
-          chats: result.success ? result.data ?? [] : [],
+          chats: result.success ? result.data ?? state.chats : state.chats,
         ),
       );
     });
@@ -58,7 +58,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       );
     });
     on<UserSelected>((event, emit) {
-      emit(state.copyWith(otherUserId: event.user.id));
+      emit(state.copyWith(otherUserId: event.user.userId));
     });
     on<GetChatMessage>((event, emit) async {
       if (state.status.isFetching) return;

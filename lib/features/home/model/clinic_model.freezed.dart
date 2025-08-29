@@ -22,6 +22,7 @@ ClinicModel _$ClinicModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ClinicModel {
   int? get id => throw _privateConstructorUsedError;
+  String? get photo => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   int? get numOfDoctors => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
@@ -43,7 +44,13 @@ abstract class $ClinicModelCopyWith<$Res> {
     $Res Function(ClinicModel) then,
   ) = _$ClinicModelCopyWithImpl<$Res, ClinicModel>;
   @useResult
-  $Res call({int? id, String? name, int? numOfDoctors, String? location});
+  $Res call({
+    int? id,
+    String? photo,
+    String? name,
+    int? numOfDoctors,
+    String? location,
+  });
 }
 
 /// @nodoc
@@ -62,6 +69,7 @@ class _$ClinicModelCopyWithImpl<$Res, $Val extends ClinicModel>
   @override
   $Res call({
     Object? id = freezed,
+    Object? photo = freezed,
     Object? name = freezed,
     Object? numOfDoctors = freezed,
     Object? location = freezed,
@@ -73,6 +81,11 @@ class _$ClinicModelCopyWithImpl<$Res, $Val extends ClinicModel>
                     ? _value.id
                     : id // ignore: cast_nullable_to_non_nullable
                         as int?,
+            photo:
+                freezed == photo
+                    ? _value.photo
+                    : photo // ignore: cast_nullable_to_non_nullable
+                        as String?,
             name:
                 freezed == name
                     ? _value.name
@@ -103,7 +116,13 @@ abstract class _$$ClinicModelImplCopyWith<$Res>
   ) = __$$ClinicModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String? name, int? numOfDoctors, String? location});
+  $Res call({
+    int? id,
+    String? photo,
+    String? name,
+    int? numOfDoctors,
+    String? location,
+  });
 }
 
 /// @nodoc
@@ -121,6 +140,7 @@ class __$$ClinicModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? photo = freezed,
     Object? name = freezed,
     Object? numOfDoctors = freezed,
     Object? location = freezed,
@@ -132,6 +152,11 @@ class __$$ClinicModelImplCopyWithImpl<$Res>
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
                     as int?,
+        photo:
+            freezed == photo
+                ? _value.photo
+                : photo // ignore: cast_nullable_to_non_nullable
+                    as String?,
         name:
             freezed == name
                 ? _value.name
@@ -155,13 +180,21 @@ class __$$ClinicModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ClinicModelImpl implements _ClinicModel {
-  _$ClinicModelImpl({this.id, this.name, this.numOfDoctors, this.location});
+  _$ClinicModelImpl({
+    this.id,
+    this.photo,
+    this.name,
+    this.numOfDoctors,
+    this.location,
+  });
 
   factory _$ClinicModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ClinicModelImplFromJson(json);
 
   @override
   final int? id;
+  @override
+  final String? photo;
   @override
   final String? name;
   @override
@@ -171,7 +204,7 @@ class _$ClinicModelImpl implements _ClinicModel {
 
   @override
   String toString() {
-    return 'ClinicModel(id: $id, name: $name, numOfDoctors: $numOfDoctors, location: $location)';
+    return 'ClinicModel(id: $id, photo: $photo, name: $name, numOfDoctors: $numOfDoctors, location: $location)';
   }
 
   @override
@@ -180,6 +213,7 @@ class _$ClinicModelImpl implements _ClinicModel {
         (other.runtimeType == runtimeType &&
             other is _$ClinicModelImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.photo, photo) || other.photo == photo) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.numOfDoctors, numOfDoctors) ||
                 other.numOfDoctors == numOfDoctors) &&
@@ -190,7 +224,7 @@ class _$ClinicModelImpl implements _ClinicModel {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, numOfDoctors, location);
+      Object.hash(runtimeType, id, photo, name, numOfDoctors, location);
 
   /// Create a copy of ClinicModel
   /// with the given fields replaced by the non-null parameter values.
@@ -209,6 +243,7 @@ class _$ClinicModelImpl implements _ClinicModel {
 abstract class _ClinicModel implements ClinicModel {
   factory _ClinicModel({
     final int? id,
+    final String? photo,
     final String? name,
     final int? numOfDoctors,
     final String? location,
@@ -219,6 +254,8 @@ abstract class _ClinicModel implements ClinicModel {
 
   @override
   int? get id;
+  @override
+  String? get photo;
   @override
   String? get name;
   @override

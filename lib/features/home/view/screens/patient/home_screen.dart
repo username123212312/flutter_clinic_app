@@ -366,6 +366,7 @@ class SwitchProfilesSheetWidget extends StatelessWidget {
               child: BlocBuilder<UserBloc, UserState>(
                 builder: (context, state) {
                   return Skeletonizer(
+                    effect: SoldColorEffect(color: Pallete.grayScaleColor300),
                     enabled: state.childrenListStatus.isLoading,
                     child: ListView.builder(
                       shrinkWrap: true,
