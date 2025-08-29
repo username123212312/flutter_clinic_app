@@ -38,6 +38,7 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Pallete.backgroundColor,
       appBar: AppBar(
         actions:
             _tabController.index == 0
@@ -446,6 +447,7 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
         builder: (context, state) {
           final patient = state.patient;
           return Skeletonizer(
+            effect: SoldColorEffect(color: Pallete.grayScaleColor300),
             enabled: state.status.isLoading,
             child: Column(
               children: [

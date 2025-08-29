@@ -106,6 +106,7 @@ class _DoctorScheduleScreenState extends State<DoctorScheduleScreen> {
                   },
                   builder: (context, state) {
                     return Skeletonizer(
+                      effect: SoldColorEffect(color: Pallete.grayScaleColor0),
                       enabled: state.status.isLoading,
                       child: ListView.builder(
                         itemCount: allDays.length,

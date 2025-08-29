@@ -91,6 +91,9 @@ class _AppointmentsScreenWidgetState extends State<AppointmentsScreenWidget> {
                     );
                   }
                   return Skeletonizer(
+                     effect: SoldColorEffect(
+                          color: Pallete.grayScaleColor300,
+                        ),
                     enabled: state.status.isLoading,
                     child: ListView.builder(
                       physics: NeverScrollableScrollPhysics(),

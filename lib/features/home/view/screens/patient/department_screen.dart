@@ -139,6 +139,7 @@ class _AllDepartmentsScreenState extends State<AllDepartmentsScreen> {
             );
           }
           return Skeletonizer(
+            effect: SoldColorEffect(color: Pallete.grayScaleColor300),
             enabled: state.status.isLoading,
             child: GridView.builder(
               padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),

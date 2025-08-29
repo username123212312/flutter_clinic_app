@@ -91,6 +91,9 @@ class _ShowVaccinesScreenState extends State<ShowVaccinesScreen> {
                 );
               }
               return Skeletonizer(
+                 effect: SoldColorEffect(
+                          color: Pallete.grayScaleColor300,
+                        ),
                 enabled: state.status.isLoading,
                 child: RefreshIndicator(
                   onRefresh: () async {

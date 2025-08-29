@@ -31,6 +31,7 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
           _currentIndex == 0
               ? null
               : AppBar(
+                scrolledUnderElevation: 0,
                 centerTitle: _currentIndex != 1,
                 actions:
                     _currentIndex == 1

@@ -256,7 +256,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
           'Upload new document',
           style: Theme.of(
             context,
-          ).textTheme.titleMedium!.copyWith(fontSize: 18),
+          ).textTheme.titleMedium!.copyWith(fontSize: 17),
         ),
         SizedBox(height: 60),
         Container(
@@ -451,6 +451,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
             _fetchAllAnalysis();
           },
           child: Skeletonizer(
+            effect: SoldColorEffect(color: Pallete.grayScaleColor300),
             enabled: state.status.isLoading,
             child: ListView.builder(
               padding: EdgeInsets.symmetric(horizontal: 20),

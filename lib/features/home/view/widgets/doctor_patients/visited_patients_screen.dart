@@ -228,6 +228,9 @@ class _VisitedPatientsScreenState extends State<VisitedPatientsScreen> {
                         context.read<DoctorPatientsBloc>().add(LoadData());
                       },
                       child: Skeletonizer(
+                         effect: SoldColorEffect(
+                          color: Pallete.grayScaleColor300,
+                        ),
                         enabled: state.status.isLoading,
                         child: GridView.builder(
                           shrinkWrap: true,

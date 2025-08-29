@@ -137,10 +137,13 @@ class DoctorProfileWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                       color: Pallete.grayScaleColor200,
                     ),
-                    child: Icon(
-                      Icons.schedule,
-                      size: 25,
-                      color: Theme.of(context).colorScheme.primary,
+                    child: FractionallySizedBox(
+                      widthFactor: 0.6,
+                      heightFactor: 0.6,
+                      child: Image.asset(
+                        "assets/icons/edit_schedule.png",
+                        fit: BoxFit.contain,
+                      ),
                     ),
                   ),
 
@@ -220,10 +223,13 @@ class DoctorProfileWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                       color: Pallete.grayScaleColor200,
                     ),
-                    child: Icon(
-                      Icons.lock,
-                      size: 25,
-                      color: Theme.of(context).colorScheme.primary,
+                    child: FractionallySizedBox(
+                      widthFactor: 0.6,
+                      heightFactor: 0.6,
+                      child: Image.asset(
+                        "assets/icons/change schedule.png",
+                        fit: BoxFit.contain,
+                      ),
                     ),
                   ),
 

@@ -1,3 +1,4 @@
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:our_flutter_clinic_app/core/navigation/navigation_exports.dart';
 import 'package:our_flutter_clinic_app/core/utils/validator_util.dart';
@@ -7,7 +8,7 @@ import '../../../../core/cubits/change_password_cubit/change_password_cubit.dart
 import '../../../../core/widgets/transparent_content_dialog.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../widgets/auth_widgets.dart';
-
+import '../../../../../core/theme/app_pallete.dart';
 import '../../../../core/utils/general_utils.dart';
 import '../widgets/bullet_item.dart';
 
@@ -60,8 +61,13 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               onPressed: () {
                 context.goNamed(AppRouteConstants.loginRouteName);
               },
-              icon: Icon(Icons.arrow_back),
+              icon: Icon(
+                FontAwesomeIcons.arrowLeft,
+                color: Pallete.black1,
+                size: 18,
+              ),
             ),
+
             forceMaterialTransparency: true,
             elevation: 0,
             toolbarHeight: (screenHeight ?? 0) * 0.1,
