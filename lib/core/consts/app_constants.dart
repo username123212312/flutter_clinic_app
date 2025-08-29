@@ -18,11 +18,7 @@ class AppConstants {
       'https://capable-luckily-tetra.ngrok-free.app';
   static const ipAddress = '192.168.86.76'; //10.0.2.2
   static const localAddress = 'http://$ipAddress:8000';
-<<<<<<< HEAD
   static const serverUrl = ngrokAddress;
-=======
-  static const serverUrl = nerminNgrokAddress;
->>>>>>> 857db8a0eea88437e1f87f386058cc77614fb1b5
   static const apiPath = 'api';
   static const patientPath = '/$apiPath/patient';
   static const homePath = '/$apiPath/home';
