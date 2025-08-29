@@ -28,11 +28,13 @@ class InfoBox extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            title,
-            style: Theme.of(context).textTheme.titleMedium!.copyWith(
-              fontSize: 14,
-              color: Pallete.black1,
+          FittedBox(
+            child: Text(
+              title,
+              style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                fontSize: 14,
+                color: Pallete.black1,
+              ),
             ),
           ),
           const SizedBox(height: 4),

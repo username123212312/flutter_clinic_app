@@ -26,17 +26,6 @@ class HomeScreenWidget extends StatefulWidget {
 class _HomeScreenWidgetState extends State<HomeScreenWidget> {
   bool isVisible = false;
 
-  final List<Map<String, String>> departmentsData = [
-    {'name': 'Heart', 'icon': 'assets/icons/Cadiologist.png'},
-    {'name': 'Dental', 'icon': 'assets/icons/Dentists.png'},
-    {'name': 'Kidney', 'icon': 'assets/icons/Nephrologists.png'},
-    {'name': 'Stomach', 'icon': 'assets/icons/Gastroenterologists.png'},
-    {'name': 'Lung', 'icon': 'assets/icons/Pulmonologists.png'},
-    {'name': 'Brain', 'icon': 'assets/icons/Neurologists.png'},
-    {'name': 'Mental', 'icon': 'assets/icons/Psychiatrists.png'},
-    {'name': 'Liver', 'icon': 'assets/icons/Hepatologists.png'},
-  ];
-
   @override
   void initState() {
     super.initState();

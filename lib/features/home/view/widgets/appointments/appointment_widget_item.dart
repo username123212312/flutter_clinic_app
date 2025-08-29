@@ -6,6 +6,7 @@ import 'package:our_flutter_clinic_app/core/enums.dart';
 import 'package:our_flutter_clinic_app/core/theme/app_pallete.dart';
 import 'package:our_flutter_clinic_app/core/utils/time_range.dart';
 import 'package:our_flutter_clinic_app/core/utils/general_utils.dart';
+import 'package:our_flutter_clinic_app/core/widgets/custom_cached_network_image.dart';
 import 'package:our_flutter_clinic_app/features/auth/view/widgets/custom_elevated_button.dart';
 import 'package:intl/intl.dart';
 import 'package:our_flutter_clinic_app/features/home/model/appointment_model.dart';
@@ -70,11 +71,8 @@ class AppointmentWidgetItem extends StatelessWidget {
                                   height: double.infinity,
                                   fit: BoxFit.contain,
                                 )
-                                : Image.network(
-                                  '${AppConstants.serverUrl}${appointment.doctorPhoto!}',
-                                  width: double.infinity,
-                                  height: double.infinity,
-                                  fit: BoxFit.cover,
+                                : CustomCachedNetworkImage(
+                                  imagePath: appointment.doctorPhoto!,
                                 ),
                       ),
 
