@@ -92,13 +92,13 @@ class DoctorAppointmentDetailsCard extends StatelessWidget {
               AppointmentDetailsListItem(
                 title: 'Appointment info',
                 subtitle: appointment.appointmentInfo ?? '',
-                iconImagePath: 'assets/icons/ic_service.png',
+                iconImagePath: 'assets/icons/appointment_inf.png',
               ),
               AppointmentDetailsListItem(
                 title: 'Appointment Type',
                 subtitle: appointment.appointmentType?.name ?? 'No type',
                 // thirdtitle: appointment.doctor.speciality,
-                iconImagePath: 'assets/icons/nurse-hat.png',
+                iconImagePath: 'assets/icons/appointment_type.png',
               ),
               AppointmentDetailsListItem(
                 title: 'Payment Status',
@@ -106,7 +106,7 @@ class DoctorAppointmentDetailsCard extends StatelessWidget {
                     appointment.paymentStatus == null
                         ? ''
                         : appointment.paymentStatus!.name,
-                iconImagePath: 'assets/icons/ic_doctor.png',
+                iconImagePath: 'assets/icons/credit-card (1).png',
               ),
               AppointmentDetailsListItem(
                 fontSize: 11,
@@ -114,7 +114,7 @@ class DoctorAppointmentDetailsCard extends StatelessWidget {
                 subtitle:
                     '${DateFormat('EEEE, MMMM, d, y').format(appointment.reservationDate ?? DateTime.now())} '
                     ', ${formatTime(appointment.reservationHour ?? TimeOfDay.now())}',
-                iconImagePath: 'assets/icons/ic_time.png',
+                iconImagePath: 'assets/icons/data.png',
               ),
               if (appointment.referredBy != null)
                 AppointmentDetailsListItem(

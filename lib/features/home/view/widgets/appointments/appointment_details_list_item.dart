@@ -36,8 +36,8 @@ class AppointmentDetailsListItem extends StatelessWidget {
               alignment: Alignment.center,
               child: Image.asset(
                 iconImagePath,
-                width: 24,
-                height: 24,
+                width: 25,
+                height: 25,
                 fit: BoxFit.scaleDown,
                 filterQuality: FilterQuality.low,
               ),

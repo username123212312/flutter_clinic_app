@@ -81,7 +81,7 @@ class AppointmentCard extends StatelessWidget {
                 fontSize: 12,
                 title: 'Queue',
                 subtitle: (appointment.queueNumber ?? 0).toString(),
-                iconImagePath: 'assets/icons/patient_appoi.png',
+                iconImagePath: 'assets/icons/queue.png',
               ),
               AppointmentDetailsListItem(
                 title: 'Appointment Type',
@@ -122,7 +122,7 @@ class AppointmentCard extends StatelessWidget {
                 subtitle:
                     'Expected: \$ ${appointment.expectedPrice}'
                     ' || Paid: \$ ${appointment.paidPrice}',
-                iconImagePath: 'assets/icons/patient_appoi.png',
+                iconImagePath: 'assets/icons/credit-card (1).png',
               ),
             ],
           ),
