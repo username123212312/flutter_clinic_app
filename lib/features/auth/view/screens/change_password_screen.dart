@@ -332,6 +332,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
 
   void submit() {
     if (_formKey.currentState!.validate()) {
+      final s = context.read<ChangePasswordCubit>().state;
       final isEmail = context.read<ChangePasswordCubit>().state.email != null;
       if (isEmail) {
         context.read<ChangePasswordCubit>().emailResetPassword(
