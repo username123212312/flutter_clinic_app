@@ -81,42 +81,44 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen>
         canPop: true,
         onPopInvokedWithResult: (didPop, result) {
           if (didPop) {
-            context.read<AppointmentsBloc>().add(AppointmentsFetched());
+            context.read<AppointmentsBloc>().add(AppointmentsRefreshed());
             context.read<HomeBloc>().add(AllListsFetched());
           }
         },
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            if (widget.appointment.status!.isVisited)
-              Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                    child: TwoSelectableWidget(
-                      leftPadding: 12,
-                      twoTitles: ['Information', 'Results'],
-                      onToggleIndex: (index) {
-                        _changeIndex(index);
-                      },
+        child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              if (widget.appointment.status!.isVisited)
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                      child: TwoSelectableWidget(
+                        leftPadding: 12,
+                        twoTitles: ['Information', 'Results'],
+                        onToggleIndex: (index) {
+                          _changeIndex(index);
+                        },
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 10),
-                ],
-              ),
-            if (_currentIndex == 0)
-              FadeTransition(
-                opacity: _fadeAnimation,
-                child: _buildAppointmentDetails(),
-              ),
-            if (_currentIndex == 1)
-              FadeTransition(
-                opacity: _fadeAnimation,
-                child: _buildAppointmentResults(),
-              ),
+                    SizedBox(height: 10),
+                  ],
+                ),
+              if (_currentIndex == 0)
+                FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: _buildAppointmentDetails(),
+                ),
+              if (_currentIndex == 1)
+                FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: _buildAppointmentResults(),
+                ),
 
-            if (widget.appointment.status!.isPending) _buildPendingFooter(),
-          ],
+              if (widget.appointment.status!.isPending) _buildPendingFooter(),
+            ],
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

@@ -87,113 +87,114 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
         canPop: true,
         onPopInvokedWithResult: (didPop, result) {
           if (didPop) {
-            context.read<AppointmentsBloc>().add(AppointmentsFetched());
+            context.read<AppointmentsBloc>().add(AppointmentsRefreshed());
           }
         },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: BlocConsumer<
-            RescheduleAppointmentCubit,
-            RescheduleAppointmentState
-          >(
-            bloc: _rescheduleAppointmentCubit,
-            listener: (context, state) {
-              if (state.status.isLoading) {
-                LoadingOverlay().show(context);
-              } else {
-                LoadingOverlay().hideAll();
-                if (state.status.isError) {
-                  showToast(
-                    context: context,
-                    msg: state.statusMessage,
-                    type: ToastificationType.error,
-                  );
-                }
-                if (state.status.isDone) {
-                  TransparentDialog.show(
-                    barrierDismissible: false,
-                    context: context,
-                    builder:
-                        (_) => CustomDialog(
-                          content: Column(
-                            children: [
-                              Align(
-                                alignment: Alignment(-0.2, 0.0),
-                                child: Lottie.asset(
-                                  'assets/lottie/successfully_animation.json',
-                                  fit: BoxFit.cover,
-                                  width: screenWidth(context) * 0.2,
-                                  height: screenHeight(context) * 0.15,
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: BlocConsumer<
+              RescheduleAppointmentCubit,
+              RescheduleAppointmentState
+            >(
+              bloc: _rescheduleAppointmentCubit,
+              listener: (context, state) {
+                if (state.status.isLoading) {
+                  LoadingOverlay().show(context);
+                } else {
+                  LoadingOverlay().hideAll();
+                  if (state.status.isError) {
+                    showToast(
+                      context: context,
+                      msg: state.statusMessage,
+                      type: ToastificationType.error,
+                    );
+                  }
+                  if (state.status.isDone) {
+                    TransparentDialog.show(
+                      barrierDismissible: false,
+                      context: context,
+                      builder:
+                          (_) => CustomDialog(
+                            content: Column(
+                              children: [
+                                Align(
+                                  alignment: Alignment(-0.2, 0.0),
+                                  child: Lottie.asset(
+                                    'assets/lottie/successfully_animation.json',
+                                    fit: BoxFit.cover,
+                                    width: screenWidth(context) * 0.2,
+                                    height: screenHeight(context) * 0.15,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                textAlign: TextAlign.center,
-                                state.statusMessage ??
-                                    'Appointment Rescheduled Successfully!',
-                                style: Theme.of(
-                                  context,
-                                ).textTheme.labelMedium!.copyWith(
-                                  color: Colors.black,
-                                  fontSize: 15,
+                                Text(
+                                  textAlign: TextAlign.center,
+                                  state.statusMessage,
+                                  style: Theme.of(
+                                    context,
+                                  ).textTheme.labelMedium!.copyWith(
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(height: 25),
-                              SizedBox(
-                                width: screenWidth(context) * 0.5,
-                                height: screenHeight(context) * 0.05,
-                                child: CustomElevatedButton(
-                                  fontSize: 12,
-                                  title: 'Back to Home',
-                                  onTap: () {
-                                    context.read<AppointmentsBloc>().add(
-                                      AppointmentsFetched(),
-                                    );
-                                    context.pop();
-                                    context.pop();
-                                  },
-                                  fillColor:
-                                      Theme.of(context).colorScheme.primary,
-                                  textColor: Colors.white,
+                                SizedBox(height: 25),
+                                SizedBox(
+                                  width: screenWidth(context) * 0.5,
+                                  height: screenHeight(context) * 0.05,
+                                  child: CustomElevatedButton(
+                                    fontSize: 12,
+                                    title: 'Back to Home',
+                                    onTap: () {
+                                      context.read<AppointmentsBloc>().add(
+                                        AppointmentsRefreshed(),
+                                      );
+                                      context.pop();
+                                      context.pop();
+                                    },
+                                    fillColor:
+                                        Theme.of(context).colorScheme.primary,
+                                    textColor: Colors.white,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                  );
+                    );
+                  }
                 }
-              }
-            },
-            builder: (context, state) {
-              return Column(
-                spacing: 20,
-                children: [
-                  SizedBox.shrink(),
-                  AppointmentWidgetItem(appointment: widget.appointment),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: _buildDatePicker(state.availableDates),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: _buildSchedules(
-                      state.availableTimes,
-                      state.selectedDate,
-                      state.isAuto,
+              },
+              builder: (context, state) {
+                return Column(
+                  spacing: 20,
+                  children: [
+                    SizedBox.shrink(),
+                    AppointmentWidgetItem(appointment: widget.appointment),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                      child: _buildDatePicker(state.availableDates),
                     ),
-                  ),
-                  CustomElevatedButton(
-                    borderRadius: 32,
-                    title: 'Reschedule',
-                    fontSize: 15,
-                    onTap: () async {
-                      _rescheduleAppointmentCubit.editReservation();
-                    },
-                    fillColor: Theme.of(context).colorScheme.primary,
-                    textColor: Colors.white,
-                  ),
-                ],
-              );
-            },
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                      child: _buildSchedules(
+                        state.availableTimes,
+                        state.selectedDate,
+                        state.isAuto,
+                      ),
+                    ),
+                    CustomElevatedButton(
+                      borderRadius: 32,
+                      title: 'Reschedule',
+                      fontSize: 15,
+                      onTap: () async {
+                        _rescheduleAppointmentCubit.editReservation();
+                      },
+                      fillColor: Theme.of(context).colorScheme.primary,
+                      textColor: Colors.white,
+                    ),
+                  ],
+                );
+              },
+            ),
           ),
         ),
       ),
@@ -316,7 +317,7 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
             ],
           ),
         if (times != null && times.isNotEmpty)
-          GridView(
+          GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               childAspectRatio: 0.5,
@@ -325,15 +326,16 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
               mainAxisSpacing: 10,
             ),
             shrinkWrap: true,
-            children: List.generate(6, (index) {
-              final time = TimeOfDay(hour: 09 + index, minute: 00);
+            itemCount: times.length,
+            itemBuilder: (_, index) {
+              final time = times[index];
               return SchedulesItemWidget<TimeOfDay>(
                 isSelected:
                     _selectedSchedule == null
                         ? null
                         : _selectedSchedule == index,
                 onSelected:
-                    (times!.isEmpty ||
+                    (times.isEmpty ||
                             !times.any((listTime) => listTime == time))
                         ? null
                         : (newValue) {
@@ -345,7 +347,7 @@ class _RescheduleScreenState extends State<RescheduleScreen> {
                 value: formatTime(time),
                 data: time,
               );
-            }),
+            },
           ),
       ],
     );

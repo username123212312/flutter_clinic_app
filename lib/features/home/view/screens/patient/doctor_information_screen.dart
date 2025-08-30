@@ -104,217 +104,221 @@ class _DoctorInfoScreenState extends State<DoctorInfoScreen> {
         backgroundColor: Pallete.primaryColor,
       ),
       backgroundColor: Pallete.primaryColor,
-      body: Column(
-        children: [
-          SizedBox(height: screenHeight(context) * 0.001),
-          BlocBuilder<DoctorInfoCubit, DoctorInfoState>(
-            bloc: _doctorInfoCubit,
-            builder: (context, state) {
-              return SizedBox(
-                child:
-                    state.doctor.photo == null
-                        ? Image.asset(
-                          state.doctor.photo ??
-                              "assets/images/Jennifer_Miller.png",
-                          width: screenWidth(context) * 0.4,
-                          height: screenHeight(context) * 0.3,
-                          fit: BoxFit.cover,
-                        )
-                        : Container(
-                          height: screenHeight(context) * 0.3,
+      body: SafeArea(
+        child: Column(
+          children: [
+            SizedBox(height: screenHeight(context) * 0.001),
+            BlocBuilder<DoctorInfoCubit, DoctorInfoState>(
+              bloc: _doctorInfoCubit,
+              builder: (context, state) {
+                return SizedBox(
+                  child:
+                      state.doctor.photo == null
+                          ? Image.asset(
+                            state.doctor.photo ??
+                                "assets/images/Jennifer_Miller.png",
+                            width: screenWidth(context) * 0.4,
+                            height: screenHeight(context) * 0.3,
+                            fit: BoxFit.cover,
+                          )
+                          : Container(
+                            height: screenHeight(context) * 0.3,
 
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: CustomCachedNetworkImage(
-                            imagePath: state.doctor.photo!,
+                            padding: EdgeInsets.symmetric(horizontal: 20),
+                            child: CustomCachedNetworkImage(
+                              imagePath: state.doctor.photo!,
+                            ),
                           ),
-                        ),
-              );
-            },
-          ),
+                );
+              },
+            ),
 
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(25),
-              decoration: const BoxDecoration(
-                color: Pallete.grayScaleColor0,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(40),
-                  topRight: Radius.circular(40),
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.all(25),
+                decoration: const BoxDecoration(
+                  color: Pallete.grayScaleColor0,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40),
+                  ),
                 ),
-              ),
-              child: CustomScrollView(
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            decoration: const BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(
-                                  color: Pallete.grayScaleColor200,
-                                  width: 1.5,
+                child: CustomScrollView(
+                  slivers: [
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              decoration: const BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: Pallete.grayScaleColor200,
+                                    width: 1.5,
+                                  ),
                                 ),
                               ),
+                              padding: const EdgeInsets.only(bottom: 8),
+                              child: BlocBuilder<
+                                DoctorInfoCubit,
+                                DoctorInfoState
+                              >(
+                                bloc: _doctorInfoCubit,
+                                builder: (context, state) {
+                                  return DoctorInfCard(
+                                    doctorName:
+                                        '${state.doctor.firstName ?? 'No'} ${state.doctor.lastName ?? 'Doctor'}',
+                                    specialty:
+                                        state.doctor.speciality ??
+                                        'No speciality',
+                                    rating:
+                                        double.tryParse(
+                                          (state.doctor.finalRate ?? 0.0)
+                                              .toString(),
+                                        ) ??
+                                        0.0,
+                                    backgroundColor: Pallete.grayScaleColor0,
+                                    avgDuration:
+                                        state.doctor.averageVisitDuration ?? '',
+                                    onRatePressed: () {
+                                      context.pushNamed(
+                                        AppRouteConstants.doctorRatingRouteName,
+                                        extra: state.doctor,
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
                             ),
-                            padding: const EdgeInsets.only(bottom: 8),
-                            child: BlocBuilder<
-                              DoctorInfoCubit,
-                              DoctorInfoState
-                            >(
+                            const SizedBox(height: 16),
+                            BlocBuilder<DoctorInfoCubit, DoctorInfoState>(
                               bloc: _doctorInfoCubit,
                               builder: (context, state) {
-                                return DoctorInfCard(
-                                  doctorName:
-                                      '${state.doctor.firstName ?? 'No'} ${state.doctor.lastName ?? 'Doctor'}',
-                                  specialty:
-                                      state.doctor.speciality ??
-                                      'No speciality',
-                                  rating:
-                                      double.tryParse(
-                                        (state.doctor.finalRate ?? 0.0)
-                                            .toString(),
-                                      ) ??
-                                      0.0,
-                                  backgroundColor: Pallete.grayScaleColor0,
-                                  avgDuration:
-                                      state.doctor.averageVisitDuration ?? '',
-                                  onRatePressed: () {
-                                    context.pushNamed(
-                                      AppRouteConstants.doctorRatingRouteName,
-                                      extra: state.doctor,
-                                    );
-                                  },
+                                return Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    InfoBox(
+                                      backgroundColor: Pallete.grayScaleColor0,
+                                      title:
+                                          state.doctor.excperience ?? 'No XP',
+                                      subtitle: 'Experience',
+                                    ),
+                                    InfoBox(
+                                      backgroundColor: Pallete.grayScaleColor0,
+                                      title:
+                                          state.doctor.treated?.toString() ??
+                                          '0',
+                                      subtitle: 'Treated',
+                                    ),
+                                    BlocConsumer<
+                                      DoctorInfoCubit,
+                                      DoctorInfoState
+                                    >(
+                                      key: ValueKey(1),
+                                      bloc: _doctorInfoCubit,
+                                      builder: (context, state) {
+                                        return InfoBox(
+                                          backgroundColor:
+                                              Pallete.grayScaleColor0,
+                                          title:
+                                              '\$${state.doctor.visitFee ?? 0.0}',
+                                          subtitle: 'Hourly Rate',
+                                        );
+                                      },
+                                      listener: (
+                                        BuildContext context,
+                                        DoctorInfoState state,
+                                      ) {
+                                        if (state.status.isLoading) {
+                                          LoadingOverlay().show(context);
+                                        } else {
+                                          LoadingOverlay().hideAll();
+                                          if (state.status.isError) {
+                                            showToast(
+                                              context: context,
+                                              type: ToastificationType.error,
+                                              msg: state.message,
+                                            );
+                                          }
+                                        }
+                                      },
+                                    ),
+                                  ],
                                 );
                               },
                             ),
-                          ),
-                          const SizedBox(height: 16),
-                          BlocBuilder<DoctorInfoCubit, DoctorInfoState>(
-                            bloc: _doctorInfoCubit,
-                            builder: (context, state) {
-                              return Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  InfoBox(
-                                    backgroundColor: Pallete.grayScaleColor0,
-                                    title: state.doctor.excperience ?? 'No XP',
-                                    subtitle: 'Experience',
-                                  ),
-                                  InfoBox(
-                                    backgroundColor: Pallete.grayScaleColor0,
-                                    title:
-                                        state.doctor.treated?.toString() ?? '0',
-                                    subtitle: 'Treated',
-                                  ),
-                                  BlocConsumer<
-                                    DoctorInfoCubit,
-                                    DoctorInfoState
-                                  >(
-                                    key: ValueKey(1),
-                                    bloc: _doctorInfoCubit,
-                                    builder: (context, state) {
-                                      return InfoBox(
-                                        backgroundColor:
-                                            Pallete.grayScaleColor0,
-                                        title:
-                                            '\$${state.doctor.visitFee ?? 0.0}',
-                                        subtitle: 'Hourly Rate',
-                                      );
-                                    },
-                                    listener: (
-                                      BuildContext context,
-                                      DoctorInfoState state,
-                                    ) {
-                                      if (state.status.isLoading) {
-                                        LoadingOverlay().show(context);
-                                      } else {
-                                        LoadingOverlay().hideAll();
-                                        if (state.status.isError) {
-                                          showToast(
-                                            context: context,
-                                            type: ToastificationType.error,
-                                            msg: state.message,
-                                          );
+                            if (getChildId() != null)
+                              Align(
+                                alignment: Alignment.center,
+                                child: SizedBox(
+                                  width: screenWidth(context) * 0.7,
+                                  child: FittedBox(
+                                    child: TwoSelectableWidget(
+                                      currentIndex: _selectedIndex,
+                                      twoTitles: ['Regular', 'Vaccine'],
+                                      onToggleIndex: (index) {
+                                        if (index == 0) {
+                                          _doctorInfoCubit.selectVaccine(null);
                                         }
-                                      }
-                                    },
-                                  ),
-                                ],
-                              );
-                            },
-                          ),
-                          if (getChildId() != null)
-                            Align(
-                              alignment: Alignment.center,
-                              child: SizedBox(
-                                width: screenWidth(context) * 0.7,
-                                child: FittedBox(
-                                  child: TwoSelectableWidget(
-                                    currentIndex: _selectedIndex,
-                                    twoTitles: ['Regular', 'Vaccine'],
-                                    onToggleIndex: (index) {
-                                      if (index == 0) {
-                                        _doctorInfoCubit.selectVaccine(null);
-                                      }
-                                      setState(() {
-                                        _vaccinationRecord = null;
-                                        _selectedIndex = index;
-                                      });
-                                    },
+                                        setState(() {
+                                          _vaccinationRecord = null;
+                                          _selectedIndex = index;
+                                        });
+                                      },
+                                    ),
                                   ),
                                 ),
                               ),
+                            if (_selectedIndex == 1) ...[
+                              _buildVaccinePicker(),
+                              SizedBox(height: 20),
+                            ],
+                            BlocBuilder<DoctorInfoCubit, DoctorInfoState>(
+                              bloc: _doctorInfoCubit,
+                              builder: (_, state) {
+                                return (state.doctor.status ??
+                                            'notAvailable')[0] ==
+                                        'a'
+                                    ? _buildTimesAndSchedules()
+                                    : Center(
+                                      heightFactor: 3,
+                                      child: Text(
+                                        'Doctor is not available right now',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .labelMedium!
+                                            .copyWith(fontSize: 13),
+                                      ),
+                                    );
+                              },
                             ),
-                          if (_selectedIndex == 1) ...[
-                            _buildVaccinePicker(),
-                            SizedBox(height: 20),
+                            // if ((widget.doctor.status ?? 'notAvailable')[0] ==
+                            //     'a')
+                            //   _buildTimesAndSchedules(),
+                            // if ((widget.doctor.status ?? 'notAvailable')[0] !=
+                            //     'a')
+                            //   Center(
+                            //     heightFactor: 3,
+                            //     child: Text(
+                            //       'Doctor is not available right now',
+                            //       style: Theme.of(
+                            //         context,
+                            //       ).textTheme.labelMedium!.copyWith(fontSize: 13),
+                            //     ),
+                            //   ),
                           ],
-                          BlocBuilder<DoctorInfoCubit, DoctorInfoState>(
-                            bloc: _doctorInfoCubit,
-                            builder: (_, state) {
-                              return (state.doctor.status ??
-                                          'notAvailable')[0] ==
-                                      'a'
-                                  ? _buildTimesAndSchedules()
-                                  : Center(
-                                    heightFactor: 3,
-                                    child: Text(
-                                      'Doctor is not available right now',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .labelMedium!
-                                          .copyWith(fontSize: 13),
-                                    ),
-                                  );
-                            },
-                          ),
-                          // if ((widget.doctor.status ?? 'notAvailable')[0] ==
-                          //     'a')
-                          //   _buildTimesAndSchedules(),
-                          // if ((widget.doctor.status ?? 'notAvailable')[0] !=
-                          //     'a')
-                          //   Center(
-                          //     heightFactor: 3,
-                          //     child: Text(
-                          //       'Doctor is not available right now',
-                          //       style: Theme.of(
-                          //         context,
-                          //       ).textTheme.labelMedium!.copyWith(fontSize: 13),
-                          //     ),
-                          //   ),
-                        ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

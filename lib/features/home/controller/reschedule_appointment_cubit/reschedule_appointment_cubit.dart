@@ -127,7 +127,7 @@ class RescheduleAppointmentCubit extends Cubit<RescheduleAppointmentState> {
   }
 
   void selectTime(TimeOfDay time) {
-    emit(state.copyWith(selectedTime: time));
+    emit(state.copyWith(selectedTime: time, status: DataStatus.data));
   }
 
   void _emitLoading() {

@@ -56,7 +56,7 @@ class _ChangeAppointmentsSchedulesState
           ),
         ],
         title: Text(
-          'Change your schedules',
+          'Add absence schedule',
           style: Theme.of(
             context,
           ).textTheme.labelMedium!.copyWith(fontSize: 14),

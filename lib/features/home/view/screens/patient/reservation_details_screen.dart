@@ -113,304 +113,335 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.only(
-          top: 30,
-          left: 30,
-          right: 30,
-          bottom: MediaQuery.of(context).viewInsets.bottom * 0.3,
-        ),
-        child: BlocBuilder<ReservationDetailsCubit, ReservationDetailsState>(
-          bloc: _reservationDetailsCubit,
-          builder: (context, state) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                AppointmentDetailsCard(
-                  doctorName: state.appointment?.doctorName ?? 'No doctor',
-                  specialty:
-                      state.appointment?.doctorSpeciality ?? 'No speciality',
-                  imagePath: state.appointment?.doctorPhoto,
-                  hourlyRate:
-                      "Avg Visit Duration : ${state.appointment?.averageVisitDuration}",
-                  rating: 4.8,
-                  backgroundColor: Pallete.graysGray5,
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  "Schedule",
-                  style: themeData!.textTheme.titleMedium!.copyWith(
-                    fontSize: 18,
-                    color: Pallete.black1,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.only(
+            top: 30,
+            left: 30,
+            right: 30,
+            bottom: MediaQuery.of(context).viewInsets.bottom * 0.3,
+          ),
+          child: BlocBuilder<ReservationDetailsCubit, ReservationDetailsState>(
+            bloc: _reservationDetailsCubit,
+            builder: (context, state) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AppointmentDetailsCard(
+                    doctorName: state.appointment?.doctorName ?? 'No doctor',
+                    specialty:
+                        state.appointment?.doctorSpeciality ?? 'No speciality',
+                    imagePath: state.appointment?.doctorPhoto,
+                    hourlyRate:
+                        "Avg Visit Duration : ${state.appointment?.averageVisitDuration}",
+                    rating: 4.8,
+                    backgroundColor: Pallete.graysGray5,
                   ),
-                ),
-                const SizedBox(height: 10),
-                Padding(
-                  padding: EdgeInsets.all(16),
-                  child: Row(
+                  const SizedBox(height: 20),
+                  Text(
+                    "Schedule",
+                    style: themeData!.textTheme.titleMedium!.copyWith(
+                      fontSize: 18,
+                      color: Pallete.black1,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: InfoBox(
+                            title:
+                                DateFormat('d MMMM, EEE')
+                                    .format(
+                                      state.appointment?.reservationDate ??
+                                          DateTime.now(),
+                                    )
+                                    .toString(),
+                            subtitle: "Date",
+                            backgroundColor: Pallete.graysGray5,
+                          ),
+                        ),
+                        SizedBox(width: 16),
+                        Expanded(
+                          child: InfoBox(
+                            title: formatTime(
+                              state.appointment?.reservationHour ??
+                                  TimeOfDay.now(),
+                            ),
+                            subtitle: "Time",
+                            backgroundColor: Pallete.graysGray5,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    "Reminder",
+                    style: themeData!.textTheme.titleMedium!.copyWith(
+                      fontSize: 18,
+                      color: Pallete.black1,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
                     children: [
-                      Expanded(
-                        child: InfoBox(
-                          title:
-                              DateFormat('d MMMM, EEE')
-                                  .format(
-                                    state.appointment?.reservationDate ??
-                                        DateTime.now(),
-                                  )
-                                  .toString(),
-                          subtitle: "Date",
-                          backgroundColor: Pallete.graysGray5,
+                      SizedBox(
+                        width: (screenWidth ?? 0) * 0.15,
+                        height: (screenHeight ?? 0) * 0.07,
+                        child: TextFormField(
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.black, fontSize: 17),
+                          onTap: () => _showReminderSheet(context),
+                          controller: _reminderController,
+                          readOnly: true,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.only(
+                              top: 15,
+                              bottom: 20,
+                            ),
+                          ),
                         ),
                       ),
-                      SizedBox(width: 16),
-                      Expanded(
-                        child: InfoBox(
-                          title: formatTime(
-                            state.appointment?.reservationHour ??
-                                TimeOfDay.now(),
-                          ),
-                          subtitle: "Time",
-                          backgroundColor: Pallete.graysGray5,
-                        ),
+                      SizedBox(width: 10),
+                      Text(
+                        'Hour/s before your appointment',
+                        style: Theme.of(
+                          context,
+                        ).textTheme.labelMedium!.copyWith(fontSize: 13),
                       ),
                     ],
                   ),
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  "Reminder",
-                  style: themeData!.textTheme.titleMedium!.copyWith(
-                    fontSize: 18,
-                    color: Pallete.black1,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: (screenWidth ?? 0) * 0.15,
-                      height: (screenHeight ?? 0) * 0.07,
-                      child: TextFormField(
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.black, fontSize: 17),
-                        onTap: () => _showReminderSheet(context),
-                        controller: _reminderController,
-                        readOnly: true,
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(top: 15, bottom: 20),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Text(
-                      'Hour/s before your appointment',
-                      style: Theme.of(
-                        context,
-                      ).textTheme.labelMedium!.copyWith(fontSize: 13),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      behavior: HitTestBehavior.opaque,
-                      onTap: () {
-                        _buildDiscountDialog();
-                      },
-                      child: Row(
-                        spacing: 5,
-                        children: [
-                          Text(
-                            "Use Discount Points",
-                            style: themeData!.textTheme.titleMedium!.copyWith(
-                              fontSize: 18,
-                              color: Pallete.black1,
-                            ),
-                          ),
-                          Container(
-                            width: 20,
-                            height: 20,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-
-                            child: FittedBox(
-                              child: Icon(
-                                Icons.question_mark,
-                                color: Colors.white,
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        behavior: HitTestBehavior.opaque,
+                        onTap: () {
+                          _buildDiscountDialog();
+                        },
+                        child: Row(
+                          spacing: 5,
+                          children: [
+                            Text(
+                              "Use Discount Points",
+                              style: themeData!.textTheme.titleMedium!.copyWith(
+                                fontSize: 18,
+                                color: Pallete.black1,
                               ),
                             ),
+                            Container(
+                              width: 20,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+
+                              child: FittedBox(
+                                child: Icon(
+                                  Icons.question_mark,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Switch(
+                        value: _useDiscountPoints,
+                        onChanged: (newValue) {
+                          setState(() {
+                            _useDiscountPoints = newValue;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  Divider(color: Colors.black, thickness: 2),
+                  const SizedBox(height: 10),
+                  BlocBuilder<ReservationDetailsCubit, ReservationDetailsState>(
+                    bloc: _reservationDetailsCubit,
+                    builder: (context, state) {
+                      return Column(
+                        spacing: 10,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Expected Price",
+                                style: themeData!.textTheme.titleMedium!
+                                    .copyWith(
+                                      fontSize: 14,
+                                      color: Pallete.black1,
+                                      fontStyle: FontStyle.italic,
+                                    ),
+                              ),
+                              Text(
+                                "\$ ${double.tryParse(state.appointment?.expectedPrice.toString() ?? '0.0')}",
+                                style: themeData!.textTheme.titleMedium!
+                                    .copyWith(
+                                      fontSize: 14,
+                                      color: Pallete.black1,
+                                      fontStyle: FontStyle.italic,
+                                    ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Paid Price",
+                                style: themeData!.textTheme.titleMedium!
+                                    .copyWith(
+                                      fontSize: 14,
+                                      color: Pallete.black1,
+                                      fontStyle: FontStyle.italic,
+                                    ),
+                              ),
+
+                              Text(
+                                "\$ ${double.tryParse(state.appointment?.paidPrice.toString() ?? '0.0')}",
+                                style: themeData!.textTheme.titleMedium!
+                                    .copyWith(
+                                      fontSize: 14,
+                                      color: Pallete.black1,
+                                      fontStyle: FontStyle.italic,
+                                    ),
+                              ),
+                            ],
                           ),
                         ],
-                      ),
-                    ),
-                    Switch(
-                      value: _useDiscountPoints,
-                      onChanged: (newValue) {
-                        setState(() {
-                          _useDiscountPoints = newValue;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                Divider(color: Colors.black, thickness: 2),
-                const SizedBox(height: 10),
-                BlocBuilder<ReservationDetailsCubit, ReservationDetailsState>(
-                  bloc: _reservationDetailsCubit,
-                  builder: (context, state) {
-                    return Column(
-                      spacing: 10,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Expected Price",
-                              style: themeData!.textTheme.titleMedium!.copyWith(
-                                fontSize: 14,
-                                color: Pallete.black1,
-                                fontStyle: FontStyle.italic,
-                              ),
-                            ),
-                            Text(
-                              "\$ ${double.tryParse(state.appointment?.expectedPrice.toString() ?? '0.0')}",
-                              style: themeData!.textTheme.titleMedium!.copyWith(
-                                fontSize: 14,
-                                color: Pallete.black1,
-                                fontStyle: FontStyle.italic,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Paid Price",
-                              style: themeData!.textTheme.titleMedium!.copyWith(
-                                fontSize: 14,
-                                color: Pallete.black1,
-                                fontStyle: FontStyle.italic,
-                              ),
-                            ),
+                      );
+                    },
+                  ),
 
-                            Text(
-                              "\$ ${double.tryParse(state.appointment?.paidPrice.toString() ?? '0.0')}",
-                              style: themeData!.textTheme.titleMedium!.copyWith(
-                                fontSize: 14,
-                                color: Pallete.black1,
-                                fontStyle: FontStyle.italic,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    );
-                  },
-                ),
+                  const SizedBox(height: 30),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: BlocListener<
+                          ReservationDetailsCubit,
+                          ReservationDetailsState
+                        >(
+                          bloc: _reservationDetailsCubit,
+                          listener: (context, state) async {
+                            if (state.status.isLoading) {
+                              LoadingOverlay().show(context);
+                            } else {
+                              LoadingOverlay().hideAll();
 
-                const SizedBox(height: 30),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: BlocListener<
-                        ReservationDetailsCubit,
-                        ReservationDetailsState
-                      >(
-                        bloc: _reservationDetailsCubit,
-                        listener: (context, state) async {
-                          if (state.status.isLoading) {
-                            LoadingOverlay().show(context);
-                          } else {
-                            LoadingOverlay().hideAll();
+                              if (state.status.isError) {
+                                showToast(
+                                  context: context,
+                                  type: ToastificationType.error,
+                                  msg: state.message,
+                                );
+                              }
 
-                            if (state.status.isError) {
-                              showToast(
-                                context: context,
-                                type: ToastificationType.error,
-                                msg: state.message,
-                              );
-                            }
-
-                            if (state.status.isDone) {
-                              showToast(
-                                context: context,
-                                type: ToastificationType.success,
-                                msg: state.message,
-                              );
-                              await TransparentDialog.show(
-                                context: context,
-                                barrierDismissible: false,
-                                builder:
-                                    (_) => CustomDialog(
-                                      content: Column(
-                                        children: [
-                                          Align(
-                                            alignment: Alignment(-0.2, 0.0),
-                                            child: Lottie.asset(
-                                              'assets/lottie/successfully_animation.json',
-                                              fit: BoxFit.cover,
-                                              width: (screenWidth ?? 0) * 0.2,
+                              if (state.status.isDone) {
+                                showToast(
+                                  context: context,
+                                  type: ToastificationType.success,
+                                  msg: state.message,
+                                );
+                                await TransparentDialog.show(
+                                  context: context,
+                                  barrierDismissible: false,
+                                  builder:
+                                      (_) => CustomDialog(
+                                        content: Column(
+                                          children: [
+                                            Align(
+                                              alignment: Alignment(-0.2, 0.0),
+                                              child: Lottie.asset(
+                                                'assets/lottie/successfully_animation.json',
+                                                fit: BoxFit.cover,
+                                                width: (screenWidth ?? 0) * 0.2,
+                                                height:
+                                                    (screenHeight ?? 0) * 0.15,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: (screenWidth ?? 0) * 0.7,
+                                              child: Text(
+                                                textAlign: TextAlign.center,
+                                                state.message,
+                                                style: themeData!
+                                                    .textTheme
+                                                    .labelMedium!
+                                                    .copyWith(
+                                                      color: Colors.black,
+                                                      fontSize: 13,
+                                                    ),
+                                              ),
+                                            ),
+                                            SizedBox(height: 25),
+                                            SizedBox(
+                                              width: (screenWidth ?? 0) * 0.5,
                                               height:
-                                                  (screenHeight ?? 0) * 0.15,
+                                                  (screenHeight ?? 0) * 0.05,
+                                              child: CustomElevatedButton(
+                                                fontSize: 12,
+                                                title: 'Back to Home',
+                                                onTap: () {
+                                                  context
+                                                      .read<AppointmentsBloc>()
+                                                      .add(
+                                                        AppointmentsFetched(),
+                                                      );
+                                                  context.pop();
+                                                  context.goNamed(
+                                                    AppRouteConstants
+                                                        .homeRouteName,
+                                                  );
+                                                },
+                                                fillColor:
+                                                    themeData!
+                                                        .colorScheme
+                                                        .primary,
+                                                textColor: Colors.white,
+                                              ),
                                             ),
-                                          ),
-                                          SizedBox(
-                                            width: (screenWidth ?? 0) * 0.7,
-                                            child: Text(
-                                              textAlign: TextAlign.center,
-                                              state.message,
-                                              style: themeData!
-                                                  .textTheme
-                                                  .labelMedium!
-                                                  .copyWith(
-                                                    color: Colors.black,
-                                                    fontSize: 13,
-                                                  ),
-                                            ),
-                                          ),
-                                          SizedBox(height: 25),
-                                          SizedBox(
-                                            width: (screenWidth ?? 0) * 0.5,
-                                            height: (screenHeight ?? 0) * 0.05,
-                                            child: CustomElevatedButton(
-                                              fontSize: 12,
-                                              title: 'Back to Home',
-                                              onTap: () {
-                                                context
-                                                    .read<AppointmentsBloc>()
-                                                    .add(AppointmentsFetched());
-                                                context.pop();
-                                                context.goNamed(
-                                                  AppRouteConstants
-                                                      .homeRouteName,
-                                                );
-                                              },
-                                              fillColor:
-                                                  themeData!
-                                                      .colorScheme
-                                                      .primary,
-                                              textColor: Colors.white,
-                                            ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                              );
+                                );
+                              }
                             }
-                          }
-                        },
+                          },
+                          child: CustomButton(
+                            text: "Checkout",
+                            onPressed: () async {
+                              await _reservationDetailsCubit
+                                  .confirmReservationPayment(
+                                    _useDiscountPoints,
+                                  );
+                            },
+                            color: Pallete.primaryColor,
+                            height: (screenHeight ?? 0) * 0.065,
+                            padding: const EdgeInsets.all(16),
+                            borderRadius: 32,
+                            fontSize: 16,
+                            textColor: Pallete.grayScaleColor0,
+                            width: (screenWidth ?? 0) * 0.1,
+                          ),
+                        ),
+                      ),
+
+                      SizedBox(width: 16),
+                      Expanded(
                         child: CustomButton(
-                          text: "Checkout",
+                          text: "My Wallet",
                           onPressed: () async {
-                            await _reservationDetailsCubit
-                                .confirmReservationPayment(_useDiscountPoints);
+                            _showTDialog();
                           },
                           color: Pallete.primaryColor,
                           height: (screenHeight ?? 0) * 0.065,
@@ -421,31 +452,14 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                           width: (screenWidth ?? 0) * 0.1,
                         ),
                       ),
-                    ),
+                    ],
+                  ),
 
-                    SizedBox(width: 16),
-                    Expanded(
-                      child: CustomButton(
-                        text: "My Wallet",
-                        onPressed: () async {
-                          _showTDialog();
-                        },
-                        color: Pallete.primaryColor,
-                        height: (screenHeight ?? 0) * 0.065,
-                        padding: const EdgeInsets.all(16),
-                        borderRadius: 32,
-                        fontSize: 16,
-                        textColor: Pallete.grayScaleColor0,
-                        width: (screenWidth ?? 0) * 0.1,
-                      ),
-                    ),
-                  ],
-                ),
-
-                const SizedBox(height: 30),
-              ],
-            );
-          },
+                  const SizedBox(height: 30),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );

@@ -121,7 +121,7 @@ class _SearchOverlayState extends State<SearchOverlay> {
                                               doctor.speciality ??
                                               'No specality',
                                           imagePath:
-                                              doctor.photoPath ??
+                                              doctor.photo ??
                                               'assets/images/logo.webp',
                                           rating:
                                               double.tryParse(
@@ -132,6 +132,7 @@ class _SearchOverlayState extends State<SearchOverlay> {
                                           visitDuration:
                                               doctor.averageVisitDuration ?? '',
                                           onTap: () {
+                                            context.pop();
                                             context.pushNamed(
                                               AppRouteConstants
                                                   .doctorInfoRouteName,
